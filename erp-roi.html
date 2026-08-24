@@ -214,6 +214,11 @@ function paybackTxt(m) {
   return (Math.round(m.payback * 10) / 10).toFixed(1) + ' years';
 }
 function standing(v) { return short(Math.abs(v)) + (v >= 0 ? ' ahead' : ' down'); }
+function line(m) {
+  return isFinite(m.months)
+    ? 'Pays back in ' + paybackTxt(m) + ', ' + standing(m.cumAt(10)) + ' at year 10.'
+    : 'Never pays back — ' + standing(m.cumAt(10)) + ' at year 10.';
+}
 
 function showQuota() {
   const left = Math.max(0, LIMIT - used());
@@ -365,9 +370,11 @@ function calculate() {
   const b10 = mBoth.cumAt(10);
   document.getElementById('stress').innerHTML =
     'Two things go wrong on most projects. Here is what each one does on its own, so you can see which one you actually need to manage.<br><br>' +
-    '<strong>Only two-thirds of the saving lands.</strong> Pays back in ' + paybackTxt(mLow) + ', ' + standing(mLow.cumAt(10)) + ' at year 10.<br>' +
-    '<strong>Setup runs 30% over budget.</strong> Pays back in ' + paybackTxt(mOver) + ', ' + standing(mOver.cumAt(10)) + ' at year 10.<br><br>' +
-    'If both happen together it pays back in <strong>' + paybackTxt(mBoth) + '</strong> and you are <strong>' + standing(b10) + '</strong> at year 10. ' +
+    '<strong>Only two-thirds of the saving lands.</strong> ' + line(mLow) + '<br>' +
+    '<strong>Setup runs 30% over budget.</strong> ' + line(mOver) + '<br><br>' +
+    'If both happen at once it ' + (isFinite(mBoth.months)
+      ? 'pays back in <strong>' + paybackTxt(mBoth) + '</strong> and you are <strong>' + standing(b10) + '</strong> at year 10. '
+      : '<strong>never pays back</strong>, and you are <strong>' + standing(b10) + '</strong> at year 10. ') +
     (b10 > 0
       ? 'It still comes out ahead over the life of the asset even when both go wrong — that is what makes the decision safe rather than brave.'
       : 'It does not survive both at once, so this only works if you hold the scope and actually get the savings. Fix the two worst processes first and prove them before committing to the rest.');
