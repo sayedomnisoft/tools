@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ERP &amp; Automation ROI Calculator — The Automation Edge</title>
-<meta name="description" content="Work out whether a system project pays for itself: payback in months, 3-year net benefit, and an honest stress test if it goes badly.">
+<meta name="description" content="An ERP is a 10 to 15 year asset, not a yearly expense. See how many years until it pays for itself, what it is worth at year 7, 10 and 15, and how your accountant will treat it.">
 <meta property="og:title" content="ERP &amp; Automation ROI Calculator">
-<meta property="og:description" content="Payback in months, 3-year net benefit, and what happens if it goes badly. Free, no signup.">
+<meta property="og:description" content="Payback, the 15-year view, and how your accountant treats it. Free, no signup.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://sayedomnisoft.github.io/tools/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -14,10 +14,22 @@
 <style>
   .stress { background: rgba(255,122,89,0.12); border: 1px solid rgba(255,122,89,0.45); border-radius: 12px; padding: 14px 17px; font-size: 14.5px; line-height: 1.55; margin-bottom: 20px; }
   .stress strong { color: #ff9f85; }
-  .stress .st-title { font-size: 12px; letter-spacing: 1.8px; font-weight: 700; color: #ff9f85; margin-bottom: 8px; }
-  .verdict-band { font-size: 22px; font-weight: 800; color: var(--gold-light); margin: 6px 0 14px; }
-  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  @media (max-width: 430px) { .grid2 { grid-template-columns: 1fr; } }
+  .st-title { font-size: 12px; letter-spacing: 1.8px; font-weight: 700; color: #ff9f85; margin-bottom: 8px; }
+  .book { background: rgba(120,220,255,0.10); border: 1px solid rgba(120,220,255,0.40); border-radius: 12px; padding: 14px 17px; font-size: 14.5px; line-height: 1.55; margin-bottom: 20px; }
+  .book strong { color: #a8e8ff; }
+  .bk-title { font-size: 12px; letter-spacing: 1.8px; font-weight: 700; color: #a8e8ff; margin-bottom: 10px; }
+  .verdict-band { font-size: 23px; font-weight: 800; color: var(--gold-light); margin: 4px 0 16px; line-height: 1.2; }
+  .sec-title { font-size: 12px; letter-spacing: 1.8px; font-weight: 700; color: var(--gold-light); margin: 26px 0 2px; }
+  .horizon { margin: 10px 0 20px; }
+  .hz { display: grid; grid-template-columns: 62px 1fr auto; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.09); font-size: 14.5px; }
+  .hz .yr { color: rgba(255,255,255,0.6); font-weight: 700; font-size: 13px; letter-spacing: .5px; }
+  .hz .bar { height: 10px; border-radius: 5px; background: rgba(255,255,255,0.10); overflow: hidden; }
+  .hz .fill { height: 100%; border-radius: 5px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+  .hz .fill.neg { background: linear-gradient(90deg, #b8452c, #ff7a59); }
+  .hz .val { font-weight: 700; min-width: 96px; text-align: right; }
+  .hz.key { border-bottom-color: rgba(242,207,110,0.5); }
+  .hz.key .yr, .hz.key .val { color: var(--gold-light); }
+  .frame { font-size: 13.5px; color: rgba(255,255,255,0.6); line-height: 1.55; margin: -4px 0 22px; }
 </style>
 </head>
 <body>
@@ -27,7 +39,7 @@
   <!-- FORM -->
   <div id="form">
     <h1>ERP &amp; Automation ROI Calculator</h1>
-    <p class="sub">Before you sign anything, find out whether the numbers actually work — how fast it pays for itself, what you're left with after three years, and what happens if it goes badly.</p>
+    <p class="sub">A proper system is not a yearly expense — it is an asset you will still be running in ten or fifteen years, and your accountant will treat it as one. So this works out how long it takes to pay for itself, what it is worth at year 7, 10 and 15, and what happens if the project goes badly.</p>
 
     <div class="field">
       <label for="staff">How many people would use the system?
@@ -89,6 +101,29 @@
       </select>
     </div>
 
+    <div class="field">
+      <label for="life">How many years will you write the asset down over?
+        <small>Your accountant capitalises the setup cost and amortises it over its useful life. Five to ten years is normal for a business system.</small>
+      </label>
+      <select id="life">
+        <option value="5">5 years</option>
+        <option value="7">7 years</option>
+        <option value="10" selected>10 years</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="growth">Average salary increase per year (%)
+        <small>Wages rise, so the same manual work costs more every year — and the hours you save are worth more too. 3% is a fair long-run assumption.</small>
+      </label>
+      <select id="growth">
+        <option value="0">0% — no increase, most cautious</option>
+        <option value="2">2%</option>
+        <option value="3" selected>3% — typical</option>
+        <option value="5">5%</option>
+      </select>
+    </div>
+
     <button class="primary" id="calcBtn" onclick="calculate()">Calculate the return</button>
     <div class="quota" id="quota"></div>
   </div>
@@ -96,27 +131,35 @@
   <!-- RESULT -->
   <div id="result" class="hidden">
     <div class="result-label">PAYS FOR ITSELF IN</div>
-    <div class="big-num"><span id="payback">0</span><small> months</small></div>
+    <div class="big-num"><span id="payback">0</span><small id="paybackUnit"> years</small></div>
     <div class="verdict-band" id="band"></div>
+    <div class="note" id="verdict"></div>
 
+    <div class="sec-title">THE YEARLY NUMBERS</div>
     <div class="rows">
       <div class="row"><span>Manual work costs you now (per year)</span><span id="rWaste">—</span></div>
       <div class="row"><span>Hours won back (per year)</span><span id="rHours">—</span></div>
       <div class="row"><span>Value of those hours (per year)</span><span id="rGain">—</span></div>
       <div class="row"><span>Setup cost after grant</span><span id="rImpl">—</span></div>
-      <div class="row"><span>Net gain in year 1</span><span id="rY1">—</span></div>
-      <div class="row"><span>Net gain over 3 years</span><span id="rY3">—</span></div>
-      <div class="row"><span>Return over 3 years</span><span id="rRoi">—</span></div>
+      <div class="row"><span>Software cost (per year)</span><span id="rAnnual">—</span></div>
+      <div class="row"><span>Net gain per year, year 1</span><span id="rNet">—</span></div>
     </div>
 
-    <div class="note" id="verdict"></div>
+    <div class="sec-title">WHAT IT IS WORTH IF YOU KEEP IT</div>
+    <p class="frame">Cumulative money in your pocket after the setup cost is paid back. This is the point most ROI calculators miss: a system you keep for fifteen years spends most of its life as pure return.</p>
+    <div class="horizon" id="horizon"></div>
+
+    <div class="book">
+      <div class="bk-title">HOW YOUR ACCOUNTANT SEES IT</div>
+      <div id="acct"></div>
+    </div>
 
     <div class="stress">
       <div class="st-title">IF IT GOES BADLY</div>
       <div id="stress"></div>
     </div>
 
-    <p class="disclaim">This is arithmetic, not a promise. It assumes the hours you win back turn into real work or real capacity — if the time just gets absorbed elsewhere, the money never shows up on your P&amp;L. Treat the result as a sanity check, not a business case.</p>
+    <p class="disclaim">This is arithmetic, not a promise. It assumes the hours you win back turn into real work or real capacity — if the time just gets absorbed elsewhere, the money never shows up on your P&amp;L. The 10 and 15 year figures include one major refresh in year 10 costing 40% of the original setup, because no system runs untouched for fifteen years. Treat the result as a sanity check, not a business case, and check the accounting treatment with your own accountant.</p>
 
     <a class="cta" href="#" id="bookBtn">Talk it through — 20-min systems review</a>
     <a class="cta-ghost" href="index.html">See the other free tools</a>
@@ -145,6 +188,9 @@ const BOOKING_URL = 'https://sayedomnisoft.github.io/tools/review.html';
 const TOOL_ID = 'erp-roi';
 const LIMIT = 3;
 const MONTHLY_HOURS = 190;
+const REFRESH_YEAR = 10;      // major upgrade / re-implementation
+const REFRESH_PCT = 0.40;     // costing 40% of the original setup
+const HORIZONS = [3, 5, 7, 10, 15];
 
 document.getElementById('bookBtn').href = BOOKING_URL;
 document.getElementById('bookBtn2').href = BOOKING_URL;
@@ -155,6 +201,12 @@ function used() { return parseInt(localStorage.getItem('tae_' + TOOL_ID) || '0',
 function bump() { localStorage.setItem('tae_' + TOOL_ID, used() + 1); }
 function fmt(n) { return Math.round(n).toLocaleString('en-SG'); }
 function money(n) { return (n < 0 ? '−S$' : 'S$') + fmt(Math.abs(n)); }
+function short(n) {
+  const a = Math.abs(n), s = n < 0 ? '−S$' : 'S$';
+  if (a >= 1000000) return s + (a / 1000000).toFixed(a >= 10000000 ? 0 : 1) + 'm';
+  if (a >= 1000) return s + Math.round(a / 1000) + 'k';
+  return s + fmt(a);
+}
 
 function showQuota() {
   const left = Math.max(0, LIMIT - used());
@@ -163,72 +215,155 @@ function showQuota() {
   document.getElementById('calcBtn').disabled = left === 0;
 }
 
-function model(staff, salary, hours, recoverPct, impl, annual, grantPct) {
-  const hourly = salary / MONTHLY_HOURS;
-  const wasteHours = staff * hours * 52;
+function model(p) {
+  const g = p.growthPct / 100;
+  const hourly = p.salary / MONTHLY_HOURS;
+  const wasteHours = p.staff * p.hours * 52;
   const wasteCost = wasteHours * hourly;
-  const gainHours = wasteHours * (recoverPct / 100);
+  const gainHours = wasteHours * (p.recoverPct / 100);
   const gainValue = gainHours * hourly;
-  const netImpl = impl * (1 - grantPct / 100);
-  const yearlyNet = gainValue - annual;          // recurring benefit after software cost
-  const year1 = yearlyNet - netImpl;
-  const year3 = yearlyNet * 3 - netImpl;
-  const invested = netImpl + annual * 3;
-  const roi = invested > 0 ? ((gainValue * 3 - invested) / invested) * 100 : 0;
-  const payback = yearlyNet > 0 ? (netImpl / yearlyNet) * 12 : Infinity;
-  return {hourly, wasteHours, wasteCost, gainHours, gainValue, netImpl, yearlyNet, year1, year3, roi, payback};
+  const netImpl = p.impl * (1 - p.grantPct / 100);
+  const yearlyNet = gainValue - p.annual;   // recurring benefit after software cost, year 1
+
+  // payback, stepped month by month, with the yearly figure rising by g each year
+  let months = Infinity;
+  if (yearlyNet > 0) {
+    let cum = -netImpl, m = 0;
+    while (cum < 0 && m < 600) {
+      cum += (yearlyNet * Math.pow(1 + g, Math.floor(m / 12))) / 12;
+      m++;
+    }
+    if (m < 600) months = m;
+  }
+
+  // cumulative net at the end of year Y, including the year-10 refresh
+  const cumAt = function (Y) {
+    let t = -netImpl;
+    for (let y = 0; y < Y; y++) {
+      t += yearlyNet * Math.pow(1 + g, y);
+      if (y + 1 === REFRESH_YEAR) t -= netImpl * REFRESH_PCT;
+    }
+    return t;
+  };
+
+  // amortisation view
+  const amortAnnual = p.life > 0 ? netImpl / p.life : 0;
+  const profitDuring = gainValue - p.annual - amortAnnual;
+  const profitAfter = gainValue - p.annual;
+
+  return {hourly, wasteHours, wasteCost, gainHours, gainValue, netImpl, yearlyNet,
+          months, payback: months / 12, cumAt, amortAnnual, profitDuring, profitAfter};
+}
+
+function readInputs() {
+  return {
+    staff: Math.max(1, +document.getElementById('staff').value || 1),
+    salary: Math.max(500, +document.getElementById('salary').value || 500),
+    hours: Math.max(1, +document.getElementById('hours').value || 1),
+    recoverPct: +document.getElementById('recover').value,
+    impl: Math.max(0, +document.getElementById('impl').value || 0),
+    annual: Math.max(0, +document.getElementById('annual').value || 0),
+    grantPct: +document.getElementById('grant').value,
+    life: +document.getElementById('life').value,
+    growthPct: +document.getElementById('growth').value
+  };
+}
+
+function bandFor(m) {
+  const yrs = m.payback;
+  if (!isFinite(yrs)) return {
+    band: 'It never pays back',
+    v: 'The yearly software cost eats the entire benefit, so the gap never closes no matter how long you keep it. Either the recovery rate is too low, the software is too expensive, or too few people are affected. <strong>Do not sign anything on these numbers.</strong>'
+  };
+  if (yrs <= 1) return {
+    band: 'Exceptional — check your inputs',
+    v: 'Under a year is unusually fast. That is either a genuinely painful manual process, or an optimistic recovery rate. Run it again at a lower recovery percentage. If it still pays back inside two years, the money is not your risk — <strong>delivery is</strong>. Projects like this fail on messy data and unclear ownership, not on arithmetic.'
+  };
+  if (yrs <= 2) return {
+    band: 'Very strong case',
+    v: 'Paying back inside two years on an asset you will run for a decade is a very strong case. Everything after the payback point is return. Keep the scope tight and resist customising everything in the first six months.'
+  };
+  if (yrs <= 3) return {
+    band: 'Strong long-term case',
+    v: 'Two to three years to pay back, on something you will still be using in year twelve, is a good outcome. Judge it the way you would judge a new machine or a van — not the way you judge this month\'s expenses.'
+  };
+  if (yrs <= 5) return {
+    band: 'Worth doing',
+    v: 'Three to five years is the normal, healthy range for a business system, and it is worth doing. <strong>A system like this is an asset, not a monthly bill</strong> — you will still be running it in ten or fifteen years, so once it has paid for itself, the remaining decade is almost entirely return. The figures below show what that looks like. The real question is not whether the numbers work, it is whether you will actually change the way people work.'
+  };
+  if (yrs <= 7) return {
+    band: 'Defensible, but tighten it',
+    v: 'Five to seven years still lands inside the asset\'s useful life, so this is not a no — but it leaves little room for the usual overruns. <strong>Cut the scope to the two or three processes that hurt most</strong>, prove the savings, then extend. That usually pulls payback back under five years.'
+  };
+  return {
+    band: 'Not on these numbers',
+    v: 'More than seven years is longer than most businesses will realistically keep the same setup untouched, so the case does not stand up today. That is genuinely useful to know before you spend the money. Either narrow the scope hard, or fix the manual work with better process and cheaper tools first.'
+  };
+}
+
+function renderHorizon(m) {
+  const vals = HORIZONS.map(function (y) { return {y: y, v: m.cumAt(y)}; });
+  const max = Math.max.apply(null, vals.map(function (o) { return Math.abs(o.v); })) || 1;
+  document.getElementById('horizon').innerHTML = vals.map(function (o) {
+    const w = Math.min(100, (Math.abs(o.v) / max) * 100);
+    const key = (o.y === 10) ? ' key' : '';
+    return '<div class="hz' + key + '">' +
+      '<div class="yr">YEAR ' + o.y + '</div>' +
+      '<div class="bar"><div class="fill' + (o.v < 0 ? ' neg' : '') + '" style="width:' + w + '%"></div></div>' +
+      '<div class="val">' + short(o.v) + '</div></div>';
+  }).join('');
 }
 
 function calculate() {
   if (used() >= LIMIT) { show('gate'); return; }
-  const staff = Math.max(1, +document.getElementById('staff').value || 1);
-  const salary = Math.max(500, +document.getElementById('salary').value || 500);
-  const hours = Math.max(1, +document.getElementById('hours').value || 1);
-  const recoverPct = +document.getElementById('recover').value;
-  const impl = Math.max(0, +document.getElementById('impl').value || 0);
-  const annual = Math.max(0, +document.getElementById('annual').value || 0);
-  const grantPct = +document.getElementById('grant').value;
+  const p = readInputs();
+  const m = model(p);
 
-  const m = model(staff, salary, hours, recoverPct, impl, annual, grantPct);
+  // headline: years if it takes more than 18 months, otherwise months
+  if (!isFinite(m.months)) {
+    document.getElementById('payback').textContent = 'never';
+    document.getElementById('paybackUnit').textContent = '';
+  } else if (m.months > 18) {
+    document.getElementById('payback').textContent = (Math.round(m.payback * 10) / 10).toFixed(1);
+    document.getElementById('paybackUnit').textContent = ' years';
+  } else {
+    document.getElementById('payback').textContent = Math.ceil(m.months);
+    document.getElementById('paybackUnit').textContent = ' months';
+  }
 
-  document.getElementById('payback').textContent = isFinite(m.payback) ? Math.ceil(m.payback) : 'never';
   document.getElementById('rWaste').textContent = money(m.wasteCost);
   document.getElementById('rHours').textContent = fmt(m.gainHours) + ' hrs';
   document.getElementById('rGain').textContent = money(m.gainValue);
-  document.getElementById('rImpl').textContent = money(m.netImpl) + (grantPct > 0 ? ' (after ' + grantPct + '%)' : '');
-  document.getElementById('rY1').textContent = money(m.year1);
-  document.getElementById('rY3').textContent = money(m.year3);
-  document.getElementById('rRoi').textContent = Math.round(m.roi) + '%';
+  document.getElementById('rImpl').textContent = money(m.netImpl) + (p.grantPct > 0 ? ' (after ' + p.grantPct + '%)' : '');
+  document.getElementById('rAnnual').textContent = money(p.annual);
+  document.getElementById('rNet').textContent = money(m.yearlyNet);
 
-  let band, v;
-  if (!isFinite(m.payback)) {
-    band = 'It does not pay back';
-    v = 'The yearly software cost eats the entire benefit. As modelled, this project never pays for itself — either the recovery rate is too low, the software is too expensive, or too few people are affected. <strong>Do not sign anything on these numbers.</strong>';
-  } else if (m.payback <= 6) {
-    band = 'Strong case';
-    v = 'Under six months to pay back is a strong case. The risk here is not the money, it is delivery: projects like this usually fail on messy data and unclear ownership, not on arithmetic. <strong>Fix the data before you start.</strong>';
-  } else if (m.payback <= 12) {
-    band = 'Solid case';
-    v = 'Paying back inside a year is a solid, ordinary result — the kind most well-run projects actually achieve. It works if you keep the scope tight and resist customising everything in the first six months.';
-  } else if (m.payback <= 24) {
-    band = 'Marginal — be careful';
-    v = 'One to two years is a marginal case. It can still be right, but it leaves no room for the usual overruns. <strong>Consider fixing one process properly first</strong> and proving the savings before committing to the full thing.';
-  } else {
-    band = 'Not yet';
-    v = 'More than two years to pay back means the numbers do not justify this project today. That is useful to know before you spend the money. Either narrow the scope hard, or fix the manual work with better process and cheaper tools first.';
-  }
-  document.getElementById('band').textContent = band;
-  document.getElementById('verdict').innerHTML = v;
+  const b = bandFor(m);
+  document.getElementById('band').textContent = b.band;
+  document.getElementById('verdict').innerHTML = b.v;
 
-  // stress test: benefits land at half, setup runs 30% over
-  const s = model(staff, salary, hours, recoverPct / 2, impl * 1.3, annual, grantPct);
-  const sp = isFinite(s.payback) ? Math.ceil(s.payback) + ' months' : 'never';
+  renderHorizon(m);
+
+  // accounting view
+  const life = p.life;
+  document.getElementById('acct').innerHTML =
+    'The ' + money(m.netImpl) + ' setup cost is not an expense you lose in year one. It goes on your balance sheet as an asset and is written down over ' + life + ' years — about <strong>' + money(m.amortAnnual) + ' a year</strong>.<br><br>' +
+    'So the honest P&amp;L picture is: <strong>' + money(m.profitDuring) + ' a year</strong> for the first ' + life + ' years (value recovered, less software, less amortisation), then <strong>' + money(m.profitAfter) + ' a year</strong> once it is fully written down. ' +
+    (m.profitDuring >= 0
+      ? 'It adds to profit from year one even while you are still paying it off.'
+      : 'It costs you on paper in the early years and turns positive once the amortisation is behind you — which is exactly why judging a system on year one alone gives you the wrong answer.');
+
+  // stress test: half the benefit lands, setup runs 30% over
+  const sp = Object.assign({}, p, {recoverPct: p.recoverPct / 2, impl: p.impl * 1.3});
+  const s = model(sp);
+  const spTxt = isFinite(s.months) ? (Math.round(s.payback * 10) / 10).toFixed(1) + ' years' : 'never';
+  const s10 = s.cumAt(10);
   document.getElementById('stress').innerHTML =
     'Half the expected time is won back and setup runs 30% over budget — the two most common outcomes I see. ' +
-    'Payback becomes <strong>' + sp + '</strong> and three-year net drops to <strong>' + money(s.year3) + '</strong>. ' +
-    (s.year3 > 0
-      ? 'It still works in the bad case, which is what makes a decision safe.'
-      : 'It loses money in the bad case — so the whole thing rests on everything going right.');
+    'Payback becomes <strong>' + spTxt + '</strong> and you are still <strong>' + short(s10) + '</strong> ahead at year 10. ' +
+    (s10 > 0
+      ? 'It survives the bad case over the life of the asset, which is what makes the decision safe.'
+      : 'It loses money even over ten years in the bad case — so the whole thing rests on everything going right. Narrow the scope before you commit.');
 
   bump();
   show('result');
@@ -237,7 +372,7 @@ function calculate() {
 function reset() { show('form'); showQuota(); }
 
 function show(which) {
-  ['form', 'result', 'gate'].forEach(id => document.getElementById(id).classList.add('hidden'));
+  ['form', 'result', 'gate'].forEach(function (id) { document.getElementById(id).classList.add('hidden'); });
   document.getElementById(which).classList.remove('hidden');
   document.getElementById('baseFooter').style.display = which === 'gate' ? 'none' : '';
   window.scrollTo({top: 0, behavior: 'smooth'});
