@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Month-End Close Cost Calculator — The Automation Edge</title>
+<meta name="description" content="What does your slow month-end close cost in salary each year — and what would you save closing in three days? Free calculator for SME owners.">
+<meta property="og:title" content="Month-End Close Cost Calculator">
+<meta property="og:description" content="If your accounts close 21 days after month end, you are steering by looking three weeks into the past. Here is the price.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://sayedomnisoft.github.io/tools/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="_shared.css">
+</head>
+<body>
+<div class="card">
+  <div class="brand"><a href="index.html">← THE AUTOMATION EDGE · TOOLS</a></div>
+
+  <div id="form">
+    <h1>Month-End Close Cost</h1>
+    <p class="sub">A slow close isn't an accounting problem. It's an operations problem wearing accounting's clothes — and it's paid for in salary, twelve times a year.</p>
+
+    <div class="field">
+      <label for="days">Working days from month end to final numbers
+        <small>Be honest: the day you trust the figures, not the day the first draft appears.</small>
+      </label>
+      <input type="number" id="days" min="1" max="45" value="15">
+    </div>
+
+    <div class="field">
+      <label for="people">How many people get pulled into the close?
+        <small>Finance plus everyone chased for documents, approvals and explanations.</small>
+      </label>
+      <input type="number" id="people" min="1" max="50" value="4">
+    </div>
+
+    <div class="field">
+      <label for="pct">Roughly what share of their time goes to the close?
+        <small>During those days, how much of the working day it swallows.</small>
+      </label>
+      <select id="pct">
+        <option value="25">About a quarter of the day</option>
+        <option value="50" selected>About half the day</option>
+        <option value="75">Most of the day</option>
+        <option value="100">Everything else stops</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="salary">Average monthly salary of those people (S$)</label>
+      <input type="number" id="salary" min="500" max="30000" step="100" value="4500">
+    </div>
+
+    <button class="primary" id="calcBtn" onclick="calculate()">Calculate what the close costs</button>
+    <div class="quota" id="quota"></div>
+  </div>
+
+  <div id="result" class="hidden">
+    <div class="result-label">ANNUAL COST OF CLOSING THE BOOKS</div>
+    <div class="big-num">S$<span id="annual">0</span></div>
+    <div class="rows">
+      <div class="row"><span>Cost per close</span><span id="rPer">—</span></div>
+      <div class="row"><span>Person-days per year in the close</span><span id="rDays">—</span></div>
+      <div class="row"><span>Same close in 3 days would cost</span><span id="rFast">—</span></div>
+      <div class="row"><span>Annual difference</span><span id="rSave">—</span></div>
+    </div>
+    <div class="note" id="verdict"></div>
+    <p class="disclaim">Estimate based on your inputs, assuming an 8-hour day and ~190 paid hours per month. It counts salary only — not the cost of decisions made on stale numbers, which is the part that actually hurts.</p>
+    <a class="cta" href="#" id="bookBtn">Request your 20-min systems review</a>
+    <a class="cta-ghost" href="https://sayedr.substack.com/subscribe?utm_source=tool-month-end">Get the weekly playbooks — free</a>
+    <button class="ghost" onclick="reset()">Run it again</button>
+  </div>
+
+  <div id="gate" class="hidden">
+    <div class="result-label">FREE RUNS USED</div>
+    <h2>Three runs in.</h2>
+    <p class="sub">You've now seen the number from a few angles. The next question the calculator can't answer: <em>why</em> does your close take as long as it does?</p>
+    <div class="note">In almost every SME I've worked in, the answer is the same shape — the month's data was never captured properly while the month was happening. Finance isn't closing the books, it's <strong>reconstructing them</strong>. Which specific handoffs cause that in your business is a 20-minute conversation.</div>
+    <p class="sub">Bring your close timeline to a Zoom review. We'll find the two or three points where the information goes missing, and what fixing them would actually take.</p>
+    <a class="cta" href="#" id="bookBtn2">Request your 20-min systems review</a>
+    <a class="cta-ghost" href="https://sayedr.substack.com/subscribe?utm_source=tool-gate">Not ready? Get the weekly playbooks instead</a>
+    <div class="footer">Free runs reset if you clear your browser storage — the limit is a nudge, not a wall.</div>
+  </div>
+
+  <div class="footer" id="baseFooter">
+    <a href="index.html">All free tools</a> · <a href="https://sayedr.substack.com">The Automation Edge</a>
+  </div>
+</div>
+
+<script>
+const BOOKING_URL = 'https://tally.so/r/WOkDRe';
+const TOOL_ID = 'month-end';
+const LIMIT = 3;
+const MONTHLY_HOURS = 190;
+
+['bookBtn','bookBtn2'].forEach(id => { const e = document.getElementById(id); e.href = BOOKING_URL; e.target = '_blank'; });
+
+function used() { return parseInt(localStorage.getItem('tae_' + TOOL_ID) || '0', 10); }
+function bump() { localStorage.setItem('tae_' + TOOL_ID, used() + 1); }
+function fmt(n) { return Math.round(n).toLocaleString('en-SG'); }
+
+function showQuota() {
+  const left = Math.max(0, LIMIT - used());
+  document.getElementById('quota').textContent = left > 0 ? left + ' of ' + LIMIT + ' free calculations left' : 'No free calculations left';
+  document.getElementById('calcBtn').disabled = left === 0;
+}
+
+function calculate() {
+  if (used() >= LIMIT) { show('gate'); return; }
+  const days = Math.max(1, +document.getElementById('days').value || 1);
+  const people = Math.max(1, +document.getElementById('people').value || 1);
+  const pct = (+document.getElementById('pct').value || 50) / 100;
+  const salary = Math.max(500, +document.getElementById('salary').value || 500);
+
+  const hourly = salary / MONTHLY_HOURS;
+  const hoursPerClose = days * 8 * pct * people;
+  const perClose = hoursPerClose * hourly;
+  const annual = perClose * 12;
+  const fastHours = 3 * 8 * pct * people;
+  const fastAnnual = fastHours * hourly * 12;
+  const saving = Math.max(0, annual - fastAnnual);
+  const personDays = days * pct * people * 12;
+
+  document.getElementById('annual').textContent = fmt(annual);
+  document.getElementById('rPer').textContent = 'S$' + fmt(perClose);
+  document.getElementById('rDays').textContent = fmt(personDays) + ' days';
+  document.getElementById('rFast').textContent = 'S$' + fmt(fastAnnual) + '/yr';
+  document.getElementById('rSave').textContent = saving > 0 ? 'S$' + fmt(saving) + '/yr' : 'Already there';
+
+  let v;
+  if (days <= 5) {
+    v = 'A close inside a week puts you ahead of most SMEs. Your numbers are current enough to steer with — protect that as you grow.';
+  } else if (days <= 10) {
+    v = 'Two weeks means you spend the first half of every month acting on last month\'s guesses. Workable, but you are always one surprise behind.';
+  } else if (days <= 20) {
+    v = 'By the time these numbers land, <strong>two-thirds of the next month is already spent</strong>. Any margin problem has had three weeks to keep happening before you can see it.';
+  } else {
+    v = 'A close this long usually means the figures arrive as history, not information. Most decisions in between are being made on feel — and the close cost above is the cheaper half of the price.';
+  }
+  document.getElementById('verdict').innerHTML = v;
+
+  bump();
+  show('result');
+}
+
+function reset() { show('form'); showQuota(); }
+
+function show(which) {
+  ['form', 'result', 'gate'].forEach(id => document.getElementById(id).classList.add('hidden'));
+  document.getElementById(which).classList.remove('hidden');
+  document.getElementById('baseFooter').classList.toggle('hidden', which === 'gate');
+  window.scrollTo(0, 0);
+}
+
+showQuota();
+if (used() >= LIMIT) show('gate');
+</script>
+</body>
+</html>

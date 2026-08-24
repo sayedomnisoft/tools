@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cost of Manual Work Calculator — The Automation Edge</title>
+<meta name="description" content="Put a dollar figure on the re-typing, checking and chasing your team does every week. Free calculator for SME owners.">
+<meta property="og:title" content="Cost of Manual Work Calculator">
+<meta property="og:description" content="What is manual work actually costing your business each year? Three inputs, one number.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://sayedomnisoft.github.io/tools/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="_shared.css">
+</head>
+<body>
+<div class="card">
+  <div class="brand"><a href="index.html">← THE AUTOMATION EDGE · TOOLS</a></div>
+
+  <div id="form">
+    <h1>Cost of Manual Work</h1>
+    <p class="sub">Re-typing orders. Checking stock by phone. Chasing approvals. It never appears as a line item — so let's price it.</p>
+
+    <div class="field">
+      <label for="staff">How many people do admin or operations work?
+        <small>Anyone who touches orders, stock, invoicing, scheduling or reporting.</small>
+      </label>
+      <input type="number" id="staff" min="1" max="500" value="5">
+    </div>
+
+    <div class="field">
+      <label for="hours">Hours per person, per week, on manual work
+        <small>Re-keying, cross-checking, building reports by hand, chasing people for updates.</small>
+      </label>
+      <input type="number" id="hours" min="1" max="44" value="9">
+    </div>
+
+    <div class="field">
+      <label for="salary">Average monthly salary of those people (S$)
+        <small>Rough average is fine. Use total cost including CPF if you know it.</small>
+      </label>
+      <input type="number" id="salary" min="500" max="30000" step="100" value="3500">
+    </div>
+
+    <button class="primary" id="calcBtn" onclick="calculate()">Calculate the annual cost</button>
+    <div class="quota" id="quota"></div>
+  </div>
+
+  <div id="result" class="hidden">
+    <div class="result-label">ANNUAL COST OF MANUAL WORK</div>
+    <div class="big-num">S$<span id="annual">0</span></div>
+    <div class="rows">
+      <div class="row"><span>Hours burned per year</span><span id="rHours">—</span></div>
+      <div class="row"><span>Equivalent full-time staff</span><span id="rFte">—</span></div>
+      <div class="row"><span>Cost per month</span><span id="rMonth">—</span></div>
+      <div class="row"><span>Effective hourly cost</span><span id="rHourly">—</span></div>
+    </div>
+    <div class="note" id="verdict"></div>
+    <p class="disclaim">Estimate based on your inputs, assuming ~190 paid working hours per month. It excludes the cost of errors, stockouts and late decisions — which in my experience is usually larger than the labour figure above.</p>
+    <a class="cta" href="#" id="bookBtn">Request your 20-min systems review</a>
+    <a class="cta-ghost" href="https://sayedr.substack.com/subscribe?utm_source=tool-manual-cost">Get the weekly playbooks — free</a>
+    <button class="ghost" onclick="reset()">Run it again</button>
+  </div>
+
+  <div id="gate" class="hidden">
+    <div class="result-label">FREE RUNS USED</div>
+    <h2>You've run this three times.</h2>
+    <p class="sub">Which usually means one of two things: you're testing scenarios, or the number came out bigger than you expected.</p>
+    <div class="note">Either way, the next step isn't another calculation — it's working out <strong>which single process to fix first</strong>. That takes a conversation about how your business actually runs, not a calculator.</div>
+    <p class="sub">Bring your numbers to a 20-minute review over Zoom. No slides, no pitch: we map where your hours are going and what the first fix would be. If it's not worth doing, I'll tell you.</p>
+    <a class="cta" href="#" id="bookBtn2">Request your 20-min systems review</a>
+    <a class="cta-ghost" href="https://sayedr.substack.com/subscribe?utm_source=tool-gate">Not ready? Get the weekly playbooks instead</a>
+    <div class="footer">Free runs reset if you clear your browser storage — I'm not trying to lock you out, just to save you from calculating instead of deciding.</div>
+  </div>
+
+  <div class="footer" id="baseFooter">
+    <a href="index.html">All free tools</a> · <a href="https://sayedr.substack.com">The Automation Edge</a>
+  </div>
+</div>
+
+<script>
+const BOOKING_URL = 'https://tally.so/r/WOkDRe';
+const TOOL_ID = 'manual-cost';
+const LIMIT = 3;
+const MONTHLY_HOURS = 190;
+
+document.getElementById('bookBtn').href = BOOKING_URL;
+document.getElementById('bookBtn2').href = BOOKING_URL;
+document.getElementById('bookBtn').target = '_blank';
+document.getElementById('bookBtn2').target = '_blank';
+
+function used() { return parseInt(localStorage.getItem('tae_' + TOOL_ID) || '0', 10); }
+function bump() { localStorage.setItem('tae_' + TOOL_ID, used() + 1); }
+function fmt(n) { return Math.round(n).toLocaleString('en-SG'); }
+
+function showQuota() {
+  const left = Math.max(0, LIMIT - used());
+  const q = document.getElementById('quota');
+  q.textContent = left > 0 ? left + ' of ' + LIMIT + ' free calculations left' : 'No free calculations left';
+  document.getElementById('calcBtn').disabled = left === 0;
+}
+
+function calculate() {
+  if (used() >= LIMIT) { show('gate'); return; }
+  const staff = Math.max(1, +document.getElementById('staff').value || 1);
+  const hours = Math.max(1, +document.getElementById('hours').value || 1);
+  const salary = Math.max(500, +document.getElementById('salary').value || 500);
+
+  const hourly = salary / MONTHLY_HOURS;
+  const weekly = staff * hours;
+  const annualHours = weekly * 52;
+  const annual = annualHours * hourly;
+  const fte = weekly / 44;
+
+  document.getElementById('annual').textContent = fmt(annual);
+  document.getElementById('rHours').textContent = fmt(annualHours) + ' hrs';
+  document.getElementById('rFte').textContent = fte.toFixed(1) + ' people';
+  document.getElementById('rMonth').textContent = 'S$' + fmt(annual / 12);
+  document.getElementById('rHourly').textContent = 'S$' + hourly.toFixed(2) + '/hr';
+
+  let v;
+  if (hours <= 4) {
+    v = 'Under 4 hours a week per person is genuinely tight. Your remaining wins are narrow and specific — worth targeting the single worst process rather than a broad project.';
+  } else if (hours <= 9) {
+    v = 'This is the most common range I see in Singapore SMEs: <strong>about a day a week, per person</strong>, spent moving information rather than using it. It rarely feels dramatic — it just quietly caps how much the team can handle.';
+  } else if (hours <= 16) {
+    v = 'At this level the manual work <strong>is</strong> the job. Growth will multiply the admin, not the profit — hiring more people to keep up is the expensive version of the fix.';
+  } else {
+    v = 'More than two full days a week per person on manual work. This is the pattern right before something breaks: a resignation, a missed shipment, or an error nobody catches in time.';
+  }
+  document.getElementById('verdict').innerHTML = v;
+
+  bump();
+  show('result');
+}
+
+function reset() { show('form'); showQuota(); }
+
+function show(which) {
+  ['form', 'result', 'gate'].forEach(id => document.getElementById(id).classList.add('hidden'));
+  document.getElementById(which).classList.remove('hidden');
+  document.getElementById('baseFooter').classList.toggle('hidden', which === 'gate');
+  window.scrollTo(0, 0);
+}
+
+showQuota();
+if (used() >= LIMIT) show('gate');
+</script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ERP Readiness Scorecard — The Automation Edge</title>
+<meta name="description" content="Before you buy any system: are your data, processes and people actually ready? Eight questions, honest verdict. Free for SME owners.">
+<meta property="og:title" content="ERP Readiness Scorecard">
+<meta property="og:description" content="Most failed system projects were doomed before the software was chosen. Eight questions to find out where you stand.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://sayedomnisoft.github.io/tools/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="_shared.css">
+<style>
+  .progress-wrap { height: 6px; background: rgba(255,255,255,0.12); border-radius: 3px; margin-bottom: 24px; overflow: hidden; }
+  .progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius: 3px; transition: width .35s ease; }
+  .qnum { font-size: 12.5px; color: var(--gold-light); font-weight: 700; letter-spacing: 1.5px; margin-bottom: 10px; }
+  .qtext { font-size: 20px; font-weight: 700; line-height: 1.32; margin-bottom: 22px; }
+  .answers { display: flex; flex-direction: column; gap: 11px; }
+  button.answer {
+    text-align: left; padding: 15px 18px; font-size: 15px; font-weight: 500; color: #fff; font-family: inherit;
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); border-radius: 12px;
+    cursor: pointer; line-height: 1.4; transition: background .12s ease, border-color .12s ease, transform .1s ease;
+  }
+  button.answer:hover { background: rgba(242,207,110,0.16); border-color: var(--gold-light); transform: translateX(3px); }
+  ul.gaps { list-style: none; margin-bottom: 22px; }
+  ul.gaps li { font-size: 14.5px; color: rgba(255,255,255,0.82); padding: 7px 0 7px 24px; position: relative; line-height: 1.45; }
+  ul.gaps li::before { content: "▸"; color: var(--gold); position: absolute; left: 4px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="brand"><a href="index.html">← THE AUTOMATION EDGE · TOOLS</a></div>
+
+  <div id="intro">
+    <h1>ERP Readiness Scorecard</h1>
+    <p class="sub">Most failed system projects were already in trouble before the software was chosen. Eight questions on the things that actually decide it — data, process, ownership, time.</p>
+    <div class="note">This is not a software recommendation. No vendor is named, and the honest answer might be <strong>"not yet"</strong>.</div>
+    <button class="primary" id="startBtn" onclick="start()">Start the scorecard</button>
+    <div class="quota" id="quota"></div>
+  </div>
+
+  <div id="quiz" class="hidden">
+    <div class="progress-wrap"><div class="progress-bar" id="bar"></div></div>
+    <div class="qnum" id="qnum"></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="answers" id="answers"></div>
+  </div>
+
+  <div id="result" class="hidden">
+    <div class="result-label">YOUR READINESS</div>
+    <div class="big-num"><span id="score">0</span><small> / 16</small></div>
+    <h2 id="band" style="color: var(--gold-light); margin-top: 10px;"></h2>
+    <p class="sub" id="verdict"></p>
+    <div id="gapsBlock">
+      <div class="result-label">FIX THESE FIRST</div>
+      <ul class="gaps" id="gaps"></ul>
+    </div>
+    <p class="disclaim">Lower score means more ready. This scorecard weighs preparation, not ambition — a low-readiness business can still succeed, it just needs to fix the foundations before signing anything.</p>
+    <a class="cta" href="#" id="bookBtn">Request your 20-min systems review</a>
+    <a class="cta-ghost" href="https://sayedr.substack.com/subscribe?utm_source=tool-erp-readiness">Get the weekly playbooks — free</a>
+    <button class="ghost" onclick="reset()">Retake the scorecard</button>
+  </div>
+
+  <div id="gate" class="hidden">
+    <div class="result-label">FREE RUNS USED</div>
+    <h2>You've scored this three times.</h2>
+    <p class="sub">At this point the scorecard has told you what it can. What it can't tell you is the sequence — which gap to close first, and which ones will quietly close themselves once you fix another.</p>
+    <div class="note">That ordering is the difference between a project that pays for itself in months and one that becomes a two-year story people tell at conferences. It depends entirely on <strong>your</strong> processes.</div>
+    <p class="sub">Bring your score to a 20-minute Zoom review. We'll turn it into a sequence: what to fix now, what to fix during implementation, and what to ignore.</p>
+    <a class="cta" href="#" id="bookBtn2">Request your 20-min systems review</a>
+    <a class="cta-ghost" href="https://sayedr.substack.com/subscribe?utm_source=tool-gate">Not ready? Get the weekly playbooks instead</a>
+    <div class="footer">Free runs reset if you clear your browser storage — the limit is a nudge, not a wall.</div>
+  </div>
+
+  <div class="footer" id="baseFooter">
+    <a href="index.html">All free tools</a> · <a href="https://sayedr.substack.com">The Automation Edge</a>
+  </div>
+</div>
+
+<script>
+const BOOKING_URL = 'https://tally.so/r/WOkDRe';
+const TOOL_ID = 'erp-readiness';
+const LIMIT = 3;
+
+['bookBtn','bookBtn2'].forEach(id => { const e = document.getElementById(id); e.href = BOOKING_URL; e.target = '_blank'; });
+
+const Q = [
+  { q: "Are your core processes written down anywhere?",
+    a: ["Documented and current", "Partly — some steps, somewhere", "They live in people's heads"],
+    gap: "Undocumented processes: a system can only automate a process someone can describe." },
+  { q: "Who owns this project and can make decisions?",
+    a: ["One named person with authority", "A committee, decisions get debated", "Nobody yet"],
+    gap: "No single decision-maker: projects without one owner stall at every trade-off." },
+  { q: "Your customer and product lists — how clean are they?",
+    a: ["One clean master list", "A few versions floating around", "Duplicates everywhere, nobody trusts them"],
+    gap: "Dirty master data: it gets imported into the new system and poisons it on day one." },
+  { q: "Do you know what your current processes cost — in hours or dollars?",
+    a: ["Yes, we've measured it", "Rough idea", "No baseline at all"],
+    gap: "No baseline: without today's numbers you can never prove the system worked." },
+  { q: "Has leadership agreed on the specific problem to solve?",
+    a: ["Yes — a specific, named problem", "Broadly, we want 'better visibility'", "We just know we need a system"],
+    gap: "No defined problem: 'we need ERP' is a budget, not a scope. Scope creep starts here." },
+  { q: "Is there budget beyond the software licence?",
+    a: ["Yes — implementation, data work and training included", "Licence plus a bit", "Only the licence price"],
+    gap: "Licence-only budget: implementation and training usually cost more than the software." },
+  { q: "Will your key people have real time during implementation?",
+    a: ["Yes, time is protected", "They'll squeeze it in", "They're already fully stretched"],
+    gap: "No protected time: your best people are the project. Overloaded, they'll rubber-stamp bad design." },
+  { q: "How many exceptions and workarounds does your standard process have?",
+    a: ["Few — the standard path is genuinely standard", "A handful of special cases", "Every customer is a special case"],
+    gap: "Exception sprawl: each 'special case' becomes a customisation, a cost, and a thing that breaks on upgrade." }
+];
+
+const BANDS = [
+  { max: 3, name: "Ready to build",
+    v: "Your foundations are in place: documented process, clear ownership, clean data, real budget. You're in the minority — the risk now is choosing scope too broadly, not readiness." },
+  { max: 7, name: "Nearly ready",
+    v: "Close. A couple of foundations need shoring up before you commit money, and they're all fixable in weeks rather than months. Fix them first and your implementation gets materially cheaper." },
+  { max: 11, name: "Foundations needed first",
+    v: "Buying software at this point would mean paying a consultant to discover your processes for you — at their day rate. Two or three months of internal groundwork would change the economics of the whole project." },
+  { max: 16, name: "Not yet — and that's useful to know",
+    v: "Right now a system would digitise the chaos rather than remove it. That's not a reason to give up; it's a reason to start with one bounded process, prove it, and build from there. Cheaper, faster, and it survives contact with reality." }
+];
+
+let idx = 0, score = 0, gaps = [];
+
+function used() { return parseInt(localStorage.getItem('tae_' + TOOL_ID) || '0', 10); }
+function bump() { localStorage.setItem('tae_' + TOOL_ID, used() + 1); }
+
+function showQuota() {
+  const left = Math.max(0, LIMIT - used());
+  document.getElementById('quota').textContent = left > 0 ? left + ' of ' + LIMIT + ' free runs left' : 'No free runs left';
+  document.getElementById('startBtn').disabled = left === 0;
+}
+
+function start() {
+  if (used() >= LIMIT) { show('gate'); return; }
+  idx = 0; score = 0; gaps = [];
+  show('quiz'); render();
+}
+
+function render() {
+  const q = Q[idx];
+  document.getElementById('qnum').textContent = 'QUESTION ' + (idx + 1) + ' OF ' + Q.length;
+  document.getElementById('qtext').textContent = q.q;
+  document.getElementById('bar').style.width = (idx / Q.length * 100) + '%';
+  const wrap = document.getElementById('answers');
+  wrap.innerHTML = '';
+  q.a.forEach((label, i) => {
+    const b = document.createElement('button');
+    b.className = 'answer';
+    b.textContent = label;
+    b.onclick = () => pick(i);
+    wrap.appendChild(b);
+  });
+}
+
+function pick(i) {
+  score += i;
+  if (i === 2) gaps.push(Q[idx].gap);
+  idx++;
+  if (idx < Q.length) render(); else finish();
+}
+
+function finish() {
+  document.getElementById('bar').style.width = '100%';
+  const band = BANDS.find(b => score <= b.max);
+  document.getElementById('score').textContent = score;
+  document.getElementById('band').textContent = band.name;
+  document.getElementById('verdict').textContent = band.v;
+  const ul = document.getElementById('gaps');
+  ul.innerHTML = '';
+  if (gaps.length) {
+    gaps.forEach(g => { const li = document.createElement('li'); li.textContent = g; ul.appendChild(li); });
+    document.getElementById('gapsBlock').classList.remove('hidden');
+  } else {
+    document.getElementById('gapsBlock').classList.add('hidden');
+  }
+  bump();
+  show('result');
+}
+
+function reset() { show('intro'); showQuota(); }
+
+function show(which) {
+  ['intro', 'quiz', 'result', 'gate'].forEach(id => document.getElementById(id).classList.add('hidden'));
+  document.getElementById(which).classList.remove('hidden');
+  document.getElementById('baseFooter').classList.toggle('hidden', which === 'gate');
+  window.scrollTo(0, 0);
+}
+
+showQuota();
+if (used() >= LIMIT) show('gate');
+</script>
+</body>
+</html>
