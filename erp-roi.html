@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ERP &amp; Automation ROI Calculator — The Automation Edge</title>
+<meta name="description" content="Work out whether a system project pays for itself: payback in months, 3-year net benefit, and an honest stress test if it goes badly.">
+<meta property="og:title" content="ERP &amp; Automation ROI Calculator">
+<meta property="og:description" content="Payback in months, 3-year net benefit, and what happens if it goes badly. Free, no signup.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://sayedomnisoft.github.io/tools/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="shared.css">
+<style>
+  .stress { background: rgba(255,122,89,0.12); border: 1px solid rgba(255,122,89,0.45); border-radius: 12px; padding: 14px 17px; font-size: 14.5px; line-height: 1.55; margin-bottom: 20px; }
+  .stress strong { color: #ff9f85; }
+  .stress .st-title { font-size: 12px; letter-spacing: 1.8px; font-weight: 700; color: #ff9f85; margin-bottom: 8px; }
+  .verdict-band { font-size: 22px; font-weight: 800; color: var(--gold-light); margin: 6px 0 14px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 430px) { .grid2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="brand"><a href="index.html">← THE AUTOMATION EDGE · TOOLS</a></div>
+
+  <!-- FORM -->
+  <div id="form">
+    <h1>ERP &amp; Automation ROI Calculator</h1>
+    <p class="sub">Before you sign anything, find out whether the numbers actually work — how fast it pays for itself, what you're left with after three years, and what happens if it goes badly.</p>
+
+    <div class="field">
+      <label for="staff">How many people would use the system?
+        <small>Only count people whose daily work it touches.</small>
+      </label>
+      <input type="number" id="staff" min="1" max="500" value="8">
+    </div>
+
+    <div class="field">
+      <label for="salary">Average monthly salary of those people (S$)
+        <small>Rough average is fine. Use gross salary.</small>
+      </label>
+      <input type="number" id="salary" min="500" max="30000" step="100" value="3800">
+    </div>
+
+    <div class="field">
+      <label for="hours">Hours each person loses to manual work per week
+        <small>Re-typing, checking, chasing, fixing mistakes, building reports.</small>
+      </label>
+      <input type="number" id="hours" min="1" max="44" value="8">
+    </div>
+
+    <div class="field">
+      <label for="recover">Realistically, how much of that could you win back? (%)
+        <small>Be honest. 100% never happens. Good projects land between 25% and 50%.</small>
+      </label>
+      <select id="recover">
+        <option value="15">15% — cautious</option>
+        <option value="25">25% — conservative</option>
+        <option value="35" selected>35% — typical good outcome</option>
+        <option value="50">50% — strong outcome</option>
+        <option value="65">65% — best case, rarely happens</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="impl">One-off setup cost (S$)
+        <small>Implementation, data migration, training, customisation.</small>
+      </label>
+      <input type="number" id="impl" min="0" max="2000000" step="1000" value="40000">
+    </div>
+
+    <div class="field">
+      <label for="annual">Software cost per year (S$)
+        <small>Licences or subscription, plus yearly support.</small>
+      </label>
+      <input type="number" id="annual" min="0" max="500000" step="500" value="6000">
+    </div>
+
+    <div class="field">
+      <label for="grant">Grant or funding support on the setup cost (%)
+        <small>Singapore SMEs can often get support through schemes like EDG or PSG. Put 0 if unsure — check current rates with Enterprise Singapore.</small>
+      </label>
+      <select id="grant">
+        <option value="0" selected>0% — assume none</option>
+        <option value="30">30%</option>
+        <option value="40">40%</option>
+        <option value="50">50%</option>
+      </select>
+    </div>
+
+    <button class="primary" id="calcBtn" onclick="calculate()">Calculate the return</button>
+    <div class="quota" id="quota"></div>
+  </div>
+
+  <!-- RESULT -->
+  <div id="result" class="hidden">
+    <div class="result-label">PAYS FOR ITSELF IN</div>
+    <div class="big-num"><span id="payback">0</span><small> months</small></div>
+    <div class="verdict-band" id="band"></div>
+
+    <div class="rows">
+      <div class="row"><span>Manual work costs you now (per year)</span><span id="rWaste">—</span></div>
+      <div class="row"><span>Hours won back (per year)</span><span id="rHours">—</span></div>
+      <div class="row"><span>Value of those hours (per year)</span><span id="rGain">—</span></div>
+      <div class="row"><span>Setup cost after grant</span><span id="rImpl">—</span></div>
+      <div class="row"><span>Net gain in year 1</span><span id="rY1">—</span></div>
+      <div class="row"><span>Net gain over 3 years</span><span id="rY3">—</span></div>
+      <div class="row"><span>Return over 3 years</span><span id="rRoi">—</span></div>
+    </div>
+
+    <div class="note" id="verdict"></div>
+
+    <div class="stress">
+      <div class="st-title">IF IT GOES BADLY</div>
+      <div id="stress"></div>
+    </div>
+
+    <p class="disclaim">This is arithmetic, not a promise. It assumes the hours you win back turn into real work or real capacity — if the time just gets absorbed elsewhere, the money never shows up on your P&amp;L. Treat the result as a sanity check, not a business case.</p>
+
+    <a class="cta" href="#" id="bookBtn">Talk it through — 20-min systems review</a>
+    <a class="cta-ghost" href="index.html">See the other free tools</a>
+    <button class="ghost" onclick="reset()">Run it again</button>
+  </div>
+
+  <!-- GATE -->
+  <div id="gate" class="hidden">
+    <div class="result-label">FREE RUNS USED</div>
+    <h1>You've run the numbers three times.</h1>
+    <p class="sub">Which usually means one of two things: the numbers look good and you want to be sure, or they don't and you're trying to make them. Both are worth twenty minutes of conversation.</p>
+    <div class="note">Bring your figures to a short video call. We'll pressure-test the assumptions — especially the recovery rate, which is where most business cases quietly fall apart — and you'll leave knowing whether it's worth doing and what to do first.</div>
+    <a class="cta" href="#" id="bookBtn2">Book the 20-min systems review</a>
+    <a class="cta-ghost" href="index.html">Try the other free tools</a>
+    <div class="footer">No pitch. If the numbers don't justify it, I'll tell you.</div>
+  </div>
+
+  <div class="footer" id="baseFooter">
+    Free tool by <a href="https://sayedr.substack.com">Sayed Rashid</a> · The Automation Edge<br>
+    <a href="https://sayedr.substack.com/subscribe?utm_source=erp-roi">Get the weekly playbooks</a>
+  </div>
+</div>
+
+<script>
+const BOOKING_URL = 'https://sayedomnisoft.github.io/tools/review.html';
+const TOOL_ID = 'erp-roi';
+const LIMIT = 3;
+const MONTHLY_HOURS = 190;
+
+document.getElementById('bookBtn').href = BOOKING_URL;
+document.getElementById('bookBtn2').href = BOOKING_URL;
+document.getElementById('bookBtn').target = '_blank';
+document.getElementById('bookBtn2').target = '_blank';
+
+function used() { return parseInt(localStorage.getItem('tae_' + TOOL_ID) || '0', 10); }
+function bump() { localStorage.setItem('tae_' + TOOL_ID, used() + 1); }
+function fmt(n) { return Math.round(n).toLocaleString('en-SG'); }
+function money(n) { return (n < 0 ? '−S$' : 'S$') + fmt(Math.abs(n)); }
+
+function showQuota() {
+  const left = Math.max(0, LIMIT - used());
+  const q = document.getElementById('quota');
+  q.textContent = left > 0 ? left + ' of ' + LIMIT + ' free calculations left' : 'No free calculations left';
+  document.getElementById('calcBtn').disabled = left === 0;
+}
+
+function model(staff, salary, hours, recoverPct, impl, annual, grantPct) {
+  const hourly = salary / MONTHLY_HOURS;
+  const wasteHours = staff * hours * 52;
+  const wasteCost = wasteHours * hourly;
+  const gainHours = wasteHours * (recoverPct / 100);
+  const gainValue = gainHours * hourly;
+  const netImpl = impl * (1 - grantPct / 100);
+  const yearlyNet = gainValue - annual;          // recurring benefit after software cost
+  const year1 = yearlyNet - netImpl;
+  const year3 = yearlyNet * 3 - netImpl;
+  const invested = netImpl + annual * 3;
+  const roi = invested > 0 ? ((gainValue * 3 - invested) / invested) * 100 : 0;
+  const payback = yearlyNet > 0 ? (netImpl / yearlyNet) * 12 : Infinity;
+  return {hourly, wasteHours, wasteCost, gainHours, gainValue, netImpl, yearlyNet, year1, year3, roi, payback};
+}
+
+function calculate() {
+  if (used() >= LIMIT) { show('gate'); return; }
+  const staff = Math.max(1, +document.getElementById('staff').value || 1);
+  const salary = Math.max(500, +document.getElementById('salary').value || 500);
+  const hours = Math.max(1, +document.getElementById('hours').value || 1);
+  const recoverPct = +document.getElementById('recover').value;
+  const impl = Math.max(0, +document.getElementById('impl').value || 0);
+  const annual = Math.max(0, +document.getElementById('annual').value || 0);
+  const grantPct = +document.getElementById('grant').value;
+
+  const m = model(staff, salary, hours, recoverPct, impl, annual, grantPct);
+
+  document.getElementById('payback').textContent = isFinite(m.payback) ? Math.ceil(m.payback) : 'never';
+  document.getElementById('rWaste').textContent = money(m.wasteCost);
+  document.getElementById('rHours').textContent = fmt(m.gainHours) + ' hrs';
+  document.getElementById('rGain').textContent = money(m.gainValue);
+  document.getElementById('rImpl').textContent = money(m.netImpl) + (grantPct > 0 ? ' (after ' + grantPct + '%)' : '');
+  document.getElementById('rY1').textContent = money(m.year1);
+  document.getElementById('rY3').textContent = money(m.year3);
+  document.getElementById('rRoi').textContent = Math.round(m.roi) + '%';
+
+  let band, v;
+  if (!isFinite(m.payback)) {
+    band = 'It does not pay back';
+    v = 'The yearly software cost eats the entire benefit. As modelled, this project never pays for itself — either the recovery rate is too low, the software is too expensive, or too few people are affected. <strong>Do not sign anything on these numbers.</strong>';
+  } else if (m.payback <= 6) {
+    band = 'Strong case';
+    v = 'Under six months to pay back is a strong case. The risk here is not the money, it is delivery: projects like this usually fail on messy data and unclear ownership, not on arithmetic. <strong>Fix the data before you start.</strong>';
+  } else if (m.payback <= 12) {
+    band = 'Solid case';
+    v = 'Paying back inside a year is a solid, ordinary result — the kind most well-run projects actually achieve. It works if you keep the scope tight and resist customising everything in the first six months.';
+  } else if (m.payback <= 24) {
+    band = 'Marginal — be careful';
+    v = 'One to two years is a marginal case. It can still be right, but it leaves no room for the usual overruns. <strong>Consider fixing one process properly first</strong> and proving the savings before committing to the full thing.';
+  } else {
+    band = 'Not yet';
+    v = 'More than two years to pay back means the numbers do not justify this project today. That is useful to know before you spend the money. Either narrow the scope hard, or fix the manual work with better process and cheaper tools first.';
+  }
+  document.getElementById('band').textContent = band;
+  document.getElementById('verdict').innerHTML = v;
+
+  // stress test: benefits land at half, setup runs 30% over
+  const s = model(staff, salary, hours, recoverPct / 2, impl * 1.3, annual, grantPct);
+  const sp = isFinite(s.payback) ? Math.ceil(s.payback) + ' months' : 'never';
+  document.getElementById('stress').innerHTML =
+    'Half the expected time is won back and setup runs 30% over budget — the two most common outcomes I see. ' +
+    'Payback becomes <strong>' + sp + '</strong> and three-year net drops to <strong>' + money(s.year3) + '</strong>. ' +
+    (s.year3 > 0
+      ? 'It still works in the bad case, which is what makes a decision safe.'
+      : 'It loses money in the bad case — so the whole thing rests on everything going right.');
+
+  bump();
+  show('result');
+}
+
+function reset() { show('form'); showQuota(); }
+
+function show(which) {
+  ['form', 'result', 'gate'].forEach(id => document.getElementById(id).classList.add('hidden'));
+  document.getElementById(which).classList.remove('hidden');
+  document.getElementById('baseFooter').style.display = which === 'gate' ? 'none' : '';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+showQuota();
+</script>
+</body>
+</html>
