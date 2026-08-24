@@ -159,7 +159,7 @@
       <div id="stress"></div>
     </div>
 
-    <p class="disclaim">This is arithmetic, not a promise. It assumes the hours you win back turn into real work or real capacity — if the time just gets absorbed elsewhere, the money never shows up on your P&amp;L. The 10 and 15 year figures include one major refresh in year 10 costing 40% of the original setup, because no system runs untouched for fifteen years. Treat the result as a sanity check, not a business case, and check the accounting treatment with your own accountant.</p>
+    <p class="disclaim">This is arithmetic, not a promise. It assumes the hours you win back turn into real work or real capacity — if the time just gets absorbed elsewhere, the money never shows up on your P&amp;L. The 10 and 15 year figures include one major refresh in year 10 costing 40% of the original setup, because no system runs untouched for fifteen years. The sensitivity figures assume the same salary growth throughout. Treat the result as a sanity check, not a business case, and check the accounting treatment with your own accountant.</p>
 
     <a class="cta" href="#" id="bookBtn">Talk it through — 20-min systems review</a>
     <a class="cta-ghost" href="index.html">See the other free tools</a>
@@ -207,6 +207,13 @@ function short(n) {
   if (a >= 1000) return s + Math.round(a / 1000) + 'k';
   return s + fmt(a);
 }
+
+function paybackTxt(m) {
+  if (!isFinite(m.months)) return 'never';
+  if (m.months <= 18) return Math.ceil(m.months) + ' months';
+  return (Math.round(m.payback * 10) / 10).toFixed(1) + ' years';
+}
+function standing(v) { return short(Math.abs(v)) + (v >= 0 ? ' ahead' : ' down'); }
 
 function showQuota() {
   const left = Math.max(0, LIMIT - used());
@@ -323,12 +330,10 @@ function calculate() {
   if (!isFinite(m.months)) {
     document.getElementById('payback').textContent = 'never';
     document.getElementById('paybackUnit').textContent = '';
-  } else if (m.months > 18) {
-    document.getElementById('payback').textContent = (Math.round(m.payback * 10) / 10).toFixed(1);
-    document.getElementById('paybackUnit').textContent = ' years';
   } else {
-    document.getElementById('payback').textContent = Math.ceil(m.months);
-    document.getElementById('paybackUnit').textContent = ' months';
+    const parts = paybackTxt(m).split(' ');
+    document.getElementById('payback').textContent = parts[0];
+    document.getElementById('paybackUnit').textContent = ' ' + parts[1];
   }
 
   document.getElementById('rWaste').textContent = money(m.wasteCost);
@@ -353,17 +358,19 @@ function calculate() {
       ? 'It adds to profit from year one even while you are still paying it off.'
       : 'It costs you on paper in the early years and turns positive once the amortisation is behind you — which is exactly why judging a system on year one alone gives you the wrong answer.');
 
-  // stress test: half the benefit lands, setup runs 30% over
-  const sp = Object.assign({}, p, {recoverPct: p.recoverPct / 2, impl: p.impl * 1.3});
-  const s = model(sp);
-  const spTxt = isFinite(s.months) ? (Math.round(s.payback * 10) / 10).toFixed(1) + ' years' : 'never';
-  const s10 = s.cumAt(10);
+  // sensitivity: the two things that actually go wrong, shown separately and together
+  const mLow  = model(Object.assign({}, p, {recoverPct: p.recoverPct * (2 / 3)}));
+  const mOver = model(Object.assign({}, p, {impl: p.impl * 1.3}));
+  const mBoth = model(Object.assign({}, p, {recoverPct: p.recoverPct * (2 / 3), impl: p.impl * 1.3}));
+  const b10 = mBoth.cumAt(10);
   document.getElementById('stress').innerHTML =
-    'Half the expected time is won back and setup runs 30% over budget — the two most common outcomes I see. ' +
-    'Payback becomes <strong>' + spTxt + '</strong> and you are still <strong>' + short(s10) + '</strong> ahead at year 10. ' +
-    (s10 > 0
-      ? 'It survives the bad case over the life of the asset, which is what makes the decision safe.'
-      : 'It loses money even over ten years in the bad case — so the whole thing rests on everything going right. Narrow the scope before you commit.');
+    'Two things go wrong on most projects. Here is what each one does on its own, so you can see which one you actually need to manage.<br><br>' +
+    '<strong>Only two-thirds of the saving lands.</strong> Pays back in ' + paybackTxt(mLow) + ', ' + standing(mLow.cumAt(10)) + ' at year 10.<br>' +
+    '<strong>Setup runs 30% over budget.</strong> Pays back in ' + paybackTxt(mOver) + ', ' + standing(mOver.cumAt(10)) + ' at year 10.<br><br>' +
+    'If both happen together it pays back in <strong>' + paybackTxt(mBoth) + '</strong> and you are <strong>' + standing(b10) + '</strong> at year 10. ' +
+    (b10 > 0
+      ? 'It still comes out ahead over the life of the asset even when both go wrong — that is what makes the decision safe rather than brave.'
+      : 'It does not survive both at once, so this only works if you hold the scope and actually get the savings. Fix the two worst processes first and prove them before committing to the rest.');
 
   bump();
   show('result');
