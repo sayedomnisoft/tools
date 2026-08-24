@@ -60,9 +60,13 @@
 
   <h2>Pick a time</h2>
   <div class="book-zone" id="bookZone">
-    <p class="sub" style="margin-bottom:18px;">Tell me what's breaking and when you're free, and I'll send a Zoom invite that lands in your calendar.</p>
-    <a class="cta" id="bookBtn" href="#">Request your slot →</a>
-    <div class="footer" style="margin-top:6px;">Usually confirmed the same working day, Singapore hours.</div>
+    <!-- live Cal.com booker renders here once CAL_LINK is set -->
+    <div id="cal-inline"></div>
+    <div id="bookFallback">
+      <p class="sub" style="margin-bottom:18px;">Tell me what's breaking and when you're free, and I'll send a Zoom invite that lands in your calendar.</p>
+      <a class="cta" id="bookBtn" href="#">Request your slot →</a>
+      <div class="footer" style="margin-top:6px;">Usually confirmed the same working day, Singapore hours.</div>
+    </div>
   </div>
 
   <div class="sig">
@@ -76,16 +80,58 @@
 </div>
 
 <script>
-/* ── SINGLE PLACE TO CHANGE THE BOOKING DESTINATION ──────────────────────
-   Swap BOOKING_URL for a real scheduler link (Cal.com / Calendly / Google
-   Calendar appointment page) and every tool that points here follows.
-   To embed the scheduler inline instead of linking out, paste its embed
-   snippet into #bookZone and delete the link below.                      */
+/* ══ ONE PLACE TO SWITCH BOOKING ON ═════════════════════════════════════
+   CAL_LINK = your Cal.com event link WITHOUT the domain.
+     page https://cal.com/sayedrashid/20min  ->  CAL_LINK = 'sayedrashid/20min'
+   Leave it empty and the page shows the simple request button instead.
+   ════════════════════════════════════════════════════════════════════ */
+const CAL_LINK = 'sayed.r/20min';
 const BOOKING_URL = 'https://tally.so/r/WOkDRe';
-const b = document.getElementById('bookBtn');
-b.href = BOOKING_URL;
-b.target = '_blank';
-b.rel = 'noopener';
+
+(function () {
+  const fallback = document.getElementById('bookFallback');
+  const holder = document.getElementById('cal-inline');
+
+  if (!CAL_LINK) {
+    const b = document.getElementById('bookBtn');
+    b.href = BOOKING_URL; b.target = '_blank'; b.rel = 'noopener';
+    holder.style.display = 'none';
+    return;
+  }
+
+  fallback.style.display = 'none';
+  holder.style.minHeight = '560px';
+
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal; let ar = arguments;
+      if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; }
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const namespace = ar[1]; api.q = api.q || [];
+        if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); }
+        else p(cal, ar);
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+
+  Cal("init", "review", { origin: "https://app.cal.com" });
+  Cal.ns.review("inline", {
+    elementOrSelector: "#cal-inline",
+    config: { layout: "month_view", theme: "dark" },
+    calLink: CAL_LINK
+  });
+  Cal.ns.review("ui", {
+    theme: "dark",
+    hideEventTypeDetails: false,
+    layout: "month_view",
+    cssVarsPerTheme: { dark: { "cal-brand": "#c9a227" }, light: { "cal-brand": "#2A2FB0" } }
+  });
+})();
 </script>
 </body>
 </html>
