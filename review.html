@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 20-Minute Systems Review — The Automation Edge</title>
+<meta name="description" content="Twenty minutes on video. Bring one process that annoys you. You leave knowing where your hours go and what to fix first — or that it isn't worth fixing.">
+<meta property="og:title" content="The 20-Minute Systems Review">
+<meta property="og:description" content="No slides, no pitch. Bring one process that annoys you and we'll find the first fix worth making.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://sayedomnisoft.github.io/tools/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="shared.css">
+<style>
+  .card { max-width: 620px; }
+  .pill { display: inline-block; font-size: 12px; letter-spacing: 1.6px; font-weight: 700; color: var(--ink);
+          background: var(--gold-light); padding: 6px 12px; border-radius: 30px; margin-bottom: 18px; }
+  ul.plain { list-style: none; margin-bottom: 24px; }
+  ul.plain li { font-size: 15px; color: rgba(255,255,255,0.85); padding: 8px 0 8px 26px; position: relative; line-height: 1.5; }
+  ul.plain li::before { content: "▸"; color: var(--gold); position: absolute; left: 4px; }
+  ul.plain.no li::before { content: "✕"; color: rgba(255,255,255,0.4); }
+  .split { display: grid; grid-template-columns: 1fr; gap: 4px; }
+  .book-zone { border: 1px dashed rgba(242,207,110,0.5); border-radius: 14px; padding: 22px 20px; margin: 8px 0 20px; }
+  .sig { display: flex; align-items: center; gap: 13px; margin: 26px 0 8px; }
+  .sig img { width: 52px; height: 52px; border-radius: 50%; }
+  .sig div { font-size: 14px; line-height: 1.45; color: rgba(255,255,255,0.8); }
+  .sig strong { color: #fff; display: block; font-size: 15px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="brand"><a href="index.html">← THE AUTOMATION EDGE · TOOLS</a></div>
+  <div class="pill">FREE · 20 MINUTES · VIDEO CALL</div>
+  <h1>The 20-minute systems review</h1>
+  <p class="sub">You've seen the number. This is the conversation that turns it into a decision — which single process to fix first, and whether it's even worth fixing yet.</p>
+
+  <h2>How it works</h2>
+  <ul class="plain">
+    <li>You bring <strong>one process that annoys you</strong> — reordering, quotes, invoicing, month-end, stock, whatever hurt most last week.</li>
+    <li>We walk it end to end: every handoff, every re-typed field, every place someone waits for someone else.</li>
+    <li>You leave with the first fix worth making, and roughly what it takes — or an honest "not yet, here's why".</li>
+  </ul>
+
+  <div class="note">No slides. No licence quote. No follow-up sequence. If your operation doesn't need what I do, I'll say so on the call — that's a faster answer for both of us.</div>
+
+  <h2>Worth your time if…</h2>
+  <ul class="plain">
+    <li>You run a Singapore SME with roughly 5–200 people</li>
+    <li>Trading, distribution, manufacturing, logistics or services</li>
+    <li>Real operations today: spreadsheets, WhatsApp, a few disconnected apps</li>
+    <li>You can name at least one process that regularly goes wrong</li>
+  </ul>
+
+  <h2>Probably not worth it if…</h2>
+  <ul class="plain no">
+    <li>You want a free audit to hand to a software vendor</li>
+    <li>You're shopping for licence pricing — I'm not selling licences on this call</li>
+    <li>Nothing is broken yet and you're just curious about AI</li>
+  </ul>
+
+  <h2>Pick a time</h2>
+  <div class="book-zone" id="bookZone">
+    <p class="sub" style="margin-bottom:18px;">Tell me what's breaking and when you're free, and I'll send a Zoom invite that lands in your calendar.</p>
+    <a class="cta" id="bookBtn" href="#">Request your slot →</a>
+    <div class="footer" style="margin-top:6px;">Usually confirmed the same working day, Singapore hours.</div>
+  </div>
+
+  <div class="sig">
+    <img src="sayed.jpg" alt="Sayed Rashid" width="52" height="52" loading="lazy">
+    <div><strong>Sayed Rashid</strong>ERP &amp; business systems consultant, Singapore SMEs. I write <a href="https://sayedr.substack.com" style="color:var(--gold-light);text-decoration:none;">The Automation Edge</a>.</div>
+  </div>
+
+  <div class="footer">
+    <a href="index.html">Free tools</a> · <a href="https://sayedr.substack.com">Newsletter</a> · <a href="https://sayedr.substack.com/subscribe?utm_source=review-page">Subscribe free</a>
+  </div>
+</div>
+
+<script>
+/* ── SINGLE PLACE TO CHANGE THE BOOKING DESTINATION ──────────────────────
+   Swap BOOKING_URL for a real scheduler link (Cal.com / Calendly / Google
+   Calendar appointment page) and every tool that points here follows.
+   To embed the scheduler inline instead of linking out, paste its embed
+   snippet into #bookZone and delete the link below.                      */
+const BOOKING_URL = 'https://tally.so/r/WOkDRe';
+const b = document.getElementById('bookBtn');
+b.href = BOOKING_URL;
+b.target = '_blank';
+b.rel = 'noopener';
+</script>
+</body>
+</html>
