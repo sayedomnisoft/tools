@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InvoiceNow Deadline Checker — When Must My Business Comply?</title>
+<meta name="description" content="Find your GST InvoiceNow implementation date in 30 seconds. Every GST-registered business in Singapore must comply by April 2031, phased by turnover. Free, no signup.">
+<meta property="og:title" content="InvoiceNow Deadline Checker">
+<meta property="og:description" content="When must your business comply with the GST InvoiceNow requirement? Find your date, your grant, and what to do next.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://sayedomnisoft.github.io/tools/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="shared.css">
+<style>
+  .verdict-band { font-size: 22px; font-weight: 800; color: var(--gold-light); margin: 4px 0 14px; line-height: 1.25; }
+  .official { background: rgba(120,220,255,0.10); border: 1px solid rgba(120,220,255,0.42); border-radius: 12px; padding: 14px 17px; font-size: 14px; line-height: 1.55; margin-bottom: 20px; }
+  .official a { color: #a8e8ff; }
+  .official .t { font-size: 11.5px; letter-spacing: 1.7px; font-weight: 700; color: #a8e8ff; margin-bottom: 8px; }
+  .grant { background: rgba(78,230,168,0.11); border: 1px solid rgba(78,230,168,0.45); border-radius: 12px; padding: 14px 17px; font-size: 14.5px; line-height: 1.55; margin-bottom: 20px; }
+  .grant strong { color: #7df0bd; }
+  .grant .t { font-size: 11.5px; letter-spacing: 1.7px; font-weight: 700; color: #7df0bd; margin-bottom: 8px; }
+  .timeline { margin: 22px 0 24px; }
+  .ph { display: grid; grid-template-columns: 92px 1fr; gap: 14px; align-items: start; padding: 10px 0; border-left: 2px solid rgba(255,255,255,0.14); padding-left: 16px; margin-left: 6px; position: relative; }
+  .ph::before { content: ""; position: absolute; left: -7px; top: 17px; width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.22); }
+  .ph.you { border-left-color: var(--gold-light); }
+  .ph.you::before { background: var(--gold-light); box-shadow: 0 0 0 4px rgba(242,207,110,0.22); }
+  .ph.past { opacity: .45; }
+  .ph .d { font-family: ui-monospace, monospace; font-size: 13.5px; font-weight: 700; color: rgba(255,255,255,0.75); padding-top: 2px; }
+  .ph.you .d { color: var(--gold-light); }
+  .ph .w { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.5; }
+  .ph.you .w { color: #fff; font-weight: 600; }
+  .youtag { display: inline-block; font-size: 10px; letter-spacing: 1.4px; font-weight: 800; color: var(--ink); background: var(--gold-light); padding: 3px 7px; border-radius: 3px; margin-left: 7px; vertical-align: 2px; }
+  .sub-note { font-size: 12.5px; color: rgba(255,255,255,0.5); line-height: 1.5; margin-top: -8px; margin-bottom: 18px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="brand"><a href="index.html">← THE AUTOMATION EDGE · TOOLS</a></div>
+
+  <!-- FORM -->
+  <div id="form">
+    <h1>InvoiceNow Deadline Checker</h1>
+    <p class="sub">Every GST-registered business in Singapore has to send invoice data to IRAS through InvoiceNow. It is being phased in by size, finishing April 2031. Three questions and you will know your date, your grant, and how long you have.</p>
+
+    <div class="field">
+      <label for="status">Where does your business stand with GST?</label>
+      <select id="status">
+        <option value="existing" selected>Already GST-registered (registered before 2026)</option>
+        <option value="vol_new">Registered voluntarily on or after 1 Nov 2025, within 6 months of incorporating</option>
+        <option value="vol_2026">Applied (or will apply) for voluntary GST registration on or after 1 Apr 2026</option>
+        <option value="comp_future">Not registered yet — will have to register when I cross S$1m turnover</option>
+        <option value="none">Not GST-registered and no plans to be</option>
+      </select>
+    </div>
+
+    <div class="field" id="supplyField">
+      <label for="supplies">Total annual supplies for 2025 (S$)
+        <small>Box 4 of your GST returns — standard-rated, zero-rated and exempt supplies added together, for all accounting periods ending in calendar year 2025. This exact figure decides your phase.</small>
+      </label>
+      <input type="number" id="supplies" min="0" max="999999999" step="1000" value="1200000">
+    </div>
+
+    <div class="field">
+      <label for="exempt">Does either of these describe your business?
+        <small>These are the only exemptions IRAS lists.</small>
+      </label>
+      <select id="exempt">
+        <option value="no" selected>Neither — we are a normal Singapore business</option>
+        <option value="ovr">We are an overseas entity (including OVR pay-only or OVR full regime)</option>
+        <option value="rc">We are only GST-registered because of the Reverse Charge regime</option>
+      </select>
+    </div>
+
+    <button class="primary" id="calcBtn" onclick="calculate()">Find my deadline</button>
+    <div class="quota" id="quota"></div>
+  </div>
+
+  <!-- RESULT -->
+  <div id="result" class="hidden">
+    <div class="result-label" id="rLabel">YOUR IMPLEMENTATION DATE</div>
+    <div class="big-num"><span id="rDate">—</span></div>
+    <div class="verdict-band" id="rBand"></div>
+
+    <div class="note" id="rVerdict"></div>
+
+    <div class="grant hidden" id="grantBox">
+      <div class="t">MONEY ON THE TABLE</div>
+      <div id="grantText"></div>
+    </div>
+
+    <div class="result-label" style="margin-top:26px">THE FULL ROLLOUT</div>
+    <p class="sub-note">Where your business sits in the phased schedule.</p>
+    <div class="timeline" id="timeline"></div>
+
+    <div class="official">
+      <div class="t">CHECK IT AGAINST IRAS</div>
+      This tool follows the published IRAS schedule, but your official date comes from IRAS — they notified businesses registered before 2026 from mid-2026, and they publish a
+      <a href="https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/gst-invoicenow-requirement" target="_blank" rel="noopener">GST InvoiceNow Implementation Date Calculator</a>.
+      If your business had no GST returns for periods ending in 2025, IRAS will tell you your date later. Always confirm before you plan around it.
+    </div>
+
+    <p class="disclaim">This is a guide, not tax advice, and it is not affiliated with IRAS or IMDA. It applies the published phase table to the figures you entered. Rules and dates change — verify with IRAS or your tax agent before making decisions. Free-of-charge InvoiceNow solution packages are listed by IRAS and are available up to 31 March 2031.</p>
+
+    <a class="cta" href="#" id="bookBtn">Talk it through — 20-min systems review</a>
+    <a class="cta-ghost" href="index.html">See the other free tools</a>
+    <button class="ghost" onclick="reset()">Check another business</button>
+  </div>
+
+  <!-- GATE -->
+  <div id="gate" class="hidden">
+    <div class="result-label">FREE CHECKS USED</div>
+    <h1>You've checked three times.</h1>
+    <p class="sub">Usually that means you are working out the answer for more than one entity, or the date came sooner than you expected and you are deciding what to do about it.</p>
+    <div class="note">Twenty minutes on a call and we can go through what onboarding actually involves for your setup — what changes in your invoicing, what your accounting system needs to do, and whether a free solution package covers you or you need something more.</div>
+    <a class="cta" href="#" id="bookBtn2">Book the 20-min systems review</a>
+    <a class="cta-ghost" href="index.html">Try the other free tools</a>
+    <div class="footer">No pitch. If a free package covers you, I'll say so.</div>
+  </div>
+
+  <div class="footer" id="baseFooter">
+    Free tool by <a href="https://sayedr.substack.com">Sayed Rashid</a> · The Automation Edge<br>
+    <a href="https://sayedr.substack.com/subscribe?utm_source=invoicenow">Get the weekly playbooks</a>
+  </div>
+</div>
+
+<script>
+const BOOKING_URL = 'https://sayedomnisoft.github.io/tools/review.html';
+const TOOL_ID = 'invoicenow';
+const LIMIT = 3;
+
+document.getElementById('bookBtn').href = BOOKING_URL;
+document.getElementById('bookBtn2').href = BOOKING_URL;
+document.getElementById('bookBtn').target = '_blank';
+document.getElementById('bookBtn2').target = '_blank';
+
+/* The published IRAS phase table. */
+const PHASES = [
+  {date: '2025-11-01', label: '1 Nov 2025', who: 'Companies registering for GST voluntarily within 6 months of incorporation', key: 'vol_new'},
+  {date: '2026-04-01', label: '1 Apr 2026', who: 'Any business applying for voluntary GST registration, whatever its incorporation date or structure', key: 'vol_2026'},
+  {date: '2028-04-01', label: '1 Apr 2028', who: 'Businesses applying for compulsory registration, and existing businesses with annual supplies of S$200,000 or less', key: 'p2028'},
+  {date: '2029-04-01', label: '1 Apr 2029', who: 'Existing businesses with annual supplies of S$1,000,000 or less', key: 'p2029'},
+  {date: '2030-04-01', label: '1 Apr 2030', who: 'Existing businesses with annual supplies of S$4,000,000 or less', key: 'p2030'},
+  {date: '2031-04-01', label: '1 Apr 2031', who: 'Existing businesses with annual supplies above S$4,000,000', key: 'p2031'}
+];
+
+function used() { return parseInt(localStorage.getItem('tae_' + TOOL_ID) || '0', 10); }
+function bump() { localStorage.setItem('tae_' + TOOL_ID, used() + 1); }
+function money(n) { return 'S$' + Math.round(n).toLocaleString('en-SG'); }
+
+function showQuota() {
+  const left = Math.max(0, LIMIT - used());
+  const q = document.getElementById('quota');
+  q.textContent = left > 0 ? left + ' of ' + LIMIT + ' free checks left' : 'No free checks left';
+  document.getElementById('calcBtn').disabled = left === 0;
+}
+
+function toggleSupply() {
+  const s = document.getElementById('status').value;
+  document.getElementById('supplyField').style.display = (s === 'existing') ? '' : 'none';
+}
+document.getElementById('status').addEventListener('change', toggleSupply);
+
+function monthsBetween(a, b) {
+  return (b.getFullYear() - a.getFullYear()) * 12 + (b.getMonth() - a.getMonth()) - (b.getDate() < a.getDate() ? 1 : 0);
+}
+
+function resolve(status, supplies, exempt) {
+  if (exempt === 'ovr') return {exempt: true, why: 'Overseas entities — including those registered under the OVR pay-only or OVR full regime — are exempt from the GST InvoiceNow Requirement.'};
+  if (exempt === 'rc')  return {exempt: true, why: 'Businesses that are GST-registered solely because of the Reverse Charge regime are exempt from the GST InvoiceNow Requirement.'};
+  if (status === 'none') return {none: true};
+  if (status === 'vol_new')  return {key: 'vol_new',  date: '2025-11-01', label: '1 Nov 2025'};
+  if (status === 'vol_2026') return {key: 'vol_2026', date: '2026-04-01', label: '1 Apr 2026'};
+  if (status === 'comp_future') return {key: 'p2028', date: '2028-04-01', label: '1 Apr 2028', compulsory: true};
+  // existing, by 2025 total annual supplies
+  if (supplies <= 200000)   return {key: 'p2028', date: '2028-04-01', label: '1 Apr 2028'};
+  if (supplies <= 1000000)  return {key: 'p2029', date: '2029-04-01', label: '1 Apr 2029'};
+  if (supplies <= 4000000)  return {key: 'p2030', date: '2030-04-01', label: '1 Apr 2030'};
+  return {key: 'p2031', date: '2031-04-01', label: '1 Apr 2031'};
+}
+
+function renderTimeline(activeKey) {
+  const today = new Date();
+  document.getElementById('timeline').innerHTML = PHASES.map(p => {
+    const d = new Date(p.date + 'T00:00:00');
+    const isYou = p.key === activeKey;
+    const isPast = d < today && !isYou;
+    return '<div class="ph' + (isYou ? ' you' : '') + (isPast ? ' past' : '') + '">' +
+      '<div class="d">' + p.label + (isYou ? '<span class="youtag">YOU</span>' : '') + '</div>' +
+      '<div class="w">' + p.who + '</div></div>';
+  }).join('');
+}
+
+function calculate() {
+  if (used() >= LIMIT) { show('gate'); return; }
+  const status = document.getElementById('status').value;
+  const supplies = Math.max(0, +document.getElementById('supplies').value || 0);
+  const exempt = document.getElementById('exempt').value;
+  const r = resolve(status, supplies, exempt);
+  const today = new Date();
+
+  const grantBox = document.getElementById('grantBox');
+  grantBox.classList.add('hidden');
+
+  if (r.exempt) {
+    document.getElementById('rLabel').textContent = 'YOUR POSITION';
+    document.getElementById('rDate').textContent = 'Exempt';
+    document.getElementById('rBand').textContent = 'No InvoiceNow deadline applies';
+    document.getElementById('rVerdict').innerHTML = r.why + ' <strong>Confirm this with IRAS or your tax agent</strong> — exemption depends on the precise basis of your registration, and that is worth getting in writing.';
+    renderTimeline(null);
+    bump(); show('result'); return;
+  }
+
+  if (r.none) {
+    document.getElementById('rLabel').textContent = 'YOUR POSITION';
+    document.getElementById('rDate').textContent = 'Not yet';
+    document.getElementById('rBand').textContent = 'The requirement follows GST registration';
+    document.getElementById('rVerdict').innerHTML = 'The GST InvoiceNow Requirement applies to GST-registered businesses. If you are not registered and have no plans to be, no date applies to you today. <strong>Two things would change that:</strong> registering voluntarily — which puts you in scope immediately — or crossing the S$1 million taxable turnover threshold, which makes registration compulsory. If either is on your horizon, come back and check again.';
+    renderTimeline(null);
+    bump(); show('result'); return;
+  }
+
+  const deadline = new Date(r.date + 'T00:00:00');
+  const months = monthsBetween(today, deadline);
+  const past = deadline <= today;
+
+  document.getElementById('rLabel').textContent = past ? 'YOUR DEADLINE HAS PASSED' : 'YOUR IMPLEMENTATION DATE';
+  document.getElementById('rDate').textContent = r.label;
+
+  let band, verdict;
+  if (past) {
+    band = 'Already in force — act now';
+    verdict = 'This phase has already started. If you are in scope and not yet submitting invoice data to IRAS through InvoiceNow, <strong>this needs attention immediately</strong>. Speak to your tax agent, and check whether your accounting software is already an InvoiceNow-Ready Solution — many are, and activating it can be quicker than you expect.';
+  } else if (months <= 6) {
+    band = 'Under 6 months — start now';
+    verdict = 'This is close. Onboarding is not just a software switch — your invoicing data has to be complete and correctly structured before it goes to IRAS, and that is usually where the time goes. <strong>Start now rather than in the last month.</strong>';
+  } else if (months <= 18) {
+    band = 'Within 18 months — plan it this year';
+    verdict = 'Enough time to do this calmly, not enough to ignore. The sensible move is to check whether your current accounting system is InvoiceNow-Ready, and if it is not, to fold the change into whatever system work you were already considering rather than doing it twice.';
+  } else {
+    band = 'Time to plan properly';
+    verdict = 'You have room. Use it well: the businesses that struggle are the ones that treat this as a last-minute compliance task rather than folding it into a system decision they were going to make anyway. <strong>If you are already thinking about changing accounting or ERP systems, make InvoiceNow-readiness a requirement in that decision</strong> and you get compliance for free.';
+  }
+
+  if (r.compulsory) {
+    verdict += ' Because you would be registering compulsorily on or after 1 Apr 2028, the requirement applies from registration.';
+  }
+
+  document.getElementById('rBand').textContent = band + (past ? '' : ' · about ' + months + ' months away');
+  document.getElementById('rVerdict').innerHTML = verdict;
+
+  // grant
+  const big = (status === 'existing' && supplies > 4000000);
+  grantBox.classList.remove('hidden');
+  document.getElementById('grantText').innerHTML = big
+    ? 'IRAS lists a <strong>GST InvoiceNow Transition Grant of S$5,000</strong> for businesses with annual supplies above S$4,000,000, and an <strong>InvoiceNow Queen Bee Grant of S$25,000</strong> for larger businesses. Eligibility and applications are handled by IMDA. There are also free-of-charge solution packages available up to 31 March 2031.'
+    : 'IRAS lists a <strong>GST InvoiceNow Transition Grant of S$1,000</strong> for SMEs with annual supplies of S$4,000,000 or less. Eligibility and applications are handled by IMDA. There are also <strong>free-of-charge solution packages</strong> available up to 31 March 2031 — worth checking before you pay for anything.';
+
+  renderTimeline(r.key);
+  bump();
+  show('result');
+}
+
+function reset() { show('form'); showQuota(); }
+
+function show(which) {
+  ['form', 'result', 'gate'].forEach(function (id) { document.getElementById(id).classList.add('hidden'); });
+  document.getElementById(which).classList.remove('hidden');
+  document.getElementById('baseFooter').style.display = which === 'gate' ? 'none' : '';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+toggleSupply();
+showQuota();
+</script>
+</body>
+</html>
