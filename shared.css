@@ -1,7 +1,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
   --navy-deep: #0a0d33; --navy: #2A2FB0; --gold: #c9a227; --gold-light: #f2cf6e;
-  --ink: #14142a; --muted: rgba(255,255,255,0.65);
+  --ink: #14142a; --muted: rgba(255,255,255,0.78);
 }
 body {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -64,8 +64,9 @@ button.ghost {
   background: transparent; border: 1px solid rgba(255,255,255,0.22); border-radius: 10px; cursor: pointer;
 }
 button.ghost:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
-.footer { text-align: center; margin-top: 22px; font-size: 12.5px; color: rgba(255,255,255,0.45); line-height: 1.6; }
-.footer a { color: rgba(242,207,110,0.85); text-decoration: none; }
+.footer { text-align: center; margin-top: 22px; font-size: 13px; color: rgba(255,255,255,0.62); line-height: 1.65; }
+.footer a { color: var(--gold-light); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
 .hidden { display: none; }
 .tool-list { list-style: none; }
 .tool-list li { margin-bottom: 14px; }
@@ -94,7 +95,7 @@ button.ghost:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
   border:2px solid rgba(242,207,110,0.5); }
 .byline .who { flex:1; min-width:0; }
 .byline .nm { font-size:14.5px; font-weight:700; color:#fff; line-height:1.3; }
-.byline .rl { font-size:12.5px; color:rgba(255,255,255,0.6); line-height:1.45; margin-top:2px; }
+.byline .rl { font-size:12.5px; color:rgba(255,255,255,0.75); line-height:1.45; margin-top:2px; }
 .byline .li { flex:none; display:inline-flex; align-items:center; gap:7px; text-decoration:none;
   background:#0a66c2; color:#fff; font-size:13px; font-weight:650; padding:9px 14px; border-radius:9px;
   white-space:nowrap; transition:filter .12s; }
@@ -104,3 +105,39 @@ button.ghost:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
   .byline { flex-wrap:wrap; }
   .byline .li { width:100%; justify-content:center; margin-top:4px; }
 }
+
+/* --- in-prose links ---
+   Without this, links inside body copy fall back to the browser's default
+   blue/purple, which is unreadable on the dark navy ground. Class-scoped
+   rules above (.brand a, .footer a, .tool-list a, .byline .li, a.cta) have
+   higher specificity and are unaffected. */
+a { color: var(--gold-light); }
+a:visited { color: var(--gold-light); }
+p a, li a, td a, .lead a, .sub a, .note a, .official a, .body a {
+  color: var(--gold-light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(242,207,110,0.55);
+}
+p a:hover, li a:hover, td a:hover, .lead a:hover, .sub a:hover,
+.note a:hover, .official a:hover, .body a:hover {
+  color: #fff;
+  text-decoration-color: rgba(255,255,255,0.75);
+}
+a:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; border-radius: 3px; }
+
+/* --- book-a-review strip (sits above the byline on content pages) --- */
+.bookstrip { margin-top: 26px; padding: 17px 19px; border-radius: 14px; text-align: left;
+  background: linear-gradient(135deg, rgba(201,162,39,0.16), rgba(42,47,176,0.12));
+  border: 1px solid rgba(242,207,110,0.45);
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.bookstrip .bt { flex: 1; min-width: 210px; }
+.bookstrip .bt b { display: block; font-size: 15px; color: #fff; font-weight: 700; line-height: 1.35; }
+.bookstrip .bt span { display: block; font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.5; margin-top: 3px; }
+.bookstrip a.bk { flex: none; display: inline-block; text-decoration: none; white-space: nowrap;
+  padding: 12px 20px; border-radius: 10px; font-size: 14.5px; font-weight: 700; color: var(--ink);
+  background: linear-gradient(180deg, var(--gold-light), var(--gold));
+  transition: transform .12s ease, box-shadow .12s ease; }
+.bookstrip a.bk:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(201,162,39,0.35); color: var(--ink); }
+@media (max-width:480px){ .bookstrip a.bk { width: 100%; text-align: center; } }
