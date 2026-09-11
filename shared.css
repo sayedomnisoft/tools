@@ -141,3 +141,17 @@ a:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; bor
   transition: transform .12s ease, box-shadow .12s ease; }
 .bookstrip a.bk:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(201,162,39,0.35); color: var(--ink); }
 @media (max-width:480px){ .bookstrip a.bk { width: 100%; text-align: center; } }
+
+/* --- post-booking confirmation panel (review page) --- */
+.booked { margin-top: 8px; padding: 26px 24px; border-radius: 18px; text-align: center;
+  background: linear-gradient(135deg, rgba(125,240,189,0.12), rgba(42,47,176,0.14));
+  border: 1px solid rgba(125,240,189,0.45); }
+.booked .bk-tick { width: 54px; height: 54px; margin: 0 auto 14px; border-radius: 50%;
+  background: rgba(125,240,189,0.16); border: 2px solid #7df0bd; color: #7df0bd;
+  font-size: 27px; line-height: 50px; font-weight: 700; }
+.booked h2 { color: #fff; }
+.booked .li-big { display: inline-flex; align-items: center; gap: 9px; text-decoration: none;
+  background: #0a66c2; color: #fff; font-size: 15.5px; font-weight: 700;
+  padding: 14px 24px; border-radius: 11px; transition: filter .12s; }
+.booked .li-big:hover { filter: brightness(1.12); color: #fff; }
+.booked .li-big svg { width: 18px; height: 18px; fill: currentColor; }

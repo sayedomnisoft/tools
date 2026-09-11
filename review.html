@@ -84,6 +84,17 @@
     </div>
   </div>
 
+  <div class="booked" id="bookedPanel" hidden>
+    <div class="bk-tick" aria-hidden="true">&#10003;</div>
+    <h2 style="margin-bottom:8px;">You're in. One more thing.</h2>
+    <p class="sub" style="margin-bottom:18px;">The invite is on its way to your inbox. Before we speak, connect with me on LinkedIn &mdash; you'll see how I think about this stuff, and I'll know a little about your business before the call starts.</p>
+    <a class="li-big" href="https://www.linkedin.com/in/sayedomni" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+      Connect with me on LinkedIn
+    </a>
+    <div class="footer" style="margin-top:14px;">Or skip ahead and <a href="index.html">run a free tool</a> before we talk.</div>
+  </div>
+
   <div class="sig">
     <img src="sayed.jpg" alt="Sayed Rashid" width="52" height="52" loading="lazy">
     <div><strong>Sayed Rashid</strong>ERP &amp; business systems consultant, Singapore SMEs. I write <a href="https://www.gantry.work" style="color:var(--gold-light);text-decoration:none;">The Gantry</a>.</div>
@@ -151,6 +162,17 @@ const BOOKING_URL = 'https://tally.so/r/WOkDRe';
     elementOrSelector: "#cal-inline",
     config: { layout: "month_view", theme: "dark" },
     calLink: CAL_LINK
+  });
+  Cal.ns.review("on", {
+    action: "bookingSuccessful",
+    callback: function () {
+      const z = document.getElementById('bookZone');
+      const b = document.getElementById('bookedPanel');
+      if (!b) return;
+      b.hidden = false;
+      if (z) z.hidden = true;
+      b.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
   });
   Cal.ns.review("ui", {
     theme: "dark",
