@@ -85,3 +85,22 @@ button.ghost:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
   h1 { font-size: 24px; }
   .big-num { font-size: 44px; }
 }
+
+
+/* --- author byline + LinkedIn CTA --- */
+.byline { display:flex; align-items:center; gap:14px; margin-top:26px; padding:15px 17px;
+  background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.14); border-radius:14px; text-align:left; }
+.byline img { width:48px; height:48px; border-radius:50%; flex:none; object-fit:cover;
+  border:2px solid rgba(242,207,110,0.5); }
+.byline .who { flex:1; min-width:0; }
+.byline .nm { font-size:14.5px; font-weight:700; color:#fff; line-height:1.3; }
+.byline .rl { font-size:12.5px; color:rgba(255,255,255,0.6); line-height:1.45; margin-top:2px; }
+.byline .li { flex:none; display:inline-flex; align-items:center; gap:7px; text-decoration:none;
+  background:#0a66c2; color:#fff; font-size:13px; font-weight:650; padding:9px 14px; border-radius:9px;
+  white-space:nowrap; transition:filter .12s; }
+.byline .li:hover { filter:brightness(1.12); }
+.byline .li svg { width:15px; height:15px; fill:currentColor; }
+@media (max-width:480px){
+  .byline { flex-wrap:wrap; }
+  .byline .li { width:100%; justify-content:center; margin-top:4px; }
+}
