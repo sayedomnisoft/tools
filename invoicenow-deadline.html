@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>InvoiceNow Deadline Checker — When Must My Business Comply?</title>
-<meta name="description" content="Find your GST InvoiceNow implementation date in 30 seconds. Every GST-registered business in Singapore must comply by April 2031, phased by turnover. Free, no signup.">
-<meta property="og:title" content="InvoiceNow Deadline Checker">
-<meta property="og:description" content="When must your business comply with the GST InvoiceNow requirement? Find your date, your grant, and what to do next.">
+<title>GST InvoiceNow Implementation Date Calculator (Singapore)</title>
+<meta name="description" content="Find your mandatory GST InvoiceNow implementation date in under a minute. A free web version of the IRAS calculator — no Excel, no download. Covers every phase from 2025 to 2031.">
+<meta property="og:title" content="GST InvoiceNow Implementation Date Calculator (Singapore)">
+<meta property="og:description" content="Find your mandatory GST InvoiceNow implementation date in under a minute. A free web version of the IRAS calculator — no Excel, no download. Covers every phase from 2025 to 2031.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://sayedomnisoft.github.io/tools/og-image.png">
+<meta property="og:image" content="https://tools.gantry.work/og-invoicenow.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="shared.css">
 <style>
@@ -32,6 +32,21 @@
   .youtag { display: inline-block; font-size: 10px; letter-spacing: 1.4px; font-weight: 800; color: var(--ink); background: var(--gold-light); padding: 3px 7px; border-radius: 3px; margin-left: 7px; vertical-align: 2px; }
   .sub-note { font-size: 12.5px; color: rgba(255,255,255,0.5); line-height: 1.5; margin-top: -8px; margin-bottom: 18px; }
 </style>
+
+<!-- seo:start -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://tools.gantry.work/invoicenow-deadline.html">
+<meta property="og:url" content="https://tools.gantry.work/invoicenow-deadline.html">
+<meta property="og:site_name" content="The Gantry">
+<meta property="og:locale" content="en_SG">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="GST InvoiceNow Implementation Date Calculator (Singapore)">
+<meta name="twitter:image" content="https://tools.gantry.work/og-invoicenow.jpg">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="author" content="Sayed Rashid">
+<!-- seo:end -->
 </head>
 <body>
 <div class="card">
@@ -39,8 +54,8 @@
 
   <!-- FORM -->
   <div id="form">
-    <h1>InvoiceNow Deadline Checker</h1>
-    <p class="sub">Every GST-registered business in Singapore has to send invoice data to IRAS through InvoiceNow. It is being phased in by size, finishing April 2031. Three questions and you will know your date, your grant, and how long you have.</p>
+    <h1>GST InvoiceNow Implementation Date Calculator</h1>
+    <p class="sub">Every GST-registered business in Singapore has to send invoice data to IRAS through InvoiceNow, phased in by size and finishing April 2031. IRAS publishes this as a spreadsheet that takes 15&ndash;20 minutes and needs Excel. Three questions here and you will know your implementation date, your grant, and how long you have.</p>
 
     <div class="field">
       <label for="status">Where does your business stand with GST?</label>
@@ -58,6 +73,21 @@
         <small>Box 4 of your GST returns — standard-rated, zero-rated and exempt supplies added together, for all accounting periods ending in calendar year 2025. This exact figure decides your phase.</small>
       </label>
       <input type="number" id="supplies" min="0" max="999999999" step="1000" value="1200000">
+    </div>
+
+    <div class="field" id="regDuringField">
+      <label for="regDuring">Did the business register for GST during 2025?
+        <small>Register part-way through 2025 and your returns cover less than a full year. IRAS annualises that figure before deciding your phase &mdash; which can move you a whole year earlier.</small>
+      </label>
+      <select id="regDuring">
+        <option value="no" selected>No &mdash; registered before 2025</option>
+        <option value="yes">Yes &mdash; registered during 2025</option>
+      </select>
+    </div>
+
+    <div class="field hidden" id="regDateField">
+      <label for="regDate">Date of GST registration</label>
+      <input type="date" id="regDate" min="2025-01-01" max="2025-12-31" value="2025-07-01">
     </div>
 
     <div class="field">
@@ -156,12 +186,27 @@ function showQuota() {
 
 function toggleSupply() {
   const s = document.getElementById('status').value;
-  document.getElementById('supplyField').style.display = (s === 'existing') ? '' : 'none';
+  const isEx = (s === 'existing');
+  document.getElementById('supplyField').style.display = isEx ? '' : 'none';
+  document.getElementById('regDuringField').style.display = isEx ? '' : 'none';
+  document.getElementById('regDateField').style.display =
+    (isEx && document.getElementById('regDuring').value === 'yes') ? '' : 'none';
 }
 document.getElementById('status').addEventListener('change', toggleSupply);
 
 function monthsBetween(a, b) {
   return (b.getFullYear() - a.getFullYear()) * 12 + (b.getMonth() - a.getMonth()) - (b.getDate() < a.getDate() ? 1 : 0);
+}
+
+function annualise(supplies) {
+  const sel = document.getElementById('regDuring');
+  if (!sel || sel.value !== 'yes') return {figure: supplies, annualised: false};
+  const v = document.getElementById('regDate').value;
+  if (!v) return {figure: supplies, annualised: false};
+  const rd = new Date(v + 'T00:00:00'), end = new Date('2025-12-31T00:00:00');
+  const days = Math.round((end - rd) / 86400000) + 1;
+  if (!(days > 0) || days >= 365) return {figure: supplies, annualised: false};
+  return {figure: supplies / days * 365, annualised: true, days: days, raw: supplies};
 }
 
 function resolve(status, supplies, exempt) {
@@ -190,11 +235,17 @@ function renderTimeline(activeKey) {
   }).join('');
 }
 
+document.getElementById('regDuring').addEventListener('change', function () {
+  document.getElementById('regDateField').style.display = (this.value === 'yes') ? '' : 'none';
+});
+
 function calculate() {
   if (used() >= LIMIT) { show('gate'); return; }
   const status = document.getElementById('status').value;
-  const supplies = Math.max(0, +document.getElementById('supplies').value || 0);
+  const rawSupplies = Math.max(0, +document.getElementById('supplies').value || 0);
   const exempt = document.getElementById('exempt').value;
+  const ann = (status === 'existing') ? annualise(rawSupplies) : {figure: rawSupplies, annualised: false};
+  const supplies = ann.figure;
   const r = resolve(status, supplies, exempt);
   const today = new Date();
 
@@ -245,6 +296,12 @@ function calculate() {
     verdict += ' Because you would be registering compulsorily on or after 1 Apr 2028, the requirement applies from registration.';
   }
 
+  if (ann.annualised) {
+    const fmt = n => 'S$' + Math.round(n).toLocaleString('en-SG');
+    verdict = '<strong>Annualised first:</strong> your ' + fmt(ann.raw) + ' covers only ' + ann.days +
+      ' days of 2025, so IRAS scales it to a full year &mdash; ' + fmt(ann.raw) + ' &divide; ' + ann.days +
+      ' &times; 365 = <strong>' + fmt(ann.figure) + '</strong>. That annualised figure is what sets your phase. ' + verdict;
+  }
   document.getElementById('rBand').textContent = band + (past ? '' : ' · about ' + months + ' months away');
   document.getElementById('rVerdict').innerHTML = verdict;
 
@@ -272,5 +329,6 @@ function show(which) {
 toggleSupply();
 showQuota();
 </script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"GST InvoiceNow Implementation Date Calculator","url":"https://tools.gantry.work/invoicenow-deadline.html","applicationCategory":"BusinessApplication","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"SGD"},"description":"Free instant calculator that determines a Singapore business's mandatory GST InvoiceNow implementation date under the IRAS phased rollout from 2025 to 2031.","author":{"@id":"https://tools.gantry.work/#sayed"},"areaServed":{"@type":"Country","name":"Singapore"},"isAccessibleForFree":true},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is InvoiceNow mandatory in Singapore?","acceptedAnswer":{"@type":"Answer","text":"For GST-registered businesses yes, but on a phased timetable rather than all at once. Every GST-registered business must eventually transmit invoice data to IRAS through the InvoiceNow network, starting with voluntary registrants on 1 Nov 2025 and finishing with the largest existing businesses on 1 Apr 2031. If you are not GST-registered it is optional."}},{"@type":"Question","name":"How is my GST InvoiceNow implementation date decided?","acceptedAnswer":{"@type":"Answer","text":"If you registered for GST from 2026 onward it depends on whether registration was voluntary or compulsory, and when. If you were already GST-registered before 2026 it depends on your total supplies in Box 4 across accounting periods ending in calendar year 2025: S$200,000 or less means 1 Apr 2028, S$1,000,000 or less means 1 Apr 2029, S$4,000,000 or less means 1 Apr 2030, and more than S$4,000,000 means 1 Apr 2031."}},{"@type":"Question","name":"What if I registered for GST part-way through 2025?","acceptedAnswer":{"@type":"Answer","text":"Your returns then cover less than a full year, so IRAS annualises the figure before deciding your phase: total supplies divided by the days covered, multiplied by 365. Because annualising makes the figure larger, it usually moves a business into a later phase."}},{"@type":"Question","name":"Why do the smallest businesses have to comply first?","acceptedAnswer":{"@type":"Answer","text":"Smaller businesses tend to have simpler invoicing and fewer systems to change, so they can move quickly. Larger businesses often have deeply integrated ERP systems and many trading partners, so they are given until 2031 to prepare."}},{"@type":"Question","name":"Which businesses are excluded from the GST InvoiceNow Requirement?","acceptedAnswer":{"@type":"Answer","text":"Overseas entities registered under the Overseas Vendor Registration regime, both Pay-only and full, and businesses liable to register for GST wholly because of the Reverse Charge regime."}}]},{"@type":"Person","@id":"https://tools.gantry.work/#sayed","name":"Sayed Rashid","url":"https://gantry.work","jobTitle":"ERP & Business Systems Consultant","sameAs":["https://www.linkedin.com/in/sayedomni","https://gantry.work","https://github.com/sayedomnisoft"]}]}</script>
 </body>
 </html>
