@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SME Systems Health Check — Free 60-Second Diagnostic</title>
+<meta name="description" content="Ten questions, sixty seconds: find out how much of your week your business loses to manual work, and which process is leaking the most. Free, no signup.">
+<meta property="og:title" content="SME Systems Health Check — Free 60-Second Diagnostic">
+<meta property="og:description" content="Ten questions, sixty seconds: find out how much of your week your business loses to manual work, and which process is leaking the most. Free, no signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sayedomnisoft.github.io/health-check/">
+<meta property="og:image" content="https://tools.gantry.work/og-health-check.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --navy-deep: #0a0d33; --navy: #2A2FB0; --gold: #c9a227; --gold-light: #f2cf6e;
+    --ink: #14142a; --paper: #ffffff; --muted: rgba(255,255,255,0.65);
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: linear-gradient(160deg, var(--navy-deep) 0%, #1a1e6e 55%, var(--navy) 100%);
+    min-height: 100vh; color: #fff; display: flex; align-items: center; justify-content: center; padding: 20px;
+  }
+  .card {
+    width: 100%; max-width: 560px; background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 36px 30px;
+    backdrop-filter: blur(8px); box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+  }
+  .brand { font-size: 13px; letter-spacing: 2.5px; color: var(--gold-light); font-weight: 600; margin-bottom: 18px; }
+  h1 { font-size: 30px; font-weight: 800; line-height: 1.15; margin-bottom: 14px; }
+  .sub { color: var(--muted); font-size: 16px; line-height: 1.55; margin-bottom: 26px; }
+  .meta-line { display: flex; gap: 18px; margin-bottom: 28px; }
+  .meta-line span { font-size: 13px; color: var(--gold-light); font-weight: 600; }
+  button.primary {
+    width: 100%; padding: 16px; font-size: 17px; font-weight: 700; color: var(--ink);
+    background: linear-gradient(180deg, var(--gold-light), var(--gold)); border: none; border-radius: 12px;
+    cursor: pointer; transition: transform .12s ease, box-shadow .12s ease;
+  }
+  button.primary:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(201,162,39,0.35); }
+  .progress-wrap { height: 6px; background: rgba(255,255,255,0.12); border-radius: 3px; margin-bottom: 26px; overflow: hidden; }
+  .progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius: 3px; transition: width .35s ease; }
+  .qnum { font-size: 13px; color: var(--gold-light); font-weight: 700; letter-spacing: 1.5px; margin-bottom: 10px; }
+  .qtext { font-size: 22px; font-weight: 700; line-height: 1.3; margin-bottom: 24px; min-height: 60px; }
+  .answers { display: flex; flex-direction: column; gap: 12px; }
+  button.answer {
+    text-align: left; padding: 15px 18px; font-size: 15.5px; font-weight: 500; color: #fff;
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); border-radius: 12px;
+    cursor: pointer; line-height: 1.4; transition: background .12s ease, border-color .12s ease, transform .1s ease;
+  }
+  button.answer:hover { background: rgba(242,207,110,0.16); border-color: var(--gold-light); transform: translateX(3px); }
+  .score-big { font-size: 72px; font-weight: 800; line-height: 1; }
+  .score-big small { font-size: 26px; color: var(--muted); font-weight: 600; }
+  .band { font-size: 26px; font-weight: 800; color: var(--gold-light); margin: 8px 0 16px; }
+  .verdict { color: rgba(255,255,255,0.85); font-size: 16px; line-height: 1.6; margin-bottom: 20px; }
+  .hours {
+    background: rgba(201,162,39,0.14); border: 1px solid rgba(201,162,39,0.45); border-radius: 12px;
+    padding: 14px 18px; font-size: 15px; line-height: 1.5; margin-bottom: 22px;
+  }
+  .hours strong { color: var(--gold-light); }
+  .leaks-title { font-size: 13px; letter-spacing: 2px; color: var(--gold-light); font-weight: 700; margin-bottom: 10px; }
+  ul.leaks { list-style: none; margin-bottom: 24px; }
+  ul.leaks li { font-size: 14.5px; color: rgba(255,255,255,0.8); padding: 7px 0 7px 24px; position: relative; line-height: 1.45; }
+  ul.leaks li::before { content: "▸"; color: var(--gold); position: absolute; left: 4px; }
+  a.cta {
+    display: block; text-align: center; padding: 16px; font-size: 16.5px; font-weight: 700; color: var(--ink);
+    background: linear-gradient(180deg, var(--gold-light), var(--gold)); border-radius: 12px; text-decoration: none;
+    margin-bottom: 12px; transition: transform .12s ease;
+  }
+  a.cta:hover { transform: translateY(-2px); }
+  .cta-sub { text-align: center; font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+  button.ghost {
+    width: 100%; padding: 12px; font-size: 14px; font-weight: 600; color: var(--muted);
+    background: transparent; border: 1px solid rgba(255,255,255,0.22); border-radius: 10px; cursor: pointer;
+  }
+  button.ghost:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+  .footer { text-align: center; margin-top: 22px; font-size: 12.5px; color: rgba(255,255,255,0.45); }
+  .footer a { color: rgba(242,207,110,0.8); text-decoration: none; }
+  .hidden { display: none; }
+  @media (max-width: 480px) {
+    .card { padding: 28px 20px; }
+    h1 { font-size: 25px; }
+    .qtext { font-size: 19px; }
+  }
+  .cta-ghost { display: block; text-align: center; margin-top: 10px; padding: 12px; font-size: 14px; font-weight: 600; color: var(--muted); border: 1px solid rgba(255,255,255,0.22); border-radius: 10px; text-decoration: none; }
+  .cta-ghost:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+  .next-step { margin-top: 18px; }
+</style>
+
+<!-- seo:start -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://tools.gantry.work/health-check/">
+<meta property="og:url" content="https://tools.gantry.work/health-check/">
+<meta property="og:site_name" content="The Gantry">
+<meta property="og:locale" content="en_SG">
+<meta property="og:image" content="https://tools.gantry.work/og-health-check.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tools.gantry.work/og-health-check.jpg">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="author" content="Sayed Rashid">
+<!-- seo:end -->
+</head>
+<body>
+<div class="card">
+
+  <!-- INTRO -->
+  <div id="intro">
+    <div class="brand">THE GANTRY</div>
+    <h1>SME Systems Health Check</h1>
+    <p class="sub">How much of your week is your business losing to manual work? Answer honestly — this is a mirror, not a sales pitch.</p>
+    <div class="meta-line"><span>10 questions</span><span>~60 seconds</span><span>Instant score</span></div>
+    <button class="primary" onclick="start()">Start the check</button>
+    <div class="footer">Free · No email required to see your score</div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" class="hidden">
+    <div class="progress-wrap"><div class="progress-bar" id="bar"></div></div>
+    <div class="qnum" id="qnum"></div>
+    <div class="qtext" id="qtext"></div>
+    <div class="answers" id="answers"></div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results" class="hidden">
+    <div class="brand">YOUR RESULT</div>
+    <div class="score-big"><span id="score">0</span><small> / 20</small></div>
+    <div class="band" id="band"></div>
+    <p class="verdict" id="verdict"></p>
+    <div class="hours" id="hours"></div>
+    <div id="leaksBlock">
+      <div class="leaks-title">YOUR BIGGEST LEAKS</div>
+      <ul class="leaks" id="leaks"></ul>
+    </div>
+    <div class="next-step" id="nextStep">
+      <div class="leaks-title">WHAT TO DO WITH THIS</div>
+      <p class="verdict" id="nextText"></p>
+    </div>
+    <a class="cta" id="bookBtn" href="https://sayedomnisoft.github.io/tools/review.html?utm_source=health-check" target="_blank" rel="noopener">Talk it through — 20-min systems review</a>
+    <div class="cta-sub" id="ctaSub">Bring the one process that annoys you most. We walk it end to end and you leave with the first fix worth making, or an honest "not yet". No slides, no licence quote.</div>
+    <a class="cta-ghost" href="https://www.gantry.work/subscribe?utm_source=health-check" target="_blank" rel="noopener">Not ready to talk? Get the weekly fix instead</a>
+    <button class="ghost" onclick="restart()">Retake the check</button>
+    <div class="footer">Built by <a href="https://www.gantry.work" target="_blank" rel="noopener">Sayed Rashid</a> · The Gantry</div>
+  </div>
+
+</div>
+
+<script>
+const QUESTIONS = [
+  { q: "When a customer order comes in, how many times does the same information get typed into different places?",
+    a: ["Once — it flows through automatically", "Twice — usually re-keyed once", "Three times or more"],
+    leak: "Every order is re-typed — you're paying salaries for copy-paste." },
+  { q: "How do you know today's exact stock level?",
+    a: ["It's live in our system", "Someone maintains a spreadsheet", "We check physically or call someone"],
+    leak: "Stock truth lives outside your system — every decision starts with a doubt." },
+  { q: "How does reordering from suppliers happen?",
+    a: ["Automatic reorder points fire on their own", "Someone notices we're running low", "We often find out at stockout"],
+    leak: "Reordering depends on someone noticing — stockouts are a matter of time." },
+  { q: "For one completed job or order, where do its documents live?",
+    a: ["One system — everything attached to the job", "Two or three places", "Email, WhatsApp, shared drives, printouts…"],
+    leak: "One job's paper trail is scattered — finding anything costs minutes, disputes cost days." },
+  { q: "If your most experienced ops person took two weeks of unannounced leave…",
+    a: ["The business runs normally", "Things slow down noticeably", "We'd be in serious trouble"],
+    leak: "Your process lives in one person's head — that's a dependency, not a system." },
+  { q: "After month-end, when do you see an accurate profit figure?",
+    a: ["Within a week", "Two to three weeks", "Longer — or honestly, we estimate"],
+    leak: "You're steering the business by looking weeks into the past." },
+  { q: "Quotation follow-ups happen…",
+    a: ["Automatically — tracked with reminders", "When someone remembers", "Mostly they don't"],
+    leak: "Quotes die quietly — revenue is leaking at the follow-up stage." },
+  { q: "If you run more than one location or entity, how do you see the other site's stock and status?",
+    a: ["Live — one system covers both", "Phone calls and messages", "We can't, really", "Single location — not applicable"],
+    leak: "Your sites talk by phone call — information crosses the border slower than your goods.",
+    scores: [0, 1, 2, 0] },
+  { q: "When you need numbers for a decision…",
+    a: ["A dashboard — seconds", "Someone builds an Excel over hours or days", "We go with gut feel"],
+    leak: "Decisions wait for spreadsheets — or skip the numbers entirely." },
+  { q: "How often do data errors — wrong price, duplicate entry, missed order — cost you money?",
+    a: ["Rarely", "Every month or so", "Every week, if we're honest"],
+    leak: "Manual-entry errors are a recurring invoice you never see itemised." }
+];
+
+const BANDS = [
+  { min: 0, max: 4, name: "Systems-Ready",
+    verdict: "You're ahead of the pack. Your operation runs on systems, not memory — which means you're one of the few SMEs actually ready to put AI and automation on top. Your next wins are refinement, not rescue.",
+    hours: "Teams at this level typically lose <strong>under 3 hours a week</strong> to manual work. Guard it.",
+    next: "Nothing here needs a call. The moment to revisit is a second site, a second entity, or a doubling of headcount. Until then, one idea a week is plenty.",
+    book: false },
+  { min: 5, max: 10, name: "Held Together by Heroes",
+    verdict: "Your business works — because a few good people carry it. The processes run on memory, effort, and WhatsApp. That's fine until a hero resigns, falls sick, or takes leave. The goal now: move what's in heads into systems, one process at a time.",
+    hours: "Teams at this level typically lose <strong>6–10 hours per person, per week</strong> to re-keying, checking, and chasing.",
+    next: "Pick the one leak above that bit you most recently. That is the process to walk through first. Twenty minutes is enough to see whether it is a quick fix or a real project.",
+    book: true },
+  { min: 11, max: 15, name: "The Spreadsheet Is the Business",
+    verdict: "Right now, your real operating system is a collection of spreadsheets and chat groups — and one or two people who understand them. Growth will multiply the chaos, not the profit. The fix isn't more software; it's one source of truth, starting with your most painful process.",
+    hours: "Teams at this level typically lose <strong>10–16 hours per person, per week</strong> — more than a full working day.",
+    next: "Do not buy anything yet. At this score the mistake is a big system bought in a hurry. Walk one process end to end with someone who has seen this before, and decide from that.",
+    book: true },
+  { min: 16, max: 20, name: "Running on Luck",
+    verdict: "Honest score — and honestly risky. Almost everything depends on people remembering, noticing, and firefighting. You don't need a transformation project; you need one bounded fix that proves what calm feels like. Start with the process that broke most recently.",
+    hours: "Teams at this level typically lose <strong>17+ hours per person, per week</strong> — and the errors cost more than the hours.",
+    next: "Start with the process that broke most recently, not the biggest one. Twenty minutes on that single process is the fastest way to find out what calm would cost.",
+    book: true }
+];
+
+let idx = 0, score = 0, leaks = [];
+
+function start() {
+  idx = 0; score = 0; leaks = [];
+  show("quiz"); render();
+}
+function render() {
+  const q = QUESTIONS[idx];
+  document.getElementById("qnum").textContent = "QUESTION " + (idx + 1) + " OF " + QUESTIONS.length;
+  document.getElementById("qtext").textContent = q.q;
+  document.getElementById("bar").style.width = (idx / QUESTIONS.length * 100) + "%";
+  const wrap = document.getElementById("answers");
+  wrap.innerHTML = "";
+  q.a.forEach((label, i) => {
+    const b = document.createElement("button");
+    b.className = "answer";
+    b.textContent = label;
+    b.onclick = () => pick(i);
+    wrap.appendChild(b);
+  });
+}
+function pick(i) {
+  const q = QUESTIONS[idx];
+  const pts = q.scores ? q.scores[i] : i;
+  score += pts;
+  if (pts === 2) leaks.push(q.leak);
+  idx++;
+  if (idx < QUESTIONS.length) render();
+  else finish();
+}
+function finish() {
+  document.getElementById("bar").style.width = "100%";
+  const band = BANDS.find(b => score >= b.min && score <= b.max);
+  show("results");
+  animateScore();
+  document.getElementById("band").textContent = band.name;
+  document.getElementById("verdict").textContent = band.verdict;
+  document.getElementById("hours").innerHTML = band.hours;
+  document.getElementById("nextText").textContent = band.next;
+  document.getElementById("bookBtn").style.display = band.book ? "" : "none";
+  document.getElementById("ctaSub").style.display = band.book ? "" : "none";
+  const ul = document.getElementById("leaks");
+  ul.innerHTML = "";
+  if (leaks.length) {
+    leaks.slice(0, 4).forEach(l => {
+      const li = document.createElement("li");
+      li.textContent = l;
+      ul.appendChild(li);
+    });
+    document.getElementById("leaksBlock").style.display = "";
+  } else {
+    document.getElementById("leaksBlock").style.display = "none";
+  }
+}
+function animateScore() {
+  const el = document.getElementById("score");
+  let n = 0;
+  const step = () => {
+    el.textContent = n;
+    if (n < score) { n++; setTimeout(step, 55); }
+  };
+  step();
+}
+function restart() { show("intro"); }
+function show(id) {
+  ["intro", "quiz", "results"].forEach(s => document.getElementById(s).classList.add("hidden"));
+  document.getElementById(id).classList.remove("hidden");
+}
+</script>
+</body>
+</html>
