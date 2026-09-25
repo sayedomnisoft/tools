@@ -1,0 +1,664 @@
+{
+  "name": "Supplier bills: email to Google Sheet with AI checks (The Gantry blueprint)",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Supplier bills: email to Google Sheet\nBlueprint by The Gantry (gantry.work).\n\n1. In Gmail, make a filter that labels supplier bills **supplier-bills** (or change the search on the trigger).\n2. Fill in **Settings**: reviewer email, sheet name.\n3. Connect Gmail on the trigger and on **Email the reviewer**.\n4. Add your OpenAI key on **OpenAI Chat Model**. To use Claude instead, connect **Anthropic Chat Model** to the AI step in its place.\n5. Create an empty Google Sheet with a tab called **Supplier bills** and pick it in **Log to Google Sheet**. The first run writes the headers.\n6. Optional: enable the two Xero steps to create DRAFT bills (set xeroAccountCode first).\n\nNothing is ever approved or paid. Rows marked CHECK are emailed to a person with the PDF.",
+        "height": 360,
+        "width": 460
+      },
+      "id": "6c38fd6d-c37e-54f2-8c4f-f401fdc5006b",
+      "name": "Blueprint notes",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 15,
+              "unit": "minutes"
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {
+          "q": "label:supplier-bills has:attachment filename:pdf",
+          "readStatus": "both"
+        },
+        "maxResults": 10,
+        "options": {
+          "downloadAttachments": true,
+          "dataPropertyAttachmentsPrefixName": "attachment_"
+        }
+      },
+      "id": "d0df4255-4442-5943-bcd3-7bddd92ae853",
+      "name": "New supplier bill email",
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "484c106a-e7e6-5ac6-a06a-389fa6e1eeca",
+              "name": "reviewerEmail",
+              "value": "accounts@example.com",
+              "type": "string"
+            },
+            {
+              "id": "0a942a0e-560c-5c74-a93d-ad529028baea",
+              "name": "sheetName",
+              "value": "Supplier bills",
+              "type": "string"
+            },
+            {
+              "id": "35d68bdc-10ac-5062-9d93-8a67ec1ad060",
+              "name": "gstRatePercent",
+              "value": "9",
+              "type": "string"
+            },
+            {
+              "id": "795a6f5c-686a-57f7-a686-e6c06038279d",
+              "name": "sumTolerance",
+              "value": "0.02",
+              "type": "string"
+            },
+            {
+              "id": "8142b65e-ceb4-563a-b65d-ca4456a78a11",
+              "name": "minTextChars",
+              "value": "60",
+              "type": "string"
+            },
+            {
+              "id": "6d704295-960c-52d2-866e-18d7f508ad0c",
+              "name": "maxTextChars",
+              "value": "15000",
+              "type": "string"
+            },
+            {
+              "id": "32df0fd2-7968-5c2c-a3ab-07f2a6da8117",
+              "name": "xeroAccountCode",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "163dc3be-f9b0-576e-a564-216c36e87e60",
+              "name": "timezone",
+              "value": "Asia/Singapore",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4783fed2-c3df-5d66-8477-278fef4a4c21",
+      "name": "Settings",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        300
+      ],
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// One item per PDF attachment. Images (logos, signatures) and other files are ignored.\n// Skips any attachment this workflow has already logged, so a re-run never double-logs.\nconst store = $getWorkflowStaticData('global');\nstore.files = store.files || {};\nconst out = [];\nfor (const email of $('New supplier bill email').all()) {\n  const m = email.json;\n  const from = (m.from && (m.from.text || (m.from.value && m.from.value[0] && m.from.value[0].address))) || '';\n  for (const [key, file] of Object.entries(email.binary || {})) {\n    const isPdf = /pdf/i.test(file.mimeType || '') || /\\.pdf$/i.test(file.fileName || '');\n    if (!isPdf) continue;\n    const fileKey = m.id + '|' + (file.fileName || key);\n    if (store.files[fileKey]) continue;\n    out.push({\n      json: { emailId: m.id, fileKey, from, subject: m.subject || '', receivedAt: m.date || '', fileName: file.fileName || key },\n      binary: { data: file },\n    });\n  }\n}\nreturn out;"
+      },
+      "id": "b58d3c58-3290-564f-af8f-95ad9e5cf728",
+      "name": "Split PDF attachments",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "data",
+        "options": {
+          "joinPages": true,
+          "keepSource": "both",
+          "maxPages": 10
+        }
+      },
+      "id": "8e19e000-02f8-5861-a24c-f20938e76cfa",
+      "name": "Extract PDF text",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        660,
+        300
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Keeps the email details next to the PDF text, and decides whether the text is worth sending to the AI.\n// A scanned or photographed bill has no text layer, so it goes straight to a human instead of the AI.\nconst s = $('Settings').first().json;\nconst minChars = Number(s.minTextChars || 60);\nconst maxChars = Number(s.maxTextChars || 15000);\nconst split = $('Split PDF attachments').all();\nreturn $input.all().map((item, i) => {\n  const meta = split[i].json;\n  const text = String(item.json.text || '').replace(/[ \\t]+/g, ' ').replace(/\\n{3,}/g, '\\n\\n').trim();\n  let readProblem = '';\n  if (item.json.error) readProblem = 'Could not open the PDF (password-protected or damaged): ' + String(item.json.error).slice(0, 120);\n  else if (text.length < minChars) readProblem = 'No readable text in the PDF. It is probably a scan or photo, so enter it by hand';\n  const textForAi = readProblem ? '' : `Email from: ${meta.from}\\nFile name: ${meta.fileName}\\n\\n${text.slice(0, maxChars)}`;\n  return { json: { ...meta, pages: item.json.numpages || null, textChars: text.length, readProblem, textForAi }, binary: split[i].binary };\n});"
+      },
+      "id": "1076f0ad-d10a-584b-930a-f439b261e678",
+      "name": "Prepare text for AI",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        880,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.textForAi }}",
+        "schemaType": "fromAttributes",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "document_type",
+              "type": "string",
+              "description": "Type of document: tax invoice, invoice, commercial invoice, credit note, statement, quotation, proforma invoice, receipt, delivery order or other",
+              "required": true
+            },
+            {
+              "name": "supplier_name",
+              "type": "string",
+              "description": "Legal name of the company that issued the document",
+              "required": false
+            },
+            {
+              "name": "supplier_gst_reg_no",
+              "type": "string",
+              "description": "Supplier GST registration number, if printed",
+              "required": false
+            },
+            {
+              "name": "invoice_number",
+              "type": "string",
+              "description": "Invoice number exactly as printed",
+              "required": false
+            },
+            {
+              "name": "invoice_date",
+              "type": "date",
+              "description": "Invoice date as YYYY-MM-DD",
+              "required": false
+            },
+            {
+              "name": "due_date",
+              "type": "date",
+              "description": "Payment due date as YYYY-MM-DD, only if printed",
+              "required": false
+            },
+            {
+              "name": "currency",
+              "type": "string",
+              "description": "ISO currency code of the amounts, e.g. SGD",
+              "required": false
+            },
+            {
+              "name": "subtotal",
+              "type": "number",
+              "description": "Amount before GST",
+              "required": false
+            },
+            {
+              "name": "gst",
+              "type": "number",
+              "description": "GST or tax amount; 0 if the document shows no GST",
+              "required": false
+            },
+            {
+              "name": "total",
+              "type": "number",
+              "description": "Total amount payable including GST",
+              "required": false
+            },
+            {
+              "name": "line_count",
+              "type": "number",
+              "description": "Number of item lines on the invoice",
+              "required": false
+            }
+          ]
+        },
+        "options": {
+          "systemPromptTemplate": "You read supplier invoices received by a Singapore company and extract fields exactly as printed.\nRules:\n- The supplier is the company that issued the document, not the company it is billed to.\n- Dates in Singapore are day/month/year unless the month is written as a word. Return dates as YYYY-MM-DD.\n- Amounts are plain numbers: no currency symbols, no thousands separators.\n- subtotal is the amount before GST, gst is the GST or tax amount, total is the amount payable including GST.\n- If the document shows no GST at all, return gst as 0.\n- currency is the ISO code (SGD, USD, MYR...). S$ means SGD.\n- document_type is one of: tax invoice, invoice, commercial invoice, credit note, statement, quotation, proforma invoice, receipt, delivery order, other.\n- Never calculate or guess a value that is not printed. If a field is not on the document, leave it out."
+        }
+      },
+      "id": "e6930780-88e1-5b84-be5c-751477975333",
+      "name": "Read the invoice (AI)",
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [
+        1100,
+        300
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5.4-mini",
+          "cachedResultName": "gpt-5.4-mini"
+        },
+        "options": {
+          "reasoningEffort": "low",
+          "maxRetries": 2,
+          "timeout": 60000
+        }
+      },
+      "id": "b87dbea5-93c9-52a7-90cd-4ca6a3bb2464",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        1040,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "id",
+          "value": "claude-haiku-4-5"
+        },
+        "options": {
+          "temperature": 0
+        }
+      },
+      "id": "cb3342e2-a3e6-5c86-aa90-e79ba6611690",
+      "name": "Anthropic Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.6,
+      "position": [
+        1200,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "content": "**Model swap:** the AI step uses one model at a time. OpenAI is connected. To use Claude, delete the connection from OpenAI and drag one from **Anthropic Chat Model** instead. Any chat model n8n supports works (Gemini, Mistral, Azure OpenAI, a local model).",
+        "height": 160,
+        "width": 360,
+        "color": 5
+      },
+      "id": "8599fcfd-b55e-578b-9a62-a13a295f08df",
+      "name": "Swap the model here",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        980,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Checks every extraction before anything is trusted. Nothing here approves or pays a bill.\n// Hard problems -> Status CHECK (a person is emailed). GST observations -> notes only (logged, not blocking).\nconst s = $('Settings').first().json;\nconst tz = s.timezone || 'Asia/Singapore';\nconst gstRate = Number(s.gstRatePercent || 9) / 100;\nconst tol = Number(s.sumTolerance || 0.02);\nconst src = $('Prepare text for AI').all();\nconst store = $getWorkflowStaticData('global');\nstore.invoices = store.invoices || {};\n\nconst day = d => new Intl.DateTimeFormat('en-CA', { timeZone: tz }).format(d);             // YYYY-MM-DD\nconst today = day(new Date());\nconst clock = new Intl.DateTimeFormat('en-GB', { timeZone: tz, hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date());\nconst num = v => {\n  if (v === undefined || v === null || v === '') return null;\n  const n = typeof v === 'number' ? v : Number(String(v).replace(/[^0-9.\\-]/g, ''));\n  return Number.isFinite(n) ? n : null;\n};\nconst r2 = n => Math.round(n * 100) / 100;\nconst f2 = n => Number(n).toLocaleString('en-SG', { minimumFractionDigits: 2, maximumFractionDigits: 2 });\nconst isDate = v => /^\\d{4}-\\d{2}-\\d{2}$/.test(String(v || ''));\nconst daysBetween = (a, b) => Math.round((new Date(b) - new Date(a)) / 86400000);\nconst norm = t => String(t || '').toLowerCase().replace(/\\b(pte|ltd|limited|private|co|company|inc|llp|sdn|bhd)\\b/g, '').replace(/[^a-z0-9]/g, '');\nconst invKey = (sup, no) => norm(sup) + '|' + String(no || '').toUpperCase().replace(/[^A-Z0-9]/g, '');\nconst seenThisRun = {};\n\nreturn $input.all().map((item, i) => {\n  const meta = src[i].json;\n  const ai = item.json.output || {};\n  const problems = [], notes = [];\n\n  const supplier = String(ai.supplier_name || '').trim();\n  const invNo = String(ai.invoice_number || '').trim();\n  const currency = String(ai.currency || '').trim().toUpperCase();\n  let subtotal = num(ai.subtotal), gst = num(ai.gst);\n  const total = num(ai.total), lines = num(ai.line_count);\n  const docType = String(ai.document_type || '').trim().toLowerCase();\n\n  if (meta.readProblem) problems.push(meta.readProblem);\n  else if (item.json.error || !item.json.output) problems.push('The AI step could not read this PDF: ' + String(item.json.error || 'no output').slice(0, 160));\n  else {\n    // 1. Is it a bill at all? Statements, quotations, delivery orders and credit notes need a person.\n    if (docType && (!/invoice|bill/.test(docType) || /credit/.test(docType) || /pro.?forma/.test(docType))) problems.push(`This looks like a ${docType}, not a supplier invoice`);\n    // 2. Required fields\n    if (!supplier) problems.push('Supplier name missing');\n    if (!invNo) problems.push('Invoice number missing');\n    if (!isDate(ai.invoice_date)) problems.push('Invoice date missing or unreadable');\n    if (!/^[A-Z]{3}$/.test(currency)) problems.push('Currency unclear');\n    if (total === null) problems.push('Total missing');\n    else if (total <= 0) problems.push('Total is zero or negative (credit note?)');\n    // 3. The numbers must add up: subtotal + GST = total (within the tolerance in Settings)\n    if (subtotal === null && (gst === null || gst === 0) && total !== null) { subtotal = total; gst = 0; }\n    if (subtotal !== null && total !== null) {\n      const g = gst || 0;\n      if (Math.abs(r2(subtotal + g) - total) > tol) problems.push(`Subtotal ${f2(subtotal)} + GST ${f2(g)} = ${f2(r2(subtotal + g))}, but the total reads ${f2(total)}`);\n    } else if (subtotal === null && gst) problems.push('GST shown but no subtotal, so the sum cannot be checked');\n    // 4. Dates that make sense\n    if (isDate(ai.invoice_date)) {\n      if (ai.invoice_date > today) problems.push(`Invoice date ${ai.invoice_date} is in the future`);\n      else if (daysBetween(ai.invoice_date, today) > 180) notes.push(`Invoice is dated ${ai.invoice_date}, more than 6 months ago`);\n      if (isDate(ai.due_date) && ai.due_date < ai.invoice_date) problems.push(`Due date ${ai.due_date} is before the invoice date`);\n    }\n    // 5. Duplicates: same supplier + same invoice number already logged (or twice in this batch)\n    if (supplier && invNo) {\n      const k = invKey(supplier, invNo);\n      if (store.invoices[k]) problems.push(`Possible duplicate: ${invNo} from this supplier was already logged on ${store.invoices[k]}`);\n      else if (seenThisRun[k]) problems.push(`Possible duplicate: ${invNo} from this supplier arrived twice in this batch`);\n      seenThisRun[k] = true;\n    }\n    // 6. GST observations: flagged, never enforced (rates change, some bills are zero-rated or overseas)\n    if (gst && subtotal) {\n      const expected = r2(subtotal * gstRate);\n      const allowance = Math.max(0.10, 0.005 * (lines || 1));\n      if (Math.abs(gst - expected) > allowance) notes.push(`GST is ${f2(gst)}; ${s.gstRatePercent || 9}% of the subtotal would be ${f2(expected)}. Check the rate`);\n      if (!ai.supplier_gst_reg_no) notes.push('GST charged but no GST registration number found on the bill');\n    } else if (!gst && !problems.length) notes.push('No GST on this bill');\n  }\n\n  const status = problems.length ? 'CHECK' : (notes.length ? 'OK, see note' : 'OK');\n  return {\n    json: {\n      'Logged on': `${today} ${clock}`,\n      'Status': status,\n      'Issues': [...problems, ...notes].join('; '),\n      'Supplier': supplier,\n      'Invoice no.': invNo,\n      'Invoice date': isDate(ai.invoice_date) ? ai.invoice_date : '',\n      'Due date': isDate(ai.due_date) ? ai.due_date : '',\n      'Currency': currency,\n      'Subtotal': subtotal === null ? '' : r2(subtotal),\n      'GST': gst === null ? '' : r2(gst),\n      'Total': total === null ? '' : r2(total),\n      'Lines': lines === null ? '' : lines,\n      'Document': docType,\n      'From': meta.from,\n      'Email subject': meta.subject,\n      'File': meta.fileName,\n      'Email ID': meta.emailId,\n    },\n    binary: src[i].binary,\n  };\n});"
+      },
+      "id": "b8e49d89-4cc8-549a-9de8-2d8d28528dd5",
+      "name": "Check the numbers",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1320,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Supplier bills"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {
+          "cellFormat": "USER_ENTERED",
+          "handlingExtraData": "insertInNewColumn"
+        }
+      },
+      "id": "6675ea0a-bb62-5b89-95bd-c9c756b22477",
+      "name": "Log to Google Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1540,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Records what was logged: each attachment (so a re-run skips it) and each supplier + invoice number\n// (so a resent or duplicate bill is caught next time). Passes the items on unchanged.\nconst store = $getWorkflowStaticData('global');\nstore.files = store.files || {};\nstore.invoices = store.invoices || {};\nconst today = new Intl.DateTimeFormat('en-CA', { timeZone: $('Settings').first().json.timezone || 'Asia/Singapore' }).format(new Date());\nconst norm = t => String(t || '').toLowerCase().replace(/\\b(pte|ltd|limited|private|co|company|inc|llp|sdn|bhd)\\b/g, '').replace(/[^a-z0-9]/g, '');\nconst invKey = (sup, no) => norm(sup) + '|' + String(no || '').toUpperCase().replace(/[^A-Z0-9]/g, '');\nfor (const item of $input.all()) {\n  const r = item.json;\n  store.files[r['Email ID'] + '|' + r['File']] = today;\n  if (r['Supplier'] && r['Invoice no.'] && !store.invoices[invKey(r['Supplier'], r['Invoice no.'])]) store.invoices[invKey(r['Supplier'], r['Invoice no.'])] = today;\n}\n// Housekeeping: forget attachments after 90 days and invoice numbers after 2 years\nconst age = d => (Date.now() - new Date(d)) / 86400000;\nfor (const [k, d] of Object.entries(store.files)) if (age(d) > 90) delete store.files[k];\nfor (const [k, d] of Object.entries(store.invoices)) if (age(d) > 730) delete store.invoices[k];\nreturn $input.all();"
+      },
+      "id": "3df57c36-3630-52f0-9da4-a8564e2ef72d",
+      "name": "Remember logged bills",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1760,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "38cc620e-f057-5db5-8413-e6beeee4c94b",
+              "leftValue": "={{ $json.Status }}",
+              "rightValue": "CHECK",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "c2a0f69c-174c-549f-9e52-1e0e263e7522",
+      "name": "Needs a human?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1980,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// One email per bill that needs a person, with the PDF attached and the reasons spelled out.\nconst s = $('Settings').first().json;\nconst r = $json;\nconst who = r['Supplier'] || r['File'];\nconst val = (label, v) => `${label}: ${v === '' || v === undefined || v === null ? '(not found)' : v}`;\nconst body = [\n  `This supplier bill was logged in the \"${s.sheetName}\" sheet with status CHECK. Please look at it before it goes any further.`,\n  '',\n  'Why it was flagged:',\n  ...String(r['Issues']).split('; ').map(x => '- ' + x),\n  '',\n  'What the AI read from the PDF:',\n  val('Supplier', r['Supplier']), val('Invoice no.', r['Invoice no.']), val('Invoice date', r['Invoice date']),\n  val('Due date', r['Due date']), val('Currency', r['Currency']), val('Subtotal', r['Subtotal']), val('GST', r['GST']), val('Total', r['Total']),\n  '',\n  `Email: \"${r['Email subject']}\" from ${r['From']}`,\n  `File: ${r['File']} (attached)`,\n  '',\n  'Correct the row in the sheet, or enter the bill by hand. Nothing has been sent to Xero and nothing has been paid.',\n].join('\\n');\nreturn {\n  json: { to: s.reviewerEmail, subject: `Check this supplier bill: ${who}${r['Invoice no.'] ? ' ' + r['Invoice no.'] : ''}`, body },\n  binary: $input.item.binary,\n};",
+        "mode": "runOnceForEachItem"
+      },
+      "id": "0e8051af-1f3a-50d7-84cb-a37daaba3fc8",
+      "name": "Write the review email",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2200,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.to }}",
+        "subject": "={{ $json.subject }}",
+        "emailType": "text",
+        "message": "={{ $json.body }}",
+        "options": {
+          "appendAttribution": false,
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {
+                "property": "data"
+              }
+            ]
+          }
+        }
+      },
+      "id": "760cd609-2a04-531d-a55c-4ca601fafc01",
+      "name": "Email the reviewer",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2420,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "contact",
+        "operation": "getAll",
+        "organizationId": "",
+        "returnAll": false,
+        "limit": 1,
+        "options": {
+          "where": "={{ 'Name==\"' + $json['Supplier'].replace(/\"/g, '') + '\"' }}"
+        }
+      },
+      "id": "d5f653f6-564b-503d-9c19-d52b1534e208",
+      "name": "Find supplier in Xero",
+      "type": "n8n-nodes-base.xero",
+      "typeVersion": 1,
+      "position": [
+        2200,
+        420
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "resource": "invoice",
+        "operation": "create",
+        "organizationId": "",
+        "type": "ACCPAY",
+        "contactId": "={{ $json.ContactID }}",
+        "lineItemsUi": {
+          "lineItemsValues": [
+            {
+              "description": "={{ 'Supplier invoice ' + $('Needs a human?').item.json['Invoice no.'] + ' (captured from email, check against the PDF)' }}",
+              "quantity": 1,
+              "unitAmount": "={{ $('Needs a human?').item.json['Subtotal'] }}",
+              "accountCode": "={{ $('Settings').first().json.xeroAccountCode }}"
+            }
+          ]
+        },
+        "additionalFields": {
+          "invoiceNumber": "={{ $('Needs a human?').item.json['Invoice no.'] }}",
+          "date": "={{ $('Needs a human?').item.json['Invoice date'] }}",
+          "dueDate": "={{ $('Needs a human?').item.json['Due date'] || $('Needs a human?').item.json['Invoice date'] }}",
+          "currency": "={{ $('Needs a human?').item.json['Currency'] }}",
+          "lineAmountType": "Exclusive",
+          "status": "DRAFT",
+          "reference": "Captured from email"
+        }
+      },
+      "id": "fe3a6c68-95d8-5e3f-aa79-69d6ca5bf893",
+      "name": "Create draft bill in Xero",
+      "type": "n8n-nodes-base.xero",
+      "typeVersion": 1,
+      "position": [
+        2420,
+        420
+      ],
+      "disabled": true
+    }
+  ],
+  "connections": {
+    "New supplier bill email": {
+      "main": [
+        [
+          {
+            "node": "Settings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Settings": {
+      "main": [
+        [
+          {
+            "node": "Split PDF attachments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split PDF attachments": {
+      "main": [
+        [
+          {
+            "node": "Extract PDF text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract PDF text": {
+      "main": [
+        [
+          {
+            "node": "Prepare text for AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare text for AI": {
+      "main": [
+        [
+          {
+            "node": "Read the invoice (AI)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read the invoice (AI)": {
+      "main": [
+        [
+          {
+            "node": "Check the numbers",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check the numbers": {
+      "main": [
+        [
+          {
+            "node": "Log to Google Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Log to Google Sheet": {
+      "main": [
+        [
+          {
+            "node": "Remember logged bills",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remember logged bills": {
+      "main": [
+        [
+          {
+            "node": "Needs a human?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Needs a human?": {
+      "main": [
+        [
+          {
+            "node": "Write the review email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Find supplier in Xero",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write the review email": {
+      "main": [
+        [
+          {
+            "node": "Email the reviewer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find supplier in Xero": {
+      "main": [
+        [
+          {
+            "node": "Create draft bill in Xero",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Read the invoice (AI)",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Singapore",
+    "saveManualExecutions": true
+  },
+  "pinData": {},
+  "active": false,
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}
