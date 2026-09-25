@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free n8n Blueprints for Small Businesses — The Gantry</title>
+<meta name="description" content="Five free, tested n8n workflow files for small businesses: chase overdue Xero invoices, capture supplier bills, a daily owner report, lead routing and WhatsApp orders.">
+<meta property="og:title" content="Free n8n Blueprints for Small Businesses — The Gantry">
+<meta property="og:description" content="Five free, tested n8n workflow files. Download, import, connect your accounts, switch on.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://tools.gantry.work/blueprints/">
+<link rel="stylesheet" href="../shared.css">
+<style>
+  .card { max-width: 680px; }
+  .pill { display: inline-block; font-size: 12px; letter-spacing: 1.6px; font-weight: 700; color: var(--ink);
+          background: var(--gold-light); padding: 6px 12px; border-radius: 30px; margin-bottom: 18px; }
+  .bp { border: 1px solid rgba(255,255,255,0.16); border-radius: 14px; padding: 18px 18px 14px; margin-bottom: 14px; background: rgba(255,255,255,0.04); }
+  .bp .area { font-size: 11.5px; letter-spacing: 1.8px; font-weight: 700; color: var(--gold-light); margin-bottom: 6px; }
+  .bp h3 { font-size: 18px; font-weight: 800; margin-bottom: 6px; line-height: 1.25; }
+  .bp p { font-size: 14.5px; color: var(--muted); line-height: 1.5; margin-bottom: 12px; }
+  .bp .apps { font-size: 12px; letter-spacing: 1px; color: rgba(255,255,255,0.55); margin-bottom: 12px; }
+  .bp .btns { display: flex; gap: 10px; flex-wrap: wrap; }
+  .bp .btns a { flex: 1 1 180px; margin-bottom: 0; padding: 12px; font-size: 14.5px; }
+  ol.steps { margin: 0 0 22px 20px; }
+  ol.steps li { font-size: 14.5px; color: rgba(255,255,255,0.85); line-height: 1.55; padding: 4px 0; }
+  code { background: rgba(255,255,255,0.1); padding: 1px 6px; border-radius: 5px; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="brand"><a href="../index.html">← THE GANTRY · TOOLS</a></div>
+  <div class="pill">FREE · TESTED · N8N</div>
+  <h1>Free n8n blueprints for small businesses</h1>
+  <p class="sub">Five workflow files for the jobs that eat an SME's week. Each one was import-tested on n8n 2.40 and run against sample data, including the awkward cases, before it went up. No credentials or personal data inside.</p>
+
+  <div class="bp">
+    <div class="area">GETTING PAID</div>
+    <h3>Chase overdue Xero invoices</h3>
+    <p>Reminders at 7, 14 and 30 days, firmer each time, owner copied on the last, never twice per stage, and a morning summary of who was chased. Invoices with HOLD in the reference are skipped.</p>
+    <div class="apps">XERO · GMAIL</div>
+    <div class="btns">
+      <a class="cta" href="chase-overdue-xero-invoices.n8n.json" download>Download workflow</a>
+      <a class="cta-ghost" href="https://www.gantry.work/p/xero-invoice-reminders-automation">Setup guide →</a>
+    </div>
+  </div>
+
+  <div class="bp">
+    <div class="area">PAYING SUPPLIERS</div>
+    <h3>Supplier invoices from email to a sheet</h3>
+    <p>Reads PDF bills from a mailbox, extracts the fields with AI, checks the totals and GST, and logs them. Anything that doesn't add up, scanned PDFs and duplicates go to a person. Nothing is approved for payment automatically.</p>
+    <div class="apps">GMAIL · AI · GOOGLE SHEETS · XERO (OPTIONAL)</div>
+    <div class="btns">
+      <a class="cta" href="supplier-invoice-email-to-sheet.n8n.json" download>Download workflow</a>
+      <a class="cta-ghost" href="https://www.gantry.work/p/supplier-invoice-email-to-sheet">Setup guide →</a>
+    </div>
+  </div>
+
+  <div class="bp">
+    <div class="area">KNOWING THE NUMBERS</div>
+    <h3>Daily 8am owner report from Xero</h3>
+    <p>One email on weekday mornings: invoiced and received yesterday (Monday covers the weekend), overdue by age band, and the five biggest debtors.</p>
+    <div class="apps">XERO · GMAIL</div>
+    <div class="btns">
+      <a class="cta" href="daily-owner-report-xero.n8n.json" download>Download workflow</a>
+      <a class="cta-ghost" href="https://www.gantry.work/p/daily-owner-report-xero">Setup guide →</a>
+    </div>
+  </div>
+
+  <div class="bp">
+    <div class="area">WINNING WORK</div>
+    <h3>Enquiry form to sheet to salesperson</h3>
+    <p>Cleans +65 phone numbers, removes duplicates, logs the lead, replies to the enquirer within a minute and hands it to the next salesperson in turn.</p>
+    <div class="apps">N8N FORM · GOOGLE SHEETS · GMAIL</div>
+    <div class="btns">
+      <a class="cta" href="google-sheets-lead-automation.n8n.json" download>Download workflow</a>
+      <a class="cta-ghost" href="https://www.gantry.work/p/google-sheets-lead-automation">Setup guide →</a>
+    </div>
+  </div>
+
+  <div class="bp">
+    <div class="area">TAKING ORDERS</div>
+    <h3>WhatsApp order intake</h3>
+    <p>Order messages from known customers are matched to your product codes, logged and confirmed on WhatsApp. Unknown numbers and unclear messages go to staff.</p>
+    <div class="apps">WHATSAPP BUSINESS CLOUD · GOOGLE SHEETS · GMAIL</div>
+    <div class="btns">
+      <a class="cta" href="n8n-whatsapp-order-automation.n8n.json" download>Download workflow</a>
+      <a class="cta-ghost" href="https://www.gantry.work/p/n8n-whatsapp-order-automation">Setup guide →</a>
+    </div>
+  </div>
+
+  <h2>How to import one</h2>
+  <ol class="steps">
+    <li>Open <a href="https://n8n.io/" style="color:var(--gold-light);">n8n</a> (Cloud trial or your own server) and create a new workflow.</li>
+    <li>Menu → <strong>Import from File</strong> and pick the download, or <strong>Import from URL</strong> and paste the file's link.</li>
+    <li>Fill in the <strong>Settings</strong> step first: your company, emails and payment details.</li>
+    <li>Connect each app where n8n asks for a credential, run the test in the setup guide, then publish.</li>
+  </ol>
+
+  <div class="note">Rather have one set up, connected to your systems and looked after for you? <strong><a href="../review.html?utm_source=blueprints-page" style="color:var(--gold-light);">Book a free 20-minute systems review</a></strong>. No pitch, just your questions answered.</div>
+
+  <p class="disclaim">Some links on The Gantry are affiliate links; if you sign up through them, The Gantry may earn a commission at no extra cost to you. The workflows are provided as-is: test with your own data before relying on them.</p>
+
+  <div class="footer">
+    <a href="../index.html">Free tools</a> · <a href="https://www.gantry.work/p/n8n-templates-small-business">Blueprint library on The Gantry</a> · <a href="https://www.gantry.work/subscribe?utm_source=blueprints-page">Subscribe free</a>
+  </div>
+</div>
+</body>
+</html>
