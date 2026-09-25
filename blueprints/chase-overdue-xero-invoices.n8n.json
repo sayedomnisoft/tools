@@ -62,7 +62,7 @@
             {
               "id": "232efbab-2a7d-55ce-8faa-d78f13fa6eee",
               "name": "ownerEmail",
-              "value": "owner@yourcompany.com",
+              "value": "owner@example.com",
               "type": "string"
             },
             {
