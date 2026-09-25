@@ -1,0 +1,616 @@
+{
+  "name": "Website enquiry to Google Sheets with round robin and auto-reply (The Gantry blueprint)",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Website enquiry to Google Sheets, round robin, auto-reply\nBlueprint by The Gantry (gantry.work).\n\n1. Create a Google Sheet with a tab named **Leads** and these headers in row 1:\nReceived | Name | Company | Email | Phone | Phone as typed | Enquiry | Source | Assigned to | Assigned email | Status | Notes\n2. Fill in **Settings**: company, phone, salespeople (Name <email>, comma separated), manager email, sheet link.\n3. Connect Google Sheets on **Get existing leads** and **Add to Leads sheet**.\n4. Connect Gmail on **Auto-reply to enquirer** and **Notify salesperson**.\n5. Test with your own email, then Publish (Activate in older versions) and put the Production form URL on your website.\nWhose turn it is is remembered only on runs of the published workflow.",
+        "height": 360,
+        "width": 520
+      },
+      "id": "4af39485-ebad-50ae-9846-1406533a1a49",
+      "name": "Blueprint notes",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "formTitle": "Talk to us",
+        "formDescription": "Tell us what you need. We reply within one working day.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Name",
+              "placeholder": "e.g. Mei Ling Tan",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Company",
+              "placeholder": "e.g. Tan Hardware Pte Ltd"
+            },
+            {
+              "fieldLabel": "Email",
+              "fieldType": "email",
+              "placeholder": "e.g. meiling@example.com"
+            },
+            {
+              "fieldLabel": "Mobile number",
+              "placeholder": "e.g. 9123 4567"
+            },
+            {
+              "fieldLabel": "How can we help?",
+              "fieldType": "textarea",
+              "requiredField": true
+            }
+          ]
+        },
+        "responseMode": "onReceived",
+        "options": {
+          "appendAttribution": false,
+          "ignoreBots": true,
+          "respondWithOptions": {
+            "values": {
+              "respondWith": "text",
+              "formSubmittedText": "Thank you. We have your enquiry and will be in touch shortly. Please check your inbox for our confirmation."
+            }
+          }
+        }
+      },
+      "id": "bedaa348-243d-5351-9435-ad19b22d4868",
+      "name": "On form submission",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        0,
+        300
+      ],
+      "webhookId": "160ed322-19ab-5cba-bb62-3c8852a9893f"
+    },
+    {
+      "parameters": {
+        "resource": "sheet",
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "mode": "url",
+          "value": "={{ $('Settings').first().json.leadsSheetUrl }}"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Leads"
+        },
+        "filtersUI": {},
+        "options": {}
+      },
+      "id": "cbcb6ee1-0db3-5dae-b616-c4b9fd8d1e28",
+      "name": "Get existing leads",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        440,
+        300
+      ],
+      "executeOnce": true,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "326290a4-db58-5f5f-8e79-6e78fb435b04",
+              "name": "companyName",
+              "value": "Your Company Pte Ltd",
+              "type": "string"
+            },
+            {
+              "id": "2f353e99-7f88-5782-9281-06fdd325437d",
+              "name": "companyPhone",
+              "value": "+65 6123 4567",
+              "type": "string"
+            },
+            {
+              "id": "f078b22b-696a-5299-b5e5-c3e599acdd0b",
+              "name": "salespeople",
+              "value": "Priya Nair <priya@example.com>, Ben Lim <ben@example.com>, Chloe Ng <chloe@example.com>",
+              "type": "string"
+            },
+            {
+              "id": "6ce35522-1eef-5208-a966-f5933bc0cb9d",
+              "name": "managerName",
+              "value": "Owner",
+              "type": "string"
+            },
+            {
+              "id": "3be7532f-d47a-5000-be9c-41cb5ce979e4",
+              "name": "managerEmail",
+              "value": "owner@example.com",
+              "type": "string"
+            },
+            {
+              "id": "9a2cb6b7-60fd-560b-a8df-c86d2f120ac3",
+              "name": "replyWithin",
+              "value": "within one working day",
+              "type": "string"
+            },
+            {
+              "id": "dc150fa3-2362-5358-b3ed-227d5aabe91c",
+              "name": "source",
+              "value": "Website form",
+              "type": "string"
+            },
+            {
+              "id": "29a8fea4-20c8-5863-be9a-bbf6ab90add4",
+              "name": "leadsSheetUrl",
+              "value": "https://docs.google.com/spreadsheets/d/PASTE-YOUR-SHEET-ID/edit",
+              "type": "string"
+            },
+            {
+              "id": "34326eac-e7fd-52d7-84f0-a93b0e8b8b9b",
+              "name": "timezone",
+              "value": "Asia/Singapore",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5c3db69f-39fb-5cb5-8dc4-3fbf725860d8",
+      "name": "Settings",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Cleans each enquiry and checks it against the leads already in the sheet.\n// Works with the n8n form, Google Forms (via the Google Sheets trigger) or Jotform: it finds fields by name.\nconst s = $('Settings').first().json;\nconst tz = s.timezone || 'Asia/Singapore';\n\nconst text = v => {\n  if (v === null || v === undefined) return '';\n  if (Array.isArray(v)) return v.map(text).filter(Boolean).join(', ');\n  if (typeof v === 'object') return Object.values(v).map(text).filter(Boolean).join(' ');\n  return String(v).replace(/\\s+/g, ' ').trim();\n};\nfunction pick(obj, patterns, exclude) {\n  for (const p of patterns) {\n    for (const [k, v] of Object.entries(obj)) {\n      if (exclude && exclude.test(k)) continue;\n      if (p.test(k) && text(v)) return text(v);\n    }\n  }\n  return '';\n}\n// Singapore numbers: 8 digits starting 6, 8 or 9, stored as \"+65 9123 4567\". Overseas numbers kept with their code.\nfunction cleanPhone(raw) {\n  const typed = text(raw);\n  if (!typed) return { phone: '', digits: '', note: '' };\n  let d = typed.replace(/[^\\d+]/g, '');\n  if (d.startsWith('00')) d = '+' + d.slice(2);\n  if (d.startsWith('+') && !d.startsWith('+65')) {\n    const n = d.replace(/\\D/g, '');\n    if (n.length >= 8 && n.length <= 15) return { phone: '+' + n, digits: n, note: 'Overseas number' };\n    return { phone: '', digits: '', note: 'Phone number looks wrong, check it' };\n  }\n  d = d.replace(/\\D/g, '');\n  if (d.length === 10 && d.startsWith('65')) d = d.slice(2);\n  if (/^[689]\\d{7}$/.test(d)) return { phone: '+65 ' + d.slice(0, 4) + ' ' + d.slice(4), digits: '65' + d, note: '' };\n  return { phone: '', digits: '', note: 'Phone number looks wrong, check it' };\n}\nfunction cleanEmail(raw) {\n  const e = text(raw).toLowerCase().replace(/\\s/g, '');\n  if (!e) return { email: '', note: '' };\n  if (/^[^@]+@[^@]+\\.[a-z]{2,}$/.test(e)) return { email: e, note: '' };\n  return { email: '', note: 'Email looks wrong: ' + e };\n}\nfunction stamp(d) {\n  const p = new Intl.DateTimeFormat('en-GB', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(d);\n  const g = t => p.find(x => x.type === t).value;\n  return `${g('year')}-${g('month')}-${g('day')} ${g('hour')}:${g('minute')}`;\n}\n\n// Index the leads already in the sheet (oldest row wins, so the original owner keeps the lead)\nconst byEmail = new Map(), byPhone = new Map();\nfor (const r of $('Get existing leads').all().map(i => i.json)) {\n  const e = cleanEmail(r['Email']).email;\n  const p = cleanPhone(r['Phone']).digits;\n  if (e && !byEmail.has(e)) byEmail.set(e, r);\n  if (p && !byPhone.has(p)) byPhone.set(p, r);\n}\n\nconst out = [];\nconst seenEmail = new Map(), seenPhone = new Map();   // duplicates inside the same batch\nfor (const item of $('On form submission').all()) {\n  const f = item.json;\n  const name = pick(f, [/^(full |your )?name$/i, /name/i], /company|business|user ?name|file/i);\n  const company = pick(f, [/company|business|organi[sz]ation/i]);\n  const message = pick(f, [/how can we help|message|enquiry|inquiry|comment|details|requirement|question/i]);\n  const em = cleanEmail(pick(f, [/^e-?mail/i, /e-?mail/i]));\n  const typedPhone = pick(f, [/mobile|phone|whatsapp|contact (no|number)|handphone|\\bhp\\b/i]);\n  const ph = cleanPhone(typedPhone);\n  if (!name && !em.email && !typedPhone && !message) continue;       // empty or bot submission\n\n  const notes = [em.note, ph.note].filter(Boolean);\n  if (!em.email && !ph.digits) notes.push('No valid email or phone: check the enquiry');\n  const when = f.submittedAt || f.Timestamp || f.created_at;\n  const lead = {\n    receivedAt: stamp(when && !isNaN(new Date(when)) ? new Date(when) : new Date()),\n    name: name || '(no name given)', company, email: em.email, phone: ph.phone, phoneDigits: ph.digits,\n    phoneTyped: typedPhone, message, source: s.source || 'Website form', status: 'New',\n    notes: notes.join('; '), isNew: true, isRepeat: false,\n  };\n\n  const earlier = (em.email && byEmail.get(em.email)) || (ph.digits && byPhone.get(ph.digits));\n  let batchIdx;\n  if (em.email && seenEmail.has(em.email)) batchIdx = seenEmail.get(em.email);\n  else if (ph.digits && seenPhone.has(ph.digits)) batchIdx = seenPhone.get(ph.digits);\n  if (earlier) {\n    Object.assign(lead, { isNew: false, isRepeat: true, status: 'Repeat enquiry',\n      existingOwnerName: text(earlier['Assigned to']), existingOwnerEmail: text(earlier['Assigned email']).toLowerCase(),\n      firstReceived: text(earlier['Received']) });\n  } else if (batchIdx !== undefined) {\n    Object.assign(lead, { isNew: false, isRepeat: true, status: 'Repeat enquiry', repeatOfBatch: batchIdx,\n      firstReceived: out[batchIdx].json.receivedAt });\n  }\n  const idx = out.length;\n  if (em.email && !seenEmail.has(em.email)) seenEmail.set(em.email, idx);\n  if (ph.digits && !seenPhone.has(ph.digits)) seenPhone.set(ph.digits, idx);\n  out.push({ json: lead, pairedItem: { item: 0 } });\n}\nreturn out;"
+      },
+      "id": "842e9543-3e6e-55e7-991c-c458544193a2",
+      "name": "Clean and check for duplicates",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Gives each new lead to the next salesperson in turn. Repeat enquiries stay with the person who already has them.\nconst s = $('Settings').first().json;\nconst team = String(s.salespeople || '').split(/[,;\\n]/).map(x => x.trim()).filter(Boolean).map(x => {\n  const m = x.match(/^(.*?)\\s*<([^>]+)>$/);\n  return m ? { name: m[1].trim() || m[2].trim(), email: m[2].trim().toLowerCase() } : { name: x.split('@')[0], email: x.toLowerCase() };\n}).filter(p => p.email.includes('@'));\nif (!team.length) throw new Error('Add at least one salesperson in Settings, written as Name <email>');\n\nconst store = $getWorkflowStaticData('global');   // remembers whose turn it is (saved for active workflows only)\nconst owners = [];\nreturn $input.all().map((item, i) => {\n  const lead = item.json;\n  let owner, how;\n  if (lead.isRepeat && lead.repeatOfBatch !== undefined) {\n    owner = owners[lead.repeatOfBatch]; how = 'Repeat enquiry, same salesperson';\n  } else if (lead.isRepeat && lead.existingOwnerEmail) {\n    owner = team.find(p => p.email === lead.existingOwnerEmail) || { name: lead.existingOwnerName || lead.existingOwnerEmail, email: lead.existingOwnerEmail };\n    how = 'Repeat enquiry, same salesperson';\n  } else if (lead.isRepeat) {\n    owner = { name: s.managerName || 'Manager', email: String(s.managerEmail).toLowerCase() }; how = 'Repeat enquiry, lead had no owner';\n  } else {\n    // Position of whoever went last. The stored position is used when it still matches, so a person listed twice gets two turns.\n    const last = (team[store.lastIndex] && team[store.lastIndex].email === store.lastAssigned)\n      ? store.lastIndex : team.findIndex(p => p.email === store.lastAssigned);\n    const next = (last + 1) % team.length;\n    owner = team[next];\n    store.lastAssigned = owner.email;\n    store.lastIndex = next;\n    how = 'Round robin';\n  }\n  owners[i] = owner;\n  return { json: { ...lead, ownerName: owner.name, ownerEmail: owner.email, assignedBy: how }, pairedItem: { item: i } };\n});"
+      },
+      "id": "d2e26344-15eb-5d6c-b3db-e6f259960b2d",
+      "name": "Assign salesperson (round robin)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        880,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Writes the auto-reply to the enquirer and the heads-up to the salesperson.\nconst s = $('Settings').first().json;\nconst l = $json;\nconst first = (l.name || '').split(' ')[0];\nconst hello = l.name && l.name !== '(no name given)' ? `Hi ${first},` : 'Hello,';\nconst ownerFirst = l.ownerName.split(' ')[0];\nconst quoted = l.message ? `\\n\\nFor reference, you wrote:\\n\"${l.message}\"` : '';\n\nconst replyBody = l.isRepeat\n  ? `${hello}\\n\\nThank you for getting in touch again. ${ownerFirst} already has your earlier enquiry and will get back to you ${s.replyWithin}.${quoted}\\n\\nIf it is urgent, call or WhatsApp us on ${s.companyPhone}.\\n\\nBest regards,\\n${l.ownerName}\\n${s.companyName}`\n  : `${hello}\\n\\nThank you for contacting ${s.companyName}. We have your enquiry, and ${ownerFirst} from our team will get back to you ${s.replyWithin}.${quoted}\\n\\nIf it is urgent, call or WhatsApp us on ${s.companyPhone}.\\n\\nBest regards,\\n${l.ownerName}\\n${s.companyName}`;\n\nconst noContact = !l.email && !l.phoneDigits;\nconst lines = [\n  `Name: ${l.name}`,\n  `Company: ${l.company || '-'}`,\n  `Email: ${l.email || '(none given)'}`,\n  `Phone: ${l.phone || '(none given)'}${l.phoneDigits ? '   WhatsApp: https://wa.me/' + l.phoneDigits : ''}`,\n  l.phoneTyped && !l.phone ? `Phone as typed: ${l.phoneTyped}` : null,\n  `Received: ${l.receivedAt}`,\n  l.notes ? `Check: ${l.notes}` : null,\n  '',\n  `Enquiry:\\n${l.message || '(no message)'}`,\n  '',\n  l.email ? 'An auto-reply has gone out in your name, so reply to them directly.'\n    : noContact ? 'No auto-reply was sent and there is no valid email or phone. The manager is copied so someone decides what to do.'\n    : 'No auto-reply was sent because there is no valid email. Call or WhatsApp them.',\n  l.isRepeat ? `This person first contacted us on ${l.firstReceived || 'an earlier date'}. No new row was added to the Leads sheet.` : `Lead sheet: ${s.leadsSheetUrl}\\nPlease update the Status column once you have made contact.`,\n].filter(x => x !== null);\n\nreturn { json: {\n  ...l,\n  hasEmail: !!l.email,\n  replyTo: l.email,\n  replySubject: l.isRepeat ? `We have your message, ${s.companyName}` : `Thank you for your enquiry, ${s.companyName}`,\n  replyBody,\n  notifyCc: noContact ? s.managerEmail : '',\n  notifySubject: l.isRepeat\n    ? `Repeat enquiry from ${l.name}${l.company ? ', ' + l.company : ''} (your lead)`\n    : `${l.notes ? '[Check details] ' : ''}New lead for you: ${l.name}${l.company ? ', ' + l.company : ''}`,\n  notifyBody: lines.join('\\n'),\n}};",
+        "mode": "runOnceForEachItem"
+      },
+      "id": "f67dfb4c-5f20-5645-bca7-6b6bcaeda688",
+      "name": "Write the emails",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8ebcf21b-426f-5624-8866-0dc8eb42a329",
+              "leftValue": "={{ $json.isNew }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "6b5b9024-ae27-5806-8535-52dca323a955",
+      "name": "New lead?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1320,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4159f16b-4677-590e-8d1a-dcc0ecc77105",
+              "leftValue": "={{ $('Write the emails').item.json.hasEmail }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "8c1f289f-10d0-5b84-9c2d-41437494431a",
+      "name": "Has an email address?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1760,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "sheet",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "url",
+          "value": "={{ $('Settings').first().json.leadsSheetUrl }}"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Leads"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Received": "={{ $json.receivedAt }}",
+            "Name": "={{ $json.name }}",
+            "Company": "={{ $json.company }}",
+            "Email": "={{ $json.email }}",
+            "Phone": "={{ $json.phone }}",
+            "Phone as typed": "={{ $json.phoneTyped }}",
+            "Enquiry": "={{ $json.message }}",
+            "Source": "={{ $json.source }}",
+            "Assigned to": "={{ $json.ownerName }}",
+            "Assigned email": "={{ $json.ownerEmail }}",
+            "Status": "={{ $json.status }}",
+            "Notes": "={{ $json.notes }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Received",
+              "displayName": "Received",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Company",
+              "displayName": "Company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Phone as typed",
+              "displayName": "Phone as typed",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Enquiry",
+              "displayName": "Enquiry",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Source",
+              "displayName": "Source",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Assigned to",
+              "displayName": "Assigned to",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Assigned email",
+              "displayName": "Assigned email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "cellFormat": "RAW"
+        }
+      },
+      "id": "56be56ad-9814-536a-8d59-5e3fa7bd1384",
+      "name": "Add to Leads sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1540,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Write the emails').item.json.replyTo }}",
+        "subject": "={{ $('Write the emails').item.json.replySubject }}",
+        "emailType": "text",
+        "message": "={{ $('Write the emails').item.json.replyBody }}",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "={{ $('Settings').first().json.companyName }}",
+          "replyTo": "={{ $('Write the emails').item.json.ownerEmail }}"
+        }
+      },
+      "id": "dab7c0ff-4188-513d-8fc8-24d4642da0f2",
+      "name": "Auto-reply to enquirer",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1980,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Write the emails').item.json.ownerEmail }}",
+        "subject": "={{ $('Write the emails').item.json.notifySubject }}",
+        "emailType": "text",
+        "message": "={{ $('Write the emails').item.json.notifyBody }}",
+        "options": {
+          "appendAttribution": false,
+          "ccList": "={{ $('Write the emails').item.json.notifyCc }}"
+        }
+      },
+      "id": "e7793c86-23e6-525f-8216-dcff21e92777",
+      "name": "Notify salesperson",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2200,
+        420
+      ]
+    }
+  ],
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Settings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Settings": {
+      "main": [
+        [
+          {
+            "node": "Get existing leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get existing leads": {
+      "main": [
+        [
+          {
+            "node": "Clean and check for duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clean and check for duplicates": {
+      "main": [
+        [
+          {
+            "node": "Assign salesperson (round robin)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Assign salesperson (round robin)": {
+      "main": [
+        [
+          {
+            "node": "Write the emails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write the emails": {
+      "main": [
+        [
+          {
+            "node": "New lead?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "New lead?": {
+      "main": [
+        [
+          {
+            "node": "Add to Leads sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Has an email address?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add to Leads sheet": {
+      "main": [
+        [
+          {
+            "node": "Has an email address?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has an email address?": {
+      "main": [
+        [
+          {
+            "node": "Auto-reply to enquirer",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Notify salesperson",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto-reply to enquirer": {
+      "main": [
+        [
+          {
+            "node": "Notify salesperson",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Singapore",
+    "saveManualExecutions": true
+  },
+  "pinData": {},
+  "active": false,
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}
