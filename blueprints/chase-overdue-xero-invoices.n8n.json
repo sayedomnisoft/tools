@@ -1,0 +1,318 @@
+{
+  "name": "Chase overdue Xero invoices (The Gantry blueprint)",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Chase overdue Xero invoices\nBlueprint by The Gantry (gantry.work).\n\n1. Fill in **Settings** (company, sender, owner email, PayNow/bank details, reminder days).\n2. Connect your Xero account on **Get unpaid invoices** and **Get customer email**, and pick your organisation.\n3. Connect Gmail on both Gmail steps.\n4. Test once with the owner email as a customer email in a Xero test contact.\n5. Activate. Sent reminders are remembered only while the workflow is active.",
+        "height": 300,
+        "width": 420
+      },
+      "id": "f8a537ed-f68c-57f5-afb3-fe4c56d1141d",
+      "name": "Blueprint notes",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 * * 1-5"
+            }
+          ]
+        }
+      },
+      "id": "c320eb72-a8d6-56a0-ac61-dff798711a84",
+      "name": "Every weekday 9am",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "065f00b0-6e61-56a2-98f4-3232a66aae15",
+              "name": "companyName",
+              "value": "Your Company Pte Ltd",
+              "type": "string"
+            },
+            {
+              "id": "7cae264b-74c6-5f01-a5f5-17b47b537212",
+              "name": "senderName",
+              "value": "Accounts Team",
+              "type": "string"
+            },
+            {
+              "id": "cf541bef-c710-5f08-8fa2-6cb92dd9f264",
+              "name": "ownerName",
+              "value": "our director",
+              "type": "string"
+            },
+            {
+              "id": "232efbab-2a7d-55ce-8faa-d78f13fa6eee",
+              "name": "ownerEmail",
+              "value": "owner@yourcompany.com",
+              "type": "string"
+            },
+            {
+              "id": "10a1ba81-0524-5eb3-b38b-24733c0283de",
+              "name": "paymentDetails",
+              "value": "PayNow to UEN [your UEN], or bank transfer to [bank name and account number], quoting the invoice number.",
+              "type": "string"
+            },
+            {
+              "id": "203a0ee3-6d9d-5ffc-a598-22abfe49a660",
+              "name": "reminderDays",
+              "value": "7,14,30",
+              "type": "string"
+            },
+            {
+              "id": "6035b851-c457-503d-8739-0b54b5ea6b35",
+              "name": "timezone",
+              "value": "Asia/Singapore",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "379836d4-7690-5c0a-bfc2-a57fbc18875a",
+      "name": "Settings",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "invoice",
+        "operation": "getAll",
+        "organizationId": "",
+        "returnAll": true,
+        "options": {
+          "statuses": [
+            "AUTHORISED"
+          ],
+          "where": "Type==\"ACCREC\""
+        }
+      },
+      "id": "9ff0eb5d-01db-5113-9483-1affbe172bf9",
+      "name": "Get unpaid invoices",
+      "type": "n8n-nodes-base.xero",
+      "typeVersion": 1,
+      "position": [
+        440,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "contact",
+        "operation": "get",
+        "organizationId": "",
+        "contactId": "={{ $json.contactId }}"
+      },
+      "id": "43c69e84-ba54-5733-8cf0-029af4e58c5c",
+      "name": "Get customer email",
+      "type": "n8n-nodes-base.xero",
+      "typeVersion": 1,
+      "position": [
+        880,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Picks the invoices that have just reached a reminder stage and have not been chased for it yet.\nconst s = $('Settings').first().json;\nconst stages = String(s.reminderDays).split(',').map(n => parseInt(n, 10)).filter(n => n > 0).sort((a, b) => a - b);\nconst store = $getWorkflowStaticData('global');   // remembers sent reminders between runs (active workflows only)\nstore.sent = store.sent || {};\n\n// Xero returns dates as \"2026-08-01T00:00:00\" (DueDateString) or \"/Date(1785542400000+0000)/\" (DueDate)\nfunction xeroDate(inv) {\n  if (inv.DueDateString) return new Date(inv.DueDateString.slice(0, 10) + 'T00:00:00Z');\n  const m = String(inv.DueDate || '').match(/\\/Date\\((\\d+)/);\n  return m ? new Date(parseInt(m[1], 10)) : null;\n}\n// Today's date in Singapore, as a UTC midnight so the day count is exact\nconst sg = new Intl.DateTimeFormat('en-CA', { timeZone: s.timezone || 'Asia/Singapore' }).format(new Date());\nconst today = new Date(sg + 'T00:00:00Z');\n\nconst out = [];\nfor (const item of $input.all()) {\n  const inv = item.json;\n  if (inv.Type && inv.Type !== 'ACCREC') continue;        // sales invoices only\n  if (!(Number(inv.AmountDue) > 0)) continue;              // fully paid or credited\n  if (/^HOLD/i.test(inv.Reference || '')) continue;        // disputed or agreed: put HOLD at the start of the Reference\n  const due = xeroDate(inv);\n  if (!due) continue;\n  const daysOverdue = Math.round((today - due) / 86400000);\n  const reached = stages.filter(d => daysOverdue >= d);\n  if (!reached.length) continue;\n  const stage = reached[reached.length - 1];\n  const key = inv.InvoiceID + ':' + stage;\n  if (store.sent[key]) continue;                           // already chased at this stage\n  out.push({ json: {\n    key,\n    invoiceId: inv.InvoiceID,\n    invoiceNumber: inv.InvoiceNumber,\n    reference: inv.Reference || '',\n    contactId: inv.Contact && inv.Contact.ContactID,\n    contactName: inv.Contact && inv.Contact.Name,\n    currency: inv.CurrencyCode || 'SGD',\n    amountDue: Number(inv.AmountDue),\n    dueDate: due.toISOString().slice(0, 10),\n    daysOverdue,\n    stage,\n    stageNumber: stages.indexOf(stage) + 1,\n    finalStage: stage === stages[stages.length - 1],\n  }});\n}\nreturn out;"
+      },
+      "id": "a6e118ef-35d2-516f-8b57-9fc446f49b33",
+      "name": "Pick invoices due a reminder",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Writes the reminder. Tone gets firmer at each stage; the last stage copies the owner.\nconst s = $('Settings').first().json;\nconst inv = $('Pick invoices due a reminder').item.json;\nconst contact = $json;\nconst email = contact.EmailAddress || '';\nconst money = inv.currency + ' ' + inv.amountDue.toLocaleString('en-SG', { minimumFractionDigits: 2, maximumFractionDigits: 2 });\nconst first = (contact.FirstName || '').trim();\nconst hello = first ? 'Hi ' + first + ',' : 'Hello,';\nconst ref = inv.reference ? ' (your ref ' + inv.reference + ')' : '';\n\nconst templates = {\n  1: {\n    subject: `Friendly reminder: invoice ${inv.invoiceNumber} is past due`,\n    body: `${hello}\\n\\nA quick reminder that invoice ${inv.invoiceNumber}${ref} for ${money} was due on ${inv.dueDate}. It may simply have slipped through, so I have put the payment details below.\\n\\n${s.paymentDetails}\\n\\nIf it has already been paid, please ignore this note, and thank you.\\n\\nBest regards,\\n${s.senderName}\\n${s.companyName}`,\n  },\n  2: {\n    subject: `Second reminder: invoice ${inv.invoiceNumber}, ${money} outstanding`,\n    body: `${hello}\\n\\nInvoice ${inv.invoiceNumber}${ref} for ${money} is now ${inv.daysOverdue} days overdue (due ${inv.dueDate}). Could you let me know when we can expect payment? If there is a problem with the invoice or the delivery, reply to this email and we will sort it out.\\n\\n${s.paymentDetails}\\n\\nThank you,\\n${s.senderName}\\n${s.companyName}`,\n  },\n  3: {\n    subject: `Final reminder: invoice ${inv.invoiceNumber} is ${inv.daysOverdue} days overdue`,\n    body: `${hello}\\n\\nInvoice ${inv.invoiceNumber}${ref} for ${money} is now ${inv.daysOverdue} days overdue. Please arrange payment this week, or reply with a date we can expect it. I have copied ${s.ownerName} so we can resolve this quickly.\\n\\n${s.paymentDetails}\\n\\nRegards,\\n${s.senderName}\\n${s.companyName}`,\n  },\n};\nconst t = templates[inv.finalStage ? 3 : Math.min(inv.stageNumber, 2)];\n\nreturn {\n  json: {\n    key: inv.key,\n    to: email || s.ownerEmail,\n    cc: inv.finalStage && email ? s.ownerEmail : '',\n    subject: email ? t.subject : `[No email on file for ${inv.contactName}] ${t.subject}`,\n    body: t.body,\n    invoiceNumber: inv.invoiceNumber,\n    contactName: inv.contactName,\n    amountDue: inv.amountDue,\n    currency: inv.currency,\n    daysOverdue: inv.daysOverdue,\n    stage: inv.stage,\n  },\n};",
+        "mode": "runOnceForEachItem"
+      },
+      "id": "7a21fc94-144d-592f-81af-d4b1e6dc0f2c",
+      "name": "Write the reminder",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.to }}",
+        "subject": "={{ $json.subject }}",
+        "emailType": "text",
+        "message": "={{ $json.body }}",
+        "options": {
+          "appendAttribution": false,
+          "ccList": "={{ $json.cc }}"
+        }
+      },
+      "id": "29555d48-c080-5918-9f69-0a53c2886f81",
+      "name": "Send reminder",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1320,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Settings').first().json.ownerEmail }}",
+        "subject": "={{ $json.subject }}",
+        "emailType": "text",
+        "message": "={{ $json.body }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "bed862a9-b1c1-5e74-8bda-69bb6eb537b0",
+      "name": "Send owner summary",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1760,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Marks each reminder as sent (so it never goes twice) and builds one summary for the owner.\nconst store = $getWorkflowStaticData('global');\nstore.sent = store.sent || {};\nconst sentOn = new Date().toISOString().slice(0, 10);\nconst rows = $('Write the reminder').all().map(i => i.json);\nfor (const r of rows) store.sent[r.key] = sentOn;\n\n// Housekeeping: forget entries older than 400 days\nfor (const [k, d] of Object.entries(store.sent)) {\n  if ((Date.now() - new Date(d)) / 86400000 > 400) delete store.sent[k];\n}\n\nconst totals = {};\nfor (const r of rows) totals[r.currency] = (totals[r.currency] || 0) + r.amountDue;\nconst lines = rows.map(r => `- ${r.contactName}: ${r.invoiceNumber}, ${r.currency} ${r.amountDue.toFixed(2)}, ${r.daysOverdue} days overdue (${r.stage}-day reminder)`);\nconst totalText = Object.entries(totals).map(([c, v]) => `${c} ${v.toFixed(2)}`).join(' + ');\nreturn [{ json: {\n  count: rows.length,\n  subject: `Payment reminders sent today: ${rows.length} invoices, ${totalText}`,\n  body: `Reminders sent this morning:\\n\\n${lines.join('\\n')}\\n\\nTotal chased: ${totalText}.\\nThis summary is sent by your overdue-invoice automation.`,\n}}];"
+      },
+      "id": "463c3c18-9436-5ff6-a2e1-ba4c3925cd37",
+      "name": "Remember sent and summarise",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1540,
+        520
+      ]
+    }
+  ],
+  "connections": {
+    "Every weekday 9am": {
+      "main": [
+        [
+          {
+            "node": "Settings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Settings": {
+      "main": [
+        [
+          {
+            "node": "Get unpaid invoices",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get unpaid invoices": {
+      "main": [
+        [
+          {
+            "node": "Pick invoices due a reminder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pick invoices due a reminder": {
+      "main": [
+        [
+          {
+            "node": "Get customer email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get customer email": {
+      "main": [
+        [
+          {
+            "node": "Write the reminder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write the reminder": {
+      "main": [
+        [
+          {
+            "node": "Send reminder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send reminder": {
+      "main": [
+        [
+          {
+            "node": "Remember sent and summarise",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remember sent and summarise": {
+      "main": [
+        [
+          {
+            "node": "Send owner summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Singapore",
+    "saveManualExecutions": true
+  },
+  "pinData": {},
+  "active": false,
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}
