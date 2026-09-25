@@ -1,0 +1,741 @@
+{
+  "name": "WhatsApp orders to Google Sheets with confirmation (The Gantry blueprint)",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## WhatsApp orders to Google Sheets with confirmation\nBlueprint by The Gantry (gantry.work).\n\n1. Google Sheet with two tabs. **Customers** headers: Customer | WhatsApp number | Contact name | WhatsApp user ID | Active. **Orders** headers: Order ID | Received | Customer | Contact | WhatsApp number | Items | Estimated value | Original message | Read by | Status | Notes.\n2. Fill in **Settings**: product codes (CODE | name | price, one per line), staff email, sheet link, delivery note.\n3. Meta app with WhatsApp: WhatsApp OAuth credential (App ID + App Secret) on the trigger; WhatsApp API credential (access token + business account ID) on both Send steps.\n4. Google Sheets on the two sheet steps, Gmail on **Alert staff**.\n5. Optional: set useAI to yes and add an OpenAI credential to let AI read messages the rules could not.\n6. Publish (Activate in older versions). n8n registers the webhook with Meta. One WhatsApp trigger per Meta app.",
+        "height": 420,
+        "width": 560
+      },
+      "id": "8b07e9ab-4c27-5140-a3a2-a61bf75fc69a",
+      "name": "Blueprint notes",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        -200
+      ]
+    },
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {
+          "messageStatusUpdates": []
+        }
+      },
+      "id": "8ae6ec42-e3d6-58e1-b276-aaaad244a833",
+      "name": "WhatsApp message received",
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        300
+      ],
+      "webhookId": "23072691-0dce-5dac-b648-a02a914b4ee4"
+    },
+    {
+      "parameters": {
+        "resource": "sheet",
+        "operation": "read",
+        "documentId": {
+          "__rl": true,
+          "mode": "url",
+          "value": "={{ $('Settings').first().json.ordersSheetUrl }}"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Customers"
+        },
+        "filtersUI": {},
+        "options": {}
+      },
+      "id": "0d9de8d2-b303-5076-96ba-21986e5d3d46",
+      "name": "Get customers",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        660,
+        300
+      ],
+      "executeOnce": true,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cffa54c7-c69d-5957-96a1-5b969c8f73bf",
+              "name": "companyName",
+              "value": "Your Company Pte Ltd",
+              "type": "string"
+            },
+            {
+              "id": "1529f428-2775-5f6d-9262-45c948943a1a",
+              "name": "products",
+              "value": "RC5 | Jasmine rice 5kg bag | 12.50\nRC10 | Jasmine rice 10kg bag | 23.00\nOL2 | Cooking oil 2L | 7.80\nSG1 | White sugar 1kg | 2.10\nEG30 | Eggs, tray of 30 | 9.60",
+              "type": "string"
+            },
+            {
+              "id": "1590ff0e-6aa1-50e8-b762-64db1402d5dd",
+              "name": "currency",
+              "value": "S$",
+              "type": "string"
+            },
+            {
+              "id": "708f478e-6bb9-59be-87f2-8d977209e666",
+              "name": "maxQuantity",
+              "value": "200",
+              "type": "string"
+            },
+            {
+              "id": "cef84f28-e1f4-5ef3-afe2-2c154f65e236",
+              "name": "deliveryNote",
+              "value": "Orders received before 3pm are delivered the next working day.",
+              "type": "string"
+            },
+            {
+              "id": "1701c969-7e29-5191-b098-2028bbd58c20",
+              "name": "staffEmail",
+              "value": "orders@example.com",
+              "type": "string"
+            },
+            {
+              "id": "0e9510e7-9feb-59b8-8f62-060aa83b51c9",
+              "name": "ordersSheetUrl",
+              "value": "https://docs.google.com/spreadsheets/d/PASTE-YOUR-SHEET-ID/edit",
+              "type": "string"
+            },
+            {
+              "id": "3e3ef3a3-6361-5686-b5a3-4ba2cd2b17b2",
+              "name": "useAI",
+              "value": "no",
+              "type": "string"
+            },
+            {
+              "id": "e3faf93a-1812-5d33-89e6-f753054dbf5f",
+              "name": "timezone",
+              "value": "Asia/Singapore",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1a413ad3-4a31-5e6c-abfc-e9cf529e6865",
+      "name": "Settings",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Turns Meta's webhook into one item per incoming message. Skips delivery/read receipts and repeats.\nconst store = $getWorkflowStaticData('global');   // message IDs already handled (saved for active workflows only)\nstore.seen = store.seen || {};\nconst now = Date.now();\nfor (const [id, t] of Object.entries(store.seen)) if (now - t > 7 * 86400000) delete store.seen[id];\n\nconst out = [];\n$('WhatsApp message received').all().forEach((item, i) => {\n  const ev = item.json;\n  if (!Array.isArray(ev.messages)) return;                 // status updates, template events and so on\n  const contacts = ev.contacts || [];\n  for (const m of ev.messages) {\n    if (!m.id || store.seen[m.id]) continue;               // Meta can deliver the same webhook more than once\n    if (m.type === 'reaction') continue;                   // emoji reactions are not orders\n    store.seen[m.id] = now;\n    const c = contacts.find(x => (m.from && x.wa_id === m.from) || (m.from_user_id && x.user_id === m.from_user_id)) || contacts[0] || {};\n    let text = '';\n    if (m.type === 'text') text = (m.text && m.text.body) || '';\n    else if (m.type === 'button') text = (m.button && m.button.text) || '';\n    else if (m.type === 'interactive') text = (m.interactive && ((m.interactive.button_reply || {}).title || (m.interactive.list_reply || {}).title)) || '';\n    else if (m.type === 'image' || m.type === 'document') text = ((m[m.type] || {}).caption) || '';\n    out.push({ json: {\n      messageId: m.id,\n      phoneNumberId: ev.metadata && ev.metadata.phone_number_id,\n      waNumber: m.from || c.wa_id || '',                   // phone number, unless the sender uses a WhatsApp username\n      userId: m.from_user_id || c.user_id || '',           // business-scoped user ID (sent since 2026)\n      profileName: (c.profile && c.profile.name) || '',\n      username: (c.profile && c.profile.username) || '',\n      type: m.type,\n      text: String(text).trim(),\n      sentAt: Number(m.timestamp) * 1000,\n    }, pairedItem: { item: i } });\n  }\n});\nreturn out;"
+      },
+      "id": "71b5f7e4-417a-5e02-8fff-8c0d6f58f609",
+      "name": "Read the message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Finds the customer by WhatsApp number and reads product codes and quantities with simple rules.\nconst s = $('Settings').first().json;\nconst tz = s.timezone || 'Asia/Singapore';\nfunction readCatalogue(list) {\n  const cat = new Map();\n  for (const line of String(list || '').split(/\\n|;/)) {\n    const [code, name, price] = line.split('|').map(x => (x || '').trim());\n    if (code) cat.set(code.toUpperCase(), { code: code.toUpperCase(), name: name || code, price: parseFloat(price) || 0 });\n  }\n  return cat;\n}\nconst catalogue = readCatalogue(s.products);\nif (!catalogue.size) throw new Error('Add your products in Settings, one per line: CODE | name | price');\nconst maxQty = parseInt(s.maxQuantity, 10) || 500;\nconst esc = x => x.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&');\nconst codes = [...catalogue.keys()].sort((a, b) => b.length - a.length).map(esc).join('|');\nconst tokenRe = new RegExp('(?<![A-Z0-9])(' + codes + ')(?![A-Z0-9])|(?<![A-Z0-9.])(\\\\d+(?:\\\\.\\\\d+)?)(?![\\\\d.])', 'gi');\nconst looksLikeItem = /\\d+\\s*(x|\u00d7|\\*|pcs|pc|ctns?|cartons?|bags?|trays?|packs?|boxes|box|btls?|bottles?|tins?|cases?)\\b|\\b(x|\u00d7)\\s*\\d+/i;\n\nconst digits = v => String(v ?? '').replace(/\\D/g, '');\nconst sgKey = v => { let d = digits(v); if (d.startsWith('00')) d = d.slice(2); if (/^[689]\\d{7}$/.test(d)) d = '65' + d; return d; };\nfunction stamp(ms) {\n  const p = new Intl.DateTimeFormat('en-GB', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date(ms));\n  const g = t => p.find(x => x.type === t).value;\n  return `${g('year')}-${g('month')}-${g('day')} ${g('hour')}:${g('minute')}`;\n}\n\n// Customers sheet: match on WhatsApp number, or on the WhatsApp user ID for people who hide their number\nconst byPhone = new Map(), byUser = new Map();\nfor (const r of $('Get customers').all().map(i => i.json)) {\n  if (/^(no|n|false|inactive)$/i.test(String(r['Active'] ?? '').trim())) continue;\n  const p = sgKey(r['WhatsApp number']);\n  if (p) byPhone.set(p, r);\n  const u = String(r['WhatsApp user ID'] ?? '').trim();\n  if (u) byUser.set(u, r);\n}\n\nfunction readOrder(text) {\n  const lines = new Map(), problems = [], notes = [];\n  const segments = text.split(/\\n|,|;|\\+|&|\\band\\b/i).map(x => x.trim()).filter(Boolean);\n  for (const seg of segments) {\n    const tokens = [...seg.matchAll(tokenRe)].map(m => m[1] ? { code: m[1].toUpperCase() } : { num: parseFloat(m[2]) });\n    if (!tokens.some(t => t.code)) {\n      if (looksLikeItem.test(seg)) problems.push(`\"${seg}\" is not a product code we know`);\n      else notes.push(seg);\n      continue;\n    }\n    // Pairs go \"code qty, code qty\" or \"qty code, qty code\" depending on how the line starts\n    const qtyFirst = tokens[0].num !== undefined;\n    const pairs = [];\n    for (let i = 0; i < tokens.length; i += 2) {\n      const a = tokens[i], b = tokens[i + 1];\n      const code = qtyFirst ? (b && b.code) : a.code;\n      const qty = qtyFirst ? a.num : (b && b.num);\n      if (!code || qty === undefined) { pairs.length = 0; break; }\n      pairs.push({ code, qty });\n    }\n    if (!pairs.length) {\n      problems.push(tokens.some(t => t.num !== undefined) ? `could not pair codes and quantities in \"${seg}\"`\n        : `no quantity given for ${tokens.filter(t => t.code).map(t => t.code).join(', ')}`);\n      continue;\n    }\n    for (const { code, qty } of pairs) {\n      if (!Number.isInteger(qty) || qty < 1) { problems.push(`quantity ${qty} for ${code} is not a whole number`); continue; }\n      if (qty > maxQty) { problems.push(`${qty} x ${code} is above the ${maxQty} limit, please check`); continue; }\n      lines.set(code, (lines.get(code) || 0) + qty);\n    }\n  }\n  return { lines: [...lines].map(([code, qty]) => ({ code, qty, name: catalogue.get(code).name, price: catalogue.get(code).price })), problems, notes };\n}\n\nreturn $('Read the message').all().map((item, i) => {\n  const m = item.json;\n  const customer = (m.waNumber && byPhone.get(sgKey(m.waNumber))) || (m.userId && byUser.get(m.userId)) || null;\n  const replyTo = customer ? (sgKey(customer['WhatsApp number']) || digits(m.waNumber)) : digits(m.waNumber);\n  const hoursOld = (Date.now() - m.sentAt) / 3600000;\n  const base = {\n    ...m,\n    receivedAt: stamp(m.sentAt),\n    known: !!customer,\n    customerName: customer ? String(customer['Customer']) : '',\n    contactName: customer ? String(customer['Contact name'] || m.profileName || '') : m.profileName,\n    replyTo,\n    replyToDisplay: replyTo ? '+' + replyTo : '(hidden: WhatsApp username ' + (m.username || m.userId) + ')',\n    canReply: !!replyTo && hoursOld < 23,                  // free-form replies only inside the 24-hour window\n    typeLabel: ({ audio: 'a voice message', image: 'a photo', video: 'a video', document: 'a document', location: 'a location', sticker: 'a sticker', contacts: 'a contact card' })[m.type] || 'a ' + m.type + ' message',\n    lines: [], problems: [], notes: [], readBy: 'Rules', kind: 'human', reason: '', aiEligible: false,\n  };\n  const r = m.text ? readOrder(m.text) : { lines: [], problems: [], notes: [] };\n  Object.assign(base, r);\n\n  if (!customer) base.reason = replyTo ? 'Number not in the Customers sheet' : 'Sender hides their number (WhatsApp username) and is not in the Customers sheet';\n  else if (!m.text) base.reason = `Sent ${base.typeLabel}, not text`;\n  else if (/^\\s*(change|cancel|amend)\\b/i.test(m.text)) base.reason = 'Change or cancel request';\n  else if (hoursOld >= 23) base.reason = `Message arrived ${Math.round(hoursOld)} hours late, too old for an automatic WhatsApp reply`;\n  else if (r.lines.length && !r.problems.length) base.kind = 'order';\n  else {\n    base.reason = r.problems.length ? 'Order could not be read fully: ' + r.problems.join('; ') : 'Message from a customer, not an order';\n    base.aiEligible = true;                                // the optional AI step may try these\n  }\n  return { json: base, pairedItem: { item: i } };\n});"
+      },
+      "id": "fe0fe71f-1a51-5edb-9f6a-34a14978bda3",
+      "name": "Match customer and read the order",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        880,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "41a3c231-58bb-5093-b890-222d37e80964",
+              "leftValue": "={{ ['yes', 'true', 'on'].includes(String($('Settings').first().json.useAI).trim().toLowerCase()) && $json.aiEligible === true }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "9038d059-af62-5cda-957a-23c854acbea9",
+      "name": "Ask AI to read it?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1100,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Accepts the AI reading only if every code is in the product list and every quantity is sensible.\nconst s = $('Settings').first().json;\nfunction readCatalogue(list) {\n  const cat = new Map();\n  for (const line of String(list || '').split(/\\n|;/)) {\n    const [code, name, price] = line.split('|').map(x => (x || '').trim());\n    if (code) cat.set(code.toUpperCase(), { code: code.toUpperCase(), name: name || code, price: parseFloat(price) || 0 });\n  }\n  return cat;\n}\nconst catalogue = readCatalogue(s.products);\nconst maxQty = parseInt(s.maxQuantity, 10) || 500;\nconst m = $('Match customer and read the order').item.json;\nconst ai = ($json.output && typeof $json.output === 'object') ? $json.output : {};\nconst items = Array.isArray(ai.items) ? ai.items : [];\nconst merged = new Map(), bad = [];\nfor (const it of items) {\n  const code = String(it.code || '').toUpperCase().trim();\n  const qty = Number(it.quantity);\n  if (!catalogue.has(code)) { bad.push(`AI suggested ${code || 'a blank code'}, which is not in the product list`); continue; }\n  if (!Number.isInteger(qty) || qty < 1 || qty > maxQty) { bad.push(`AI quantity ${it.quantity} for ${code} failed the check`); continue; }\n  merged.set(code, (merged.get(code) || 0) + qty);\n}\nconst unsure = String(ai.unclear || '').trim();\nif (unsure) bad.push('AI was unsure: ' + unsure);          // any doubt goes to a person\nif (merged.size && !bad.length) {\n  return { json: { ...m, kind: 'order', readBy: 'AI (please check)', problems: [], reason: '',\n    lines: [...merged].map(([code, qty]) => ({ code, qty, name: catalogue.get(code).name, price: catalogue.get(code).price })),\n    notes: [] } };\n}\nreturn { json: { ...m, problems: [...m.problems, ...bad],\n  reason: m.reason + (items.length ? ' (AI reading rejected: ' + (bad.join('; ') || 'nothing usable') + ')' : ' (AI found no order either)') } };",
+        "mode": "runOnceForEachItem"
+      },
+      "id": "454d74fb-03e8-5341-a8d8-774f422d3130",
+      "name": "Check the AI reading",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1540,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "069a598c-5687-5b5a-b98f-71e84154b2fe",
+              "leftValue": "={{ $json.kind === 'order' }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "340df2f5-256b-5ef8-a738-3bd828f1994a",
+      "name": "Order understood?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1760,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Gives the order a number, lays out the sheet row and writes the WhatsApp confirmation.\nconst s = $('Settings').first().json;\nconst tz = s.timezone || 'Asia/Singapore';\nconst store = $getWorkflowStaticData('global');\nstore.orderSeq = store.orderSeq || {};\nconst day = new Intl.DateTimeFormat('en-CA', { timeZone: tz }).format(new Date()).replace(/-/g, '');\nfor (const k of Object.keys(store.orderSeq)) if (k !== day) delete store.orderSeq[k];\nconst cur = s.currency || 'S$';\n\nreturn $input.all().map((item, i) => {\n  const o = item.json;\n  store.orderSeq[day] = (store.orderSeq[day] || 0) + 1;\n  const orderId = `WA-${day}-${String(store.orderSeq[day]).padStart(3, '0')}`;\n  const priced = o.lines.every(l => l.price > 0);\n  const value = priced ? o.lines.reduce((t, l) => t + l.qty * l.price, 0) : 0;\n  const parts = (o.contactName || '').trim().split(/\\s+/);\n  const first = /^(mr|mrs|ms|mdm|madam|miss|dr|uncle|auntie|aunty)\\.?$/i.test(parts[0]) ? parts.slice(0, 2).join(' ') : parts[0];\n  const reply = [\n    `Thanks${first ? ' ' + first : ''}! Order *${orderId}* for ${o.customerName} received:`,\n    ...o.lines.map(l => `\u2022 ${l.qty} x ${l.name} (${l.code})`),\n    priced ? `Estimated ${cur}${value.toFixed(2)} before GST.` : '',\n    o.readBy.startsWith('AI') ? 'We read this order automatically, so please check the items above.' : '',\n    s.deliveryNote,\n    'If anything is wrong, reply CHANGE and our team will sort it out.',\n  ].filter(Boolean).join('\\n');\n  return { json: {\n    ...o,\n    orderId,\n    itemsText: o.lines.map(l => `${l.qty} x ${l.code} ${l.name}`).join('; '),\n    estimatedValue: priced ? value.toFixed(2) : '',\n    status: 'New',\n    notesText: o.notes.join('; '),\n    replyText: reply,\n  }, pairedItem: { item: i } };\n});"
+      },
+      "id": "e8274621-6936-512c-b8bd-249fe720364b",
+      "name": "Write order and confirmation",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1980,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Tells staff what needs a person, and decides whether the customer gets a short holding reply.\nconst s = $('Settings').first().json;\nconst o = $json;\nconst who = o.known ? `${o.customerName} (${o.contactName || 'no contact name'})` : (o.profileName || 'Unknown sender');\nconst subject =\n  !o.known ? `WhatsApp from an unknown ${o.replyTo ? 'number ' + o.replyToDisplay : 'sender'}: ${o.profileName || 'no name'}`\n  : /^Change/.test(o.reason) ? `Change request on WhatsApp from ${o.customerName}`\n  : /^Order could not/.test(o.reason) ? `Check WhatsApp order from ${o.customerName}`\n  : /^Sent /.test(o.reason) ? `${o.customerName} sent ${o.typeLabel} on WhatsApp`\n  : /late/.test(o.reason) ? `Late WhatsApp message from ${o.customerName}: confirm by hand`\n  : `WhatsApp message from ${o.customerName}`;\nconst understood = o.lines.length ? o.lines.map(l => `- ${l.qty} x ${l.code} ${l.name}`).join('\\n') : '- nothing';\nconst body = [\n  `From: ${who}`,\n  `WhatsApp: ${o.replyToDisplay}${o.replyTo ? '   Chat: https://wa.me/' + o.replyTo : ''}`,\n  `Received: ${o.receivedAt}`,\n  `Why this needs you: ${o.reason}`,\n  '',\n  `Message:\\n${o.text || '(' + o.type + ' message: open WhatsApp to see it)'}`,\n  '',\n  `What the automation understood:\\n${understood}`,\n  '',\n  o.known ? 'Nothing was added to the Orders sheet. Add or correct the order there, then reply to the customer.'\n          : 'If this is a new customer, add them to the Customers sheet so their next order is read automatically.',\n].join('\\n');\nconst holding = o.known && o.canReply && (/^Order could not/.test(o.reason) || /^Change/.test(o.reason));\nreturn { json: {\n  ...o,\n  alertSubject: subject,\n  alertBody: body,\n  sendHoldingReply: holding,\n  holdingText: /^Change/.test(o.reason)\n    ? 'Thanks, we have your message. A member of our team will confirm the change shortly.'\n    : 'Thanks, we have your order. We could not read every item automatically, so a member of our team will confirm it shortly.',\n}};",
+        "mode": "runOnceForEachItem"
+      },
+      "id": "a4d3eac3-1847-5334-9aa4-68bb528d4bf1",
+      "name": "Write the staff alert",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1980,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "46fe9a9b-f262-5689-ae92-d00f7eb82991",
+              "leftValue": "={{ $('Write the staff alert').item.json.sendHoldingReply }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "84463836-f091-5f53-93f2-96d51aaa3d8e",
+      "name": "Send a holding reply?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2420,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "text": "={{ 'Product list (CODE | name | price):\\n' + $('Settings').first().json.products + '\\n\\nCustomer message:\\n' + $json.text }}",
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"items\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"code\": {\n            \"type\": \"string\",\n            \"description\": \"Product code from the list\"\n          },\n          \"quantity\": {\n            \"type\": \"number\",\n            \"description\": \"Whole number of units\"\n          }\n        },\n        \"required\": [\n          \"code\",\n          \"quantity\"\n        ]\n      }\n    },\n    \"unclear\": {\n      \"type\": \"string\",\n      \"description\": \"Anything you could not read with confidence\"\n    }\n  },\n  \"required\": [\n    \"items\"\n  ]\n}",
+        "options": {
+          "systemPromptTemplate": "You read wholesale orders that customers send on WhatsApp. Use only product codes from the product list. If the customer describes a product instead of giving a code, use the code only when the match is obvious. Quantities are whole numbers of the listed unit. If you are not sure about an item, leave it out and say why in 'unclear'. If the message is not an order, return an empty items list. Never invent items."
+        }
+      },
+      "id": "d41d7acb-4f6d-5f75-9d23-db55bbfb87aa",
+      "name": "AI: read the order",
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [
+        1320,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "options": {}
+      },
+      "id": "3edd7ffc-924c-58be-bba2-0e3edb039625",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1320,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "sheet",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "url",
+          "value": "={{ $('Settings').first().json.ordersSheetUrl }}"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Orders"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Order ID": "={{ $json.orderId }}",
+            "Received": "={{ $json.receivedAt }}",
+            "Customer": "={{ $json.customerName }}",
+            "Contact": "={{ $json.contactName }}",
+            "WhatsApp number": "={{ $json.replyToDisplay }}",
+            "Items": "={{ $json.itemsText }}",
+            "Estimated value": "={{ $json.estimatedValue }}",
+            "Original message": "={{ $json.text }}",
+            "Read by": "={{ $json.readBy }}",
+            "Status": "={{ $json.status }}",
+            "Notes": "={{ $json.notesText }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Order ID",
+              "displayName": "Order ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Received",
+              "displayName": "Received",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer",
+              "displayName": "Customer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Contact",
+              "displayName": "Contact",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "WhatsApp number",
+              "displayName": "WhatsApp number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Items",
+              "displayName": "Items",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Estimated value",
+              "displayName": "Estimated value",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Original message",
+              "displayName": "Original message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Read by",
+              "displayName": "Read by",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "cellFormat": "RAW"
+        }
+      },
+      "id": "b9e5e0d6-a093-5c44-999b-da276dd62d70",
+      "name": "Add to Orders sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2200,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "phoneNumberId": "={{ $('Write order and confirmation').item.json.phoneNumberId }}",
+        "recipientPhoneNumber": "={{ $('Write order and confirmation').item.json.replyTo }}",
+        "messageType": "text",
+        "textBody": "={{ $('Write order and confirmation').item.json.replyText }}",
+        "additionalFields": {}
+      },
+      "id": "83885388-687e-52b2-a090-b56393f7673a",
+      "name": "Send order confirmation",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2420,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Settings').first().json.staffEmail }}",
+        "subject": "={{ $json.alertSubject }}",
+        "emailType": "text",
+        "message": "={{ $json.alertBody }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "b1f8503c-1c9d-5145-acbf-2ae27d698ef8",
+      "name": "Alert staff",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2200,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "phoneNumberId": "={{ $('Write the staff alert').item.json.phoneNumberId }}",
+        "recipientPhoneNumber": "={{ $('Write the staff alert').item.json.replyTo }}",
+        "messageType": "text",
+        "textBody": "={{ $('Write the staff alert').item.json.holdingText }}",
+        "additionalFields": {}
+      },
+      "id": "970fe7a8-66b8-508d-a1c2-83abbf774479",
+      "name": "Send holding reply",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2640,
+        420
+      ]
+    }
+  ],
+  "connections": {
+    "WhatsApp message received": {
+      "main": [
+        [
+          {
+            "node": "Settings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Settings": {
+      "main": [
+        [
+          {
+            "node": "Read the message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read the message": {
+      "main": [
+        [
+          {
+            "node": "Get customers",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get customers": {
+      "main": [
+        [
+          {
+            "node": "Match customer and read the order",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Match customer and read the order": {
+      "main": [
+        [
+          {
+            "node": "Ask AI to read it?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ask AI to read it?": {
+      "main": [
+        [
+          {
+            "node": "AI: read the order",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Order understood?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI: read the order": {
+      "main": [
+        [
+          {
+            "node": "Check the AI reading",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check the AI reading": {
+      "main": [
+        [
+          {
+            "node": "Order understood?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Order understood?": {
+      "main": [
+        [
+          {
+            "node": "Write order and confirmation",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Write the staff alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write order and confirmation": {
+      "main": [
+        [
+          {
+            "node": "Add to Orders sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add to Orders sheet": {
+      "main": [
+        [
+          {
+            "node": "Send order confirmation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write the staff alert": {
+      "main": [
+        [
+          {
+            "node": "Alert staff",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Alert staff": {
+      "main": [
+        [
+          {
+            "node": "Send a holding reply?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a holding reply?": {
+      "main": [
+        [
+          {
+            "node": "Send holding reply",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI: read the order",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Singapore",
+    "saveManualExecutions": true
+  },
+  "pinData": {},
+  "active": false,
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}
