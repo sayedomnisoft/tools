@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stuck on an automation? — The Gantry</title>
+<meta name="description" content="Stuck building an automation in Make or n8n? Answer six quick questions and get the fix for where you're stuck, or a free 20-minute review if it's worth one.">
+<meta property="og:title" content="Stuck on an automation? — The Gantry">
+<meta property="og:description" content="Six quick questions. The fix for where you're stuck, or a free 20-minute review if it's worth one.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://tools.gantry.work/automation-help/">
+<link rel="stylesheet" href="../shared.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<style>
+  .card { max-width: 640px; }
+  .pill { display:inline-block; font-size:12px; letter-spacing:1.6px; font-weight:700; color:var(--ink); background:var(--gold-light); padding:6px 12px; border-radius:30px; margin-bottom:18px; }
+  .bar { height:6px; background:rgba(255,255,255,0.12); border-radius:6px; margin:6px 0 22px; overflow:hidden; }
+  .bar i { display:block; height:100%; width:0; background:linear-gradient(90deg,var(--gold-light),var(--gold)); transition:width .3s; }
+  .q { display:none; } .q.on { display:block; }
+  .q h2 { font-size:21px; margin-bottom:6px; } .q .hint { color:var(--muted); font-size:14px; margin-bottom:16px; }
+  .opt { display:block; width:100%; text-align:left; padding:13px 16px; margin-bottom:10px; font-size:15.5px; font-weight:600; color:#fff; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.2); border-radius:11px; cursor:pointer; font-family:inherit; }
+  .opt:hover { border-color:var(--gold-light); } .opt.sel { border-color:var(--gold-light); background:rgba(242,207,110,0.14); }
+  textarea, input[type=text], input[type=email] { width:100%; padding:12px 14px; font-size:15.5px; color:#fff; font-family:inherit; background:rgba(255,255,255,0.09); border:1px solid rgba(255,255,255,0.2); border-radius:10px; margin-bottom:12px; }
+  textarea { min-height:78px; resize:vertical; }
+  .nav { display:flex; justify-content:space-between; align-items:center; margin-top:8px; }
+  .back { background:none; border:none; color:var(--muted); font-size:14px; cursor:pointer; font-family:inherit; }
+  .next { padding:12px 22px; font-size:15.5px; font-weight:700; color:var(--ink); background:linear-gradient(180deg,var(--gold-light),var(--gold)); border:none; border-radius:11px; cursor:pointer; font-family:inherit; }
+  .next:disabled { opacity:.4; cursor:not-allowed; }
+  .fix { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:14px 16px; margin-bottom:16px; }
+  .fix h3 { font-size:15px; letter-spacing:1.2px; color:var(--gold-light); margin-bottom:8px; text-transform:uppercase; }
+  .fix li { font-size:14.5px; line-height:1.5; margin:0 0 6px 18px; color:rgba(255,255,255,0.88); }
+  .fix a, .res a.inl { color:var(--gold-light); }
+  .small { font-size:12.5px; color:rgba(255,255,255,0.5); line-height:1.5; margin-top:14px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="brand"><a href="../index.html">← THE GANTRY · TOOLS</a></div>
+  <div class="pill">STUCK ON AN AUTOMATION?</div>
+  <h1>Tell me where you're stuck</h1>
+  <p class="sub">Six quick questions. You'll get the fix for where you're stuck, and if it looks worth it, a free 20-minute review with me.</p>
+  <div class="bar"><i id="bar"></i></div>
+
+  <div class="q on" data-k="automate">
+    <h2>What are you trying to automate?</h2>
+    <button class="opt" data-v="Chasing unpaid invoices">Chasing unpaid invoices</button>
+    <button class="opt" data-v="Supplier bills and data entry">Supplier bills and data entry</button>
+    <button class="opt" data-v="Daily or monthly reports">Daily or monthly reports</button>
+    <button class="opt" data-v="Enquiries and leads">Enquiries and leads</button>
+    <button class="opt" data-v="WhatsApp orders">WhatsApp orders</button>
+    <button class="opt" data-v="Stock and purchasing">Stock and purchasing</button>
+    <button class="opt" data-v="Something else">Something else</button>
+    <textarea id="detail" placeholder="Optional: describe it in a sentence (e.g. 'reminders from Xero to 200 customers, some in USD')"></textarea>
+  </div>
+
+  <div class="q" data-k="stuck">
+    <h2>Where are you stuck?</h2>
+    <button class="opt" data-v="Haven't started yet">I haven't started yet</button>
+    <button class="opt" data-v="Connecting an app">Connecting an app (Xero, Gmail, Sheets, WhatsApp)</button>
+    <button class="opt" data-v="The logic or formulas">The logic, filters or formulas</button>
+    <button class="opt" data-v="It runs but the results are wrong">It runs, but the results are wrong</button>
+    <button class="opt" data-v="Not sure it's worth it">I'm not sure it's worth automating</button>
+  </div>
+
+  <div class="q" data-k="role">
+    <h2>What's your role?</h2>
+    <button class="opt" data-v="Owner or director">I own or run the business</button>
+    <button class="opt" data-v="Operations or finance manager">I manage operations or finance</button>
+    <button class="opt" data-v="Employee exploring">I'm an employee exploring options</button>
+    <button class="opt" data-v="Freelancer or agency">I'm a freelancer or agency building for clients</button>
+    <button class="opt" data-v="Learning or personal project">I'm learning, or it's a personal project</button>
+  </div>
+
+  <div class="q" data-k="size">
+    <h2>How many people work in the business?</h2>
+    <button class="opt" data-v="1-4">1–4</button>
+    <button class="opt" data-v="5-19">5–19</button>
+    <button class="opt" data-v="20-49">20–49</button>
+    <button class="opt" data-v="50-200">50–200</button>
+    <button class="opt" data-v="200+">More than 200</button>
+  </div>
+
+  <div class="q" data-k="where">
+    <h2>Where is the business based?</h2>
+    <button class="opt" data-v="Singapore">Singapore</button>
+    <button class="opt" data-v="Malaysia or rest of Southeast Asia">Malaysia or elsewhere in Southeast Asia</button>
+    <button class="opt" data-v="Elsewhere">Elsewhere</button>
+  </div>
+
+  <div class="q" data-k="when">
+    <h2>How soon do you want this working?</h2>
+    <button class="opt" data-v="This month">This month</button>
+    <button class="opt" data-v="This quarter">This quarter</button>
+    <button class="opt" data-v="Just exploring">Just exploring</button>
+  </div>
+
+  <div class="q" data-k="contact">
+    <h2>Last one: who are you?</h2>
+    <p class="hint">Optional. Only used to pre-fill the booking form if you choose to book. Nothing is stored on this page.</p>
+    <input type="text" id="name" placeholder="Your name">
+    <input type="email" id="email" placeholder="Work email">
+  </div>
+
+  <div class="q res" data-k="result" id="result"></div>
+
+  <div class="nav" id="nav">
+    <button class="back" id="back">← Back</button>
+    <button class="next" id="next" disabled>Next</button>
+  </div>
+
+  <p class="small">Some links on The Gantry are affiliate links; if you sign up through them, The Gantry may earn a commission at no extra cost to you.</p>
+  <div class="footer"><a href="../index.html">Free tools</a> · <a href="../blueprints/">Free blueprints</a> · <a href="https://www.gantry.work/p/n8n-templates-small-business">Blueprint library</a></div>
+</div>
+
+<script>
+const MAKE = 'https://www.make.com/en/register?pc=gntrywk';
+const CAL = 'https://cal.com/sayed.r/20min';
+const GUIDES = {
+  'Chasing unpaid invoices': ['Chase overdue Xero invoices', 'https://www.gantry.work/p/xero-invoice-reminders-automation'],
+  'Supplier bills and data entry': ['Supplier invoices from email to a sheet', 'https://www.gantry.work/p/supplier-invoice-email-to-sheet'],
+  'Daily or monthly reports': ['Daily 8am owner report', 'https://www.gantry.work/p/daily-owner-report-xero'],
+  'Enquiries and leads': ['Enquiry form to sheet to salesperson', 'https://www.gantry.work/p/google-sheets-lead-automation'],
+  'WhatsApp orders': ['WhatsApp order intake', 'https://www.gantry.work/p/n8n-whatsapp-order-automation'],
+  'Stock and purchasing': ['Safety stock and reorder points', 'https://www.gantry.work/p/safety-stock-reorder-point'],
+  'Something else': ['The blueprint library', 'https://www.gantry.work/p/n8n-templates-small-business']
+};
+const FIXES = {
+  "Haven't started yet": ['Start here', [
+    'Open the <a href="GUIDE">setup guide</a> and read the flow once before building anything.',
+    'Create a <a href="' + MAKE + '" rel="sponsored nofollow">free Make account</a> (1,000 credits a month is plenty to build and test).',
+    'Build it with one test record first. Only switch the schedule on once the output looks right.']],
+  'Connecting an app': ['Connection fixes that solve most cases', [
+    '<b>Xero:</b> connect with a user who has Adviser or Standard access, and pick the right organisation when asked. The demo company is fine for testing.',
+    '<b>Gmail on Google Workspace:</b> your Workspace admin may need to allow Make or n8n in the Google Admin console. A personal Gmail account connects straight away.',
+    '<b>Google Sheets:</b> the sheet must be owned by, or shared with, the Google account you connected.',
+    '<b>WhatsApp:</b> the number needs a Meta Business account and cannot be in use on the WhatsApp app at the same time, unless you go through a partner that supports coexistence.']],
+  'The logic or formulas': ['How to find the broken step', [
+    'Click <b>Run once</b>, then open the output bubble on each module in turn. The first bubble with the wrong data is where the problem is.',
+    'Filters sit on the line <i>between</i> modules. If nothing arrives after a filter, open the filter and check the condition against the actual data.',
+    "Dates are the usual culprit. Set your organisation's timezone to Asia/Singapore and compare dates as dates, not text."]],
+  'It runs but the results are wrong': ['Usual causes', [
+    '<b>Duplicates:</b> anything that sends messages needs a memory of what it sent (a data store or a sheet), or it will send again on the next run.',
+    '<b>Wrong timezone:</b> check the scenario and organisation timezone; "yesterday" in UTC is not yesterday in Singapore.',
+    '<b>Partial data:</b> searches often return only the first page of results. Check the limit setting on search modules.']],
+  "Not sure it's worth it": ['Put a number on it first', [
+    'Use the free <a href="../cost-of-manual-work.html">Cost of Manual Work calculator</a>: hours a week × loaded hourly cost.',
+    'Automation usually pays when the task happens daily, follows rules, and costs more than 2–3 hours a week.',
+    'If the process changes every time, fix the process before automating it.']]
+};
+const answers = {}; const qs = [...document.querySelectorAll('.q')]; let i = 0; let started = false;
+function show() {
+  qs.forEach((q, j) => q.classList.toggle('on', j === i));
+  document.getElementById('bar').style.width = Math.round(i / (qs.length - 1) * 100) + '%';
+  document.getElementById('back').style.visibility = i === 0 || qs[i].dataset.k === 'result' ? 'hidden' : 'visible';
+  const k = qs[i].dataset.k;
+  document.getElementById('nav').style.display = k === 'result' ? 'none' : 'flex';
+  document.getElementById('next').disabled = !(k === 'contact' || answers[k]);
+  document.getElementById('next').textContent = k === 'contact' ? 'See my result' : 'Next';
+}
+document.querySelectorAll('.opt').forEach(b => b.addEventListener('click', () => {
+  const q = b.closest('.q'); q.querySelectorAll('.opt').forEach(x => x.classList.remove('sel')); b.classList.add('sel');
+  answers[q.dataset.k] = b.dataset.v; document.getElementById('next').disabled = false;
+  if (!started) { started = true; try { gtag('event', 'automation_help_start', { from: FROM }); } catch (e) {} }
+}));
+document.getElementById('next').addEventListener('click', () => { if (qs[i].dataset.k === 'contact') return result(); i++; show(); });
+document.getElementById('back').addEventListener('click', () => { if (i > 0) { i--; show(); } });
+const FROM = new URLSearchParams(location.search).get('from') || 'direct';
+
+function result() {
+  const name = document.getElementById('name').value.trim(), email = document.getElementById('email').value.trim(), detail = document.getElementById('detail').value.trim();
+  const decider = ['Owner or director', 'Operations or finance manager'].includes(answers.role);
+  const bigEnough = answers.size !== '1-4';
+  const region = answers.where !== 'Elsewhere';
+  const soon = answers.when !== 'Just exploring';
+  const tier = decider && bigEnough && region && soon ? 'call' : (decider ? 'maybe' : 'self');
+  const guide = GUIDES[answers.automate] || GUIDES['Something else'];
+  const fix = FIXES[answers.stuck];
+  const notes = ['From: ' + FROM, 'Automating: ' + answers.automate + (detail ? ' (' + detail + ')' : ''), 'Stuck: ' + answers.stuck, 'Role: ' + answers.role, 'Staff: ' + answers.size, 'Based: ' + answers.where, 'Timing: ' + answers.when].join(' | ');
+  const book = CAL + '?' + new URLSearchParams(Object.assign({ notes }, name ? { name } : {}, email ? { email } : {})).toString().replace(/\+/g, '%20');
+  const fixHtml = '<div class="fix"><h3>' + fix[0] + '</h3><ul>' + fix[1].map(x => '<li>' + x.replace('GUIDE', guide[1]) + '</li>').join('') + '</ul></div>';
+  let html;
+  if (tier === 'call') {
+    html = '<h2>This is worth 20 minutes</h2><p class="sub">You run a real process at a size where getting it right pays back quickly. Book a free 20-minute review: we\'ll look at <b>' + answers.automate.toLowerCase() + '</b> end to end and work out the first fix. Your answers go with the booking, so we start straight away.</p>'
+      + '<a class="cta" id="bookBtn" href="' + book + '" target="_blank" rel="noopener">Book my free 20-minute review →</a>'
+      + fixHtml + '<p class="sub" style="margin-top:4px">Want to keep going on your own meanwhile? The <a class="inl" href="' + guide[1] + '">' + guide[0] + '</a> guide has every step.</p>';
+  } else if (tier === 'maybe') {
+    html = '<h2>Here\'s how to get unstuck</h2><p class="sub">Start with the fix below and the <a class="inl" href="' + guide[1] + '">' + guide[0] + '</a> guide. Most people at your stage get it working in an afternoon.</p>' + fixHtml
+      + '<a class="cta-ghost" id="bookBtn" href="' + book + '" target="_blank" rel="noopener">Still stuck? Book a free 20-minute review</a>';
+  } else {
+    html = '<h2>Here\'s how to get unstuck</h2><p class="sub">The fix below solves most cases like yours, and the <a class="inl" href="' + guide[1] + '">' + guide[0] + '</a> guide has every step.</p>' + fixHtml
+      + '<div class="fix"><h3>Keep learning</h3><ul><li>Make\'s free <a href="https://academy.make.com/">Make Academy</a> courses cover filters, routers and data stores.</li><li>Get a new tested blueprint each week: <a href="https://www.gantry.work/subscribe?utm_source=automation-help">subscribe to The Gantry</a> (free).</li></ul></div>';
+  }
+  const r = document.getElementById('result'); r.innerHTML = html; i = qs.length - 1; show();
+  document.getElementById('bar').style.width = '100%';
+  try { gtag('event', 'automation_help_complete', { tier, from: FROM, automate: answers.automate, stuck: answers.stuck }); } catch (e) {}
+  const b = document.getElementById('bookBtn'); if (b) b.addEventListener('click', () => { try { gtag('event', 'automation_help_book_click', { tier, from: FROM }); } catch (e) {} });
+}
+show();
+</script>
+</body>
+</html>
