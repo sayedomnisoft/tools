@@ -1,14 +1,229 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-        "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-        <title>Error response</title>
-    </head>
-    <body>
-        <h1>Error response</h1>
-        <p>Error code: 404</p>
-        <p>Message: File not found.</p>
-        <p>Error code explanation: HTTPStatus.NOT_FOUND - Nothing matches the given URI.</p>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Make.com Credit Calculator: Which Plan Do You Need? — The Gantry</title>
+<meta name="description" content="Work out how many Make.com credits a scenario uses each month, which plan you need and what it costs. Free calculator with presets for common small-business automations.">
+<meta property="og:title" content="Make.com Credit Calculator — The Gantry">
+<meta property="og:description" content="How many Make credits will your automation use, and which plan do you need? Free, no signup.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="shared.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://tools.gantry.work/make-credit-calculator.html">
+<meta property="og:url" content="https://tools.gantry.work/make-credit-calculator.html">
+<meta property="og:site_name" content="The Gantry">
+<meta property="og:locale" content="en_SG">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="author" content="Sayed Rashid">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<style>
+  .presets { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px; }
+  .presets button { padding:8px 12px; font-size:13px; font-weight:600; color:#fff; background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.2); border-radius:999px; cursor:pointer; font-family:inherit; }
+  .presets button:hover, .presets button.on { border-color:var(--gold-light); color:var(--gold-light); }
+  .seg { display:flex; gap:8px; }
+  .seg label { flex:1; margin:0; padding:12px; text-align:center; font-weight:600; font-size:14px; border-radius:10px; cursor:pointer;
+    background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.2); }
+  .seg input { display:none; }
+  .seg input:checked + span { color:var(--gold-light); }
+  .seg label:has(input:checked) { border-color:var(--gold-light); background:rgba(242,207,110,0.12); }
+  .two { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .check { display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; margin:4px 0 0; cursor:pointer; }
+  .check input { width:18px; height:18px; accent-color:#c9a227; }
+  .res { margin-top:26px; padding-top:22px; border-top:1px solid rgba(255,255,255,0.14); }
+  .plan { font-size:22px; font-weight:800; margin:6px 0 2px; }
+  .price { color:var(--muted); font-size:14.5px; }
+  .tip { margin-top:16px; padding:14px 16px; border-radius:12px; background:rgba(242,207,110,0.1); border:1px solid rgba(242,207,110,0.35); font-size:14px; line-height:1.55; }
+  .warn { margin-top:12px; font-size:13.5px; color:#ffb4a8; line-height:1.5; }
+  .disc { font-size:12px; color:rgba(255,255,255,0.6); margin-top:10px; line-height:1.5; }
+  @media (max-width:480px){ .two { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="brand"><a href="index.html">← THE GANTRY · TOOLS</a></div>
+  <h1>Make.com Credit Calculator</h1>
+  <p class="sub">How many credits will your automation use each month, and which Make plan do you need? Pick a preset from my guides or enter your own scenario. Prices checked September 2026, in US dollars.</p>
+
+  <div class="presets" id="presets">
+    <button data-p="gmail">Gmail → Drive filing</button>
+    <button data-p="shopify">Shopify → QuickBooks</button>
+    <button data-p="stripe">Stripe → QuickBooks</button>
+    <button data-p="po">Purchase orders</button>
+    <button data-p="reminders">Xero invoice reminders</button>
+  </div>
+
+  <div class="field">
+    <label>How does the scenario start?
+      <small>Instant triggers (webhooks, Stripe, Jotform) only run when something happens. Scheduled ones check on a timer and use a credit every check.</small>
+    </label>
+    <div class="seg">
+      <label><input type="radio" name="trig" value="poll" checked><span>On a schedule</span></label>
+      <label><input type="radio" name="trig" value="instant"><span>Instant</span></label>
+    </div>
+  </div>
+
+  <div id="pollBox">
+    <div class="field">
+      <label for="interval">How often does it check?</label>
+      <select id="interval">
+        <option value="1">Every minute</option>
+        <option value="5">Every 5 minutes</option>
+        <option value="15">Every 15 minutes</option>
+        <option value="30">Every 30 minutes</option>
+        <option value="60" selected>Every hour</option>
+        <option value="120">Every 2 hours</option>
+        <option value="day">Once a day</option>
+      </select>
+      <label class="check"><input type="checkbox" id="office"> Office hours only (Mon–Fri, 08:00–18:00)</label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="items">Items processed per month
+      <small>Orders, invoices, emails, form entries, rows: whatever the scenario handles one at a time.</small>
+    </label>
+    <input type="number" id="items" min="0" value="300">
+  </div>
+
+  <div class="two">
+    <div class="field">
+      <label for="steps">Steps per item
+        <small>Modules after the trigger that run once per item.</small>
+      </label>
+      <input type="number" id="steps" min="0" value="4">
+    </div>
+    <div class="field">
+      <label for="scen">Scenarios like this
+        <small>Run several similar ones? Multiply.</small>
+      </label>
+      <input type="number" id="scen" min="1" value="1">
+    </div>
+  </div>
+
+  <div class="two">
+    <div class="field">
+      <label for="lines">Lines per item (optional)
+        <small>E.g. products per order, if a loop runs per line.</small>
+      </label>
+      <input type="number" id="lines" min="0" value="0">
+    </div>
+    <div class="field">
+      <label for="lineSteps">Steps per line
+        <small>Modules inside that loop.</small>
+      </label>
+      <input type="number" id="lineSteps" min="0" value="0">
+    </div>
+  </div>
+
+  <div class="res" id="res">
+    <div class="result-label">CREDITS PER MONTH</div>
+    <div class="big-num" id="total">0</div>
+    <div class="rows">
+      <div class="row"><span>Trigger checks or runs</span><span id="rTrig">—</span></div>
+      <div class="row"><span>Work on your items</span><span id="rWork">—</span></div>
+      <div class="row"><span>Share of the total that is checking</span><span id="rShare">—</span></div>
+    </div>
+    <div class="result-label">PLAN YOU NEED</div>
+    <div class="plan" id="plan">—</div>
+    <div class="price" id="price"></div>
+    <div class="warn" id="warn"></div>
+    <div class="tip" id="tip"></div>
+    <a class="cta" id="makeBtn" href="https://www.make.com/en/register?pc=gntrywk" target="_blank" rel="sponsored noopener" style="margin-top:20px">Start free on Make</a>
+    <p class="disc">Affiliate link: if you sign up through it, The Gantry may earn a commission at no extra cost to you. Free plan: 1,000 credits a month, 2 active scenarios, checks no more often than every 15 minutes. Most modules use 1 credit per run; AI modules and some apps use more. See <a href="https://www.gantry.work/p/make-pricing-review">how Make counts credits</a>.</p>
+    <a class="cta-ghost" href="https://tools.gantry.work/automation-help/?from=make-calculator">Not sure how to build it? Tell me what you want to automate</a>
+  </div>
+
+  <div class="footer" id="baseFooter">
+    <a href="index.html">All free tools</a> · <a href="https://www.gantry.work/p/make-pricing-review">Make pricing guide</a> · <a href="https://www.gantry.work">The Gantry</a>
+  </div>
+
+  <div class="byline">
+    <img src="sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
+    <div class="who">
+      <div class="nm">Sayed Rashid</div>
+      <div class="rl">I build automations and ERP systems for small businesses, and write step-by-step guides at The Gantry.</div>
+    </div>
+    <a class="li" href="https://www.linkedin.com/in/sayedomni" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+      Connect on LinkedIn
+    </a>
+  </div>
+</div>
+
+<script>
+// Make Core tiers, US$ per month (annual billing, monthly billing), checked September 2026.
+const CORE = [[10000, 9, 10.59], [20000, 16, 18.82], [40000, 29, 34.12], [80000, 55, 64.71], [150000, 99, 116.47]];
+const PRESETS = {
+  gmail:     { trig: 'poll', interval: '120', office: false, items: 150, steps: 4, scen: 1, lines: 0, lineSteps: 0, guide: 'https://www.gantry.work/p/save-gmail-attachments-to-google-drive' },
+  shopify:   { trig: 'poll', interval: '60', office: false, items: 300, steps: 5, scen: 1, lines: 2, lineSteps: 1, guide: 'https://www.gantry.work/p/shopify-to-quickbooks' },
+  stripe:    { trig: 'instant', interval: '60', office: false, items: 200, steps: 5, scen: 1, lines: 0, lineSteps: 0, guide: 'https://www.gantry.work/p/stripe-to-quickbooks' },
+  po:        { trig: 'poll', interval: '60', office: true, items: 100, steps: 4, scen: 1, lines: 0, lineSteps: 0, guide: 'https://www.gantry.work/p/purchase-order-template-google-sheets' },
+  reminders: { trig: 'poll', interval: 'day', office: true, items: 60, steps: 4, scen: 1, lines: 0, lineSteps: 0, guide: 'https://www.gantry.work/p/xero-invoice-reminders-automation' }
+};
+const $ = id => document.getElementById(id);
+const fmt = n => Math.round(n).toLocaleString('en-SG');
+let guide = null;
+
+function runsPerMonth(interval, office) {
+  if (interval === 'day') return office ? 22 : 30;
+  const minutes = office ? 22 * 10 * 60 : 30 * 24 * 60;
+  return Math.ceil(minutes / +interval);
+}
+function calc(fromUser) {
+  if (fromUser) { guide = null; document.querySelectorAll('#presets button').forEach(b => b.classList.remove('on')); }
+  const trig = document.querySelector('input[name=trig]:checked').value;
+  $('pollBox').style.display = trig === 'poll' ? '' : 'none';
+  const items = Math.max(0, +$('items').value || 0), steps = Math.max(0, +$('steps').value || 0);
+  const scen = Math.max(1, +$('scen').value || 1), lines = Math.max(0, +$('lines').value || 0), lineSteps = Math.max(0, +$('lineSteps').value || 0);
+  const interval = $('interval').value, office = $('office').checked;
+  const runs = trig === 'poll' ? runsPerMonth(interval, office) : items;
+  const perItem = steps + lines * lineSteps;
+  const trigC = runs * scen, work = items * perItem * scen, total = trigC + work;
+  $('total').textContent = fmt(total);
+  $('rTrig').textContent = fmt(trigC) + ' credits';
+  $('rWork').textContent = fmt(work) + ' credits';
+  $('rShare').textContent = total ? Math.round(trigC / total * 100) + '%' : '—';
+
+  const tooFast = trig === 'poll' && interval !== 'day' && +interval < 15;
+  let plan, price, warn = '';
+  if (total <= 1000 && !tooFast && scen <= 2) { plan = 'Free plan'; price = 'US$0 a month, 1,000 credits'; }
+  else {
+    const tier = CORE.find(t => t[0] >= total);
+    if (tier) { plan = 'Core, ' + fmt(tier[0]) + ' credits'; price = 'US$' + tier[1] + ' a month billed yearly, or US$' + tier[2].toFixed(2) + ' billed monthly'; }
+    else { plan = 'More than 150,000 credits'; price = 'Talk to Make about a larger plan, or cut the checking (see below).'; }
+    if (tooFast) warn = 'The free plan cannot check more often than every 15 minutes, so this needs a paid plan whatever the credits.';
+    else if (scen > 2 && total <= 1000) warn = 'The free plan allows only 2 active scenarios, so this needs Core even though the credits would fit.';
+  }
+  $('plan').textContent = plan; $('price').textContent = price; $('warn').textContent = warn;
+
+  let tip = '';
+  if (trig === 'poll' && interval !== 'day') {
+    const alt = runsPerMonth('60', true) * scen + work;
+    if (alt < total * 0.8) tip = '<b>Save credits:</b> checking hourly during office hours instead would use about <b>' + fmt(alt) + '</b> credits a month, ' + Math.round((1 - alt / total) * 100) + '% less. Most small-business jobs do not need faster than that.';
+    else tip = 'Your schedule is already efficient: most of the credits go on real work, not on checking.';
+  } else if (trig === 'instant') tip = 'Instant triggers cost nothing while they wait, so you only pay for real work. Use them wherever the app offers one.';
+  else tip = 'A daily run is the cheapest schedule there is. Good for reminders and reports.';
+  if (guide) tip += ' <a href="' + guide + '">Open the step-by-step guide for this automation</a>.';
+  $('tip').innerHTML = tip;
+}
+function applyPreset(k) {
+  const p = PRESETS[k];
+  document.querySelector('input[name=trig][value=' + p.trig + ']').checked = true;
+  $('interval').value = p.interval; $('office').checked = p.office; $('items').value = p.items; $('steps').value = p.steps;
+  $('scen').value = p.scen; $('lines').value = p.lines; $('lineSteps').value = p.lineSteps;
+  guide = p.guide; calc(false);
+  document.querySelectorAll('#presets button').forEach(b => b.classList.toggle('on', b.dataset.p === k));
+  try { gtag('event', 'make_calc_preset', { preset: k }); } catch (e) {}
+}
+document.querySelectorAll('#presets button').forEach(b => b.addEventListener('click', () => applyPreset(b.dataset.p)));
+document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', () => calc(true)));
+$('makeBtn').addEventListener('click', () => { try { gtag('event', 'make_calc_signup_click', { credits: $('total').textContent, plan: $('plan').textContent }); } catch (e) {} });
+calc(false);
+</script>
+</body>
 </html>
