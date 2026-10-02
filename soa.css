@@ -40,7 +40,7 @@ table.pi td { padding:7px 8px; border-bottom:1px solid #e3e5ef; vertical-align:t
 table.pp-age { width:100%; border-collapse:collapse; margin-top:16px; font-size:11.5px; }
 table.pp-age th { font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:#666b85; padding:6px; border:1px solid #e3e5ef; background:#f5f6fa; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
 table.pp-age td { padding:7px 6px; border:1px solid #e3e5ef; text-align:center; white-space:nowrap; }
-.pp-made { margin-top:24px; font-size:9.5px; color:#9a9eb5; text-align:center; }
+.pp-made { margin-top:24px; font-size:9.5px; color:#5f6480; text-align:center; }
 #printroot { display:none; }
 @media (max-width:560px) {
   .g2 { grid-template-columns:1fr; }
