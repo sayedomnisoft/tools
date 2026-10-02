@@ -113,6 +113,13 @@ button.ghost:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
    higher specificity and are unaffected. */
 a { color: var(--gold-light); }
 a:visited { color: var(--gold-light); }
+/* Buttons and cards keep their own colours after a visit (a:visited above would otherwise win) */
+a.cta, a.cta:visited, a.cta:hover { color: var(--ink); }
+a.cta-ghost, a.cta-ghost:visited { color: #fff; }
+a.cta-ghost:hover { color: var(--gold-light); }
+.bookstrip a.bk, .bookstrip a.bk:visited { color: var(--ink); }
+.byline .li, .byline .li:visited, .booked .li-big, .booked .li-big:visited { color: #fff; }
+.tool-list a, .tool-list a:visited { color: #fff; }
 p a, li a, td a, .lead a, .sub a, .note a, .official a, .body a {
   color: var(--gold-light);
   text-decoration: underline;
