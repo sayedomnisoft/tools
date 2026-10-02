@@ -162,3 +162,6 @@ a:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; bor
   padding: 14px 24px; border-radius: 11px; transition: filter .12s; }
 .booked .li-big:hover { filter: brightness(1.12); color: #fff; }
 .booked .li-big svg { width: 18px; height: 18px; fill: currentColor; }
+
+/* --- guide sections on tool pages --- */
+.guide{margin-top:26px;font-size:15px;line-height:1.65;color:rgba(255,255,255,.88);text-align:left}.guide h2{margin:22px 0 8px;font-size:19px;color:#fff}.guide p{margin-bottom:10px}.guide ul,.guide ol{margin:0 0 12px 20px}.guide li{margin-bottom:4px}.guide a{color:#f2cf6e}
