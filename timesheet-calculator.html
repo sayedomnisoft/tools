@@ -3,12 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Timesheet Calculator: Hours, Breaks, Overtime and Pay — The Gantry</title>
+<title>Free Timesheet Calculator with Overtime | The Gantry</title>
 <meta name="description" content="Free weekly timesheet calculator. Enter start and end times and breaks, get total hours in hours:minutes and decimal, overtime and pay. Overnight shifts, print and CSV export. No signup.">
-<meta property="og:title" content="Free Timesheet Calculator: Hours, Breaks, Overtime and Pay">
+<meta property="og:title" content="Free Timesheet Calculator with Overtime">
 <meta property="og:description" content="Weekly hours, breaks, overtime and pay in seconds. Print or export. Free, no signup.">
+<meta property="og:image" content="https://tools.gantry.work/og/timesheet-calculator.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tools.gantry.work/og/timesheet-calculator.jpg">
 <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="shared.css">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -18,13 +22,7 @@
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
 <meta name="author" content="Sayed Rashid">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[
-{"@type":"WebApplication","name":"Timesheet Calculator","url":"https://tools.gantry.work/timesheet-calculator.html","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"The Gantry","url":"https://www.gantry.work"}},
-{"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"How do I calculate hours worked?","acceptedAnswer":{"@type":"Answer","text":"Subtract the start time from the end time, then subtract unpaid breaks. 8:30am to 5:45pm with a 45-minute lunch is 9 hours 15 minutes minus 45 minutes, which is 8 hours 30 minutes, or 8.5 hours."}},
-{"@type":"Question","name":"How do I convert minutes to decimal hours?","acceptedAnswer":{"@type":"Answer","text":"Divide the minutes by 60. 15 minutes is 0.25 hours, 30 minutes is 0.5, 45 minutes is 0.75, and 20 minutes is 0.33."}},
-{"@type":"Question","name":"How is overtime calculated?","acceptedAnswer":{"@type":"Answer","text":"Hours above the overtime threshold are paid at a higher rate, usually 1.5 times the hourly rate. In Singapore, employees covered by Part IV of the Employment Act are paid at least 1.5 times for work beyond 44 hours a week; in the US the federal rule is over 40 hours a week."}},
-{"@type":"Question","name":"Does the calculator handle overnight shifts?","acceptedAnswer":{"@type":"Answer","text":"Yes. If the end time is earlier than the start time, the shift is treated as ending the next day, so 10pm to 6am counts as 8 hours."}}]}]}
+{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Timesheet Calculator", "url": "https://tools.gantry.work/timesheet-calculator.html", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "The Gantry", "url": "https://www.gantry.work"}, "dateModified": "2026-10-02", "image": "https://tools.gantry.work/og/timesheet-calculator.jpg", "isAccessibleForFree": true}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I calculate hours worked?", "acceptedAnswer": {"@type": "Answer", "text": "Subtract the start time from the end time, then subtract unpaid breaks. 8:30am to 5:45pm with a 45-minute lunch is 9 hours 15 minutes minus 45 minutes, which is 8 hours 30 minutes, or 8.5 hours."}}, {"@type": "Question", "name": "How do I convert minutes to decimal hours?", "acceptedAnswer": {"@type": "Answer", "text": "Divide the minutes by 60. 15 minutes is 0.25 hours, 30 minutes is 0.5, 45 minutes is 0.75, and 20 minutes is 0.33."}}, {"@type": "Question", "name": "How is overtime calculated?", "acceptedAnswer": {"@type": "Answer", "text": "Hours above the overtime threshold are paid at a higher rate, usually 1.5 times the hourly rate. In Singapore, employees covered by Part IV of the Employment Act are paid at least 1.5 times for work beyond 44 hours a week; in the US the federal rule is over 40 hours a week."}}, {"@type": "Question", "name": "Does the calculator handle overnight shifts?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. If the end time is earlier than the start time, the shift is treated as ending the next day, so 10pm to 6am counts as 8 hours."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Free tools", "item": "https://tools.gantry.work/"}, {"@type": "ListItem", "position": 2, "name": "Timesheet Calculator", "item": "https://tools.gantry.work/timesheet-calculator.html"}]}]}
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
