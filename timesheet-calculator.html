@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Timesheet Calculator: Hours, Breaks, Overtime and Pay — The Gantry</title>
+<meta name="description" content="Free weekly timesheet calculator. Enter start and end times and breaks, get total hours in hours:minutes and decimal, overtime and pay. Overnight shifts, print and CSV export. No signup.">
+<meta property="og:title" content="Free Timesheet Calculator: Hours, Breaks, Overtime and Pay">
+<meta property="og:description" content="Weekly hours, breaks, overtime and pay in seconds. Print or export. Free, no signup.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="shared.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://tools.gantry.work/timesheet-calculator.html">
+<meta property="og:url" content="https://tools.gantry.work/timesheet-calculator.html">
+<meta property="og:site_name" content="The Gantry">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="author" content="Sayed Rashid">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"Timesheet Calculator","url":"https://tools.gantry.work/timesheet-calculator.html","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"The Gantry","url":"https://www.gantry.work"}},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I calculate hours worked?","acceptedAnswer":{"@type":"Answer","text":"Subtract the start time from the end time, then subtract unpaid breaks. 8:30am to 5:45pm with a 45-minute lunch is 9 hours 15 minutes minus 45 minutes, which is 8 hours 30 minutes, or 8.5 hours."}},
+{"@type":"Question","name":"How do I convert minutes to decimal hours?","acceptedAnswer":{"@type":"Answer","text":"Divide the minutes by 60. 15 minutes is 0.25 hours, 30 minutes is 0.5, 45 minutes is 0.75, and 20 minutes is 0.33."}},
+{"@type":"Question","name":"How is overtime calculated?","acceptedAnswer":{"@type":"Answer","text":"Hours above the overtime threshold are paid at a higher rate, usually 1.5 times the hourly rate. In Singapore, employees covered by Part IV of the Employment Act are paid at least 1.5 times for work beyond 44 hours a week; in the US the federal rule is over 40 hours a week."}},
+{"@type":"Question","name":"Does the calculator handle overnight shifts?","acceptedAnswer":{"@type":"Answer","text":"Yes. If the end time is earlier than the start time, the shift is treated as ending the next day, so 10pm to 6am counts as 8 hours."}}]}]}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<style>
+  .card { max-width: 860px; }
+  .set { display:grid; grid-template-columns: repeat(4, 1fr); gap:10px; margin-bottom:16px; }
+  .set label { font-size:12.5px; margin-bottom:5px; }
+  input[type=text], input[type=number], input[type=time], input[type=date] { width:100%; padding:10px 11px; font-size:15px; color:#fff; font-family:inherit; background:rgba(255,255,255,0.09); border:1px solid rgba(255,255,255,0.2); border-radius:9px; color-scheme: dark; }
+  input:focus { outline:none; border-color:var(--gold-light); }
+  table.ts { width:100%; border-collapse:collapse; font-size:14px; }
+  table.ts th { text-align:left; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--gold-light); padding:6px 6px; }
+  table.ts td { padding:5px 6px; border-top:1px solid rgba(255,255,255,0.1); vertical-align:middle; }
+  table.ts td.day { font-weight:700; white-space:nowrap; } table.ts td.day small { display:block; font-weight:400; color:var(--muted); font-size:11.5px; }
+  table.ts td.h { text-align:right; font-weight:700; white-space:nowrap; } table.ts td.h small { display:block; font-weight:400; color:var(--muted); font-size:11.5px; }
+  .brk { width:76px !important; }
+  .totals { display:grid; grid-template-columns: repeat(4, 1fr); gap:10px; margin:18px 0; }
+  .tot { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.16); border-radius:12px; padding:12px; }
+  .tot b { display:block; font-size:22px; color:var(--gold-light); } .tot span { font-size:12px; color:var(--muted); }
+  .acts { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:6px; }
+  .acts button { flex:1; min-width:120px; padding:11px; font-size:13.5px; font-weight:700; border-radius:9px; cursor:pointer; font-family:inherit; background:transparent; color:#fff; border:1px solid rgba(255,255,255,0.3); }
+  .acts button.b1 { background:linear-gradient(180deg,var(--gold-light),var(--gold)); color:#14142a; border:none; }
+  .auto { margin:24px 0 8px; padding:20px; border-radius:16px; background:linear-gradient(135deg, rgba(201,162,39,0.18), rgba(42,47,176,0.18)); border:1px solid rgba(242,207,110,0.5); }
+  .auto h2 { margin-bottom:8px; } .auto p { font-size:14.5px; line-height:1.55; color:rgba(255,255,255,0.88); margin-bottom:12px; }
+  .disc { font-size:12px; color:rgba(255,255,255,0.6); margin-top:8px; line-height:1.5; }
+  .guide { margin-top:26px; font-size:15px; line-height:1.65; color:rgba(255,255,255,0.88); }
+  .guide h2 { margin:22px 0 8px; font-size:19px; } .guide p { margin-bottom:10px; }
+  .guide table { width:100%; border-collapse:collapse; font-size:14px; margin:6px 0 12px; } .guide td, .guide th { border-top:1px solid rgba(255,255,255,0.12); padding:6px 8px; text-align:left; }
+  .gate { position:fixed; inset:0; background:rgba(5,7,30,0.82); display:flex; align-items:center; justify-content:center; padding:18px; z-index:50; }
+  .gate.hidden { display:none; }
+  .gate .box { max-width:520px; width:100%; background:#14163f; border:1px solid rgba(242,207,110,0.5); border-radius:18px; padding:24px; }
+  .gate iframe { width:100%; height:150px; border:0; border-radius:10px; background:#fff; margin:12px 0; }
+  @media (max-width:640px){ .set, .totals { grid-template-columns: 1fr 1fr; }
+    table.ts { table-layout: fixed; font-size:13px; } table.ts th { font-size:10.5px; padding:4px 3px; } table.ts td { padding:4px 3px; }
+    table.ts th:nth-child(1) { width:48px; } table.ts th:nth-child(4) { width:50px; } table.ts th:nth-child(5) { width:54px; }
+    input[type=time] { padding:8px 4px; font-size:13px; min-width:0; } input[type=time]::-webkit-calendar-picker-indicator { display:none; }
+    .brk { width:100% !important; padding:8px 4px !important; font-size:13px !important; } }
+  @media print {
+    body { background:#fff !important; color:#000 !important; padding:0 !important; }
+    .card { background:#fff !important; color:#000 !important; box-shadow:none !important; border:none !important; max-width:none; }
+    .noprint, .auto, .guide, .footer, .byline, .brand, .sub, .gate { display:none !important; }
+    input { color:#000 !important; background:#fff !important; border:1px solid #999 !important; color-scheme: light; }
+    table.ts th, .tot b { color:#000 !important; } .tot { border:1px solid #999 !important; background:#fff !important; } .tot span, table.ts td small { color:#333 !important; }
+    h1 { color:#000; font-size:20px; } .printhead { display:block !important; }
+  }
+  .printhead { display:none; margin-bottom:8px; font-size:13px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="brand"><a href="index.html">← THE GANTRY · TOOLS</a></div>
+  <h1>Timesheet Calculator</h1>
+  <p class="sub">Enter start and finish times and unpaid breaks for the week. You get the hours for each day in hours:minutes and decimal, the weekly total, overtime and pay. Overnight shifts work. Free, no signup, nothing leaves your browser.</p>
+  <div class="printhead" id="printhead"></div>
+
+  <div class="set">
+    <div><label for="emp">Employee</label><input type="text" id="emp" placeholder="Name"></div>
+    <div><label for="wk">Week starting</label><input type="date" id="wk"></div>
+    <div><label for="rate">Hourly rate</label><input type="number" id="rate" min="0" step="0.01" placeholder="e.g. 12.50"></div>
+    <div><label for="cur">Currency</label><input type="text" id="cur" value="S$" maxlength="4"></div>
+    <div><label for="otw">Overtime after (hours / week)</label><input type="number" id="otw" min="0" step="0.5" value="44"></div>
+    <div><label for="otd">…or after (hours / day)</label><input type="number" id="otd" min="0" step="0.5" placeholder="off"></div>
+    <div><label for="otx">Overtime rate (×)</label><input type="number" id="otx" min="1" step="0.25" value="1.5"></div>
+    <div><label for="defbrk">Default break (min)</label><input type="number" id="defbrk" min="0" step="5" value="60"></div>
+  </div>
+
+  <table class="ts">
+    <thead><tr><th>Day</th><th>Start</th><th>Finish</th><th>Break (min)</th><th class="h">Hours</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+
+  <div class="totals">
+    <div class="tot"><b id="tTot">0:00</b><span>Total hours (<span id="tDec">0.00</span>)</span></div>
+    <div class="tot"><b id="tReg">0:00</b><span>Regular hours</span></div>
+    <div class="tot"><b id="tOt">0:00</b><span>Overtime hours</span></div>
+    <div class="tot"><b id="tPay">—</b><span>Gross pay</span></div>
+  </div>
+
+  <div class="acts noprint">
+    <button class="b1" id="fillBtn">Fill Mon–Fri 9:00–18:00</button>
+    <button id="printBtn">Print or save PDF</button>
+    <button id="csvBtn">Download CSV</button>
+    <button id="copyBtn">Copy summary</button>
+    <button id="clearBtn">Clear</button>
+  </div>
+
+  <div class="auto noprint">
+    <h2>Collecting timesheets from the whole team every week?</h2>
+    <p>Chasing people for their hours, retyping them into a spreadsheet and adding up overtime by hand is the kind of job a free automation does better. Staff submit hours in a form, a Make scenario puts them in one sheet, reminds whoever hasn't submitted by Friday, and emails you the weekly totals.</p>
+    <a class="cta" id="guideBtn" href="https://www.gantry.work/p/excel-automation-small-business" target="_blank" rel="noopener">See how small businesses automate this</a>
+    <a class="cta-ghost" id="makeBtn" href="https://www.make.com/en/register?pc=gntrywk" target="_blank" rel="sponsored noopener">Start free on Make</a>
+    <p class="disc">Affiliate link: if you sign up to Make through it, The Gantry may earn a commission at no extra cost to you. Running payroll, leave and timesheets in three different places? <a id="reviewLink" href="https://tools.gantry.work/review.html?utm_source=tools&utm_medium=timesheet-calculator" target="_blank" rel="noopener">Book a free 20-minute systems review</a>.</p>
+  </div>
+
+  <div class="guide noprint">
+    <h2>How to calculate hours worked</h2>
+    <p>Take the finish time, subtract the start time, then subtract unpaid breaks. A shift from 8:30am to 5:45pm is 9 hours 15 minutes; minus a 45-minute lunch, that is 8 hours 30 minutes, or 8.5 hours. If the finish time is earlier than the start time, the shift ran past midnight: 10pm to 6am is 8 hours.</p>
+    <h2>Minutes to decimal hours</h2>
+    <p>Payroll and invoices usually need decimal hours. Divide the minutes by 60:</p>
+    <table style="max-width:320px"><tr><th>Minutes</th><th>Decimal hours</th></tr><tr><td>5</td><td>0.08</td></tr><tr><td>10</td><td>0.17</td></tr><tr><td>15</td><td>0.25</td></tr><tr><td>20</td><td>0.33</td></tr><tr><td>30</td><td>0.50</td></tr><tr><td>40</td><td>0.67</td></tr><tr><td>45</td><td>0.75</td></tr><tr><td>50</td><td>0.83</td></tr></table>
+    <h2>Overtime rules</h2>
+    <p><b>Singapore:</b> for employees covered by Part IV of the Employment Act, normal hours are up to 44 a week, and overtime is paid at no less than 1.5 times the basic hourly rate. <b>United States:</b> the federal rule is 1.5 times for hours over 40 in a week, and some states also count daily overtime, which is what the "after hours / day" setting is for. Check the rules that apply to your employees; this calculator does the arithmetic, not the legal advice.</p>
+    <h2>Questions</h2>
+    <p><b>Does it save my data?</b> Your entries are kept in your own browser so they are still there if you come back, and never sent anywhere. Clear removes them.</p>
+    <p><b>Can I use it for invoicing clients?</b> Yes: set the hourly rate to your billing rate, overtime to 0 or off, and use the decimal total on the invoice.</p>
+  </div>
+
+  <div class="footer" id="baseFooter"><a href="index.html">All free tools</a> · <a href="https://www.gantry.work">The Gantry</a></div>
+</div>
+
+<div class="gate hidden" id="gate"><div class="box">
+  <div class="result-label">YOU'VE USED THIS 3 TIMES</div>
+  <h2>Clearly a weekly job.</h2>
+  <p class="sub" style="margin-bottom:6px">Get one automation you can set up yourself each week, free, from The Gantry newsletter. Then keep using this calculator as much as you like.</p>
+  <iframe src="https://www.gantry.work/embed" title="Subscribe to The Gantry" scrolling="no"></iframe>
+  <button class="primary" id="gateDone">Continue</button>
+  <button class="ghost" id="gateSkip" style="margin-top:10px">Not now</button>
+</div></div>
+
+<script>
+const $ = id => document.getElementById(id);
+const ev = (n, p) => { try { gtag('event', n, p || {}); } catch (e) {} };
+const store = { get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : v; } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+function monday(d) { const x = new Date(d); x.setHours(0, 0, 0, 0); const k = (x.getDay() + 6) % 7; x.setDate(x.getDate() - k); return x; }
+function iso(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+function hm(min) { min = Math.round(min); return Math.floor(min / 60) + ':' + String(min % 60).padStart(2, '0'); }
+function dec(min) { return (min / 60).toFixed(2); }
+function toMin(t) { if (!t) return null; const [h, m] = t.split(':').map(Number); return h * 60 + m; }
+
+const rowsEl = $('rows');
+DAYS.forEach((d, i) => {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td class="day">${d}<small id="dt${i}"></small></td><td><input type="time" id="s${i}"></td><td><input type="time" id="e${i}"></td><td><input type="number" class="brk" id="b${i}" min="0" step="5" placeholder="0"></td><td class="h" id="h${i}">–<small></small></td>`;
+  rowsEl.appendChild(tr);
+});
+const FIELDS = ['emp', 'wk', 'rate', 'cur', 'otw', 'otd', 'otx', 'defbrk'].concat(DAYS.flatMap((_, i) => ['s' + i, 'e' + i, 'b' + i]));
+let saved = {}; try { saved = JSON.parse(store.get('ts_state', '{}')); } catch (e) {}
+FIELDS.forEach(f => { if (saved[f] !== undefined && saved[f] !== '') $(f).value = saved[f]; });
+if (!$('wk').value) $('wk').value = iso(monday(new Date()));
+
+let counted = false;
+function calc() {
+  const st = {}; FIELDS.forEach(f => st[f] = $(f).value); store.set('ts_state', JSON.stringify(st));
+  const start = $('wk').value ? monday(new Date($('wk').value + 'T00:00:00')) : monday(new Date());
+  const otd = parseFloat($('otd').value), otw = parseFloat($('otw').value), otx = parseFloat($('otx').value) || 1.5, rate = parseFloat($('rate').value), cur = $('cur').value || '';
+  let total = 0, dailyOt = 0; const per = [];
+  DAYS.forEach((_, i) => {
+    const d = new Date(start); d.setDate(start.getDate() + i);
+    $('dt' + i).textContent = d.toLocaleDateString('en-SG', { day: 'numeric', month: 'short' });
+    const s = toMin($('s' + i).value), e = toMin($('e' + i).value);
+    let mins = 0;
+    if (s !== null && e !== null) {
+      mins = e - s; if (mins <= 0) mins += 1440;
+      mins -= Math.max(0, parseFloat($('b' + i).value) || 0); if (mins < 0) mins = 0;
+      $('h' + i).innerHTML = hm(mins) + '<small>' + dec(mins) + ' h</small>';
+    } else $('h' + i).innerHTML = '–<small></small>';
+    per.push(mins); total += mins;
+    if (otd > 0 && mins > otd * 60) dailyOt += mins - otd * 60;
+  });
+  let ot = dailyOt;
+  if (otw > 0) { const regSoFar = total - dailyOt; if (regSoFar > otw * 60) ot += regSoFar - otw * 60; }
+  const reg = total - ot;
+  $('tTot').textContent = hm(total); $('tDec').textContent = dec(total); $('tReg').textContent = hm(reg); $('tOt').textContent = hm(ot);
+  $('tPay').textContent = rate > 0 ? cur + (reg / 60 * rate + ot / 60 * rate * otx).toLocaleString('en-SG', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '—';
+  $('printhead').textContent = ($('emp').value ? $('emp').value + ' · ' : '') + 'Week starting ' + start.toLocaleDateString('en-SG', { day: 'numeric', month: 'long', year: 'numeric' });
+  if (total > 0 && !counted) { counted = true; countUse(); }
+  return { start, per, total, reg, ot, rate, otx, cur };
+}
+function countUse() {
+  const used = parseInt(store.get('tae_timesheet', '0'), 10) + 1; store.set('tae_timesheet', String(used));
+  ev('timesheet_use', { run: used });
+  if (used >= 4 && store.get('nl_subscribed', '') !== '1' && parseInt(store.get('ts_gate_skips', '0'), 10) < 2) { $('gate').classList.remove('hidden'); ev('timesheet_gate_shown', { run: used }); }
+}
+document.querySelectorAll('input').forEach(el => el.addEventListener('input', calc));
+$('defbrk').addEventListener('change', () => { DAYS.forEach((_, i) => { if ($('s' + i).value && $('b' + i).value === '') $('b' + i).value = $('defbrk').value; }); calc(); });
+DAYS.forEach((_, i) => $('s' + i).addEventListener('change', () => { if ($('b' + i).value === '' && $('defbrk').value) $('b' + i).value = $('defbrk').value; calc(); }));
+$('fillBtn').onclick = () => { for (let i = 0; i < 5; i++) { $('s' + i).value = '09:00'; $('e' + i).value = '18:00'; $('b' + i).value = $('defbrk').value || '60'; } calc(); ev('timesheet_fill'); };
+$('clearBtn').onclick = () => { DAYS.forEach((_, i) => { $('s' + i).value = ''; $('e' + i).value = ''; $('b' + i).value = ''; }); calc(); };
+$('printBtn').onclick = () => { calc(); ev('timesheet_print'); window.print(); };
+$('csvBtn').onclick = () => {
+  const r = calc(); const rows = [['Employee', $('emp').value], ['Week starting', iso(r.start)], [], ['Day', 'Date', 'Start', 'Finish', 'Break (min)', 'Hours (h:mm)', 'Hours (decimal)']];
+  DAYS.forEach((d, i) => { const dt = new Date(r.start); dt.setDate(r.start.getDate() + i); rows.push([d, iso(dt), $('s' + i).value, $('e' + i).value, $('b' + i).value, r.per[i] ? hm(r.per[i]) : '', r.per[i] ? dec(r.per[i]) : '']); });
+  rows.push([], ['Total', '', '', '', '', hm(r.total), dec(r.total)], ['Regular', '', '', '', '', hm(r.reg), dec(r.reg)], ['Overtime', '', '', '', '', hm(r.ot), dec(r.ot)]);
+  if (r.rate > 0) rows.push(['Gross pay (' + r.cur + ')', '', '', '', '', '', (r.reg / 60 * r.rate + r.ot / 60 * r.rate * r.otx).toFixed(2)]);
+  const csv = rows.map(x => x.map(v => '"' + String(v === undefined ? '' : v).replace(/"/g, '""') + '"').join(',')).join('\n');
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' })); a.download = 'timesheet-' + iso(r.start) + '.csv'; a.click(); ev('timesheet_csv');
+};
+$('copyBtn').onclick = async () => {
+  const r = calc(); const t = `${$('emp').value ? $('emp').value + ', ' : ''}week starting ${iso(r.start)}: ${hm(r.total)} (${dec(r.total)} h), regular ${hm(r.reg)}, overtime ${hm(r.ot)}${r.rate > 0 ? ', gross pay ' + $('tPay').textContent : ''}`;
+  try { await navigator.clipboard.writeText(t); $('copyBtn').textContent = 'Copied ✓'; } catch (e) {} ev('timesheet_copy');
+};
+$('gateDone').onclick = () => { store.set('nl_subscribed', '1'); $('gate').classList.add('hidden'); ev('timesheet_gate_done'); };
+$('gateSkip').onclick = () => { store.set('ts_gate_skips', String(parseInt(store.get('ts_gate_skips', '0'), 10) + 1)); $('gate').classList.add('hidden'); ev('timesheet_gate_skip'); };
+$('guideBtn').onclick = () => ev('timesheet_guide_click'); $('makeBtn').onclick = () => ev('timesheet_make_click'); $('reviewLink').onclick = () => ev('timesheet_review_click');
+calc();
+</script>
+</body>
+</html>
