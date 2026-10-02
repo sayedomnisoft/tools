@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp Business API Cost Calculator (Singapore 2026) — The Gantry</title>
+<meta name="description" content="Free WhatsApp Business API cost calculator. Enter your chats, order updates and broadcasts to see Meta's monthly charges in Singapore, the October 2026 change and provider plans.">
+<meta property="og:title" content="WhatsApp Business API Cost Calculator (Singapore 2026)">
+<meta property="og:description" content="Your monthly WhatsApp API bill in a minute: Meta's message charges, the October 2026 change and provider plans. Free.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="pricecalc.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://tools.gantry.work/whatsapp-api-cost-calculator.html">
+<meta property="og:url" content="https://tools.gantry.work/whatsapp-api-cost-calculator.html">
+<meta property="og:site_name" content="The Gantry">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="author" content="Sayed Rashid">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"WhatsApp Business API Cost Calculator","url":"https://tools.gantry.work/whatsapp-api-cost-calculator.html","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"The Gantry","url":"https://www.gantry.work"}},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How much does a WhatsApp Business API message cost in Singapore?","acceptedAnswer":{"@type":"Answer","text":"About S$0.0937 (US$0.0732) for a marketing message and S$0.0205 (US$0.016) for a utility or authentication message, per delivered message, for customers with Singapore numbers in 2026."}},
+{"@type":"Question","name":"Are replies to customers charged on the WhatsApp Business API?","acceptedAnswer":{"@type":"Answer","text":"Meta's developer documentation says that from 1 October 2026 replies inside the 24-hour customer service window are charged at the utility rate, while Meta's main pricing page still described them as free on 2 October 2026. The calculator lets you include or exclude that charge; check your first October invoice."}},
+{"@type":"Question","name":"Do I pay both Meta and a provider like WATI?","acceptedAnswer":{"@type":"Answer","text":"Yes. The provider charges a monthly plan for the shared inbox, broadcasts and automation, and Meta's message charges are passed on per message, sometimes with the provider's own markup."}},
+{"@type":"Question","name":"Which WhatsApp messages are free?","acceptedAnswer":{"@type":"Answer","text":"Conversations started from a click-to-WhatsApp ad or a Facebook Page button are free for 72 hours, and the free WhatsApp Business app has no message charges at all."}}]}]}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<style>
+  .card.pccard { max-width: 900px; }
+  .split { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:14px; align-items:start; }
+  .lines .ln { display:flex; justify-content:space-between; gap:10px; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.1); font-size:14px; }
+  .lines .ln span:last-child { font-weight:700; white-space:nowrap; }
+  .lines .ln.big { font-size:17px; border-top:2px solid rgba(242,207,110,0.6); border-bottom:none; margin-top:4px; }
+  .lines .ln.big span:last-child { color:var(--gold-light); }
+  .lines .ln small { display:block; color:var(--muted); font-size:11.5px; font-weight:400; }
+  .rates summary { cursor:pointer; font-weight:700; font-size:14px; margin-top:12px; }
+  .note { font-size:12.5px; color:var(--muted); line-height:1.5; margin-top:10px; }
+  @media (max-width:760px) { .split { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="card pccard">
+  <div class="brand"><a href="index.html">← THE GANTRY · TOOLS</a></div>
+  <h1>WhatsApp Business API Cost Calculator</h1>
+  <p class="sub">Put in how your team uses WhatsApp and see the monthly bill: Meta's per-message charges at Singapore rates, the October 2026 change to replies, and the provider plan on top. Change the rates for other countries. Free, no signup, nothing leaves your browser.</p>
+
+  <div class="pc">
+   <div class="split">
+    <div class="box">
+     <h2>Your month on WhatsApp</h2>
+     <p class="hint">Rough numbers are fine.</p>
+     <div class="g2" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px">
+      <div class="f"><label for="chats">Customer chats a month</label><input type="text" inputmode="numeric" id="chats" value="400"></div>
+      <div class="f"><label for="rpc">Your replies per chat</label><input type="text" inputmode="decimal" id="rpc" value="5"></div>
+      <div class="f"><label for="util">Order/delivery updates a month</label><input type="text" inputmode="numeric" id="util" value="300"></div>
+      <div class="f"><label for="auth">OTP / login codes a month</label><input type="text" inputmode="numeric" id="auth" value="0"></div>
+      <div class="f"><label for="bc">Promotions a month</label><input type="text" inputmode="numeric" id="bc" value="1"></div>
+      <div class="f"><label for="aud">Customers per promotion</label><input type="text" inputmode="numeric" id="aud" value="1500"></div>
+      <div class="f"><label for="ads">% of chats from click-to-WhatsApp ads</label><input type="text" inputmode="decimal" id="ads" value="0"></div>
+      <div class="f"><label for="prov">Shared inbox / provider plan</label><select id="prov">
+        <option value="0">None: Meta's Cloud API direct</option>
+        <option value="119" selected>WATI Growth, yearly (S$119/mo, 3 users)</option>
+        <option value="159">WATI Growth, monthly (S$159/mo)</option>
+        <option value="329">WATI Pro, yearly (S$329/mo, 5 users)</option>
+        <option value="199">SleekFlow Pro, yearly (S$199/mo)</option>
+        <option value="custom">Other: enter amount</option></select></div>
+      <div class="f" id="customBox" style="display:none"><label for="custom">Plan cost per month</label><input type="text" inputmode="decimal" id="custom" value="100"></div>
+     </div>
+     <label class="chk" style="margin-top:12px"><input type="checkbox" id="chargeReplies" checked> Charge replies from 1 Oct 2026 (Meta's developer docs)</label>
+     <details class="rates"><summary>Rates per message (Singapore, SGD; change for other countries)</summary>
+      <div class="g4" style="margin-top:8px">
+       <div class="f"><label for="rM">Marketing</label><input type="text" inputmode="decimal" id="rM" value="0.0937"></div>
+       <div class="f"><label for="rU">Utility</label><input type="text" inputmode="decimal" id="rU" value="0.0205"></div>
+       <div class="f"><label for="rA">Authentication</label><input type="text" inputmode="decimal" id="rA" value="0.0205"></div>
+       <div class="f"><label for="rS">Service (replies)</label><input type="text" inputmode="decimal" id="rS" value="0.0205"></div>
+      </div>
+      <p class="note">Singapore rates from Meta's pricing calculator, September 2026. Rates depend on your customer's country code; look yours up on Meta's WhatsApp pricing page. Utility and authentication get cheaper at high volumes (not modelled).</p>
+     </details>
+    </div>
+    <div class="box">
+     <h2>Your monthly bill</h2>
+     <div class="lines" id="lines"></div>
+     <div class="tiles" style="grid-template-columns:1fr 1fr">
+      <div class="tile"><b id="tYear">—</b><span>Per year</span></div>
+      <div class="tile"><b id="tChat">—</b><span>Per customer chat</span></div>
+     </div>
+     <p class="note" id="biggest"></p>
+     <div class="row-acts"><button id="copyBtn">Copy breakdown</button><button id="resetBtn">Reset example</button></div>
+    </div>
+   </div>
+  </div>
+
+  <div class="auto">
+    <h2>More than one person answering WhatsApp?</h2>
+    <p>A shared inbox puts every chat on one number in one place: chats assigned to whoever is free, order updates and abandoned-cart reminders sent automatically, and broadcasts with proper opt-outs. WATI is the quickest to get running for most small teams in Singapore, with a 7-day free trial.</p>
+    <a class="cta" id="watiBtn" href="https://affiliates.wati.io/41sk0la183jh" target="_blank" rel="sponsored noopener">Try WATI free for 7 days</a>
+    <a class="cta-ghost" id="guideBtn" href="https://www.gantry.work/p/whatsapp-business-api-pricing?utm_source=tools&amp;utm_medium=whatsapp-api-cost-calculator" target="_blank" rel="noopener">Read the full pricing guide</a>
+    <p class="disc">Affiliate link: if you sign up to WATI through it, The Gantry may earn a commission at no extra cost to you. Not sure which setup fits? <a id="reviewLink" href="https://cal.com/sayed.r/20min" target="_blank" rel="noopener">Book a free 20-minute WhatsApp setup check</a>.</p>
+  </div>
+
+  <div class="guide">
+    <h2>How WhatsApp Business API pricing works</h2>
+    <p>Meta has no subscription fee. It charges per delivered message, by <b>category</b> and by the <b>country code of the customer's number</b>: marketing (promotions), utility (order and delivery updates, reminders), authentication (one-time codes) and service (your replies inside the 24-hour window that opens each time a customer messages you). A provider such as WATI charges its plan on top and passes the message charges on.</p>
+    <h2>The October 2026 change</h2>
+    <p>Meta's developer documentation says that from 1 October 2026 it charges service replies, and utility templates sent inside the 24-hour window, at the utility rate: about S$0.0205 a message in Singapore. Before that, replies were free. On 2 October 2026 Meta's main pricing page still described replies as free, so the calculator lets you switch the charge on or off. Check your first October invoice. The full explanation, with a worked example, is in the <a href="https://www.gantry.work/p/whatsapp-business-api-pricing?utm_source=tools&amp;utm_medium=whatsapp-api-cost-calculator">WhatsApp Business API pricing guide</a>.</p>
+    <h2>Five ways to cut the bill</h2>
+    <ol><li><b>Promote to fewer, warmer customers.</b> Marketing is the most expensive message; send offers to people who bought recently, not your whole list.</li>
+    <li><b>Answer in one complete message</b> instead of four short ones, now that replies may be charged.</li>
+    <li><b>Classify messages honestly.</b> Order updates are utility, not marketing; keep offers out of them so Meta approves them as utility.</li>
+    <li><b>Use click-to-WhatsApp ads for new leads.</b> Those conversations are free for 72 hours.</li>
+    <li><b>Don't pay for a provider you don't need.</b> One person answering a few dozen chats a day can stay on the free WhatsApp Business app.</li></ol>
+    <h2>Questions</h2>
+    <p><b>How much does a WhatsApp Business API message cost in Singapore?</b> About S$0.0937 for a marketing message and S$0.0205 for a utility or authentication message in 2026, per delivered message.</p>
+    <p><b>Do I pay both Meta and WATI?</b> Yes. WATI charges its plan, and Meta's message charges are passed on per message, per WATI's rate card.</p>
+    <p><b>Is the WhatsApp Business app free?</b> Yes. These charges apply only to the Business Platform (API), which you need for shared inboxes, automation and broadcasts at scale.</p>
+    <p>More free tools: <a href="invoice-chaser.html">overdue invoice reminder writer</a>, <a href="quotation-generator.html">quotation generator</a>, <a href="profit-margin-calculator.html">profit margin calculator</a>.</p>
+  </div>
+
+  <div class="footer" id="baseFooter"><a href="index.html">All free tools</a> · <a href="https://www.gantry.work">The Gantry</a></div>
+</div>
+
+<div class="gate hidden" id="gate"><div class="box2">
+  <div class="result-label">YOU'VE USED THIS A FEW TIMES</div>
+  <h2>Working out a WhatsApp setup?</h2>
+  <p class="sub" style="margin-bottom:6px">Get one automation you can set up yourself each week, free, from The Gantry newsletter. Then keep using the calculator as much as you like.</p>
+  <iframe src="https://www.gantry.work/embed" title="Subscribe to The Gantry" scrolling="no"></iframe>
+  <button class="primary" id="gateDone">Continue</button>
+  <button class="ghost" id="gateSkip" style="margin-top:10px">Not now</button>
+</div></div>
+
+<script>
+(function () {
+const $ = id => document.getElementById(id);
+const ev = (n, p) => { try { gtag('event', n, p || {}); } catch (e) {} };
+const store = { get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : v; } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+const num = v => { const n = parseFloat(String(v || '').replace(/[^0-9.]/g, '')); return isFinite(n) ? n : 0; };
+const money = x => 'S$' + x.toLocaleString('en-SG', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const IDS = ['chats', 'rpc', 'util', 'auth', 'bc', 'aud', 'ads', 'prov', 'custom', 'rM', 'rU', 'rA', 'rS'];
+const DEF = {}; IDS.forEach(k => DEF[k] = $(k).value); DEF.chargeReplies = true;
+try { const s = JSON.parse(store.get('wacalc', '{}')); IDS.forEach(k => { if (s[k] !== undefined) $(k).value = s[k]; }); if (s.chargeReplies === false) $('chargeReplies').checked = false; } catch (e) {}
+let counted = false, lastText = '';
+function calc() {
+  $('customBox').style.display = $('prov').value === 'custom' ? '' : 'none';
+  const chats = num($('chats').value), rpc = num($('rpc').value), adsPct = Math.min(100, num($('ads').value)) / 100;
+  const replies = chats * rpc, paidReplies = $('chargeReplies').checked ? replies * (1 - adsPct) : 0;
+  const service = paidReplies * num($('rS').value);
+  const util = num($('util').value) * num($('rU').value);
+  const auth = num($('auth').value) * num($('rA').value);
+  const mkt = num($('bc').value) * num($('aud').value) * num($('rM').value);
+  const plan = $('prov').value === 'custom' ? num($('custom').value) : num($('prov').value);
+  const meta = service + util + auth + mkt, total = meta + plan;
+  const L = [['Replies to customers', service, Math.round(replies).toLocaleString('en-SG') + ' replies' + ($('chargeReplies').checked ? (adsPct ? ', ' + Math.round(adsPct * 100) + '% free via ads' : '') : ', not charged')],
+             ['Order and delivery updates', util, num($('util').value).toLocaleString('en-SG') + ' utility messages'],
+             ['Promotions', mkt, (num($('bc').value) * num($('aud').value)).toLocaleString('en-SG') + ' marketing messages'],
+             ['OTP and login codes', auth, num($('auth').value).toLocaleString('en-SG') + ' authentication messages']].filter(x => x[1] > 0 || x[0] === 'Replies to customers');
+  let h = L.map(x => `<div class="ln"><span>${x[0]}<small>${x[2]}</small></span><span>${money(x[1])}</span></div>`).join('');
+  h += `<div class="ln"><span>Meta's charges</span><span>${money(meta)}</span></div>`;
+  if (plan) h += `<div class="ln"><span>Provider plan<small>${$('prov').value === 'custom' ? 'Your plan' : $('prov').selectedOptions[0].text.split(' (')[0]}</small></span><span>${money(plan)}</span></div>`;
+  h += `<div class="ln big"><span>Total per month</span><span>${money(total)}</span></div>`;
+  $('lines').innerHTML = h;
+  $('tYear').textContent = money(total * 12);
+  $('tChat').textContent = chats ? money(total / chats) : '—';
+  const parts = [['promotions', mkt], ['replies', service], ['order updates', util], ['the provider plan', plan]].sort((a, b) => b[1] - a[1]);
+  $('biggest').textContent = total ? `The biggest part of the bill is ${parts[0][0]} (${Math.round(parts[0][1] / total * 100)}%). ` + (parts[0][0] === 'promotions' ? 'Sending offers to recent buyers instead of everyone is the quickest saving.' : parts[0][0] === 'replies' ? 'Fewer, fuller replies and ad-started chats keep this down.' : '') : '';
+  lastText = L.map(x => `${x[0]}: ${money(x[1])} (${x[2]})`).concat([`Meta's charges: ${money(meta)}`, plan ? `Provider plan: ${money(plan)}` : '', `Total per month: ${money(total)} (${money(total * 12)} a year)`]).filter(Boolean).join('\n');
+  const s = { chargeReplies: $('chargeReplies').checked }; IDS.forEach(k => s[k] = $(k).value); store.set('wacalc', JSON.stringify(s));
+}
+function countUse() {
+  if (counted) return; counted = true;
+  const used = parseInt(store.get('tae_wacalc', '0'), 10) + 1; store.set('tae_wacalc', String(used)); ev('wacalc_use', { run: used });
+  if (used >= 4 && store.get('nl_subscribed', '') !== '1' && parseInt(store.get('wacalc_gate_skips', '0'), 10) < 2) setTimeout(() => { $('gate').classList.remove('hidden'); ev('wacalc_gate_shown', { run: used }); }, 1500);
+}
+IDS.forEach(k => $(k).addEventListener(k === 'prov' ? 'change' : 'input', () => { calc(); countUse(); }));
+$('chargeReplies').addEventListener('change', () => { calc(); countUse(); ev('wacalc_toggle_replies', { on: $('chargeReplies').checked }); });
+$('copyBtn').onclick = async () => { try { await navigator.clipboard.writeText('WhatsApp Business API monthly cost (Singapore rates)\n' + lastText); $('copyBtn').textContent = 'Copied'; setTimeout(() => $('copyBtn').textContent = 'Copy breakdown', 1500); } catch (e) { prompt('Copy:', lastText); } ev('wacalc_copy'); };
+$('resetBtn').onclick = () => { IDS.forEach(k => $(k).value = DEF[k]); $('chargeReplies').checked = true; calc(); };
+$('gateDone').onclick = () => { store.set('nl_subscribed', '1'); $('gate').classList.add('hidden'); ev('wacalc_gate_done'); };
+$('gateSkip').onclick = () => { store.set('wacalc_gate_skips', String(parseInt(store.get('wacalc_gate_skips', '0'), 10) + 1)); $('gate').classList.add('hidden'); ev('wacalc_gate_skip'); };
+['watiBtn', 'guideBtn', 'reviewLink'].forEach(id => $(id).addEventListener('click', () => ev('wacalc_cta', { cta: id })));
+calc();
+})();
+</script>
+</body>
+</html>
