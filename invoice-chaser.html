@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Overdue Invoice Reminder Writer — The Gantry</title>
+<meta name="description" content="Upload your aged receivables from Xero or QuickBooks and get a ready-to-send payment reminder for every late customer in seconds. Free, no signup, your file never leaves your browser.">
+<meta property="og:title" content="Free Overdue Invoice Reminder Writer — The Gantry">
+<meta property="og:description" content="Every late customer, one ready-to-send reminder, in 10 seconds. Free, no signup.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="shared.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://tools.gantry.work/invoice-chaser.html">
+<meta property="og:url" content="https://tools.gantry.work/invoice-chaser.html">
+<meta property="og:site_name" content="The Gantry">
+<meta property="og:locale" content="en_SG">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="author" content="Sayed Rashid">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<style>
+  .card { max-width: 820px; }
+  .drop { border: 2px dashed rgba(242,207,110,0.55); border-radius: 14px; padding: 26px 18px; text-align: center; cursor: pointer; background: rgba(255,255,255,0.04); }
+  .drop:hover, .drop.over { background: rgba(242,207,110,0.1); }
+  .drop b { display:block; font-size:16px; margin-bottom:4px; }
+  .drop span { font-size:13px; color: var(--muted); }
+  .or { text-align:center; font-size:13px; color:var(--muted); margin:12px 0; }
+  .two { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  input[type=text] { width:100%; padding:12px 14px; font-size:15px; color:#fff; font-family:inherit; background:rgba(255,255,255,0.09); border:1px solid rgba(255,255,255,0.2); border-radius:10px; }
+  input[type=text]:focus { outline:none; border-color:var(--gold-light); }
+  .privacy { font-size:12.5px; color:rgba(255,255,255,0.65); margin-top:10px; text-align:center; }
+  .sum { display:flex; flex-wrap:wrap; gap:10px; margin:18px 0; }
+  .pill { padding:8px 12px; border-radius:999px; font-size:13px; font-weight:700; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18); }
+  .mail { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.16); border-radius:14px; padding:16px; margin-bottom:14px; }
+  .mhead { display:flex; justify-content:space-between; gap:10px; align-items:flex-start; flex-wrap:wrap; margin-bottom:10px; }
+  .mhead b { font-size:16px; } .mhead small { display:block; color:var(--muted); font-size:12.5px; margin-top:2px; }
+  .tone { font-size:11px; font-weight:800; letter-spacing:1px; padding:4px 8px; border-radius:6px; color:#14142a; }
+  .t1 { background:#9fe3b6; } .t2 { background:#f2cf6e; } .t3 { background:#ff9d8f; }
+  .mail input.to { margin-bottom:8px; }
+  .mail input.subj { margin-bottom:8px; font-weight:600; }
+  .mail textarea { width:100%; min-height:190px; padding:12px 14px; font-size:14px; line-height:1.5; color:#fff; font-family:inherit; background:rgba(0,0,0,0.18); border:1px solid rgba(255,255,255,0.18); border-radius:10px; resize:vertical; }
+  .acts { display:flex; gap:8px; margin-top:8px; flex-wrap:wrap; }
+  .acts button, .acts a { flex:1; min-width:130px; text-align:center; padding:10px; font-size:13.5px; font-weight:700; border-radius:9px; cursor:pointer; font-family:inherit; text-decoration:none; }
+  .b1 { background:linear-gradient(180deg,var(--gold-light),var(--gold)); color:#14142a; border:none; }
+  .b2 { background:transparent; color:#fff; border:1px solid rgba(255,255,255,0.3); }
+  .auto { margin:26px 0 8px; padding:20px; border-radius:16px; background:linear-gradient(135deg, rgba(201,162,39,0.18), rgba(42,47,176,0.18)); border:1px solid rgba(242,207,110,0.5); }
+  .auto h2 { margin-bottom:8px; } .auto p { font-size:14.5px; line-height:1.55; color:rgba(255,255,255,0.88); margin-bottom:12px; }
+  .disc { font-size:12px; color:rgba(255,255,255,0.6); margin-top:8px; line-height:1.5; }
+  .gate { position:fixed; inset:0; background:rgba(5,7,30,0.82); display:flex; align-items:center; justify-content:center; padding:18px; z-index:50; }
+  .gate.hidden { display:none; }
+  .gate .box { max-width:520px; width:100%; background:#14163f; border:1px solid rgba(242,207,110,0.5); border-radius:18px; padding:24px; }
+  .gate iframe { width:100%; height:150px; border:0; border-radius:10px; background:#fff; margin:12px 0; }
+  .err { color:#ffb4a8; font-size:14px; margin-top:10px; }
+  @media (max-width:560px){ .two { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="brand"><a href="index.html">← THE GANTRY · TOOLS</a></div>
+  <h1>Overdue Invoice Reminder Writer</h1>
+  <p class="sub">Upload your aged receivables from Xero or QuickBooks and get a ready-to-send reminder for every late customer: polite, firm or final, depending on how late they are. Free, no signup.</p>
+
+  <div id="inputBox">
+    <div class="drop" id="drop">
+      <b>Drop your CSV here, or click to choose</b>
+      <span>Xero: Reports › Aged Receivables Detail › Export › CSV. QuickBooks: Reports › A/R Aging Detail › Export to CSV. Any CSV with customer, invoice, due date and amount works.</span>
+      <input type="file" id="file" accept=".csv,text/csv" hidden>
+    </div>
+    <div class="or">or</div>
+    <button class="ghost" id="sampleBtn" style="margin-bottom:18px">Try it with sample data</button>
+
+    <div class="two">
+      <div class="field"><label for="company">Your company name</label><input type="text" id="company" placeholder="Bright Supplies Pte Ltd"></div>
+      <div class="field"><label for="sender">Your name</label><input type="text" id="sender" placeholder="Mei Ling, Accounts"></div>
+    </div>
+    <div class="field"><label for="pay">How customers can pay (optional)
+      <small>Shown in every reminder, e.g. "PayNow UEN 2012xxxxxK or bank transfer to DBS 123-456789-0".</small></label>
+      <input type="text" id="pay" placeholder="PayNow UEN ... or bank transfer to ..."></div>
+    <div class="field"><label for="datefmt">Dates in your file look like</label>
+      <select id="datefmt"><option value="dmy" selected>31/12/2026 or 31 Dec 2026 (day first)</option><option value="mdy">12/31/2026 (month first)</option></select></div>
+    <div class="err" id="err"></div>
+    <p class="privacy">🔒 Your file never leaves your browser. Nothing is uploaded or stored.</p>
+  </div>
+
+  <div id="out" class="hidden">
+    <div class="sum" id="sum"></div>
+    <div id="mails"></div>
+    <div class="acts" style="margin-bottom:6px">
+      <button class="b2" id="csvBtn">Download all as CSV (for mail merge)</button>
+      <button class="b2" id="againBtn">Start again</button>
+    </div>
+
+    <div class="auto">
+      <h2>Want this to happen every week without you?</h2>
+      <p>A free Make scenario can check Xero every morning, email each late customer at 7, 14 and 30 days past due with the right tone, and never chase the same invoice twice. It takes about 30 minutes to set up, and it runs on Make's free plan for most small businesses.</p>
+      <a class="cta" id="guideBtn" href="https://www.gantry.work/p/xero-invoice-reminders-automation" target="_blank" rel="noopener">Read the step-by-step guide</a>
+      <a class="cta-ghost" id="makeBtn" href="https://www.make.com/en/register?pc=gntrywk" target="_blank" rel="sponsored noopener">Start free on Make</a>
+      <p class="disc">Affiliate link: if you sign up to Make through it, The Gantry may earn a commission at no extra cost to you.</p>
+    </div>
+    <div class="note" style="margin-top:14px">Late payments are a symptom. If invoices go out late, or nobody knows who owes what until month-end, <a id="reviewLink" href="https://tools.gantry.work/review.html?utm_source=tools&utm_medium=invoice-chaser" target="_blank" rel="noopener">book a free 20-minute systems review</a>.</div>
+  </div>
+
+  <div class="footer" id="baseFooter"><a href="index.html">All free tools</a> · <a href="https://www.gantry.work">The Gantry</a></div>
+</div>
+
+<div class="gate hidden" id="gate"><div class="box">
+  <div class="result-label">YOU'VE USED THIS 3 TIMES</div>
+  <h2>It's clearly saving you time.</h2>
+  <p class="sub" style="margin-bottom:6px">Get one automation you can set up yourself each week, free, from The Gantry newsletter. Then keep using this tool as much as you like.</p>
+  <iframe src="https://www.gantry.work/embed" title="Subscribe to The Gantry" scrolling="no"></iframe>
+  <button class="primary" id="gateDone">Continue</button>
+  <button class="ghost" id="gateSkip" style="margin-top:10px">Not now</button>
+</div></div>
+
+<script>
+const $ = id => document.getElementById(id);
+const ev = (n, p) => { try { gtag('event', n, p || {}); } catch (e) {} };
+const store = { get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : v; } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+['company', 'sender', 'pay', 'datefmt'].forEach(id => { const v = store.get('ic_' + id, ''); if (v) $(id).value = v; $(id).addEventListener('change', () => store.set('ic_' + id, $(id).value)); });
+
+const SAMPLE = `Aged Receivables Detail
+Bright Supplies Pte Ltd
+As at today
+
+Contact,Invoice Number,Invoice Date,Due Date,Amount Due,Email
+Harbour Logistics Pte Ltd,INV-1042,{d-65},{d-35},"3,480.00",accounts@example.com
+Harbour Logistics Pte Ltd,INV-1077,{d-50},{d-20},"1,260.00",accounts@example.com
+Northpoint Cafe,INV-1090,{d-40},{d-10},640.50,owner@example.com
+Lumen Interiors,INV-1101,{d-38},{d-8},"2,150.00",
+Kopi Corner Group,INV-1015,{d-100},{d-70},"5,900.00",finance@example.com
+Sunrise Clinic,INV-1120,{d-20},{d+10},980.00,admin@example.com`;
+
+function parseCSV(text) {
+  const rows = []; let row = [], cell = '', q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) { if (c === '"') { if (text[i + 1] === '"') { cell += '"'; i++; } else q = false; } else cell += c; }
+    else if (c === '"') q = true;
+    else if (c === ',') { row.push(cell); cell = ''; }
+    else if (c === '\n' || c === '\r') { if (c === '\r' && text[i + 1] === '\n') i++; row.push(cell); rows.push(row); row = []; cell = ''; }
+    else cell += c;
+  }
+  if (cell !== '' || row.length) { row.push(cell); rows.push(row); }
+  return rows.map(r => r.map(x => x.trim())).filter(r => r.some(x => x !== ''));
+}
+const MON = { jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5, jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11 };
+function parseDate(s, fmt) {
+  if (!s) return null; s = s.trim();
+  let m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/); if (m) return new Date(+m[1], +m[2] - 1, +m[3]);
+  m = s.match(/^(\d{1,2})[\s-]([A-Za-z]{3})[A-Za-z]*[\s-,]+(\d{2,4})$/); if (m && MON[m[2].toLowerCase()] !== undefined) return new Date(+(m[3].length === 2 ? '20' + m[3] : m[3]), MON[m[2].toLowerCase()], +m[1]);
+  m = s.match(/^([A-Za-z]{3})[A-Za-z]*\s+(\d{1,2}),?\s+(\d{4})$/); if (m && MON[m[1].toLowerCase()] !== undefined) return new Date(+m[3], MON[m[1].toLowerCase()], +m[2]);
+  m = s.match(/^(\d{1,2})[\/.](\d{1,2})[\/.](\d{2,4})$/);
+  if (m) { const y = +(m[3].length === 2 ? '20' + m[3] : m[3]); return fmt === 'mdy' ? new Date(y, +m[1] - 1, +m[2]) : new Date(y, +m[2] - 1, +m[1]); }
+  return null;
+}
+function parseAmt(s) { if (!s) return NaN; const neg = /^\(.*\)$/.test(s.trim()); const n = parseFloat(s.replace(/[^0-9.\-]/g, '')); return neg ? -n : n; }
+const PICK = {
+  cust: [/^(contact|customer|client|name|customer name|contact name)$/i, /customer|contact|client/i],
+  inv: [/^(invoice number|invoice no\.?|inv no\.?|num|no\.?|invoice #|reference|invoice)$/i, /invoice|num|ref/i],
+  due: [/^due date$/i, /due/i],
+  amt: [/^(amount due|balance|open balance|outstanding|amount outstanding|due amount|balance due)$/i, /due|balance|outstanding|amount/i],
+  email: [/e-?mail/i],
+  days: [/days (over|past)due|past due|overdue days|aging|days late/i]
+};
+function findHeader(rows) {
+  for (let i = 0; i < Math.min(rows.length, 20); i++) {
+    const r = rows[i].map(x => x.toLowerCase());
+    const has = re => r.some(x => re.test(x));
+    if (has(/customer|contact|client|name/) && (has(/due/) || has(/balance|outstanding|amount/))) return i;
+  }
+  return -1;
+}
+function colIndex(head, key, used) {
+  for (const re of PICK[key]) { const i = head.findIndex((h, j) => re.test(h) && !used.includes(j)); if (i >= 0) return i; }
+  return -1;
+}
+function money(n) { return 'S$' + n.toLocaleString('en-SG', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+function fmtDate(d) { return d.toLocaleDateString('en-SG', { day: 'numeric', month: 'short', year: 'numeric' }); }
+
+function build(text, source) {
+  $('err').textContent = '';
+  const rows = parseCSV(text);
+  const h = findHeader(rows);
+  if (h < 0) { $('err').textContent = "I couldn't find the column headings. The file needs columns for the customer and either a due date or an amount due."; ev('chaser_error', { why: 'no_header' }); return; }
+  const head = rows[h].map(x => x.toLowerCase()); const used = [];
+  const c = {}; ['cust', 'inv', 'due', 'amt', 'email', 'days'].forEach(k => { c[k] = colIndex(head, k, used); if (c[k] >= 0) used.push(c[k]); });
+  if (c.cust < 0 || c.amt < 0 || (c.due < 0 && c.days < 0)) { $('err').textContent = 'I need a customer column, an amount due column, and either a due date or days overdue.'; ev('chaser_error', { why: 'missing_cols' }); return; }
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const fmt = $('datefmt').value; const byCust = {};
+  for (const r of rows.slice(h + 1)) {
+    const cust = r[c.cust]; const amt = parseAmt(r[c.amt]);
+    if (!cust || /^total/i.test(cust) || !(amt > 0)) continue;
+    let days = NaN, due = null;
+    if (c.due >= 0) { due = parseDate(r[c.due], fmt); if (due) days = Math.round((today - due) / 86400000); }
+    if (isNaN(days) && c.days >= 0) days = parseInt(r[c.days], 10);
+    if (isNaN(days) || days < 1) continue;
+    const k = cust.toLowerCase();
+    byCust[k] = byCust[k] || { cust, email: '', invs: [] };
+    if (c.email >= 0 && r[c.email] && !byCust[k].email) byCust[k].email = r[c.email];
+    byCust[k].invs.push({ no: c.inv >= 0 ? r[c.inv] : '', due, days, amt });
+  }
+  const list = Object.values(byCust).map(x => ({ ...x, total: x.invs.reduce((s, i) => s + i.amt, 0), max: Math.max(...x.invs.map(i => i.days)) })).sort((a, b) => b.max - a.max);
+  if (!list.length) { $('err').textContent = 'No overdue invoices found. Either everyone has paid (well done) or the due dates are in a different format: try switching the date setting above.'; ev('chaser_error', { why: 'none_overdue' }); return; }
+  render(list); count(source, list.length);
+}
+function letter(x) {
+  const co = $('company').value.trim() || 'our company', me = $('sender').value.trim() || 'Accounts', pay = $('pay').value.trim();
+  const lines = x.invs.map(i => `• ${i.no || 'Invoice'}${i.due ? ' (due ' + fmtDate(i.due) + ')' : ''}: ${money(i.amt)}, ${i.days} day${i.days === 1 ? '' : 's'} overdue`).join('\n');
+  const many = x.invs.length > 1; const what = many ? 'these invoices' : 'this invoice';
+  const payLine = pay ? `\n\nYou can pay by ${pay}.` : '';
+  let tone, subject, body;
+  if (x.max <= 14) {
+    tone = ['t1', 'FRIENDLY'];
+    subject = `Friendly reminder: ${many ? x.invs.length + ' invoices' : (x.invs[0].no || 'invoice')} from ${co}`;
+    body = `Hi ${x.cust} team,\n\nI hope all is well. A quick reminder that ${what} from ${co} ${many ? 'are' : 'is'} now past due:\n\n${lines}\n\nTotal outstanding: ${money(x.total)}${payLine}\n\nIf payment is already on its way, please ignore this note. If anything is unclear on the invoice, just reply and I'll sort it out.\n\nThank you,\n${me}\n${co}`;
+  } else if (x.max <= 44) {
+    tone = ['t2', 'FIRM'];
+    subject = `Overdue: ${money(x.total)} outstanding with ${co}`;
+    body = `Hi ${x.cust} team,\n\nWe haven't yet received payment for ${what}, which ${many ? 'are' : 'is'} now more than two weeks overdue:\n\n${lines}\n\nTotal outstanding: ${money(x.total)}${payLine}\n\nCould you let me know by the end of this week when we can expect payment? If there's a problem with the invoice or the delivery, please tell me so we can fix it.\n\nThank you,\n${me}\n${co}`;
+  } else {
+    tone = ['t3', 'FINAL NOTICE'];
+    subject = `Final reminder: ${money(x.total)} overdue with ${co}`;
+    body = `Hi ${x.cust} team,\n\nDespite earlier reminders, ${what} remain${many ? '' : 's'} unpaid and ${many ? 'are' : 'is'} now well past due:\n\n${lines}\n\nTotal outstanding: ${money(x.total)}${payLine}\n\nPlease arrange payment within 7 days. If we don't hear from you, we may need to put further orders on hold until the account is settled. If there's a reason for the delay, please call or reply today so we can agree a way forward.\n\nRegards,\n${me}\n${co}`;
+  }
+  return { tone, subject, body };
+}
+let current = [];
+function render(list) {
+  current = list.map(x => ({ ...x, ...letter(x) }));
+  const total = list.reduce((s, x) => s + x.total, 0);
+  const n = t => current.filter(x => x.tone[0] === t).length;
+  $('sum').innerHTML = `<span class="pill">${list.length} customers · ${money(total)} overdue</span><span class="pill">${n('t1')} friendly</span><span class="pill">${n('t2')} firm</span><span class="pill">${n('t3')} final</span>`;
+  $('mails').innerHTML = '';
+  current.forEach((x, i) => {
+    const d = document.createElement('div'); d.className = 'mail';
+    d.innerHTML = `<div class="mhead"><div><b></b><small></small></div><span class="tone ${x.tone[0]}">${x.tone[1]}</span></div>
+      <input type="text" class="to" placeholder="Customer email (add it here if your file has none)"><input type="text" class="subj"><textarea></textarea>
+      <div class="acts"><button class="b1 copy">Copy email</button><a class="b2 open" href="#">Open in my email app</a></div>`;
+    d.querySelector('b').textContent = x.cust;
+    d.querySelector('small').textContent = `${money(x.total)} · ${x.invs.length} invoice${x.invs.length > 1 ? 's' : ''} · oldest ${x.max} days overdue`;
+    d.querySelector('.to').value = x.email; d.querySelector('.subj').value = x.subject; d.querySelector('textarea').value = x.body;
+    const sync = () => { x.email = d.querySelector('.to').value; x.subject = d.querySelector('.subj').value; x.body = d.querySelector('textarea').value; };
+    d.querySelectorAll('input,textarea').forEach(el => el.addEventListener('input', sync));
+    d.querySelector('.copy').onclick = async () => { sync(); try { await navigator.clipboard.writeText('Subject: ' + x.subject + '\n\n' + x.body); d.querySelector('.copy').textContent = 'Copied ✓'; } catch (e) { d.querySelector('textarea').select(); } ev('chaser_copy'); };
+    d.querySelector('.open').onclick = e => { sync(); e.preventDefault(); ev('chaser_mailto'); window.location.href = 'mailto:' + encodeURIComponent(x.email || '') + '?subject=' + encodeURIComponent(x.subject) + '&body=' + encodeURIComponent(x.body); };
+    $('mails').appendChild(d);
+  });
+  $('inputBox').classList.add('hidden'); $('out').classList.remove('hidden'); window.scrollTo(0, 0);
+}
+function count(source, n) {
+  const k = 'tae_invoice_chaser'; const used = parseInt(store.get(k, '0'), 10) + 1; store.set(k, String(used));
+  ev('chaser_generate', { source, customers: n, run: used });
+  if (used >= 4 && store.get('ic_subscribed', '') !== '1' && parseInt(store.get('ic_gate_skips', '0'), 10) < 2) { $('gate').classList.remove('hidden'); ev('chaser_gate_shown', { run: used }); }
+}
+$('gateDone').onclick = () => { store.set('ic_subscribed', '1'); $('gate').classList.add('hidden'); ev('chaser_gate_done'); };
+$('gateSkip').onclick = () => { store.set('ic_gate_skips', String(parseInt(store.get('ic_gate_skips', '0'), 10) + 1)); $('gate').classList.add('hidden'); ev('chaser_gate_skip'); };
+$('sampleBtn').onclick = () => {
+  const t = new Date(); const sub = SAMPLE.replace(/\{d([+-]\d+)\}/g, (_, n) => { const d = new Date(t); d.setDate(d.getDate() + parseInt(n, 10)); return d.toISOString().slice(0, 10); });
+  if (!$('company').value) $('company').value = 'Bright Supplies Pte Ltd';
+  ev('chaser_sample'); build(sub, 'sample');
+};
+const drop = $('drop');
+drop.onclick = () => $('file').click();
+$('file').onchange = e => { const f = e.target.files[0]; if (f) f.text().then(t => build(t, 'file')); };
+drop.ondragover = e => { e.preventDefault(); drop.classList.add('over'); };
+drop.ondragleave = () => drop.classList.remove('over');
+drop.ondrop = e => { e.preventDefault(); drop.classList.remove('over'); const f = e.dataTransfer.files[0]; if (f) f.text().then(t => build(t, 'file')); };
+$('againBtn').onclick = () => { $('out').classList.add('hidden'); $('inputBox').classList.remove('hidden'); $('file').value = ''; };
+$('csvBtn').onclick = () => {
+  const esc = s => '"' + String(s).replace(/"/g, '""') + '"';
+  const csv = ['Customer,Email,Total overdue,Oldest days overdue,Tone,Subject,Body'].concat(current.map(x => [x.cust, x.email, x.total.toFixed(2), x.max, x.tone[1], x.subject, x.body].map(esc).join(','))).join('\n');
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' })); a.download = 'payment-reminders.csv'; a.click(); ev('chaser_csv');
+};
+$('guideBtn').onclick = () => ev('chaser_guide_click'); $('makeBtn').onclick = () => ev('chaser_make_click'); $('reviewLink').onclick = () => ev('chaser_review_click');
+</script>
+</body>
+</html>
