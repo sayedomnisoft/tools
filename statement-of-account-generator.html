@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Statement of Account Generator: Customer Statements as PDF — The Gantry</title>
+<meta name="description" content="Free statement of account generator. Upload or paste your open invoices and print a statement for every customer, with aging, total due and payment details.">
+<meta property="og:title" content="Free Statement of Account Generator: Customer Statements as PDF">
+<meta property="og:description" content="Make a statement of account for every customer from one file, as PDF. Free, nothing uploaded.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="pricecalc.css">
+<link rel="stylesheet" href="soa.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://tools.gantry.work/statement-of-account-generator.html">
+<meta property="og:url" content="https://tools.gantry.work/statement-of-account-generator.html">
+<meta property="og:site_name" content="The Gantry">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="author" content="Sayed Rashid">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Statement of Account Generator", "url": "https://tools.gantry.work/statement-of-account-generator.html", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "The Gantry", "url": "https://www.gantry.work"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the difference between an invoice and a statement of account?", "acceptedAnswer": {"@type": "Answer", "text": "An invoice requests payment for a particular sale. A statement of account summarises all the open invoices and credits on a customer's account at a date, with the total owed."}}, {"@type": "Question", "name": "Can I make statements for all my customers at once?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. \"Print all statements\" puts every customer's statement on its own page, so you can save one PDF or print the lot."}}, {"@type": "Question", "name": "Does it work with Xero and QuickBooks?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Export the aged receivables or open invoices report to CSV or Excel and drop it in, or paste the rows. Any spreadsheet with a customer, amount due and date column works too."}}, {"@type": "Question", "name": "Is my customer data safe?", "acceptedAnswer": {"@type": "Answer", "text": "The file is read inside your browser and never uploaded or stored. Only your own business details are remembered for next time."}}]}]}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+</head>
+<body>
+<div class="card pccard soacard">
+  <div class="brand"><a href="index.html">← THE GANTRY · TOOLS</a></div>
+  <h1>Free Statement of Account Generator</h1>
+  <p class="sub">Turn your open invoices into a professional statement of account for every customer: their open invoices, days overdue, an aging summary, the total due and how to pay, with your logo. Print one or all of them as PDF, and copy a ready-to-send email. Free, no signup, your data never leaves your browser.</p>
+  <div id="app"><noscript>This tool needs JavaScript switched on.</noscript></div>
+
+  <div class="auto">
+    <h2>Doing this every month-end?</h2>
+    <p>A free Make scenario can pull the open invoices from Xero on the first of every month, email each customer their statement, send the reminders that are due, and send you the aging summary, without anyone exporting a file.</p>
+    <a class="cta" id="guideBtn" href="https://www.gantry.work/p/xero-invoice-reminders-automation?utm_source=tools&amp;utm_medium=statement-of-account-generator" target="_blank" rel="noopener">See the receivables automation</a>
+    <a class="cta-ghost" id="makeBtn" href="https://www.make.com/en/register?pc=gntrywk" target="_blank" rel="sponsored noopener">Start free on Make</a>
+    <p class="disc">Affiliate link: if you sign up to Make through it, The Gantry may earn a commission at no extra cost to you. Receivables tracked across spreadsheets, inboxes and memory? <a id="reviewLink" href="https://tools.gantry.work/review.html?utm_source=tools&amp;utm_medium=statement-of-account-generator" target="_blank" rel="noopener">Book a free 20-minute systems review</a>.</p>
+  </div>
+
+  <div class="guide">
+<h2>What a statement of account is</h2>
+<p>A statement of account is a summary of a customer's account with you as at a date: the invoices still open, any credits, and the total they owe. An invoice asks for payment for one sale; a statement shows the whole picture, so the customer's accounts team can check it against their own records and pay everything that is due in one run.</p>
+<h2>What to include</h2>
+<ul><li>Your business name, address and UEN, and the words "Statement of Account"</li>
+<li>The statement date and the customer's name</li>
+<li>Each open invoice with its date, number, due date and amount due, and any credit notes</li>
+<li>The total due, and how much of it is overdue</li>
+<li>An aging summary (current, 1–30, 31–60, 61–90, 90+ days)</li>
+<li>Your payment details, and who to contact about a query</li></ul>
+<h2>Open-item or balance-forward?</h2>
+<p>An open-item statement lists only the invoices still unpaid, which is what this tool produces and what most trade customers prefer: every line is something to pay or to query. A balance-forward statement starts from last month's balance and lists every invoice and payment since. It shows more history, but makes the customer do the matching.</p>
+<h2>When to send statements</h2>
+<p>Send them in the first few days of the month, before your customers' payment runs, to every customer with a balance, not only the late ones. Statements catch invoices that never reached the right person, payments applied to the wrong invoice, and disputes nobody mentioned. They also make your year-end audit easier, because balances customers have already seen are rarely questioned. For the late ones, follow up with the free <a href="invoice-chaser.html">Overdue Invoice Reminder Writer</a>; the <a href="https://www.gantry.work/p/order-to-cash-process?utm_source=tools&amp;utm_medium=statement-of-account-generator">order-to-cash guide</a> shows where statements fit in the wider process.</p>
+<h2>Questions</h2>
+<p><b>What is the difference between an invoice and a statement of account?</b> An invoice requests payment for a particular sale. A statement of account summarises all the open invoices and credits on a customer&#x27;s account at a date, with the total owed.</p>
+<p><b>Can I make statements for all my customers at once?</b> Yes. &quot;Print all statements&quot; puts every customer&#x27;s statement on its own page, so you can save one PDF or print the lot.</p>
+<p><b>Does it work with Xero and QuickBooks?</b> Yes. Export the aged receivables or open invoices report to CSV or Excel and drop it in, or paste the rows. Any spreadsheet with a customer, amount due and date column works too.</p>
+<p><b>Is my customer data safe?</b> The file is read inside your browser and never uploaded or stored. Only your own business details are remembered for next time.</p>
+<p>More free tools that do the work: the <a href="invoice-generator.html">invoice</a> and <a href="receipt-generator.html">receipt</a> generators, the <a href="profit-margin-calculator.html">profit margin calculator</a> and the <a href="timesheet-calculator.html">timesheet calculator</a>.</p>
+  </div>
+
+  <div class="footer" id="baseFooter"><a href="index.html">All free tools</a> · <a href="https://www.gantry.work">The Gantry</a></div>
+</div>
+
+<div class="gate hidden" id="gate"><div class="box2">
+  <div class="result-label">YOU'VE USED THIS 3 TIMES</div>
+  <h2>Clearly a month-end routine.</h2>
+  <p class="sub" style="margin-bottom:6px">Get one automation you can set up yourself each week, free, from The Gantry newsletter. Then keep using the tool as much as you like.</p>
+  <iframe src="https://www.gantry.work/embed" title="Subscribe to The Gantry" scrolling="no"></iframe>
+  <button class="primary" id="gateDone">Continue</button>
+  <button class="ghost" id="gateSkip" style="margin-top:10px">Not now</button>
+</div></div>
+
+<script>window.SOA_MODE = 'statement';</script>
+<script src="soa.js"></script>
+</body>
+</html>
