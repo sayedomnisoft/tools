@@ -60,7 +60,7 @@ table.pi td { padding:7px 8px; border-bottom:1px solid #e3e5ef; vertical-align:t
 .pp-stamp { display:inline-block; border:3px solid #1f8a4c; color:#1f8a4c; font-weight:900; font-size:20px; letter-spacing:.15em; padding:4px 14px; transform:rotate(-6deg); border-radius:6px; margin-top:12px; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
 .pp-sign { display:flex; gap:30px; margin-top:44px; }
 .pp-sign div { flex:1; border-top:1px solid #1b1d2e; padding-top:5px; font-size:11px; color:#444; }
-.pp-made { margin-top:28px; font-size:9.5px; color:#9a9eb5; text-align:center; }
+.pp-made { margin-top:28px; font-size:9.5px; color:#5f6480; text-align:center; }
 #printroot { display:none; }
 @media (max-width:900px) { .dm { grid-template-columns:1fr; } .dm-prev { position:static; } }
 @media (max-width:520px) {
