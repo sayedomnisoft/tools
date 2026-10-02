@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free AR Aging Report Generator: Aged Receivables in Seconds — The Gantry</title>
+<meta name="description" content="Free accounts receivable aging report. Upload or paste your open invoices and get aging buckets by customer, overdue totals, DSO and customer statements.">
+<meta property="og:title" content="Free AR Aging Report Generator: Aged Receivables in Seconds">
+<meta property="og:description" content="Turn your open invoices into an AR aging report and customer statements in seconds. Free, nothing uploaded.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="pricecalc.css">
+<link rel="stylesheet" href="soa.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://tools.gantry.work/ar-aging-report.html">
+<meta property="og:url" content="https://tools.gantry.work/ar-aging-report.html">
+<meta property="og:site_name" content="The Gantry">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="author" content="Sayed Rashid">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "AR Aging Report Generator", "url": "https://tools.gantry.work/ar-aging-report.html", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "The Gantry", "url": "https://www.gantry.work"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is an AR aging report?", "acceptedAnswer": {"@type": "Answer", "text": "A report of what each customer owes, split into columns by how long the invoices have been unpaid, usually current, 1–30, 31–60, 61–90 and over 90 days past due."}}, {"@type": "Question", "name": "Should I age invoices by due date or invoice date?", "acceptedAnswer": {"@type": "Answer", "text": "By due date if you want to see what is actually late; that is the default here. Ageing by invoice date is common in some industries and for credit insurance reports; switch the setting and the columns change."}}, {"@type": "Question", "name": "Is my data uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. The file is read inside your browser and is not stored or sent anywhere. Only your own business details are remembered, so your statements are ready next month."}}, {"@type": "Question", "name": "Can I make customer statements from the same data?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The same upload produces a statement of account for every customer, which you can print one at a time or all together, each on its own page."}}]}]}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+</head>
+<body>
+<div class="card pccard soacard">
+  <div class="brand"><a href="index.html">← THE GANTRY · TOOLS</a></div>
+  <h1>Free AR Aging Report Generator</h1>
+  <p class="sub">Drop in your open invoices from Xero, QuickBooks or a spreadsheet and get an accounts receivable aging report by customer: current, 1–30, 31–60, 61–90 and 90+ days, totals, percentages and DSO. Then print a statement of account for every customer in one click. Free, no signup, your data never leaves your browser.</p>
+  <div id="app"><noscript>This tool needs JavaScript switched on.</noscript></div>
+
+  <div class="auto">
+    <h2>Doing this every month-end?</h2>
+    <p>A free Make scenario can pull the open invoices from Xero on the first of every month, email each customer their statement, send the reminders that are due, and send you the aging summary, without anyone exporting a file.</p>
+    <a class="cta" id="guideBtn" href="https://www.gantry.work/p/xero-invoice-reminders-automation?utm_source=tools&amp;utm_medium=ar-aging-report" target="_blank" rel="noopener">See the receivables automation</a>
+    <a class="cta-ghost" id="makeBtn" href="https://www.make.com/en/register?pc=gntrywk" target="_blank" rel="sponsored noopener">Start free on Make</a>
+    <p class="disc">Affiliate link: if you sign up to Make through it, The Gantry may earn a commission at no extra cost to you. Receivables tracked across spreadsheets, inboxes and memory? <a id="reviewLink" href="https://tools.gantry.work/review.html?utm_source=tools&amp;utm_medium=ar-aging-report" target="_blank" rel="noopener">Book a free 20-minute systems review</a>.</p>
+  </div>
+
+  <div class="guide">
+<h2>What an AR aging report shows</h2>
+<p>An accounts receivable aging report lists what each customer owes, split by how late it is. The usual columns are current (not yet due), 1–30, 31–60, 61–90 and over 90 days past the due date. Read it from right to left: the money in the last two columns is the money most at risk, and the customers with balances there are the ones to call this week.</p>
+<h2>How to get the data out of your accounting software</h2>
+<ul><li><b>Xero:</b> run the Aged Receivables Detail report (or export your awaiting-payment invoices), export to Excel or CSV, then drop the file here or paste the rows.</li>
+<li><b>QuickBooks Online:</b> run the A/R Aging Detail report and export it to Excel.</li>
+<li><b>Any other system or a spreadsheet:</b> you need a row per open invoice with the customer, the amount still due, and a due date or invoice date.</li></ul>
+<p>The tool finds the columns by their headings, handles reports grouped by customer, credit notes as negative amounts, and both day-first and month-first dates.</p>
+<h2>What to do with each column</h2>
+<ul><li><b>Current:</b> nothing yet. A courtesy reminder a few days before the due date helps.</li>
+<li><b>1–30 days:</b> a friendly reminder. Most of these are invoices sitting in an inbox.</li>
+<li><b>31–60 days:</b> a firm reminder, a phone call, and a request for a payment date.</li>
+<li><b>61–90 days:</b> a final notice, and think about holding further orders.</li>
+<li><b>Over 90 days:</b> a letter of demand or a payment plan, and talk to your accountant about a provision for doubtful debts.</li></ul>
+<p>The free <a href="invoice-chaser.html">Overdue Invoice Reminder Writer</a> takes the same file and writes the right reminder for every late customer.</p>
+<h2>Days sales outstanding (DSO)</h2>
+<p>DSO is roughly how many days of sales are sitting unpaid: <b>DSO = receivables ÷ credit sales for the period × days in the period</b>. Enter your credit sales for the last 90 days in the DSO box and the tool works it out. If your terms are 30 days and your DSO is 55, customers are paying, on average, more than three weeks late, and that is cash your business is lending them for free. The <a href="https://www.gantry.work/p/order-to-cash-process?utm_source=tools&amp;utm_medium=ar-aging-report">order-to-cash guide</a> covers where that time usually goes.</p>
+<h2>Questions</h2>
+<p><b>What is an AR aging report?</b> A report of what each customer owes, split into columns by how long the invoices have been unpaid, usually current, 1–30, 31–60, 61–90 and over 90 days past due.</p>
+<p><b>Should I age invoices by due date or invoice date?</b> By due date if you want to see what is actually late; that is the default here. Ageing by invoice date is common in some industries and for credit insurance reports; switch the setting and the columns change.</p>
+<p><b>Is my data uploaded anywhere?</b> No. The file is read inside your browser and is not stored or sent anywhere. Only your own business details are remembered, so your statements are ready next month.</p>
+<p><b>Can I make customer statements from the same data?</b> Yes. The same upload produces a statement of account for every customer, which you can print one at a time or all together, each on its own page.</p>
+<p>More free tools that do the work: the <a href="invoice-generator.html">invoice</a> and <a href="receipt-generator.html">receipt</a> generators, the <a href="profit-margin-calculator.html">profit margin calculator</a> and the <a href="timesheet-calculator.html">timesheet calculator</a>.</p>
+  </div>
+
+  <div class="footer" id="baseFooter"><a href="index.html">All free tools</a> · <a href="https://www.gantry.work">The Gantry</a></div>
+</div>
+
+<div class="gate hidden" id="gate"><div class="box2">
+  <div class="result-label">YOU'VE USED THIS 3 TIMES</div>
+  <h2>Clearly a month-end routine.</h2>
+  <p class="sub" style="margin-bottom:6px">Get one automation you can set up yourself each week, free, from The Gantry newsletter. Then keep using the tool as much as you like.</p>
+  <iframe src="https://www.gantry.work/embed" title="Subscribe to The Gantry" scrolling="no"></iframe>
+  <button class="primary" id="gateDone">Continue</button>
+  <button class="ghost" id="gateSkip" style="margin-top:10px">Not now</button>
+</div></div>
+
+<script>window.SOA_MODE = 'aging';</script>
+<script src="soa.js"></script>
+</body>
+</html>
