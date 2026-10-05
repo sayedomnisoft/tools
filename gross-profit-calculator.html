@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Gross Profit Calculator and Margin | The Gantry</title>
+<meta name="description" content="Free gross profit calculator: revenue and cost of goods sold in; gross profit, gross margin, net profit and net margin out. COGS helper included.">
+<meta property="og:title" content="Free Gross Profit Calculator and Margin">
+<meta property="og:description" content="Free gross profit calculator: revenue and cost of goods sold in; gross profit, gross margin, net profit and net margin out. COGS helper included.">
+<meta property="og:image" content="https://tools.gantry.work/og/gross-profit-calculator.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tools.gantry.work/og/gross-profit-calculator.jpg">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="pricecalc.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://tools.gantry.work/gross-profit-calculator.html">
+<meta property="og:url" content="https://tools.gantry.work/gross-profit-calculator.html">
+<meta property="og:site_name" content="The Gantry">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="author" content="Sayed Rashid">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Gross Profit Calculator", "url": "https://tools.gantry.work/gross-profit-calculator.html", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "The Gantry", "url": "https://www.gantry.work"}, "dateModified": "2026-10-02", "image": "https://tools.gantry.work/og/gross-profit-calculator.jpg", "isAccessibleForFree": true}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do you calculate gross profit?", "acceptedAnswer": {"@type": "Answer", "text": "Subtract cost of goods sold from revenue. S$180,000 of sales with S$126,000 of cost of goods sold is S$54,000 gross profit."}}, {"@type": "Question", "name": "What is the difference between gross profit and net profit?", "acceptedAnswer": {"@type": "Answer", "text": "Gross profit is after the direct cost of what you sold; net profit is after all expenses, including rent, salaries and other overheads."}}, {"@type": "Question", "name": "What is a good gross profit margin?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on the trade. Compare your own margin month by month and against your overheads: gross profit has to cover them with room to spare."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Free tools", "item": "https://tools.gantry.work/"}, {"@type": "ListItem", "position": 2, "name": "Gross Profit Calculator", "item": "https://tools.gantry.work/gross-profit-calculator.html"}]}]}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<style>.card.pccard{max-width:900px} .pc input[type=date]{width:100%;min-width:0;padding:10px 11px;font-size:15px;color:#fff;font-family:inherit;background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.2);border-radius:9px;color-scheme:dark}</style>
+</head>
+<body>
+<div class="card pccard">
+  <div class="brand"><a href="index.html">← THE GANTRY · TOOLS</a></div>
+  <h1>Gross Profit Calculator</h1>
+  <p class="sub">Work out gross profit and gross margin from revenue and cost of goods sold, then net profit and net margin after operating expenses. A helper works out cost of goods sold from stock and purchases. Free, no signup.</p>
+  <!-- guidelink --><p style="margin:-10px 0 18px;font-size:14px;color:rgba(255,255,255,.8)">Full guide: <a style="color:#f2cf6e" href="https://www.gantry.work/p/profit-margin-formula?utm_source=tools&amp;utm_medium=gross-profit-calculator&amp;utm_campaign=guidelink">Gross, operating and net margin formulas, with examples →</a></p>
+
+  <div id="app"><noscript>This calculator needs JavaScript switched on.</noscript></div>
+
+  <div class="auto">
+    <h2>Waiting for the accountant to know last month&#x27;s margin?</h2>
+    <p>When sales, purchases and stock are in one system, gross margin by product is a report you open, not a spreadsheet you rebuild.</p>
+    <a class="cta" id="guideBtn" href="https://www.gantry.work/p/month-end-shouldnt-take-three-weeks?utm_source=tools&amp;utm_medium=gross-profit-calculator" target="_blank" rel="noopener">Why month-end shouldn&#x27;t take three weeks</a>
+    <a class="cta-ghost" id="makeBtn" href="https://www.make.com/en/register?pc=gntrywk" target="_blank" rel="sponsored noopener">Start free on Make</a>
+    <p class="disc">Affiliate link: if you sign up to Make through it, The Gantry may earn a commission at no extra cost to you. Bigger than one calculation? <a id="reviewLink" href="https://tools.gantry.work/review.html?utm_source=tools&amp;utm_medium=gross-profit-calculator" target="_blank" rel="noopener">Book a free 20-minute systems review</a>.</p>
+  </div>
+
+  <div class="guide">
+<h2>The gross profit formula</h2><p><b>Gross profit = revenue − cost of goods sold. Gross margin = gross profit ÷ revenue × 100.</b> Use revenue before GST.</p>
+<p><b>Worked example:</b> a month with S$180,000 of sales and S$126,000 cost of goods sold gives a gross profit of S$54,000, a 30% gross margin. After S$40,000 of operating expenses, profit is S$14,000, a 7.8% net margin.</p>
+<h2>Working out cost of goods sold</h2><p>If you do not track cost per sale, use <b>COGS = opening stock + purchases − closing stock</b>. With S$120,000 opening stock, S$85,000 of purchases and S$110,000 closing stock, COGS is S$95,000. This only works if the stock counts are right, which is why businesses with stock move to a system that records cost on every delivery.</p>
+<h2>Gross margin vs net margin</h2><p>Gross margin shows whether your pricing and buying work; net margin shows whether the business as a whole makes money after rent, salaries and everything else. A healthy gross margin with a thin net margin usually means overheads have grown faster than sales.</p>
+<p>To see which products pull the gross margin down, paste your price list into the free <a href="profit-margin-calculator.html">profit margin calculator</a>.</p>
+<h2>Questions</h2>
+<p><b>How do you calculate gross profit?</b> Subtract cost of goods sold from revenue. S$180,000 of sales with S$126,000 of cost of goods sold is S$54,000 gross profit.</p>
+<p><b>What is the difference between gross profit and net profit?</b> Gross profit is after the direct cost of what you sold; net profit is after all expenses, including rent, salaries and other overheads.</p>
+<p><b>What is a good gross profit margin?</b> It depends on the trade. Compare your own margin month by month and against your overheads: gross profit has to cover them with room to spare.</p>
+<p>More free calculators: <a href="break-even-calculator.html">break-even</a>, <a href="gross-profit-calculator.html">gross profit</a>, <a href="price-increase-calculator.html">price increase</a>, <a href="dso-calculator.html">DSO</a>, <a href="gst-calculator.html">GST</a>, <a href="invoice-due-date-calculator.html">invoice due date</a> and <a href="index.html">all free tools</a>.</p>
+  </div>
+
+  <div class="byline noprint">
+    <img src="sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
+    <div class="who"><div class="nm">Sayed Rashid</div><div class="rl">I build these free tools from the jobs I see business owners do by hand every week. Tell me which one to build next.</div></div>
+    <a class="li" href="https://www.linkedin.com/in/sayedomni" target="_blank" rel="noopener" onclick="try{gtag('event','linkedin_click',{page:location.pathname})}catch(e){}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg> Connect on LinkedIn</a>
+  </div>
+  <p class="noprint" style="font-size:12px;color:rgba(255,255,255,0.6);text-align:center;margin-top:14px;line-height:1.5">Privacy: your entries stay in your browser and are never uploaded. I count anonymous visits and button clicks (Google Analytics) to see which tools help.</p>
+  <div class="footer" id="baseFooter"><a href="index.html">All free tools</a> · <a href="https://www.gantry.work">The Gantry</a></div>
+</div>
+
+<div class="gate hidden" id="gate"><div class="box2">
+  <div class="result-label">YOU'VE USED THIS A FEW TIMES</div>
+  <h2>Numbers like these, every week?</h2>
+  <p class="sub" style="margin-bottom:6px">Get one automation you can set up yourself each week, free, from The Gantry newsletter. Then keep using the calculator as much as you like.</p>
+  <iframe src="https://www.gantry.work/embed" title="Subscribe to The Gantry" scrolling="no"></iframe>
+  <button class="primary" id="gateDone">Continue</button>
+  <button class="ghost" id="gateSkip" style="margin-top:10px">Not now</button>
+</div></div>
+
+<script>window.CALC = 'grossprofit';</script>
+<script src="calc.js"></script>
+</body>
+</html>
