@@ -183,11 +183,12 @@
 
   <!-- GATE -->
   <div id="gate" class="hidden">
-    <div class="result-label">FREE RUNS USED</div>
+    <div class="result-label">WANT A SECOND OPINION?</div>
     <h1>You've run the numbers three times.</h1>
     <p class="sub">Which usually means one of two things: the numbers look good and you want to be sure, or they don't and you're trying to make them. Both are worth twenty minutes of conversation.</p>
     <div class="note">Bring your figures to a short video call. We'll pressure-test the assumptions — especially the recovery rate, which is where most business cases quietly fall apart — and you'll leave knowing whether it's worth doing and what to do first.</div>
     <a class="cta" href="#" id="bookBtn2">Book the 20-min systems review</a>
+    <button class="ghost" type="button" style="margin-top:12px;width:100%" onclick="keepGoing()">Not now, keep using the calculator</button>
     <a class="cta-ghost" href="index.html">Try the other free tools</a>
     <div class="footer">No pitch. If the numbers don't justify it, I'll tell you.</div>
   </div>
@@ -197,6 +198,7 @@
     <a href="https://www.gantry.work/subscribe?utm_source=erp-roi">Get the weekly playbooks</a>
   </div>
 
+  <!-- relguides --><div class="guide noprint"><h2>Related guides on The Gantry</h2><ul><li><a href="https://www.gantry.work/p/the-best-cloud-erp-for-smes-in-2026?utm_source=tools&amp;utm_medium=erp-roi&amp;utm_campaign=related">The Best Cloud ERP for SMEs in 2026: An Honest Shortlist With Real Prices</a></li><li><a href="https://www.gantry.work/p/from-spreadsheets-to-erp-how-to-retire?utm_source=tools&amp;utm_medium=erp-roi&amp;utm_campaign=related">From Spreadsheets to ERP: How to Retire the Excel Empire Without a Mutiny</a></li><li><a href="https://www.gantry.work/p/how-to-switch-erp-systems-without?utm_source=tools&amp;utm_medium=erp-roi&amp;utm_campaign=related">How to Switch ERP Systems Without Stopping the Business</a></li></ul><p>More plain-English guides on ERP, automation and InvoiceNow for small businesses: <a href="https://www.gantry.work/?utm_source=tools&amp;utm_medium=erp-roi">The Gantry</a> (free, weekly).</p></div>
   <div class="byline">
     <img src="sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
     <div class="who">
@@ -247,11 +249,13 @@ function line(m) {
     : 'Never pays back — ' + standing(m.cumAt(10)) + ' at year 10.';
 }
 
+function more() { try { return sessionStorage.getItem('tae_more') === '1'; } catch (e) { return false; } }
+function keepGoing() { try { sessionStorage.setItem('tae_more', '1'); } catch (e) {} try { gtag('event', 'gate_continue', { page: location.pathname }); } catch (e) {} if (typeof showQuota === 'function') showQuota(); show('form'); }
 function showQuota() {
   const left = Math.max(0, LIMIT - used());
   const q = document.getElementById('quota');
-  q.textContent = left > 0 ? left + ' of ' + LIMIT + ' free calculations left' : 'No free calculations left';
-  document.getElementById('calcBtn').disabled = left === 0;
+  q.textContent = '';
+  document.getElementById('calcBtn').disabled = false;
 }
 
 function model(p) {
@@ -354,7 +358,7 @@ function renderHorizon(m) {
 }
 
 function calculate() {
-  if (used() >= LIMIT) { show('gate'); return; }
+  if (used() >= LIMIT && !more()) { show('gate'); return; }
   const p = readInputs();
   const m = model(p);
 
@@ -422,5 +426,6 @@ function show(which) {
 showQuota();
 </script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"ERP ROI Calculator","url":"https://tools.gantry.work/erp-roi.html","applicationCategory":"BusinessApplication","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"SGD"},"description":"Free ERP and automation ROI calculator showing payback in years, cumulative value at years 7, 10 and 15, and how the setup cost is capitalised and amortised.","author":{"@id":"https://tools.gantry.work/#sayed"},"areaServed":{"@type":"Country","name":"Singapore"},"isAccessibleForFree":true},{"@type":"Person","@id":"https://tools.gantry.work/#sayed","name":"Sayed Rashid","url":"https://gantry.work","jobTitle":"ERP & Business Systems Consultant","sameAs":["https://www.linkedin.com/in/sayedomni","https://gantry.work","https://github.com/sayedomnisoft"]}]}</script>
+<script src="/guide-dates.js" defer></script>
 </body>
 </html>
