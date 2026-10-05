@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice Due Date Calculator (Net 30, EOM) | The Gantry</title>
+<meta name="description" content="Free invoice due date calculator: invoice date and terms (net 7 to net 90, net 30 EOM) in; due date, days overdue and late interest out. No signup.">
+<meta property="og:title" content="Invoice Due Date Calculator (Net 30, EOM)">
+<meta property="og:description" content="Free invoice due date calculator: invoice date and terms (net 7 to net 90, net 30 EOM) in; due date, days overdue and late interest out. No signup.">
+<meta property="og:image" content="https://tools.gantry.work/og/invoice-due-date-calculator.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tools.gantry.work/og/invoice-due-date-calculator.jpg">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="pricecalc.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://tools.gantry.work/invoice-due-date-calculator.html">
+<meta property="og:url" content="https://tools.gantry.work/invoice-due-date-calculator.html">
+<meta property="og:site_name" content="The Gantry">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="author" content="Sayed Rashid">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Invoice Due Date Calculator", "url": "https://tools.gantry.work/invoice-due-date-calculator.html", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "The Gantry", "url": "https://www.gantry.work"}, "dateModified": "2026-10-02", "image": "https://tools.gantry.work/og/invoice-due-date-calculator.jpg", "isAccessibleForFree": true}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What does net 30 mean?", "acceptedAnswer": {"@type": "Answer", "text": "Payment is due within 30 calendar days of the invoice date. An invoice dated 1 June on net 30 terms is due on 1 July."}}, {"@type": "Question", "name": "What does net 30 EOM mean?", "acceptedAnswer": {"@type": "Answer", "text": "Payment is due 30 days after the end of the month in which the invoice is dated, which gives the customer longer than plain net 30."}}, {"@type": "Question", "name": "Can I charge interest on late payments?", "acceptedAnswer": {"@type": "Answer", "text": "Only if your terms say so and the customer accepted them. State the rate and how it is calculated on your invoices and terms."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Free tools", "item": "https://tools.gantry.work/"}, {"@type": "ListItem", "position": 2, "name": "Invoice Due Date Calculator", "item": "https://tools.gantry.work/invoice-due-date-calculator.html"}]}]}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<style>.card.pccard{max-width:900px} .pc input[type=date]{width:100%;min-width:0;padding:10px 11px;font-size:15px;color:#fff;font-family:inherit;background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.2);border-radius:9px;color-scheme:dark}</style>
+</head>
+<body>
+<div class="card pccard">
+  <div class="brand"><a href="index.html">← THE GANTRY · TOOLS</a></div>
+  <h1>Invoice Due Date Calculator</h1>
+  <p class="sub">Find an invoice&#x27;s due date on any payment terms, from due on receipt to net 90 and net 30 end of month, see how many days it is overdue and the late interest if your terms allow it. Free, no signup.</p>
+  <!-- guidelink --><p style="margin:-10px 0 18px;font-size:14px;color:rgba(255,255,255,.8)">Full guide: <a style="color:#f2cf6e" href="https://www.gantry.work/p/payment-reminder-email-templates?utm_source=tools&amp;utm_medium=invoice-due-date-calculator&amp;utm_campaign=guidelink">Payment reminder email templates, friendly to final →</a></p>
+
+  <div id="app"><noscript>This calculator needs JavaScript switched on.</noscript></div>
+
+  <div class="auto">
+    <h2>Still tracking due dates in a spreadsheet?</h2>
+    <p>A free Make scenario can watch your invoices, send reminders on schedule and stop when the customer pays.</p>
+    <a class="cta" id="guideBtn" href="https://www.gantry.work/p/xero-invoice-reminders-automation?utm_source=tools&amp;utm_medium=invoice-due-date-calculator" target="_blank" rel="noopener">See the reminder automation</a>
+    <a class="cta-ghost" id="makeBtn" href="https://www.make.com/en/register?pc=gntrywk" target="_blank" rel="sponsored noopener">Start free on Make</a>
+    <p class="disc">Affiliate link: if you sign up to Make through it, The Gantry may earn a commission at no extra cost to you. Bigger than one calculation? <a id="reviewLink" href="https://tools.gantry.work/review.html?utm_source=tools&amp;utm_medium=invoice-due-date-calculator" target="_blank" rel="noopener">Book a free 20-minute systems review</a>.</p>
+  </div>
+
+  <div class="guide">
+<h2>What payment terms mean</h2><ul><li><b>Due on receipt:</b> payable on the invoice date.</li><li><b>Net 30:</b> payable within 30 calendar days of the invoice date. Net 7, 14, 45, 60 and 90 work the same way.</li><li><b>Net 30 EOM:</b> 30 days after the end of the month in which the invoice is dated, so an invoice dated 3 March is due on 30 April.</li></ul>
+<p><b>Worked example:</b> an invoice dated 3 October on net 30 terms is due on 2 November. On 20 November it is 18 days overdue. If your agreed terms allow 8% a year late interest on S$4,800, that is S$4,800 × 8% × 18 ÷ 365 = S$18.94.</p>
+<h2>Late interest</h2><p>Only charge late interest if your terms and conditions say so and the customer agreed to them. Many small businesses use it as a lever in the final notice rather than charging it routinely.</p>
+<h2>When to remind</h2><p>A courtesy note three days before the due date, a reminder on the day, a friendly reminder at 7 days, a firm one at 14 to 30 days and a final notice at about 45 days. The free <a href="invoice-chaser.html">reminder writer</a> drafts the right one for each late customer.</p>
+<h2>Questions</h2>
+<p><b>What does net 30 mean?</b> Payment is due within 30 calendar days of the invoice date. An invoice dated 1 June on net 30 terms is due on 1 July.</p>
+<p><b>What does net 30 EOM mean?</b> Payment is due 30 days after the end of the month in which the invoice is dated, which gives the customer longer than plain net 30.</p>
+<p><b>Can I charge interest on late payments?</b> Only if your terms say so and the customer accepted them. State the rate and how it is calculated on your invoices and terms.</p>
+<p>More free calculators: <a href="break-even-calculator.html">break-even</a>, <a href="gross-profit-calculator.html">gross profit</a>, <a href="price-increase-calculator.html">price increase</a>, <a href="dso-calculator.html">DSO</a>, <a href="gst-calculator.html">GST</a>, <a href="invoice-due-date-calculator.html">invoice due date</a> and <a href="index.html">all free tools</a>.</p>
+  </div>
+
+  <div class="byline noprint">
+    <img src="sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
+    <div class="who"><div class="nm">Sayed Rashid</div><div class="rl">I build these free tools from the jobs I see business owners do by hand every week. Tell me which one to build next.</div></div>
+    <a class="li" href="https://www.linkedin.com/in/sayedomni" target="_blank" rel="noopener" onclick="try{gtag('event','linkedin_click',{page:location.pathname})}catch(e){}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg> Connect on LinkedIn</a>
+  </div>
+  <p class="noprint" style="font-size:12px;color:rgba(255,255,255,0.6);text-align:center;margin-top:14px;line-height:1.5">Privacy: your entries stay in your browser and are never uploaded. I count anonymous visits and button clicks (Google Analytics) to see which tools help.</p>
+  <div class="footer" id="baseFooter"><a href="index.html">All free tools</a> · <a href="https://www.gantry.work">The Gantry</a></div>
+</div>
+
+<div class="gate hidden" id="gate"><div class="box2">
+  <div class="result-label">YOU'VE USED THIS A FEW TIMES</div>
+  <h2>Numbers like these, every week?</h2>
+  <p class="sub" style="margin-bottom:6px">Get one automation you can set up yourself each week, free, from The Gantry newsletter. Then keep using the calculator as much as you like.</p>
+  <iframe src="https://www.gantry.work/embed" title="Subscribe to The Gantry" scrolling="no"></iframe>
+  <button class="primary" id="gateDone">Continue</button>
+  <button class="ghost" id="gateSkip" style="margin-top:10px">Not now</button>
+</div></div>
+
+<script>window.CALC = 'duedate';</script>
+<script src="calc.js"></script>
+</body>
+</html>
