@@ -83,12 +83,13 @@
   </div>
 
   <div id="gate" class="hidden">
-    <div class="result-label">FREE RUNS USED</div>
+    <div class="result-label">WANT A SECOND OPINION?</div>
     <h2>You've scored this three times.</h2>
     <p class="sub">At this point the scorecard has told you what it can. What it can't tell you is the sequence — which gap to close first, and which ones will quietly close themselves once you fix another.</p>
     <div class="note">That ordering is the difference between a project that pays for itself in months and one that becomes a two-year story people tell at conferences. It depends entirely on <strong>your</strong> processes.</div>
     <p class="sub">Bring your score to a 20-minute Zoom review. We'll turn it into a sequence: what to fix now, what to fix during implementation, and what to ignore.</p>
     <a class="cta" href="#" id="bookBtn2">Request your 20-min systems review</a>
+    <button class="ghost" type="button" style="margin-top:12px;width:100%" onclick="keepGoing()">Not now, keep using the calculator</button>
     <a class="cta-ghost" href="https://www.gantry.work/subscribe?utm_source=tool-gate">Not ready? Get the weekly playbooks instead</a>
     <div class="footer">Free runs reset if you clear your browser storage — the limit is a nudge, not a wall.</div>
   </div>
@@ -179,14 +180,16 @@ let idx = 0, score = 0, gaps = [];
 function used() { return parseInt(localStorage.getItem('tae_' + TOOL_ID) || '0', 10); }
 function bump() { localStorage.setItem('tae_' + TOOL_ID, used() + 1); }
 
+function more() { try { return sessionStorage.getItem('tae_more') === '1'; } catch (e) { return false; } }
+function keepGoing() { try { sessionStorage.setItem('tae_more', '1'); } catch (e) {} try { gtag('event', 'gate_continue', { page: location.pathname }); } catch (e) {} if (typeof showQuota === 'function') showQuota(); show('intro'); }
 function showQuota() {
   const left = Math.max(0, LIMIT - used());
-  document.getElementById('quota').textContent = left > 0 ? left + ' of ' + LIMIT + ' free runs left' : 'No free runs left';
-  document.getElementById('startBtn').disabled = left === 0;
+  document.getElementById('quota').textContent = '';
+  document.getElementById('startBtn').disabled = false;
 }
 
 function start() {
-  if (used() >= LIMIT) { show('gate'); return; }
+  if (used() >= LIMIT && !more()) { show('gate'); return; }
   idx = 0; score = 0; gaps = [];
   show('quiz'); render();
 }
@@ -242,8 +245,9 @@ function show(which) {
 }
 
 showQuota();
-if (used() >= LIMIT) show('gate');
+// Returning visitors see the tool first; the review offer appears when they next run it.
 </script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"ERP Readiness Assessment","url":"https://tools.gantry.work/erp-readiness.html","applicationCategory":"BusinessApplication","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"SGD"},"description":"A free ERP readiness assessment and checklist that scores whether a business is ready to buy an ERP, and what to fix first.","author":{"@id":"https://tools.gantry.work/#sayed"},"areaServed":{"@type":"Country","name":"Singapore"},"isAccessibleForFree":true},{"@type":"Person","@id":"https://tools.gantry.work/#sayed","name":"Sayed Rashid","url":"https://gantry.work","jobTitle":"ERP & Business Systems Consultant","sameAs":["https://www.linkedin.com/in/sayedomni","https://gantry.work","https://github.com/sayedomnisoft"]}]}</script>
+<script src="/guide-dates.js" defer></script>
 </body>
 </html>
