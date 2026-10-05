@@ -200,6 +200,9 @@ function runList(user) {
   s += `<div class="tw"><table class="pt"><thead><tr><th>Item</th><th>Cost</th><th>Current price</th><th>Current ${PCT.toLowerCase()}</th><th>Suggested price</th><th>New ${PCT.toLowerCase()}</th><th>Change</th></tr></thead><tbody>`;
   s += items.map(x => `<tr class="${x.low ? 'low' : ''}"><td>${esc(x.name)}</td><td>${money(x.c)}</td><td>${isFinite(x.p) ? showP(x.p) : '—'}</td><td class="${x.low ? 'bad' : (isFinite(x.curM) ? 'good' : '')}">${isFinite(x.curM) ? fmtPct(x.curM) : '—'}</td><td class="${x.kept ? '' : 'new'}">${showP(x.sug)}</td><td>${fmtPct(x.newM)}</td><td>${x.kept ? 'keep' : isFinite(x.p) ? (x.sug - x.p >= 0 ? '+' : '') + money(r2((x.sug - x.p) * (incl ? gf : 1))) : '—'}</td></tr>`).join('');
   s += '</tbody></table></div>';
+  const G = 'style="color:#f2cf6e"';
+  s += `<p class="hint" id="listCta" style="margin-top:14px;font-size:14px;line-height:1.55">` + (low.length ? `<b style="color:#fff">${low.length} product${low.length === 1 ? ' is' : 's are'} below your target.</b> Prices drift when supplier costs change and the list does not. ` : `<b style="color:#fff">Every product with a price is at or above target.</b> `) +
+    `A free Make scenario can recheck your list against new supplier costs every week and email you the items that slip: <a ${G} href="https://www.gantry.work/p/excel-automation-small-business?utm_source=tools&utm_medium=pricelist-result" target="_blank" rel="noopener">see how</a>. Costs and prices kept in different files? <a ${G} href="https://tools.gantry.work/review.html?utm_source=tools&utm_medium=pricelist-result" target="_blank" rel="noopener">Book a free 20-minute review</a>.</p>`;
   $('out').innerHTML = s;
   saveState();
   if (user) { ev('pc_list_run', { items: items.length, low: low.length }); if (!counted) { counted = true; countUse(); } }
