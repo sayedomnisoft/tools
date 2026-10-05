@@ -92,12 +92,13 @@
   </div>
 
   <div id="gate" class="hidden">
-    <div class="result-label">FREE RUNS USED</div>
+    <div class="result-label">WANT A SECOND OPINION?</div>
     <h2>Three runs in.</h2>
     <p class="sub">You've now seen the number from a few angles. The next question the calculator can't answer: <em>why</em> does your close take as long as it does?</p>
     <div class="note">In almost every SME I've worked in, the answer is the same shape — the month's data was never captured properly while the month was happening. Finance isn't closing the books, it's <strong>reconstructing them</strong>. Which specific handoffs cause that in your business is a 20-minute conversation.</div>
     <p class="sub">Bring your close timeline to a Zoom review. We'll find the two or three points where the information goes missing, and what fixing them would actually take.</p>
     <a class="cta" href="#" id="bookBtn2">Request your 20-min systems review</a>
+    <button class="ghost" type="button" style="margin-top:12px;width:100%" onclick="keepGoing()">Not now, keep using the calculator</button>
     <a class="cta-ghost" href="https://www.gantry.work/subscribe?utm_source=tool-gate">Not ready? Get the weekly playbooks instead</a>
     <div class="footer">Free runs reset if you clear your browser storage — the limit is a nudge, not a wall.</div>
   </div>
@@ -146,14 +147,16 @@ function used() { return parseInt(localStorage.getItem('tae_' + TOOL_ID) || '0',
 function bump() { localStorage.setItem('tae_' + TOOL_ID, used() + 1); }
 function fmt(n) { return Math.round(n).toLocaleString('en-SG'); }
 
+function more() { try { return sessionStorage.getItem('tae_more') === '1'; } catch (e) { return false; } }
+function keepGoing() { try { sessionStorage.setItem('tae_more', '1'); } catch (e) {} try { gtag('event', 'gate_continue', { page: location.pathname }); } catch (e) {} if (typeof showQuota === 'function') showQuota(); show('form'); }
 function showQuota() {
   const left = Math.max(0, LIMIT - used());
-  document.getElementById('quota').textContent = left > 0 ? left + ' of ' + LIMIT + ' free calculations left' : 'No free calculations left';
-  document.getElementById('calcBtn').disabled = left === 0;
+  document.getElementById('quota').textContent = '';
+  document.getElementById('calcBtn').disabled = false;
 }
 
 function calculate() {
-  if (used() >= LIMIT) { show('gate'); return; }
+  if (used() >= LIMIT && !more()) { show('gate'); return; }
   const days = Math.max(1, +document.getElementById('days').value || 1);
   const people = Math.max(1, +document.getElementById('people').value || 1);
   const pct = (+document.getElementById('pct').value || 50) / 100;
@@ -200,7 +203,8 @@ function show(which) {
 }
 
 showQuota();
-if (used() >= LIMIT) show('gate');
+// Returning visitors see the tool first; the review offer appears when they next run it.
 </script>
+<script src="/guide-dates.js" defer></script>
 </body>
 </html>
