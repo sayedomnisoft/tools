@@ -138,11 +138,12 @@
 
   <!-- GATE -->
   <div id="gate" class="hidden">
-    <div class="result-label">FREE CHECKS USED</div>
+    <div class="result-label">WANT A SECOND OPINION?</div>
     <h1>You've checked three times.</h1>
     <p class="sub">Usually that means you are working out the answer for more than one entity, or the date came sooner than you expected and you are deciding what to do about it.</p>
     <div class="note">Twenty minutes on a call and we can go through what onboarding actually involves for your setup — what changes in your invoicing, what your accounting system needs to do, and whether a free solution package covers you or you need something more.</div>
     <a class="cta" href="#" id="bookBtn2">Book the 20-min systems review</a>
+    <button class="ghost" type="button" style="margin-top:12px;width:100%" onclick="keepGoing()">Not now, keep using the calculator</button>
     <a class="cta-ghost" href="index.html">Try the other free tools</a>
     <div class="footer"><a href="invoicenow-free.html">Free packages</a> · <a href="invoicenow-grants.html">Grants</a> · <a href="invoicenow-software.html">Is my software ready?</a> · No pitch. If a free package covers you, I'll say so.</div>
   </div>
@@ -152,6 +153,7 @@
     <a href="https://www.gantry.work/subscribe?utm_source=invoicenow">Get the weekly playbooks</a>
   </div>
 
+  <!-- relguides --><div class="guide noprint"><h2>Related guides on The Gantry</h2><ul><li><a href="https://www.gantry.work/p/invoicenow-when-your-business-must?utm_source=tools&amp;utm_medium=invoicenow-deadline&amp;utm_campaign=related">InvoiceNow: When Your Business Must Comply, and What Actually Changes</a></li><li><a href="https://www.gantry.work/p/accounting-software-not-on-invoicenow-list?utm_source=tools&amp;utm_medium=invoicenow-deadline&amp;utm_campaign=related">Your Accounting Software Might Not Be on the List</a></li><li><a href="https://www.gantry.work/p/free-invoicenow-package-expires-march-2027?utm_source=tools&amp;utm_medium=invoicenow-deadline&amp;utm_campaign=related">The Free Package That Quietly Expires in March</a></li></ul><p>More plain-English guides on ERP, automation and InvoiceNow for small businesses: <a href="https://www.gantry.work/?utm_source=tools&amp;utm_medium=invoicenow-deadline">The Gantry</a> (free, weekly).</p></div>
   <div class="byline">
     <img src="sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
     <div class="who">
@@ -189,11 +191,13 @@ function used() { return parseInt(localStorage.getItem('tae_' + TOOL_ID) || '0',
 function bump() { localStorage.setItem('tae_' + TOOL_ID, used() + 1); }
 function money(n) { return 'S$' + Math.round(n).toLocaleString('en-SG'); }
 
+function more() { try { return sessionStorage.getItem('tae_more') === '1'; } catch (e) { return false; } }
+function keepGoing() { try { sessionStorage.setItem('tae_more', '1'); } catch (e) {} try { gtag('event', 'gate_continue', { page: location.pathname }); } catch (e) {} if (typeof showQuota === 'function') showQuota(); show('form'); }
 function showQuota() {
   const left = Math.max(0, LIMIT - used());
   const q = document.getElementById('quota');
-  q.textContent = left > 0 ? left + ' of ' + LIMIT + ' free checks left' : 'No free checks left';
-  document.getElementById('calcBtn').disabled = left === 0;
+  q.textContent = '';
+  document.getElementById('calcBtn').disabled = false;
 }
 
 function toggleSupply() {
@@ -252,7 +256,7 @@ document.getElementById('regDuring').addEventListener('change', function () {
 });
 
 function calculate() {
-  if (used() >= LIMIT) { show('gate'); return; }
+  if (used() >= LIMIT && !more()) { show('gate'); return; }
   const status = document.getElementById('status').value;
   const rawSupplies = Math.max(0, +document.getElementById('supplies').value || 0);
   const exempt = document.getElementById('exempt').value;
@@ -342,5 +346,6 @@ toggleSupply();
 showQuota();
 </script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"GST InvoiceNow Implementation Date Calculator","url":"https://tools.gantry.work/invoicenow-deadline.html","applicationCategory":"BusinessApplication","operatingSystem":"Any (web browser)","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"SGD"},"description":"Free instant calculator that determines a Singapore business's mandatory GST InvoiceNow implementation date under the IRAS phased rollout from 2025 to 2031.","author":{"@id":"https://tools.gantry.work/#sayed"},"areaServed":{"@type":"Country","name":"Singapore"},"isAccessibleForFree":true},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is InvoiceNow mandatory in Singapore?","acceptedAnswer":{"@type":"Answer","text":"For GST-registered businesses yes, but on a phased timetable rather than all at once. Every GST-registered business must eventually transmit invoice data to IRAS through the InvoiceNow network, starting with voluntary registrants on 1 Nov 2025 and finishing with the largest existing businesses on 1 Apr 2031. If you are not GST-registered it is optional."}},{"@type":"Question","name":"How is my GST InvoiceNow implementation date decided?","acceptedAnswer":{"@type":"Answer","text":"If you registered for GST from 2026 onward it depends on whether registration was voluntary or compulsory, and when. If you were already GST-registered before 2026 it depends on your total supplies in Box 4 across accounting periods ending in calendar year 2025: S$200,000 or less means 1 Apr 2028, S$1,000,000 or less means 1 Apr 2029, S$4,000,000 or less means 1 Apr 2030, and more than S$4,000,000 means 1 Apr 2031."}},{"@type":"Question","name":"What if I registered for GST part-way through 2025?","acceptedAnswer":{"@type":"Answer","text":"Your returns then cover less than a full year, so IRAS annualises the figure before deciding your phase: total supplies divided by the days covered, multiplied by 365. Because annualising makes the figure larger, it usually moves a business into a later phase."}},{"@type":"Question","name":"Why do the smallest businesses have to comply first?","acceptedAnswer":{"@type":"Answer","text":"Smaller businesses tend to have simpler invoicing and fewer systems to change, so they can move quickly. Larger businesses often have deeply integrated ERP systems and many trading partners, so they are given until 2031 to prepare."}},{"@type":"Question","name":"Which businesses are excluded from the GST InvoiceNow Requirement?","acceptedAnswer":{"@type":"Answer","text":"Overseas entities registered under the Overseas Vendor Registration regime, both Pay-only and full, and businesses liable to register for GST wholly because of the Reverse Charge regime."}}]},{"@type":"Person","@id":"https://tools.gantry.work/#sayed","name":"Sayed Rashid","url":"https://gantry.work","jobTitle":"ERP & Business Systems Consultant","sameAs":["https://www.linkedin.com/in/sayedomni","https://gantry.work","https://github.com/sayedomnisoft"]}]}</script>
+<script src="/guide-dates.js" defer></script>
 </body>
 </html>
