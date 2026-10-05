@@ -45,6 +45,8 @@
   <div class="brand"><a href="index.html">← THE GANTRY · TOOLS</a></div>
   <h1>WhatsApp Business API Cost Calculator</h1>
   <p class="sub">Put in how your team uses WhatsApp and see the monthly bill: Meta's per-message charges at Singapore rates, the October 2026 change to replies, and the provider plan on top. Change the rates for other countries. Free, no signup, nothing leaves your browser.</p>
+  <!-- guidelink --><p style="margin:-10px 0 18px;font-size:14px;color:rgba(255,255,255,.8)">Full guide: <a style="color:#f2cf6e" href="https://www.gantry.work/p/whatsapp-business-api-pricing?utm_source=tools&amp;utm_medium=whatsapp-api-cost-calculator&amp;utm_campaign=guidelink">WhatsApp Business API pricing explained →</a></p>
+
 
   <div class="pc">
    <div class="split">
@@ -87,6 +89,7 @@
       <div class="tile"><b id="tChat">—</b><span>Per customer chat</span></div>
      </div>
      <p class="note" id="biggest"></p>
+     <p class="note" id="waCta" style="color:rgba(255,255,255,.85)"></p>
      <div class="row-acts"><button id="copyBtn">Copy breakdown</button><button id="resetBtn">Reset example</button></div>
     </div>
    </div>
@@ -170,6 +173,7 @@ function calc() {
   $('tChat').textContent = chats ? money(total / chats) : '—';
   const parts = [['promotions', mkt], ['replies', service], ['order updates', util], ['the provider plan', plan]].sort((a, b) => b[1] - a[1]);
   $('biggest').textContent = total ? `The biggest part of the bill is ${parts[0][0]} (${Math.round(parts[0][1] / total * 100)}%). ` + (parts[0][0] === 'promotions' ? 'Sending offers to recent buyers instead of everyone is the quickest saving.' : parts[0][0] === 'replies' ? 'Fewer, fuller replies and ad-started chats keep this down.' : '') : '';
+  $('waCta').innerHTML = total ? `At about <b>${money(total)} a month</b>, it is worth checking you are on the right setup. <a style="color:#f2cf6e" href="https://cal.com/sayed.r/20min" target="_blank" rel="noopener">Book a free 20-minute WhatsApp setup check</a>: sometimes the answer is that the free app is enough.` : '';
   lastText = L.map(x => `${x[0]}: ${money(x[1])} (${x[2]})`).concat([`Meta's charges: ${money(meta)}`, plan ? `Provider plan: ${money(plan)}` : '', `Total per month: ${money(total)} (${money(total * 12)} a year)`]).filter(Boolean).join('\n');
   const s = { chargeReplies: $('chargeReplies').checked }; IDS.forEach(k => s[k] = $(k).value); store.set('wacalc', JSON.stringify(s));
 }
