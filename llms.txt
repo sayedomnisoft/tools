@@ -6,6 +6,7 @@
 - [SME Systems Health Check](https://tools.gantry.work/health-check/): Ten honest questions, a score out of 20 and the one leak to fix first. About 60 seconds.
 - [Cost of Manual Work Calculator](https://tools.gantry.work/cost-of-manual-work.html): What retyping, chasing and checking really cost your team in a year.
 - [ERP Readiness Scorecard](https://tools.gantry.work/erp-readiness.html): Eight questions on data, process, ownership and time: are you ready for a system, and what to fix first?
+- [Inventory Software Cost Calculator](https://tools.gantry.work/inventory-software-cost-calculator.html): 12-month licence cost for Zoho Inventory, inFlow, Cin7 Core, Unleashed and Odoo from users, stock locations and monthly orders, with the plan each needs (prices checked 6 Oct 2026).
 
 ## Get paid faster
 - [Overdue Invoice Reminder Writer](https://tools.gantry.work/invoice-chaser.html): Drop in your Xero or QuickBooks aged receivables; get the right reminder for every late customer.
