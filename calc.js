@@ -128,6 +128,32 @@ const CALCS = {
       return { out, used: true };
     }
   }
+,
+  edge: {
+    html: `<div class="g4">${f('sub', 'Software subscription, year 1 (S$)', '6000', 'licences in the quotation')}${f('impl', 'Implementation services (S$)', '22000', 'setup, data migration, training')}${sel('size', 'Company size', [['sme', 'SME (up to S$100m sales or 200 staff)'], ['non', 'Non-SME']], 'sme')}${sel('cores', 'Core functions covered', [['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], ['5', '5 or more']], '4')}</div>
+      <div class="g4" style="margin-top:10px">${sel('local', 'Local shareholding', [['yes', 'At least 30% Singaporean or PR'], ['no', 'Less than 30%']], 'yes')}${sel('pre', 'Vendor', [['yes', 'Pre-approved vendor'], ['no', 'Not pre-approved']], 'yes')}${f('usedd', 'Already used this year: S$30k digital sub-cap (S$)', '0')}${f('usedt', 'Already used this year: S$100k overall cap (S$)', '0')}</div>
+      <div class="tiles">${tile('t1', 'Estimated grant')}${tile('t2', 'Your net cost')}${tile('t3', 'Effective support')}${tile('t4', 'Typical approval time')}</div>`,
+    calc() {
+      const S = num($('sub').value), I = num($('impl').value), ud = num($('usedd').value) || 0, ut = num($('usedt').value) || 0;
+      const total = (S || 0) + (I || 0);
+      if (!(total > 0)) return { msg: 'Enter the software and implementation costs from your quotation.' };
+      const sme = $('size').value === 'sme', rate = sme ? 0.5 : 0.3, cores = parseInt($('cores').value, 10), local = $('local').value === 'yes', pre = $('pre').value === 'yes';
+      const raw = total * rate, roomD = Math.max(0, 30000 - ud), roomT = Math.max(0, 100000 - ut);
+      let grant = Math.min(raw, roomD, roomT), why = [];
+      if (!local) { grant = 0; why.push('EDGE needs at least 30% local (Singaporean or PR) shareholding'); }
+      if (cores < 3) { grant = 0; why.push('an integrated enterprise system such as an ERP must cover at least 3 core functions (for example sales, inventory and accounting)'); }
+      $('t1').textContent = money(grant); $('t2').textContent = money(total - grant); $('t3').textContent = pct(grant / total * 100); $('t4').textContent = pre ? 'About 1 week' : 'About 10 weeks';
+      let out;
+      if (grant === 0) out = `<b style="color:#fff">On these answers the project would not qualify:</b> ${why.join('; and ')}. `;
+      else {
+        const capped = grant < raw - 0.005;
+        out = `<b style="color:#fff">Estimated EDGE grant: ${money(grant)}, so your net cost is ${money(total - grant)}.</b> That is ${sme ? 'the SME rate of up to 50%' : 'the non-SME rate of up to 30%'}${capped ? `, limited by the ${roomD <= roomT ? 'S$30,000 sub-cap for digital solutions and enterprise systems' : 'S$100,000 annual cap'} (${money(raw)} before the cap)` : ''}. `;
+        out += `You pay the vendor first and claim afterwards; claims for digital solutions and enterprise systems open from 1 November 2026. ${pre ? 'With a pre-approved vendor, Enterprise Singapore quotes about a week to process the application.' : 'With a vendor that is not pre-approved, expect about 10 weeks to process.'} Apply before you sign or pay anything. `;
+      }
+      out += `This is an estimate: Enterprise Singapore decides the activity, the support level and which costs qualify. Not sure how your quotation should be split? ${review('edge-calculator-result')}`;
+      return { out, used: true };
+    }
+  }
 };
 const C = CALCS[K]; if (!C) return;
 $('app').innerHTML = `<div class="pc"><div class="box">${C.html}<p class="hint" id="out" style="margin-top:14px;font-size:14.5px;line-height:1.6"></p><div class="msg" id="msg"></div><div class="row-acts"><button id="copyBtn">Copy result</button><button id="resetBtn">Reset example</button></div></div></div>`;
