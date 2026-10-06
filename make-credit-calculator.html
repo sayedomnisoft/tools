@@ -209,6 +209,9 @@ function calc(fromUser) {
     else if (scen > 2 && total <= 1000) warn = 'The free plan allows only 2 active scenarios, so this needs Core even though the credits would fit.';
   }
   $('plan').textContent = plan; $('price').textContent = price; $('warn').textContent = warn;
+  const paid = plan !== 'Free plan'; const need = plan.indexOf('Core') === 0 ? 'Core' : 'a larger plan';
+  $('makeBtn').textContent = paid ? 'See Make plans (you need ' + need + ')' : 'Start free on Make';
+  $('makeBtn').href = paid ? 'https://www.make.com/en/pricing?pc=gntrywk' : 'https://www.make.com/en/register?pc=gntrywk';
 
   let tip = '';
   if (trig === 'poll' && interval !== 'day') {
