@@ -41,6 +41,10 @@
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
 <meta name="author" content="Sayed Rashid">
 <!-- seo:end -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');
+window.gSrc=(function(){try{var q=new URLSearchParams(location.search);return (q.get('utm_medium')||q.get('from')||document.referrer||'direct').slice(0,90);}catch(e){return 'unknown';}})();
+try{gtag('event','review_view',{source:window.gSrc});}catch(e){}</script>
 </head>
 <body>
 <div class="card">
@@ -169,6 +173,7 @@ const BOOKING_URL = 'https://tally.so/r/WOkDRe';
       const z = document.getElementById('bookZone');
       const b = document.getElementById('bookedPanel');
       if (!b) return;
+      try { gtag('event', 'review_booked', { source: window.gSrc }); } catch (e) {}
       b.hidden = false;
       if (z) z.hidden = true;
       b.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -182,5 +187,6 @@ const BOOKING_URL = 'https://tally.so/r/WOkDRe';
   });
 })();
 </script>
+<script>document.querySelectorAll('a[href*="linkedin.com"]').forEach(function(a){a.addEventListener('click',function(){try{gtag('event','linkedin_click',{page:'review',source:window.gSrc});}catch(e){}});});</script>
 </body>
 </html>
