@@ -153,6 +153,42 @@ const CALCS = {
       out += `This is an estimate: Enterprise Singapore decides the activity, the support level and which costs qualify. Not sure how your quotation should be split? ${review('edge-calculator-result')}`;
       return { out, used: true };
     }
+  },
+  invcost: {
+    html: `<div class="g4">${f('users', 'People who need a login', '5')}${f('locs', 'Stock locations (warehouses, shops)', '2')}${f('orders', 'Sales orders per month', '300')}${sel('batch', 'Batch, lot or serial tracking?', [['no', 'No'], ['yes', 'Yes']], 'no')}</div>
+      <div class="g4" style="margin-top:10px">${f('fx', 'S$ per US$1', '1.28', 'exchange rate')}${f('setup', 'Your setup budget (S$, optional)', '', 'training, data import')}</div>
+      <div class="tiles">${tile('t1', 'Lowest 12-month cost')}${tile('t2', 'Cheapest fit')}${tile('t3', 'Highest 12-month cost')}${tile('t4', 'Per user per month (lowest)')}</div>`,
+    calc() {
+      const U = Math.round(num($('users').value)), L = Math.round(num($('locs').value)), O = num($('orders').value), R = num($('fx').value), B = $('batch').value === 'yes', SU = num($('setup').value) || 0;
+      if (!(U >= 1) || !(L >= 1) || !(O >= 0) || !(R > 0)) return { msg: 'Enter users, locations, orders per month and an exchange rate.' };
+      const res = [];
+      // Zoho Inventory, SGD, billed annually (zoho.com/inventory/pricing, checked 6 Oct 2026)
+      const ZP = [['Free', 0, 50, 1, 2], ['Standard', 39, 500, 2, 2], ['Professional', 109, 3000, 2, 4], ['Premium', 169, 7500, 2, 6], ['Enterprise', 329, 15000, 7, 10]];
+      const zf = ZP.filter(p => O <= p[2] && !(B && (p[0] === 'Free' || p[0] === 'Standard')) && !(p[0] === 'Free' && (U > 1 || L > 2)));
+      if (zf.length) { const z = zf.map(p => ({ p, m: p[1] + Math.max(0, U - p[3]) * 10 + Math.max(0, L - p[4]) * 12 })).sort((a, b) => a.m - b.m)[0]; res.push({ n: 'Zoho Inventory', plan: z.p[0], y: z.m * 12, note: 'SGD, billed yearly; extra users S$10 and locations S$12 a month' }); }
+      else res.push({ n: 'Zoho Inventory', plan: '', y: NaN, note: 'over 15,000 orders a month: ask Zoho' });
+      // inFlow, USD billed annually (inflowinventory.com/software-pricing-inflow)
+      const IP = [['Lite', 99, 2, 1], ['Core', 299, 5, 5], ['Pro', 499, 10, 1e9], ['Max', 699, 20, 1e9]];
+      const ifit = IP.filter(p => L <= p[3]).map(p => ({ p, m: p[1] + Math.max(0, U - p[2]) * 29 + (B ? 39 : 0) })).sort((a, b) => a.m - b.m)[0];
+      res.push({ n: 'inFlow Inventory', plan: ifit.p[0], y: (ifit.m * 12 + (ifit.p[0] === 'Lite' ? 0 : 499)) * R, note: `USD; extra users US$29 a month${B ? ', serial-number add-on US$39 a month' : ''}${ifit.p[0] === 'Lite' ? '' : ', US$499 onboarding'}` });
+      // Cin7 Core, USD (cin7.com/pricing): users and yearly order volume per plan
+      const CP = [['Standard', 349, 5, 6000], ['Pro', 599, 10, 24000], ['Advanced', 1199, 15, 120000]];
+      const c = CP.find(p => U <= p[2] && O * 12 <= p[3]);
+      res.push(c ? { n: 'Cin7 Core', plan: c[0], y: c[1] * 12 * R, note: 'USD; unlimited locations; batch and serial included' } : { n: 'Cin7 Core', plan: '', y: NaN, note: 'beyond Advanced limits: price on request' });
+      // Unleashed, USD paid monthly (unleashedsoftware.com/pricing): 100 orders included, order upgrades
+      const up = O <= 100 ? 0 : O <= 500 ? 70 : O <= 1500 ? 200 : O <= 3000 ? 320 : 490;
+      const uc = [['Core', 399, 3, 69], ['Pro', 729, 5, 89]].map(p => ({ p, m: p[1] + Math.max(0, U - p[2]) * p[3] + up })).sort((a, b) => a.m - b.m)[0];
+      res.push({ n: 'Unleashed', plan: uc.p[0], y: uc.m * 12 * R, note: `USD; ${up ? 'order upgrade US$' + up + ' a month; ' : ''}onboarding US$449 to US$5,549 extra` });
+      // Odoo Standard, USD per user billed yearly (odoo.com/pricing), all apps
+      res.push({ n: 'Odoo', plan: 'Standard', y: 16.90 * U * 12 * R, note: 'USD per user, billed yearly, all apps incl. accounting; implementation extra' });
+      const ok = res.filter(r => isFinite(r.y)).sort((a, b) => a.y - b.y);
+      const lo = ok[0], hi = ok[ok.length - 1];
+      $('t1').textContent = money(lo.y + SU); $('t2').textContent = lo.n; $('t3').textContent = money(hi.y + SU); $('t4').textContent = money(lo.y / 12 / U);
+      let out = `<b style="color:#fff">For ${U} users, ${L} location${L > 1 ? 's' : ''} and ${int(O)} orders a month, 12 months of licences run from ${money(lo.y)} (${lo.n}) to ${money(hi.y)} (${hi.n}).</b>${SU ? ` Your setup budget of ${money(SU)} is added to the tiles.` : ''}<br>`;
+      out += res.map(r => `${r.n}${r.plan ? ' ' + r.plan : ''}: <b style="color:#fff">${isFinite(r.y) ? money(r.y) : 'n/a'}</b> (${r.note})`).join('<br>');
+      out += `<br>List prices checked 6 October 2026, before taxes and promotions; USD plans converted at your rate. Katana is usage-based and Sortly tracks items without costing stock, so they are not priced here. Full comparison: ${link('https://www.gantry.work/p/best-inventory-software-small-business?utm_source=tools&utm_medium=inventory-cost-calculator', 'the best inventory software for small business', true)}. Choosing between these, or between an inventory app and an ERP? ${review('inventory-cost-result')}`;
+      return { out, used: true };
+    }
   }
 };
 const C = CALCS[K]; if (!C) return;
