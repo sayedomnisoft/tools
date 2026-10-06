@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The 20-Minute Systems Review — The Gantry</title>
-<meta name="description" content="A straight twenty-minute conversation about what your current systems are costing you, and what would actually change.">
+<meta name="description" content="A free 20-minute call for Singapore SMEs: one process that keeps going wrong, walked end to end, and an honest answer on whether it's worth fixing yet.">
 <meta property="og:title" content="The 20-Minute Systems Review — The Gantry">
-<meta property="og:description" content="A straight twenty-minute conversation about what your current systems are costing you, and what would actually change.">
+<meta property="og:description" content="One process that keeps going wrong, walked end to end in 20 minutes — and an honest answer on whether it's worth fixing yet.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://tools.gantry.work/og-review.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -19,12 +19,33 @@
   ul.plain li { font-size: 15px; color: rgba(255,255,255,0.85); padding: 8px 0 8px 26px; position: relative; line-height: 1.5; }
   ul.plain li::before { content: "▸"; color: var(--gold); position: absolute; left: 4px; }
   ul.plain.no li::before { content: "✕"; color: rgba(255,255,255,0.4); }
-  .split { display: grid; grid-template-columns: 1fr; gap: 4px; }
-  .book-zone { border: 1px dashed rgba(242,207,110,0.5); border-radius: 14px; padding: 22px 20px; margin: 8px 0 20px; }
-  .sig { display: flex; align-items: center; gap: 13px; margin: 26px 0 8px; }
-  .sig img { width: 52px; height: 52px; border-radius: 50%; }
-  .sig div { font-size: 14px; line-height: 1.45; color: rgba(255,255,255,0.88); }
-  .sig strong { color: #fff; display: block; font-size: 15px; }
+  .host { display: flex; align-items: center; gap: 12px; margin: 4px 0 18px; }
+  .host img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex: none; border: 2px solid rgba(242,207,110,0.6); }
+  .host div { font-size: 13.5px; line-height: 1.45; color: rgba(255,255,255,0.85); }
+  .host strong { color: #fff; }
+  .proof { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 0 0 20px; }
+  .proof div { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 12px 8px; text-align: center; }
+  .proof b { display: block; font-size: 22px; color: var(--gold-light); line-height: 1.1; }
+  .proof span { display: block; font-size: 11.5px; color: rgba(255,255,255,0.72); margin-top: 4px; line-height: 1.3; }
+  .hero-ctas { display: grid; gap: 10px; margin: 0 0 26px; }
+  .hero-ctas .alt { text-align: center; font-size: 13.5px; color: rgba(255,255,255,0.7); }
+  .hero-ctas .alt a { color: var(--gold-light); text-decoration: none; }
+  .edge { border-left: 3px solid var(--gold); background: rgba(242,207,110,0.08); border-radius: 0 12px 12px 0; padding: 14px 16px; margin: 0 0 24px; font-size: 14.5px; line-height: 1.55; color: rgba(255,255,255,0.88); }
+  .edge a { color: var(--gold-light); }
+  .quote { margin: 0 0 24px; padding: 16px 18px; border-radius: 12px; background: rgba(255,255,255,0.05); font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.9); }
+  .quote cite { display: block; margin-top: 8px; font-style: normal; font-size: 12.5px; color: rgba(255,255,255,0.65); }
+  .book-zone { border: 1px dashed rgba(242,207,110,0.5); border-radius: 14px; padding: 22px 20px; margin: 8px 0 20px; scroll-margin-top: 16px; }
+  .prep { list-style: none; margin: 4px 0 16px; }
+  .prep li { font-size: 14.5px; color: rgba(255,255,255,0.88); padding: 5px 0 5px 24px; position: relative; }
+  .prep li::before { content: counter(p); counter-increment: p; position: absolute; left: 0; color: var(--gold-light); font-weight: 700; }
+  .prep { counter-reset: p; }
+  .sticky { position: fixed; left: 0; right: 0; bottom: 0; padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+            background: rgba(10,13,51,0.94); border-top: 1px solid rgba(242,207,110,0.35); display: none; z-index: 50; }
+  .sticky a { display: block; text-align: center; padding: 13px; font-weight: 700; font-size: 15.5px; color: var(--ink);
+              background: linear-gradient(180deg, var(--gold-light), var(--gold)); border-radius: 11px; text-decoration: none; }
+  .sticky.show { display: block; }
+  @media (min-width: 760px) { .sticky { display: none !important; } }
+  @media (max-width: 380px) { .proof b { font-size: 19px; } }
 </style>
 
 <!-- seo:start -->
@@ -42,7 +63,7 @@
 <meta name="author" content="Sayed Rashid">
 <!-- seo:end -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');
+<script>window.dataLayer=window.dataLayer||[];function gtag(){if(!/gantry\.work$/.test(location.hostname))return;dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');
 window.gSrc=(function(){try{var q=new URLSearchParams(location.search);return (q.get('utm_medium')||q.get('from')||document.referrer||'direct').slice(0,90);}catch(e){return 'unknown';}})();
 try{gtag('event','review_view',{source:window.gSrc});}catch(e){}</script>
 </head>
@@ -51,7 +72,23 @@ try{gtag('event','review_view',{source:window.gSrc});}catch(e){}</script>
   <div class="brand"><a href="index.html">← THE GANTRY · TOOLS</a></div>
   <div class="pill">FREE · 20 MINUTES · VIDEO CALL</div>
   <h1>The 20-minute systems review</h1>
-  <p class="sub">You've seen the number. This is the conversation that turns it into a decision — which single process to fix first, and whether it's even worth fixing yet.</p>
+  <p class="sub" id="heroSub">Twenty minutes on the one process that keeps going wrong — orders, stock, quotes, month-end — and an honest answer on whether it's worth fixing yet.</p>
+
+  <div class="host">
+    <img src="sayed.jpg" alt="Sayed Rashid" width="44" height="44">
+    <div><strong>With Sayed Rashid</strong> — I implement business systems for Singapore SMEs and write <a href="https://www.gantry.work" style="color:var(--gold-light);text-decoration:none;">The Gantry</a>.</div>
+  </div>
+
+  <div class="proof">
+    <div><b>38</b><span>systems taken live</span></div>
+    <div><b>91%</b><span>of clients still with us</span></div>
+    <div><b>12</b><span>in trading &amp; distribution</span></div>
+  </div>
+
+  <div class="hero-ctas">
+    <a class="cta" href="#bookZone" data-cta="hero">Pick a time — 20 min →</a>
+    <div class="alt">Not ready to talk? <a href="health-check/?utm_source=review-page" data-cta="healthcheck">Score your business in 60 seconds</a></div>
+  </div>
 
   <h2>How it works</h2>
   <ul class="plain">
@@ -61,6 +98,9 @@ try{gtag('event','review_view',{source:window.gSrc});}catch(e){}</script>
   </ul>
 
   <div class="note">No slides. No licence quote. No follow-up sequence. If your operation doesn't need what I do, I'll say so on the call — that's a faster answer for both of us.</div>
+
+  <div class="edge"><strong>Ask me about EDGE.</strong> Eligible Singapore SMEs can get up to 50% of a qualifying systems project funded under the new EDGE grant. On the call I'll tell you whether yours is likely to fit. <a href="https://www.gantry.work/p/edge-grant-erp-singapore-what-changed?utm_source=review-page">What changed on 30 September →</a></div>
+
 
   <h2>Worth your time if…</h2>
   <ul class="plain">
@@ -79,7 +119,6 @@ try{gtag('event','review_view',{source:window.gSrc});}catch(e){}</script>
 
   <h2>Pick a time</h2>
   <div class="book-zone" id="bookZone">
-    <!-- live Cal.com booker renders here once CAL_LINK is set -->
     <div id="cal-inline"></div>
     <div id="bookFallback">
       <p class="sub" style="margin-bottom:18px;">Tell me what's breaking and when you're free, and I'll send a Zoom invite that lands in your calendar.</p>
@@ -90,22 +129,19 @@ try{gtag('event','review_view',{source:window.gSrc});}catch(e){}</script>
 
   <div class="booked" id="bookedPanel" hidden>
     <div class="bk-tick" aria-hidden="true">&#10003;</div>
-    <h2 style="margin-bottom:8px;">You're in. One more thing.</h2>
-    <p class="sub" style="margin-bottom:18px;">The invite is on its way to your inbox. Before we speak, connect with me on LinkedIn &mdash; you'll see how I think about this stuff, and I'll know a little about your business before the call starts.</p>
+    <h2 style="margin-bottom:8px;">You're in. Two quick things.</h2>
+    <p class="sub" style="margin-bottom:8px;">The invite is on its way to your inbox. To make the 20 minutes count, have these three numbers rough-ready:</p>
+    <ul class="prep">
+      <li>How many people touch an order from quote to invoice</li>
+      <li>Orders (or jobs) per month</li>
+      <li>Days it takes to close the month</li>
+    </ul>
+    <p class="sub" style="margin-bottom:18px;">And connect with me on LinkedIn — you'll see how I think about this stuff, and I'll know a little about your business before we start.</p>
     <a class="li-big" href="https://www.linkedin.com/in/sayedomni" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
       Connect with me on LinkedIn
     </a>
     <div class="footer" style="margin-top:14px;">Or skip ahead and <a href="index.html">run a free tool</a> before we talk.</div>
-  </div>
-
-  <div class="sig">
-    <img src="sayed.jpg" alt="Sayed Rashid" width="52" height="52" loading="lazy">
-    <div><strong>Sayed Rashid</strong>ERP &amp; business systems consultant, Singapore SMEs. I write <a href="https://www.gantry.work" style="color:var(--gold-light);text-decoration:none;">The Gantry</a>.</div>
-  </div>
-
-  <div class="footer">
-    <a href="index.html">Free tools</a> · <a href="https://www.gantry.work">Newsletter</a> · <a href="https://www.gantry.work/subscribe?utm_source=review-page">Subscribe free</a>
   </div>
 
   <div class="byline">
@@ -119,31 +155,38 @@ try{gtag('event','review_view',{source:window.gSrc});}catch(e){}</script>
       Connect on LinkedIn
     </a>
   </div>
+
+  <div class="footer">
+    <a href="index.html">Free tools</a> · <a href="https://www.gantry.work">Newsletter</a> · <a href="https://www.gantry.work/subscribe?utm_source=review-page">Subscribe free</a>
+  </div>
 </div>
 
+<div class="sticky" id="sticky"><a href="#bookZone" data-cta="sticky">Book your 20-minute review →</a></div>
+
 <script>
-/* ══ ONE PLACE TO SWITCH BOOKING ON ═════════════════════════════════════
-   CAL_LINK = your Cal.com event link WITHOUT the domain.
-     page https://cal.com/sayedrashid/20min  ->  CAL_LINK = 'sayedrashid/20min'
-   Leave it empty and the page shows the simple request button instead.
-   ════════════════════════════════════════════════════════════════════ */
+/* Source-aware opening line: calculator visitors already have a number in front of them. */
+(function () {
+  var s = (window.gSrc || '').toLowerCase();
+  var fromTool = /calc|cost|roi|readiness|invoicenow|month-end|health|tool/.test(s) || /tools\.gantry\.work\/(?!review)/.test(document.referrer);
+  if (fromTool) document.getElementById('heroSub').textContent =
+    "You've seen the number. This is the conversation that turns it into a decision — which single process to fix first, and whether it's even worth fixing yet.";
+})();
+
+/* ══ ONE PLACE TO SWITCH BOOKING ON ═════════════════════════════════════ */
 const CAL_LINK = 'sayed.r/20min';
-const BOOKING_URL = 'https://tally.so/r/WOkDRe';
+const BOOKING_URL = 'https://cal.com/sayed.r/20min';
 
 (function () {
   const fallback = document.getElementById('bookFallback');
   const holder = document.getElementById('cal-inline');
-
   if (!CAL_LINK) {
     const b = document.getElementById('bookBtn');
     b.href = BOOKING_URL; b.target = '_blank'; b.rel = 'noopener';
     holder.style.display = 'none';
     return;
   }
-
   fallback.style.display = 'none';
   holder.style.minHeight = '560px';
-
   (function (C, A, L) {
     let p = function (a, ar) { a.q.push(ar); };
     let d = C.document;
@@ -160,13 +203,8 @@ const BOOKING_URL = 'https://tally.so/r/WOkDRe';
       p(cal, ar);
     };
   })(window, "https://app.cal.com/embed/embed.js", "init");
-
   Cal("init", "review", { origin: "https://app.cal.com" });
-  Cal.ns.review("inline", {
-    elementOrSelector: "#cal-inline",
-    config: { layout: "month_view", theme: "dark" },
-    calLink: CAL_LINK
-  });
+  Cal.ns.review("inline", { elementOrSelector: "#cal-inline", config: { layout: "month_view", theme: "dark" }, calLink: CAL_LINK });
   Cal.ns.review("on", {
     action: "bookingSuccessful",
     callback: function () {
@@ -176,17 +214,37 @@ const BOOKING_URL = 'https://tally.so/r/WOkDRe';
       try { gtag('event', 'review_booked', { source: window.gSrc }); } catch (e) {}
       b.hidden = false;
       if (z) z.hidden = true;
+      document.getElementById('sticky').remove();
       b.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   });
-  Cal.ns.review("ui", {
-    theme: "dark",
-    hideEventTypeDetails: false,
-    layout: "month_view",
-    cssVarsPerTheme: { dark: { "cal-brand": "#c9a227" }, light: { "cal-brand": "#2A2FB0" } }
-  });
+  Cal.ns.review("ui", { theme: "dark", hideEventTypeDetails: false, layout: "month_view",
+    cssVarsPerTheme: { dark: { "cal-brand": "#c9a227" }, light: { "cal-brand": "#2A2FB0" } } });
 })();
+
+/* Smooth scroll for the booking buttons + mobile sticky bar (shown after the hero, hidden once the calendar is on screen). */
+(function () {
+  document.querySelectorAll('a[href="#bookZone"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.getElementById('bookZone').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  var sticky = document.getElementById('sticky'), hero = document.querySelector('.hero-ctas'), zone = document.getElementById('bookZone');
+  if (!('IntersectionObserver' in window)) return;
+  var heroGone = false, zoneSeen = false;
+  var upd = function () { if (sticky.isConnected) sticky.classList.toggle('show', heroGone && !zoneSeen); };
+  new IntersectionObserver(function (e) { heroGone = !e[0].isIntersecting && e[0].boundingClientRect.top < 0; upd(); }).observe(hero);
+  new IntersectionObserver(function (e) { zoneSeen = e[0].isIntersecting || e[0].boundingClientRect.top < 0; upd(); }).observe(zone);
+})();
+
+/* GA4: which button people use, plus LinkedIn clicks (existing event). */
+document.querySelectorAll('[data-cta]').forEach(function (a) {
+  a.addEventListener('click', function () { try { gtag('event', 'review_cta_click', { cta: a.dataset.cta, source: window.gSrc }); } catch (e) {} });
+});
+document.querySelectorAll('a[href*="linkedin.com"]').forEach(function (a) {
+  a.addEventListener('click', function () { try { gtag('event', 'linkedin_click', { page: 'review', source: window.gSrc }); } catch (e) {} });
+});
 </script>
-<script>document.querySelectorAll('a[href*="linkedin.com"]').forEach(function(a){a.addEventListener('click',function(){try{gtag('event','linkedin_click',{page:'review',source:window.gSrc});}catch(e){}});});</script>
 </body>
 </html>
