@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurant Margin Checklist: What Your POS Doesn't Show | The Gantry</title>
+<meta name="description" content="A weekly 15-minute margin check for restaurant owners: delivery app fees, food cost, wastage and stock, plus a free delivery-order margin calculator. Built for Singapore F&amp;B.">
+<meta property="og:title" content="Your POS says Saturday was great. Was it?">
+<meta property="og:description" content="A 15-minute weekly margin check for restaurant owners, with a free delivery-order margin calculator.">
+<meta property="og:image" content="https://tools.gantry.work/og/restaurant-margin-checklist.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tools.gantry.work/og/restaurant-margin-checklist.jpg">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://tools.gantry.work/restaurant-margin-checklist.html">
+<meta property="og:site_name" content="The Gantry">
+<link rel="canonical" href="https://tools.gantry.work/restaurant-margin-checklist.html">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="author" content="Sayed Rashid">
+<link rel="stylesheet" href="shared.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<style>
+.card.rm{max-width:760px}
+.vid{width:100%;max-width:420px;display:block;margin:6px auto 8px;border-radius:16px;border:1px solid rgba(255,255,255,.16);background:#0b1526;aspect-ratio:4/5}
+.vcap{text-align:center;font-size:13px;color:rgba(255,255,255,.6);margin-bottom:26px}
+.sec{margin-top:30px}
+.sec h2{font-size:21px;margin-bottom:6px}
+.sec .lead{color:var(--muted);font-size:15px;line-height:1.55;margin-bottom:14px}
+.prog-wrap{position:sticky;top:0;z-index:4;background:rgba(10,13,51,.92);backdrop-filter:blur(6px);margin:0 -28px 4px;padding:12px 28px;border-bottom:1px solid rgba(255,255,255,.1)}
+.prog-row{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:7px}
+.prog-row b{color:var(--gold-light)}
+.ptrack{height:8px;border-radius:6px;background:rgba(255,255,255,.12);overflow:hidden}
+.pfill{height:100%;width:0;background:linear-gradient(90deg,var(--gold-light),var(--gold));transition:width .25s}
+.group{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.group h3{font-size:16.5px;margin-bottom:4px;display:flex;justify-content:space-between;gap:10px}
+.group h3 span{font-size:12.5px;color:var(--gold-light);font-weight:600;white-space:nowrap}
+.group .why{font-size:13.5px;color:rgba(255,255,255,.62);margin-bottom:10px;line-height:1.5}
+.ck{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-top:1px solid rgba(255,255,255,.07);cursor:pointer;font-size:15px;line-height:1.5}
+.ck input{appearance:none;-webkit-appearance:none;flex:none;width:22px;height:22px;margin-top:1px;border-radius:6px;border:2px solid rgba(255,255,255,.4);background:transparent;cursor:pointer;display:grid;place-content:center}
+.ck input:checked{background:var(--gold-light);border-color:var(--gold-light)}
+.ck input:checked::after{content:"";width:6px;height:11px;border:solid var(--ink);border-width:0 3px 3px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.ck input:focus-visible{outline:2px solid var(--gold-light);outline-offset:2px}
+.ck.done .t{color:rgba(255,255,255,.5);text-decoration:line-through}
+.ck small{display:block;color:rgba(255,255,255,.58);font-size:13px;margin-top:2px;text-decoration:none}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.tools button{background:transparent;border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:9px;padding:9px 14px;font-size:14px;cursor:pointer;font-family:inherit}
+.tools button:hover{border-color:var(--gold-light)}
+.calc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 16px}
+.calc .field{margin-bottom:0}
+.calc input{width:100%;padding:12px 13px;font-size:16px;color:#fff;font-family:inherit;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.2);border-radius:10px}
+.calc input:focus{outline:none;border-color:var(--gold-light)}
+@media(max-width:520px){.calc{grid-template-columns:minmax(0,1fr)}}
+.out{margin-top:18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:18px}
+.out .big-num{font-size:44px}
+.verdict{margin-top:10px;font-size:14.5px;line-height:1.55}
+.page{background:#fff;color:#14142a;border-radius:12px;padding:16px 20px;font-family:Menlo,Consolas,monospace;font-size:14px;line-height:1.85}
+.page .r{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed #d6d6e0}
+.page .r:last-child{border-bottom:0}
+.page .h{font-weight:700;letter-spacing:.08em}
+.page .hot{color:#c4461a;font-weight:700}
+.page .r span:last-child{white-space:nowrap}
+@media(max-width:520px){.page{font-size:12.5px;padding:14px 14px;line-height:1.75}}
+.soft{margin-top:30px;padding:20px;border-radius:14px;background:rgba(201,162,39,.1);border:1px solid rgba(201,162,39,.38);font-size:15px;line-height:1.6}
+.soft a.cta{margin-top:14px}
+.byline{display:flex;gap:12px;align-items:center;margin:18px 0 0;font-size:13.5px;color:rgba(255,255,255,.7)}
+.byline a{color:var(--gold-light)}
+@media print{body{background:#fff;color:#000;padding:0}.card{box-shadow:none;border:0;background:#fff;color:#000;max-width:none}.vid,.vcap,.prog-wrap,.tools,.soft,#calcsec,.brand{display:none}.group{border:1px solid #ccc}.ck .t,.group .why,.ck small{color:#000}.ck input{border-color:#000}}
+</style>
+</head>
+<body>
+<div class="card rm">
+  <div class="brand"><a href="index.html">← THE GANTRY · TOOLS</a></div>
+  <h1>Your POS says Saturday was great. Was it?</h1>
+  <p class="sub">A 15-minute weekly margin check for restaurant owners. It covers the four places money leaks before it reaches you: delivery app fees, food cost, wastage and stock. Tick it off on your phone, or print it for the office.</p>
+
+  <video class="vid" src="restaurant-pos-margin.mp4" poster="restaurant-pos-margin-poster.jpg" controls playsinline preload="metadata"></video>
+  <p class="vcap">49 seconds · sound on, or read the captions</p>
+
+  <div class="sec" id="checklist">
+    <div class="prog-wrap"><div class="prog-row"><span>Your weekly check</span><b id="ptxt">0 of 0 done</b></div><div class="ptrack"><div class="pfill" id="pfill"></div></div></div>
+    <h2>The weekly margin checklist</h2>
+    <p class="lead">Do it on the same day every week, before you look at sales. Monday morning works for most outlets. Your ticks are saved on this device only.</p>
+
+    <div class="group"><h3>1. Sales, net of fees <span>~4 min</span></h3>
+      <p class="why">The POS shows what customers paid. What lands in your bank is smaller, and the gap moves every week.</p>
+      <label class="ck"><input type="checkbox"><span class="t">Download last week's payout statement from every delivery app<small>Not the dashboard total. The statement lists each deduction.</small></span></label>
+      <label class="ck"><input type="checkbox"><span class="t">Write down commission, marketing fees and merchant-funded vouchers as separate lines<small>Vouchers you fund come off before commission. They're the line owners most often miss.</small></span></label>
+      <label class="ck"><input type="checkbox"><span class="t">Check the payout against your POS delivery sales for the same week<small>A gap over 1–2% usually means refunds, cancelled orders or missing tablets.</small></span></label>
+    </div>
+
+    <div class="group"><h3>2. Food cost <span>~5 min</span></h3>
+      <p class="why">"Food cost about 30%" is a feeling. The number that matters is what you actually used.</p>
+      <label class="ck"><input type="checkbox"><span class="t">Work out actual food cost: opening stock + purchases − closing stock<small>Divide by food sales for the same week to get your actual food cost %.</small></span></label>
+      <label class="ck"><input type="checkbox"><span class="t">Compare it with your recipe (theoretical) food cost<small>A gap of more than 2–3 points means portioning, wastage or theft. Find out which before it grows.</small></span></label>
+      <label class="ck"><input type="checkbox"><span class="t">Update recipe costs for any ingredient whose supplier price changed<small>Check this week's invoices. One price rise on a key ingredient can move a dish's margin by several points.</small></span></label>
+      <label class="ck"><input type="checkbox"><span class="t">Re-check your top 10 dishes by volume<small>They carry most of your margin. Cost those properly first. The rest can wait.</small></span></label>
+    </div>
+
+    <div class="group"><h3>3. Wastage <span>~2 min</span></h3>
+      <p class="why">If it isn't written down, it shows up later as "food cost went up" with no explanation.</p>
+      <label class="ck"><input type="checkbox"><span class="t">Keep a wastage log at the kitchen, filled in daily<small>Item, quantity, reason: prep error, spoilage, returned dish, staff meal.</small></span></label>
+      <label class="ck"><input type="checkbox"><span class="t">Add up the week's wastage in dollars, not just items</span></label>
+      <label class="ck"><input type="checkbox"><span class="t">Find the top 3 wasted items and agree one change for each<small>Smaller prep batch, a later order, a shorter shelf life.</small></span></label>
+    </div>
+
+    <div class="group"><h3>4. Stock count <span>~3 min to review</span></h3>
+      <p class="why">You don't need to count everything every week. You need to count the right things, the same way, every time.</p>
+      <label class="ck"><input type="checkbox"><span class="t">Count only your top 20 items by value every week<small>Proteins, seafood, alcohol and any premium ingredient. Do a full count once a month.</small></span></label>
+      <label class="ck"><input type="checkbox"><span class="t">Count on the same day, at the same time, before deliveries arrive</span></label>
+      <label class="ck"><input type="checkbox"><span class="t">Check par levels against what you actually used, and adjust next week's order</span></label>
+    </div>
+
+    <div class="group"><h3>5. The one-page Monday number <span>~1 min</span></h3>
+      <p class="why">Put the results on one page. If you can only look at one thing each week, look at this.</p>
+      <label class="ck"><input type="checkbox"><span class="t">Fill in the six lines below, for each outlet</span></label>
+      <label class="ck"><input type="checkbox"><span class="t">Compare with last week and circle the one line that moved most</span></label>
+      <div class="page" style="margin-top:12px">
+        <div class="r h"><span>MONDAY · LAST WEEK · OUTLET __</span><span></span></div>
+        <div class="r"><span>Sales, all channels</span><span>S$ ____</span></div>
+        <div class="r"><span>Net of app fees and vouchers</span><span>S$ ____</span></div>
+        <div class="r"><span>Actual food cost</span><span>___ %</span></div>
+        <div class="r"><span>Recipe food cost</span><span>___ %</span></div>
+        <div class="r"><span>Wastage</span><span>S$ ____</span></div>
+        <div class="r hot"><span>Margin, this outlet</span><span>___ %</span></div>
+      </div>
+    </div>
+
+    <div class="tools"><button type="button" id="printbtn">Print this checklist</button><button type="button" id="resetbtn">Start a new week (clear ticks)</button></div>
+  </div>
+
+  <div class="sec" id="calcsec">
+    <h2>What does one delivery order really make you?</h2>
+    <p class="lead">Put in a typical delivery order. Use the numbers from your own payout statement, not the app's sales page.</p>
+    <div class="calc">
+      <div class="field"><label for="v">Order value (S$)<small>What the customer paid for food</small></label><input id="v" type="number" inputmode="decimal" min="0" step="0.5" value="30"></div>
+      <div class="field"><label for="c">App commission (%)<small>From your payout statement</small></label><input id="c" type="number" inputmode="decimal" min="0" max="100" step="0.5" value="30"></div>
+      <div class="field"><label for="d">Merchant-funded discount (S$)<small>Vouchers or promos you pay for</small></label><input id="d" type="number" inputmode="decimal" min="0" step="0.5" value="3"></div>
+      <div class="field"><label for="f">Food cost (%)<small>Your recipe cost for this order</small></label><input id="f" type="number" inputmode="decimal" min="0" max="100" step="0.5" value="32"></div>
+      <div class="field"><label for="p">Packaging (S$)<small>Containers, bag, cutlery, sauce cups</small></label><input id="p" type="number" inputmode="decimal" min="0" step="0.1" value="1.2"></div>
+      <div class="field"><label for="w">Extra delivery wastage (%)<small>Remakes, refunds, over-portioning</small></label><input id="w" type="number" inputmode="decimal" min="0" max="100" step="0.5" value="3"></div>
+    </div>
+    <div class="out" aria-live="polite">
+      <div class="result-label">LEFT AFTER FOOD, FEES AND PACKAGING</div>
+      <div class="big-num" id="res">S$0 <small>per order</small></div>
+      <div class="rows" id="rows"></div>
+      <div class="verdict" id="verdict"></div>
+    </div>
+    <p class="disclaim" style="margin-top:12px">Commission is worked out on the order value after merchant-funded discounts, which is how most platforms do it. Check your own contract. Rent, labour and utilities still have to come out of what's left.</p>
+  </div>
+
+  <div class="soft">
+    <strong>Doing this by hand every Monday?</strong> Most outlets can get the one-page number to fill itself in from the POS, the delivery apps and supplier invoices. If you want to talk through how that would work for your outlets, I do a free 20-minute call. No pitch deck.
+    <a class="cta" href="review.html?utm_source=restaurant-checklist&amp;utm_medium=page&amp;utm_campaign=pos-video" onclick="try{gtag('event','review_cta_click',{cta:'restaurant-checklist'})}catch(e){}">Book a 20-minute systems review</a>
+  </div>
+
+  <div class="byline">Made by Sayed, who works with Singapore business owners on their day-to-day systems. <a href="https://www.linkedin.com/in/sayedomni" target="_blank" rel="noopener" onclick="try{gtag('event','linkedin_click',{page:location.pathname})}catch(e){}">Connect on LinkedIn</a></div>
+</div>
+
+<script>
+(function(){
+  var KEY='gantry-restaurant-checklist-v1';
+  var boxes=[].slice.call(document.querySelectorAll('#checklist .ck input'));
+  var saved=[];try{saved=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){}
+  function paint(){
+    var n=0;boxes.forEach(function(b){b.closest('.ck').classList.toggle('done',b.checked);if(b.checked)n++;});
+    document.getElementById('ptxt').textContent=n+' of '+boxes.length+' done';
+    document.getElementById('pfill').style.width=(n/boxes.length*100)+'%';
+  }
+  boxes.forEach(function(b,i){
+    b.checked=!!saved[i];
+    b.addEventListener('change',function(){
+      try{localStorage.setItem(KEY,JSON.stringify(boxes.map(function(x){return x.checked})))}catch(e){}
+      paint();
+      if(boxes.every(function(x){return x.checked})){try{gtag('event','checklist_complete',{page:'restaurant'})}catch(e){}}
+    });
+  });
+  paint();
+  document.getElementById('printbtn').onclick=function(){window.print()};
+  document.getElementById('resetbtn').onclick=function(){boxes.forEach(function(b){b.checked=false});try{localStorage.removeItem(KEY)}catch(e){}paint();};
+
+  var ids=['v','c','d','f','p','w'];
+  function num(id){var x=parseFloat(document.getElementById(id).value);return isFinite(x)&&x>0?x:0}
+  function money(x){return (x<0?'−S$':'S$')+Math.abs(x).toFixed(2)}
+  var sent=false;
+  function calc(){
+    var v=num('v'),c=Math.min(num('c'),100),d=Math.min(num('d'),v),f=Math.min(num('f'),100),p=num('p'),w=Math.min(num('w'),100);
+    var base=v-d, fee=base*c/100, food=v*f/100, waste=food*w/100, left=base-fee-food-waste-p;
+    var pct=v>0?left/v*100:0;
+    document.getElementById('res').innerHTML=money(left)+' <small>per order · '+pct.toFixed(1)+'% of the order value</small>';
+    var rows=[['Order value',money(v)],['Merchant-funded discount','−'+money(d)],['App commission ('+c+'%)','−'+money(fee)],['Food cost ('+f+'%)','−'+money(food)],['Extra wastage','−'+money(waste)],['Packaging','−'+money(p)]];
+    document.getElementById('rows').innerHTML=rows.map(function(r){return '<div class="row"><span>'+r[0]+'</span><span>'+r[1]+'</span></div>'}).join('');
+    var msg;
+    if(v===0){msg='Enter an order value to see the result.';}
+    else if(pct<20){msg='<strong>Tight.</strong> Rent, labour and utilities still have to come out of this. Look at delivery-only pricing, a smaller delivery menu, or cutting merchant-funded vouchers.';}
+    else if(pct<35){msg='<strong>Workable, but check the busy nights.</strong> Peak hours often bring more remakes and refunds. Re-run this with your Saturday wastage.';}
+    else{msg='<strong>Healthy on paper.</strong> Make sure your food cost % comes from actual usage (step 2 above), not just the recipe card.';}
+    document.getElementById('verdict').innerHTML=msg;
+  }
+  ids.forEach(function(id){document.getElementById(id).addEventListener('input',function(){if(!sent){sent=true;try{gtag('event','calc_use',{tool:'restaurant-delivery-margin'})}catch(e){}}calc();});});
+  calc();
+})();
+</script>
+</body>
+</html>
