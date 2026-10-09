@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy and Cookies | The Gantry Tools</title>
+<meta name="description" content="How The Gantry's free business tools use cookies and Google Analytics, what is and is not collected, and how to opt out.">
+<link rel="stylesheet" href="shared.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="canonical" href="https://tools.gantry.work/privacy.html">
+<meta name="robots" content="index,follow">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<script src="/track.js" defer></script>
+</head>
+<body>
+<div class="card">
+  <div class="brand"><a href="https://tools.gantry.work/">THE GANTRY · FREE TOOLS</a></div>
+  <h1>Privacy and cookies</h1>
+  <p class="sub">Last updated 9 October 2026.</p>
+
+  <h2>What these tools do with your data</h2>
+  <p class="body">The calculators, document makers and checkers on tools.gantry.work run in your browser. <b>Anything you type into a tool (figures, customer names, invoice lines, files you open) stays on your device</b> and is never uploaded or stored by us. Some tools remember your own entries in your browser's local storage so they are there next time; you can clear them by clearing your browser's site data.</p>
+
+  <h2>What we measure</h2>
+  <p class="body">We use Google Analytics 4 to understand which tools are useful. It records pages viewed, which tool was opened and its category, whether a tool was used, clicks on links such as "book a review", your approximate location (country or city) and device type. It does not record what you type into a tool.</p>
+
+  <h2>Advertising and remarketing</h2>
+  <p class="body">We may use this information, through Google Analytics audiences and Google Ads, to show ads for The Gantry's free guides and reviews to people who have used these tools, on Google Search, YouTube and sites in Google's network. Google uses cookies and similar identifiers to do this, and may use Google signals data from people signed in to Google who have allowed ad personalisation. Visitors in the European Economic Area, the United Kingdom and Switzerland are not tracked for advertising by default.</p>
+
+  <h2>How to opt out</h2>
+  <ul class="body">
+    <li><a href="#" id="optout">Opt out of analytics and advertising cookies on these tools</a> (stored in your browser).</li>
+    <li>Turn off personalised ads for your Google account at <a href="https://adssettings.google.com" target="_blank" rel="noopener">adssettings.google.com</a>.</li>
+    <li>Install Google's <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Analytics opt-out add-on</a> for your browser.</li>
+  </ul>
+  <p class="body" id="optout-status" style="font-weight:700"></p>
+
+  <h2>Who we are and how to reach us</h2>
+  <p class="body">The Gantry and its tools are published by Sayed Rashid in Singapore. For any question about your personal data, including access or correction requests under Singapore's Personal Data Protection Act, message Sayed on <a href="https://www.linkedin.com/in/sayedomni" target="_blank" rel="noopener">LinkedIn</a>. The Gantry's articles at <a href="https://www.gantry.work">www.gantry.work</a> are hosted on Substack, which has its own privacy policy.</p>
+</div>
+<script>
+document.getElementById('optout').addEventListener('click', function (e) {
+  e.preventDefault();
+  try { localStorage.setItem('gantry_optout', '1'); localStorage.setItem('gantry_notice', '1'); } catch (x) {}
+  try { gtag('consent', 'update', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' }); } catch (x) {}
+  document.getElementById('optout-status').textContent = 'Done: analytics and advertising cookies are now off for these tools in this browser.';
+});
+</script>
+</body>
+</html>
