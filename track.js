@@ -39,6 +39,9 @@
   ];
   var cat = 'other';
   for (var i = 0; i < CAT.length; i++) { if (CAT[i][0].test(path)) { cat = CAT[i][1]; break; } }
+  // New tools can declare their category: <meta name="gantry-tool-category" content="erp">
+  var metaCat = document.querySelector('meta[name="gantry-tool-category"]');
+  if (metaCat && metaCat.content) cat = metaCat.content.trim().toLowerCase();
   var base = { tool_name: path, tool_category: cat };
   function ev(n, p) { try { var o = {}; for (var k in base) o[k] = base[k]; for (var j in (p || {})) o[j] = p[j]; gtag('event', n, o); } catch (e) {} }
 
@@ -46,12 +49,20 @@
   if (cat !== 'hub' && cat !== 'other') { try { gtag('set', 'user_properties', { tool_interest: cat }); } catch (e) {} }
 
   var engaged = false;
+  // Tools with form controls: 'use' = typing, choosing, clicking a control or dropping a file.
+  // Information tools with no form controls (lists, provider pages, downloads): 'use' = opening a section,
+  // clicking an outbound or download link. Brand, privacy and notice clicks never count.
+  var hasControls = function () { var c = document.querySelectorAll('input:not([type=hidden]), select, textarea, [contenteditable]'); for (var i = 0; i < c.length; i++) { if (c[i].offsetParent && !c[i].closest('#gantry-notice')) return true; } return false; };
   function onEngage(e) {
     if (engaged) return;
     var t = e.target;
-    if (!t || !t.closest || t.closest('#gantry-notice') || t.closest('a')) return;
-    if (!t.closest('input, select, textarea, button, [contenteditable], .drop, label')) return;
-    engaged = true; ev('tool_engaged', { first_action: e.type });
+    if (!t || !t.closest || t.closest('#gantry-notice') || t.closest('.brand') || t.closest('a[href*="privacy"]')) return;
+    var ctl = t.closest('input, select, textarea, button, [contenteditable], .drop, label');
+    var link = t.closest('a[href]'), sum = t.closest('summary, details');
+    if (ctl && !link) { engaged = true; ev('tool_engaged', { first_action: e.type }); return; }
+    if (e.type === 'click' && cat !== 'hub' && !hasControls() && (sum || (link && !/linkedin\.com/.test(link.getAttribute('href') || '')))) {
+      engaged = true; ev('tool_engaged', { first_action: sum ? 'expand' : 'link' });
+    }
   }
   document.addEventListener('input', onEngage, true);
   document.addEventListener('change', onEngage, true);
