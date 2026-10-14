@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /go/
 
 Sitemap: https://tools.gantry.work/sitemap.xml
 Sitemap: https://tools.gantry.work/sitemap-tools.xml
