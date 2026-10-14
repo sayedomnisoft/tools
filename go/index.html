@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Taking you to the partner site</title>
+<!-- Affiliate redirect for The Gantry. /go/ is blocked in robots.txt so partner links pass no ranking credit
+     (Google's accepted alternative to rel="sponsored", which Substack strips). Only allow-listed partners. -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<script>
+(function () {
+  var u = new URLSearchParams(location.search).get('u') || '';
+  var ALLOW = /^https:\/\/(www\.make\.com|affiliates\.wati\.io|www\.wati\.io)\//;
+  if (!ALLOW.test(u)) { location.replace('https://tools.gantry.work/'); return; }
+  var done = false;
+  function go() { if (done) return; done = true; location.replace(u); }
+  document.addEventListener('DOMContentLoaded', function () { var a = document.getElementById('l'); if (a) a.href = u; });
+  try { gtag('event', 'affiliate_click', { link_target: u.split('?')[0].slice(0, 90), tool_name: 'go', tool_category: 'affiliate', event_callback: go, event_timeout: 600 }); } catch (e) {}
+  setTimeout(go, 800);
+})();
+</script>
+<style>body{font:16px/1.5 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;color:#1d2033;background:#f7f6f1;margin:0;display:flex;min-height:100vh;align-items:center;justify-content:center}.c{max-width:440px;padding:28px;text-align:center}a{color:#141c5c;font-weight:700}</style>
+</head>
+<body>
+<div class="c">
+<p>Taking you to the partner site. This is an affiliate link: The Gantry may earn a commission if you sign up, at no extra cost to you.</p>
+<p><a id="l" href="https://tools.gantry.work/" rel="sponsored nofollow">Continue</a></p>
+</div>
+</body>
+</html>
