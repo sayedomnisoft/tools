@@ -45,6 +45,51 @@
   var base = { tool_name: path, tool_category: cat };
   function ev(n, p) { try { var o = {}; for (var k in base) o[k] = base[k]; for (var j in (p || {})) o[j] = p[j]; gtag('event', n, o); } catch (e) {} }
 
+  // ---- Hand-off to the review page (added 2026-10-20) ----
+  // 1) Remember where this visit came from (e.g. a LinkedIn DM link ?utm_source=linkedin&utm_campaign=close).
+  // 2) Tools call window.gantryResult('S$45,600 a year on month-end') when they show a result.
+  // 3) Any click to review.html carries tool, result and the original campaign, so the review page can
+  //    open with their number and prefill it into the booking notes. Nothing typed into a tool is sent:
+  //    only the headline result the visitor already sees, and only when they click through to book.
+  var sess = {
+    get: function (k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } },
+    set: function (k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
+  };
+  try {
+    var q0 = new URLSearchParams(location.search);
+    if (q0.get('utm_source') && !/^review/.test(path)) {
+      sess.set('gantry_in', JSON.stringify({ s: q0.get('utm_source') || '', m: q0.get('utm_medium') || '', c: q0.get('utm_campaign') || '' }));
+    }
+  } catch (e) {}
+  window.gantryResult = function (label) {
+    if (!label) return;
+    sess.set('gantry_result', JSON.stringify({ tool: path, label: String(label).slice(0, 120) }));
+    ev('tool_result', { result_band: String(label).slice(0, 60) });
+  };
+  function decorate(a) {
+    var h = a.getAttribute('href') || '';
+    if (!/review\.html/.test(h) || /^review/.test(path)) return;
+    try {
+      var u = new URL(h, location.href);
+      if (!/gantry\.work$|github\.io$|^localhost$|^127\.0\.0\.1$/.test(u.hostname) && u.hostname !== location.hostname) return;
+      var p = u.searchParams;
+      if (!p.get('utm_source')) p.set('utm_source', 'tools');
+      if (!p.get('utm_medium')) p.set('utm_medium', path);
+      p.set('tool', path);
+      var r = JSON.parse(sess.get('gantry_result') || 'null');
+      if (r && r.tool === path) p.set('result', r.label);
+      var inc = JSON.parse(sess.get('gantry_in') || 'null');
+      if (inc) { if (inc.s) p.set('in_src', inc.s); if (inc.m) p.set('in_med', inc.m); if (inc.c) p.set('in_camp', inc.c); }
+      a.setAttribute('href', u.toString());
+    } catch (e) {}
+  }
+  ['mousedown', 'touchstart', 'click', 'auxclick', 'keydown'].forEach(function (t) {
+    document.addEventListener(t, function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+      if (a) decorate(a);
+    }, true);
+  });
+
   ev('tool_view');
   if (cat !== 'hub' && cat !== 'other') { try { gtag('set', 'user_properties', { tool_interest: cat }); } catch (e) {} }
 
@@ -93,9 +138,19 @@
       });
       document.body.appendChild(d);
     }
-    var l = document.createElement('p'); l.style.cssText = 'text-align:center;font-size:12px;opacity:.7;margin:18px 0 70px';
+    // Privacy link: inside the page's last card when there is one. Appended straight to <body> it became a
+    // side column on pages whose body is a flex row, squeezing the tool on phones (fixed 2026-10-20).
+    var l = document.createElement('p'); l.className = 'gantry-privacy';
     l.innerHTML = '<a href="/privacy.html" style="color:inherit">Privacy and cookies</a>';
-    document.body.appendChild(l);
+    var cards = document.querySelectorAll('.card, main, .wrap, .container');
+    var host = cards.length ? cards[cards.length - 1] : null;
+    if (host && host.offsetParent !== null) {
+      l.style.cssText = 'text-align:center;font-size:12px;opacity:.7;margin:22px 0 0;width:100%';
+      host.appendChild(l);
+    } else {
+      l.style.cssText = 'text-align:center;font-size:12px;opacity:.7;margin:18px auto 70px;width:100%;flex:0 0 100%;align-self:stretch';
+      document.body.appendChild(l);
+    }
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ui); else ui();
 })();
