@@ -35,6 +35,11 @@
   .hero-ctas .alt a { color: var(--gold-light); text-decoration: none; }
   .edge { border-left: 3px solid var(--gold); background: rgba(242,207,110,0.08); border-radius: 0 12px 12px 0; padding: 14px 16px; margin: 0 0 24px; font-size: 14.5px; line-height: 1.55; color: rgba(255,255,255,0.88); }
   .edge a { color: var(--gold-light); }
+  .yournum { border: 1px solid rgba(242,207,110,0.45); background: rgba(242,207,110,0.10); border-radius: 12px; padding: 14px 16px; margin: 0 0 22px; font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.92); }
+  .yournum b { color: var(--gold-light); }
+  .running { border-left: 3px solid #f4f2ee; background: rgba(255,255,255,0.05); border-radius: 0 12px 12px 0; padding: 14px 16px; margin: 0 0 24px; font-size: 14.5px; line-height: 1.55; color: rgba(255,255,255,0.88); }
+  .running ul { margin: 8px 0 0 18px; padding: 0; }
+  .running li { margin: 3px 0; }
   .quote { margin: 0 0 24px; padding: 16px 18px; border-radius: 12px; background: rgba(255,255,255,0.05); font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.9); }
   .quote cite { display: block; margin-top: 8px; font-style: normal; font-size: 12.5px; color: rgba(255,255,255,0.65); }
   .book-zone { border: 1px dashed rgba(242,207,110,0.5); border-radius: 14px; padding: 22px 20px; margin: 8px 0 20px; scroll-margin-top: 16px; }
@@ -78,6 +83,8 @@ try{gtag('event','review_view',{source:window.gSrc});}catch(e){}</script>
   <h1>The 20-minute systems review</h1>
   <p class="sub" id="heroSub">Twenty minutes on the one process that keeps going wrong — orders, stock, quotes, month-end — and an honest answer on whether it's worth fixing yet.</p>
 
+  <div class="yournum" id="yourNum" hidden></div>
+
   <div class="host">
     <img src="sayed.jpg" alt="Sayed Rashid" width="44" height="44">
     <div><strong>With Sayed Rashid</strong> — I implement business systems for Singapore SMEs and write <a href="https://www.gantry.work" style="color:var(--gold-light);text-decoration:none;">The Gantry</a>.</div>
@@ -107,6 +114,9 @@ try{gtag('event','review_view',{source:window.gSrc});}catch(e){}</script>
 
   <div class="edge"><strong>Ask me about EDGE.</strong> Eligible Singapore SMEs can get up to 50% of a qualifying systems project funded under the new EDGE grant. On the call I'll tell you whether yours is likely to fit. <a href="https://www.gantry.work/p/edge-grant-erp-singapore-what-changed?utm_source=review-page">What changed on 30 September →</a></div>
 
+
+  <div class="running" id="runBox"><strong>Want to see it with your own data?</strong> Four times a month I set up a real system with your own products, customers and prices, then walk you through one of your orders end to end on Zoom: order in, stock reserved, delivery, invoice, month-end report. You also get a one-page business case for whoever signs off. Free. For 10–200 staff, and the person who decides joins the call.
+    <ul><li>Pick a time below and write <b>"See it running"</b> in the notes.</li></ul></div>
 
   <h2>Worth your time if…</h2>
   <ul class="plain">
@@ -178,6 +188,32 @@ try{gtag('event','review_view',{source:window.gSrc});}catch(e){}</script>
     "You've seen the number. This is the conversation that turns it into a decision — which single process to fix first, and whether it's even worth fixing yet.";
 })();
 
+/* Hand-off from the tools (2026-10-20): ?tool=…&result=…&in_camp=…&offer=running */
+(function () {
+  var q; try { q = new URLSearchParams(location.search); } catch (e) { return; }
+  var NAMES = { 'month-end-close': 'Month-End Close Cost', 'cost-of-manual-work': 'Cost of Manual Work', 'erp-readiness': 'ERP Readiness Scorecard', 'health-check': 'Systems Health Check', 'edge-grant-calculator': 'EDGE Grant Calculator', 'inventory-software-cost-calculator': 'Inventory Software Cost Calculator' };
+  var tool = (q.get('tool') || '').slice(0, 60), result = (q.get('result') || '').slice(0, 120), offer = q.get('offer') || '';
+  var camp = (q.get('in_camp') || q.get('utm_campaign') || '').slice(0, 40), insrc = (q.get('in_src') || '').slice(0, 40);
+  var esc = function (t) { var d = document.createElement('div'); d.textContent = t; return d.innerHTML; };
+  var notes = [];
+  if (result) {
+    var box = document.getElementById('yourNum');
+    box.innerHTML = 'Your result' + (NAMES[tool] ? ' from the ' + esc(NAMES[tool]) : '') + ': <b>' + esc(result) + '</b>. In 20 minutes we find which 2 or 3 fixes recover most of it, and whether it is worth doing yet.';
+    box.hidden = false;
+    notes.push('My result: ' + result);
+  }
+  if (offer === 'running') {
+    document.getElementById('heroSub').textContent = 'Want to see your own products, customers and prices running in a real system before you decide anything? Pick a time below and we will set up the walkthrough.';
+    var rb = document.getElementById('runBox'), anchor = document.querySelector('.hero-ctas');
+    if (rb && anchor) anchor.parentNode.insertBefore(rb, anchor);
+    notes.push('Interested in: See it running (with our own data)');
+  }
+  if (camp || insrc) notes.push('Found you via: ' + [insrc, camp].filter(Boolean).join(' / '));
+  window.gNotes = notes.join(' | ');
+  window.gCamp = camp;
+  try { gtag('event', 'review_context', { source: window.gSrc, tool: tool || 'none', has_result: result ? 1 : 0, offer: offer || 'review', campaign: camp || 'none' }); } catch (e) {}
+})();
+
 /* ══ ONE PLACE TO SWITCH BOOKING ON ═════════════════════════════════════ */
 const CAL_LINK = 'sayed.r/20min';
 const BOOKING_URL = 'https://cal.com/sayed.r/20min';
@@ -210,14 +246,16 @@ const BOOKING_URL = 'https://cal.com/sayed.r/20min';
     };
   })(window, "https://app.cal.com/embed/embed.js", "init");
   Cal("init", "review", { origin: "https://app.cal.com" });
-  Cal.ns.review("inline", { elementOrSelector: "#cal-inline", config: { layout: "month_view", theme: "dark" }, calLink: CAL_LINK });
+  var calCfg = { layout: "month_view", theme: "dark" };
+  if (window.gNotes) calCfg.notes = window.gNotes;
+  Cal.ns.review("inline", { elementOrSelector: "#cal-inline", config: calCfg, calLink: CAL_LINK });
   Cal.ns.review("on", {
     action: "bookingSuccessful",
     callback: function () {
       const z = document.getElementById('bookZone');
       const b = document.getElementById('bookedPanel');
       if (!b) return;
-      try { gtag('event', 'review_booked', { source: window.gSrc }); } catch (e) {}
+      try { gtag('event', 'review_booked', { source: window.gSrc, campaign: window.gCamp || 'none' }); } catch (e) {}
       b.hidden = false;
       if (z) z.hidden = true;
       document.getElementById('sticky').remove();
