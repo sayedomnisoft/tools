@@ -90,6 +90,7 @@
     <div class="note" id="verdict"></div>
     <p class="disclaim">Estimate based on your inputs, assuming an 8-hour day and ~190 paid hours per month. It counts salary only — not the cost of decisions made on stale numbers, which is the part that actually hurts.</p>
     <a class="cta" href="#" id="bookBtn">Request your 20-min systems review</a>
+    <a class="cta-ghost" id="runBtn" href="https://tools.gantry.work/review.html?offer=running" target="_blank">Want to see your own products running in a real system? 4 free slots a month &rarr;</a>
     <a class="cta-ghost" href="https://www.gantry.work/subscribe?utm_source=tool-month-end">Get the weekly playbooks — free</a>
     <button class="ghost" onclick="reset()">Run it again</button>
   </div>
@@ -191,6 +192,13 @@ function calculate() {
     v = 'A close this long usually means the figures arrive as history, not information. Most decisions in between are being made on feel — and the close cost above is the cheaper half of the price.';
   }
   document.getElementById('verdict').innerHTML = v;
+
+  // Result-matched call to action + hand-off of the headline number to the review page
+  const cta = document.getElementById('bookBtn');
+  if (saving >= 10000) cta.textContent = 'See where the S$' + fmt(saving) + ' a year goes: free 20-min review';
+  else if (days > 5) cta.textContent = 'Find the 2 handoffs slowing your close: free 20-min review';
+  else cta.textContent = 'Keep it that way as you grow: free 20-min review';
+  if (window.gantryResult) window.gantryResult('Month-end close: ' + days + ' days, S$' + fmt(annual) + ' a year (S$' + fmt(saving) + ' above a 3-day close)');
 
   bump();
   show('result');
