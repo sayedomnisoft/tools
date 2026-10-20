@@ -226,6 +226,7 @@ function finish() {
   document.getElementById('score').textContent = score;
   document.getElementById('band').textContent = band.name;
   document.getElementById('verdict').textContent = band.v;
+  if (window.gantryResult) window.gantryResult('ERP readiness: ' + score + '/16 (' + band.name + ')');
   const ul = document.getElementById('gaps');
   ul.innerHTML = '';
   if (gaps.length) {
