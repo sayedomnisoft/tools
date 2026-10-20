@@ -80,6 +80,7 @@
     <div class="note" id="verdict"></div>
     <p class="disclaim">Estimate based on your inputs, assuming ~190 paid working hours per month. It excludes the cost of errors, stockouts and late decisions — which in my experience is usually larger than the labour figure above.</p>
     <a class="cta" href="#" id="bookBtn">Request your 20-min systems review</a>
+    <a class="cta-ghost" id="runBtn" href="https://tools.gantry.work/review.html?offer=running" target="_blank">Want to see your own products running in a real system? 4 free slots a month &rarr;</a>
     <a class="cta-ghost" href="https://www.gantry.work/subscribe?utm_source=tool-manual-cost">Get the weekly playbooks — free</a>
     <button class="ghost" onclick="reset()">Run it again</button>
   </div>
@@ -181,6 +182,13 @@ function calculate() {
     v = 'More than two full days a week per person on manual work. This is the pattern right before something breaks: a resignation, a missed shipment, or an error nobody catches in time.';
   }
   document.getElementById('verdict').innerHTML = v;
+
+  // Result-matched call to action + hand-off of the headline number to the review page
+  const cta = document.getElementById('bookBtn');
+  if (annual >= 20000) cta.textContent = 'See where the S$' + fmt(annual) + ' a year goes: free 20-min review';
+  else if (hours > 4) cta.textContent = 'Find the one process worth fixing first: free 20-min review';
+  else cta.textContent = 'Check the single worst process: free 20-min review';
+  if (window.gantryResult) window.gantryResult('Manual work: ' + fmt(annualHours) + ' hours, S$' + fmt(annual) + ' a year (' + staff + ' staff x ' + hours + ' h/week)');
 
   bump();
   show('result');
