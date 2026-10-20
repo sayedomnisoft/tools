@@ -301,6 +301,7 @@ function finish() {
   document.getElementById("verdict").textContent = band.verdict;
   document.getElementById("hours").innerHTML = band.hours;
   document.getElementById("nextText").textContent = band.next;
+  if (window.gantryResult) window.gantryResult("Health Check: " + score + "/20 (" + band.name + ")");
   document.getElementById("bookBtn").style.display = band.book ? "" : "none";
   document.getElementById("ctaSub").style.display = band.book ? "" : "none";
   const ul = document.getElementById("leaks");
