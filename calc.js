@@ -148,7 +148,7 @@ const CALCS = {
       else {
         const capped = grant < raw - 0.005;
         out = `<b style="color:#fff">Estimated EDGE grant: ${money(grant)}, so your net cost is ${money(total - grant)}.</b> That is ${sme ? 'the SME rate of up to 50%' : 'the non-SME rate of up to 30%'}${capped ? `, limited by the ${roomD <= roomT ? 'S$30,000 sub-cap for digital solutions and enterprise systems' : 'S$100,000 annual cap'} (${money(raw)} before the cap)` : ''}. `;
-        out += `You pay the vendor first and claim afterwards; claims for digital solutions and enterprise systems open from 1 November 2026. ${pre ? 'With a pre-approved vendor, Enterprise Singapore quotes about a week to process the application.' : 'With a vendor that is not pre-approved, expect about 10 weeks to process.'} Apply before you sign or pay anything. `;
+        out += `You pay the vendor first and claim afterwards; it is a single final claim once the project is delivered and paid in full. Claims open from 1 January 2027 for an ERP or other integrated enterprise system, and from 1 December 2026 for single-function digital solutions and pre-scoped equipment. ${pre ? 'With a pre-approved vendor, Enterprise Singapore quotes about a week to process the application.' : 'With a vendor that is not pre-approved, expect about 10 weeks to process.'} Apply before you sign or pay anything. `;
       }
       out += `This is an estimate: Enterprise Singapore decides the activity, the support level and which costs qualify. Not sure how your quotation should be split? ${review('edge-calculator-result')}`;
       return { out, used: true };
