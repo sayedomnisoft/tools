@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The 20-Minute Systems Review — The Gantry</title>
-<meta name="description" content="A free 20-minute call for Singapore SMEs: one process that keeps going wrong, walked end to end, and an honest answer on whether it's worth fixing yet.">
+<meta name="description" content="Bring one process that keeps breaking. Get a free two-minute video review by email, or book 20 minutes on Zoom. Singapore SMEs, honest answers, no pitch.">
 <meta property="og:title" content="The 20-Minute Systems Review — The Gantry">
-<meta property="og:description" content="One process that keeps going wrong, walked end to end in 20 minutes — and an honest answer on whether it's worth fixing yet.">
+<meta property="og:description" content="Bring one process that keeps breaking. Free two-minute video review by email, or 20 minutes on Zoom. Honest answer, no pitch.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://tools.gantry.work/og-review.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -54,6 +54,22 @@
   .sticky.show { display: block; }
   @media (min-width: 760px) { .sticky { display: none !important; } }
   @media (max-width: 380px) { .proof b { font-size: 19px; } }
+  .choose { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 0 14px; }
+  @media (max-width: 560px) { .choose { grid-template-columns: 1fr; } }
+  .opt { display: block; text-decoration: none; border: 1px solid rgba(242,207,110,0.4); background: rgba(255,255,255,0.05); border-radius: 14px; padding: 16px 16px 14px; color: #fff; cursor: pointer; }
+  .opt.primary { background: linear-gradient(180deg, var(--gold-light), var(--gold)); color: var(--ink); border-color: transparent; }
+  .opt small { display: block; font-size: 11.5px; letter-spacing: 1.4px; text-transform: uppercase; opacity: .75; margin-bottom: 6px; }
+  .opt b { display: block; font-size: 17px; line-height: 1.25; margin-bottom: 6px; }
+  .opt span { display: block; font-size: 13.5px; line-height: 1.45; opacity: .9; }
+  .opt .go { display: inline-block; margin-top: 10px; font-weight: 700; font-size: 14px; }
+  .zone { border: 1px dashed rgba(242,207,110,0.5); border-radius: 14px; padding: 18px 16px; margin: 8px 0 22px; scroll-margin-top: 16px; }
+  .zone h3 { margin: 0 0 6px; font-size: 18px; }
+  .zone .sub { margin-bottom: 10px; }
+  .zone iframe { width: 100%; border: 0; min-height: 520px; border-radius: 10px; background: transparent; }
+  .thanks { display: none; border-radius: 12px; background: rgba(242,207,110,0.12); border: 1px solid rgba(242,207,110,0.45); padding: 16px; font-size: 15px; line-height: 1.55; }
+  .thanks.show { display: block; }
+  .whisper { text-align: center; font-size: 13.5px; color: rgba(255,255,255,0.72); margin: 0 0 24px; }
+  .whisper a { color: var(--gold-light); text-decoration: none; }
 </style>
 
 <!-- seo:start -->
@@ -79,11 +95,17 @@ try{gtag('event','review_view',{source:window.gSrc});}catch(e){}</script>
 <body>
 <div class="card">
   <div class="brand"><a href="index.html">← THE GANTRY · TOOLS</a></div>
-  <div class="pill">FREE · 20 MINUTES · VIDEO CALL</div>
-  <h1>The 20-minute systems review</h1>
-  <p class="sub" id="heroSub">Twenty minutes on the one process that keeps going wrong — orders, stock, quotes, month-end — and an honest answer on whether it's worth fixing yet.</p>
+  <div class="pill">FREE · 2-MIN VIDEO REVIEW OR 20-MIN CALL</div>
+  <h1>Bring one process that keeps breaking.</h1>
+  <p class="sub" id="heroSub">Orders, quotes, stock, invoicing, month-end. I show you where it leaks and what the first fix is, and I say honestly if it's not worth fixing yet. Two ways to get that answer, both free.</p>
 
   <div class="yournum" id="yourNum" hidden></div>
+
+  <div class="choose">
+    <a class="opt primary" href="#videoZone" data-cta="video" id="optVideo"><small>No call needed</small><b>Get a 2-minute video review</b><span>Tell me the process in a few lines. Within two working days you get a short screen-recorded video of where it leaks and the first fix worth making.</span><span class="go">Describe the process →</span></a>
+    <a class="opt" href="#bookZone" data-cta="hero"><small>Prefer to talk</small><b>Book 20 minutes on Zoom</b><span>We walk one process end to end, live. You leave with the first fix or an honest "not yet".</span><span class="go">Pick a time →</span></a>
+  </div>
+  <div class="whisper">Running 10–200 staff? <a href="#runBox" data-cta="running">See it running with your own data</a> · Not ready for either? <a href="health-check/?utm_source=review-page" data-cta="healthcheck">Score your business in 60 seconds</a></div>
 
   <div class="host">
     <img src="sayed.jpg" alt="Sayed Rashid" width="44" height="44">
@@ -98,12 +120,27 @@ try{gtag('event','review_view',{source:window.gSrc});}catch(e){}</script>
 
   <div class="inds"><em>Delivered for</em><span>Trading &amp; distribution</span><span>Manufacturing</span><span>Food &amp; beverage</span><span>Accounting &amp; finance</span><span>Construction</span><span>Logistics</span><span>Energy &amp; agriculture</span></div>
 
-  <div class="hero-ctas">
-    <a class="cta" href="#bookZone" data-cta="hero">Pick a time — 20 min →</a>
-    <div class="alt">Not ready to talk? <a href="health-check/?utm_source=review-page" data-cta="healthcheck">Score your business in 60 seconds</a></div>
+  <div class="zone" id="videoZone" hidden>
+    <h3>Two-minute video review</h3>
+    <p class="sub">Five questions, two minutes to fill. I record the video myself and reply by email within two working days.</p>
+    <iframe data-tally-src="https://tally.so/embed/2jjBgg?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1" loading="lazy" title="Two-minute video review request" id="tallyFrame"></iframe>
+    <div class="thanks" id="videoThanks"><strong>Got it.</strong> I'll record your video and email the link within two working days. If you'd rather talk it through sooner, the calendar below is open.</div>
   </div>
 
-  <h2>How it works</h2>
+  <h2 id="bookHead">Book 20 minutes</h2>
+  <div class="book-zone" id="bookZone">
+    <div id="cal-inline"></div>
+    <div id="bookFallback">
+      <p class="sub" style="margin-bottom:18px;">Tell me what's breaking and when you're free, and I'll send a Zoom invite that lands in your calendar.</p>
+      <a class="cta" id="bookBtn" href="#">Request your slot →</a>
+      <div class="footer" style="margin-top:6px;">Usually confirmed the same working day, Singapore hours.</div>
+    </div>
+  </div>
+
+  <div class="running" id="runBox"><strong>Want to see it with your own data?</strong> Four times a month I set up a real system with your own products, customers and prices, then walk you through one of your orders end to end on Zoom: order in, stock reserved, delivery, invoice, month-end report. You also get a one-page business case for whoever signs off. Free. For 10–200 staff, and the person who decides joins the call.
+    <ul><li>Pick a time above and write <b>"See it running"</b> in the notes.</li></ul></div>
+
+  <h2>How the 20 minutes work</h2>
   <ul class="plain">
     <li>You bring <strong>one process that annoys you</strong> — reordering, quotes, invoicing, month-end, stock, whatever hurt most last week.</li>
     <li>We walk it end to end: every handoff, every re-typed field, every place someone waits for someone else.</li>
@@ -115,8 +152,7 @@ try{gtag('event','review_view',{source:window.gSrc});}catch(e){}</script>
   <div class="edge"><strong>Ask me about EDGE.</strong> Eligible Singapore SMEs can get up to 50% of a qualifying systems project funded under the new EDGE grant. On the call I'll tell you whether yours is likely to fit. <a href="https://www.gantry.work/p/edge-grant-erp-singapore-what-changed?utm_source=review-page">What changed on 30 September →</a></div>
 
 
-  <div class="running" id="runBox"><strong>Want to see it with your own data?</strong> Four times a month I set up a real system with your own products, customers and prices, then walk you through one of your orders end to end on Zoom: order in, stock reserved, delivery, invoice, month-end report. You also get a one-page business case for whoever signs off. Free. For 10–200 staff, and the person who decides joins the call.
-    <ul><li>Pick a time below and write <b>"See it running"</b> in the notes.</li></ul></div>
+
 
   <h2>Worth your time if…</h2>
   <ul class="plain">
@@ -132,16 +168,6 @@ try{gtag('event','review_view',{source:window.gSrc});}catch(e){}</script>
     <li>You're shopping for licence pricing — I'm not selling licences on this call</li>
     <li>Nothing is broken yet and you're just curious about AI</li>
   </ul>
-
-  <h2>Pick a time</h2>
-  <div class="book-zone" id="bookZone">
-    <div id="cal-inline"></div>
-    <div id="bookFallback">
-      <p class="sub" style="margin-bottom:18px;">Tell me what's breaking and when you're free, and I'll send a Zoom invite that lands in your calendar.</p>
-      <a class="cta" id="bookBtn" href="#">Request your slot →</a>
-      <div class="footer" style="margin-top:6px;">Usually confirmed the same working day, Singapore hours.</div>
-    </div>
-  </div>
 
   <div class="booked" id="bookedPanel" hidden>
     <div class="bk-tick" aria-hidden="true">&#10003;</div>
@@ -177,7 +203,7 @@ try{gtag('event','review_view',{source:window.gSrc});}catch(e){}</script>
   </div>
 </div>
 
-<div class="sticky" id="sticky"><a href="#bookZone" data-cta="sticky">Book your 20-minute review →</a></div>
+<div class="sticky" id="sticky"><a href="#videoZone" data-cta="sticky-video">Get a 2-min video review →</a></div>
 
 <script>
 /* Source-aware opening line: calculator visitors already have a number in front of them. */
@@ -204,7 +230,7 @@ try{gtag('event','review_view',{source:window.gSrc});}catch(e){}</script>
   }
   if (offer === 'running') {
     document.getElementById('heroSub').textContent = 'Want to see your own products, customers and prices running in a real system before you decide anything? Pick a time below and we will set up the walkthrough.';
-    var rb = document.getElementById('runBox'), anchor = document.querySelector('.hero-ctas');
+    var rb = document.getElementById('runBox'), anchor = document.querySelector('.whisper');
     if (rb && anchor) anchor.parentNode.insertBefore(rb, anchor);
     notes.push('Interested in: See it running (with our own data)');
   }
@@ -266,6 +292,27 @@ const BOOKING_URL = 'https://cal.com/sayed.r/20min';
     cssVarsPerTheme: { dark: { "cal-brand": "#c9a227" }, light: { "cal-brand": "#2A2FB0" } } });
 })();
 
+/* Video-review option: open the form, load the Tally embed, track open + submit (2026-10-26). */
+(function () {
+  var zone = document.getElementById('videoZone'), frame = document.getElementById('tallyFrame'), loaded = false;
+  function openZone(src) {
+    zone.hidden = false;
+    if (!loaded) { loaded = true; frame.src = frame.getAttribute('data-tally-src').replace(/&amp;/g, '&'); var s = document.createElement('script'); s.src = 'https://tally.so/widgets/embed.js'; s.async = true; document.head.appendChild(s); }
+    try { gtag('event', 'video_request_open', { source: window.gSrc, campaign: window.gCamp || 'none', via: src }); } catch (e) {}
+    zone.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  document.querySelectorAll('a[href="#videoZone"]').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); openZone(a.dataset.cta || 'link'); }); });
+  try { var q = new URLSearchParams(location.search); if (q.get('offer') === 'video' || location.hash === '#videoZone') openZone('url'); } catch (e) {}
+  window.addEventListener('message', function (e) {
+    var d = e.data; if (typeof d === 'string') { try { d = JSON.parse(d); } catch (x) { return; } }
+    if (d && d.event === 'Tally.FormSubmitted') {
+      try { gtag('event', 'video_requested', { source: window.gSrc, campaign: window.gCamp || 'none' }); } catch (x) {}
+      document.getElementById('videoThanks').classList.add('show');
+      var st = document.getElementById('sticky'); if (st) st.remove();
+    }
+  });
+})();
+
 /* Smooth scroll for the booking buttons + mobile sticky bar (shown after the hero, hidden once the calendar is on screen). */
 (function () {
   document.querySelectorAll('a[href="#bookZone"]').forEach(function (a) {
@@ -274,7 +321,7 @@ const BOOKING_URL = 'https://cal.com/sayed.r/20min';
       document.getElementById('bookZone').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
-  var sticky = document.getElementById('sticky'), hero = document.querySelector('.hero-ctas'), zone = document.getElementById('bookZone');
+  var sticky = document.getElementById('sticky'), hero = document.querySelector('.choose'), zone = document.getElementById('bookZone');
   if (!('IntersectionObserver' in window)) return;
   var heroGone = false, zoneSeen = false;
   var upd = function () { if (sticky.isConnected) sticky.classList.toggle('show', heroGone && !zoneSeen); };
