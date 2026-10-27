@@ -138,7 +138,7 @@ const CALCS = {
       const total = (S || 0) + (I || 0);
       if (!(total > 0)) return { msg: 'Enter the software and implementation costs from your quotation.' };
       const sme = $('size').value === 'sme', rate = sme ? 0.5 : 0.3, cores = parseInt($('cores').value, 10), local = $('local').value === 'yes', pre = $('pre').value === 'yes';
-      const raw = total * rate, roomD = Math.max(0, 30000 - ud), roomT = Math.max(0, 100000 - ut);
+      const full = total * rate, raw = Math.min(total, 60000) * rate, roomD = Math.max(0, 30000 - ud), roomT = Math.max(0, 100000 - ut);
       let grant = Math.min(raw, roomD, roomT), why = [];
       if (!local) { grant = 0; why.push('EDGE needs at least 30% local (Singaporean or PR) shareholding'); }
       if (cores < 3) { grant = 0; why.push('an integrated enterprise system such as an ERP must cover at least 3 core functions (for example sales, inventory and accounting)'); }
@@ -146,8 +146,8 @@ const CALCS = {
       let out;
       if (grant === 0) out = `<b style="color:#fff">On these answers the project would not qualify:</b> ${why.join('; and ')}. `;
       else {
-        const capped = grant < raw - 0.005;
-        out = `<b style="color:#fff">Estimated EDGE grant: ${money(grant)}, so your net cost is ${money(total - grant)}.</b> That is ${sme ? 'the SME rate of up to 50%' : 'the non-SME rate of up to 30%'}${capped ? `, limited by the ${roomD <= roomT ? 'S$30,000 sub-cap for digital solutions and enterprise systems' : 'S$100,000 annual cap'} (${money(raw)} before the cap)` : ''}. `;
+        const capped = grant < full - 0.005, byRoom = grant < raw - 0.005;
+        out = `<b style="color:#fff">Estimated EDGE grant: ${money(grant)}, so your net cost is ${money(total - grant)}.</b> That is ${sme ? 'the SME rate of up to 50%' : 'the non-SME rate of up to 30%'}${capped ? (byRoom ? `, limited by the ${roomD <= roomT ? 'S$30,000 sub-cap for digital solutions and enterprise systems' : 'S$100,000 annual cap'} (${money(raw)} before the cap)` : `, limited by the S$60,000 cap on qualifying cost for an integrated ERP (${money(full)} before the cap; the most is S$30,000 for an SME and S$18,000 for a non-SME)`) : ''}. Software counts for up to 12 months; GST and maintenance are not covered. `;
         out += `You pay the vendor first and claim afterwards; it is a single final claim once the project is delivered and paid in full. Claims open from 1 January 2027 for an ERP or other integrated enterprise system, and from 1 December 2026 for single-function digital solutions and pre-scoped equipment. ${pre ? 'With a pre-approved vendor, Enterprise Singapore quotes about a week to process the application.' : 'With a vendor that is not pre-approved, expect about 10 weeks to process.'} Apply before you sign or pay anything. `;
       }
       out += `This is an estimate: Enterprise Singapore decides the activity, the support level and which costs qualify. Not sure how your quotation should be split? ${review('edge-calculator-result')}`;
