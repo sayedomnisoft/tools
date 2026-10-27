@@ -65,7 +65,7 @@
   .zone { border: 1px dashed rgba(242,207,110,0.5); border-radius: 14px; padding: 18px 16px; margin: 8px 0 22px; scroll-margin-top: 16px; }
   .zone h3 { margin: 0 0 6px; font-size: 18px; }
   .zone .sub { margin-bottom: 10px; }
-  .zone iframe { width: 100%; border: 0; min-height: 520px; border-radius: 10px; background: transparent; }
+  .zone iframe { display: block; box-sizing: content-box; width: calc(100% - 28px); padding: 14px; border: 0; min-height: 520px; border-radius: 12px; background: #fff; }
   .thanks { display: none; border-radius: 12px; background: rgba(242,207,110,0.12); border: 1px solid rgba(242,207,110,0.45); padding: 16px; font-size: 15px; line-height: 1.55; }
   .thanks.show { display: block; }
   .whisper { text-align: center; font-size: 13.5px; color: rgba(255,255,255,0.72); margin: 0 0 24px; }
@@ -123,7 +123,7 @@ try{gtag('event','review_view',{source:window.gSrc});}catch(e){}</script>
   <div class="zone" id="videoZone" hidden>
     <h3>Two-minute video review</h3>
     <p class="sub">Five questions, two minutes to fill. I record the video myself and reply by email within two working days.</p>
-    <iframe data-tally-src="https://tally.so/embed/2jjBgg?alignLeft=1&amp;hideTitle=1&amp;transparentBackground=1&amp;dynamicHeight=1" loading="lazy" title="Two-minute video review request" id="tallyFrame"></iframe>
+    <iframe data-tally-src="https://tally.so/embed/2jjBgg?alignLeft=1&amp;hideTitle=1&amp;dynamicHeight=1" loading="lazy" title="Two-minute video review request" id="tallyFrame"></iframe>
     <div class="thanks" id="videoThanks"><strong>Got it.</strong> I'll record your video and email the link within two working days. If you'd rather talk it through sooner, the calendar below is open.</div>
   </div>
 
@@ -321,12 +321,13 @@ const BOOKING_URL = 'https://cal.com/sayed.r/20min';
       document.getElementById('bookZone').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
-  var sticky = document.getElementById('sticky'), hero = document.querySelector('.choose'), zone = document.getElementById('bookZone');
+  var sticky = document.getElementById('sticky'), hero = document.querySelector('.choose'), zone = document.getElementById('bookZone'), vz = document.getElementById('videoZone');
   if (!('IntersectionObserver' in window)) return;
-  var heroGone = false, zoneSeen = false;
-  var upd = function () { if (sticky.isConnected) sticky.classList.toggle('show', heroGone && !zoneSeen); };
+  var heroGone = false, zoneSeen = false, videoOn = false;
+  var upd = function () { if (sticky.isConnected) sticky.classList.toggle('show', heroGone && !zoneSeen && !videoOn); };
   new IntersectionObserver(function (e) { heroGone = !e[0].isIntersecting && e[0].boundingClientRect.top < 0; upd(); }).observe(hero);
   new IntersectionObserver(function (e) { zoneSeen = e[0].isIntersecting || e[0].boundingClientRect.top < 0; upd(); }).observe(zone);
+  new IntersectionObserver(function (e) { videoOn = e[0].isIntersecting; upd(); }).observe(vz);
 })();
 
 /* GA4: which button people use, plus LinkedIn clicks (existing event). */
