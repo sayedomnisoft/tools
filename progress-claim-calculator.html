@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-SG">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Progress Claim Calculator Singapore: Retention, GST | Gantry</title>
+<meta name="description" content="Free progress claim calculator for Singapore contractors: work done to date, variations, retention, previous claims and 9% GST, cumulative, with an example.">
+<meta property="og:title" content="Progress Claim Calculator Singapore: Retention, GST">
+<meta property="og:description" content="Free progress claim calculator for Singapore contractors: work done to date, variations, retention, previous claims and 9% GST, cumulative, with an example.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="pricecalc.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://tools.gantry.work/progress-claim-calculator.html">
+<meta property="og:url" content="https://tools.gantry.work/progress-claim-calculator.html">
+<meta property="og:site_name" content="The Gantry">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="author" content="Sayed Rashid">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://tools.gantry.work/#website", "url": "https://tools.gantry.work/", "name": "The Gantry Tools", "inLanguage": "en-SG", "publisher": {"@id": "https://tools.gantry.work/#sayed"}}, {"@type": "Person", "@id": "https://tools.gantry.work/#sayed", "name": "Sayed Rashid", "url": "https://www.gantry.work", "jobTitle": "ERP & Business Systems Consultant", "image": "https://tools.gantry.work/sayed.jpg", "sameAs": ["https://www.linkedin.com/in/sayedomni", "https://www.gantry.work", "https://github.com/sayedomnisoft"]}, {"@type": "WebApplication", "name": "Progress Claim Calculator", "url": "https://tools.gantry.work/progress-claim-calculator.html", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "isAccessibleForFree": true, "inLanguage": "en-SG", "dateModified": "2026-10-28", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "SGD"}, "author": {"@id": "https://tools.gantry.work/#sayed"}, "publisher": {"@type": "Organization", "name": "The Gantry", "url": "https://www.gantry.work"}, "isPartOf": {"@id": "https://tools.gantry.work/#website"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Free tools", "item": "https://tools.gantry.work/"}, {"@type": "ListItem", "position": 2, "name": "Progress Claim Calculator (Singapore)", "item": "https://tools.gantry.work/progress-claim-calculator.html"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do you calculate a progress claim?", "acceptedAnswer": {"@type": "Answer", "text": "Multiply the contract sum by the percentage of work done to date, add approved variations and any materials on site, deduct retention at the contract rate, deduct previous claims certified net of retention, then add GST if you are registered."}}, {"@type": "Question", "name": "Is retention calculated on each claim or cumulatively?", "acceptedAnswer": {"@type": "Answer", "text": "On the cumulative gross value to date. That keeps the retention balance correct at every claim and is why previous claims are deducted net of their retention."}}, {"@type": "Question", "name": "What is the difference between a progress claim and a payment claim?", "acceptedAnswer": {"@type": "Answer", "text": "A payment claim is the statutory term in the SOP Act; a progress claim is what the industry calls the same document. When it is served under the Act, the Act's timelines apply."}}, {"@type": "Question", "name": "When is retention money released?", "acceptedAnswer": {"@type": "Answer", "text": "Usually half at completion and half after the defects liability period, but the rate, cap and release terms are set by your contract, so read those clauses before pricing the job."}}]}]}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<script src="/config.js"></script><script src="/track.js" defer></script><script src="/gantry-ui.js" defer></script>
+<meta name="gantry-checked" content="2026-10-28">
+<style>.card.pccard{max-width:900px} .pc input[type=date]{width:100%;min-width:0;padding:10px 11px;font-size:15px;color:#fff;font-family:inherit;background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.2);border-radius:9px;color-scheme:dark}</style>
+</head>
+<body>
+<div class="card pccard">
+  <div class="brand"><a href="index.html">← THE GANTRY · TOOLS</a></div>
+  <h1>Progress Claim Calculator (Singapore)</h1>
+  <p class="sub">Work out this period&#x27;s progress claim from the contract sum, the percentage of work done, approved variations, retention and what has already been certified, with GST. Cumulative, the way the SOP Act and most QS offices expect it. Free, no signup, nothing leaves your browser.</p>
+  <div id="app"><noscript>This calculator needs JavaScript switched on.</noscript></div>
+
+  <section class="answer"><h2>Short answer</h2><p><b>Progress claim = (work done to date + approved variations + materials on site) − retention − previous claims certified, then add GST.</b> Claim cumulatively: show the total value of work done to date and deduct what has already been certified, net of its retention.</p><p>Example: 40% of a S$186,000 contract is S$74,400; less 5% retention S$3,720 = S$70,680; less S$17,670 certified before = <b>S$53,010</b>, or S$57,780.90 with 9% GST.</p><p class="when">Checked 28 October 2026. Figures in S$; change the currency box for any other.</p></section>
+
+  <div class="auto">
+    <h2>Finished work sitting unclaimed?</h2>
+    <p>Bring one live job to a free 20-minute systems review: we look at how stage completion reaches the person who raises claims, and the first fix that gets claims out on time.</p>
+    <a class="cta" id="guideBtn" href="https://tools.gantry.work/review.html?utm_source=tools&amp;utm_medium=progress-claim-calculator" target="_blank" rel="noopener">Book a free 20-minute review</a>
+    <a class="cta-ghost" id="videoBtn" href="https://tools.gantry.work/review.html?offer=video&amp;utm_source=tools&amp;utm_medium=progress-claim-calculator" target="_blank" rel="noopener">Prefer no call? Get a 2-minute video on your number &rarr;</a>
+    <p class="disc">Bigger than one calculation? <a id="reviewLink" href="https://tools.gantry.work/review.html?utm_source=tools&amp;utm_medium=progress-claim-calculator" target="_blank" rel="noopener">Book a free 20-minute systems review</a>.</p>
+  </div>
+
+  <div class="guide">
+<h2>How a progress claim is calculated</h2><p>A progress claim (a payment claim under Singapore's Building and Construction Industry Security of Payment Act) is a claim for the value of work done to date, not for this month's work in isolation. The sequence is always the same:</p>
+<ol><li><b>Gross value to date:</b> contract sum × percentage complete, plus approved variations to date and, if your contract allows it, materials delivered to site.</li><li><b>Less retention</b> at the rate in your contract, usually 5% or 10% of the gross value, often capped at a percentage of the contract sum.</li><li><b>Less previous claims certified</b>, net of their own retention.</li><li><b>Amount claimed this period</b>, then GST at 9% if you are GST registered.</li></ol>
+<p><b>Worked example:</b> an M&E fit-out of S$186,000, billed in stages: mobilisation 10%, first fix 30%, second fix 30%, testing and handover 30%. Claim 1 (mobilisation) was S$18,600 less 5% retention, so S$17,670 was certified. After first fix the work done is 40%, S$74,400. Less retention S$3,720 gives S$70,680; less S$17,670 certified before gives a claim of S$53,010, which is S$57,780.90 with GST. Retention held is now S$3,720.</p>
+<h2>Retention: what to track</h2><p>Retention is cash held back from every claim as security against defects. The common pattern in Singapore is a two-stage release: half when the works are certified complete, the other half at the end of the defects liability period, often 12 months later. On a S$186,000 job at 5% that is S$9,300 that sits in someone else's bank until you claim it, so diarise both release dates. Some contracts allow a performance bond instead of retention, which protects your cash flow if you can get one.</p>
+<h2>SOP Act timelines, if your contract is silent</h2><ul><li>Serve the payment claim by the last day of the month.</li><li>The respondent's payment response is due within 14 days (a contract may allow up to 21 days, not more).</li><li>If it is disputed or no response arrives, there is a dispute settlement period, then adjudication through the Singapore Mediation Centre.</li><li>Once you issue the tax invoice for the accepted amount, payment is due within 14 days if the contract is silent, and never later than 35 days under any contract.</li></ul>
+<p>Check the Act, the Regulations and BCA's guides for your situation. This calculator does the arithmetic; it is not legal advice.</p>
+<h2>Why claims go out late</h2><p>In most small firms the delay is not a dispute. The site team knows the stage is reached, but the person who prepares claims finds out at month-end. The fix is to make "stage reached on site" and "claim ready" the same event, in a system or at least in a shared sheet, so the claim is calculated the day the milestone is marked. The free <a href="job-costing-calculator.html">job costing calculator</a> shows the other half of the picture: cost to date against what you have billed.</p>
+<h2>Questions</h2>
+<p><b>How do you calculate a progress claim?</b> Multiply the contract sum by the percentage of work done to date, add approved variations and any materials on site, deduct retention at the contract rate, deduct previous claims certified net of retention, then add GST if you are registered.</p>
+<p><b>Is retention calculated on each claim or cumulatively?</b> On the cumulative gross value to date. That keeps the retention balance correct at every claim and is why previous claims are deducted net of their retention.</p>
+<p><b>What is the difference between a progress claim and a payment claim?</b> A payment claim is the statutory term in the SOP Act; a progress claim is what the industry calls the same document. When it is served under the Act, the Act&#x27;s timelines apply.</p>
+<p><b>When is retention money released?</b> Usually half at completion and half after the defects liability period, but the rate, cap and release terms are set by your contract, so read those clauses before pricing the job.</p>
+  </div>
+  <div class="related"><h2>Related free tools</h2><ul><li><a href="job-costing-calculator.html"><b>Job costing calculator</b> budget vs actual and projected overrun</a></li><li><a href="gst-calculator.html"><b>GST calculator</b> add or remove 9% GST</a></li><li><a href="invoice-due-date-calculator.html"><b>Invoice due date calculator</b> net 30, EOM and late interest</a></li><li><a href="dso-calculator.html"><b>DSO calculator</b> days to collect and cash tied up</a></li></ul><p style="margin-top:8px;font-size:13.5px"><a href="index.html">All free tools</a> · <a href="singapore-sme-systems-checklist.html">The 12-point Singapore SME systems checklist</a></p></div>
+
+  <div class="byline noprint">
+    <img src="sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
+    <div class="who"><div class="nm">Sayed Rashid</div><div class="rl">I build these free tools from the jobs I see business owners do by hand every week. Tell me which one to build next.</div></div>
+    <a class="li" href="https://www.linkedin.com/in/sayedomni" target="_blank" rel="noopener" onclick="try{gtag('event','linkedin_click',{page:location.pathname})}catch(e){}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg> Connect on LinkedIn</a>
+  </div>
+  <p class="noprint" style="font-size:12px;color:rgba(255,255,255,0.6);text-align:center;margin-top:14px;line-height:1.5">Privacy: your entries stay in your browser and are never uploaded. I count anonymous visits and button clicks (Google Analytics) to see which tools help.</p>
+  <div class="footer" id="baseFooter"><a href="index.html">All free tools</a> · <a href="https://www.gantry.work">The Gantry</a></div>
+</div>
+
+<div class="gate hidden" id="gate"><div class="box2">
+  <div class="result-label">YOU'VE USED THIS A FEW TIMES</div>
+  <h2>Numbers like these, every week?</h2>
+  <p class="sub" style="margin-bottom:6px">Get one automation you can set up yourself each week, free, from The Gantry newsletter. Then keep using the calculator as much as you like.</p>
+  <iframe src="https://www.gantry.work/embed" title="Subscribe to The Gantry" scrolling="no"></iframe>
+  <button class="primary" id="gateDone">Continue</button>
+  <button class="ghost" id="gateSkip" style="margin-top:10px">Not now</button>
+</div></div>
+
+<script>window.CALC = 'progressclaim';</script>
+<script src="calc.js"></script>
+</body>
+</html>
