@@ -165,3 +165,25 @@ a:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; bor
 
 /* --- guide sections on tool pages --- */
 .guide{margin-top:26px;font-size:15px;line-height:1.65;color:rgba(255,255,255,.88);text-align:left}.guide h2{margin:22px 0 8px;font-size:19px;color:#fff}.guide p{margin-bottom:10px}.guide ul,.guide ol{margin:0 0 12px 20px}.guide li{margin-bottom:4px}.guide a{color:#f2cf6e}
+/* 2026-10-28: trust strip, next-step ladder, answer block, related tools */
+.trust{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.06);border:1px solid rgba(242,207,110,.35);border-radius:14px;padding:12px 14px;margin:0 0 22px;font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.86);text-align:left}
+.trust img{width:46px;height:46px;border-radius:50%;object-fit:cover;flex:0 0 46px;border:2px solid rgba(242,207,110,.6)}
+.trust b{color:#fff}.trust .chk{color:#f2cf6e;white-space:nowrap}
+.trust .next3{margin-top:6px;font-size:12.5px;color:rgba(255,255,255,.72)}
+.trust .next3 em{font-style:normal;display:inline-block;width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;background:#f2cf6e;color:#14142a;font-weight:800;font-size:11px;margin:0 2px 0 6px}
+.ladder{margin:18px 0 6px;padding:16px;border-radius:16px;background:linear-gradient(135deg,rgba(201,162,39,.16),rgba(42,47,176,.18));border:1px solid rgba(242,207,110,.5);text-align:left}
+.ladder-fix{font-size:14.5px;line-height:1.55;color:#fff;margin:0 0 12px}
+.ladder-steps{display:grid;gap:8px}
+.ls{display:flex;align-items:center;gap:12px;width:100%;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.26);background:rgba(255,255,255,.06);color:#fff;font:600 15px/1.3 inherit;font-family:inherit;text-align:left;text-decoration:none;cursor:pointer}
+.ls:hover{border-color:#f2cf6e}
+.ls em{font-style:normal;flex:0 0 28px;height:28px;line-height:28px;text-align:center;border-radius:50%;background:#f2cf6e;color:#14142a;font-weight:800;font-size:13px}
+.ls-email{background:linear-gradient(180deg,#f2cf6e,#c9a227);color:#14142a;border-color:transparent}.ls-email em{background:#14142a;color:#f2cf6e}
+.ladder-form{margin-top:12px}.ladder-thanks{margin-top:10px;font-size:14.5px;color:#fff}
+.ladder-note{font-size:12px;color:rgba(255,255,255,.62);margin:10px 0 0;line-height:1.5}
+.answer{background:rgba(255,255,255,.05);border-left:3px solid #f2cf6e;border-radius:0 12px 12px 0;padding:14px 16px;margin:18px 0 6px;font-size:14.5px;line-height:1.6;color:rgba(255,255,255,.9);text-align:left}
+.answer h2{font-size:15px;letter-spacing:1.5px;text-transform:uppercase;color:#f2cf6e;margin:0 0 6px}
+.answer p{margin:0 0 8px}.answer p:last-child{margin:0}.answer .when{font-size:12.5px;color:rgba(255,255,255,.6)}
+.related{margin-top:22px;font-size:14.5px;line-height:1.6;text-align:left}.related h2{font-size:16px;margin-bottom:6px}
+.related ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}.related li a{display:block;padding:10px 12px;border:1px solid rgba(255,255,255,.14);border-radius:10px;color:#fff;text-decoration:none;background:rgba(255,255,255,.04)}
+.related li a:hover{border-color:#f2cf6e}.related li a b{color:#f2cf6e}
+@media (max-width:480px){.trust{font-size:13px}.trust .chk{white-space:normal}}
