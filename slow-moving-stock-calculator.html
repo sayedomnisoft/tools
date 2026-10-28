@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-SG">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slow-Moving Stock Calculator: Months of Cover | Gantry</title>
+<meta name="description" content="Free slow-moving inventory calculator: months of cover, a class from healthy to dead stock, cash tied up and a suggested provision. Paste a whole list at once.">
+<meta property="og:title" content="Slow-Moving Stock Calculator: Months of Cover">
+<meta property="og:description" content="Free slow-moving inventory calculator: months of cover, a class from healthy to dead stock, cash tied up and a suggested provision. Paste a whole list at once.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="pricecalc.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://tools.gantry.work/slow-moving-stock-calculator.html">
+<meta property="og:url" content="https://tools.gantry.work/slow-moving-stock-calculator.html">
+<meta property="og:site_name" content="The Gantry">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="author" content="Sayed Rashid">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://tools.gantry.work/#website", "url": "https://tools.gantry.work/", "name": "The Gantry Tools", "inLanguage": "en-SG", "publisher": {"@id": "https://tools.gantry.work/#sayed"}}, {"@type": "Person", "@id": "https://tools.gantry.work/#sayed", "name": "Sayed Rashid", "url": "https://www.gantry.work", "jobTitle": "ERP & Business Systems Consultant", "image": "https://tools.gantry.work/sayed.jpg", "sameAs": ["https://www.linkedin.com/in/sayedomni", "https://www.gantry.work", "https://github.com/sayedomnisoft"]}, {"@type": "WebApplication", "name": "Slow-Moving Stock Calculator", "url": "https://tools.gantry.work/slow-moving-stock-calculator.html", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "isAccessibleForFree": true, "inLanguage": "en-SG", "dateModified": "2026-10-28", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "SGD"}, "author": {"@id": "https://tools.gantry.work/#sayed"}, "publisher": {"@type": "Organization", "name": "The Gantry", "url": "https://www.gantry.work"}, "isPartOf": {"@id": "https://tools.gantry.work/#website"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Free tools", "item": "https://tools.gantry.work/"}, {"@type": "ListItem", "position": 2, "name": "Slow-Moving and Dead Stock Calculator", "item": "https://tools.gantry.work/slow-moving-stock-calculator.html"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What counts as slow-moving inventory?", "acceptedAnswer": {"@type": "Answer", "text": "A common rule is anything with more than 6 months of cover (quantity on hand divided by monthly usage), with over 12 months or no movement in a year treated as dead stock. Adjust the thresholds for your trade."}}, {"@type": "Question", "name": "How do you calculate months of inventory on hand?", "acceptedAnswer": {"@type": "Answer", "text": "Divide the quantity on hand by the average quantity used or sold per month over the last 6 to 12 months. 480 units selling 35 a month is 13.7 months of cover."}}, {"@type": "Question", "name": "How much provision should I make for slow-moving stock?", "acceptedAnswer": {"@type": "Answer", "text": "There is no fixed rule; a common policy is 25% for 6 to 12 months of cover, 50% for 12 to 24 months and 100% beyond, reviewed against actual net realisable value at year-end."}}, {"@type": "Question", "name": "Is dead stock a cash problem or a profit problem?", "acceptedAnswer": {"@type": "Answer", "text": "Both. The cash was spent when the stock was bought; the profit hit comes when you provide for it or write it off. Clearing it recovers some cash and stops the provision growing."}}]}]}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<script src="/config.js"></script><script src="/track.js" defer></script><script src="/gantry-ui.js" defer></script>
+<meta name="gantry-checked" content="2026-10-28">
+<style>.card.pccard{max-width:900px} .pc input[type=date]{width:100%;min-width:0;padding:10px 11px;font-size:15px;color:#fff;font-family:inherit;background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.2);border-radius:9px;color-scheme:dark}</style>
+</head>
+<body>
+<div class="card pccard">
+  <div class="brand"><a href="index.html">← THE GANTRY · TOOLS</a></div>
+  <h1>Slow-Moving and Dead Stock Calculator</h1>
+  <p class="sub">Find out how many months of cover an item has, whether it counts as slow-moving or dead stock, how much cash it ties up and what provision to book. Paste a list to classify every SKU at once. Free, no signup, nothing leaves your browser.</p>
+  <div id="app"><noscript>This calculator needs JavaScript switched on.</noscript></div>
+
+  <section class="answer"><h2>Short answer</h2><p><b>Months of cover = quantity on hand ÷ average monthly usage.</b> Up to 3 months is healthy, 3 to 6 is worth watching, 6 to 12 is slow-moving, over 12 (or no movement in a year) is dead stock. A common provision policy is 25% at 6 to 12 months, 50% at 12 to 24 months and 100% beyond that.</p><p>Example: 480 units at S$12.50 selling 35 a month is 13.7 months of cover, S$6,000 on the shelf and a suggested S$3,000 provision.</p><p class="when">Checked 28 October 2026. Figures in S$; change the currency box for any other.</p></section>
+
+  <div class="auto">
+    <h2>How much of your stock value is sitting in the slow and dead bands?</h2>
+    <p>Bring your stock list to a free 20-minute systems review: we work out months of cover by item and the first fix that stops dead stock building up again.</p>
+    <a class="cta" id="guideBtn" href="https://tools.gantry.work/review.html?utm_source=tools&amp;utm_medium=slow-moving-stock-calculator" target="_blank" rel="noopener">Book a free 20-minute review</a>
+    <a class="cta-ghost" id="videoBtn" href="https://tools.gantry.work/review.html?offer=video&amp;utm_source=tools&amp;utm_medium=slow-moving-stock-calculator" target="_blank" rel="noopener">Prefer no call? Get a 2-minute video on your number &rarr;</a>
+    <p class="disc">Bigger than one calculation? <a id="reviewLink" href="https://tools.gantry.work/review.html?utm_source=tools&amp;utm_medium=slow-moving-stock-calculator" target="_blank" rel="noopener">Book a free 20-minute systems review</a>.</p>
+  </div>
+
+  <div class="guide">
+<h2>How to identify slow-moving inventory</h2><p>Divide what you hold by what you use or sell in an average month. The answer is months of cover, and it is the single most useful stock number a small business can run every month. An item with 13 months of cover is not a stock-out risk; it is cash parked on a shelf, and it will be older and less sellable by the time it moves.</p>
+<p>Thresholds depend on the trade. Fresh food measures cover in days; spare parts for machines you still service can justify a year. The defaults here (3, 6, 12 and 24 months) suit most trading, distribution and light manufacturing businesses. Change the provision percentages to match your accounting policy.</p>
+<p><b>Worked example:</b> 480 units on hand at S$12.50 each, selling 35 a month. Cover is 480 ÷ 35 = 13.7 months, so it is very slow. The stock is worth S$6,000, and at a 50% provision for the 12 to 24 month band you would book S$3,000. Across a list of 400 SKUs it is normal to find 15% to 25% of the stock value in the slow and dead bands.</p>
+<h2>What to do with dead stock</h2><ol><li><b>Stop buying it.</b> Set the reorder point to zero before anything else; many dead items are still being reordered because the minimum was set years ago.</li><li><b>Sell it at cost or bundle it</b> with a fast mover. Recovering S$0.60 on the dollar this month beats S$0.00 next year.</li><li><b>Return it</b> if the supplier takes it back, even with a restocking fee.</li><li><b>Write it off and clear the space.</b> Space, counting time and insurance are costs too.</li></ol>
+<h2>Slow-moving inventory provision</h2><p>Accounting standards require stock to be carried at the lower of cost and net realisable value, so a slow-moving provision is a judgement about what the stock will actually sell for. Age bands are a practical way to apply that judgement consistently: the same percentage for every item in a band, reviewed at year-end against what actually sold. Keep the policy written down; auditors and buyers of the business both ask for it.</p>
+<h2>Why spreadsheets get this wrong</h2><p>Months of cover needs two numbers per item that live in different places: the quantity on hand (warehouse) and the sales or usage history (accounting or POS). When they are joined once a year for the audit, the slow stock has already aged another year. In a system where sales reduce stock as they happen, this report is a filter, not a project. The free <a href="stock-take-variance-calculator.html">stock take variance calculator</a> checks whether the quantities you are relying on are right in the first place.</p>
+<h2>Questions</h2>
+<p><b>What counts as slow-moving inventory?</b> A common rule is anything with more than 6 months of cover (quantity on hand divided by monthly usage), with over 12 months or no movement in a year treated as dead stock. Adjust the thresholds for your trade.</p>
+<p><b>How do you calculate months of inventory on hand?</b> Divide the quantity on hand by the average quantity used or sold per month over the last 6 to 12 months. 480 units selling 35 a month is 13.7 months of cover.</p>
+<p><b>How much provision should I make for slow-moving stock?</b> There is no fixed rule; a common policy is 25% for 6 to 12 months of cover, 50% for 12 to 24 months and 100% beyond, reviewed against actual net realisable value at year-end.</p>
+<p><b>Is dead stock a cash problem or a profit problem?</b> Both. The cash was spent when the stock was bought; the profit hit comes when you provide for it or write it off. Clearing it recovers some cash and stops the provision growing.</p>
+  </div>
+  <div class="related"><h2>Related free tools</h2><ul><li><a href="stock-take-variance-calculator.html"><b>Stock take variance calculator</b> accuracy and variance value</a></li><li><a href="gross-profit-calculator.html"><b>Gross profit calculator</b> gross and net margin</a></li><li><a href="inventory-software-cost-calculator.html"><b>Inventory software cost calculator</b> 12-month cost of five tools</a></li><li><a href="landed-cost-calculator.html"><b>Landed cost calculator</b> FX, freight, duty and GST per unit</a></li></ul><p style="margin-top:8px;font-size:13.5px"><a href="index.html">All free tools</a> · <a href="singapore-sme-systems-checklist.html">The 12-point Singapore SME systems checklist</a></p></div>
+
+  <div class="byline noprint">
+    <img src="sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
+    <div class="who"><div class="nm">Sayed Rashid</div><div class="rl">I build these free tools from the jobs I see business owners do by hand every week. Tell me which one to build next.</div></div>
+    <a class="li" href="https://www.linkedin.com/in/sayedomni" target="_blank" rel="noopener" onclick="try{gtag('event','linkedin_click',{page:location.pathname})}catch(e){}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg> Connect on LinkedIn</a>
+  </div>
+  <p class="noprint" style="font-size:12px;color:rgba(255,255,255,0.6);text-align:center;margin-top:14px;line-height:1.5">Privacy: your entries stay in your browser and are never uploaded. I count anonymous visits and button clicks (Google Analytics) to see which tools help.</p>
+  <div class="footer" id="baseFooter"><a href="index.html">All free tools</a> · <a href="https://www.gantry.work">The Gantry</a></div>
+</div>
+
+<div class="gate hidden" id="gate"><div class="box2">
+  <div class="result-label">YOU'VE USED THIS A FEW TIMES</div>
+  <h2>Numbers like these, every week?</h2>
+  <p class="sub" style="margin-bottom:6px">Get one automation you can set up yourself each week, free, from The Gantry newsletter. Then keep using the calculator as much as you like.</p>
+  <iframe src="https://www.gantry.work/embed" title="Subscribe to The Gantry" scrolling="no"></iframe>
+  <button class="primary" id="gateDone">Continue</button>
+  <button class="ghost" id="gateSkip" style="margin-top:10px">Not now</button>
+</div></div>
+
+<script>window.CALC = 'slowstock';</script>
+<script src="calc.js"></script>
+</body>
+</html>
