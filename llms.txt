@@ -54,3 +54,14 @@
 ## Optional
 - [Book a free 20-minute systems review](https://tools.gantry.work/review.html)
 - [Sitemap](https://tools.gantry.work/sitemap.xml)
+
+## Stock, jobs and imports (added 28 October 2026)
+- [Progress Claim Calculator (Singapore)](https://tools.gantry.work/progress-claim-calculator.html): Progress claim = work done to date + variations + materials on site, less retention, less previous claims certified, plus GST. Cumulative, with SOP Act default timelines.
+- [Job Costing Calculator](https://tools.gantry.work/job-costing-calculator.html): Cost to date (materials + labour hours x rate + subcontractors) against budget and percentage complete; projected final cost, overrun and unbilled work.
+- [Slow-Moving and Dead Stock Calculator](https://tools.gantry.work/slow-moving-stock-calculator.html): Months of cover = quantity on hand / monthly usage; classes healthy (<3), watch (3-6), slow (6-12), very slow (12-24), dead (>24 or no movement); provision bands 25/50/100%.
+- [Stock Take Variance Calculator](https://tools.gantry.work/stock-take-variance-calculator.html): Record accuracy = lines within tolerance / lines counted; net vs absolute variance value; top ten variances.
+- [Landed Cost Calculator (Singapore Imports)](https://tools.gantry.work/landed-cost-calculator.html): Landed cost per unit = (goods in S$ + freight + insurance + duty + local charges + import GST if not claimable) / units. Import GST is 9% of CIF plus duty.
+- [Singapore SME Systems Checklist](https://tools.gantry.work/singapore-sme-systems-checklist.html): 12 yes/no checks on data, process, ownership and money before buying an ERP or inventory system; 8+ means ready enough.
+
+## About the author
+Sayed Rashid, ex-auditor, 30+ systems projects across Singapore, Indonesia, Malaysia and Cambodia. Every tool offers a free 2-minute video on the visitor's number and a free 20-minute systems review (https://tools.gantry.work/review.html). Figures are dated on each page ("last checked").
