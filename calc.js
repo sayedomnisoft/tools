@@ -11,7 +11,7 @@ const pct = x => isFinite(x) ? (Math.round(x * 100) / 100).toLocaleString('en-SG
 const int = x => isFinite(x) ? Math.round(x).toLocaleString('en-SG') : '—';
 const G = 'style="color:#f2cf6e"';
 const link = (href, t, ext) => `<a ${G} href="${href}"${ext ? ' target="_blank" rel="noopener"' : ''}>${t}</a>`;
-const review = m => link(`https://tools.gantry.work/review.html?utm_source=tools&utm_medium=${m}`, 'Book a free 20-minute review', true);
+const review = m => link(`https://tools.gantry.work/review.html?utm_source=tools&utm_medium=${m}`, 'Book a free 20-minute review', true) + ' or ' + link(`https://tools.gantry.work/review.html?offer=video&utm_source=tools&utm_medium=${m}`, 'get a 2-minute video on this number', true);
 const f = (id, label, val, ph, type) => `<div class="f"><label for="${id}">${label}</label><input type="${type || 'text'}" ${type === 'date' ? '' : 'inputmode="decimal"'} id="${id}" value="${val == null ? '' : val}" placeholder="${ph || ''}"></div>`;
 const sel = (id, label, opts, v) => `<div class="f"><label for="${id}">${label}</label><select id="${id}">${opts.map(o => `<option value="${o[0]}"${o[0] === v ? ' selected' : ''}>${o[1]}</option>`).join('')}</select></div>`;
 const tile = (id, label) => `<div class="tile"><b id="${id}">—</b><span>${label}</span></div>`;
@@ -189,10 +189,109 @@ const CALCS = {
       out += `<br>List prices checked 6 October 2026, before taxes and promotions; USD plans converted at your rate. Katana is usage-based and Sortly tracks items without costing stock, so they are not priced here. Full comparison: ${link('https://www.gantry.work/p/best-inventory-software-small-business?utm_source=tools&utm_medium=inventory-cost-calculator', 'the best inventory software for small business', true)}. Choosing between these, or between an inventory app and an ERP? ${review('inventory-cost-result')}`;
       return { out, used: true };
     }
+  },
+  progressclaim: {
+    html: `<div class="g4">${f('cv', 'Contract sum (excl. GST)', '186000')}${f('pc', 'Work done to date (% of contract)', '40', 'cumulative, e.g. 40')}${f('vo', 'Approved variations to date', '0', 'value of work done on VOs')}${f('mos', 'Materials on site (if allowed)', '0')}</div>
+      <div class="g4" style="margin-top:10px">${f('ret', 'Retention %', '5')}${f('cap', 'Retention cap (% of contract sum)', '', 'leave blank if none')}${f('prev', 'Previous claims certified (net of retention)', '17670')}${f('gst', 'GST %', '9')}</div>
+      <div class="g4" style="margin-top:10px">${f('cur', 'Currency', 'S$')}</div>
+      <div class="tiles">${tile('t1', 'This claim (before GST)')}${tile('t2', 'Total with GST')}${tile('t3', 'Retention held to date')}${tile('t4', 'Certified so far')}</div>`,
+    calc() {
+      const CV = num($('cv').value), PC = num($('pc').value), VO = num($('vo').value) || 0, MOS = num($('mos').value) || 0, R = num($('ret').value) || 0, CAP = num($('cap').value), PREV = num($('prev').value) || 0, G = num($('gst').value) || 0;
+      if (!(CV > 0) || !(PC >= 0)) return { msg: 'Enter the contract sum and the percentage of work done to date.' };
+      const work = CV * PC / 100, gross = work + VO + MOS;
+      let ret = gross * R / 100; const capv = isFinite(CAP) && CAP > 0 ? CV * CAP / 100 : Infinity; const capped = ret > capv; if (capped) ret = capv;
+      const net = gross - ret, claim = net - PREV, gst = claim > 0 ? claim * G / 100 : 0, total = claim + gst;
+      $('t1').textContent = money(claim); $('t2').textContent = money(total); $('t3').textContent = money(ret); $('t4').textContent = money(PREV);
+      if (claim <= 0) return { out: `<b style="color:#fff">Nothing to claim this period.</b> Net value to date ${money(net)} is not above the ${money(PREV)} already certified. Check the percentage complete, or whether a previous claim was entered gross instead of net of retention.`, used: true };
+      let out = `<b style="color:#fff">Progress claim this period: ${money(claim)} before GST, ${money(total)} with ${G}% GST.</b> Work done to date ${money(work)}${VO ? ` plus variations ${money(VO)}` : ''}${MOS ? ` plus materials on site ${money(MOS)}` : ''} = gross ${money(gross)}; less ${R}% retention ${money(ret)}${capped ? ` (capped at ${CAP}% of the contract sum)` : ''} = net ${money(net)}; less ${money(PREV)} certified before. `;
+      out += `Retention of ${money(ret)} is now held against you; half is usually released at completion and the rest after the defects liability period, so diarise both. Claim cumulatively every period and serve it by the date your contract sets (if it is silent, the SOP Act default is the last day of the month). `;
+      out += `Is finished work sitting unclaimed because the site team told finance late? ${review('progress-claim-result')}`;
+      return { out, used: true, headline: `Progress claim ${money(claim)} before GST (${money(total)} with GST)` };
+    }
+  },
+  jobcost: {
+    html: `<div class="g4">${f('cv', 'Contract or quoted value', '186000')}${f('bud', 'Cost budget for the job', '140000')}${f('pc', 'Work complete (%)', '40')}${f('billed', 'Billed to the customer so far', '18600')}</div>
+      <div class="g4" style="margin-top:10px">${f('mat', 'Materials and supplier bills to date', '54400')}${f('hrs', 'Labour hours to date', '260')}${f('rate', 'Average labour cost per hour', '32.72')}${f('sub', 'Subcontractors and other costs to date', '0')}</div>
+      <div class="g4" style="margin-top:10px">${f('cur', 'Currency', 'S$')}</div>
+      <div class="tiles">${tile('t1', 'Cost to date')}${tile('t2', 'Budget used vs work done')}${tile('t3', 'Projected final cost')}${tile('t4', 'Done but not yet billed')}</div>`,
+    calc() {
+      const CV = num($('cv').value), B = num($('bud').value), PC = num($('pc').value), BL = num($('billed').value) || 0, MAT = num($('mat').value) || 0, H = num($('hrs').value) || 0, RT = num($('rate').value) || 0, SUB = num($('sub').value) || 0;
+      if (!(B > 0) || !(PC >= 0)) return { msg: 'Enter the cost budget and how much of the job is complete.' };
+      const lab = H * RT, cost = MAT + lab + SUB, used = cost / B * 100, proj = PC > 0 ? cost / (PC / 100) : NaN, over = isFinite(proj) ? proj - B : NaN, earned = CV > 0 ? CV * PC / 100 : NaN, unbilled = isFinite(earned) ? earned - BL : NaN, margin = isFinite(proj) && CV > 0 ? (CV - proj) / CV * 100 : NaN;
+      $('t1').textContent = money(cost); $('t2').textContent = isFinite(used) ? `${pct(used)} vs ${pct(PC)}` : '—'; $('t3').textContent = money(proj); $('t4').textContent = money(unbilled);
+      const gap = used - PC;
+      let out = `<b style="color:#fff">Cost to date is ${money(cost)}: ${pct(used)} of the budget spent with ${pct(PC)} of the work done.</b> That is materials ${money(MAT)}, labour ${money(lab)} (${int(H)} h at ${money(RT)}) and other ${money(SUB)}. `;
+      if (isFinite(proj)) out += gap > 2 ? `At this rate the job finishes at about ${money(proj)}, roughly ${money(over)} over the ${money(B)} budget${isFinite(margin) ? `, leaving a ${pct(margin)} margin on the contract` : ''}. Check whether the gap is timing (materials bought ahead of use) or a real overrun (more hours than quoted) while there is still time to act. ` : gap < -2 ? `At this rate the job finishes at about ${money(proj)}, under budget by ${money(-over)}. Make sure all supplier bills and hours are actually booked to this job before you trust that. ` : `At this rate the job lands close to budget, at about ${money(proj)}. `;
+      if (isFinite(unbilled)) out += unbilled > 0 ? `Billing lags the work: ${money(earned)} is earned but only ${money(BL)} invoiced, so ${money(unbilled)} of finished work is unbilled while wages and suppliers are paid. ` : `Billing is ahead of or level with the work done. `;
+      out += `Want to see this per job without a spreadsheet? ${review('job-costing-result')}`;
+      return { out, used: true, headline: `${pct(used)} of budget used at ${pct(PC)} complete; projected ${isFinite(over) ? (over >= 0 ? 'overrun ' : 'saving ') + money(Math.abs(over)) : 'n/a'}` };
+    }
+  },
+  slowstock: {
+    html: `<div class="g4">${f('qty', 'Quantity on hand', '480')}${f('cost', 'Unit cost', '12.50')}${f('use', 'Average monthly usage or sales (units)', '35', 'last 6 to 12 months')}${f('last', 'Months since last sale or issue', '2')}</div>
+      <div class="g4" style="margin-top:10px">${f('p1', 'Provision % if cover is 6 to 12 months', '25')}${f('p2', 'Provision % if cover is 12 to 24 months', '50')}${f('p3', 'Provision % if over 24 months or no movement', '100')}${f('cur', 'Currency', 'S$')}</div>
+      <div class="tiles">${tile('t1', 'Months of cover')}${tile('t2', 'Class')}${tile('t3', 'Stock value')}${tile('t4', 'Suggested provision')}</div>
+      <div class="f" style="margin-top:14px"><label for="list">Whole list? Paste one line per item: name, quantity, unit cost, monthly usage</label><textarea id="list" rows="4" placeholder="SKU-001, 480, 12.50, 35&#10;SKU-002, 90, 48, 0"></textarea></div><div id="listOut"></div>`,
+    calc() {
+      const Q = num($('qty').value), C = num($('cost').value), U = num($('use').value), L = num($('last').value) || 0, P = [num($('p1').value) || 0, num($('p2').value) || 0, num($('p3').value) || 0];
+      const cls = (q, u, last) => { const cover = u > 0 ? q / u : Infinity; if (!(q > 0)) return ['none', 0, 0]; if (cover === Infinity || last >= 12) return ['dead (no movement)', cover, P[2]]; if (cover > 24) return ['dead', cover, P[2]]; if (cover > 12) return ['very slow', cover, P[1]]; if (cover > 6) return ['slow', cover, P[0]]; if (cover > 3) return ['watch', cover, 0]; return ['healthy', cover, 0]; };
+      if (!(Q >= 0) || !(C >= 0) || !(U >= 0)) return { msg: 'Enter quantity, unit cost and average monthly usage.' };
+      const [k, cover, pp] = cls(Q, U, L), val = Q * C, prov = val * pp / 100;
+      $('t1').textContent = cover === Infinity ? 'no movement' : cover.toFixed(1); $('t2').textContent = k; $('t3').textContent = money(val); $('t4').textContent = money(prov);
+      const lines = $('list').value.split('\n').map(l => l.split(/[,\t;]/).map(x => x.trim())).filter(a => a.length >= 3 && isFinite(num(a[1])));
+      let listTxt = '';
+      if (lines.length) {
+        const rows = lines.map(a => { const q = num(a[1]), c = num(a[2]) || 0, u = num(a[3]) || 0; const [kk, cv, p2] = cls(q, u, 0); return { n: a[0], q, c, u, k: kk, cover: cv, val: q * c, prov: q * c * p2 / 100 }; });
+        const tv = rows.reduce((s, r) => s + r.val, 0), tp = rows.reduce((s, r) => s + r.prov, 0), slow = rows.filter(r => /slow|dead/.test(r.k));
+        const sv = slow.reduce((s, r) => s + r.val, 0);
+        $('listOut').innerHTML = `<div class="tw" style="margin-top:10px"><table class="pt" style="min-width:0"><thead><tr><th>Item</th><th>Cover (mo)</th><th>Class</th><th>Value</th><th>Provision</th></tr></thead><tbody>${rows.sort((a, b) => (b.cover === Infinity ? 1e9 : b.cover) - (a.cover === Infinity ? 1e9 : a.cover)).map(r => `<tr><td>${r.n}</td><td>${r.cover === Infinity ? 'none' : r.cover.toFixed(1)}</td><td>${r.k}</td><td>${money(r.val)}</td><td>${money(r.prov)}</td></tr>`).join('')}<tr style="font-weight:800"><td>Total (${rows.length} items)</td><td></td><td>${slow.length} slow or dead</td><td>${money(tv)}</td><td>${money(tp)}</td></tr></tbody></table></div>`;
+        listTxt = ` Across the ${rows.length} items pasted, ${slow.length} are slow or dead, holding ${money(sv)} of ${money(tv)} (${pct(tv ? sv / tv * 100 : 0)}), with a suggested provision of ${money(tp)}.`;
+      } else $('listOut').innerHTML = '';
+      let out = `<b style="color:#fff">${cover === Infinity ? 'No movement: this item is dead stock' : `${cover.toFixed(1)} months of cover: ${k}`}, ${money(val)} of cash on the shelf${pp ? `, suggested provision ${money(prov)} (${pp}%)` : ''}.</b>${listTxt} `;
+      out += pp >= 50 ? `Decide this month: sell it off at cost, bundle it, return it to the supplier, or write it off and free the space. Every month it sits, the provision grows and the cash does not come back. ` : pp ? `Stop reordering it, drop the reorder point to zero and move it with a promotion or a bundle before it crosses 12 months. ` : `Keep buying it, but check that the reorder quantity matches ${U > 0 ? int(U) + ' units a month' : 'real usage'} rather than the supplier's pack size. `;
+      out += `Seeing this for every SKU every month needs stock and sales in one place. ${review('slow-stock-result')}`;
+      return { out, used: true, headline: `${cover === Infinity ? 'No movement' : cover.toFixed(1) + ' months of cover'}: ${k}, ${money(val)} on hand` };
+    }
+  },
+  stocktake: {
+    html: `<div class="f"><label for="list">Paste your count: one line per item as name, system quantity, counted quantity, unit cost (cost optional)</label><textarea id="list" rows="6" placeholder="Laksa paste 1kg, 120, 117, 8.40&#10;Rice 25kg, 40, 40, 38&#10;Cooking oil 20L, 18, 21, 42"></textarea></div>
+      <div class="g4" style="margin-top:10px">${f('tol', 'Tolerance (% per line counts as accurate)', '2')}${f('cur', 'Currency', 'S$')}</div>
+      <div class="tiles">${tile('t1', 'Record accuracy')}${tile('t2', 'Lines within tolerance')}${tile('t3', 'Net variance (value)')}${tile('t4', 'Absolute variance (value)')}</div><div id="listOut"></div>`,
+    calc() {
+      const T = num($('tol').value) || 0;
+      const rows = $('list').value.split('\n').map(l => l.split(/[,\t;]/).map(x => x.trim())).filter(a => a.length >= 3 && isFinite(num(a[1])) && isFinite(num(a[2]))).map(a => { const sq = num(a[1]), cq = num(a[2]), c = num(a[3]) || 0; const d = cq - sq; return { n: a[0], sq, cq, c, d, dv: d * c, pctd: sq ? Math.abs(d) / sq * 100 : (cq ? 100 : 0) }; });
+      if (!rows.length) return { msg: 'Paste at least one line: name, system quantity, counted quantity and, if you have it, unit cost.' };
+      const exact = rows.filter(r => r.d === 0).length, within = rows.filter(r => r.pctd <= T).length, net = rows.reduce((s, r) => s + r.dv, 0), abs = rows.reduce((s, r) => s + Math.abs(r.dv), 0), sysv = rows.reduce((s, r) => s + r.sq * r.c, 0), hasCost = rows.some(r => r.c > 0);
+      const acc = exact / rows.length * 100, accT = within / rows.length * 100;
+      $('t1').textContent = pct(acc); $('t2').textContent = `${within} of ${rows.length} (${pct(accT)})`; $('t3').textContent = hasCost ? money(net) : 'add unit costs'; $('t4').textContent = hasCost ? money(abs) : 'add unit costs';
+      const top = rows.slice().sort((a, b) => Math.abs(b.dv) - Math.abs(a.dv) || Math.abs(b.d) - Math.abs(a.d)).slice(0, 10);
+      $('listOut').innerHTML = `<div class="tw" style="margin-top:10px"><table class="pt" style="min-width:0"><thead><tr><th>Item</th><th>System</th><th>Counted</th><th>Variance</th><th>%</th><th>Value</th></tr></thead><tbody>${top.map(r => `<tr><td>${r.n}</td><td>${int(r.sq)}</td><td>${int(r.cq)}</td><td>${r.d > 0 ? '+' : ''}${int(r.d)}</td><td>${pct(r.pctd)}</td><td>${r.c ? money(r.dv) : '—'}</td></tr>`).join('')}</tbody></table></div>`;
+      let out = `<b style="color:#fff">${pct(acc)} of lines matched exactly (${exact} of ${rows.length}); ${pct(accT)} are within your ${T}% tolerance.</b> `;
+      if (hasCost) out += `The net variance is ${money(net)}, but the absolute variance is ${money(abs)} (${pct(sysv ? abs / sysv * 100 : 0)} of the ${money(sysv)} system value): overs and shorts cancel in the total while both are real errors. `;
+      out += accT >= 95 ? `That is a good result; most operations target 95% or better. Keep the cycle counts going on the A items. ` : accT >= 85 ? `Fair, but below the 95% most operations aim for. Look at the top variances above: they usually trace to a few receiving or picking habits rather than theft. ` : `Below 85% the stock figure cannot be trusted for purchasing or costing. Count the top-value items weekly until the causes are fixed, then widen the counts. `;
+      out += `Keeping accuracy up without a wall-to-wall count every quarter means cycle counting from a live system. ${review('stock-take-result')}`;
+      return { out, used: true, headline: `Stock accuracy ${pct(accT)} within ${T}% (${exact} of ${rows.length} exact)${hasCost ? ', absolute variance ' + money(abs) : ''}` };
+    }
+  },
+  landedcost: {
+    html: `<div class="g4">${f('price', 'Supplier price per unit (foreign currency)', '8.50')}${f('units', 'Units in the shipment', '1200')}${f('fx', 'Exchange rate (S$ per 1 unit of that currency)', '1.35', 'e.g. 1.35 for USD')}${f('cur', 'Your currency', 'S$')}</div>
+      <div class="g4" style="margin-top:10px">${f('freight', 'Freight to Singapore (S$)', '1800')}${f('ins', 'Insurance (S$)', '60')}${f('duty', 'Customs duty %', '0', 'most goods 0; liquor, tobacco, vehicles, petroleum differ')}${f('gst', 'Import GST %', '9')}</div>
+      <div class="g4" style="margin-top:10px">${f('local', 'Local charges: port, handling, delivery (S$)', '450')}${sel('reg', 'GST registered?', [['yes', 'Yes, I claim import GST back'], ['no', 'No, import GST is a cost']], 'yes')}</div>
+      <div class="tiles">${tile('t1', 'Landed cost per unit')}${tile('t2', 'Uplift over supplier price')}${tile('t3', 'Total landed cost')}${tile('t4', 'Import GST payable')}</div>`,
+    calc() {
+      const P = num($('price').value), N = num($('units').value), FX = num($('fx').value), FR = num($('freight').value) || 0, IN = num($('ins').value) || 0, D = num($('duty').value) || 0, G = num($('gst').value) || 0, LC = num($('local').value) || 0, reg = $('reg').value === 'yes';
+      if (!(P > 0) || !(N > 0) || !(FX > 0)) return { msg: 'Enter the supplier price, the number of units and the exchange rate.' };
+      const fob = P * N * FX, cif = fob + FR + IN, duty = cif * D / 100, gstv = (cif + duty) * G / 100, landed = cif + duty + LC + (reg ? 0 : gstv), unit = landed / N, supplierUnit = P * FX, uplift = (unit / supplierUnit - 1) * 100;
+      $('t1').textContent = money(unit); $('t2').textContent = pct(uplift); $('t3').textContent = money(landed); $('t4').textContent = money(gstv);
+      let out = `<b style="color:#fff">Landed cost is ${money(unit)} per unit, ${pct(uplift)} above the ${money(supplierUnit)} supplier price.</b> Goods ${money(fob)} + freight ${money(FR)} + insurance ${money(IN)} = CIF ${money(cif)}${duty ? ` + duty ${money(duty)}` : ''} + local charges ${money(LC)}${reg ? '' : ` + import GST ${money(gstv)} (not claimable, so it is part of your cost)`} = ${money(landed)}. `;
+      out += reg ? `Import GST of ${money(gstv)} is paid at import on CIF plus duty and claimed back in your GST return, so it is cash flow, not cost. ` : `Because you are not GST registered, the ${money(gstv)} import GST stays in your cost. `;
+      out += `Price from ${money(unit)}, not ${money(supplierUnit)}: at a 30% margin that means selling at ${money(unit / 0.7)} rather than ${money(supplierUnit / 0.7)}. ${link('profit-margin-calculator.html', 'Set the price')} · ${review('landed-cost-result')}`;
+      return { out, used: true, headline: `Landed cost ${money(unit)} per unit, ${pct(uplift)} above supplier price` };
+    }
   }
 };
 const C = CALCS[K]; if (!C) return;
-$('app').innerHTML = `<div class="pc"><div class="box">${C.html}<p class="hint" id="out" style="margin-top:14px;font-size:14.5px;line-height:1.6"></p><div class="msg" id="msg"></div><div class="row-acts"><button id="copyBtn">Copy result</button><button id="resetBtn">Reset example</button></div></div></div>`;
+$('app').innerHTML = `<div class="pc"><div class="box">${C.html}<p class="hint" id="out" style="margin-top:14px;font-size:14.5px;line-height:1.6"></p><div class="msg" id="msg"></div><div id="ladder"></div><div class="row-acts"><button id="copyBtn">Copy result</button><button id="resetBtn">Reset example</button></div></div></div>`;
 if (C.init) C.init();
 const DEF = {}; document.querySelectorAll('#app input, #app select, #app textarea').forEach(el => { DEF[el.id] = el.value; });
 try { const s = JSON.parse(store.get('calc_' + K, '{}')); Object.keys(s).forEach(k => { if ($(k) && k !== 'idate' && k !== 'asat') $(k).value = s[k]; }); } catch (e) {}
@@ -202,6 +301,7 @@ function run(user) {
   const r = C.calc() || {};
   if (r.msg) { $('msg').textContent = r.msg; $('out').innerHTML = ''; return; }
   $('out').innerHTML = r.out || '';
+  try { const hb = $('out').querySelector('b'); const head = (r.headline || (hb ? hb.textContent : '')).replace(/\s+/g, ' ').trim().slice(0, 120); if (head) { window.__gantryLast = { result: head }; if (window.gantryResult) window.gantryResult(head); if (window.GantryLadder) window.GantryLadder.render($('ladder'), { result: head }); } } catch (e) {}
   const s = {}; document.querySelectorAll('#app input, #app select, #app textarea').forEach(el => { s[el.id] = el.value; }); store.set('calc_' + K, JSON.stringify(s));
   if (user && r.used && !counted && ++edits >= 2) { counted = true; countUse(); }
 }
