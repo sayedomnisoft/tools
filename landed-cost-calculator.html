@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en-SG">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Landed Cost Calculator Singapore: FX, Freight, GST | Gantry</title>
+<meta name="description" content="Free landed cost calculator for Singapore importers: foreign price, exchange rate, freight, insurance, duty, 9% import GST and local charges per unit.">
+<meta property="og:title" content="Landed Cost Calculator Singapore: FX, Freight, GST">
+<meta property="og:description" content="Free landed cost calculator for Singapore importers: foreign price, exchange rate, freight, insurance, duty, 9% import GST and local charges per unit.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="pricecalc.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://tools.gantry.work/landed-cost-calculator.html">
+<meta property="og:url" content="https://tools.gantry.work/landed-cost-calculator.html">
+<meta property="og:site_name" content="The Gantry">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="author" content="Sayed Rashid">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://tools.gantry.work/#website", "url": "https://tools.gantry.work/", "name": "The Gantry Tools", "inLanguage": "en-SG", "publisher": {"@id": "https://tools.gantry.work/#sayed"}}, {"@type": "Person", "@id": "https://tools.gantry.work/#sayed", "name": "Sayed Rashid", "url": "https://www.gantry.work", "jobTitle": "ERP & Business Systems Consultant", "image": "https://tools.gantry.work/sayed.jpg", "sameAs": ["https://www.linkedin.com/in/sayedomni", "https://www.gantry.work", "https://github.com/sayedomnisoft"]}, {"@type": "WebApplication", "name": "Landed Cost Calculator", "url": "https://tools.gantry.work/landed-cost-calculator.html", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "isAccessibleForFree": true, "inLanguage": "en-SG", "dateModified": "2026-10-28", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "SGD"}, "author": {"@id": "https://tools.gantry.work/#sayed"}, "publisher": {"@type": "Organization", "name": "The Gantry", "url": "https://www.gantry.work"}, "isPartOf": {"@id": "https://tools.gantry.work/#website"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Free tools", "item": "https://tools.gantry.work/"}, {"@type": "ListItem", "position": 2, "name": "Landed Cost Calculator (Singapore Imports)", "item": "https://tools.gantry.work/landed-cost-calculator.html"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do you calculate landed cost per unit?", "acceptedAnswer": {"@type": "Answer", "text": "Add the goods in your currency, freight, insurance, any customs duty, local handling and delivery, and import GST if you cannot claim it back, then divide by the number of units."}}, {"@type": "Question", "name": "Is import GST part of landed cost in Singapore?", "acceptedAnswer": {"@type": "Answer", "text": "Only if you are not GST registered. Registered importers pay 9% on CIF plus duty at import and claim it back in their GST return, so it affects cash flow but not the cost of goods."}}, {"@type": "Question", "name": "What is CIF value?", "acceptedAnswer": {"@type": "Answer", "text": "Cost, insurance and freight: the value of the goods plus the insurance and freight to bring them to Singapore. Customs duty and import GST are calculated on CIF (plus duty for GST)."}}, {"@type": "Question", "name": "Do I pay customs duty on imports into Singapore?", "acceptedAnswer": {"@type": "Answer", "text": "For most goods, no. Duty applies to intoxicating liquor, tobacco, motor vehicles and petroleum products. Check your tariff code with Singapore Customs before assuming zero."}}]}]}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<script src="/config.js"></script><script src="/track.js" defer></script><script src="/gantry-ui.js" defer></script>
+<meta name="gantry-checked" content="2026-10-28">
+<style>.card.pccard{max-width:900px} .pc input[type=date]{width:100%;min-width:0;padding:10px 11px;font-size:15px;color:#fff;font-family:inherit;background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.2);border-radius:9px;color-scheme:dark}</style>
+</head>
+<body>
+<div class="card pccard">
+  <div class="brand"><a href="index.html">← THE GANTRY · TOOLS</a></div>
+  <h1>Landed Cost Calculator (Singapore Imports)</h1>
+  <p class="sub">Turn a supplier price in USD, CNY or EUR into the true cost per unit delivered to your warehouse: exchange rate, freight, insurance, customs duty where it applies, import GST and local port and delivery charges. Then price from the right number. Free, no signup, nothing leaves your browser.</p>
+  <div id="app"><noscript>This calculator needs JavaScript switched on.</noscript></div>
+
+  <section class="answer"><h2>Short answer</h2><p><b>Landed cost per unit = (goods in S$ + freight + insurance + customs duty + local charges + import GST if you cannot claim it) ÷ units.</b> Import GST in Singapore is 9% of the CIF value plus duty; GST-registered importers claim it back, so for them it is cash flow, not cost.</p><p>Example: 1,200 units at US$8.50 (S$1.35), S$1,800 freight, S$60 insurance and S$450 local charges land at S$13.40 a unit, 16.8% above the S$11.48 supplier price.</p><p class="when">Checked 28 October 2026. Figures in S$; change the currency box for any other.</p></section>
+
+  <div class="auto">
+    <h2>Are your prices built from the supplier price or the landed cost?</h2>
+    <p>Bring one recent shipment and your price list to a free 20-minute systems review: we work out the real uplift and the first fix that keeps landed cost on every product automatically.</p>
+    <a class="cta" id="guideBtn" href="https://tools.gantry.work/review.html?utm_source=tools&amp;utm_medium=landed-cost-calculator" target="_blank" rel="noopener">Book a free 20-minute review</a>
+    <a class="cta-ghost" id="videoBtn" href="https://tools.gantry.work/review.html?offer=video&amp;utm_source=tools&amp;utm_medium=landed-cost-calculator" target="_blank" rel="noopener">Prefer no call? Get a 2-minute video on your number &rarr;</a>
+    <p class="disc">Bigger than one calculation? <a id="reviewLink" href="https://tools.gantry.work/review.html?utm_source=tools&amp;utm_medium=landed-cost-calculator" target="_blank" rel="noopener">Book a free 20-minute systems review</a>.</p>
+  </div>
+
+  <div class="guide">
+<h2>What goes into landed cost</h2><ol><li><b>Goods</b> at the supplier's price, converted at the rate you actually paid (or the rate on the date of the invoice if you have not paid yet).</li><li><b>Freight</b> to Singapore, sea or air, including any fuel or security surcharges.</li><li><b>Insurance</b>, if you insure the shipment.</li><li><b>Customs duty.</b> Most goods imported into Singapore are duty-free; duty applies mainly to intoxicating liquor, tobacco, motor vehicles and petroleum products. Check Singapore Customs for your tariff line.</li><li><b>Import GST</b> at 9%, charged on the CIF value plus duty. If you are GST registered you claim it back in your return, so leave it out of cost; if you are not registered, it is part of what the goods cost you.</li><li><b>Local charges:</b> port and terminal handling, forwarder fees, delivery to your warehouse.</li></ol>
+<p><b>Worked example:</b> 1,200 units at US$8.50 with the dollar at S$1.35 is S$13,770 of goods. Add S$1,800 freight and S$60 insurance for a CIF value of S$15,630, no duty, and S$450 of local charges: S$16,080 landed, or S$13.40 a unit. The supplier price alone was S$11.48, so the true cost is 16.8% higher. Import GST of S$1,406.70 is paid at import and claimed back.</p>
+<h2>Why this changes your prices</h2><p>If a price list was built from supplier prices, every margin in it is overstated by the uplift. At a target margin of 30%, S$11.48 of cost says sell at S$16.40; S$13.40 of cost says S$19.14. On 1,200 units that is S$3,290 of margin that was never there. The free <a href="profit-margin-calculator.html">profit margin calculator</a> reprices a whole list once you know the landed cost, and the <a href="price-increase-calculator.html">price increase calculator</a> shows the new price when freight or FX moves.</p>
+<h2>Allocating freight across a mixed shipment</h2><p>One container usually carries many SKUs. Spread freight and local charges by value (fair when items are similar), by weight or volume (fair when heavy or bulky items dominate the freight bill), or by unit count (simple, and wrong when items differ a lot). Whichever you pick, use it consistently so margins by product are comparable month to month.</p>
+<h2>FX: which rate to use</h2><p>For costing, the rate you paid the supplier is the honest one. For quoting before you buy, use today's rate plus a buffer that matches how long you hold stock; a distributor on 45-day terms holding 3 months of stock is exposed for months, not days. Record the rate on every purchase so landed cost is not recomputed from memory later.</p>
+<h2>Questions</h2>
+<p><b>How do you calculate landed cost per unit?</b> Add the goods in your currency, freight, insurance, any customs duty, local handling and delivery, and import GST if you cannot claim it back, then divide by the number of units.</p>
+<p><b>Is import GST part of landed cost in Singapore?</b> Only if you are not GST registered. Registered importers pay 9% on CIF plus duty at import and claim it back in their GST return, so it affects cash flow but not the cost of goods.</p>
+<p><b>What is CIF value?</b> Cost, insurance and freight: the value of the goods plus the insurance and freight to bring them to Singapore. Customs duty and import GST are calculated on CIF (plus duty for GST).</p>
+<p><b>Do I pay customs duty on imports into Singapore?</b> For most goods, no. Duty applies to intoxicating liquor, tobacco, motor vehicles and petroleum products. Check your tariff code with Singapore Customs before assuming zero.</p>
+  </div>
+  <div class="related"><h2>Related free tools</h2><ul><li><a href="profit-margin-calculator.html"><b>Profit margin calculator</b> margin, markup and a price list</a></li><li><a href="price-increase-calculator.html"><b>Price increase calculator</b> keep your margin when costs rise</a></li><li><a href="gst-calculator.html"><b>GST calculator</b> add or remove 9% GST</a></li><li><a href="slow-moving-stock-calculator.html"><b>Slow-moving stock calculator</b> months of cover and provision</a></li></ul><p style="margin-top:8px;font-size:13.5px"><a href="index.html">All free tools</a> · <a href="singapore-sme-systems-checklist.html">The 12-point Singapore SME systems checklist</a></p></div>
+
+  <div class="byline noprint">
+    <img src="sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
+    <div class="who"><div class="nm">Sayed Rashid</div><div class="rl">I build these free tools from the jobs I see business owners do by hand every week. Tell me which one to build next.</div></div>
+    <a class="li" href="https://www.linkedin.com/in/sayedomni" target="_blank" rel="noopener" onclick="try{gtag('event','linkedin_click',{page:location.pathname})}catch(e){}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg> Connect on LinkedIn</a>
+  </div>
+  <p class="noprint" style="font-size:12px;color:rgba(255,255,255,0.6);text-align:center;margin-top:14px;line-height:1.5">Privacy: your entries stay in your browser and are never uploaded. I count anonymous visits and button clicks (Google Analytics) to see which tools help.</p>
+  <div class="footer" id="baseFooter"><a href="index.html">All free tools</a> · <a href="https://www.gantry.work">The Gantry</a></div>
+</div>
+
+<div class="gate hidden" id="gate"><div class="box2">
+  <div class="result-label">YOU'VE USED THIS A FEW TIMES</div>
+  <h2>Numbers like these, every week?</h2>
+  <p class="sub" style="margin-bottom:6px">Get one automation you can set up yourself each week, free, from The Gantry newsletter. Then keep using the calculator as much as you like.</p>
+  <iframe src="https://www.gantry.work/embed" title="Subscribe to The Gantry" scrolling="no"></iframe>
+  <button class="primary" id="gateDone">Continue</button>
+  <button class="ghost" id="gateSkip" style="margin-top:10px">Not now</button>
+</div></div>
+
+<script>window.CALC = 'landedcost';</script>
+<script src="calc.js"></script>
+</body>
+</html>
