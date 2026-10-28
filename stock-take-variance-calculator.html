@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en-SG">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stock Take Variance Calculator: Accuracy and Value | Gantry</title>
+<meta name="description" content="Free stock take variance calculator: paste system vs counted quantities for record accuracy, lines within tolerance, variance value and the top variances.">
+<meta property="og:title" content="Stock Take Variance Calculator: Accuracy and Value">
+<meta property="og:description" content="Free stock take variance calculator: paste system vs counted quantities for record accuracy, lines within tolerance, variance value and the top variances.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="pricecalc.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://tools.gantry.work/stock-take-variance-calculator.html">
+<meta property="og:url" content="https://tools.gantry.work/stock-take-variance-calculator.html">
+<meta property="og:site_name" content="The Gantry">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="author" content="Sayed Rashid">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://tools.gantry.work/#website", "url": "https://tools.gantry.work/", "name": "The Gantry Tools", "inLanguage": "en-SG", "publisher": {"@id": "https://tools.gantry.work/#sayed"}}, {"@type": "Person", "@id": "https://tools.gantry.work/#sayed", "name": "Sayed Rashid", "url": "https://www.gantry.work", "jobTitle": "ERP & Business Systems Consultant", "image": "https://tools.gantry.work/sayed.jpg", "sameAs": ["https://www.linkedin.com/in/sayedomni", "https://www.gantry.work", "https://github.com/sayedomnisoft"]}, {"@type": "WebApplication", "name": "Stock Take Variance Calculator", "url": "https://tools.gantry.work/stock-take-variance-calculator.html", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "isAccessibleForFree": true, "inLanguage": "en-SG", "dateModified": "2026-10-28", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "SGD"}, "author": {"@id": "https://tools.gantry.work/#sayed"}, "publisher": {"@type": "Organization", "name": "The Gantry", "url": "https://www.gantry.work"}, "isPartOf": {"@id": "https://tools.gantry.work/#website"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Free tools", "item": "https://tools.gantry.work/"}, {"@type": "ListItem", "position": 2, "name": "Stock Take Variance Calculator", "item": "https://tools.gantry.work/stock-take-variance-calculator.html"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do you calculate stock take variance?", "acceptedAnswer": {"@type": "Answer", "text": "Variance per line is the counted quantity minus the system quantity; multiply by unit cost for the value. Sum the values for the net variance, and sum their absolute values for the absolute variance."}}, {"@type": "Question", "name": "What is a good inventory accuracy percentage?", "acceptedAnswer": {"@type": "Answer", "text": "Most operations target 95% or better within a small tolerance, and 98% or more for high-value or serialised items. Below 85% the records cannot support purchasing or costing decisions."}}, {"@type": "Question", "name": "Should I count the whole warehouse or cycle count?", "acceptedAnswer": {"@type": "Answer", "text": "Do a full count if accuracy is unknown or below 85%, then move to cycle counting so errors are caught near their cause. Many businesses keep one annual count for the audit plus weekly cycle counts."}}, {"@type": "Question", "name": "Why is my net variance small but my absolute variance large?", "acceptedAnswer": {"@type": "Answer", "text": "Because overs and shorts cancel. Two bins with +20 and −20 of the same item net to zero but mean the system cannot say where the stock is. Report both figures."}}]}]}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<script src="/config.js"></script><script src="/track.js" defer></script><script src="/gantry-ui.js" defer></script>
+<meta name="gantry-checked" content="2026-10-28">
+<style>.card.pccard{max-width:900px} .pc input[type=date]{width:100%;min-width:0;padding:10px 11px;font-size:15px;color:#fff;font-family:inherit;background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.2);border-radius:9px;color-scheme:dark}</style>
+</head>
+<body>
+<div class="card pccard">
+  <div class="brand"><a href="index.html">← THE GANTRY · TOOLS</a></div>
+  <h1>Stock Take Variance Calculator</h1>
+  <p class="sub">Paste the system quantity and the counted quantity for each item. Get inventory record accuracy, the lines within your tolerance, the net and absolute variance in value, and the ten biggest variances to investigate first. Works for a full stock take or a cycle count. Free, no signup, nothing leaves your browser.</p>
+  <div id="app"><noscript>This calculator needs JavaScript switched on.</noscript></div>
+
+  <section class="answer"><h2>Short answer</h2><p><b>Inventory record accuracy = lines that match (within tolerance) ÷ lines counted × 100.</b> Variance per line = counted − system quantity; variance value = variance × unit cost. Report the absolute variance as well as the net, because overs and shorts cancel in the net figure while both are real errors.</p><p>Most operations aim for 95% or better within a 2% tolerance; below 85% the stock figure cannot be trusted for purchasing or costing.</p><p class="when">Checked 28 October 2026. Figures in S$; change the currency box for any other.</p></section>
+
+  <div class="auto">
+    <h2>Did the last count explain the variances, or just adjust them?</h2>
+    <p>Bring your count results to a free 20-minute systems review: we look at the top variances, the receiving and picking habits behind them, and the cycle-count routine that keeps accuracy up.</p>
+    <a class="cta" id="guideBtn" href="https://tools.gantry.work/review.html?utm_source=tools&amp;utm_medium=stock-take-variance-calculator" target="_blank" rel="noopener">Book a free 20-minute review</a>
+    <a class="cta-ghost" id="videoBtn" href="https://tools.gantry.work/review.html?offer=video&amp;utm_source=tools&amp;utm_medium=stock-take-variance-calculator" target="_blank" rel="noopener">Prefer no call? Get a 2-minute video on your number &rarr;</a>
+    <p class="disc">Bigger than one calculation? <a id="reviewLink" href="https://tools.gantry.work/review.html?utm_source=tools&amp;utm_medium=stock-take-variance-calculator" target="_blank" rel="noopener">Book a free 20-minute systems review</a>.</p>
+  </div>
+
+  <div class="guide">
+<h2>How to read your stock take results</h2><p><b>Record accuracy</b> is the share of lines where the count agrees with the system. Count it two ways: exact matches, and matches within a tolerance (2% is common for fast-moving items, 0% for serialised or high-value ones). <b>Net variance</b> is what the stock adjustment will post to the accounts. <b>Absolute variance</b> is the sum of every over and short regardless of sign, and it is the better measure of process health: a warehouse can post a net variance of S$50 while S$9,000 of items are in the wrong place or the wrong bin.</p>
+<p><b>Worked example:</b> 120 lines counted, 101 exact matches and 109 within 2%, so accuracy is 84% exact and 91% within tolerance. The net variance is −S$640, but the absolute variance is S$4,300 on S$92,000 of stock, 4.7%. The top ten variances are seven SKUs from the same supplier, received by the carton and picked by the piece. That is a receiving rule, not a theft problem.</p>
+<h2>Stock take vs cycle count</h2><ul><li><b>A stock take</b> (wall-to-wall count) counts everything at once, usually at year-end for the audit. It needs the warehouse frozen, and because it happens once, it tells you the size of the problem but rarely the cause.</li><li><b>Cycle counting</b> counts a small set of items every day or week, A items most often, so errors are found close to when they happened and the cause can be fixed. It keeps accuracy high without stopping operations, and auditors accept it when the records show it was done.</li></ul>
+<h2>Stock take procedure that produces usable numbers</h2><ol><li>Freeze receiving, picking and transfers for the count window, or count by zone with movements logged.</li><li>Count blind: counters record what they see without seeing the system quantity.</li><li>Recount every line outside tolerance before anyone adjusts the system.</li><li>Investigate the top ten by value before posting. Most of the value is in a few lines.</li><li>Post the adjustment once, with a reason per line, so the next count can show whether the fix worked.</li></ol>
+<h2>What the top variances usually reveal</h2><p>Units of measure (cartons vs pieces), goods received into the wrong location, unposted deliveries, returns put back on the shelf without a transaction, and kits consumed without the components being issued. Each has a process fix. The free <a href="slow-moving-stock-calculator.html">slow-moving stock calculator</a> is the natural next report once the quantities can be trusted.</p>
+<h2>Questions</h2>
+<p><b>How do you calculate stock take variance?</b> Variance per line is the counted quantity minus the system quantity; multiply by unit cost for the value. Sum the values for the net variance, and sum their absolute values for the absolute variance.</p>
+<p><b>What is a good inventory accuracy percentage?</b> Most operations target 95% or better within a small tolerance, and 98% or more for high-value or serialised items. Below 85% the records cannot support purchasing or costing decisions.</p>
+<p><b>Should I count the whole warehouse or cycle count?</b> Do a full count if accuracy is unknown or below 85%, then move to cycle counting so errors are caught near their cause. Many businesses keep one annual count for the audit plus weekly cycle counts.</p>
+<p><b>Why is my net variance small but my absolute variance large?</b> Because overs and shorts cancel. Two bins with +20 and −20 of the same item net to zero but mean the system cannot say where the stock is. Report both figures.</p>
+  </div>
+  <div class="related"><h2>Related free tools</h2><ul><li><a href="slow-moving-stock-calculator.html"><b>Slow-moving stock calculator</b> months of cover and provision</a></li><li><a href="inventory-software-cost-calculator.html"><b>Inventory software cost calculator</b> 12-month cost of five tools</a></li><li><a href="erp-readiness.html"><b>ERP readiness scorecard</b> eight questions before you buy</a></li><li><a href="cost-of-manual-work.html"><b>Cost of manual work calculator</b> retyping and chasing, in S$ a year</a></li></ul><p style="margin-top:8px;font-size:13.5px"><a href="index.html">All free tools</a> · <a href="singapore-sme-systems-checklist.html">The 12-point Singapore SME systems checklist</a></p></div>
+
+  <div class="byline noprint">
+    <img src="sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
+    <div class="who"><div class="nm">Sayed Rashid</div><div class="rl">I build these free tools from the jobs I see business owners do by hand every week. Tell me which one to build next.</div></div>
+    <a class="li" href="https://www.linkedin.com/in/sayedomni" target="_blank" rel="noopener" onclick="try{gtag('event','linkedin_click',{page:location.pathname})}catch(e){}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg> Connect on LinkedIn</a>
+  </div>
+  <p class="noprint" style="font-size:12px;color:rgba(255,255,255,0.6);text-align:center;margin-top:14px;line-height:1.5">Privacy: your entries stay in your browser and are never uploaded. I count anonymous visits and button clicks (Google Analytics) to see which tools help.</p>
+  <div class="footer" id="baseFooter"><a href="index.html">All free tools</a> · <a href="https://www.gantry.work">The Gantry</a></div>
+</div>
+
+<div class="gate hidden" id="gate"><div class="box2">
+  <div class="result-label">YOU'VE USED THIS A FEW TIMES</div>
+  <h2>Numbers like these, every week?</h2>
+  <p class="sub" style="margin-bottom:6px">Get one automation you can set up yourself each week, free, from The Gantry newsletter. Then keep using the calculator as much as you like.</p>
+  <iframe src="https://www.gantry.work/embed" title="Subscribe to The Gantry" scrolling="no"></iframe>
+  <button class="primary" id="gateDone">Continue</button>
+  <button class="ghost" id="gateSkip" style="margin-top:10px">Not now</button>
+</div></div>
+
+<script>window.CALC = 'stocktake';</script>
+<script src="calc.js"></script>
+</body>
+</html>
