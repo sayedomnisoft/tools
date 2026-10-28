@@ -28,7 +28,7 @@
 
   var path = location.pathname.replace(/^\/+|\/+$/g, '').replace(/\.html$/, '').replace(/(^|\/)index$/, '') || 'tools-home';
   var CAT = [
-    [/health-check|erp-roi|erp-readiness|edge-grant|inventory-software-cost|month-end-close|cost-of-manual-work/, 'erp'],
+    [/health-check|erp-roi|erp-readiness|edge-grant|inventory-software-cost|month-end-close|cost-of-manual-work|progress-claim|job-costing|landed-cost|slow-moving|stock-take|systems-checklist/, 'erp'],
     [/invoicenow/, 'invoicenow'],
     [/invoice-generator|receipt|quotation|delivery-order|purchase-order|statement-of-account|ar-aging|invoice-due-date|invoice-chaser|dso/, 'finance_docs'],
     [/profit-margin|markup|gross-profit|break-even|price-increase|gst-calculator/, 'pricing'],
@@ -153,4 +153,37 @@
     }
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ui); else ui();
+
+  // ---- Retargeting and company identification (added 2026-10-28). Everything here is OFF until an id is
+  // filled in /config.js, and all of it respects the opt-out above (nothing loads when gantry_optout=1). ----
+  var cfg = window.GANTRY_CFG || {};
+  var optedOut = store.get('gantry_optout') === '1';
+  function addScript(src, attrs) { var s = document.createElement('script'); s.async = true; s.src = src; for (var k in (attrs || {})) s.setAttribute(k, attrs[k]); document.head.appendChild(s); return s; }
+  if (!optedOut && cfg.linkedinPartnerId) {
+    window._linkedin_partner_id = String(cfg.linkedinPartnerId);
+    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+    window._linkedin_data_partner_ids.push(window._linkedin_partner_id);
+    addScript('https://snap.licdn.com/li.lms-analytics/insight.min.js');
+  }
+  if (!optedOut && cfg.metaPixelId) {
+    (function (f, b, e, v, n, t) { if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); }; if (!f._fbq) f._fbq = n; n.push = n; n.loaded = true; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = true; t.src = v; b.head.appendChild(t); })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    window.fbq('init', String(cfg.metaPixelId)); window.fbq('track', 'PageView');
+  }
+  if (!optedOut && cfg.visitorId && cfg.visitorId.id) {
+    if (cfg.visitorId.provider === 'leadfeeder') {
+      window.ldfdr = window.ldfdr || function () { (window.ldfdr._q = window.ldfdr._q || []).push([].slice.call(arguments)); };
+      addScript('https://sc.lfeeder.com/lftracker_v1_' + cfg.visitorId.id + '.js');
+    } else if (cfg.visitorId.provider === 'snitcher') {
+      addScript('https://snid.snitcher.com/' + cfg.visitorId.id + '.js');
+    }
+  }
+  // Lead events for the pixels, mirrored from GA4 lead_click and result_email_capture.
+  window.gantryLead = function (kind) {
+    try { if (window.lintrk && cfg.linkedinConversionId) window.lintrk('track', { conversion_id: cfg.linkedinConversionId }); } catch (e) {}
+    try { if (window.fbq) window.fbq('track', 'Lead', { content_name: kind || 'lead' }); } catch (e) {}
+  };
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (a && /cal\.com\/sayed\.r|review\.html/.test(a.getAttribute('href') || '')) window.gantryLead('review_click');
+  }, true);
 })();
