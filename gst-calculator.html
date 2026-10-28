@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-SG">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,12 +23,13 @@
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
 <meta name="author" content="Sayed Rashid">
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "GST Calculator", "url": "https://tools.gantry.work/gst-calculator.html", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "The Gantry", "url": "https://www.gantry.work"}, "dateModified": "2026-10-02", "image": "https://tools.gantry.work/og/gst-calculator.jpg", "isAccessibleForFree": true}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I calculate 9% GST?", "acceptedAnswer": {"@type": "Answer", "text": "Multiply the price before GST by 0.09 for the GST, or by 1.09 for the price including GST. S$500 becomes S$545 including S$45 of GST."}}, {"@type": "Question", "name": "How do I remove GST from a total?", "acceptedAnswer": {"@type": "Answer", "text": "Multiply the GST-inclusive total by 9/109 to get the GST included, or divide it by 1.09 to get the price before GST."}}, {"@type": "Question", "name": "Can I use another rate?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Change the GST rate box to any rate, for example for another country's VAT or GST."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Free tools", "item": "https://tools.gantry.work/"}, {"@type": "ListItem", "position": 2, "name": "GST Calculator", "item": "https://tools.gantry.work/gst-calculator.html"}]}]}
+{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://tools.gantry.work/#website", "url": "https://tools.gantry.work/", "name": "The Gantry Tools", "inLanguage": "en-SG", "publisher": {"@id": "https://tools.gantry.work/#sayed"}}, {"@type": "Person", "@id": "https://tools.gantry.work/#sayed", "name": "Sayed Rashid", "url": "https://www.gantry.work", "jobTitle": "ERP & Business Systems Consultant", "image": "https://tools.gantry.work/sayed.jpg", "sameAs": ["https://www.linkedin.com/in/sayedomni", "https://www.gantry.work", "https://github.com/sayedomnisoft"]}, {"@type": "WebApplication", "name": "GST Calculator", "url": "https://tools.gantry.work/gst-calculator.html", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "isAccessibleForFree": true, "inLanguage": "en-SG", "dateModified": "2026-10-02", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "SGD"}, "author": {"@id": "https://tools.gantry.work/#sayed"}, "publisher": {"@type": "Organization", "name": "The Gantry", "url": "https://www.gantry.work"}, "isPartOf": {"@id": "https://tools.gantry.work/#website"}, "image": "https://tools.gantry.work/og/gst-calculator.jpg"}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I calculate 9% GST?", "acceptedAnswer": {"@type": "Answer", "text": "Multiply the price before GST by 0.09 for the GST, or by 1.09 for the price including GST. S$500 becomes S$545 including S$45 of GST."}}, {"@type": "Question", "name": "How do I remove GST from a total?", "acceptedAnswer": {"@type": "Answer", "text": "Multiply the GST-inclusive total by 9/109 to get the GST included, or divide it by 1.09 to get the price before GST."}}, {"@type": "Question", "name": "Can I use another rate?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Change the GST rate box to any rate, for example for another country's VAT or GST."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Free tools", "item": "https://tools.gantry.work/"}, {"@type": "ListItem", "position": 2, "name": "GST Calculator", "item": "https://tools.gantry.work/gst-calculator.html"}]}]}
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<script src="/config.js"></script><script src="/track.js" defer></script><script src="/gantry-ui.js" defer></script>
+<meta name="gantry-checked" content="2026-10-28">
 <style>.card.pccard{max-width:900px} .pc input[type=date]{width:100%;min-width:0;padding:10px 11px;font-size:15px;color:#fff;font-family:inherit;background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.2);border-radius:9px;color-scheme:dark}</style>
-<script src="/track.js" defer></script>
 </head>
 <body>
 <div class="card pccard">
@@ -39,11 +40,14 @@
 
   <div id="app"><noscript>This calculator needs JavaScript switched on.</noscript></div>
 
+  <section class="answer"><h2>Short answer</h2><p class="when">Checked 28 October 2026. Figures in S$; change the currency box for any other.</p></section>
+
   <div class="auto">
     <h2>Typing GST into invoices by hand?</h2>
     <p>Accounting software and a simple automation can create GST-correct invoices from your orders, so nobody retypes amounts or rates.</p>
     <a class="cta" id="guideBtn" href="https://www.gantry.work/p/automate-quotes-google-sheets-docs?utm_source=tools&amp;utm_medium=gst-calculator" target="_blank" rel="noopener">See how documents get generated automatically</a>
     <a class="cta-ghost" id="makeBtn" href="https://www.make.com/en/register?pc=gntrywk" target="_blank" rel="sponsored noopener">Start free on Make</a>
+    <a class="cta-ghost" id="videoBtn" href="https://tools.gantry.work/review.html?offer=video&amp;utm_source=tools&amp;utm_medium=gst-calculator" target="_blank" rel="noopener">Prefer no call? Get a 2-minute video on your number &rarr;</a>
     <p class="disc">Affiliate link: if you sign up to Make through it, The Gantry may earn a commission at no extra cost to you. Bigger than one calculation? <a id="reviewLink" href="https://tools.gantry.work/review.html?utm_source=tools&amp;utm_medium=gst-calculator" target="_blank" rel="noopener">Book a free 20-minute systems review</a>.</p>
   </div>
 
@@ -57,8 +61,8 @@
 <p><b>How do I calculate 9% GST?</b> Multiply the price before GST by 0.09 for the GST, or by 1.09 for the price including GST. S$500 becomes S$545 including S$45 of GST.</p>
 <p><b>How do I remove GST from a total?</b> Multiply the GST-inclusive total by 9/109 to get the GST included, or divide it by 1.09 to get the price before GST.</p>
 <p><b>Can I use another rate?</b> Yes. Change the GST rate box to any rate, for example for another country&#x27;s VAT or GST.</p>
-<p>More free calculators: <a href="break-even-calculator.html">break-even</a>, <a href="gross-profit-calculator.html">gross profit</a>, <a href="price-increase-calculator.html">price increase</a>, <a href="dso-calculator.html">DSO</a>, <a href="gst-calculator.html">GST</a>, <a href="invoice-due-date-calculator.html">invoice due date</a> and <a href="index.html">all free tools</a>.</p>
   </div>
+  <div class="related"><h2>Related free tools</h2><ul><li><a href="invoice-generator.html"><b>Invoice generator</b> PDF and GST tax invoices</a></li><li><a href="landed-cost-calculator.html"><b>Landed cost calculator</b> FX, freight, duty and GST per unit</a></li><li><a href="profit-margin-calculator.html"><b>Profit margin calculator</b> margin, markup and a price list</a></li><li><a href="progress-claim-calculator.html"><b>Progress claim calculator</b> retention, previous claims and GST</a></li></ul><p style="margin-top:8px;font-size:13.5px"><a href="index.html">All free tools</a> · <a href="singapore-sme-systems-checklist.html">The 12-point Singapore SME systems checklist</a></p></div>
 
   <div class="byline noprint">
     <img src="sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
@@ -80,6 +84,5 @@
 
 <script>window.CALC = 'gst';</script>
 <script src="calc.js"></script>
-<script src="/guide-dates.js" defer></script>
 </body>
 </html>
