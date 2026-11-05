@@ -14,6 +14,9 @@
   var u = new URLSearchParams(location.search).get('u') || '';
   var ALLOW = /^https:\/\/(www\.make\.com|affiliates\.wati\.io|www\.wati\.io)\//;
   if (!ALLOW.test(u)) { location.replace('https://tools.gantry.work/'); return; }
+  // 5 Nov 2026: automated visitors never get the redirect (they inflated partner click counts); the visible link below still works for a person.
+  var BOT = navigator.webdriver || /bot|crawl|spider|slurp|headless|lighthouse|preview|scan|monitor|fetch|gpt|claude|perplexity|bytespider|python|curl|wget|httpclient/i.test(navigator.userAgent || '');
+  if (BOT) { document.addEventListener('DOMContentLoaded', function () { var a = document.getElementById('l'); if (a) a.href = u; }); return; }
   var done = false;
   function go() { if (done) return; done = true; location.replace(u); }
   document.addEventListener('DOMContentLoaded', function () { var a = document.getElementById('l'); if (a) a.href = u; });
