@@ -1,0 +1,72 @@
+/* WATI guide pages (wati-*.html), built by build_watipages.py. Sits on top of shared.css + pricecalc.css. */
+.card.pccard.wati { max-width: 800px; }
+.wati h1 { font-size: 27px; margin-bottom: 10px; }
+.wati .lede { font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.9); margin-bottom: 14px; }
+.wati .trust { padding: 9px 12px; font-size: 12.5px; align-items: center; margin-bottom: 14px; }
+.wati .trust img { width: 32px; height: 32px; flex: 0 0 32px; }
+.wati .pc-tabs { margin: 0 0 18px; }
+.wati .pc-tabs a { font-size: 12.5px; padding: 7px 11px; }
+.wati .pc-tabs a i { font-style: normal; opacity: .7; margin-right: 4px; }
+.tldr { border-left: 3px solid var(--gold-light); background: rgba(242,207,110,0.08); border-radius: 0 12px 12px 0; padding: 13px 16px; margin: 0 0 18px; font-size: 15px; line-height: 1.6; }
+.tldr b { color: var(--gold-light); }
+.tldr ul { margin: 6px 0 0 18px; } .tldr li { margin-bottom: 3px; }
+.wati .guide { margin-top: 6px; }
+.wati .guide h2 { font-size: 20px; margin-top: 28px; }
+.wati .guide h3 { font-size: 16px; margin: 16px 0 6px; color: #fff; }
+.wati .guide table { max-width: none; font-size: 14px; }
+.wati .guide th { color: var(--gold-light); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; }
+.wati .guide td.n, .wati .guide th.n { text-align: right; white-space: nowrap; }
+.wati .guide .tw { margin: 8px 0 14px; }
+.wati .guide .tw table { margin: 0; min-width: 460px; }
+.wati .box h2 { margin-top: 0; }
+.src { font-size: 12.5px; color: rgba(255,255,255,0.62); line-height: 1.5; margin: 4px 0 12px; }
+.src a { color: rgba(255,255,255,0.8); }
+.yn { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 10px 0 14px; }
+.yn > div { border-radius: 12px; padding: 13px 15px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.04); }
+.yn h3 { margin: 0 0 6px !important; font-size: 14px !important; letter-spacing: .04em; text-transform: uppercase; }
+.yn .y h3 { color: #9be7b5 !important; } .yn .x h3 { color: #ffb4a8 !important; }
+.yn ul { margin: 0 0 0 18px !important; font-size: 14px; }
+ul.cl { list-style: none; margin: 8px 0 12px !important; }
+ul.cl li { margin: 0 0 7px !important; }
+ul.cl label { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border-radius: 10px; cursor: pointer; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.13); font-size: 14.5px; line-height: 1.5; font-weight: 400; margin: 0; }
+ul.cl input { width: 18px; height: 18px; flex: 0 0 18px; margin-top: 2px; accent-color: #c9a227; }
+ul.cl input:checked + span { color: rgba(255,255,255,0.62); }
+ul.cl b { color: #fff; }
+ul.cl small { display: block; font-size: 12.5px; color: rgba(255,255,255,0.65); margin-top: 2px; }
+.prog { display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 700; margin: 10px 0; }
+.prog .bar { flex: 1; height: 8px; border-radius: 99px; background: rgba(255,255,255,0.12); overflow: hidden; }
+.prog .bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--gold), var(--gold-light)); transition: width .2s; }
+.day { border: 1px solid rgba(255,255,255,0.13); border-radius: 12px; padding: 12px 14px; margin: 0 0 10px; background: rgba(255,255,255,0.03); }
+.day h3 { margin: 0 0 6px !important; } .day h3 em { font-style: normal; color: var(--gold-light); margin-right: 6px; }
+.day ul.cl { margin-bottom: 4px !important; }
+.day .q { font-size: 13.5px; color: rgba(255,255,255,0.75); margin: 6px 0 0 !important; }
+#out { display: none; margin-top: 14px; padding: 16px 18px; border-radius: 14px; border: 1px solid rgba(242,207,110,0.55); background: rgba(242,207,110,0.07); font-size: 15px; line-height: 1.6; }
+#out.on { display: block; }
+#out h3 { font-size: 18px; margin: 0 0 6px; color: var(--gold-light); }
+#out p { margin: 0 0 9px; } #out ul { margin: 0 0 10px 20px; } #out li { margin-bottom: 3px; }
+#out .math { font-size: 14px; background: rgba(0,0,0,0.18); border-radius: 10px; padding: 10px 12px; margin: 0 0 10px; }
+#out .math b { color: var(--gold-light); }
+.wati .auto { margin-top: 26px; }
+.wati .auto h2 { margin-top: 0; font-size: 19px; }
+.wati .auto a.cta { display: block; text-align: center; }
+.wati .auto ol { margin: 0 0 10px 20px; font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.88); }
+.wati .auto .two { font-size: 13.5px; margin: 10px 0 0; color: rgba(255,255,255,0.8); }
+a.nextstep { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 22px 0 0; padding: 14px 16px; border-radius: 12px; text-decoration: none; color: #fff; border: 1px solid rgba(255,255,255,0.22); background: rgba(255,255,255,0.05); }
+a.nextstep:hover { border-color: var(--gold-light); }
+a.nextstep small { display: block; font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-light); font-weight: 700; }
+a.nextstep b { font-size: 16px; } a.nextstep span.ar { font-size: 20px; color: var(--gold-light); }
+.wati details.q { border-top: 1px solid rgba(255,255,255,0.12); padding: 10px 0; }
+.wati details.q summary { cursor: pointer; font-weight: 700; font-size: 15px; }
+.wati details.q p { margin: 8px 0 0; }
+#watibar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9000; display: none; background: #10143f; border-top: 1px solid rgba(242,207,110,0.5); box-shadow: 0 -6px 22px rgba(0,0,0,0.35); }
+#watibar.on { display: block; }
+#watibar .in { max-width: 800px; margin: 0 auto; padding: 9px 44px 9px 14px; display: flex; align-items: center; gap: 12px; position: relative; }
+#watibar p { flex: 1; font-size: 13px; line-height: 1.35; color: #fff; margin: 0; }
+#watibar p small { display: block; font-size: 11px; color: rgba(255,255,255,0.6); }
+#watibar a { flex: none; padding: 9px 13px; border-radius: 9px; font-size: 13px; font-weight: 700; text-decoration: none; color: var(--ink); background: linear-gradient(180deg, var(--gold-light), var(--gold)); white-space: nowrap; }
+#watibar button { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; border: none; background: transparent; color: rgba(255,255,255,0.7); font-size: 20px; line-height: 1; cursor: pointer; }
+@media (max-width: 620px) {
+  .wati h1 { font-size: 23px; }
+  .yn { grid-template-columns: 1fr; }
+  #watibar a { white-space: normal; text-align: center; max-width: 130px; }
+}

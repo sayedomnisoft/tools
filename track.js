@@ -29,6 +29,7 @@
 
   var path = location.pathname.replace(/^\/+|\/+$/g, '').replace(/\.html$/, '').replace(/(^|\/)index$/, '') || 'tools-home';
   var CAT = [
+    [/^wati-/, 'guide'],
     [/health-check|erp-roi|erp-readiness|edge-grant|inventory-software-cost|month-end-close|cost-of-manual-work|progress-claim|job-costing|landed-cost|slow-moving|stock-take|systems-checklist/, 'erp'],
     [/invoicenow/, 'invoicenow'],
     [/invoice-generator|receipt|quotation|delivery-order|purchase-order|statement-of-account|ar-aging|invoice-due-date|invoice-chaser|dso/, 'finance_docs'],
@@ -98,9 +99,23 @@
   // 20-minute slot, subscribe). The review pages set gantry_unlocked=1 when a
   // video is requested or a call is booked, and the tools stay open from then on. ?access=owner unlocks a browser.
   var FREE_USES = 3, REUSE_MS = 30 * 60 * 1000;
-  var gated = cat !== 'hub' && cat !== 'review' && cat !== 'other' && !/automation-help/.test(path);
+  var gated = cat !== 'hub' && cat !== 'review' && cat !== 'other' && cat !== 'guide' && !/automation-help/.test(path);
   function uses() { try { var a = JSON.parse(store.get('gantry_uses') || '[]'); return Array.isArray(a) ? a : []; } catch (e) { return []; } }
-  try { if (new URLSearchParams(location.search).get('access') === 'owner') store.set('gantry_unlocked', '1'); } catch (e) {}
+  // ?access=owner unlocks the owner's browser. ?access=subscriber is the link in the Substack welcome email (2026-11-10):
+  // it reopens the tools on that browser and is counted once as tool_unlock.
+  try {
+    var acc = new URLSearchParams(location.search).get('access');
+    if (acc === 'owner') store.set('gantry_unlocked', '1');
+    if (acc === 'subscriber') {
+      if (store.get('gantry_unlocked') !== '1') ev('tool_unlock', { via: 'subscriber' });
+      store.set('gantry_unlocked', '1'); store.set('gantry_sub', '1');
+      var un = document.createElement('div'); un.id = 'gantry-unlocked'; un.setAttribute('role', 'status');
+      un.style.cssText = 'position:fixed;top:10px;right:10px;z-index:9998;max-width:320px;background:#141c5c;color:#fff;border:1px solid rgba(242,207,110,.5);border-radius:10px;padding:8px 12px;font:13px/1.4 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;box-shadow:0 6px 22px rgba(0,0,0,.3)';
+      un.innerHTML = '<b>Subscriber access is on.</b> Every tool is open on this browser, with no limit.';
+      (document.body || document.documentElement).appendChild(un);
+      setTimeout(function () { if (un.parentNode) un.parentNode.removeChild(un); }, 9000);
+    }
+  } catch (e) {}
   var unlocked = store.get('gantry_unlocked') === '1';
   function toLimit(n) {
     ev('tool_gate_redirect', { uses_count: n });
@@ -154,7 +169,7 @@
   };
 
   ev('tool_view');
-  if (cat !== 'hub' && cat !== 'other') { try { gtag('set', 'user_properties', { tool_interest: cat }); } catch (e) {} }
+  if (cat !== 'hub' && cat !== 'other') { try { gtag('set', 'user_properties', { tool_interest: cat === 'guide' ? 'automation' : cat }); } catch (e) {} }
 
   var engaged = false;
   // Tools with form controls: 'use' = typing, choosing, clicking a control or dropping a file.
