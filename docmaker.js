@@ -252,6 +252,7 @@ function record() {
 function preparePrint() { pr.innerHTML = '<div class="paper">' + paperHTML() + '</div>'; }
 window.addEventListener('beforeprint', preparePrint);
 $('pdfBtn').onclick = () => {
+  if (window.gantryRun && !window.gantryRun()) return; // three free uses, then review-limit.html (counted in /track.js)
   preparePrint(); record(); drawRecent(); countUse(); ev('dm_print');
   const old = document.title, who = firstLine(D.party);
   document.title = docTitle() + ' ' + D.no + (who ? ' - ' + who : '');
@@ -293,12 +294,12 @@ $('exBtn').onclick = () => {
   save(); fill(); ev('dm_example');
 };
 
-// ---------- newsletter gate (from the 4th download) ----------
+// ---------- newsletter gate (from the 4th download, only on browsers that asked for the video or booked) ----------
 function countUse() {
   const used = parseInt(store.get('tae_docmaker', '0'), 10) + 1; store.set('tae_docmaker', String(used));
   ev('dm_use', { run: used });
   const g = $('gate');
-  if (g && used >= 4 && store.get('nl_subscribed', '') !== '1' && parseInt(store.get('dm_gate_skips', '0'), 10) < 2) {
+  if (g && used >= 4 && store.get('gantry_unlocked', '') === '1' && store.get('nl_subscribed', '') !== '1' && parseInt(store.get('dm_gate_skips', '0'), 10) < 2) {
     setTimeout(() => { g.classList.remove('hidden'); ev('dm_gate_shown', { run: used }); }, 800);
   }
 }

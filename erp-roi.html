@@ -362,7 +362,7 @@ function renderHorizon(m) {
 }
 
 function calculate() {
-  if (used() >= LIMIT && !more()) { show('gate'); return; }
+  if (window.gantryRun && !window.gantryRun()) return; // three free uses, then review-limit.html (counted in /track.js)
   const p = readInputs();
   const m = model(p);
 

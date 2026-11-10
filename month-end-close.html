@@ -162,7 +162,7 @@ function showQuota() {
 }
 
 function calculate() {
-  if (used() >= LIMIT && !more()) { show('gate'); return; }
+  if (window.gantryRun && !window.gantryRun()) return; // three free uses, then review-limit.html (counted in /track.js)
   const days = Math.max(1, +document.getElementById('days').value || 1);
   const people = Math.max(1, +document.getElementById('people').value || 1);
   const pct = (+document.getElementById('pct').value || 50) / 100;

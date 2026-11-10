@@ -2,7 +2,7 @@
    - tool_view: which tool was opened (tool_name, tool_category)
    - tool_engaged: first real interaction with the tool (input, select, button)
    - lead_click / affiliate_click: review bookings and partner links
-   - tool_limit_reached / tool_gate_redirect: third free use recorded / a fourth tool opened and sent to review.html
+   - tool_limit_reached / tool_gate_redirect: third free use recorded / a fourth use tried and sent to review-limit.html
    - user property tool_interest: last tool category used (for GA4 audiences)
    Consent: EEA/UK/CH visitors are denied by default (set inline before GA config); everyone else can opt out here.
    Nothing typed into a tool is ever sent: only the tool name and the type of action. */
@@ -94,42 +94,64 @@
   // ---- Three free uses, then the review page (added 2026-11-10; owner's rule: the tools are for people who raise a hand) ----
   // A "use" = a tool page where the visitor really did something (the same moment tool_engaged fires).
   // The same tool again within 30 minutes is the same use. Counted per browser in localStorage; nothing is sent.
-  // After FREE_USES uses, opening any tool goes to review.html. The review pages set gantry_unlocked=1 when a
+  // After FREE_USES uses, the next use goes to review-limit.html (short video, three buttons: 2-minute video,
+  // 20-minute slot, subscribe). The review pages set gantry_unlocked=1 when a
   // video is requested or a call is booked, and the tools stay open from then on. ?access=owner unlocks a browser.
   var FREE_USES = 3, REUSE_MS = 30 * 60 * 1000;
   var gated = cat !== 'hub' && cat !== 'review' && cat !== 'other' && !/automation-help/.test(path);
   function uses() { try { var a = JSON.parse(store.get('gantry_uses') || '[]'); return Array.isArray(a) ? a : []; } catch (e) { return []; } }
   try { if (new URLSearchParams(location.search).get('access') === 'owner') store.set('gantry_unlocked', '1'); } catch (e) {}
   var unlocked = store.get('gantry_unlocked') === '1';
+  function toLimit(n) {
+    ev('tool_gate_redirect', { uses_count: n });
+    var to = '/review-limit.html?utm_source=tools&utm_medium=' + encodeURIComponent(path) + '&utm_campaign=tool_limit&locked=1';
+    setTimeout(function () { location.replace(to); }, 200);
+  }
   if (gated && !unlocked) {
     var u0 = uses(), last = u0[u0.length - 1];
     if (u0.length >= FREE_USES && !(last && last.t === path && (Date.now() - last.at) < REUSE_MS)) {
       try { document.documentElement.style.visibility = 'hidden'; } catch (e) {}
-      ev('tool_gate_redirect', { uses_count: u0.length });
-      var to = '/review.html?utm_source=tools&utm_medium=' + encodeURIComponent(path) + '&utm_campaign=tool_limit&locked=1';
-      setTimeout(function () { location.replace(to); }, 200);
+      toLimit(u0.length);
       return;
     }
   }
   function useNote(n) {
     try {
+      var o = document.getElementById('gantry-uses'); if (o && o.parentNode) o.parentNode.removeChild(o);
       var d = document.createElement('div'); d.id = 'gantry-uses'; d.setAttribute('role', 'status');
       d.style.cssText = 'position:fixed;top:10px;right:10px;z-index:9998;max-width:320px;background:#141c5c;color:#fff;border:1px solid rgba(242,207,110,.5);border-radius:10px;padding:8px 12px;font:13px/1.4 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;box-shadow:0 6px 22px rgba(0,0,0,.3)';
-      d.innerHTML = n < FREE_USES ? 'Free tool ' + n + ' of ' + FREE_USES
-        : '<b>Free tool ' + n + ' of ' + FREE_USES + '.</b> After this one, the tools stay open for people who ask for the free 2-minute video or book the 20-minute review. <a href="/review.html?utm_campaign=tool_limit" style="color:#f2cf6e;white-space:nowrap">See both</a> <button type="button" aria-label="Close" style="background:transparent;border:0;color:#fff;cursor:pointer;font-size:15px;padding:0 0 0 6px">&times;</button>';
+      d.innerHTML = n < FREE_USES ? 'Free use ' + n + ' of ' + FREE_USES
+        : '<b>Free use ' + n + ' of ' + FREE_USES + '.</b> After this one you get three free ways to go further: a 2-minute video, a 20-minute slot, or new tools by email. <a href="/review-limit.html?utm_source=tools&utm_medium=' + encodeURIComponent(path) + '&utm_campaign=tool_limit" style="color:#f2cf6e;white-space:nowrap">See them</a> <button type="button" aria-label="Close" style="background:transparent;border:0;color:#fff;cursor:pointer;font-size:15px;padding:0 0 0 6px">&times;</button>';
       d.addEventListener('click', function (e) { if (e.target && e.target.tagName === 'BUTTON') d.parentNode.removeChild(d); });
       document.body.appendChild(d);
       if (n < FREE_USES) setTimeout(function () { if (d.parentNode) d.parentNode.removeChild(d); }, 6000);
     } catch (e) {}
   }
-  function countUse() {
-    if (!gated || unlocked) return;
-    var a = uses(), l = a[a.length - 1], now = Date.now();
-    if (l && l.t === path && (now - l.at) < REUSE_MS) return;
-    a.push({ t: path, at: now }); store.set('gantry_uses', JSON.stringify(a.slice(-20)));
+  // One use = one page load with a real interaction (the same tool again within 30 minutes is the same use),
+  // or one run on a tool with a Calculate or Download button: those call window.gantryRun() before each run.
+  var loadUse = false, runs = 0;
+  function pushUse(a) {
+    a.push({ t: path, at: Date.now() }); store.set('gantry_uses', JSON.stringify(a.slice(-20))); loadUse = true;
     if (a.length === FREE_USES) ev('tool_limit_reached');
     if (a.length <= FREE_USES) useNote(a.length);
   }
+  function countUse() {
+    if (!gated || unlocked || loadUse) return;
+    var a = uses(), l = a[a.length - 1];
+    if (l && l.t === path && (Date.now() - l.at) < REUSE_MS) return;
+    pushUse(a);
+  }
+  // Returns true when the run may go ahead. The first run of a page load rides on the use that the first input already counted;
+  // every later run is a use of its own. With three uses spent, the next run goes to review-limit.html instead.
+  window.gantryRun = function () {
+    if (!gated || unlocked) return true;
+    runs++;
+    if (runs === 1 && loadUse) return true;
+    var a = uses();
+    if (a.length >= FREE_USES) { toLimit(a.length); return false; }
+    pushUse(a);
+    return true;
+  };
 
   ev('tool_view');
   if (cat !== 'hub' && cat !== 'other') { try { gtag('set', 'user_properties', { tool_interest: cat }); } catch (e) {} }

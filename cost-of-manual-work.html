@@ -156,7 +156,7 @@ function showQuota() {
 }
 
 function calculate() {
-  if (used() >= LIMIT && !more()) { show('gate'); return; }
+  if (window.gantryRun && !window.gantryRun()) return; // three free uses, then review-limit.html (counted in /track.js)
   const staff = Math.max(1, +document.getElementById('staff').value || 1);
   const hours = Math.max(1, +document.getElementById('hours').value || 1);
   const salary = Math.max(500, +document.getElementById('salary').value || 500);

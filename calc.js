@@ -310,7 +310,8 @@ $('resetBtn').onclick = () => { Object.keys(DEF).forEach(k => { if ($(k)) $(k).v
 $('copyBtn').onclick = async () => { const t = $('out').innerText; try { await navigator.clipboard.writeText(t); $('copyBtn').textContent = 'Copied'; setTimeout(() => $('copyBtn').textContent = 'Copy result', 1500); } catch (e) { prompt('Copy:', t); } ev('calc_copy'); };
 function countUse() {
   const used = parseInt(store.get('tae_calc_' + K, '0'), 10) + 1; store.set('tae_calc_' + K, String(used)); ev('calc_use', { run: used });
-  if ($('gate') && used >= 4 && store.get('nl_subscribed', '') !== '1' && parseInt(store.get('calc_gate_skips', '0'), 10) < 2) setTimeout(() => { $('gate').classList.remove('hidden'); ev('calc_gate_shown'); }, 1200);
+  // Newsletter prompt only on browsers that already asked for the video or booked: everyone else meets review-limit.html after three uses (/track.js).
+  if ($('gate') && used >= 4 && store.get('gantry_unlocked', '') === '1' && store.get('nl_subscribed', '') !== '1' && parseInt(store.get('calc_gate_skips', '0'), 10) < 2) setTimeout(() => { $('gate').classList.remove('hidden'); ev('calc_gate_shown'); }, 1200);
 }
 if ($('gateDone')) $('gateDone').onclick = () => { store.set('nl_subscribed', '1'); $('gate').classList.add('hidden'); ev('calc_gate_done'); };
 if ($('gateSkip')) $('gateSkip').onclick = () => { store.set('calc_gate_skips', String(parseInt(store.get('calc_gate_skips', '0'), 10) + 1)); $('gate').classList.add('hidden'); ev('calc_gate_skip'); };

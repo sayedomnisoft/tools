@@ -20,6 +20,21 @@ var TOOL_HANDOFF_TO_CALL = true;
     var p = to.split('#'); location.replace(p[0] + location.search + (p[1] ? '#' + p[1] : '')); }
 } catch (e) {} })();
 </script>
+<script>
+/* Three free uses spent and nothing asked or booked yet (2026-11-10, owner's rule): this browser lands on review-limit.html,
+   the short video with three buttons (2-minute video, 20-minute slot, subscribe), instead of this page. Same test as JS_GATE:
+   the browser's own count is the truth. Unlocked browsers and ?access=owner stay here. The query string is carried, minus all and offer. */
+(function () { try {
+  if (window.__redir) return;
+  var q = new URLSearchParams(location.search);
+  if (q.get('access') === 'owner' || localStorage.getItem('gantry_unlocked') === '1') return;
+  var a = JSON.parse(localStorage.getItem('gantry_uses') || '[]');
+  if (!Array.isArray(a) || a.length < 3) return;
+  q.delete('all'); q.delete('offer'); var s = q.toString();
+  window.__redir = true; window['ga-disable-G-EW5Y0JHSF9'] = true; document.documentElement.style.visibility = 'hidden';
+  location.replace('review-limit.html' + (s ? '?' + s : ''));
+} catch (e) {} })();
+</script>
 <title>The 20-Minute Systems Review | The Gantry</title>
 <meta name="description" content="Bring one process that keeps breaking. Get a free two-minute video review by email, book 20 minutes on Zoom, or use the free tools. Singapore SMEs, honest answers, no pitch.">
 <meta property="og:title" content="The 20-Minute Systems Review | The Gantry">
@@ -260,9 +275,9 @@ if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'hub
   if (!document.hidden) start();
 })();
 
-/* The three option cards. GA4: vsl_pick_video | vsl_pick_call | vsl_pick_tools {watched: % of the video seen, -1 = never started} plus the existing review_cta_click. */
+/* The three option cards (review.html and review-limit.html). GA4: vsl_pick_video | vsl_pick_call | vsl_pick_tools | vsl_pick_subscribe {watched: % of the video seen, -1 = never started} plus the existing review_cta_click. */
 (function () {
-  var PICK = { video: 'vsl_pick_video', hero: 'vsl_pick_call', tools: 'vsl_pick_tools' };
+  var PICK = { video: 'vsl_pick_video', hero: 'vsl_pick_call', tools: 'vsl_pick_tools', subscribe: 'vsl_pick_subscribe' };
   document.querySelectorAll('[data-cta]').forEach(function (a) {
     a.addEventListener('click', function () {
       var w = window.gVsl ? window.gVsl.watched() : -1;
