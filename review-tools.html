@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en-SG">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>37 Free Business Tools: Start Here | The Gantry</title>
+<meta name="description" content="37 free calculators, checklists and templates for Singapore SMEs. Pick the job that hurts most, type in your own numbers and get the answer on the spot. No sign-up. Your first three uses are open.">
+<meta property="og:title" content="37 Free Business Tools: Start Here | The Gantry">
+<meta property="og:description" content="37 free calculators, checklists and templates. Type in your own numbers and get a dollar figure, a score or a finished document. No sign-up. Your first three uses are open.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://tools.gantry.work/og-review.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="shared.css">
+<style>
+  #gantry-notice { font-size: 12.5px !important; padding: 10px 12px !important; }
+  .pill { display: inline-block; font-size: 12px; letter-spacing: 1.6px; font-weight: 700; color: var(--ink); background: var(--gold-light); padding: 6px 12px; border-radius: 30px; margin-bottom: 16px; }
+  .vsl { position: relative; max-width: 460px; margin: 0 auto 10px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(242,207,110,0.4); background: #0a0d33; aspect-ratio: 1 / 1; }
+  .vsl video { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .vsl[data-mode="muted"] video { cursor: pointer; }
+  .vsl-play { position: absolute; inset: 0; width: 100%; border: 0; background: rgba(10,13,51,0.1); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: #fff; font: inherit; }
+  .vsl-play i { width: clamp(58px, 20%, 96px); aspect-ratio: 1 / 1; border-radius: 50%; background: linear-gradient(180deg, var(--gold-light), var(--gold)); box-shadow: 0 8px 30px rgba(0,0,0,0.45); position: relative; transition: transform .15s; }
+  .vsl-play i::before { content: ''; position: absolute; inset: -5px; border-radius: 50%; border: 2px solid rgba(242,207,110,0.7); animation: vslring 2.2s ease-out infinite; }
+  .vsl-play i::after { content: ''; position: absolute; inset: 29% 24% 29% 37%; background: var(--ink); clip-path: polygon(0 0, 100% 50%, 0 100%); }
+  .vsl-play:hover i, .vsl-play:focus-visible i { transform: scale(1.07); }
+  .vsl-play:focus-visible { outline: 3px solid var(--gold-light); outline-offset: -3px; }
+  @keyframes vslring { 0% { transform: scale(0.92); opacity: .9; } 100% { transform: scale(1.3); opacity: 0; } }
+  .vsl-sound { position: absolute; right: 10px; top: 10px; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; border: 0; cursor: pointer; font: inherit; font-size: 12.5px; font-weight: 800; color: var(--ink); background: linear-gradient(180deg, var(--gold-light), var(--gold)); padding: 8px 12px 8px 9px; min-height: 36px; border-radius: 30px; box-shadow: 0 6px 22px rgba(0,0,0,0.5); animation: vslpulse 1.8s ease-out infinite; }
+  .vsl-sound svg { width: 16px; height: 16px; flex: none; }
+  @media (min-width: 700px) { .vsl-sound { font-size: 15px; padding: 10px 18px 10px 14px; right: 14px; top: 14px; } .vsl-sound svg { width: 20px; height: 20px; } }
+  .vsl-sound:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+  @keyframes vslpulse { 0% { box-shadow: 0 6px 22px rgba(0,0,0,0.5), 0 0 0 0 rgba(242,207,110,0.75); } 100% { box-shadow: 0 6px 22px rgba(0,0,0,0.5), 0 0 0 14px rgba(242,207,110,0); } }
+  .vsl-play[hidden], .vsl-sound[hidden] { display: none !important; }
+  .vsl-note { font-size: 13px; color: rgba(255,255,255,0.72); text-align: center; margin: 0 0 4px; }
+  .vsl-text { margin: 0 0 4px; font-size: 13.5px; color: rgba(255,255,255,0.82); }
+  .vsl-text summary { cursor: pointer; color: var(--gold-light); text-align: center; }
+  .vsl-text p { line-height: 1.6; margin: 10px 0 0; }
+  .nudge { animation: nudge 1.1s ease 2; }
+  @keyframes nudge { 50% { box-shadow: 0 0 0 4px rgba(242,207,110,0.55); } }
+  @media (prefers-reduced-motion: reduce) { .vsl-play i::before, .vsl-sound, .nudge { animation: none; } }
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  .card { max-width: 680px; }
+  .back { font-size: 12.5px; letter-spacing: 1.6px; font-weight: 700; margin-bottom: 16px; }
+  .back a { color: var(--gold-light); text-decoration: none; }
+  .back a:hover { text-decoration: underline; }
+  .hero { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "copy" "video" "more"; gap: 4px; margin-bottom: 22px; }
+  .h-copy { grid-area: copy; } .h-video { grid-area: video; } .h-more { grid-area: more; padding-top: 12px; }
+  .hero .sub { margin-bottom: 16px; }
+  .steps { list-style: none; counter-reset: st; display: grid; gap: 8px; margin: 0 0 16px; }
+  .steps li { counter-increment: st; position: relative; padding: 11px 14px 11px 52px; border-radius: 12px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.13); font-size: 14.5px; line-height: 1.4; color: rgba(255,255,255,0.9); }
+  .steps li::before { content: counter(st); position: absolute; left: 13px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; color: var(--ink); background: linear-gradient(180deg, var(--gold-light), var(--gold)); }
+  .steps b { color: #fff; }
+  .hero a.cta { margin-bottom: 0; }
+  .yournum { border: 1px solid rgba(242,207,110,0.45); background: rgba(242,207,110,0.10); border-radius: 12px; padding: 14px 16px; margin: 0 0 16px; font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.92); }
+  .yournum b { color: var(--gold-light); }
+  ul.plain { list-style: none; margin-bottom: 24px; }
+  ul.plain li { font-size: 15px; color: rgba(255,255,255,0.85); padding: 8px 0 8px 26px; position: relative; line-height: 1.5; }
+  ul.plain li::before { content: "▸"; color: var(--gold); position: absolute; left: 4px; }
+  ul.plain.no li::before { content: "✕"; color: rgba(255,255,255,0.4); }
+  .proof { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 0 0 14px; }
+  .proof div { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 14px 8px; text-align: center; }
+  .proof b { display: block; font-size: 24px; color: var(--gold-light); line-height: 1.1; }
+  .proof span { display: block; font-size: 11.5px; color: rgba(255,255,255,0.72); margin-top: 4px; line-height: 1.3; }
+  @media (max-width: 380px) { .proof b { font-size: 20px; } }
+  @media (max-width: 699px) { .why .proof { grid-template-columns: 1fr 1fr; } .why .proof .w { grid-column: 1 / -1; display: flex; align-items: baseline; justify-content: center; flex-wrap: wrap; gap: 2px 10px; padding: 12px 10px; } .why .proof .w b { font-size: 19px; white-space: nowrap; } .why .proof .w span { margin: 0; font-size: 12.5px; } }
+  .edge { border-left: 3px solid var(--gold); background: rgba(242,207,110,0.08); border-radius: 0 12px 12px 0; padding: 14px 16px; margin: 0 0 24px; font-size: 14.5px; line-height: 1.55; color: rgba(255,255,255,0.88); }
+  .edge a { color: var(--gold-light); }
+  .running { border-left: 3px solid #f4f2ee; background: rgba(255,255,255,0.05); border-radius: 0 12px 12px 0; padding: 14px 16px; margin: 0 0 24px; font-size: 14.5px; line-height: 1.55; color: rgba(255,255,255,0.88); scroll-margin-top: 16px; }
+  .running ul { margin: 8px 0 0 18px; padding: 0; }
+  .running li { margin: 3px 0; }
+  .book-zone { border: 1px dashed rgba(242,207,110,0.5); border-radius: 14px; padding: 22px 20px; margin: 8px 0 20px; scroll-margin-top: 16px; }
+  @media (max-width: 480px) { .book-zone { padding: 12px 8px; } }
+  .prep { list-style: none; margin: 4px 0 16px; counter-reset: p; }
+  .prep li { font-size: 14.5px; color: rgba(255,255,255,0.88); padding: 5px 0 5px 24px; position: relative; }
+  .prep li::before { content: counter(p); counter-increment: p; position: absolute; left: 0; color: var(--gold-light); font-weight: 700; }
+  .zone { border: 1px dashed rgba(242,207,110,0.5); border-radius: 14px; padding: 18px 16px; margin: 8px 0 22px; scroll-margin-top: 16px; }
+  .zone h2 { margin: 0 0 6px; }
+  .zone .sub { margin-bottom: 10px; }
+  .zone iframe { display: block; box-sizing: content-box; width: calc(100% - 28px); padding: 14px; border: 0; min-height: 520px; border-radius: 12px; background: #fff; }
+  .thanks { display: none; border-radius: 12px; background: rgba(242,207,110,0.12); border: 1px solid rgba(242,207,110,0.45); padding: 16px; font-size: 15px; line-height: 1.55; margin-top: 12px; }
+  .thanks.show { display: block; }
+  .scarce { font-size: 14.5px; line-height: 1.5; color: #fff; background: rgba(242,207,110,0.1); border-left: 3px solid var(--gold); padding: 10px 14px; border-radius: 0 10px 10px 0; margin: 0 0 14px; }
+  #bookHead, #toolsHead { scroll-margin-top: 16px; }
+
+  /* live slots, read from the public calendar feed */
+  .slots { border: 1px solid rgba(242,207,110,0.5); background: rgba(10,13,51,0.45); border-radius: 14px; padding: 14px 16px; margin: 0 0 14px; }
+  .slots-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin-bottom: 10px; }
+  .slots-head b { font-size: 15.5px; }
+  .slots-head .tot { margin-left: auto; font-size: 14px; font-weight: 800; color: var(--ink); background: linear-gradient(180deg, var(--gold-light), var(--gold)); padding: 4px 11px; border-radius: 20px; white-space: nowrap; }
+  .live-dot { width: 9px; height: 9px; border-radius: 50%; background: #5ee08a; flex: none; animation: livedot 1.6s ease-out infinite; }
+  @keyframes livedot { 0% { box-shadow: 0 0 0 0 rgba(94,224,138,0.7); } 100% { box-shadow: 0 0 0 9px rgba(94,224,138,0); } }
+  .slots-days { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 8px; }
+  .slot-day { display: block; text-decoration: none; text-align: center; border-radius: 11px; padding: 9px 8px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); }
+  .slot-day, .slot-day:visited { color: #fff; }
+  .slot-day:hover { border-color: var(--gold-light); }
+  .slot-day b { display: block; font-size: 14.5px; }
+  .slot-day span { display: block; font-size: 12.5px; color: rgba(255,255,255,0.75); margin-top: 2px; }
+  .slot-day.low { border-color: rgba(242,207,110,0.75); background: rgba(242,207,110,0.12); }
+  .slot-day.low span { color: var(--gold-light); font-weight: 700; }
+  .slots-note { font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,0.88); margin: 10px 0 0; }
+  .slots-stamp { font-size: 11.5px; color: rgba(255,255,255,0.5); margin: 4px 0 0; }
+  @media (prefers-reduced-motion: reduce) { .live-dot { animation: none; } }
+
+  /* proof + industries */
+  .why { border-top: 1px solid rgba(255,255,255,0.12); padding-top: 24px; margin: 6px 0 22px; }
+  .why > h2 { margin-bottom: 14px; }
+  .inds2 { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "orb" "list"; gap: 14px; align-items: center; background: rgba(10,13,51,0.35); border: 1px solid rgba(242,207,110,0.28); border-radius: 16px; padding: 16px 14px 18px; }
+  .ind-head { grid-area: head; } .inds2 .orb { grid-area: orb; } .ind-list { grid-area: list; }
+  .inds2 h3 { font-size: 18px; margin: 0 0 6px; }
+  .inds2 .sub { font-size: 14px; margin-bottom: 0; }
+  .orb { display: block; width: 100%; max-width: 300px; height: auto; margin: 0 auto; overflow: visible; }
+  .orb-track { fill: none; stroke: rgba(255,255,255,0.12); stroke-width: 1.5; }
+  .orb-ring { fill: none; stroke: var(--gold-light); stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
+  .orb-spoke { stroke: rgba(242,207,110,0.5); stroke-width: 1.5; stroke-dasharray: 1; stroke-dashoffset: 0; }
+  .orb-dot { fill: #1b2070; stroke: var(--gold-light); stroke-width: 2; transform-box: fill-box; transform-origin: center; transition: fill .15s; }
+  .orb-ic { fill: none; stroke: var(--gold-light); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
+  .orb-num { font-size: 76px; font-weight: 800; fill: var(--gold-light); font-family: inherit; }
+  .orb-cap { font-size: 17px; font-weight: 600; fill: rgba(255,255,255,0.85); font-family: inherit; }
+  .orb-comet { opacity: 0; transform-origin: 180px 180px; }
+  .orb-comet circle { fill: #fff; }
+  .orb-n.hot .orb-dot { fill: #3a3f9e; }
+  .ind-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 7px; counter-reset: ind; }
+  .ind-list li { counter-increment: ind; font-size: 13px; line-height: 1.25; padding: 8px 9px 8px 32px; position: relative; border-radius: 10px; color: #fff; background: rgba(242,207,110,0.1); border: 1px solid rgba(242,207,110,0.5); cursor: default; }
+  .ind-list li::before { content: counter(ind); position: absolute; left: 9px; top: 50%; transform: translateY(-50%); width: 17px; height: 17px; border-radius: 50%; font-size: 10.5px; font-weight: 800; display: flex; align-items: center; justify-content: center; color: var(--ink); background: var(--gold-light); }
+  .ind-list li.hot { background: rgba(242,207,110,0.24); }
+  /* animated entrance: only when the script has armed it (.pre) and the block is on screen (.on) */
+  .inds2.pre .orb-ring, .inds2.pre .orb-spoke, .inds2.pre .orb-ic { stroke-dashoffset: 1; }
+  .inds2.pre .orb-dot { stroke: rgba(255,255,255,0.22); }
+  .inds2.pre .ind-list li { opacity: .38; border-color: rgba(255,255,255,0.16); background: rgba(255,255,255,0.04); }
+  .inds2.pre.on .orb-spoke { animation: orbdraw .35s ease-out both; animation-delay: calc(var(--i) * .36s + .15s); }
+  .inds2.pre.on .orb-dot { animation: orbpop .5s cubic-bezier(.3,1.6,.5,1) both; animation-delay: calc(var(--i) * .36s + .3s); }
+  .inds2.pre.on .orb-ic { animation: orbdraw .8s ease-out both; animation-delay: calc(var(--i) * .36s + .38s); }
+  .inds2.pre.on .ind-list li { animation: indon .45s ease-out both; animation-delay: calc(var(--i) * .36s + .38s); }
+  .inds2.pre.on .orb-ring { animation: orbdraw 1.3s ease-in-out both; animation-delay: 3.5s; }
+  .inds2.pre.on .orb-comet { animation: orbspin 3.2s cubic-bezier(.4,0,.2,1) 3.5s 2 both; }
+  @keyframes orbdraw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+  @keyframes orbpop { 0% { stroke: rgba(255,255,255,0.22); transform: scale(.8); } 60% { transform: scale(1.12); } 100% { stroke: var(--gold-light); transform: scale(1); } }
+  @keyframes indon { from { opacity: .38; border-color: rgba(255,255,255,0.16); background: rgba(255,255,255,0.04); } to { opacity: 1; border-color: rgba(242,207,110,0.5); background: rgba(242,207,110,0.1); } }
+  @keyframes orbspin { 0% { transform: rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: rotate(360deg); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .inds2 * { animation: none !important; } }
+
+  /* cross-links */
+  .others { border-top: 1px solid rgba(255,255,255,0.12); padding-top: 20px; margin: 0 0 6px; }
+  .others .lead { font-size: 12px; letter-spacing: 1.6px; text-transform: uppercase; font-weight: 700; color: rgba(255,255,255,0.6); margin: 0 0 10px; }
+  .others .two { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+  @media (max-width: 480px) { .others .two { grid-template-columns: 1fr; } }
+  .others a.o { display: block; text-decoration: none; border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 11px 14px; font-size: 14.5px; font-weight: 700; }
+  .others a.o, .others a.o:visited { color: #fff; }
+  .others a.o small { display: block; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; font-weight: 700; color: var(--gold-light); margin-bottom: 3px; }
+  .others a.o:hover { border-color: var(--gold-light); }
+  .others .backl { display: block; text-align: center; font-size: 14.5px; font-weight: 700; text-decoration: none; padding: 6px; }
+  .tool-list li.featured a { border-color: rgba(242,207,110,0.55); }
+  .limit { font-size: 14.5px; line-height: 1.5; color: rgba(255,255,255,0.88); background: rgba(242,207,110,0.1); border: 1px solid rgba(242,207,110,0.35); border-radius: 12px; padding: 11px 14px; margin: 0 0 14px; }
+  .limit a { color: var(--gold-light); font-weight: 700; }
+  .lockbox { border: 1px solid rgba(242,207,110,0.5); background: rgba(242,207,110,0.1); border-radius: 14px; padding: 18px 16px; margin: 0 0 22px; }
+  .lockbox[hidden] { display: none; }
+  .lockbox p { font-size: 15.5px; line-height: 1.5; margin: 0 0 14px; color: rgba(255,255,255,0.92); }
+  .lockbox .two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .lockbox .two a.cta { margin: 0; }
+  .lockbox small { display: block; font-size: 12.5px; color: rgba(255,255,255,0.65); margin-top: 12px; }
+  @media (max-width: 560px) { .lockbox .two { grid-template-columns: 1fr; } }
+  .tools h3 { font-size: 17px; margin: 22px 0 10px; }
+  .tools h3:first-of-type { margin-top: 6px; }
+
+  @media (min-width: 1000px) {
+    body { padding: 24px 28px 70px; }
+    .card { max-width: 1060px; padding: 30px 48px 44px; }
+    #gantry-notice { left: 16px !important; right: auto !important; max-width: 340px !important; }
+    .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 420px); grid-template-areas: "copy video" "more video"; column-gap: 46px; row-gap: 0; align-items: start; margin-bottom: 26px; }
+    .hero h1 { font-size: 38px; letter-spacing: -0.4px; }
+    .hero .sub { font-size: 16px; }
+    .hero .vsl { max-width: none; }
+    .h-more { padding-top: 0; }
+    h2 { font-size: 23px; }
+    .zone, .book-wrap { max-width: 760px; margin-left: auto; margin-right: auto; }
+    .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-top: 8px; }
+    .cols h2 { margin-top: 4px; }
+    .scarce { font-size: 15.5px; }
+    .byline { max-width: 720px; margin-left: auto; margin-right: auto; }
+    .why .proof { gap: 12px; margin-bottom: 16px; }
+    .why .proof div { padding: 18px 12px; }
+    .why .proof b { font-size: 30px; }
+    .why .proof span { font-size: 13.5px; }
+    .inds2 { grid-template-columns: 300px minmax(0, 1fr); grid-template-areas: "orb head" "orb list"; grid-template-rows: auto 1fr; column-gap: 40px; row-gap: 4px; padding: 26px 36px; }
+    .ind-head { align-self: end; } .ind-list { align-self: start; gap: 9px; }
+    .inds2 h3 { font-size: 21px; }
+    .ind-list li { font-size: 14.5px; padding: 11px 12px 11px 38px; }
+    .ind-list li::before { left: 11px; width: 19px; height: 19px; font-size: 11.5px; }
+    .tools .tool-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .tools .tool-list li { margin-bottom: 0; }
+    .tools .tool-list a { height: 100%; }
+    .others { max-width: 760px; margin-left: auto; margin-right: auto; }
+  }
+</style>
+<!-- seo:start -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://tools.gantry.work/review-tools.html">
+<meta property="og:url" content="https://tools.gantry.work/review-tools.html">
+<meta property="og:site_name" content="The Gantry">
+<meta property="og:locale" content="en_SG">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="37 Free Business Tools: Start Here | The Gantry">
+<meta name="twitter:image" content="https://tools.gantry.work/og-review.jpg">
+<meta name="robots" content="noindex,follow">
+<meta name="author" content="Sayed Rashid">
+<!-- seo:end -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){if(!/gantry\.work$/.test(location.hostname))return;dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');
+window.gSrc=(function(){try{var q=new URLSearchParams(location.search),s=q.get('utm_medium')||q.get('from')||'',r=document.referrer||'';if(!s){if(/^https?:\/\/tools\.gantry\.work\/review/.test(r)){try{s=sessionStorage.getItem('gantry_rsrc')||'';}catch(e){}s=s||'review-hub';}else s=r||'direct';}try{sessionStorage.setItem('gantry_rsrc',s);}catch(e){}return s.slice(0,90);}catch(e){return 'unknown';}})();
+if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'tools'});gtag('event','vsl_page_view',{source:window.gSrc,page:'tools',screen:(window.matchMedia&&matchMedia('(min-width:1000px)').matches)?'desktop':'mobile'});}catch(e){}}</script>
+<script src="/config.js"></script><script src="/track.js" defer></script><script src="/gantry-ui.js" defer></script>
+<meta name="gantry-checked" content="2026-11-10">
+</head>
+<body>
+<div class="card">
+  <div class="back"><a href="review.html" data-carry="hub" data-cta="back">← THE GANTRY · ALL THREE OPTIONS</a></div>
+  <div class="hero">
+  <div class="h-copy">
+    <div class="pill">OPTION 3 · HELP YOURSELF</div>
+    <h1>37 free tools. Pick the job that hurts most.</h1>
+    <p class="sub" id="heroSub">Calculators, checklists and templates that put a dollar figure on the mess. Type in your own numbers and get the answer on the spot.</p>
+  </div>
+  <div class="h-video">
+  <div class="vsl" id="vsl">
+    <video id="vslVideo" playsinline preload="metadata" poster="review-tools.jpg" aria-label="52-second video. An AI voice speaking for Sayed explains how to use the free tools.">
+      <source src="review-tools.mp4" type="video/mp4">
+    </video>
+    <button type="button" class="vsl-sound" id="vslSound" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 10v4h4l5 4V6L7 10H3z"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M16 9.5l5 5M21 9.5l-5 5"/></svg><span>Tap for sound</span></button>
+    <button type="button" class="vsl-play" id="vslPlay" hidden aria-label="Play the video with sound"><i></i></button>
+  </div>
+  <p class="vsl-note">52 seconds. An AI voice, speaking for me.</p>
+  <details class="vsl-text"><summary>Read it instead</summary><p>Hi. I'm an AI voice, and I speak for Sayed Rashid. This is option three: his free tools. Here is what to do. Pick the job that hurts most from the list below. Type in your own numbers. It takes about a minute. You get the answer on the spot: a dollar figure, a score, or a finished document. There are 37 tools, with no sign-up. Your first three uses are open. After that, ask for the video or book the call, and the full set stays open. Who built them? Sayed, an ex-auditor. He has taken 38 systems live, and 91% of those clients are still with him. And he has done it across eight industries. Manufacturing, agriculture, retail, food and beverage, technology, printing, logistics, and finance. If a number worries you, the video and the call are one click away. Start with any tool below.</p></details>
+  </div>
+  <div class="h-more">
+    <ol class="steps">
+      <li><b>Pick the job that hurts most</b> from the list below.</li>
+      <li><b>Type in your own numbers.</b> About a minute, no sign-up.</li>
+      <li><b>Get the answer on the spot:</b> a dollar figure, a score or a finished document.</li>
+    </ol>
+    <a class="cta" href="#toolsHead" data-cta="tools">Go to the tools ↓</a>
+  </div>
+  </div>
+
+  <div class="why">
+    <h2>The proof</h2>
+    <div class="proof">
+      <div><b>38</b><span>systems taken live</span></div>
+      <div><b>91%</b><span>of clients still with us</span></div>
+      <div class="w"><b>Ex-auditor</b><span>now fixing how Singapore businesses run</span></div>
+    </div>
+    <div class="inds2" id="inds">
+      <div class="ind-head"><h3>Systems taken live across 8 industries</h3><p class="sub">Different trades, the same leaks: orders typed twice, stock that never matches, a month-end that drags.</p></div>
+      <svg class="orb" viewBox="0 0 360 360" role="img" aria-label="Eight industries around one number: Manufacturing, Agriculture &amp; plantations, Retail &amp; lifestyle, Food &amp; beverage, Technology &amp; engineering, Printing &amp; creative, Trading &amp; logistics, Services &amp; finance">
+        <circle class="orb-track" cx="180" cy="180" r="128"/>
+        <circle class="orb-ring" pathLength="1" cx="180" cy="180" r="128" transform="rotate(-90 180 180)"/>
+        <line class="orb-spoke" pathLength="1" style="--i:0" x1="180.0" y1="106.0" x2="180.0" y2="79.0"/><line class="orb-spoke" pathLength="1" style="--i:1" x1="232.3" y1="127.7" x2="251.4" y2="108.6"/><line class="orb-spoke" pathLength="1" style="--i:2" x1="254.0" y1="180.0" x2="281.0" y2="180.0"/><line class="orb-spoke" pathLength="1" style="--i:3" x1="232.3" y1="232.3" x2="251.4" y2="251.4"/><line class="orb-spoke" pathLength="1" style="--i:4" x1="180.0" y1="254.0" x2="180.0" y2="281.0"/><line class="orb-spoke" pathLength="1" style="--i:5" x1="127.7" y1="232.3" x2="108.6" y2="251.4"/><line class="orb-spoke" pathLength="1" style="--i:6" x1="106.0" y1="180.0" x2="79.0" y2="180.0"/><line class="orb-spoke" pathLength="1" style="--i:7" x1="127.7" y1="127.7" x2="108.6" y2="108.6"/>
+        <g class="orb-n" style="--i:0"><title>Manufacturing</title><circle class="orb-dot" style="--i:0" cx="180.0" cy="52.0" r="27"/><path class="orb-ic" pathLength="1" style="--i:0" transform="translate(165.0 37.0) scale(1.25)" d="M3 21h18M4 21V10l5 3.5V10l5 3.5V5h5v16M8 17h2M13 17h2"/></g><g class="orb-n" style="--i:1"><title>Agriculture &amp; plantations</title><circle class="orb-dot" style="--i:1" cx="270.5" cy="89.5" r="27"/><path class="orb-ic" pathLength="1" style="--i:1" transform="translate(255.5 74.5) scale(1.25)" d="M12 21v-9M12 12c0-4-3-6-7-6c0 4 3 6 7 6zM12 15c0-3 2.5-5 6-5c0 3-2.5 5-6 5z"/></g><g class="orb-n" style="--i:2"><title>Retail &amp; lifestyle</title><circle class="orb-dot" style="--i:2" cx="308.0" cy="180.0" r="27"/><path class="orb-ic" pathLength="1" style="--i:2" transform="translate(293.0 165.0) scale(1.25)" d="M5 8h14l-1 13H6L5 8zM9 8V6a3 3 0 0 1 6 0v2"/></g><g class="orb-n" style="--i:3"><title>Food &amp; beverage</title><circle class="orb-dot" style="--i:3" cx="270.5" cy="270.5" r="27"/><path class="orb-ic" pathLength="1" style="--i:3" transform="translate(255.5 255.5) scale(1.25)" d="M6 3v6a2.5 2.5 0 0 0 5 0V3M8.5 3v18M17 21V3c-2.5 1.5-3.5 4.5-3.5 8H17"/></g><g class="orb-n" style="--i:4"><title>Technology &amp; engineering</title><circle class="orb-dot" style="--i:4" cx="180.0" cy="308.0" r="27"/><path class="orb-ic" pathLength="1" style="--i:4" transform="translate(165.0 293.0) scale(1.25)" d="M7 7h10v10H7zM10 10h4v4h-4zM9 4v3M15 4v3M9 17v3M15 17v3M4 9h3M4 15h3M17 9h3M17 15h3"/></g><g class="orb-n" style="--i:5"><title>Printing &amp; creative</title><circle class="orb-dot" style="--i:5" cx="89.5" cy="270.5" r="27"/><path class="orb-ic" pathLength="1" style="--i:5" transform="translate(74.5 255.5) scale(1.25)" d="M7 8V3h10v5M7 17H4V9a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8h-3M7 14h10v7H7z"/></g><g class="orb-n" style="--i:6"><title>Trading &amp; logistics</title><circle class="orb-dot" style="--i:6" cx="52.0" cy="180.0" r="27"/><path class="orb-ic" pathLength="1" style="--i:6" transform="translate(37.0 165.0) scale(1.25)" d="M2 6h11v10H2zM13 9h4l4 4v3h-8M6.5 20a2 2 0 1 0 0-4a2 2 0 0 0 0 4zM17 20a2 2 0 1 0 0-4a2 2 0 0 0 0 4z"/></g><g class="orb-n" style="--i:7"><title>Services &amp; finance</title><circle class="orb-dot" style="--i:7" cx="89.5" cy="89.5" r="27"/><path class="orb-ic" pathLength="1" style="--i:7" transform="translate(74.5 74.5) scale(1.25)" d="M4 20h16M7 20v-5M12 20v-9M17 20V6"/></g>
+        <text class="orb-num" id="orbNum" x="180" y="198" text-anchor="middle">8</text>
+        <text class="orb-cap" x="180" y="224" text-anchor="middle">industries</text>
+        <g class="orb-comet"><circle cx="180" cy="52" r="4.5"/></g>
+      </svg>
+      <ul class="ind-list"><li style="--i:0">Manufacturing</li><li style="--i:1">Agriculture &amp; plantations</li><li style="--i:2">Retail &amp; lifestyle</li><li style="--i:3">Food &amp; beverage</li><li style="--i:4">Technology &amp; engineering</li><li style="--i:5">Printing &amp; creative</li><li style="--i:6">Trading &amp; logistics</li><li style="--i:7">Services &amp; finance</li></ul>
+    </div>
+  </div>
+
+  <h2 id="toolsHead">The 37 free tools</h2>
+  <p class="limit" id="limitLine">Your first three uses are open. After that, the full set stays open once you ask for the <a href="review-video.html" data-carry data-cta="limit-video">2-minute video</a> or <a href="review-call.html" data-carry data-cta="limit-call">book the 20-minute review</a>. Both are free.</p>
+  <div class="lockbox" id="lockBox" hidden>
+    <p>The full set stays open for people who ask for the 2-minute video or book the 20-minute review. Both are free, and either one opens all 37 tools on this browser for good.</p>
+    <div class="two">
+      <a class="cta" href="review-video.html" data-carry data-cta="lock-video">Option 1: get the two-minute video</a>
+      <a class="cta" href="review-call.html" data-carry data-cta="lock-call">Option 2: book 20 minutes on Zoom</a>
+    </div>
+    <small>A use is one tool you really worked with. The count is kept in this browser only.</small>
+  </div>
+  <div class="tools" id="toolsList">
+    <h3>Start here: what is costing your business money?</h3>
+    <ul class="tool-list">
+      <li class="featured"><a href="health-check/" data-cta="tool" data-tool="health-check"><div class="t-name">SME Systems Health Check</div><div class="t-desc">Ten honest questions, a score out of 20 and the one leak to fix first. About 60 seconds.</div><div class="t-meta">START HERE · 60 SECONDS</div></a></li>
+      <li class="featured"><a href="singapore-sme-systems-checklist.html" data-cta="tool" data-tool="singapore-sme-systems-checklist"><div class="t-name">The 12-Point Singapore SME Systems Checklist</div><div class="t-desc">Twelve yes/no checks on data, process, ownership and money before you buy any system. Scored, printable.</div><div class="t-meta">NEW · CHECKLIST</div></a></li>
+      <li><a href="cost-of-manual-work.html" data-cta="tool" data-tool="cost-of-manual-work"><div class="t-name">Cost of Manual Work Calculator</div><div class="t-desc">What retyping, chasing and checking really cost your team in a year.</div><div class="t-meta">CALCULATOR</div></a></li>
+      <li><a href="erp-readiness.html" data-cta="tool" data-tool="erp-readiness"><div class="t-name">ERP Readiness Scorecard</div><div class="t-desc">Eight questions on data, process, ownership and time: are you ready for a system, and what to fix first?</div><div class="t-meta">SCORECARD</div></a></li>
+    </ul>
+    <h3>Cash and month-end</h3>
+    <ul class="tool-list">
+      <li><a href="invoice-chaser.html" data-cta="tool" data-tool="invoice-chaser"><div class="t-name">Overdue Invoice Reminder Writer</div><div class="t-desc">Drop in your Xero or QuickBooks aged receivables; get the right reminder for every late customer.</div><div class="t-meta">DOES THE WORK FOR YOU</div></a></li>
+      <li><a href="ar-aging-report.html" data-cta="tool" data-tool="ar-aging-report"><div class="t-name">AR Aging Report Generator</div><div class="t-desc">Aging by customer, overdue %, DSO and a statement of account for every customer, from one export.</div><div class="t-meta">DOES THE WORK FOR YOU</div></a></li>
+      <li><a href="dso-calculator.html" data-cta="tool" data-tool="dso-calculator"><div class="t-name">DSO Calculator</div><div class="t-desc">Days sales outstanding, days beyond terms and the cash tied up.</div><div class="t-meta">CALCULATOR</div></a></li>
+      <li><a href="invoice-due-date-calculator.html" data-cta="tool" data-tool="invoice-due-date-calculator"><div class="t-name">Invoice Due Date Calculator</div><div class="t-desc">Due dates on net 7 to net 90 and net 30 EOM, days overdue and late interest.</div><div class="t-meta">CALCULATOR</div></a></li>
+      <li><a href="statement-of-account-generator.html" data-cta="tool" data-tool="statement-of-account-generator"><div class="t-name">Statement of Account Generator</div><div class="t-desc">A statement for every customer with open invoices, aging and total due, as PDF.</div><div class="t-meta">DOCUMENT MAKER</div></a></li>
+      <li><a href="month-end-close.html" data-cta="tool" data-tool="month-end-close"><div class="t-name">Month-End Close Cost Calculator</div><div class="t-desc">What a slow close costs in salary every year, and what a five-day close is worth.</div><div class="t-meta">CALCULATOR</div></a></li>
+    </ul>
+    <h3>Stock and warehouse</h3>
+    <ul class="tool-list">
+      <li class="featured"><a href="stock-take-variance-calculator.html" data-cta="tool" data-tool="stock-take-variance-calculator"><div class="t-name">Stock Take Variance Calculator</div><div class="t-desc">Paste system vs counted quantities: record accuracy, variance value and the top ten to investigate.</div><div class="t-meta">NEW · CALCULATOR</div></a></li>
+      <li class="featured"><a href="slow-moving-stock-calculator.html" data-cta="tool" data-tool="slow-moving-stock-calculator"><div class="t-name">Slow-Moving and Dead Stock Calculator</div><div class="t-desc">Months of cover, a class from healthy to dead, cash tied up and the provision. Paste a whole list.</div><div class="t-meta">NEW · CALCULATOR</div></a></li>
+      <li class="featured"><a href="landed-cost-calculator.html" data-cta="tool" data-tool="landed-cost-calculator"><div class="t-name">Landed Cost Calculator (Singapore Imports)</div><div class="t-desc">Foreign price, FX, freight, duty, 9% import GST and local charges to a true cost per unit.</div><div class="t-meta">NEW · CALCULATOR</div></a></li>
+      <li><a href="inventory-software-cost-calculator.html" data-cta="tool" data-tool="inventory-software-cost-calculator"><div class="t-name">Inventory Software Cost Calculator</div><div class="t-desc">Compare 12 months of licence costs across five inventory systems for your users, locations and orders.</div><div class="t-meta">CALCULATOR</div></a></li>
+    </ul>
+    <h3>Jobs, projects and contractors</h3>
+    <ul class="tool-list">
+      <li class="featured"><a href="progress-claim-calculator.html" data-cta="tool" data-tool="progress-claim-calculator"><div class="t-name">Progress Claim Calculator (Singapore)</div><div class="t-desc">Work done to date, variations, retention, previous claims and GST, cumulative, the way the SOP Act expects it.</div><div class="t-meta">NEW · CALCULATOR</div></a></li>
+      <li class="featured"><a href="job-costing-calculator.html" data-cta="tool" data-tool="job-costing-calculator"><div class="t-name">Job Costing Calculator</div><div class="t-desc">Budget used vs work done, projected final cost and overrun, and finished work you have not billed yet.</div><div class="t-meta">NEW · CALCULATOR</div></a></li>
+      <li><a href="timesheet-calculator.html" data-cta="tool" data-tool="timesheet-calculator"><div class="t-name">Timesheet Calculator</div><div class="t-desc">Hours, breaks, overnight shifts, overtime at 1.5× and pay for the week, with print and CSV.</div><div class="t-meta">CALCULATOR</div></a></li>
+      <li><a href="quotation-generator.html" data-cta="tool" data-tool="quotation-generator"><div class="t-name">Quotation Generator</div><div class="t-desc">Quotes with GST, validity and terms; one click turns an accepted quote into an invoice or delivery order.</div><div class="t-meta">DOCUMENT MAKER</div></a></li>
+      <li><a href="delivery-order-generator.html" data-cta="tool" data-tool="delivery-order-generator"><div class="t-name">Delivery Order Generator</div><div class="t-desc">Delivery orders with a receiver signature block and no prices.</div><div class="t-meta">DOCUMENT MAKER</div></a></li>
+      <li><a href="purchase-order-generator.html" data-cta="tool" data-tool="purchase-order-generator"><div class="t-name">Purchase Order Generator</div><div class="t-desc">Numbered purchase orders with supplier, delivery date and terms, as PDF.</div><div class="t-meta">DOCUMENT MAKER</div></a></li>
+    </ul>
+    <h3>Pricing and margin</h3>
+    <ul class="tool-list">
+      <li><a href="profit-margin-calculator.html" data-cta="tool" data-tool="profit-margin-calculator"><div class="t-name">Profit Margin Calculator</div><div class="t-desc">Margin, markup, price and break-even; reprice a whole list to a target margin.</div><div class="t-meta">CALCULATOR</div></a></li>
+      <li><a href="markup-calculator.html" data-cta="tool" data-tool="markup-calculator"><div class="t-name">Markup Calculator</div><div class="t-desc">Markup to margin and back, with the right selling price and GST.</div><div class="t-meta">CALCULATOR</div></a></li>
+      <li><a href="gross-profit-calculator.html" data-cta="tool" data-tool="gross-profit-calculator"><div class="t-name">Gross Profit Calculator</div><div class="t-desc">Gross profit, gross and net margin; works out cost of goods sold from stock.</div><div class="t-meta">CALCULATOR</div></a></li>
+      <li><a href="break-even-calculator.html" data-cta="tool" data-tool="break-even-calculator"><div class="t-name">Break-Even Calculator</div><div class="t-desc">Units and sales you need to cover fixed costs, plus margin of safety.</div><div class="t-meta">CALCULATOR</div></a></li>
+      <li><a href="price-increase-calculator.html" data-cta="tool" data-tool="price-increase-calculator"><div class="t-name">Price Increase Calculator</div><div class="t-desc">The % change between two prices, and what to charge when costs rise.</div><div class="t-meta">CALCULATOR</div></a></li>
+      <li><a href="gst-calculator.html" data-cta="tool" data-tool="gst-calculator"><div class="t-name">GST Calculator</div><div class="t-desc">Add or remove 9% GST (or any rate), one amount or a whole list.</div><div class="t-meta">CALCULATOR</div></a></li>
+    </ul>
+    <h3>Invoices and documents</h3>
+    <ul class="tool-list">
+      <li><a href="invoice-generator.html" data-cta="tool" data-tool="invoice-generator"><div class="t-name">Invoice Generator</div><div class="t-desc">PDF invoices and GST tax invoices with your logo, numbering and payment details.</div><div class="t-meta">DOCUMENT MAKER</div></a></li>
+      <li><a href="receipt-generator.html" data-cta="tool" data-tool="receipt-generator"><div class="t-name">Receipt Generator</div><div class="t-desc">Payment receipts with a PAID stamp for cash, PayNow, bank transfer or card.</div><div class="t-meta">DOCUMENT MAKER</div></a></li>
+    </ul>
+    <h3>Grants and compliance (Singapore)</h3>
+    <ul class="tool-list">
+      <li><a href="edge-grant-calculator.html" data-cta="tool" data-tool="edge-grant-calculator"><div class="t-name">EDGE Grant Calculator</div><div class="t-desc">Estimate the EDGE grant and net cost of an ERP or digital project, with the S$30,000 sub-cap and eligibility checks.</div><div class="t-meta">CALCULATOR</div></a></li>
+      <li><a href="invoicenow-deadline.html" data-cta="tool" data-tool="invoicenow-deadline"><div class="t-name">InvoiceNow Deadline Finder</div><div class="t-desc">Your GST status in, your InvoiceNow date out.</div><div class="t-meta">CHECKER</div></a></li>
+      <li><a href="invoicenow-software.html" data-cta="tool" data-tool="invoicenow-software"><div class="t-name">Is My Software InvoiceNow-Ready?</div><div class="t-desc">Check your accounting software against IMDA's accredited list.</div><div class="t-meta">CHECKER</div></a></li>
+      <li><a href="invoicenow-free.html" data-cta="tool" data-tool="invoicenow-free"><div class="t-name">Free InvoiceNow Solutions</div><div class="t-desc">The official free packages and their limits.</div><div class="t-meta">GUIDE</div></a></li>
+      <li><a href="invoicenow-grants.html" data-cta="tool" data-tool="invoicenow-grants"><div class="t-name">InvoiceNow Grants</div><div class="t-desc">What you can actually claim.</div><div class="t-meta">GUIDE</div></a></li>
+      <li><a href="invoicenow-providers.html" data-cta="tool" data-tool="invoicenow-providers"><div class="t-name">Providers vs Access Points</div><div class="t-desc">Which one you need, and when.</div><div class="t-meta">GUIDE</div></a></li>
+    </ul>
+    <h3>Automation costs</h3>
+    <ul class="tool-list">
+      <li><a href="whatsapp-api-cost-calculator.html" data-cta="tool" data-tool="whatsapp-api-cost-calculator"><div class="t-name">WhatsApp Business API Cost Calculator</div><div class="t-desc">Your monthly WhatsApp bill at Singapore rates, including the October 2026 change and provider plans.</div><div class="t-meta">CALCULATOR</div></a></li>
+      <li><a href="make-credit-calculator.html" data-cta="tool" data-tool="make-credit-calculator"><div class="t-name">Make Credit Calculator</div><div class="t-desc">How many Make credits your workflows really use, and which plan you need.</div><div class="t-meta">CALCULATOR</div></a></li>
+      <li><a href="erp-roi.html" data-cta="tool" data-tool="erp-roi"><div class="t-name">ERP &amp; Automation ROI Calculator</div><div class="t-desc">Payback period and 15-year value of a system, from your team size, hours and setup cost.</div><div class="t-meta">CALCULATOR</div></a></li>
+    </ul>
+  </div>
+
+  <div class="others">
+    <p class="lead">Or take another route</p>
+    <div class="two"><a class="o" href="review-video.html" data-carry data-cta="x-video"><small>Option 1 · No call needed</small>Get a two-minute video →</a><a class="o" href="review-call.html" data-carry data-cta="x-call"><small>Option 2 · Prefer to talk</small>Book 20 minutes on Zoom →</a></div>
+    <a class="backl" href="review.html" data-carry="hub" data-cta="back-foot">← Back to the three options</a>
+  </div>
+
+  <div class="byline">
+    <img src="sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
+    <div class="who">
+      <div class="nm">Sayed Rashid</div>
+      <div class="rl">I build the systems behind this. I post what actually breaks in Singapore SME operations, weekly.</div>
+    </div>
+    <a class="li" href="https://www.linkedin.com/in/sayedomni" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+      Connect on LinkedIn
+    </a>
+  </div>
+
+
+  <div class="footer">
+    <a href="index.html">Free tools</a> · <a href="https://www.gantry.work">Newsletter</a> · <a href="https://www.gantry.work/subscribe?utm_source=review-page">Subscribe free</a>
+  </div>
+</div>
+<script>
+(function () { try { var q = new URLSearchParams(location.search); window.gCamp = (q.get('in_camp') || q.get('utm_campaign') || '').slice(0, 40); } catch (e) {} })();
+
+/* Three free tool uses (2026-11-10). The count lives in /track.js: localStorage gantry_uses (one entry per use) and gantry_unlocked ('1' = open for good).
+   gUnlock() opens the tools for good on this browser; it is called when a video is requested or a call is booked, which is what the note on the tools promises.
+   gLocked = this browser has used its three and has not asked or booked. The browser's own count is the truth: locked=1 in the URL is only kept as a GA label,
+   so a shared link never tells a new visitor that they have used tools they have not. ?access=owner counts as unlocked (track.js stores it a moment later). */
+(function () {
+  var g = function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } };
+  var owner = false, via = 'return', n = 0;
+  try { var q = new URLSearchParams(location.search); owner = q.get('access') === 'owner'; if (q.get('locked') === '1') via = 'redirect'; } catch (e) {}
+  try { var a = JSON.parse(g('gantry_uses') || '[]'); n = Array.isArray(a) ? a.length : 0; } catch (e) {}
+  window.gLocked = !owner && g('gantry_unlocked') !== '1' && n >= 3;
+  window.gLockVia = via;
+  window.gUnlock = function () { try { localStorage.setItem('gantry_unlocked', '1'); } catch (e) {} window.gLocked = false; };
+})();
+
+/* Carry the query string between the hub and the option pages. Links back to the hub drop ?offer and add all=1 so the hub does not bounce the visitor straight back. */
+(function () {
+  var qs; try { qs = new URLSearchParams(location.search); } catch (e) { return; }
+  document.querySelectorAll('a[data-carry]').forEach(function (a) {
+    var q = new URLSearchParams(qs.toString());
+    if (a.getAttribute('data-carry') === 'hub') { q.delete('offer'); q.set('all', '1'); }
+    var s = q.toString(); if (!s) return;
+    var h = a.getAttribute('href').split('#');
+    a.setAttribute('href', h[0] + '?' + s + (h[1] ? '#' + h[1] : ''));
+  });
+})();
+
+/* Locked view on the tools page: the same line as the hub and the two ways to open the full set, instead of a list of links that would only bounce back here. */
+(function () {
+  if (!window.gLocked) return;
+  var h = document.getElementById('toolsHead'), list = document.getElementById('toolsList'), lim = document.getElementById('limitLine'), box = document.getElementById('lockBox'), cta = document.querySelector('.hero a.cta');
+  if (h) h.textContent = 'You have used your 3 free tools.';
+  if (list) list.style.display = 'none';
+  if (lim) lim.style.display = 'none';
+  if (box) box.hidden = false;
+  if (cta) cta.textContent = 'See how to open the full set ↓';
+  try { gtag('event', 'vsl_locked_view', { page: 'tools', via: window.gLockVia, source: window.gSrc, campaign: window.gCamp || 'none' }); } catch (e) {}
+})();
+
+/* VSL player (2026-11-10): the video plays by itself on every visit.
+   1) try with sound  2) the browser says no (iPhone, most first visits) > muted autoplay + "Tap for sound" (tap = sound on, from the start)
+   3) even muted is refused, or the visitor has data saver on > poster + play button.
+   Pauses when the tab is hidden or the video is scrolled away, resumes only if we paused it.
+   GA4, one event name per step: vsl_page_view (head) > vsl_autoplay {mode: sound|muted|blocked} > vsl_play > vsl_25 > vsl_50 > vsl_75 > vsl_complete, each with page and muted (1|0); vsl_unmute when sound is switched on.
+   vsl_play and each milestone count once per page view, whether the video started by itself or by a tap. */
+(function () {
+  var PAGE = 'tools';
+  var v = document.getElementById('vslVideo'), box = document.getElementById('vsl'), snd = document.getElementById('vslSound'), btn = document.getElementById('vslPlay');
+  if (!v || !box || !snd || !btn || window.__redir) return;
+  var ev = function (n, p) { try { p = p || {}; p.page = PAGE; p.source = window.gSrc; p.campaign = window.gCamp || 'none'; gtag('event', n, p); } catch (e) {} };
+  var mode = '', started = false, done = false, marks = { 25: 0, 50: 0, 75: 0 }, autoPaused = false, userPaused = false, inView = true;
+  var m = function () { return v.muted ? 1 : 0; };
+  var go = function () { var p; try { p = v.play(); } catch (e) {} if (p && p.catch) p.catch(function () {}); };
+  window.gVsl = { watched: function () { return started ? Math.round(v.currentTime / (v.duration || 1) * 100) : -1; }, mode: function () { return mode; },
+    pause: function () { userPaused = true; try { v.pause(); } catch (e) {} } };
+  function setMode(x) { if (mode) return; mode = x; box.setAttribute('data-mode', x); ev('vsl_autoplay', { mode: x }); }
+  function mutedTry() {
+    v.muted = true; v.setAttribute('muted', ''); v.setAttribute('autoplay', '');
+    var p; try { p = v.play(); } catch (e) {}
+    if (p && p.then) p.then(function () { setMode('muted'); snd.hidden = false; }, function () { setMode('blocked'); btn.hidden = false; });
+    else { setMode('muted'); snd.hidden = false; }
+  }
+  function start() {
+    var c = navigator.connection || {}, lite = c.saveData || (window.matchMedia && matchMedia('(prefers-reduced-data: reduce)').matches);
+    if (lite) { v.preload = 'none'; setMode('blocked'); btn.hidden = false; return; }
+    v.muted = false;
+    var p; try { p = v.play(); } catch (e) {}
+    if (p && p.then) p.then(function () { setMode('sound'); v.controls = true; }, mutedTry);
+    else mutedTry();
+  }
+  function unmute() {
+    v.muted = false; v.removeAttribute('muted'); try { v.currentTime = 0; } catch (e) {}
+    v.controls = true; snd.hidden = true; box.setAttribute('data-mode', 'sound'); userPaused = false; autoPaused = false;
+    go(); ev('vsl_unmute');
+  }
+  snd.addEventListener('click', function (e) { e.stopPropagation(); unmute(); });
+  v.addEventListener('click', function (e) { if (box.getAttribute('data-mode') === 'muted' && v.muted) { e.preventDefault(); unmute(); } });
+  btn.addEventListener('click', function () { btn.hidden = true; v.muted = false; v.controls = true; box.setAttribute('data-mode', 'sound'); userPaused = false; autoPaused = false; go(); });
+  v.addEventListener('playing', function () { if (!started) { started = true; ev('vsl_play', { muted: m() }); } });
+  v.addEventListener('play', function () { userPaused = false; });
+  v.addEventListener('pause', function () { if (!autoPaused && !v.ended) userPaused = true; });
+  v.addEventListener('timeupdate', function () { if (!v.duration) return; var pct = v.currentTime / v.duration * 100; [25, 50, 75].forEach(function (k) { if (pct >= k && !marks[k]) { marks[k] = 1; ev('vsl_' + k, { muted: m() }); } }); });
+  v.addEventListener('ended', function () {
+    if (!done) { done = true; ev('vsl_complete', { muted: m() }); }
+    if (v.muted) { snd.querySelector('span').textContent = 'Replay with sound'; snd.hidden = false; }
+    var t = document.querySelector('#toolsHead'), n = document.querySelector('#toolsList');
+    if (PAGE !== 'hub' && !v.muted && inView && t) { try { t.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) {} }
+    if (n) { n.classList.add('nudge'); setTimeout(function () { n.classList.remove('nudge'); }, 2600); }
+  });
+  function sync() {
+    var ok = !document.hidden && inView;
+    if (!ok) { if (!v.paused && !v.ended) { autoPaused = true; v.pause(); } }
+    else if (autoPaused && !userPaused && !v.ended) { autoPaused = false; go(); }
+  }
+  document.addEventListener('visibilitychange', function () { if (!mode && !document.hidden) start(); else sync(); });
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { inView = e[e.length - 1].intersectionRatio >= 0.25; if (mode) sync(); }, { threshold: [0, 0.25, 0.5] }).observe(box);
+  if (!document.hidden) start();
+})();
+
+/* GA4: which button people use, plus LinkedIn clicks (existing events, now with page). */
+document.querySelectorAll('[data-cta]').forEach(function (a) {
+  a.addEventListener('click', function () { try { var p = { cta: a.dataset.cta, source: window.gSrc, page: 'tools' }; if (a.dataset.tool) p.tool = a.dataset.tool; gtag('event', 'review_cta_click', p); } catch (e) {} });
+});
+document.querySelectorAll('a[href*="linkedin.com"]').forEach(function (a) {
+  a.addEventListener('click', function () { try { gtag('event', 'linkedin_click', { page: 'review', source: window.gSrc }); } catch (e) {} });
+});
+
+/* Industries block: draws itself the first time it is on screen. Pure CSS animation; this only arms it, counts 0 to 8 and links the list to the ring.
+   With "reduce motion" on, or without IntersectionObserver, it simply shows the finished picture. */
+(function () {
+  var b = document.getElementById('inds'); if (!b) return;
+  var num = document.getElementById('orbNum'), nodes = b.querySelectorAll('.orb-n'), items = b.querySelectorAll('.ind-list li');
+  var hot = function (i, on) { if (nodes[i]) nodes[i].classList.toggle('hot', on); if (items[i]) items[i].classList.toggle('hot', on); };
+  [nodes, items].forEach(function (set) { Array.prototype.forEach.call(set, function (el, i) {
+    el.addEventListener('mouseenter', function () { hot(i, true); }); el.addEventListener('mouseleave', function () { hot(i, false); }); }); });
+  var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (calm || !('IntersectionObserver' in window)) return;
+  b.classList.add('pre'); num.textContent = '0';
+  new IntersectionObserver(function (e, o) {
+    if (!e[0].isIntersecting) return; o.disconnect(); b.classList.add('on');
+    for (var i = 1; i <= nodes.length; i++) (function (k) { setTimeout(function () { num.textContent = k; }, 300 + (k - 1) * 360); })(i);
+  }, { threshold: 0.3 }).observe(b);
+})();
+</script>
+</body>
+</html>
