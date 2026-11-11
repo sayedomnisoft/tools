@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en-SG">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Does InvoiceNow Work? One Invoice, Five Stops | Gantry</title>
+<meta name="description" content="How InvoiceNow works in Singapore: one invoice followed through five stops, from your system to your customer and IRAS. Dates, Peppol ID, costs and grants.">
+<meta property="og:title" content="How Does InvoiceNow Work? One Invoice, Five Stops">
+<meta property="og:description" content="How InvoiceNow works in Singapore: one invoice followed through five stops, from your system to your customer and IRAS. Dates, Peppol ID, costs and grants.">
+<meta property="og:image" content="https://tools.gantry.work/og-index.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="flagship.css">
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://tools.gantry.work/invoicenow-explained.html">
+<meta property="og:url" content="https://tools.gantry.work/invoicenow-explained.html">
+<meta property="og:site_name" content="The Gantry">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="author" content="Sayed Rashid">
+<meta name="gantry-tool-category" content="guide">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "How InvoiceNow works: one invoice, five stops", "description": "How InvoiceNow works in Singapore: one invoice followed through five stops, from your system to your customer and IRAS. Dates, Peppol ID, costs and grants.", "url": "https://tools.gantry.work/invoicenow-explained.html", "mainEntityOfPage": "https://tools.gantry.work/invoicenow-explained.html", "datePublished": "2026-11-11", "dateModified": "2026-11-11", "inLanguage": "en-SG", "author": {"@type": "Person", "name": "Sayed Rashid", "url": "https://www.gantry.work/about"}, "publisher": {"@type": "Organization", "name": "The Gantry", "url": "https://www.gantry.work"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How does InvoiceNow work, in one line?", "acceptedAnswer": {"@type": "Answer", "text": "Your accounting software passes the invoice as data to an access point, which looks up your customer's Peppol ID and hands the invoice to the customer's access point, which places it in their accounting system. For GST-registered businesses a copy of the invoice data also goes to IRAS once the requirement applies to them."}}, {"@type": "Question", "name": "Is InvoiceNow the same as Peppol?", "acceptedAnswer": {"@type": "Answer", "text": "InvoiceNow is the name of Singapore's nationwide e-invoicing network. It runs on the international Peppol standard, and IMDA is the Peppol Authority for Singapore. Because the standard is shared, a business here can exchange e-invoices with an overseas business that is also on Peppol."}}, {"@type": "Question", "name": "Do I have to change my accounting software?", "acceptedAnswer": {"@type": "Answer", "text": "Only if it is not InvoiceNow-Ready. IRAS requires the data to be sent through an InvoiceNow-Ready Solution. If your current software is on IMDA's accredited list, you get a Peppol ID and activate the submission feature through that provider. A system built in-house connects through an accredited access point provider."}}, {"@type": "Question", "name": "Can IRAS see my invoices?", "acceptedAnswer": {"@type": "Answer", "text": "Once the GST InvoiceNow Requirement applies to you and you activate the feature, IRAS receives a copy of your invoice data through the access point. An older IMDA FAQ from March 2023 says the government cannot see e-invoices; that was written before the GST requirement existed. Invoices still travel directly between the two access points."}}, {"@type": "Question", "name": "When does my business have to start?", "acceptedAnswer": {"@type": "Answer", "text": "New voluntary GST registrants are already covered (from 1 November 2025 and 1 April 2026). New compulsory registrants and existing GST-registered businesses with total annual supplies of S$200,000 or less start on 1 April 2028, then S$1,000,000 or less on 1 April 2029, S$4,000,000 or less on 1 April 2030, and everyone above that on 1 April 2031."}}, {"@type": "Question", "name": "Does InvoiceNow replace my GST return?", "acceptedAnswer": {"@type": "Answer", "text": "No. IRAS states that businesses must still file accurate GST returns. The invoice data is sent in addition to the return, by the earlier of the day you file and the day the return is due."}}]}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<script src="/config.js"></script><script src="/track.js" defer></script><script src="/gantry-ui.js" defer></script><script src="/flagship.js" defer></script>
+<meta name="gantry-checked" content="2026-11-11">
+</head>
+<body>
+<div class="card flag">
+  <div class="brand"><a href="/?fix=grants">&larr; THE GANTRY &middot; TOOLS</a></div>
+  <h1>How InvoiceNow works: one invoice, five stops</h1>
+  <p class="lede">Most explanations of InvoiceNow start with the rules. This one follows a single invoice from your accounting system to your customer's, then shows where the copy for IRAS comes from.</p>
+  <div class="fl-tldr"><span class="k">The short answer</span>
+    <p>InvoiceNow is Singapore's e-invoicing network, built on the international Peppol standard. Your accounting software hands the invoice, as data, to an <b>access point</b>. That access point finds your customer's <b>Peppol ID</b> and passes the invoice to the customer's access point, which puts it straight into their accounting system. Nobody retypes it.</p>
+    <p>If you are GST-registered, a copy of the invoice data also goes to IRAS once the requirement applies to you. That is being phased in from 1 November 2025 to 1 April 2031.</p>
+  </div>
+  <div class="trust" id="gantry-trust"><img src="/sayed.jpg" alt="Sayed Rashid" width="46" height="46" loading="lazy"><div class="trust-t"><b>By Sayed Rashid</b>, ex-auditor, 38 systems taken live. Every date and dollar figure here was checked against the IRAS and IMDA pages on 11 November 2026. They are listed under Sources.</div></div>
+
+  <ul class="fl-toc">
+    <li><a href="#route">The five stops</a></li><li><a href="#pdf">PDF vs InvoiceNow</a></li><li><a href="#iras">What IRAS gets</a></li><li><a href="#dates">Your date</a></li><li><a href="#peppol">Your Peppol ID</a></li><li><a href="#start">Three steps to start</a></li><li><a href="#cost">Cost and grants</a></li><li><a href="#faq">FAQ</a></li>
+  </ul>
+
+  <h2 id="route">One invoice, five stops</h2>
+  <div class="fl-fig" id="fl-route">
+    <div class="fl-grid">
+      <div>
+      <svg viewBox="0 0 320 416" role="img" aria-labelledby="rt-t rt-d">
+        <title id="rt-t">The route of one InvoiceNow invoice</title>
+        <desc id="rt-d">Your accounting system passes the invoice to your access point. Your access point looks up the customer's Peppol ID in the SG Peppol Directory and sends the invoice to the customer's access point, which delivers it into the customer's accounting system. A copy of the invoice data goes from your access point to IRAS.</desc>
+        <path class="ln l4" d="M76 150 V39 H100"/>
+        <path class="ln l1" d="M76 322 V226"/>
+        <path class="ln l2" d="M142 208 H178"/>
+        <path class="ln l3" d="M244 226 V322"/>
+        <path class="ln dot ld" d="M118 226 L140 252"/>
+        <g class="nd n5"><rect x="100" y="14" width="200" height="50" rx="10"/><text class="t" x="216" y="36" text-anchor="middle">IRAS</text><text class="s" x="216" y="52" text-anchor="middle">gets a copy of the data</text></g>
+        <g class="nd n2"><rect x="10" y="150" width="132" height="76" rx="10"/><text class="t" x="76" y="172" text-anchor="middle">Your access point</text><text class="s" x="76" y="187" text-anchor="middle">sends for you</text></g>
+        <g class="nd n3"><rect x="178" y="150" width="132" height="76" rx="10"/><text class="t" x="244" y="172" text-anchor="middle">Their access point</text><text class="s" x="244" y="187" text-anchor="middle">receives for them</text></g>
+        <g class="nd dir"><rect x="85" y="252" width="150" height="42" rx="21"/><text class="t" x="160" y="270" text-anchor="middle" style="font-size:12px">SG Peppol Directory</text><text class="s" x="160" y="285" text-anchor="middle">looks up their Peppol ID</text></g>
+        <g class="nd n1"><rect x="10" y="322" width="132" height="80" rx="10"/><text class="t" x="76" y="376" text-anchor="middle">Your system</text><text class="s" x="76" y="392" text-anchor="middle">invoice is made here</text></g>
+        <g class="nd n4"><rect x="178" y="322" width="132" height="80" rx="10"/><text class="t" x="244" y="376" text-anchor="middle">Customer's system</text><text class="s" x="244" y="392" text-anchor="middle">arrives as data</text></g>
+        <g class="bdg"><circle cx="14" cy="324" r="10"/><text x="14" y="328" text-anchor="middle">1</text></g>
+        <g class="bdg"><circle cx="14" cy="152" r="10"/><text x="14" y="156" text-anchor="middle">2</text></g>
+        <g class="bdg"><circle cx="306" cy="152" r="10"/><text x="306" y="156" text-anchor="middle">3</text></g>
+        <g class="bdg"><circle cx="306" cy="324" r="10"/><text x="306" y="328" text-anchor="middle">4</text></g>
+        <g class="bdg"><circle cx="104" cy="16" r="10"/><text x="104" y="20" text-anchor="middle">5</text></g>
+        <g class="pkt copy"><rect x="-13" y="-9" width="26" height="18" rx="3"/><path d="M-13 -9 L0 2 L13 -9"/></g>
+        <g class="pkt main"><rect x="-13" y="-9" width="26" height="18" rx="3"/><path d="M-13 -9 L0 2 L13 -9"/></g>
+      </svg>
+        <div class="fl-ctl"><button type="button" id="fl-prev">&larr; Back</button><button type="button" id="fl-pp" class="pp">Pause</button><button type="button" id="fl-next">Next &rarr;</button></div>
+      </div>
+      <div>
+        <ol class="fl-steps">
+          <li><button type="button" class="fl-step"><b>Your system makes the invoice.</b> You raise it the way you do today. The software also builds a structured version: fields of data, not a picture.</button></li>
+          <li><button type="button" class="fl-step"><b>Your access point takes it.</b> An IMDA-accredited provider signs the invoice and looks up your customer's Peppol ID in the SG Peppol Directory to learn where to send it.</button></li>
+          <li><button type="button" class="fl-step"><b>Their access point receives it.</b> The two access points deal with each other directly. The receiving one checks the sender's signature before it accepts anything.</button></li>
+          <li><button type="button" class="fl-step"><b>It lands in your customer's system.</b> The invoice arrives as data, so their accounts clerk does not key it in again.</button></li>
+          <li><button type="button" class="fl-step"><b>A copy of the data goes to IRAS.</b> Only if you are GST-registered, your date has come, and you have switched on the submission feature in your software.</button></li>
+        </ol>
+        <p class="cap" id="fl-live" aria-live="polite"></p>
+      </div>
+    </div>
+    <p class="cap">Diagram by The Gantry, drawn from the IRAS and IMDA pages under Sources. Tap any stop, or use the buttons. This shape is called the four-corner model: you, your access point, their access point, them.</p>
+  </div>
+  <p>The part most owners miss is stop 2. You never connect to your customer directly, and you do not need to use the same software or the same provider as they do. Each side picks its own access point and the two providers do the handover, the way two banks settle a transfer between their own customers.</p>
+
+  <h2 id="pdf">A PDF by email is not an e-invoice</h2>
+  <p>IMDA makes this point in its own FAQ: a PDF sent by email is one-sided. It is easy for the sender, and the receiver still has to read it and type it into their books. That retyping is where the cost and the mistakes sit.</p>
+  <div class="fl-tw"><table>
+    <tr><th></th><th>PDF by email</th><th>InvoiceNow</th></tr>
+    <tr><td>What travels</td><td>A picture of the invoice</td><td>The invoice as data fields</td></tr>
+    <tr><td>Who types it into the buyer's books</td><td>The buyer's clerk</td><td>Nobody. It arrives in their system</td></tr>
+    <tr><td>The address it is sent to</td><td>An email address</td><td>A Peppol ID built from the UEN</td></tr>
+    <tr><td>Who can put something on the wire</td><td>Anyone with an email account</td><td>Only certified access points. Data is signed and sent encrypted</td></tr>
+    <tr><td>If you sent the wrong one</td><td>Ask them to ignore it</td><td>It cannot be recalled. Send a credit note, or ask them to discard it and send again</td></tr>
+    <tr><td>What IRAS receives</td><td>Nothing until you file or are audited</td><td>A copy of the invoice data, once the requirement applies to you</td></tr>
+  </table></div>
+  <p>IMDA commissioned a study of what manual handling costs. Its FAQ quotes about $8 of manual work per invoice, and errors in an estimated 3% of paper invoices that can cost as much as S$72 each to put right. Those are the study's figures, not mine, and the FAQ that quotes them was last updated on 28 March 2023.</p>
+
+  <h2 id="iras">What IRAS gets, and when</h2>
+  <p>The IRAS rule is called the GST InvoiceNow Requirement. In plain terms, as the IRAS page stood on 11 November 2026:</p>
+  <ul>
+    <li><b>Who.</b> All GST-registered businesses, in phases. Overseas entities and businesses registered only under reverse charge are outside it.</li>
+    <li><b>What.</b> Invoice data for the standard-rated, zero-rated and exempt supplies, and the purchases, that you report in your GST return. That covers tax invoices, simplified tax invoices, serially numbered receipts, and debit and credit notes.</li>
+    <li><b>What can be grouped.</b> Point-of-sale takings, sales on simplified tax invoices and petty cash purchases may be sent as totals instead of line by line.</li>
+    <li><b>What is left out.</b> Deemed supplies and other entries with no underlying sale or purchase, reverse charge transactions, exempt financial services and digital payment token items, and import permits.</li>
+    <li><b>By when.</b> By the day you file the GST return or the day it is due, whichever comes first.</li>
+    <li><b>How.</b> Through an InvoiceNow-Ready Solution. IRAS receives the copy through the access point once you activate the feature.</li>
+  </ul>
+  <div class="fl-box"><p><b>It does not replace your GST return.</b> You still file an accurate return every period. Think of the invoice data as the working papers arriving alongside the return, instead of being asked for later.</p></div>
+
+  <h2 id="dates">When it applies to your business</h2>
+  <ol class="fl-time">
+    <li class="past"><span class="d">1 November 2025</span>Companies that register for GST voluntarily within six months of incorporation.</li>
+    <li class="past"><span class="d">1 April 2026</span>Every business that applies for voluntary GST registration from this date.</li>
+    <li class="now">This page was checked on 11 November 2026. The two dates above have passed.</li>
+    <li><span class="d">1 April 2028</span>New compulsory GST registrants, and existing GST-registered businesses with total annual supplies of S$200,000 or less.</li>
+    <li><span class="d">1 April 2029</span>Existing GST-registered businesses with total annual supplies of S$1,000,000 or less.</li>
+    <li><span class="d">1 April 2030</span>Existing GST-registered businesses with total annual supplies of S$4,000,000 or less.</li>
+    <li><span class="d">1 April 2031</span>Existing GST-registered businesses with total annual supplies above S$4,000,000.</li>
+  </ol>
+  <p>"Total annual supplies" means your standard-rated, zero-rated and exempt supplies in the accounting periods that ended in calendar year 2025. IRAS says businesses registered before 2026 were told their own date from mid-2026, so check your IRAS notices first. If you cannot find yours, the <a href="invoicenow-deadline.html">InvoiceNow deadline calculator</a> works it out from the same table.</p>
+
+  <h2 id="peppol">Your Peppol ID is your UEN with a prefix</h2>
+  <p>IMDA compares a Peppol ID to an email address: both sides need one before anything can be delivered. For a Singapore business it is the UEN with a fixed prefix in front. Type a UEN to see it.</p>
+  <div class="fl-tool">
+    <label for="fl-uen">UEN (try the made-up example 201912345K)</label>
+    <input type="text" id="fl-uen" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="14" placeholder="201912345K">
+    <div class="fl-out" id="fl-pid">Type a UEN above to see the Peppol ID it becomes. Example: UEN 201912345K becomes 0195:SGUEN201912345K.</div>
+    <p class="fl-note">Nothing you type leaves this page. You do not create the ID yourself: your solution provider registers your business in the SG Peppol Directory using your UEN.</p>
+  </div>
+
+  <h2 id="notyet">What if my customer is not on InvoiceNow?</h2>
+  <p>The delivery leg needs both sides to have a Peppol ID. If your customer has none, there is nowhere on the network for the invoice to go, and you keep sending it the way you do now.</p>
+  <p>The IRAS leg is separate. The data IRAS asks for includes things that never travel to a customer over the network at all, such as point-of-sale totals and petty cash purchases. So the sensible reading is that your software submits the invoice data to IRAS whether or not that customer can receive e-invoices.</p>
+  <div class="fl-box"><p><b>What I could not confirm.</b> The IRAS page does not spell this case out in one sentence, and it does not say whether you may keep emailing a PDF alongside. Ask your solution provider how their product handles a customer with no Peppol ID before you rely on it.</p></div>
+
+  <h2 id="start">Three steps to switch it on</h2>
+  <p>This is the order IMDA gives in its February 2026 brochure.</p>
+  <ol>
+    <li><b>Check that your software is InvoiceNow-Ready.</b> It has to be on IMDA's accredited list. If you run a system built in-house, you connect through an accredited access point provider instead. Two of our free tools help here: <a href="invoicenow-software.html">is my software ready?</a> and the <a href="invoicenow-providers.html">provider list you can filter</a>.</li>
+    <li><b>Get your Peppol ID.</b> Your provider registers the business in the SG Peppol Directory with your UEN.</li>
+    <li><b>Turn on the GST InvoiceNow submission feature</b> inside the software, so the copy starts going to IRAS.</li>
+  </ol>
+  <p>From my own projects, the software switch is the short part. The slow part is the data: customers saved with no UEN, tax codes picked by habit, credit notes raised as negative invoices. Clean those before your date, not on it.</p>
+
+  <h2 id="cost">What it costs, and the grants</h2>
+  <ul>
+    <li><b>Fees.</b> IMDA's FAQ says most access points and solution providers charge per invoice sent or received, and several offer it free. Converting PDFs into the Peppol format can cost extra.</li>
+    <li><b>Free packages.</b> IRAS says free-of-charge solution packages are available up to 31 March 2031, and the current list of them applies until 31 March 2027. See <a href="invoicenow-free.html">which free packages fit a small business</a>.</li>
+    <li><b>GST InvoiceNow Transition Grant.</b> S$1,000 for businesses with annual supplies of S$4,000,000 or less, and S$5,000 above that.</li>
+    <li><b>InvoiceNow Queen Bee Grant.</b> S$25,000, for businesses with annual turnover above S$4,000,000.</li>
+  </ul>
+  <p>Each grant has conditions and closing dates that I have not repeated here. They are set out, with the official links, in <a href="invoicenow-grants.html">InvoiceNow grants: what you can claim</a>.</p>
+
+  <h2 id="wrong">Five things people get wrong</h2>
+  <ol>
+    <li><b>"InvoiceNow is a piece of software."</b> It is a network. Your accounting software connects to it.</li>
+    <li><b>"We already email PDFs, so we are compliant."</b> A PDF is a picture. The requirement is about data.</li>
+    <li><b>"It is only about sales invoices."</b> Purchases reported in the GST return are in scope too, along with credit and debit notes.</li>
+    <li><b>"I can fix a wrong invoice later."</b> A sent e-invoice cannot be pulled back. The fix is a credit note.</li>
+    <li><b>"My customer and I must use the same provider."</b> No. That is the whole point of having access points in the middle.</li>
+  </ol>
+
+  <h2 id="faq">Questions people ask</h2>
+  <details class="q"><summary>How does InvoiceNow work, in one line?</summary><p>Your accounting software passes the invoice as data to an access point, which looks up your customer's Peppol ID and hands the invoice to the customer's access point, which places it in their accounting system. For GST-registered businesses a copy of the invoice data also goes to IRAS once the requirement applies to them.</p></details>
+  <details class="q"><summary>Is InvoiceNow the same as Peppol?</summary><p>InvoiceNow is the name of Singapore's nationwide e-invoicing network. It runs on the international Peppol standard, and IMDA is the Peppol Authority for Singapore. Because the standard is shared, a business here can exchange e-invoices with an overseas business that is also on Peppol.</p></details>
+  <details class="q"><summary>Do I have to change my accounting software?</summary><p>Only if it is not InvoiceNow-Ready. IRAS requires the data to be sent through an InvoiceNow-Ready Solution. If your current software is on IMDA's accredited list, you get a Peppol ID and activate the submission feature through that provider. A system built in-house connects through an accredited access point provider. <a href="invoicenow-software.html">Check your software here</a>.</p></details>
+  <details class="q"><summary>Can IRAS see my invoices?</summary><p>Once the GST InvoiceNow Requirement applies to you and you activate the feature, IRAS receives a copy of your invoice data through the access point. An older IMDA FAQ from March 2023 says the government cannot see e-invoices; that was written before the GST requirement existed. Invoices still travel directly between the two access points.</p></details>
+  <details class="q"><summary>When does my business have to start?</summary><p>New voluntary GST registrants are already covered (from 1 November 2025 and 1 April 2026). New compulsory registrants and existing GST-registered businesses with total annual supplies of S$200,000 or less start on 1 April 2028, then S$1,000,000 or less on 1 April 2029, S$4,000,000 or less on 1 April 2030, and everyone above that on 1 April 2031. <a href="invoicenow-deadline.html">Work out your date</a>.</p></details>
+  <details class="q"><summary>Does InvoiceNow replace my GST return?</summary><p>No. IRAS states that businesses must still file accurate GST returns. The invoice data is sent in addition to the return, by the earlier of the day you file and the day the return is due.</p></details>
+
+  <h2 id="sources">Sources</h2>
+  <ol class="fl-src">
+    <li>IRAS, <a href="https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/gst-invoicenow-requirement" target="_blank" rel="noopener">GST InvoiceNow Requirement</a>. Page marked as last updated 8 October 2026, read 11 November 2026. Source for who is covered, the phase dates, what data is in and out of scope, the submission timing, the grant amounts and the free package dates.</li>
+    <li>IMDA, <a href="https://file.go.gov.sg/invoicenow-brochure.pdf" target="_blank" rel="noopener">All you need to know about InvoiceNow</a> (brochure, version 1.3, updated 26 February 2026), read 11 November 2026. Source for the three steps and the meaning of total annual supplies.</li>
+    <li>IMDA, <a href="https://www.imda.gov.sg/-/media/Imda/Files/Programme/Nationwide-E-Invoicing-Framework/IMDAInvoiceNow-FAQs-Final.pdf?la=en" target="_blank" rel="noopener">InvoiceNow FAQs</a> (updated 28 March 2023), read 11 November 2026. Source for the PDF comparison, the Peppol ID format, signing and encryption, recall, fees, and the cost-of-errors study. It predates the GST requirement, so where the two differ I have followed IRAS.</li>
+    <li>Peppol, <a href="https://peppol.org/about/" target="_blank" rel="noopener">About Peppol</a>, read 11 November 2026. Background on the four-corner model.</li>
+  </ol>
+  <p class="fl-note">This is a plain-English guide, not tax advice. Rules change: check the IRAS page for your own case before you act.</p>
+
+  <div class="fl-cta">
+    <h2>Not sure your invoice data is ready?</h2>
+    <p>The switch-on takes minutes. The clean-up of customer records, tax codes and credit notes is what takes weeks. In a free 20-minute review I look at how an invoice moves through your business today and tell you the one thing to fix first.</p>
+    <a class="cta" href="https://tools.gantry.work/review.html">See how the free 20-minute systems review works &rarr;</a>
+  </div>
+
+  <h2>Related free tools and guides</h2>
+  <ul class="fl-next">
+    <li><a href="invoicenow-deadline.html"><b>InvoiceNow deadline calculator</b><span>Your start date from your GST status and annual supplies.</span></a></li>
+    <li><a href="invoicenow-software.html"><b>Is my accounting software InvoiceNow-Ready?</b><span>Check it against the accredited list.</span></a></li>
+    <li><a href="three-way-match-guide.html"><b>Three-way matching, with a live checker</b><span>Once invoices arrive as data, this is the check that decides which ones get paid.</span></a></li>
+    <li><a href="https://www.gantry.work/p/invoicenow-when-your-business-must?utm_source=tools&amp;utm_medium=invoicenow-explained"><b>InvoiceNow: when your business must start</b><span>The longer read on The Gantry.</span></a></li>
+    <li><a href="https://www.gantry.work/p/accounting-software-not-on-invoicenow-list?utm_source=tools&amp;utm_medium=invoicenow-explained"><b>Your accounting software is not on the InvoiceNow list. Now what?</b><span>The options, in order of cost.</span></a></li>
+  </ul>
+
+  <div class="footer"><strong>The Gantry</strong>: put the weight on the system, not your people.<br><a href="/?fix=grants">All grants and InvoiceNow tools</a> &middot; <a href="https://www.gantry.work/subscribe?utm_source=tools-invoicenow-explained">Subscribe free</a> &middot; <a href="/privacy.html">Privacy</a></div>
+</div>
+</body>
+</html>

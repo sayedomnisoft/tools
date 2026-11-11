@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en-SG">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Three Way Match Example: PO, GRN, Invoice and a Live Checker | Gantry</title>
+<meta name="description" content="Three-way matching with a worked example (100 ordered, 96 received, 100 invoiced), a live checker, a mismatch table and five steps for a small company.">
+<meta property="og:title" content="Three Way Match Example: PO, GRN, Invoice and a Live Checker">
+<meta property="og:description" content="Three-way matching with a worked example (100 ordered, 96 received, 100 invoiced), a live checker, a mismatch table and five steps for a small company.">
+<meta property="og:image" content="https://tools.gantry.work/og-index.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="flagship.css">
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://tools.gantry.work/three-way-match-guide.html">
+<meta property="og:url" content="https://tools.gantry.work/three-way-match-guide.html">
+<meta property="og:site_name" content="The Gantry">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="author" content="Sayed Rashid">
+<meta name="gantry-tool-category" content="guide">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "Three-way matching, with a worked example and a live checker", "description": "Three-way matching with a worked example (100 ordered, 96 received, 100 invoiced), a live checker, a mismatch table and five steps for a small company.", "url": "https://tools.gantry.work/three-way-match-guide.html", "mainEntityOfPage": "https://tools.gantry.work/three-way-match-guide.html", "datePublished": "2026-11-11", "dateModified": "2026-11-11", "inLanguage": "en-SG", "author": {"@type": "Person", "name": "Sayed Rashid", "url": "https://www.gantry.work/about"}, "publisher": {"@type": "Organization", "name": "The Gantry", "url": "https://www.gantry.work"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a three-way match, with an example?", "acceptedAnswer": {"@type": "Answer", "text": "It is a check that a supplier invoice agrees with the purchase order and the goods received note before it is paid. Example: 100 rolls ordered at S$12.00, 96 received, 100 invoiced. The invoice says S$1,200.00, the match says pay S$1,152.00 for the 96 that arrived and ask for a S$48.00 credit note."}}, {"@type": "Question", "name": "What is the difference between two-way and three-way matching?", "acceptedAnswer": {"@type": "Answer", "text": "Two-way matching compares the invoice with the purchase order only, so it checks price and ordered quantity. Three-way matching adds the goods received note, so it also checks that what was billed actually arrived. Use two-way for services and three-way for physical goods."}}, {"@type": "Question", "name": "Is a delivery order the same as a goods received note?", "acceptedAnswer": {"@type": "Answer", "text": "No. The delivery order is written by the supplier and says what they sent. The goods received note is your own record of what was counted and accepted. A small firm can use the supplier's delivery order as its receipt record, as long as its own receiver writes the counted quantity on it and signs."}}, {"@type": "Question", "name": "What tolerance should I set?", "acceptedAnswer": {"@type": "Answer", "text": "There is no official figure. It is a business decision about how small a difference is not worth a phone call. Start at zero for price so you see every difference for a month, then set a small percentage or dollar limit, write down who can approve above it, and review it once a year."}}, {"@type": "Question", "name": "What should I do when the invoice arrives before the goods?", "acceptedAnswer": {"@type": "Answer", "text": "Hold it unposted, or post it on hold, until the goods are counted in. Paying on the invoice alone is two-way matching by accident. If the supplier wants payment in advance, treat that as a deposit agreed on the purchase order, not as an early invoice."}}, {"@type": "Question", "name": "Does a small company really need three-way matching?", "acceptedAnswer": {"@type": "Answer", "text": "For anything bought for stock or for a job, yes, because that is where short deliveries and price creep hide. It does not need software to begin: a numbered purchase order, a counted and signed delivery order, and a rule that accounts sees both before paying will do."}}]}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<script src="/config.js"></script><script src="/track.js" defer></script><script src="/gantry-ui.js" defer></script><script src="/flagship.js" defer></script>
+<meta name="gantry-checked" content="2026-11-11">
+</head>
+<body>
+<div class="card flag">
+  <div class="brand"><a href="/?fix=docs">&larr; THE GANTRY &middot; TOOLS</a></div>
+  <h1>Three-way matching, with a worked example and a live checker</h1>
+  <p class="lede">Ordered 100. Received 96. Invoiced for 100. Three-way matching is the habit that catches that before the money leaves, and it needs no special software to start.</p>
+  <div class="fl-tldr"><span class="k">The short answer</span>
+    <p>Three-way matching means a supplier invoice is paid only after it agrees with two other documents: the <b>purchase order</b> (what you agreed to buy, and at what price) and the <b>goods received note</b> (what actually arrived). Two tests decide it:</p>
+    <p><b>Quantity billed is not more than quantity received. Price billed is not more than price ordered.</b> Anything that fails is held, with a named person to chase it.</p>
+  </div>
+  <div class="trust" id="gantry-trust"><img src="/sayed.jpg" alt="Sayed Rashid" width="46" height="46" loading="lazy"><div class="trust-t"><b>By Sayed Rashid</b>, ex-auditor, 38 systems taken live. The method is the one I checked as an auditor and now set up in live systems. The two published figures on this page were checked on 11 November 2026 and are listed under Sources.</div></div>
+
+  <ul class="fl-toc">
+    <li><a href="#example">Worked example</a></li><li><a href="#checker">Live checker</a></li><li><a href="#docs">The three documents</a></li><li><a href="#mismatch">When they disagree</a></li><li><a href="#setup">Set it up in five steps</a></li><li><a href="#ways">Two, three or four way</a></li><li><a href="#faq">FAQ</a></li>
+  </ul>
+
+  <h2 id="example">The worked example</h2>
+  <p><span class="eg">Example figures</span><br>A packaging firm orders 100 rolls of film at S$12.00 a roll. The lorry brings 96. A week later the invoice arrives for 100 rolls, S$1,200.00 before GST.</p>
+  <div class="fl-fig" id="fl-match">
+    <svg viewBox="0 0 336 312" role="img" aria-labelledby="mt-t mt-d">
+        <title id="mt-t">Three-way match of a purchase order, a goods received note and a supplier invoice</title>
+        <desc id="mt-d">Three documents side by side. The purchase order shows what you agreed, the goods received note shows what arrived, and the supplier invoice shows what was billed. Three checks compare ordered with received, received with billed, and the agreed price with the billed price. A bar underneath shows how much to pay.</desc>
+        <g class="doc d1"><rect x="6" y="18" width="104" height="150" rx="9"/><text class="t" x="58" y="38" text-anchor="middle">Purchase order</text><text class="s" x="58" y="52" text-anchor="middle">what you agreed</text><line x1="16" y1="62" x2="100" y2="62"/><text class="k" x="58" y="78" text-anchor="middle">QUANTITY</text><text class="v" id="sv-poq" x="58" y="101" text-anchor="middle">100</text><text class="k" x="58" y="124" text-anchor="middle">UNIT PRICE</text><text class="v2" id="sv-pop" x="58" y="145" text-anchor="middle">S$12.00</text></g>
+        <g class="doc d2"><rect x="116" y="18" width="104" height="150" rx="9"/><text class="t" x="168" y="38" text-anchor="middle">Goods received</text><text class="s" x="168" y="52" text-anchor="middle">what arrived</text><line x1="126" y1="62" x2="210" y2="62"/><text class="k" x="168" y="78" text-anchor="middle">QUANTITY</text><text class="v" id="sv-grq" x="168" y="101" text-anchor="middle">96</text><text class="k" x="168" y="124" text-anchor="middle">UNIT PRICE</text><text class="s" x="168" y="143" text-anchor="middle">none: it is a count</text></g>
+        <g class="doc d3"><rect x="226" y="18" width="104" height="150" rx="9"/><text class="t" x="278" y="38" text-anchor="middle">Supplier invoice</text><text class="s" x="278" y="52" text-anchor="middle">what they billed</text><line x1="236" y1="62" x2="320" y2="62"/><text class="k" x="278" y="78" text-anchor="middle">QUANTITY</text><text class="v" id="sv-inq" x="278" y="101" text-anchor="middle">100</text><text class="k" x="278" y="124" text-anchor="middle">UNIT PRICE</text><text class="v2" id="sv-inp" x="278" y="145" text-anchor="middle">S$12.00</text></g>
+        <path class="br b1" d="M58 168 V182 H158 V168"/>
+        <path class="br b2" d="M178 168 V182 H278 V168"/>
+        <path class="br b3" d="M22 168 V244 H314 V168"/>
+        <g transform="translate(108 182)"><g id="mk1" class="mk c1 bad" data-c="c1"><circle r="10"/><path class="y" d="M-4.6 .4 L-1.3 3.8 L4.8 -3.4"/><path class="x" d="M-3.8 -3.8 L3.8 3.8 M3.8 -3.8 L-3.8 3.8"/></g></g>
+        <text class="ck c1" x="108" y="204" text-anchor="middle">ordered vs received</text><text id="cv1" class="ckv c1 bad" data-c="c1" x="108" y="217" text-anchor="middle">4 short</text>
+        <g transform="translate(228 182)"><g id="mk2" class="mk c2 bad" data-c="c2"><circle r="10"/><path class="y" d="M-4.6 .4 L-1.3 3.8 L4.8 -3.4"/><path class="x" d="M-3.8 -3.8 L3.8 3.8 M3.8 -3.8 L-3.8 3.8"/></g></g>
+        <text class="ck c2" x="228" y="204" text-anchor="middle">received vs billed</text><text id="cv2" class="ckv c2 bad" data-c="c2" x="228" y="217" text-anchor="middle">4 billed, not received</text>
+        <g transform="translate(168 244)"><g id="mk3" class="mk c3 ok" data-c="c3"><circle r="10"/><path class="y" d="M-4.6 .4 L-1.3 3.8 L4.8 -3.4"/><path class="x" d="M-3.8 -3.8 L3.8 3.8 M3.8 -3.8 L-3.8 3.8"/></g></g>
+        <text class="ck c3" x="110" y="263" text-anchor="middle">price agreed vs billed</text><text id="cv3" class="ckv c3" data-c="c3" x="226" y="263" text-anchor="middle">same</text>
+        <g id="sv-vb" class="vb bad"><rect x="6" y="276" width="324" height="30" rx="8"/><text id="sv-vt" x="168" y="296" text-anchor="middle">Pay S$1,152.00 of S$1,200.00</text></g>
+      </svg>
+    <p class="cap">Diagram by The Gantry. A tick means the two documents agree; a cross means they do not. Change the numbers below and the picture redraws.</p>
+  </div>
+  <div class="fl-tw"><table>
+    <tr><th>Line</th><th>Working</th><th class="num">Amount</th></tr>
+    <tr><td>Invoice as billed</td><td>100 rolls x S$12.00</td><td class="num">S$1,200.00</td></tr>
+    <tr><td>What you should pay</td><td>96 rolls received x S$12.00</td><td class="num">S$1,152.00</td></tr>
+    <tr><td>Credit note to ask for</td><td>4 rolls x S$12.00</td><td class="num">S$48.00</td></tr>
+  </table></div>
+  <p>Without the goods received note, the invoice looks perfect: right supplier, right price, right quantity against the order. The S$48.00 goes out and nobody ever knows. Now change one thing. Say the supplier billed the correct 96 rolls but at S$12.60. The quantity test passes and the price test fails: 96 x S$0.60 is S$57.60 over, and only the purchase order can show it. That is why it takes three documents and not two.</p>
+
+  <h2 id="checker">Try it with your own numbers</h2>
+  <div class="fl-tool">
+    <div class="fl-in">
+      <div><label for="fl-poq">Ordered quantity</label><input type="number" id="fl-poq" value="100" min="0" step="any" inputmode="decimal"></div>
+      <div><label for="fl-grq">Received quantity</label><input type="number" id="fl-grq" value="96" min="0" step="any" inputmode="decimal"></div>
+      <div><label for="fl-inq">Invoiced quantity</label><input type="number" id="fl-inq" value="100" min="0" step="any" inputmode="decimal"></div>
+      <div><label for="fl-pop">Order unit price (S$)</label><input type="number" id="fl-pop" value="12.00" min="0" step="any" inputmode="decimal"></div>
+      <div><label for="fl-inp">Invoice unit price (S$)</label><input type="number" id="fl-inp" value="12.00" min="0" step="any" inputmode="decimal"></div>
+      <div><label for="fl-tol">Price tolerance (%)</label><input type="number" id="fl-tol" value="0" min="0" step="any" inputmode="decimal"></div>
+    </div>
+    <div class="fl-out bad" id="fl-check">Pay <b>S$1,152.00</b> of the S$1,200.00 billed. Hold or claim back <b>S$48.00</b>. <span class="fl-note">Before GST.</span>
+      <ul><li>Billed for 4 more than arrived. Pay for the 96 you received and ask the supplier for a credit note for the rest.</li><li>4 ordered but not delivered. Decide today: keep the order open for the balance, or close it so nobody receives against it later.</li></ul></div>
+    <div class="fl-ctl" style="display:flex"><button type="button" id="fl-again">Reset to the example</button></div>
+    <p class="fl-note">Nothing you type leaves this page. One line of one order, before GST. The tolerance applies to price only; quantity is checked exactly.</p>
+  </div>
+
+  <h2 id="docs">The three documents, and who should own each</h2>
+  <div class="fl-tw wide"><table>
+    <tr><th>Document</th><th>Who creates it</th><th>What it proves</th><th>Usual weak spot</th></tr>
+    <tr><td>Purchase order (PO)</td><td>You, before the supplier acts</td><td>What was agreed: item, quantity, price, terms</td><td>Orders placed by phone or chat, with the PO written afterwards or never</td></tr>
+    <tr><td>Delivery order (DO)</td><td>The supplier, travelling with the goods</td><td>What the supplier says they sent</td><td>Signed at the door without counting</td></tr>
+    <tr><td>Goods received note (GRN)</td><td>You, at the moment of receipt</td><td>What your own person counted and accepted</td><td>Recorded days later from memory, or copied from the DO</td></tr>
+    <tr><td>Supplier invoice</td><td>The supplier</td><td>What they want to be paid</td><td>Emailed straight to the person who placed the order</td></tr>
+  </table></div>
+  <p>A delivery order and a goods received note are not the same thing. The delivery order is the supplier's claim. The goods received note is your count. In a small firm they can share one sheet of paper: the receiver writes the counted quantity on the supplier's delivery order, signs and dates it, and that marked-up copy becomes your receipt record. What matters is that the number was counted by your side.</p>
+
+  <h2 id="mismatch">When the three disagree</h2>
+  <div class="fl-tw"><table>
+    <tr><th>What you see</th><th>What to do</th><th>Who chases</th></tr>
+    <tr><td>Billed more than received</td><td>Pay for what arrived. Ask for a credit note for the difference.</td><td>Accounts</td></tr>
+    <tr><td>Billed less than received</td><td>Pay it. Expect a second invoice and keep the receipt open until it comes.</td><td>Accounts</td></tr>
+    <tr><td>Price above the order</td><td>Pay at the order price and hold the rest until the new price is confirmed in writing.</td><td>The buyer who placed the order</td></tr>
+    <tr><td>Price below the order</td><td>Pay as billed. Update the price list so the next order is right.</td><td>The buyer</td></tr>
+    <tr><td>Received less than ordered, billed correctly</td><td>Pay. Then either leave the order open for the balance or close it.</td><td>The buyer</td></tr>
+    <tr><td>Received more than ordered</td><td>Decide to keep or return before any invoice for the extra is paid.</td><td>The buyer, with the store</td></tr>
+    <tr><td>Invoice with no purchase order</td><td>Do not pay yet. Send it to whoever ordered, to raise the order after the fact and sign for it.</td><td>The manager of the person who ordered</td></tr>
+    <tr><td>Invoice arrives before the goods</td><td>Park it. It is matched on the day the goods are counted in.</td><td>Accounts</td></tr>
+  </table></div>
+
+  <h2 id="setup">Set it up in five steps</h2>
+  <ol>
+    <li><b>No order number, no payment.</b> Every purchase of goods gets a purchase order before the supplier acts, and suppliers are told to print that number on their invoices. A <a href="purchase-order-generator.html">free purchase order generator</a> is enough to begin.</li>
+    <li><b>Count at the door.</b> The receiver counts, writes the quantity on the delivery order, and records the receipt the same day. Not from memory on Friday.</li>
+    <li><b>Match before you post.</b> Accounts puts the three documents side by side, or lets the system do it, before the invoice is entered for payment.</li>
+    <li><b>Write your tolerance down.</b> Decide how small a price difference you will pay without asking, and who may approve anything above it. Start strict. You can loosen it once you see how often it trips.</li>
+    <li><b>Give every mismatch an owner and a day.</b> Held invoices go on one list that is cleared weekly. An invoice that sits unmatched for a month is a supplier relationship going sour.</li>
+  </ol>
+  <div class="fl-box"><p><b>Split the three jobs.</b> The person who orders should not be the one who records the receipt, and neither should be the one who releases payment. In a team of three or four that is not always possible. The minimum that still works: whoever pays is never the person who ordered, and the owner looks at the held-invoice list once a week.</p></div>
+  <p>The reason auditors care about this control is simple. Each document is made by a different person at a different time, so a mistake or a made-up invoice has to get past all three to be paid.</p>
+
+  <h2 id="ways">Two-way, three-way or four-way?</h2>
+  <div class="fl-tw"><table>
+    <tr><th>Match</th><th>Compares</th><th>Use it for</th></tr>
+    <tr><td>Two-way</td><td>Invoice against purchase order</td><td>Services, subscriptions and rent, where nothing is counted in at a door</td></tr>
+    <tr><td>Three-way</td><td>Invoice against purchase order and goods received</td><td>Stock, raw materials, packaging, spare parts, site materials</td></tr>
+    <tr><td>Four-way</td><td>All of the above plus an inspection or acceptance record</td><td>Goods that can arrive in the right quantity and still be wrong: food, chemicals, made-to-drawing parts</td></tr>
+  </table></div>
+  <p>Most small firms need three-way for anything that goes into stock or onto a job, and two-way for the rest. Do not put the office coffee through four-way matching.</p>
+
+  <h2 id="why">What a wrong invoice costs</h2>
+  <p>A study commissioned by IMDA estimated that errors affect 3% of paper invoices and can cost as much as S$72 each to put right, on top of about $8 of manual handling per invoice. Those are the study's figures, quoted in IMDA's InvoiceNow FAQ (updated 28 March 2023), not mine. The match is cheap by comparison: it is one look at three numbers.</p>
+  <p>It also gets easier as invoices start to arrive as data instead of PDFs, because a system can then do the comparing and show accounts only the ones that fail. How that delivery works is in <a href="invoicenow-explained.html">How InvoiceNow works: one invoice, five stops</a>.</p>
+
+  <h2 id="faq">Questions people ask</h2>
+  <details class="q"><summary>What is a three-way match, with an example?</summary><p>It is a check that a supplier invoice agrees with the purchase order and the goods received note before it is paid. Example: 100 rolls ordered at S$12.00, 96 received, 100 invoiced. The invoice says S$1,200.00, the match says pay S$1,152.00 for the 96 that arrived and ask for a S$48.00 credit note.</p></details>
+  <details class="q"><summary>What is the difference between two-way and three-way matching?</summary><p>Two-way matching compares the invoice with the purchase order only, so it checks price and ordered quantity. Three-way matching adds the goods received note, so it also checks that what was billed actually arrived. Use two-way for services and three-way for physical goods.</p></details>
+  <details class="q"><summary>Is a delivery order the same as a goods received note?</summary><p>No. The delivery order is written by the supplier and says what they sent. The goods received note is your own record of what was counted and accepted. A small firm can use the supplier's delivery order as its receipt record, as long as its own receiver writes the counted quantity on it and signs.</p></details>
+  <details class="q"><summary>What tolerance should I set?</summary><p>There is no official figure. It is a business decision about how small a difference is not worth a phone call. Start at zero for price so you see every difference for a month, then set a small percentage or dollar limit, write down who can approve above it, and review it once a year.</p></details>
+  <details class="q"><summary>What should I do when the invoice arrives before the goods?</summary><p>Hold it unposted, or post it on hold, until the goods are counted in. Paying on the invoice alone is two-way matching by accident. If the supplier wants payment in advance, treat that as a deposit agreed on the purchase order, not as an early invoice.</p></details>
+  <details class="q"><summary>Does a small company really need three-way matching?</summary><p>For anything bought for stock or for a job, yes, because that is where short deliveries and price creep hide. It does not need software to begin: a numbered purchase order, a counted and signed delivery order, and a rule that accounts sees both before paying will do.</p></details>
+
+  <h2 id="sources">Sources</h2>
+  <ol class="fl-src">
+    <li>IMDA, <a href="https://www.imda.gov.sg/-/media/Imda/Files/Programme/Nationwide-E-Invoicing-Framework/IMDAInvoiceNow-FAQs-Final.pdf?la=en" target="_blank" rel="noopener">InvoiceNow FAQs</a> (updated 28 March 2023), read 11 November 2026. Source for the 3%, S$72 and $8 figures, which come from a study IMDA commissioned.</li>
+    <li>Everything else on this page is working method from audit and from 38 systems taken live. The roll-of-film figures are a made-up example chosen so the arithmetic is easy to follow.</li>
+  </ol>
+  <p class="fl-note">A plain-English guide, not accounting or tax advice for your own case.</p>
+
+  <div class="fl-cta">
+    <h2>Paying invoices from memory?</h2>
+    <p>If orders live in chat, receipts live on paper and invoices live in email, the match cannot happen. In a free 20-minute review I map how one purchase moves through your business and show you where the three documents should meet.</p>
+    <a class="cta" href="https://tools.gantry.work/review.html">See how the free 20-minute systems review works &rarr;</a>
+  </div>
+
+  <h2>Related free tools and guides</h2>
+  <ul class="fl-next">
+    <li><a href="purchase-order-generator.html"><b>Purchase order generator</b><span>Make a numbered PO in a minute.</span></a></li>
+    <li><a href="delivery-order-generator.html"><b>Delivery order generator</b><span>With a line for the quantity counted and the receiver's signature.</span></a></li>
+    <li><a href="invoicenow-explained.html"><b>How InvoiceNow works: one invoice, five stops</b><span>What changes when supplier invoices arrive as data.</span></a></li>
+    <li><a href="https://www.gantry.work/p/three-way-matching?utm_source=tools&amp;utm_medium=three-way-match-guide"><b>Three-way matching</b><span>The longer read on The Gantry.</span></a></li>
+    <li><a href="https://www.gantry.work/p/goods-received-note-grn?utm_source=tools&amp;utm_medium=three-way-match-guide"><b>Goods received note (GRN)</b><span>What goes on it and who signs.</span></a></li>
+    <li><a href="https://www.gantry.work/p/purchase-order-vs-invoice-singapore?utm_source=tools&amp;utm_medium=three-way-match-guide"><b>Purchase order vs invoice in Singapore</b><span>The difference, and why you need both.</span></a></li>
+  </ul>
+
+  <div class="footer"><strong>The Gantry</strong>: put the weight on the system, not your people.<br><a href="/?fix=docs">All paperwork tools</a> &middot; <a href="https://www.gantry.work/subscribe?utm_source=tools-three-way-match-guide">Subscribe free</a> &middot; <a href="/privacy.html">Privacy</a></div>
+</div>
+</body>
+</html>
