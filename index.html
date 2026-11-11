@@ -17,57 +17,91 @@
   .hub .lead { font-size: 14.5px; color: var(--muted); line-height: 1.5; margin-bottom: 12px; }
   .hub .trust { margin: 0 0 16px; padding: 8px 12px; font-size: 12.5px; align-items: center; border-radius: 12px; }
   .hub .trust img { width: 30px; height: 30px; flex: 0 0 30px; }
-  .ask { font-size: 18px; font-weight: 800; margin: 0 0 10px; }
-  .chips { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-bottom: 8px; }
-  .chip { padding: 10px 8px; border-radius: 11px; border: 1px solid rgba(255,255,255,0.26); background: rgba(255,255,255,0.05); color: #fff;
-    font: 600 13.5px/1.25 inherit; font-family: inherit; cursor: pointer; transition: opacity .15s, border-color .15s; }
-  .chip:hover { border-color: var(--gold-light); opacity: 1; }
-  .chip.on { background: linear-gradient(180deg, var(--gold-light), var(--gold)); color: var(--ink); border-color: transparent; opacity: 1; }
-  .chip.dim { opacity: .5; }
-  .why { font-size: 12.5px; color: rgba(255,255,255,0.7); line-height: 1.45; margin: 0 0 14px; }
-  .why:empty { display: none; }
-  .panel { margin-top: 18px; }
-  .panel h2 { font-size: 19px; margin-bottom: 2px; }
-  .panel .pain { font-size: 14px; color: var(--muted); line-height: 1.5; margin-bottom: 10px; }
-  a.pick { display: block; text-decoration: none; color: #fff; padding: 16px 18px; border-radius: 14px; border: 1px solid rgba(242,207,110,0.8);
-    background: linear-gradient(135deg, rgba(201,162,39,0.20), rgba(42,47,176,0.14)); transition: transform .12s ease; }
-  a.pick:hover { transform: translateY(-2px); }
-  .pick span { display: block; }
-  .pk-k { font-size: 11px; letter-spacing: 1.4px; font-weight: 700; color: var(--gold-light); margin-bottom: 5px; }
-  .pk-n { font-size: 19px; font-weight: 800; line-height: 1.2; margin-bottom: 4px; }
-  .pk-d { font-size: 14px; color: rgba(255,255,255,0.86); line-height: 1.45; margin-bottom: 12px; }
-  .pk-b { display: inline-block !important; padding: 11px 18px; border-radius: 10px; font-size: 15px; font-weight: 700; color: var(--ink);
-    background: linear-gradient(180deg, var(--gold-light), var(--gold)); }
-  .also { font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,0.6); font-weight: 700; margin: 14px 0 7px; }
-  ul.more { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
-  ul.more a, ul.more a:visited { display: block; height: 100%; padding: 9px 12px; border-radius: 10px; text-decoration: none; color: #fff;
-    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.13); }
-  ul.more a:hover { border-color: var(--gold-light); background: rgba(242,207,110,0.10); }
-  ul.more b { display: block; font-size: 14px; font-weight: 700; line-height: 1.3; }
-  ul.more span { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 12.5px; color: rgba(255,255,255,0.7); line-height: 1.4; margin-top: 2px; }
-  .js .panel { display: none; }
-  .js .panel.on, .js .showall .panel { display: block; }
-  .js .showall .panel { margin-top: 26px; }
-  .allbtn { display: none; margin: 18px auto 0; padding: 9px 16px; background: transparent; color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.22);
-    border-radius: 999px; font: 600 13px/1 inherit; font-family: inherit; cursor: pointer; }
-  .js .allbtn { display: block; }
-  .allbtn:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
   details.fold { margin-top: 12px; border: 1px solid rgba(255,255,255,0.13); border-radius: 12px; padding: 0 14px; background: rgba(255,255,255,0.03); }
   details.fold summary { cursor: pointer; padding: 12px 0; font-size: 14.5px; font-weight: 700; list-style-position: inside; }
   details.fold .sub { font-size: 14px; }
   .hub .footer { margin-top: 18px; }
   @media (max-width: 620px) {
     .card.hub { padding: 20px 15px; }
-    .chips { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    /* a visitor we could place gets one swipeable row, so the tool to start with stays on the first screen */
-    .chips.sig { display: flex; flex-wrap: nowrap; overflow-x: auto; margin-right: -15px; padding-right: 15px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
-    .chips.sig::-webkit-scrollbar { display: none; }
-    .chips.sig .chip { flex: 0 0 auto; white-space: nowrap; padding: 9px 13px; }
-    ul.more { grid-template-columns: 1fr; }
     .hub h1 { font-size: 20px; }
   }
+  /* ---- pick-what-to-fix tabs (hubtabs.py) ---- */
+  .ht-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 10px; }
+  .ht-ask { font-size: 18px; font-weight: 800; line-height: 1.25; margin: 0; }
+  .ht-sel, .ht-rail, .ht-hint, .ht-all { display: none; }
+  .js .ht-sel { display: flex; align-items: center; gap: 8px; flex: 0 0 auto; }
+  .js .ht-rail { display: block; position: relative; margin-bottom: 8px; }
+  .ht-sel span { font-size: 12.5px; color: rgba(255,255,255,0.7); white-space: nowrap; }
+  .ht-sel select { -webkit-appearance: none; appearance: none; width: auto; max-width: 100%; margin: 0; padding: 9px 36px 9px 12px; border-radius: 10px;
+    border: 1.5px solid rgba(242,207,110,0.65); color: #fff; font: 600 14px/1.2 inherit; font-family: inherit; cursor: pointer;
+    background: rgba(255,255,255,0.08) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23f2cf6e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 13px center / 12px 8px; }
+  .ht-sel select:hover { border-color: var(--gold-light); }
+  .ht-chips { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .ht-chip { display: flex; align-items: center; justify-content: center; gap: 7px; min-height: 48px; padding: 8px 10px; border-radius: 12px;
+    border: 1.5px solid rgba(255,255,255,0.36); background: rgba(255,255,255,0.09); color: #fff; text-align: center;
+    font: 700 13.5px/1.25 inherit; font-family: inherit; cursor: pointer; transition: opacity .15s, border-color .15s, background .15s; }
+  .ht-chip i { flex: 0 0 auto; font-style: normal; font-size: 11px; font-weight: 700; line-height: 1; padding: 4px 6px; border-radius: 999px;
+    background: rgba(255,255,255,0.16); color: rgba(255,255,255,0.9); }
+  .ht-chip:hover { border-color: var(--gold-light); background: rgba(242,207,110,0.14); opacity: 1; }
+  .ht-chip:focus-visible, .ht-arr:focus-visible, .ht-sel select:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
+  .ht-chip.on { background: linear-gradient(180deg, var(--gold-light), var(--gold)); color: var(--ink); border-color: transparent; opacity: 1;
+    box-shadow: 0 5px 16px rgba(201,162,39,0.38); }
+  .ht-chip.on i { background: rgba(20,20,42,0.18); color: var(--ink); }
+  .ht-chip.dim { opacity: .64; }
+  .ht-arr { display: none; }
+  .ht-why { font-size: 12.5px; color: rgba(255,255,255,0.72); line-height: 1.45; margin: 0 0 4px; }
+  .ht-why:empty { display: none; }
+  .ht .ht-panel { margin-top: 14px; padding: 16px 16px 18px; border: 1px solid rgba(242,207,110,0.34); border-radius: 16px; background: rgba(255,255,255,0.03); }
+  .ht .ht-panel .ht-h { font-size: 19px; font-weight: 800; line-height: 1.25; margin: 0 0 2px; }
+  .ht-pain { font-size: 14px; color: var(--muted); line-height: 1.5; margin: 0 0 10px; }
+  a.ht-pick { display: block; text-decoration: none; color: #fff; padding: 16px 18px; border-radius: 14px; border: 1px solid rgba(242,207,110,0.8);
+    background: linear-gradient(135deg, rgba(201,162,39,0.20), rgba(42,47,176,0.14)); transition: transform .12s ease; }
+  a.ht-pick:hover { transform: translateY(-2px); }
+  .ht-pick span { display: block; }
+  .ht-pk-k { font-size: 11px; letter-spacing: 1.4px; font-weight: 700; color: var(--gold-light); margin-bottom: 5px; }
+  .ht-pk-n { font-size: 19px; font-weight: 800; line-height: 1.2; margin-bottom: 4px; }
+  .ht-pk-d { font-size: 14px; color: rgba(255,255,255,0.86); line-height: 1.45; margin-bottom: 12px; }
+  .ht-pick .ht-pk-b { display: inline-block; padding: 11px 18px; border-radius: 10px; font-size: 15px; font-weight: 700; color: var(--ink);
+    background: linear-gradient(180deg, var(--gold-light), var(--gold)); }
+  .ht-also { font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,0.6); font-weight: 700; margin: 14px 0 7px; }
+  ul.ht-more { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 7px; }
+  ul.ht-more li { margin: 0; }
+  ul.ht-more a, ul.ht-more a:visited { display: block; height: 100%; padding: 9px 12px; border-radius: 10px; text-decoration: none; color: #fff;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.13); }
+  ul.ht-more a:hover { border-color: var(--gold-light); background: rgba(242,207,110,0.10); }
+  ul.ht-more b { display: block; font-size: 14px; font-weight: 700; line-height: 1.3; }
+  ul.ht-more span { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 12.5px; color: rgba(255,255,255,0.7); line-height: 1.4; margin-top: 2px; }
+  .js .ht-panel { display: none; }
+  .js .ht-panel.on, .js .ht.showall .ht-panel { display: block; }
+  .js .ht-all { display: block; margin: 16px auto 0; padding: 10px 16px; background: transparent; color: rgba(255,255,255,0.78); border: 1px solid rgba(255,255,255,0.24);
+    border-radius: 999px; font: 600 13px/1 inherit; font-family: inherit; cursor: pointer; }
+  .ht-all:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+  @media (max-width: 620px) {
+    .ht-top { flex-direction: column; align-items: stretch; gap: 8px; }
+    .js .ht-sel { display: block; }
+    .ht-sel span { display: none; }
+    /* 16px stops iPhone Safari zooming the page when the list opens */
+    .ht-sel select { width: 100%; font-size: 16px; padding: 12px 40px 12px 14px; border-radius: 12px; }
+    /* one row that scrolls sideways; the faded edge and the arrows say there is more */
+    .ht-chips { display: flex; flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; padding: 2px 0 6px; scrollbar-width: none; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
+    .ht-chips::-webkit-scrollbar { display: none; }
+    /* about three topics show at once, so the cut-off fourth one says "there is more" */
+    .ht-chip { flex: 0 0 104px; width: 104px; min-height: 52px; padding: 7px 8px; font-size: 13px; line-height: 1.2; }
+    .ht-chip i { display: none; }
+    .ht-rail.more-r .ht-chips { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 52px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 52px), transparent); }
+    .ht-rail.more-l .ht-chips { -webkit-mask-image: linear-gradient(to left, #000 calc(100% - 52px), transparent); mask-image: linear-gradient(to left, #000 calc(100% - 52px), transparent); }
+    .ht-rail.more-l.more-r .ht-chips { -webkit-mask-image: linear-gradient(to right, transparent, #000 52px, #000 calc(100% - 52px), transparent); mask-image: linear-gradient(to right, transparent, #000 52px, #000 calc(100% - 52px), transparent); }
+    .ht-arr { position: absolute; top: 50%; margin-top: -20px; width: 34px; height: 34px; padding: 0; border: none; border-radius: 50%; z-index: 2; cursor: pointer;
+      background: linear-gradient(180deg, var(--gold-light), var(--gold)); color: var(--ink); font: 800 21px/34px inherit; font-family: inherit; text-align: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.5); }
+    .ht-rail.more-r .ht-next { display: block; right: -5px; }
+    .ht-rail.more-l .ht-prev { display: block; left: -5px; }
+    .js .ht-hint { display: block; font-size: 12.5px; font-weight: 600; color: var(--gold-light); text-align: right; margin: -2px 0 8px; }
+    .js .ht.swiped .ht-hint, .js .ht.fits .ht-hint { display: none; }
+    .ht .ht-panel { padding: 14px 12px 16px; }
+    ul.ht-more { grid-template-columns: 1fr; }
+  }
 </style>
-<script>document.documentElement.className += ' js';</script>
 
 <!-- seo:start -->
 <meta name="msvalidate.01" content="56D324CEE3AFE13AD468A1D18F58BB54">
@@ -87,7 +121,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
 <script src="/config.js"></script><script src="/track.js" defer></script><script src="/gantry-ui.js" defer></script>
-<meta name="gantry-checked" content="2026-11-10">
+<meta name="gantry-checked" content="2026-11-11">
 </head>
 <body>
 <div class="card hub" id="hub">
@@ -96,108 +130,120 @@
   <p class="lead">Pick what you want to fix. You get one tool to start with, and most take about a minute.</p>
   <div class="trust" id="gantry-trust"><img src="/sayed.jpg" alt="Sayed Rashid" width="30" height="30" loading="lazy"><div class="trust-t"><b>Built by Sayed Rashid</b>, ex-auditor. 38 systems taken live. Each tool comes from a job owners were doing by hand.</div></div>
 
-  <p class="ask" id="ask">What do you want to fix first?</p>
-  <div class="chips" id="chips" role="group" aria-labelledby="ask"><button type="button" class="chip" data-tab="start" aria-pressed="false">Not sure yet</button><button type="button" class="chip" data-tab="cash" aria-pressed="false">Customers pay late</button><button type="button" class="chip" data-tab="stock" aria-pressed="false">Stock does not match</button><button type="button" class="chip" data-tab="jobs" aria-pressed="false">Jobs run over budget</button><button type="button" class="chip" data-tab="margin" aria-pressed="false">Margins are thin</button><button type="button" class="chip" data-tab="docs" aria-pressed="false">Paperwork by hand</button><button type="button" class="chip" data-tab="grants" aria-pressed="false">Grants and InvoiceNow</button><button type="button" class="chip" data-tab="whatsapp" aria-pressed="false">WhatsApp is a mess</button></div>
-  <p class="why" id="why" aria-live="polite"></p>
 
-  <section class="panel" id="p-start" data-tab="start">
-    <h2>Not sure where the leak is</h2>
-    <p class="pain">Ten honest questions find the one thing to fix first. About 60 seconds.</p>
-    <a class="pick" href="health-check/" data-tool="health-check" data-slot="pick">
-      <span class="pk-k">START WITH THIS · 60 SECONDS</span>
-      <span class="pk-n">SME Systems Health Check</span>
-      <span class="pk-d">Ten honest questions, a score out of 20 and the one leak to fix first. About 60 seconds.</span>
-      <span class="pk-b">Start the 60-second check &rarr;</span>
+<div class="ht" id="ht">
+  <script>document.documentElement.className += ' js';</script>
+  <div class="ht-top">
+    <p class="ht-ask" id="htAsk">What do you want to fix first?</p>
+    <div class="ht-sel"><span>Or pick from a list:</span><select id="htSel" aria-label="Choose what you want to fix"><option value="start">Not sure yet (5)</option><option value="cash">Customers pay late (6)</option><option value="stock">Stock does not match (4)</option><option value="jobs">Jobs run over budget (4)</option><option value="margin">Margins are thin (6)</option><option value="docs">Paperwork by hand (6)</option><option value="grants">Grants and InvoiceNow (6)</option><option value="whatsapp">WhatsApp is a mess (7)</option></select></div>
+  </div>
+  <div class="ht-rail" id="htRail">
+    <button type="button" class="ht-arr ht-prev" id="htPrev" aria-label="Show earlier topics">&lsaquo;</button>
+    <div class="ht-chips" id="htChips" role="tablist" aria-labelledby="htAsk"><button type="button" class="ht-chip" role="tab" id="ht-t-start" data-tab="start" aria-selected="false" aria-controls="ht-p-start"><span>Not sure yet</span><i>5</i></button><button type="button" class="ht-chip" role="tab" id="ht-t-cash" data-tab="cash" aria-selected="false" aria-controls="ht-p-cash"><span>Customers pay late</span><i>6</i></button><button type="button" class="ht-chip" role="tab" id="ht-t-stock" data-tab="stock" aria-selected="false" aria-controls="ht-p-stock"><span>Stock does not match</span><i>4</i></button><button type="button" class="ht-chip" role="tab" id="ht-t-jobs" data-tab="jobs" aria-selected="false" aria-controls="ht-p-jobs"><span>Jobs run over budget</span><i>4</i></button><button type="button" class="ht-chip" role="tab" id="ht-t-margin" data-tab="margin" aria-selected="false" aria-controls="ht-p-margin"><span>Margins are thin</span><i>6</i></button><button type="button" class="ht-chip" role="tab" id="ht-t-docs" data-tab="docs" aria-selected="false" aria-controls="ht-p-docs"><span>Paperwork by hand</span><i>6</i></button><button type="button" class="ht-chip" role="tab" id="ht-t-grants" data-tab="grants" aria-selected="false" aria-controls="ht-p-grants"><span>Grants and InvoiceNow</span><i>6</i></button><button type="button" class="ht-chip" role="tab" id="ht-t-whatsapp" data-tab="whatsapp" aria-selected="false" aria-controls="ht-p-whatsapp"><span>WhatsApp is a mess</span><i>7</i></button></div>
+    <button type="button" class="ht-arr ht-next" id="htNext" aria-label="Show more topics">&rsaquo;</button>
+  </div>
+  <p class="ht-hint" id="htHint" aria-hidden="true">Swipe sideways for all 8 topics &rarr;</p>
+  <p class="ht-why" id="htWhy" aria-live="polite"></p>
+
+  <section class="ht-panel" id="ht-p-start" data-tab="start" role="tabpanel" aria-labelledby="ht-t-start">
+    <h2 class="ht-h">Not sure where the leak is</h2>
+    <p class="ht-pain">Ten honest questions find the one thing to fix first. About 60 seconds.</p>
+    <a class="ht-pick" href="health-check/" data-tool="health-check" data-slot="pick">
+      <span class="ht-pk-k">START WITH THIS · 60 SECONDS</span>
+      <span class="ht-pk-n">SME Systems Health Check</span>
+      <span class="ht-pk-d">Ten honest questions, a score out of 20 and the one leak to fix first. About 60 seconds.</span>
+      <span class="ht-pk-b">Start the 60-second check &rarr;</span>
     </a>
-    <p class="also">Then, if you need them:</p>
-    <ul class="more"><li><a href="singapore-sme-systems-checklist.html" data-tool="singapore-sme-systems-checklist" data-slot="more"><b>The 12-Point Singapore SME Systems Checklist</b><span>Twelve yes/no checks on data, process, ownership and money before you buy any system. Scored, printable.</span></a></li><li><a href="cost-of-manual-work.html" data-tool="cost-of-manual-work" data-slot="more"><b>Cost of Manual Work Calculator</b><span>What retyping, chasing and checking really cost your team in a year.</span></a></li><li><a href="erp-readiness.html" data-tool="erp-readiness" data-slot="more"><b>ERP Readiness Scorecard</b><span>Eight questions on data, process, ownership and time: are you ready for a system, and what to fix first?</span></a></li><li><a href="erp-roi.html" data-tool="erp-roi" data-slot="more"><b>ERP &amp; Automation ROI Calculator</b><span>Payback period and 15-year value of a system, from your team size, hours and setup cost.</span></a></li></ul>
+    <p class="ht-also">Then, if you need them:</p>
+    <ul class="ht-more"><li><a href="singapore-sme-systems-checklist.html" data-tool="singapore-sme-systems-checklist" data-slot="more"><b>The 12-Point Singapore SME Systems Checklist</b><span>Twelve yes/no checks on data, process, ownership and money before you buy any system. Scored, printable.</span></a></li><li><a href="cost-of-manual-work.html" data-tool="cost-of-manual-work" data-slot="more"><b>Cost of Manual Work Calculator</b><span>What retyping, chasing and checking really cost your team in a year.</span></a></li><li><a href="erp-readiness.html" data-tool="erp-readiness" data-slot="more"><b>ERP Readiness Scorecard</b><span>Eight questions on data, process, ownership and time: are you ready for a system, and what to fix first?</span></a></li><li><a href="erp-roi.html" data-tool="erp-roi" data-slot="more"><b>ERP &amp; Automation ROI Calculator</b><span>Payback period and 15-year value of a system, from your team size, hours and setup cost.</span></a></li></ul>
   </section>
-  <section class="panel" id="p-cash" data-tab="cash">
-    <h2>Customers pay late</h2>
-    <p class="pain">Money is owed and nobody has the time to chase it properly.</p>
-    <a class="pick" href="invoice-chaser.html" data-tool="invoice-chaser" data-slot="pick">
-      <span class="pk-k">START WITH THIS · DOES THE WORK FOR YOU</span>
-      <span class="pk-n">Overdue Invoice Reminder Writer</span>
-      <span class="pk-d">Drop in your Xero or QuickBooks aged receivables; get the right reminder for every late customer.</span>
-      <span class="pk-b">Write my reminders &rarr;</span>
+  <section class="ht-panel" id="ht-p-cash" data-tab="cash" role="tabpanel" aria-labelledby="ht-t-cash">
+    <h2 class="ht-h">Customers pay late</h2>
+    <p class="ht-pain">Money is owed and nobody has the time to chase it properly.</p>
+    <a class="ht-pick" href="invoice-chaser.html" data-tool="invoice-chaser" data-slot="pick">
+      <span class="ht-pk-k">START WITH THIS · DOES THE WORK FOR YOU</span>
+      <span class="ht-pk-n">Overdue Invoice Reminder Writer</span>
+      <span class="ht-pk-d">Drop in your Xero or QuickBooks aged receivables; get the right reminder for every late customer.</span>
+      <span class="ht-pk-b">Write my reminders &rarr;</span>
     </a>
-    <p class="also">Then, if you need them:</p>
-    <ul class="more"><li><a href="ar-aging-report.html" data-tool="ar-aging-report" data-slot="more"><b>AR Aging Report Generator</b><span>Aging by customer, overdue %, DSO and a statement of account for every customer, from one export.</span></a></li><li><a href="dso-calculator.html" data-tool="dso-calculator" data-slot="more"><b>DSO Calculator</b><span>Days sales outstanding, days beyond terms and the cash tied up.</span></a></li><li><a href="invoice-due-date-calculator.html" data-tool="invoice-due-date-calculator" data-slot="more"><b>Invoice Due Date Calculator</b><span>Due dates on net 7 to net 90 and net 30 EOM, days overdue and late interest.</span></a></li><li><a href="statement-of-account-generator.html" data-tool="statement-of-account-generator" data-slot="more"><b>Statement of Account Generator</b><span>A statement for every customer with open invoices, aging and total due, as PDF.</span></a></li><li><a href="month-end-close.html" data-tool="month-end-close" data-slot="more"><b>Month-End Close Cost Calculator</b><span>What a slow close costs in salary every year, and what a five-day close is worth.</span></a></li></ul>
+    <p class="ht-also">Then, if you need them:</p>
+    <ul class="ht-more"><li><a href="ar-aging-report.html" data-tool="ar-aging-report" data-slot="more"><b>AR Aging Report Generator</b><span>Aging by customer, overdue %, DSO and a statement of account for every customer, from one export.</span></a></li><li><a href="dso-calculator.html" data-tool="dso-calculator" data-slot="more"><b>DSO Calculator</b><span>Days sales outstanding, days beyond terms and the cash tied up.</span></a></li><li><a href="invoice-due-date-calculator.html" data-tool="invoice-due-date-calculator" data-slot="more"><b>Invoice Due Date Calculator</b><span>Due dates on net 7 to net 90 and net 30 EOM, days overdue and late interest.</span></a></li><li><a href="statement-of-account-generator.html" data-tool="statement-of-account-generator" data-slot="more"><b>Statement of Account Generator</b><span>A statement for every customer with open invoices, aging and total due, as PDF.</span></a></li><li><a href="month-end-close.html" data-tool="month-end-close" data-slot="more"><b>Month-End Close Cost Calculator</b><span>What a slow close costs in salary every year, and what a five-day close is worth.</span></a></li></ul>
   </section>
-  <section class="panel" id="p-stock" data-tab="stock">
-    <h2>Stock does not match</h2>
-    <p class="pain">The system says one number and the shelf says another.</p>
-    <a class="pick" href="stock-take-variance-calculator.html" data-tool="stock-take-variance-calculator" data-slot="pick">
-      <span class="pk-k">START WITH THIS · CALCULATOR</span>
-      <span class="pk-n">Stock Take Variance Calculator</span>
-      <span class="pk-d">Paste system vs counted quantities: record accuracy, variance value and the top ten to investigate.</span>
-      <span class="pk-b">Check my stock count &rarr;</span>
+  <section class="ht-panel" id="ht-p-stock" data-tab="stock" role="tabpanel" aria-labelledby="ht-t-stock">
+    <h2 class="ht-h">Stock does not match</h2>
+    <p class="ht-pain">The system says one number and the shelf says another.</p>
+    <a class="ht-pick" href="stock-take-variance-calculator.html" data-tool="stock-take-variance-calculator" data-slot="pick">
+      <span class="ht-pk-k">START WITH THIS · CALCULATOR</span>
+      <span class="ht-pk-n">Stock Take Variance Calculator</span>
+      <span class="ht-pk-d">Paste system vs counted quantities: record accuracy, variance value and the top ten to investigate.</span>
+      <span class="ht-pk-b">Check my stock count &rarr;</span>
     </a>
-    <p class="also">Then, if you need them:</p>
-    <ul class="more"><li><a href="slow-moving-stock-calculator.html" data-tool="slow-moving-stock-calculator" data-slot="more"><b>Slow-Moving and Dead Stock Calculator</b><span>Months of cover, a class from healthy to dead, cash tied up and the provision. Paste a whole list.</span></a></li><li><a href="landed-cost-calculator.html" data-tool="landed-cost-calculator" data-slot="more"><b>Landed Cost Calculator (Singapore Imports)</b><span>Foreign price, FX, freight, duty, 9% import GST and local charges to a true cost per unit.</span></a></li><li><a href="inventory-software-cost-calculator.html" data-tool="inventory-software-cost-calculator" data-slot="more"><b>Inventory Software Cost Calculator</b><span>Compare 12 months of licence costs for Zoho Inventory, inFlow, Cin7 Core, Unleashed and Odoo for your users, locations and orders.</span></a></li></ul>
+    <p class="ht-also">Then, if you need them:</p>
+    <ul class="ht-more"><li><a href="slow-moving-stock-calculator.html" data-tool="slow-moving-stock-calculator" data-slot="more"><b>Slow-Moving and Dead Stock Calculator</b><span>Months of cover, a class from healthy to dead, cash tied up and the provision. Paste a whole list.</span></a></li><li><a href="landed-cost-calculator.html" data-tool="landed-cost-calculator" data-slot="more"><b>Landed Cost Calculator (Singapore Imports)</b><span>Foreign price, FX, freight, duty, 9% import GST and local charges to a true cost per unit.</span></a></li><li><a href="inventory-software-cost-calculator.html" data-tool="inventory-software-cost-calculator" data-slot="more"><b>Inventory Software Cost Calculator</b><span>Compare 12 months of licence costs across five inventory systems for your users, locations and orders.</span></a></li></ul>
   </section>
-  <section class="panel" id="p-jobs" data-tab="jobs">
-    <h2>Jobs run over budget</h2>
-    <p class="pain">You find out a job lost money after it has finished.</p>
-    <a class="pick" href="job-costing-calculator.html" data-tool="job-costing-calculator" data-slot="pick">
-      <span class="pk-k">START WITH THIS · CALCULATOR</span>
-      <span class="pk-n">Job Costing Calculator</span>
-      <span class="pk-d">Budget used vs work done, projected final cost and overrun, and finished work you have not billed yet.</span>
-      <span class="pk-b">Cost my job &rarr;</span>
+  <section class="ht-panel" id="ht-p-jobs" data-tab="jobs" role="tabpanel" aria-labelledby="ht-t-jobs">
+    <h2 class="ht-h">Jobs run over budget</h2>
+    <p class="ht-pain">You find out a job lost money after it has finished.</p>
+    <a class="ht-pick" href="job-costing-calculator.html" data-tool="job-costing-calculator" data-slot="pick">
+      <span class="ht-pk-k">START WITH THIS · CALCULATOR</span>
+      <span class="ht-pk-n">Job Costing Calculator</span>
+      <span class="ht-pk-d">Budget used vs work done, projected final cost and overrun, and finished work you have not billed yet.</span>
+      <span class="ht-pk-b">Cost my job &rarr;</span>
     </a>
-    <p class="also">Then, if you need them:</p>
-    <ul class="more"><li><a href="progress-claim-calculator.html" data-tool="progress-claim-calculator" data-slot="more"><b>Progress Claim Calculator (Singapore)</b><span>Work done to date, variations, retention, previous claims and GST, cumulative, the way the SOP Act expects it.</span></a></li><li><a href="timesheet-calculator.html" data-tool="timesheet-calculator" data-slot="more"><b>Timesheet Calculator</b><span>Hours, breaks, overnight shifts, overtime at 1.5× and pay for the week, with print and CSV.</span></a></li><li><a href="quotation-generator.html" data-tool="quotation-generator" data-slot="more"><b>Quotation Generator</b><span>Quotes with GST, validity and terms; one click turns an accepted quote into an invoice or delivery order.</span></a></li></ul>
+    <p class="ht-also">Then, if you need them:</p>
+    <ul class="ht-more"><li><a href="progress-claim-calculator.html" data-tool="progress-claim-calculator" data-slot="more"><b>Progress Claim Calculator (Singapore)</b><span>Work done to date, variations, retention, previous claims and GST, cumulative, the way the SOP Act expects it.</span></a></li><li><a href="timesheet-calculator.html" data-tool="timesheet-calculator" data-slot="more"><b>Timesheet Calculator</b><span>Hours, breaks, overnight shifts, overtime at 1.5× and pay for the week, with print and CSV.</span></a></li><li><a href="quotation-generator.html" data-tool="quotation-generator" data-slot="more"><b>Quotation Generator</b><span>Quotes with GST, validity and terms; one click turns an accepted quote into an invoice or delivery order.</span></a></li></ul>
   </section>
-  <section class="panel" id="p-margin" data-tab="margin">
-    <h2>Margins are thin</h2>
-    <p class="pain">Sales look fine, but not much is left at the end of the month.</p>
-    <a class="pick" href="profit-margin-calculator.html" data-tool="profit-margin-calculator" data-slot="pick">
-      <span class="pk-k">START WITH THIS · CALCULATOR</span>
-      <span class="pk-n">Profit Margin Calculator</span>
-      <span class="pk-d">Margin, markup, price and break-even; reprice a whole list to a target margin.</span>
-      <span class="pk-b">Check my margin &rarr;</span>
+  <section class="ht-panel" id="ht-p-margin" data-tab="margin" role="tabpanel" aria-labelledby="ht-t-margin">
+    <h2 class="ht-h">Margins are thin</h2>
+    <p class="ht-pain">Sales look fine, but not much is left at the end of the month.</p>
+    <a class="ht-pick" href="profit-margin-calculator.html" data-tool="profit-margin-calculator" data-slot="pick">
+      <span class="ht-pk-k">START WITH THIS · CALCULATOR</span>
+      <span class="ht-pk-n">Profit Margin Calculator</span>
+      <span class="ht-pk-d">Margin, markup, price and break-even; reprice a whole list to a target margin.</span>
+      <span class="ht-pk-b">Check my margin &rarr;</span>
     </a>
-    <p class="also">Then, if you need them:</p>
-    <ul class="more"><li><a href="markup-calculator.html" data-tool="markup-calculator" data-slot="more"><b>Markup Calculator</b><span>Markup to margin and back, with the right selling price and GST.</span></a></li><li><a href="gross-profit-calculator.html" data-tool="gross-profit-calculator" data-slot="more"><b>Gross Profit Calculator</b><span>Gross profit, gross and net margin; works out cost of goods sold from stock.</span></a></li><li><a href="break-even-calculator.html" data-tool="break-even-calculator" data-slot="more"><b>Break-Even Calculator</b><span>Units and sales you need to cover fixed costs, plus margin of safety.</span></a></li><li><a href="price-increase-calculator.html" data-tool="price-increase-calculator" data-slot="more"><b>Price Increase Calculator</b><span>The % change between two prices, and what to charge when costs rise.</span></a></li><li><a href="gst-calculator.html" data-tool="gst-calculator" data-slot="more"><b>GST Calculator</b><span>Add or remove 9% GST (or any rate), one amount or a whole list.</span></a></li></ul>
+    <p class="ht-also">Then, if you need them:</p>
+    <ul class="ht-more"><li><a href="markup-calculator.html" data-tool="markup-calculator" data-slot="more"><b>Markup Calculator</b><span>Markup to margin and back, with the right selling price and GST.</span></a></li><li><a href="gross-profit-calculator.html" data-tool="gross-profit-calculator" data-slot="more"><b>Gross Profit Calculator</b><span>Gross profit, gross and net margin; works out cost of goods sold from stock.</span></a></li><li><a href="break-even-calculator.html" data-tool="break-even-calculator" data-slot="more"><b>Break-Even Calculator</b><span>Units and sales you need to cover fixed costs, plus margin of safety.</span></a></li><li><a href="price-increase-calculator.html" data-tool="price-increase-calculator" data-slot="more"><b>Price Increase Calculator</b><span>The % change between two prices, and what to charge when costs rise.</span></a></li><li><a href="gst-calculator.html" data-tool="gst-calculator" data-slot="more"><b>GST Calculator</b><span>Add or remove 9% GST (or any rate), one amount or a whole list.</span></a></li></ul>
   </section>
-  <section class="panel" id="p-docs" data-tab="docs">
-    <h2>Paperwork by hand</h2>
-    <p class="pain">Quotes, invoices and delivery orders are still typed one by one.</p>
-    <a class="pick" href="invoice-generator.html" data-tool="invoice-generator" data-slot="pick">
-      <span class="pk-k">START WITH THIS · DOCUMENT MAKER</span>
-      <span class="pk-n">Invoice Generator</span>
-      <span class="pk-d">PDF invoices and GST tax invoices with your logo, numbering and payment details.</span>
-      <span class="pk-b">Make an invoice &rarr;</span>
+  <section class="ht-panel" id="ht-p-docs" data-tab="docs" role="tabpanel" aria-labelledby="ht-t-docs">
+    <h2 class="ht-h">Paperwork by hand</h2>
+    <p class="ht-pain">Quotes, invoices and delivery orders are still typed one by one.</p>
+    <a class="ht-pick" href="invoice-generator.html" data-tool="invoice-generator" data-slot="pick">
+      <span class="ht-pk-k">START WITH THIS · DOCUMENT MAKER</span>
+      <span class="ht-pk-n">Invoice Generator</span>
+      <span class="ht-pk-d">PDF invoices and GST tax invoices with your logo, numbering and payment details.</span>
+      <span class="ht-pk-b">Make an invoice &rarr;</span>
     </a>
-    <p class="also">Then, if you need them:</p>
-    <ul class="more"><li><a href="quotation-generator.html" data-tool="quotation-generator" data-slot="more"><b>Quotation Generator</b><span>Quotes with GST, validity and terms; one click turns an accepted quote into an invoice or delivery order.</span></a></li><li><a href="receipt-generator.html" data-tool="receipt-generator" data-slot="more"><b>Receipt Generator</b><span>Payment receipts with a PAID stamp for cash, PayNow, bank transfer or card.</span></a></li><li><a href="delivery-order-generator.html" data-tool="delivery-order-generator" data-slot="more"><b>Delivery Order Generator</b><span>Delivery orders with a receiver signature block and no prices.</span></a></li><li><a href="purchase-order-generator.html" data-tool="purchase-order-generator" data-slot="more"><b>Purchase Order Generator</b><span>Numbered purchase orders with supplier, delivery date and terms, as PDF.</span></a></li><li><a href="statement-of-account-generator.html" data-tool="statement-of-account-generator" data-slot="more"><b>Statement of Account Generator</b><span>A statement for every customer with open invoices, aging and total due, as PDF.</span></a></li></ul>
+    <p class="ht-also">Then, if you need them:</p>
+    <ul class="ht-more"><li><a href="quotation-generator.html" data-tool="quotation-generator" data-slot="more"><b>Quotation Generator</b><span>Quotes with GST, validity and terms; one click turns an accepted quote into an invoice or delivery order.</span></a></li><li><a href="receipt-generator.html" data-tool="receipt-generator" data-slot="more"><b>Receipt Generator</b><span>Payment receipts with a PAID stamp for cash, PayNow, bank transfer or card.</span></a></li><li><a href="delivery-order-generator.html" data-tool="delivery-order-generator" data-slot="more"><b>Delivery Order Generator</b><span>Delivery orders with a receiver signature block and no prices.</span></a></li><li><a href="purchase-order-generator.html" data-tool="purchase-order-generator" data-slot="more"><b>Purchase Order Generator</b><span>Numbered purchase orders with supplier, delivery date and terms, as PDF.</span></a></li><li><a href="statement-of-account-generator.html" data-tool="statement-of-account-generator" data-slot="more"><b>Statement of Account Generator</b><span>A statement for every customer with open invoices, aging and total due, as PDF.</span></a></li></ul>
   </section>
-  <section class="panel" id="p-grants" data-tab="grants">
-    <h2>Grants and InvoiceNow</h2>
-    <p class="pain">You want the grant, or InvoiceNow is coming and you are not sure when it applies to you.</p>
-    <a class="pick" href="edge-grant-calculator.html" data-tool="edge-grant-calculator" data-slot="pick">
-      <span class="pk-k">START WITH THIS · CALCULATOR</span>
-      <span class="pk-n">EDGE Grant Calculator</span>
-      <span class="pk-d">Estimate the EDGE grant and net cost of an ERP or digital project, with the S$30,000 sub-cap and eligibility checks.</span>
-      <span class="pk-b">Estimate my grant &rarr;</span>
+  <section class="ht-panel" id="ht-p-grants" data-tab="grants" role="tabpanel" aria-labelledby="ht-t-grants">
+    <h2 class="ht-h">Grants and InvoiceNow</h2>
+    <p class="ht-pain">You want the grant, or InvoiceNow is coming and you are not sure when it applies to you.</p>
+    <a class="ht-pick" href="edge-grant-calculator.html" data-tool="edge-grant-calculator" data-slot="pick">
+      <span class="ht-pk-k">START WITH THIS · CALCULATOR</span>
+      <span class="ht-pk-n">EDGE Grant Calculator</span>
+      <span class="ht-pk-d">Estimate the EDGE grant and net cost of an ERP or digital project, with the S$30,000 sub-cap and eligibility checks.</span>
+      <span class="ht-pk-b">Estimate my grant &rarr;</span>
     </a>
-    <p class="also">Then, if you need them:</p>
-    <ul class="more"><li><a href="invoicenow-deadline.html" data-tool="invoicenow-deadline" data-slot="more"><b>InvoiceNow Deadline Finder</b><span>Your GST status in, your InvoiceNow date out.</span></a></li><li><a href="invoicenow-software.html" data-tool="invoicenow-software" data-slot="more"><b>Is My Software InvoiceNow-Ready?</b><span>Check your accounting software against IMDA's accredited list.</span></a></li><li><a href="invoicenow-free.html" data-tool="invoicenow-free" data-slot="more"><b>Free InvoiceNow Solutions</b><span>The official free packages and their limits.</span></a></li><li><a href="invoicenow-grants.html" data-tool="invoicenow-grants" data-slot="more"><b>InvoiceNow Grants</b><span>What you can actually claim.</span></a></li><li><a href="invoicenow-providers.html" data-tool="invoicenow-providers" data-slot="more"><b>Providers vs Access Points</b><span>Which one you need, and when.</span></a></li></ul>
+    <p class="ht-also">Then, if you need them:</p>
+    <ul class="ht-more"><li><a href="invoicenow-deadline.html" data-tool="invoicenow-deadline" data-slot="more"><b>InvoiceNow Deadline Finder</b><span>Your GST status in, your InvoiceNow date out.</span></a></li><li><a href="invoicenow-software.html" data-tool="invoicenow-software" data-slot="more"><b>Is My Software InvoiceNow-Ready?</b><span>Check your accounting software against IMDA's accredited list.</span></a></li><li><a href="invoicenow-free.html" data-tool="invoicenow-free" data-slot="more"><b>Free InvoiceNow Solutions</b><span>The official free packages and their limits.</span></a></li><li><a href="invoicenow-grants.html" data-tool="invoicenow-grants" data-slot="more"><b>InvoiceNow Grants</b><span>What you can actually claim.</span></a></li><li><a href="invoicenow-providers.html" data-tool="invoicenow-providers" data-slot="more"><b>Providers vs Access Points</b><span>Which one you need, and when.</span></a></li></ul>
   </section>
-  <section class="panel" id="p-whatsapp" data-tab="whatsapp">
-    <h2>WhatsApp is a mess</h2>
-    <p class="pain">Customer chats sit on one phone and replies get missed.</p>
-    <a class="pick" href="wati-fit-check.html" data-tool="wati-fit-check" data-slot="pick">
-      <span class="pk-k">START WITH THIS · 2-MINUTE CHECK</span>
-      <span class="pk-n">Shared WhatsApp Inbox Check</span>
-      <span class="pk-d">Eight questions and your own numbers: stay on the free WhatsApp Business app, or is a shared inbox worth paying for?</span>
-      <span class="pk-b">Run the 2-minute check &rarr;</span>
+  <section class="ht-panel" id="ht-p-whatsapp" data-tab="whatsapp" role="tabpanel" aria-labelledby="ht-t-whatsapp">
+    <h2 class="ht-h">WhatsApp is a mess</h2>
+    <p class="ht-pain">Customer chats sit on one phone and replies get missed.</p>
+    <a class="ht-pick" href="wati-fit-check.html" data-tool="wati-fit-check" data-slot="pick">
+      <span class="ht-pk-k">START WITH THIS · 2-MINUTE CHECK</span>
+      <span class="ht-pk-n">Shared WhatsApp Inbox Check</span>
+      <span class="ht-pk-d">Eight questions and your own numbers: stay on the free WhatsApp Business app, or is a shared inbox worth paying for?</span>
+      <span class="ht-pk-b">Run the 2-minute check &rarr;</span>
     </a>
-    <p class="also">Then, if you need them:</p>
-    <ul class="more"><li><a href="whatsapp-api-cost-calculator.html" data-tool="whatsapp-api-cost-calculator" data-slot="more"><b>WhatsApp Business API Cost Calculator</b><span>Your monthly WhatsApp bill at Singapore rates, including the October 2026 change and provider plans.</span></a></li><li><a href="wati-pricing-singapore.html" data-tool="wati-pricing-singapore" data-slot="more"><b>WATI Pricing Calculator (Singapore)</b><span>What a team of 3, 5 or 10 pays a month and a year, from the prices on WATI's own page.</span></a></li><li><a href="wati-free-trial-plan.html" data-tool="wati-free-trial-plan" data-slot="more"><b>WATI Free Trial: 7-Day Test Plan</b><span>What to test on each of the 7 days, and what the trial cannot do, so the week answers your questions.</span></a></li><li><a href="wati-go-live-checklist.html" data-tool="wati-go-live-checklist" data-slot="more"><b>WhatsApp Number Go-Live Checklist</b><span>The eight things to have ready before you connect a business number, with a readiness score.</span></a></li><li><a href="wati-guide.html" data-tool="wati-guide" data-slot="more"><b>WATI for a Small Team: the Plain Guide</b><span>What it is, who needs it and who does not, what it costs and how to test it. One page.</span></a></li><li><a href="make-credit-calculator.html" data-tool="make-credit-calculator" data-slot="more"><b>Make Credit Calculator</b><span>How many Make credits your workflows really use, and which plan you need.</span></a></li></ul>
+    <p class="ht-also">Then, if you need them:</p>
+    <ul class="ht-more"><li><a href="whatsapp-api-cost-calculator.html" data-tool="whatsapp-api-cost-calculator" data-slot="more"><b>WhatsApp Business API Cost Calculator</b><span>Your monthly WhatsApp bill at Singapore rates, including the October 2026 change and provider plans.</span></a></li><li><a href="wati-pricing-singapore.html" data-tool="wati-pricing-singapore" data-slot="more"><b>WATI Pricing Calculator (Singapore)</b><span>What a team of 3, 5 or 10 pays a month and a year, from the prices on WATI's own page.</span></a></li><li><a href="wati-free-trial-plan.html" data-tool="wati-free-trial-plan" data-slot="more"><b>WATI Free Trial: 7-Day Test Plan</b><span>What to test on each of the 7 days, and what the trial cannot do, so the week answers your questions.</span></a></li><li><a href="wati-go-live-checklist.html" data-tool="wati-go-live-checklist" data-slot="more"><b>WhatsApp Number Go-Live Checklist</b><span>The eight things to have ready before you connect a business number, with a readiness score.</span></a></li><li><a href="wati-guide.html" data-tool="wati-guide" data-slot="more"><b>WATI for a Small Team: the Plain Guide</b><span>What it is, who needs it and who does not, what it costs and how to test it. One page.</span></a></li><li><a href="make-credit-calculator.html" data-tool="make-credit-calculator" data-slot="more"><b>Make Credit Calculator</b><span>How many Make credits your workflows really use, and which plan you need.</span></a></li></ul>
   </section>
 
-  <button type="button" class="allbtn" id="allbtn">Show all 42 tools</button>
+  <button type="button" class="ht-all" id="htAll">Show all 42 tools</button>
+</div>
 
   <details class="fold"><summary>Guides that go with the tools</summary>
   <p class="sub" style="margin-bottom:8px"><b>Start here:</b> <a href="https://www.gantry.work/p/business-systems-start-here?utm_source=tools&amp;utm_medium=hub">Choosing and implementing a business system</a> · <a href="https://www.gantry.work/p/automation-start-here?utm_source=tools&amp;utm_medium=hub">Automation for small business</a> · <a href="https://www.gantry.work/p/singapore-sme-grants-compliance-start-here?utm_source=tools&amp;utm_medium=hub">Singapore grants and InvoiceNow</a></p>
@@ -234,11 +280,11 @@
     </a>
   </div>
 </div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://tools.gantry.work/#website", "url": "https://tools.gantry.work/", "name": "The Gantry Tools", "description": "Free business tools and calculators for small businesses, with Singapore defaults.", "publisher": {"@id": "https://tools.gantry.work/#sayed"}, "inLanguage": "en-SG"}, {"@type": "Person", "@id": "https://tools.gantry.work/#sayed", "name": "Sayed Rashid", "url": "https://gantry.work", "jobTitle": "ERP & Business Systems Consultant", "sameAs": ["https://www.linkedin.com/in/sayedomni", "https://gantry.work", "https://github.com/sayedomnisoft"]}, {"@type": "CollectionPage", "@id": "https://tools.gantry.work/#hub", "url": "https://tools.gantry.work/", "name": "Free business tools and calculators for Singapore SMEs", "isPartOf": {"@id": "https://tools.gantry.work/#website"}, "author": {"@id": "https://tools.gantry.work/#sayed"}, "dateModified": "2026-11-10", "mainEntity": {"@type": "ItemList", "numberOfItems": 42, "itemListElement": [{"@type": "ListItem", "position": 1, "name": "SME Systems Health Check", "url": "https://tools.gantry.work/health-check/"}, {"@type": "ListItem", "position": 2, "name": "Overdue Invoice Reminder Writer", "url": "https://tools.gantry.work/invoice-chaser.html"}, {"@type": "ListItem", "position": 3, "name": "Stock Take Variance Calculator", "url": "https://tools.gantry.work/stock-take-variance-calculator.html"}, {"@type": "ListItem", "position": 4, "name": "Job Costing Calculator", "url": "https://tools.gantry.work/job-costing-calculator.html"}, {"@type": "ListItem", "position": 5, "name": "Profit Margin Calculator", "url": "https://tools.gantry.work/profit-margin-calculator.html"}, {"@type": "ListItem", "position": 6, "name": "Invoice Generator", "url": "https://tools.gantry.work/invoice-generator.html"}, {"@type": "ListItem", "position": 7, "name": "EDGE Grant Calculator", "url": "https://tools.gantry.work/edge-grant-calculator.html"}, {"@type": "ListItem", "position": 8, "name": "Shared WhatsApp Inbox Check", "url": "https://tools.gantry.work/wati-fit-check.html"}, {"@type": "ListItem", "position": 9, "name": "The 12-Point Singapore SME Systems Checklist", "url": "https://tools.gantry.work/singapore-sme-systems-checklist.html"}, {"@type": "ListItem", "position": 10, "name": "Cost of Manual Work Calculator", "url": "https://tools.gantry.work/cost-of-manual-work.html"}, {"@type": "ListItem", "position": 11, "name": "ERP Readiness Scorecard", "url": "https://tools.gantry.work/erp-readiness.html"}, {"@type": "ListItem", "position": 12, "name": "ERP & Automation ROI Calculator", "url": "https://tools.gantry.work/erp-roi.html"}, {"@type": "ListItem", "position": 13, "name": "AR Aging Report Generator", "url": "https://tools.gantry.work/ar-aging-report.html"}, {"@type": "ListItem", "position": 14, "name": "DSO Calculator", "url": "https://tools.gantry.work/dso-calculator.html"}, {"@type": "ListItem", "position": 15, "name": "Invoice Due Date Calculator", "url": "https://tools.gantry.work/invoice-due-date-calculator.html"}, {"@type": "ListItem", "position": 16, "name": "Statement of Account Generator", "url": "https://tools.gantry.work/statement-of-account-generator.html"}, {"@type": "ListItem", "position": 17, "name": "Month-End Close Cost Calculator", "url": "https://tools.gantry.work/month-end-close.html"}, {"@type": "ListItem", "position": 18, "name": "Slow-Moving and Dead Stock Calculator", "url": "https://tools.gantry.work/slow-moving-stock-calculator.html"}, {"@type": "ListItem", "position": 19, "name": "Landed Cost Calculator (Singapore Imports)", "url": "https://tools.gantry.work/landed-cost-calculator.html"}, {"@type": "ListItem", "position": 20, "name": "Inventory Software Cost Calculator", "url": "https://tools.gantry.work/inventory-software-cost-calculator.html"}, {"@type": "ListItem", "position": 21, "name": "Progress Claim Calculator (Singapore)", "url": "https://tools.gantry.work/progress-claim-calculator.html"}, {"@type": "ListItem", "position": 22, "name": "Timesheet Calculator", "url": "https://tools.gantry.work/timesheet-calculator.html"}, {"@type": "ListItem", "position": 23, "name": "Quotation Generator", "url": "https://tools.gantry.work/quotation-generator.html"}, {"@type": "ListItem", "position": 24, "name": "Markup Calculator", "url": "https://tools.gantry.work/markup-calculator.html"}, {"@type": "ListItem", "position": 25, "name": "Gross Profit Calculator", "url": "https://tools.gantry.work/gross-profit-calculator.html"}, {"@type": "ListItem", "position": 26, "name": "Break-Even Calculator", "url": "https://tools.gantry.work/break-even-calculator.html"}, {"@type": "ListItem", "position": 27, "name": "Price Increase Calculator", "url": "https://tools.gantry.work/price-increase-calculator.html"}, {"@type": "ListItem", "position": 28, "name": "GST Calculator", "url": "https://tools.gantry.work/gst-calculator.html"}, {"@type": "ListItem", "position": 29, "name": "Receipt Generator", "url": "https://tools.gantry.work/receipt-generator.html"}, {"@type": "ListItem", "position": 30, "name": "Delivery Order Generator", "url": "https://tools.gantry.work/delivery-order-generator.html"}, {"@type": "ListItem", "position": 31, "name": "Purchase Order Generator", "url": "https://tools.gantry.work/purchase-order-generator.html"}, {"@type": "ListItem", "position": 32, "name": "InvoiceNow Deadline Finder", "url": "https://tools.gantry.work/invoicenow-deadline.html"}, {"@type": "ListItem", "position": 33, "name": "Is My Software InvoiceNow-Ready?", "url": "https://tools.gantry.work/invoicenow-software.html"}, {"@type": "ListItem", "position": 34, "name": "Free InvoiceNow Solutions", "url": "https://tools.gantry.work/invoicenow-free.html"}, {"@type": "ListItem", "position": 35, "name": "InvoiceNow Grants", "url": "https://tools.gantry.work/invoicenow-grants.html"}, {"@type": "ListItem", "position": 36, "name": "Providers vs Access Points", "url": "https://tools.gantry.work/invoicenow-providers.html"}, {"@type": "ListItem", "position": 37, "name": "WhatsApp Business API Cost Calculator", "url": "https://tools.gantry.work/whatsapp-api-cost-calculator.html"}, {"@type": "ListItem", "position": 38, "name": "WATI Pricing Calculator (Singapore)", "url": "https://tools.gantry.work/wati-pricing-singapore.html"}, {"@type": "ListItem", "position": 39, "name": "WATI Free Trial: 7-Day Test Plan", "url": "https://tools.gantry.work/wati-free-trial-plan.html"}, {"@type": "ListItem", "position": 40, "name": "WhatsApp Number Go-Live Checklist", "url": "https://tools.gantry.work/wati-go-live-checklist.html"}, {"@type": "ListItem", "position": 41, "name": "WATI for a Small Team: the Plain Guide", "url": "https://tools.gantry.work/wati-guide.html"}, {"@type": "ListItem", "position": 42, "name": "Make Credit Calculator", "url": "https://tools.gantry.work/make-credit-calculator.html"}]}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are these business tools really free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Your first three uses need nothing from you. After that, the tools stay open for anyone who asks for the free 2-minute video, books the free 20-minute review, or subscribes to The Gantry (the welcome email carries the link that reopens them). All three are free."}}, {"@type": "Question", "name": "Is my data safe?", "acceptedAnswer": {"@type": "Answer", "text": "Everything runs in your browser. Your files and entries are never uploaded or stored on a server; your business details are remembered only on your own computer."}}, {"@type": "Question", "name": "Do the tools work outside Singapore?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Currency and tax rate are editable. Singapore specifics such as 9% GST, tax invoices, PayNow and InvoiceNow are built in as defaults."}}, {"@type": "Question", "name": "Who builds these tools?", "acceptedAnswer": {"@type": "Answer", "text": "Sayed Rashid, who works with business owners on automation and business systems. Each tool comes from a job owners were doing by hand every week."}}, {"@type": "Question", "name": "Can I suggest a tool?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Message Sayed on LinkedIn with the job you do by hand every week; the most common requests become the next free tools."}}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://tools.gantry.work/#website", "url": "https://tools.gantry.work/", "name": "The Gantry Tools", "description": "Free business tools and calculators for small businesses, with Singapore defaults.", "publisher": {"@id": "https://tools.gantry.work/#sayed"}, "inLanguage": "en-SG"}, {"@type": "Person", "@id": "https://tools.gantry.work/#sayed", "name": "Sayed Rashid", "url": "https://gantry.work", "jobTitle": "ERP & Business Systems Consultant", "sameAs": ["https://www.linkedin.com/in/sayedomni", "https://gantry.work", "https://github.com/sayedomnisoft"]}, {"@type": "CollectionPage", "@id": "https://tools.gantry.work/#hub", "url": "https://tools.gantry.work/", "name": "Free business tools and calculators for Singapore SMEs", "isPartOf": {"@id": "https://tools.gantry.work/#website"}, "author": {"@id": "https://tools.gantry.work/#sayed"}, "dateModified": "2026-11-11", "mainEntity": {"@type": "ItemList", "numberOfItems": 42, "itemListElement": [{"@type": "ListItem", "position": 1, "name": "SME Systems Health Check", "url": "https://tools.gantry.work/health-check/"}, {"@type": "ListItem", "position": 2, "name": "Overdue Invoice Reminder Writer", "url": "https://tools.gantry.work/invoice-chaser.html"}, {"@type": "ListItem", "position": 3, "name": "Stock Take Variance Calculator", "url": "https://tools.gantry.work/stock-take-variance-calculator.html"}, {"@type": "ListItem", "position": 4, "name": "Job Costing Calculator", "url": "https://tools.gantry.work/job-costing-calculator.html"}, {"@type": "ListItem", "position": 5, "name": "Profit Margin Calculator", "url": "https://tools.gantry.work/profit-margin-calculator.html"}, {"@type": "ListItem", "position": 6, "name": "Invoice Generator", "url": "https://tools.gantry.work/invoice-generator.html"}, {"@type": "ListItem", "position": 7, "name": "EDGE Grant Calculator", "url": "https://tools.gantry.work/edge-grant-calculator.html"}, {"@type": "ListItem", "position": 8, "name": "Shared WhatsApp Inbox Check", "url": "https://tools.gantry.work/wati-fit-check.html"}, {"@type": "ListItem", "position": 9, "name": "The 12-Point Singapore SME Systems Checklist", "url": "https://tools.gantry.work/singapore-sme-systems-checklist.html"}, {"@type": "ListItem", "position": 10, "name": "Cost of Manual Work Calculator", "url": "https://tools.gantry.work/cost-of-manual-work.html"}, {"@type": "ListItem", "position": 11, "name": "ERP Readiness Scorecard", "url": "https://tools.gantry.work/erp-readiness.html"}, {"@type": "ListItem", "position": 12, "name": "ERP & Automation ROI Calculator", "url": "https://tools.gantry.work/erp-roi.html"}, {"@type": "ListItem", "position": 13, "name": "AR Aging Report Generator", "url": "https://tools.gantry.work/ar-aging-report.html"}, {"@type": "ListItem", "position": 14, "name": "DSO Calculator", "url": "https://tools.gantry.work/dso-calculator.html"}, {"@type": "ListItem", "position": 15, "name": "Invoice Due Date Calculator", "url": "https://tools.gantry.work/invoice-due-date-calculator.html"}, {"@type": "ListItem", "position": 16, "name": "Statement of Account Generator", "url": "https://tools.gantry.work/statement-of-account-generator.html"}, {"@type": "ListItem", "position": 17, "name": "Month-End Close Cost Calculator", "url": "https://tools.gantry.work/month-end-close.html"}, {"@type": "ListItem", "position": 18, "name": "Slow-Moving and Dead Stock Calculator", "url": "https://tools.gantry.work/slow-moving-stock-calculator.html"}, {"@type": "ListItem", "position": 19, "name": "Landed Cost Calculator (Singapore Imports)", "url": "https://tools.gantry.work/landed-cost-calculator.html"}, {"@type": "ListItem", "position": 20, "name": "Inventory Software Cost Calculator", "url": "https://tools.gantry.work/inventory-software-cost-calculator.html"}, {"@type": "ListItem", "position": 21, "name": "Progress Claim Calculator (Singapore)", "url": "https://tools.gantry.work/progress-claim-calculator.html"}, {"@type": "ListItem", "position": 22, "name": "Timesheet Calculator", "url": "https://tools.gantry.work/timesheet-calculator.html"}, {"@type": "ListItem", "position": 23, "name": "Quotation Generator", "url": "https://tools.gantry.work/quotation-generator.html"}, {"@type": "ListItem", "position": 24, "name": "Markup Calculator", "url": "https://tools.gantry.work/markup-calculator.html"}, {"@type": "ListItem", "position": 25, "name": "Gross Profit Calculator", "url": "https://tools.gantry.work/gross-profit-calculator.html"}, {"@type": "ListItem", "position": 26, "name": "Break-Even Calculator", "url": "https://tools.gantry.work/break-even-calculator.html"}, {"@type": "ListItem", "position": 27, "name": "Price Increase Calculator", "url": "https://tools.gantry.work/price-increase-calculator.html"}, {"@type": "ListItem", "position": 28, "name": "GST Calculator", "url": "https://tools.gantry.work/gst-calculator.html"}, {"@type": "ListItem", "position": 29, "name": "Receipt Generator", "url": "https://tools.gantry.work/receipt-generator.html"}, {"@type": "ListItem", "position": 30, "name": "Delivery Order Generator", "url": "https://tools.gantry.work/delivery-order-generator.html"}, {"@type": "ListItem", "position": 31, "name": "Purchase Order Generator", "url": "https://tools.gantry.work/purchase-order-generator.html"}, {"@type": "ListItem", "position": 32, "name": "InvoiceNow Deadline Finder", "url": "https://tools.gantry.work/invoicenow-deadline.html"}, {"@type": "ListItem", "position": 33, "name": "Is My Software InvoiceNow-Ready?", "url": "https://tools.gantry.work/invoicenow-software.html"}, {"@type": "ListItem", "position": 34, "name": "Free InvoiceNow Solutions", "url": "https://tools.gantry.work/invoicenow-free.html"}, {"@type": "ListItem", "position": 35, "name": "InvoiceNow Grants", "url": "https://tools.gantry.work/invoicenow-grants.html"}, {"@type": "ListItem", "position": 36, "name": "Providers vs Access Points", "url": "https://tools.gantry.work/invoicenow-providers.html"}, {"@type": "ListItem", "position": 37, "name": "WhatsApp Business API Cost Calculator", "url": "https://tools.gantry.work/whatsapp-api-cost-calculator.html"}, {"@type": "ListItem", "position": 38, "name": "WATI Pricing Calculator (Singapore)", "url": "https://tools.gantry.work/wati-pricing-singapore.html"}, {"@type": "ListItem", "position": 39, "name": "WATI Free Trial: 7-Day Test Plan", "url": "https://tools.gantry.work/wati-free-trial-plan.html"}, {"@type": "ListItem", "position": 40, "name": "WhatsApp Number Go-Live Checklist", "url": "https://tools.gantry.work/wati-go-live-checklist.html"}, {"@type": "ListItem", "position": 41, "name": "WATI for a Small Team: the Plain Guide", "url": "https://tools.gantry.work/wati-guide.html"}, {"@type": "ListItem", "position": 42, "name": "Make Credit Calculator", "url": "https://tools.gantry.work/make-credit-calculator.html"}]}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are these business tools really free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Your first three uses need nothing from you. After that, the tools stay open for anyone who asks for the free 2-minute video, books the free 20-minute review, or subscribes to The Gantry (the welcome email carries the link that reopens them). All three are free."}}, {"@type": "Question", "name": "Is my data safe?", "acceptedAnswer": {"@type": "Answer", "text": "Everything runs in your browser. Your files and entries are never uploaded or stored on a server; your business details are remembered only on your own computer."}}, {"@type": "Question", "name": "Do the tools work outside Singapore?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Currency and tax rate are editable. Singapore specifics such as 9% GST, tax invoices, PayNow and InvoiceNow are built in as defaults."}}, {"@type": "Question", "name": "Who builds these tools?", "acceptedAnswer": {"@type": "Answer", "text": "Sayed Rashid, who works with business owners on automation and business systems. Each tool comes from a job owners were doing by hand every week."}}, {"@type": "Question", "name": "Can I suggest a tool?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Message Sayed on LinkedIn with the job you do by hand every week; the most common requests become the next free tools."}}]}]}</script>
 <script>
 (function () {
   'use strict';
-  var TABS = ["start", "cash", "stock", "jobs", "margin", "docs", "grants", "whatsapp"], TOOLTAB = {"health-check": "start", "singapore-sme-systems-checklist": "start", "cost-of-manual-work": "start", "erp-readiness": "start", "erp-roi": "start", "invoice-chaser": "cash", "ar-aging-report": "cash", "dso-calculator": "cash", "invoice-due-date-calculator": "cash", "statement-of-account-generator": "cash", "month-end-close": "cash", "stock-take-variance-calculator": "stock", "slow-moving-stock-calculator": "stock", "landed-cost-calculator": "stock", "inventory-software-cost-calculator": "stock", "job-costing-calculator": "jobs", "progress-claim-calculator": "jobs", "timesheet-calculator": "jobs", "quotation-generator": "jobs", "profit-margin-calculator": "margin", "markup-calculator": "margin", "gross-profit-calculator": "margin", "break-even-calculator": "margin", "price-increase-calculator": "margin", "gst-calculator": "margin", "invoice-generator": "docs", "receipt-generator": "docs", "delivery-order-generator": "docs", "purchase-order-generator": "docs", "edge-grant-calculator": "grants", "invoicenow-deadline": "grants", "invoicenow-software": "grants", "invoicenow-free": "grants", "invoicenow-grants": "grants", "invoicenow-providers": "grants", "wati-fit-check": "whatsapp", "whatsapp-api-cost-calculator": "whatsapp", "wati-pricing-singapore": "whatsapp", "wati-free-trial-plan": "whatsapp", "wati-go-live-checklist": "whatsapp", "wati-guide": "whatsapp", "make-credit-calculator": "whatsapp"}, TOOLNAME = {"health-check": "SME Systems Health Check", "singapore-sme-systems-checklist": "The 12-Point Singapore SME Systems Checklist", "cost-of-manual-work": "Cost of Manual Work Calculator", "erp-readiness": "ERP Readiness Scorecard", "erp-roi": "ERP & Automation ROI Calculator", "invoice-chaser": "Overdue Invoice Reminder Writer", "ar-aging-report": "AR Aging Report Generator", "dso-calculator": "DSO Calculator", "invoice-due-date-calculator": "Invoice Due Date Calculator", "statement-of-account-generator": "Statement of Account Generator", "month-end-close": "Month-End Close Cost Calculator", "stock-take-variance-calculator": "Stock Take Variance Calculator", "slow-moving-stock-calculator": "Slow-Moving and Dead Stock Calculator", "landed-cost-calculator": "Landed Cost Calculator (Singapore Imports)", "inventory-software-cost-calculator": "Inventory Software Cost Calculator", "job-costing-calculator": "Job Costing Calculator", "progress-claim-calculator": "Progress Claim Calculator (Singapore)", "timesheet-calculator": "Timesheet Calculator", "quotation-generator": "Quotation Generator", "profit-margin-calculator": "Profit Margin Calculator", "markup-calculator": "Markup Calculator", "gross-profit-calculator": "Gross Profit Calculator", "break-even-calculator": "Break-Even Calculator", "price-increase-calculator": "Price Increase Calculator", "gst-calculator": "GST Calculator", "invoice-generator": "Invoice Generator", "receipt-generator": "Receipt Generator", "delivery-order-generator": "Delivery Order Generator", "purchase-order-generator": "Purchase Order Generator", "edge-grant-calculator": "EDGE Grant Calculator", "invoicenow-deadline": "InvoiceNow Deadline Finder", "invoicenow-software": "Is My Software InvoiceNow-Ready?", "invoicenow-free": "Free InvoiceNow Solutions", "invoicenow-grants": "InvoiceNow Grants", "invoicenow-providers": "Providers vs Access Points", "wati-fit-check": "Shared WhatsApp Inbox Check", "whatsapp-api-cost-calculator": "WhatsApp Business API Cost Calculator", "wati-pricing-singapore": "WATI Pricing Calculator (Singapore)", "wati-free-trial-plan": "WATI Free Trial: 7-Day Test Plan", "wati-go-live-checklist": "WhatsApp Number Go-Live Checklist", "wati-guide": "WATI for a Small Team: the Plain Guide", "make-credit-calculator": "Make Credit Calculator"}, WHY = {"start": "the starting checks", "cash": "the late-payment tools", "stock": "the stock tools", "jobs": "the job and project tools", "margin": "the pricing tools", "docs": "the document makers", "grants": "the grant and InvoiceNow tools", "whatsapp": "the WhatsApp and automation tools"};
+  var CFG = {"page": "tools-home", "tabs": ["start", "cash", "stock", "jobs", "margin", "docs", "grants", "whatsapp"], "tooltab": {"health-check": "start", "singapore-sme-systems-checklist": "start", "cost-of-manual-work": "start", "erp-readiness": "start", "erp-roi": "start", "invoice-chaser": "cash", "ar-aging-report": "cash", "dso-calculator": "cash", "invoice-due-date-calculator": "cash", "statement-of-account-generator": "cash", "month-end-close": "cash", "stock-take-variance-calculator": "stock", "slow-moving-stock-calculator": "stock", "landed-cost-calculator": "stock", "inventory-software-cost-calculator": "stock", "job-costing-calculator": "jobs", "progress-claim-calculator": "jobs", "timesheet-calculator": "jobs", "quotation-generator": "jobs", "profit-margin-calculator": "margin", "markup-calculator": "margin", "gross-profit-calculator": "margin", "break-even-calculator": "margin", "price-increase-calculator": "margin", "gst-calculator": "margin", "invoice-generator": "docs", "receipt-generator": "docs", "delivery-order-generator": "docs", "purchase-order-generator": "docs", "edge-grant-calculator": "grants", "invoicenow-deadline": "grants", "invoicenow-software": "grants", "invoicenow-free": "grants", "invoicenow-grants": "grants", "invoicenow-providers": "grants", "wati-fit-check": "whatsapp", "whatsapp-api-cost-calculator": "whatsapp", "wati-pricing-singapore": "whatsapp", "wati-free-trial-plan": "whatsapp", "wati-go-live-checklist": "whatsapp", "wati-guide": "whatsapp", "make-credit-calculator": "whatsapp"}, "toolname": {"health-check": "SME Systems Health Check", "singapore-sme-systems-checklist": "The 12-Point Singapore SME Systems Checklist", "cost-of-manual-work": "Cost of Manual Work Calculator", "erp-readiness": "ERP Readiness Scorecard", "erp-roi": "ERP & Automation ROI Calculator", "invoice-chaser": "Overdue Invoice Reminder Writer", "ar-aging-report": "AR Aging Report Generator", "dso-calculator": "DSO Calculator", "invoice-due-date-calculator": "Invoice Due Date Calculator", "statement-of-account-generator": "Statement of Account Generator", "month-end-close": "Month-End Close Cost Calculator", "stock-take-variance-calculator": "Stock Take Variance Calculator", "slow-moving-stock-calculator": "Slow-Moving and Dead Stock Calculator", "landed-cost-calculator": "Landed Cost Calculator (Singapore Imports)", "inventory-software-cost-calculator": "Inventory Software Cost Calculator", "job-costing-calculator": "Job Costing Calculator", "progress-claim-calculator": "Progress Claim Calculator (Singapore)", "timesheet-calculator": "Timesheet Calculator", "quotation-generator": "Quotation Generator", "profit-margin-calculator": "Profit Margin Calculator", "markup-calculator": "Markup Calculator", "gross-profit-calculator": "Gross Profit Calculator", "break-even-calculator": "Break-Even Calculator", "price-increase-calculator": "Price Increase Calculator", "gst-calculator": "GST Calculator", "invoice-generator": "Invoice Generator", "receipt-generator": "Receipt Generator", "delivery-order-generator": "Delivery Order Generator", "purchase-order-generator": "Purchase Order Generator", "edge-grant-calculator": "EDGE Grant Calculator", "invoicenow-deadline": "InvoiceNow Deadline Finder", "invoicenow-software": "Is My Software InvoiceNow-Ready?", "invoicenow-free": "Free InvoiceNow Solutions", "invoicenow-grants": "InvoiceNow Grants", "invoicenow-providers": "Providers vs Access Points", "wati-fit-check": "Shared WhatsApp Inbox Check", "whatsapp-api-cost-calculator": "WhatsApp Business API Cost Calculator", "wati-pricing-singapore": "WATI Pricing Calculator (Singapore)", "wati-free-trial-plan": "WATI Free Trial: 7-Day Test Plan", "wati-go-live-checklist": "WhatsApp Number Go-Live Checklist", "wati-guide": "WATI for a Small Team: the Plain Guide", "make-credit-calculator": "Make Credit Calculator"}, "why": {"start": "the starting checks", "cash": "the late-payment tools", "stock": "the stock tools", "jobs": "the job and project tools", "margin": "the pricing tools", "docs": "the document makers", "grants": "the grant and InvoiceNow tools", "whatsapp": "the WhatsApp and automation tools"}, "hash": true, "useSrc": false, "allOn": "Show all 42 tools", "allOff": "Show one topic at a time"}, TABS = CFG.tabs, TOOLTAB = CFG.tooltab, TOOLNAME = CFG.toolname, WHY = CFG.why;
   // Keywords in the page the visitor came from, or in the campaign tags of the link they clicked. First match wins.
   var KEYS = [
     ['whatsapp', /whatsapp|wati|chatbot|make-|make_|n8n|zapier|automation/],
@@ -251,10 +297,11 @@
     ['start', /erp|system|checklist|readiness|health|manual/]
   ];
   var ls = { get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
-  var ev = function (n, p) { try { p = p || {}; p.tool_name = 'tools-home'; p.tool_category = 'hub'; gtag('event', n, p); } catch (e) {} };
+  var ev = function (n, p) { try { p = p || {}; p.tool_name = CFG.page; p.tool_category = 'hub'; gtag('event', n, p); } catch (e) {} };
   var q; try { q = new URLSearchParams(location.search); } catch (e) { q = { get: function () { return null; } }; }
   function slugOf(u) { return String(u || '').replace(/^https?:\/\/[^/]+/, '').split(/[?#]/)[0].replace(/^\/+|\/+$/g, '').replace(/\.html$/, ''); }
   function byKey(s) { s = String(s || '').toLowerCase(); if (!s) return null; for (var i = 0; i < KEYS.length; i++) { if (KEYS[i][1].test(s)) return KEYS[i][0]; } return null; }
+  function $(id) { return document.getElementById(id); }
 
   var score = {}, why = '', signal = 'none';
   TABS.forEach(function (t) { score[t] = 0; });
@@ -274,6 +321,12 @@
     var rt = byKey(slugOf(ref));
     if (rt) add(rt, 50, 'You came from a page about this, so ' + WHY[rt] + ' are first.', 'referrer');
   }
+  // 2b. Review pages remember where the visit started (window.gSrc): a tool page, a guide, or a campaign word
+  if (CFG.useSrc && (q.get('tool') || window.gSrc)) {
+    var gs = String(window.gSrc || ''), ss = slugOf(q.get('tool') || gs), st = TOOLTAB[ss];
+    if (st) add(st, 55, 'You came here from the ' + TOOLNAME[ss] + ', so ' + WHY[st] + ' are first.', 'from_tool');
+    else if (/^https?:/.test(gs) && (st = byKey(slugOf(gs))) && st !== 'start') add(st, 40, 'You came from a page about this, so ' + WHY[st] + ' are first.', 'referrer');
+  }
   // 3b. Campaign tags on the link, now or earlier in this visit
   var tags = [q.get('utm_campaign'), q.get('utm_content'), q.get('utm_term')].join(' ');
   try { var gi = JSON.parse(sessionStorage.getItem('gantry_in') || 'null'); if (gi && gi.c) tags += ' ' + gi.c; } catch (e) {}
@@ -291,48 +344,102 @@
     }
   } catch (e) {}
 
-  var wrap = document.getElementById('hub'), chipBox = document.getElementById('chips'), whyEl = document.getElementById('why');
+  var wrap = $('ht'), rail = $('htRail'), box = $('htChips'), sel = $('htSel'), whyEl = $('htWhy'), allBtn = $('htAll');
   var chips = {}, panels = {};
-  Array.prototype.forEach.call(chipBox.querySelectorAll('.chip'), function (c) { chips[c.getAttribute('data-tab')] = c; });
-  Array.prototype.forEach.call(document.querySelectorAll('.panel'), function (p) { panels[p.getAttribute('data-tab')] = p; });
+  Array.prototype.forEach.call(box.querySelectorAll('.ht-chip'), function (c) { chips[c.getAttribute('data-tab')] = c; });
+  Array.prototype.forEach.call(wrap.querySelectorAll('.ht-panel'), function (p) { panels[p.getAttribute('data-tab')] = p; });
 
   var has = maxScore() > 0;
   var ranked = TABS.slice().sort(function (a, b) { return (score[b] - score[a]) || (TABS.indexOf(a) - TABS.indexOf(b)); });
   var best = has ? ranked[0] : 'start';
   if (has) {
-    // Relevant groups first, "Not sure yet" last, the rest dimmed but still one click away.
-    var rest = ranked.filter(function (t) { return t !== 'start'; });
-    rest.push('start');
-    rest.forEach(function (t) { chipBox.appendChild(chips[t]); if (!score[t]) chips[t].classList.add('dim'); });
-    chipBox.classList.add('sig');
+    // Relevant topics first, "Not sure yet" last (unless it is the match), the rest dimmed but still one tap away.
+    var order = ranked.filter(function (t) { return t !== 'start' || best === 'start'; });
+    if (best !== 'start') order.push('start');
+    order.forEach(function (t) { box.appendChild(chips[t]); if (!score[t]) chips[t].classList.add('dim'); });
   }
+  var current = null;
   function select(tab, how) {
+    current = tab;
     TABS.forEach(function (t) {
       var on = t === tab;
-      chips[t].classList.toggle('on', on); chips[t].setAttribute('aria-pressed', on ? 'true' : 'false');
+      chips[t].classList.toggle('on', on); chips[t].setAttribute('aria-selected', on ? 'true' : 'false'); chips[t].tabIndex = on ? 0 : -1;
       panels[t].classList.toggle('on', on);
     });
+    chips[tab].classList.remove('dim');
+    sel.value = tab;
     wrap.classList.remove('showall');
-    document.getElementById('allbtn').textContent = 'Show all 42 tools';
-    if (how === 'click') {
+    allBtn.textContent = CFG.allOn;
+    if (how !== 'auto') {
       ls.set('gantry_hub_tab', tab);
       whyEl.textContent = '';
-      try { history.replaceState(null, '', location.pathname + location.search.replace(/([?&])fix=[^&]*&?/, '$1').replace(/[?&]$/, '') + '#' + tab); } catch (e) {}
+      if (CFG.hash) { try { history.replaceState(null, '', location.pathname + location.search.replace(/([?&])fix=[^&]*&?/, '$1').replace(/[?&]$/, '') + '#' + tab); } catch (e) {} }
     }
-    ev('hub_tab', { tab: tab, how: how, signal: how === 'auto' ? signal : 'click' });
+    reveal(tab, how !== 'auto');
+    ev('hub_tab', { tab: tab, how: how, signal: how === 'auto' ? signal : how });
   }
-  Object.keys(chips).forEach(function (t) { chips[t].addEventListener('click', function () { chips[t].classList.remove('dim'); select(t, 'click'); }); });
+
+  // ---- the row of tabs on a phone: show that it scrolls ----
+  var auto = 0, swiped = ls.get('gantry_hub_swiped') === '1';
+  if (swiped) wrap.classList.add('swiped');
+  function edges() {
+    var max = box.scrollWidth - box.clientWidth;
+    rail.classList.toggle('more-l', max > 6 && box.scrollLeft > 6);
+    rail.classList.toggle('more-r', max > 6 && box.scrollLeft < max - 6);
+    wrap.classList.toggle('fits', max <= 6);
+  }
+  function go(x, smooth) {
+    auto++; setTimeout(function () { auto--; }, 700);
+    try { box.scrollTo({ left: x, behavior: smooth ? 'smooth' : 'auto' }); } catch (e) { box.scrollLeft = x; }
+  }
+  function reveal(tab, smooth) {
+    var c = chips[tab]; if (!c || box.scrollWidth - box.clientWidth <= 6) return;
+    var left = c.getBoundingClientRect().left - box.getBoundingClientRect().left + box.scrollLeft;
+    go(Math.max(0, Math.round(left - (box.clientWidth - c.offsetWidth) / 2)), smooth);
+  }
+  function didSwipe(how) {
+    if (swiped) return; swiped = true; wrap.classList.add('swiped'); ls.set('gantry_hub_swiped', '1');
+    ev('hub_tabs_scroll', { how: how });
+  }
+  box.addEventListener('scroll', function () { edges(); if (!auto && box.scrollLeft > 20) didSwipe('swipe'); }, { passive: true });
+  window.addEventListener('resize', edges);
+  $('htNext').addEventListener('click', function () { didSwipe('arrow'); go(box.scrollLeft + Math.round(box.clientWidth * 0.7), true); });
+  $('htPrev').addEventListener('click', function () { didSwipe('arrow'); go(box.scrollLeft - Math.round(box.clientWidth * 0.7), true); });
+
+  Object.keys(chips).forEach(function (t) { chips[t].addEventListener('click', function () { select(t, 'click'); }); });
+  sel.addEventListener('change', function () { if (sel.value in score) select(sel.value, 'list'); });
+  // Left and right arrow keys move between tabs, as on any tab bar.
+  box.addEventListener('keydown', function (e) {
+    var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!d) return;
+    var list = Array.prototype.slice.call(box.querySelectorAll('.ht-chip')), i = list.indexOf(document.activeElement); if (i < 0) return;
+    e.preventDefault();
+    var n = list[(i + d + list.length) % list.length]; n.focus(); select(n.getAttribute('data-tab'), 'key');
+  });
+
   select(best, 'auto');
   whyEl.textContent = has ? (why ? why + ' Not it? Pick another.' : '') : 'Pick the one that sounds like your week. Each shows one tool to start with.';
+  edges();
+  // One small nudge the first time the row is on screen, so it reads as something that moves. Not for people who ask for less motion.
+  (function () {
+    var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (calm || swiped) return;
+    function nudge() {
+      if (swiped || box.scrollWidth - box.clientWidth <= 6) return;
+      var x = box.scrollLeft; go(x + 72, true); setTimeout(function () { if (!swiped) go(x, true); }, 620);
+    }
+    if (!('IntersectionObserver' in window)) { setTimeout(nudge, 1200); return; }
+    var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { io.disconnect(); setTimeout(nudge, 900); } }, { threshold: 0.9 });
+    io.observe(rail);
+  })();
 
-  document.getElementById('allbtn').addEventListener('click', function () {
-    var on = wrap.classList.toggle('showall');
-    this.textContent = on ? 'Show one group at a time' : 'Show all 42 tools';
-    ev('hub_show_all', { on: on ? 1 : 0 });
+  allBtn.addEventListener('click', function () {
+    var open = wrap.classList.toggle('showall');
+    this.textContent = open ? CFG.allOff : CFG.allOn;
+    ev('hub_show_all', { on: open ? 1 : 0 });
   });
-  document.addEventListener('click', function (e) {
+  wrap.addEventListener('click', function (e) {
     var a = e.target && e.target.closest ? e.target.closest('a[data-tool]') : null; if (!a) return;
-    var p = a.closest('.panel');
+    var p = a.closest('.ht-panel');
     ev('hub_tool_click', { tab: p ? p.getAttribute('data-tab') : '', tool: a.getAttribute('data-tool'), slot: wrap.classList.contains('showall') ? 'all' : a.getAttribute('data-slot') });
   }, true);
 })();
