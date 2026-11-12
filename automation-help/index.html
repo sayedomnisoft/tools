@@ -3,202 +3,401 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stuck on an automation? — The Gantry</title>
-<meta name="description" content="Stuck building an automation in Make or n8n? Answer six quick questions and get the fix for where you're stuck, or a free 20-minute review if it's worth one.">
-<meta property="og:title" content="Stuck on an automation? — The Gantry">
-<meta property="og:description" content="Six quick questions. The fix for where you're stuck, or a free 20-minute review if it's worth one.">
+<title>Stuck on an Automation? Get the Fix in 5 Taps | The Gantry</title>
+<meta name="description" content="Five taps, about 30 seconds. Get the fix for where your automation is stuck, a short video on the free 20-minute systems review, and the calendar to book it.">
+<meta property="og:title" content="Stuck on an automation? Get the fix in 5 taps">
+<meta property="og:description" content="Five taps, about 30 seconds. The fix for where you are stuck, and a free 20-minute systems review if you want one.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://tools.gantry.work/automation-help/">
+<meta property="og:site_name" content="The Gantry">
+<meta property="og:locale" content="en_SG">
+<meta property="og:image" content="https://tools.gantry.work/review-main.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tools.gantry.work/review-main.jpg">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://tools.gantry.work/automation-help/">
-<link rel="stylesheet" href="../shared.css">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="author" content="Sayed Rashid">
+<link rel="stylesheet" href="/shared.css">
 <style>
   .card { max-width: 640px; }
-  .pill { display:inline-block; font-size:12px; letter-spacing:1.6px; font-weight:700; color:var(--ink); background:var(--gold-light); padding:6px 12px; border-radius:30px; margin-bottom:18px; }
-  .bar { height:6px; background:rgba(255,255,255,0.12); border-radius:6px; margin:6px 0 22px; overflow:hidden; }
-  .bar i { display:block; height:100%; width:0; background:linear-gradient(90deg,var(--gold-light),var(--gold)); transition:width .3s; }
-  .q { display:none; } .q.on { display:block; }
-  .q h2 { font-size:21px; margin-bottom:6px; } .q .hint { color:var(--muted); font-size:14px; margin-bottom:16px; }
-  .opt { display:block; width:100%; text-align:left; padding:13px 16px; margin-bottom:10px; font-size:15.5px; font-weight:600; color:#fff; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.2); border-radius:11px; cursor:pointer; font-family:inherit; }
-  .opt:hover { border-color:var(--gold-light); } .opt.sel { border-color:var(--gold-light); background:rgba(242,207,110,0.14); }
-  textarea, input[type=text], input[type=email] { width:100%; padding:12px 14px; font-size:15.5px; color:#fff; font-family:inherit; background:rgba(255,255,255,0.09); border:1px solid rgba(255,255,255,0.2); border-radius:10px; margin-bottom:12px; }
-  textarea { min-height:78px; resize:vertical; }
-  .nav { display:flex; justify-content:space-between; align-items:center; margin-top:8px; }
-  .back { background:none; border:none; color:var(--muted); font-size:14px; cursor:pointer; font-family:inherit; }
-  .next { padding:12px 22px; font-size:15.5px; font-weight:700; color:var(--ink); background:linear-gradient(180deg,var(--gold-light),var(--gold)); border:none; border-radius:11px; cursor:pointer; font-family:inherit; }
-  .next:disabled { opacity:.4; cursor:not-allowed; }
-  .fix { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); border-radius:12px; padding:14px 16px; margin-bottom:16px; }
-  .fix h3 { font-size:15px; letter-spacing:1.2px; color:var(--gold-light); margin-bottom:8px; text-transform:uppercase; }
-  .fix li { font-size:14.5px; line-height:1.5; margin:0 0 6px 18px; color:rgba(255,255,255,0.88); }
-  .fix a, .res a.inl { color:var(--gold-light); }
-  .small { font-size:12.5px; color:rgba(255,255,255,0.5); line-height:1.5; margin-top:14px; }
+  .pill { display: inline-block; font-size: 12px; letter-spacing: 1.6px; font-weight: 700; color: var(--ink); background: var(--gold-light); padding: 6px 12px; border-radius: 30px; margin-bottom: 14px; }
+  #quiz h1 { font-size: 27px; }
+  #quiz.going .pill, #quiz.going .sub { display: none; }
+  #quiz.going h1 { font-size: 15px; font-weight: 700; letter-spacing: .2px; color: rgba(255,255,255,0.7); margin-bottom: 10px; }
+  .prog { height: 8px; background: rgba(255,255,255,0.12); border-radius: 8px; overflow: hidden; }
+  .prog i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--gold-light), var(--gold)); border-radius: 8px; transition: width .25s ease; }
+  .prog-row { display: flex; justify-content: space-between; align-items: center; min-height: 40px; margin: 4px 0 10px; font-size: 13px; font-weight: 700; letter-spacing: .4px; color: var(--gold-light); }
+  .backb { background: none; border: 0; color: rgba(255,255,255,0.8); font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; padding: 10px 12px 10px 0; min-height: 40px; }
+  .backb[hidden] { visibility: hidden; display: inline-block; }
+  .backb:hover { color: #fff; }
+  .q { display: none; } .q.on { display: block; animation: qin .18s ease-out; }
+  @keyframes qin { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .q h2 { font-size: 21px; line-height: 1.25; margin-bottom: 14px; }
+  .q h2:focus { outline: none; }
+  .opt { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; min-height: 52px; text-align: left; padding: 12px 16px; margin-bottom: 9px; font-size: 16px; line-height: 1.3; font-weight: 600; color: #fff; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.22); border-radius: 12px; cursor: pointer; font-family: inherit; -webkit-tap-highlight-color: transparent; transition: background .12s ease, border-color .12s ease; }
+  .opt::after { content: '\203A'; color: var(--gold-light); font-size: 20px; font-weight: 700; line-height: 1; flex: none; }
+  .opt:hover, .opt:focus-visible { border-color: var(--gold-light); background: rgba(242,207,110,0.1); outline: none; }
+  .opt.sel { border-color: var(--gold-light); background: rgba(242,207,110,0.2); }
+  .quiz-note { font-size: 12.5px; line-height: 1.5; color: rgba(255,255,255,0.6); margin: 12px 0 0; }
+  #res[hidden], #gate[hidden] { display: none; }
+  #res h1 { font-size: 26px; }
+  #res h1:focus { outline: none; }
+  #res .sub { margin-bottom: 14px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 16px; }
+  .chips span { font-size: 12px; line-height: 1.3; color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 4px 10px; }
+  .fix { background: rgba(255,255,255,0.06); border: 1px solid rgba(242,207,110,0.4); border-radius: 14px; padding: 16px 16px 8px; margin-bottom: 12px; }
+  .fix h2 { font-size: 13px; letter-spacing: 1.4px; color: var(--gold-light); margin-bottom: 10px; text-transform: uppercase; }
+  .fix ol { list-style: none; counter-reset: fx; margin: 0; padding: 0; }
+  .fix li { counter-increment: fx; position: relative; font-size: 15px; line-height: 1.5; margin: 0 0 12px; padding-left: 36px; color: rgba(255,255,255,0.92); }
+  .fix li::before { content: counter(fx); position: absolute; left: 0; top: 0; width: 25px; height: 25px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: var(--ink); background: linear-gradient(180deg, var(--gold-light), var(--gold)); }
+  .fix a, .res-a { color: var(--gold-light); }
+  .aff { display: block; font-size: 12px; line-height: 1.45; color: rgba(255,255,255,0.62); margin-top: 4px; }
+  .guide { font-size: 14.5px; line-height: 1.5; color: rgba(255,255,255,0.88); margin: 0 0 12px; }
+  .more { margin: 0 0 12px; font-size: 14.5px; }
+  .more summary { cursor: pointer; color: var(--gold-light); padding: 6px 0; }
+  .more ul { margin: 6px 0 0 18px; } .more li { line-height: 1.5; margin-bottom: 6px; color: rgba(255,255,255,0.88); }
+  .ghostb { display: block; width: 100%; min-height: 48px; padding: 12px 14px; font: inherit; font-size: 15px; font-weight: 700; color: #fff; background: transparent; border: 1px solid rgba(255,255,255,0.3); border-radius: 12px; cursor: pointer; }
+  .ghostb:hover, .ghostb:focus-visible { border-color: var(--gold-light); outline: none; }
+  #calGate[hidden], #bookWrap[hidden], #bookedPanel[hidden] { display: none; }
+  .guide { margin-bottom: 22px; }
+  .tiny { font-size: 12.5px; line-height: 1.5; color: rgba(255,255,255,0.62); margin: 8px 0 0; }
+  .tiny a { color: var(--gold-light); }
+  .sell { border-top: 1px solid rgba(255,255,255,0.14); padding-top: 22px; margin-bottom: 8px; }
+  .sell h2 { font-size: 22px; line-height: 1.2; margin-bottom: 8px; }
+  .sell .sub { margin-bottom: 14px; }
+  .sell a.cta { margin: 12px 0 0; }
+  .leave { list-style: none; margin: 0 0 14px; padding: 0; display: grid; gap: 6px; }
+  .leave li { position: relative; padding-left: 26px; font-size: 14.5px; line-height: 1.45; color: rgba(255,255,255,0.9); }
+  .leave li::before { content: '\2713'; position: absolute; left: 2px; top: 0; color: var(--gold-light); font-weight: 800; }
+  #calGate { margin: 14px 0 0; }
+  #bookWrap { margin-top: 26px; }
+  #bookHead { scroll-margin-top: 14px; }
+  .scarce { font-size: 14.5px; line-height: 1.5; color: #fff; background: rgba(242,207,110,0.1); border-left: 3px solid var(--gold); padding: 10px 14px; border-radius: 0 10px 10px 0; margin: 0 0 10px; }
+  .book-zone { border: 1px dashed rgba(242,207,110,0.5); border-radius: 14px; padding: 14px 10px; margin: 10px 0 6px; scroll-margin-top: 14px; min-height: 120px; }
+  #bookedPanel { border-radius: 14px; background: rgba(242,207,110,0.12); border: 1px solid rgba(242,207,110,0.5); padding: 16px; font-size: 15px; line-height: 1.55; margin: 10px 0 0; }
+  #bookedPanel h2 { margin-bottom: 6px; }
+  .proofline { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 24px 0 10px; padding: 0; }
+  .proofline li { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 12px 8px; text-align: center; font-size: 12px; line-height: 1.3; color: rgba(255,255,255,0.75); }
+  .proofline b { display: block; font-size: 21px; color: var(--gold-light); line-height: 1.15; margin-bottom: 2px; }
+  .again { display: block; margin: 16px auto 0; background: none; border: 0; color: rgba(255,255,255,0.75); font: inherit; font-size: 14px; cursor: pointer; padding: 10px; }
+  .disclose { font-size: 12.5px; color: rgba(255,255,255,0.55); line-height: 1.5; margin-top: 18px; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .q.on { animation: none; } .prog i { transition: none; } }
+  @media (max-width: 480px) { body { padding: 14px 12px 50px; } .card { padding: 22px 16px; } #quiz h1 { font-size: 24px; } .q h2 { font-size: 19.5px; } .opt { font-size: 15.5px; } }
+  @media (min-width: 700px) { .proofline { grid-template-columns: repeat(4, 1fr); } .sell h2 { font-size: 25px; } }
+
+  .vslm { margin: 0 0 10px; }
+  .vslm-box { position: relative; aspect-ratio: 16 / 9; width: 100%; margin: 0 auto; border-radius: 16px; overflow: hidden; border: 1px solid rgba(242,207,110,0.45); background: #0a0d33; }
+  .vslm-box.is-tall { aspect-ratio: 9 / 16; width: min(100%, 320px); }
+  .vslm-box img, .vslm-box video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; border: 0; }
+  .vslm-box video { background: #0a0d33; }
+  .vslm-play { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; padding: 0; border: 0; background: rgba(10,13,51,0.06); cursor: pointer; display: flex; align-items: center; justify-content: center; color: #fff; font: inherit; }
+  .vslm-play i { width: clamp(46px, 14%, 84px); aspect-ratio: 1 / 1; border-radius: 50%; background: linear-gradient(180deg, #f2cf6e, #c9a227); box-shadow: 0 8px 30px rgba(0,0,0,0.5); position: relative; transition: transform .15s; }
+  .vslm-play i::before { content: ''; position: absolute; inset: -5px; border-radius: 50%; border: 2px solid rgba(242,207,110,0.7); animation: vslmring 2.2s ease-out infinite; }
+  .vslm-play i::after { content: ''; position: absolute; inset: 29% 24% 29% 37%; background: #14142a; clip-path: polygon(0 0, 100% 50%, 0 100%); }
+  .vslm-play span { position: absolute; left: 50%; bottom: 4.5%; transform: translateX(-50%); display: inline-flex; align-items: center; white-space: nowrap; font-size: 12.5px; font-weight: 800; color: #14142a; background: linear-gradient(180deg, #f2cf6e, #c9a227); padding: 6px 12px; border-radius: 30px; box-shadow: 0 6px 22px rgba(0,0,0,0.5); }
+  .vslm-play.again { background: rgba(10,13,51,0.55); }
+  .vslm-play:hover i, .vslm-play:focus-visible i { transform: scale(1.07); }
+  .vslm-play:focus-visible { outline: 3px solid #f2cf6e; outline-offset: -3px; }
+  .vslm-play[hidden] { display: none !important; }
+  @keyframes vslmring { 0% { transform: scale(0.92); opacity: .9; } 100% { transform: scale(1.3); opacity: 0; } }
+  .vslm-note { font-size: 13px; line-height: 1.45; color: rgba(255,255,255,0.72); text-align: center; margin: 8px 0 4px; }
+  .vslm-text { margin: 0 0 4px; font-size: 13.5px; color: rgba(255,255,255,0.82); }
+  .vslm-text summary { cursor: pointer; color: #f2cf6e; text-align: center; }
+  .vslm-text p { line-height: 1.6; margin: 10px 0 0; text-align: left; }
+  .nudge { animation: vslmnudge 1.1s ease 2; }
+  @keyframes vslmnudge { 50% { box-shadow: 0 0 0 4px rgba(242,207,110,0.55); } }
+  @media (min-width: 700px) { .vslm-play span { font-size: 14.5px; padding: 9px 16px; } }
+  @media (prefers-reduced-motion: reduce) { .vslm-play i::before, .nudge { animation: none; } }
+
+  .lg { margin: 0 0 8px; text-align: left; }
+  .lg[hidden] { display: none; }
+  .lg-h { font-size: 23px; font-weight: 800; line-height: 1.2; margin: 0 0 8px; color: #fff; }
+  .lg-h:focus { outline: none; }
+  .lg-sub { font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.85); margin: 0 0 14px; }
+  .lg-frame { display: block; box-sizing: content-box; width: calc(100% - 28px); padding: 14px; border: 0; min-height: 380px; border-radius: 12px; background: #fff; }
+  .lg-priv { font-size: 12.5px; line-height: 1.5; color: rgba(255,255,255,0.7); margin: 10px 0 0; }
+  .lg-fall { margin: 16px 0 0; border: 1px solid rgba(242,207,110,0.5); background: rgba(242,207,110,0.1); border-radius: 14px; padding: 16px; }
+  .lg-fall[hidden] { display: none; }
+  .lg-fall p { font-size: 14.5px; line-height: 1.5; margin: 0 0 12px; color: rgba(255,255,255,0.92); }
+  .lg-fall h3 { font-size: 16px; font-weight: 800; margin: 16px 0 8px; color: #fff; }
+  .lg-btn { display: block; text-align: center; padding: 15px; font-size: 16px; font-weight: 700; color: #14142a; background: linear-gradient(180deg, #f2cf6e, #c9a227); border-radius: 12px; text-decoration: none; }
+  .lg-cal { border: 1px dashed rgba(242,207,110,0.5); border-radius: 14px; padding: 14px 10px; min-height: 120px; }
 </style>
-<script src="/config.js"></script><script src="/track.js" defer></script><script src="/gantry-ui.js" defer></script>
-<meta name="gantry-checked" content="2026-10-28">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<script src="/config.js"></script><script src="/track.js" defer></script><script src="/vsl-main.js" defer></script>
+<meta name="gantry-checked" content="2026-11-12">
 </head>
 <body>
 <div class="card">
-  <div class="brand"><a href="../index.html">← THE GANTRY · TOOLS</a></div>
-  <div class="pill">STUCK ON AN AUTOMATION?</div>
-  <h1>Tell me where you're stuck</h1>
-  <p class="sub">Six quick questions. You'll get the fix for where you're stuck, and if it looks worth it, a free 20-minute review with me.</p>
-  <div class="bar"><i id="bar"></i></div>
+  <div class="brand"><a href="/">← THE GANTRY · TOOLS</a></div>
 
-  <div class="q on" data-k="automate">
-    <h2>What are you trying to automate?</h2>
-    <button class="opt" data-v="Chasing unpaid invoices">Chasing unpaid invoices</button>
-    <button class="opt" data-v="Supplier bills and data entry">Supplier bills and data entry</button>
-    <button class="opt" data-v="Daily or monthly reports">Daily or monthly reports</button>
-    <button class="opt" data-v="Enquiries and leads">Enquiries and leads</button>
-    <button class="opt" data-v="WhatsApp orders">WhatsApp orders</button>
-    <button class="opt" data-v="Stock and purchasing">Stock and purchasing</button>
-    <button class="opt" data-v="Something else">Something else</button>
-    <textarea id="detail" placeholder="Optional: describe it in a sentence (e.g. 'reminders from Xero to 200 customers, some in USD')"></textarea>
+  <div id="quiz">
+    <div class="pill">STUCK ON AN AUTOMATION?</div>
+    <h1>Tell me where you're stuck</h1>
+    <p class="sub">Five taps and one short form. You get the fix for where you are stuck, and the next step if you want one. Free.</p>
+    <div class="prog" id="prog" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0"><i id="bar"></i></div>
+    <div class="prog-row"><button type="button" class="backb" id="back" hidden>← Back</button><span id="stepTxt" aria-live="polite">Question 1 of 5</span></div>
+
+    <div class="q on" data-k="automate">
+      <h2 tabindex="-1">What are you trying to automate?</h2>
+      <button type="button" class="opt" data-v="Chasing unpaid invoices">Chasing unpaid invoices</button>
+      <button type="button" class="opt" data-v="Supplier bills and data entry">Supplier bills and data entry</button>
+      <button type="button" class="opt" data-v="Daily or monthly reports">Daily or monthly reports</button>
+      <button type="button" class="opt" data-v="Enquiries and leads">Enquiries and leads</button>
+      <button type="button" class="opt" data-v="WhatsApp orders">WhatsApp orders</button>
+      <button type="button" class="opt" data-v="Stock and purchasing">Stock and purchasing</button>
+      <button type="button" class="opt" data-v="Something else">Something else</button>
+    </div>
+
+    <div class="q" data-k="stuck">
+      <h2 tabindex="-1">Where are you stuck?</h2>
+      <button type="button" class="opt" data-v="Haven't started yet">I haven't started yet</button>
+      <button type="button" class="opt" data-v="Connecting an app">Connecting an app (Xero, Gmail, Sheets, WhatsApp)</button>
+      <button type="button" class="opt" data-v="The logic or formulas">The logic, filters or formulas</button>
+      <button type="button" class="opt" data-v="It runs but the results are wrong">It runs, but the results are wrong</button>
+      <button type="button" class="opt" data-v="Not sure it's worth it">I'm not sure it's worth automating</button>
+    </div>
+
+    <div class="q" data-k="role">
+      <h2 tabindex="-1">What's your role?</h2>
+      <button type="button" class="opt" data-v="Owner or director">I own or run the business</button>
+      <button type="button" class="opt" data-v="Operations or finance manager">I manage operations or finance</button>
+      <button type="button" class="opt" data-v="Employee exploring">I'm an employee exploring options</button>
+      <button type="button" class="opt" data-v="Freelancer or agency">I'm a freelancer or agency building for clients</button>
+      <button type="button" class="opt" data-v="Learning or personal project">I'm learning, or it's a personal project</button>
+    </div>
+
+    <div class="q" data-k="size">
+      <h2 tabindex="-1">How many people work in the business?</h2>
+      <button type="button" class="opt" data-v="1-4">1 to 4</button>
+      <button type="button" class="opt" data-v="5-19">5 to 19</button>
+      <button type="button" class="opt" data-v="20-49">20 to 49</button>
+      <button type="button" class="opt" data-v="50-200">50 to 200</button>
+      <button type="button" class="opt" data-v="200+">More than 200</button>
+    </div>
+
+    <div class="q" data-k="when">
+      <h2 tabindex="-1">How soon do you want this working?</h2>
+      <button type="button" class="opt" data-v="This month">This month</button>
+      <button type="button" class="opt" data-v="This quarter">This quarter</button>
+      <button type="button" class="opt" data-v="Just exploring">Just exploring</button>
+    </div>
+
+    <p class="quiz-note">One tap per question. Your answers stay in this browser until you ask for your result.</p>
   </div>
 
-  <div class="q" data-k="stuck">
-    <h2>Where are you stuck?</h2>
-    <button class="opt" data-v="Haven't started yet">I haven't started yet</button>
-    <button class="opt" data-v="Connecting an app">Connecting an app (Xero, Gmail, Sheets, WhatsApp)</button>
-    <button class="opt" data-v="The logic or formulas">The logic, filters or formulas</button>
-    <button class="opt" data-v="It runs but the results are wrong">It runs, but the results are wrong</button>
-    <button class="opt" data-v="Not sure it's worth it">I'm not sure it's worth automating</button>
+  <div id="gate" hidden>
+    <div class="pill">ONE STEP LEFT</div>
+    <div id="gateBox"></div>
   </div>
 
-  <div class="q" data-k="role">
-    <h2>What's your role?</h2>
-    <button class="opt" data-v="Owner or director">I own or run the business</button>
-    <button class="opt" data-v="Operations or finance manager">I manage operations or finance</button>
-    <button class="opt" data-v="Employee exploring">I'm an employee exploring options</button>
-    <button class="opt" data-v="Freelancer or agency">I'm a freelancer or agency building for clients</button>
-    <button class="opt" data-v="Learning or personal project">I'm learning, or it's a personal project</button>
+  <div id="res" hidden>
+    <div class="pill">YOUR FIX</div>
+    <h1 id="resH" tabindex="-1"></h1>
+    <p class="sub" id="resSub"></p>
+    <div class="chips" id="resChips" aria-label="Your answers"></div>
+    <div class="fix" id="fixBox"></div>
+    <p class="guide" id="guideLine"></p>
+    <details class="more" id="moreBox" hidden>
+      <summary>Keep learning on your own</summary>
+      <ul>
+        <li>The free <a class="res-a" href="https://academy.make.com/" target="_blank" rel="noopener">Make Academy</a> courses cover filters, routers and data stores.</li>
+        <li>A new tested blueprint each week: <a class="res-a" href="https://www.gantry.work/subscribe?utm_source=automation-help">subscribe to The Gantry</a> (free).</li>
+      </ul>
+    </details>
+
+    <div class="sell" id="sell">
+      <h2 id="sellH"></h2>
+      <p class="sub" id="sellSub"></p>
+      <ul class="leave">
+        <li>Where the work is typed twice</li>
+        <li>Where it sits and waits</li>
+        <li>Three fixes, ranked by payoff. At least one needs no purchase.</li>
+      </ul>
+      <div class="vslm" data-page="automation-help" data-action="#bookHead">
+    <div class="vslm-box">
+      <img src="/review-main.jpg" width="1280" height="720" alt="First frame of the video. One order. Typed 3 times: the quote, the invoice, the delivery order." loading="lazy" decoding="async">
+      <button type="button" class="vslm-play" aria-label="Play the 86-second video with sound"><i></i><span>Tap for sound</span></button>
+    </div>
+    <p class="vslm-note">86 seconds, with sound and captions. An AI voice, speaking for me.</p>
+    <details class="vslm-text"><summary>Read it instead</summary><p>One order. Typed 3 times. The quote, the invoice, the delivery order. At 40 orders a week, that is 80 entries nobody needed to type. (An example, not a statistic.) I'm an AI voice, and I speak for Sayed Rashid. He offers a free 20-minute systems review. Here is exactly what it is. You pick one real process: an order, an invoice, or a stock item. Then you walk it end to end with Sayed, on a video call. You leave with three things. Where it is typed twice. Where it sits and waits. And three fixes, ranked by payoff. At least one of them needs no purchase. It is for owners and managers whose work still runs on spreadsheets, chat groups and retyping. It is not for you if you only want a price list. Why him? Sayed is an ex-auditor. He has taken 38 systems live, across 8 industries, and 91% of those clients are still with him. It is free. There is nothing to prepare, and nothing to buy. There is no pitch unless you ask. And Sayed takes every call himself. No time? It is 20 minutes, and you bring nothing. Too small? If one process hurts, that is enough. Already have software? Good. The review starts with what you already own. After you book, the invite lands in your inbox. On the day, you join the call and talk through that one process. The calendar opens 3 working days ahead, with 4 slots a day. If you can see a time, take it.</p></details>
+  </div>
+      <a class="cta" href="#bookHead" id="toCal" data-vslm-cta="automation-help">See the open times ↓</a>
+      <div id="calGate" hidden>
+        <button type="button" class="ghostb" id="openCal">I run or manage the business. Show me the calendar</button>
+      </div>
+    </div>
+
+    <div id="bookWrap">
+      <h2 id="bookHead">Book the free 20 minutes</h2>
+      <p class="scarce"><b>I take every call myself.</b> The calendar opens 3 working days ahead, with 4 slots a day (11:00, 11:20, 15:00 and 15:20, Singapore time). If you can see a time, it is still open.</p>
+      <div class="book-zone" id="bookZone"><div id="cal-inline"></div></div>
+      <p class="tiny">Your five answers go into the booking notes, so we start straight away. Calendar not showing? <a id="calLink" href="https://cal.com/sayed.r/20min" target="_blank" rel="noopener">Open it in a new tab</a>.</p>
+      <div id="bookedPanel" hidden>
+        <h2>You're in.</h2>
+        <p>The invite is on its way to your inbox. There is nothing to prepare: bring the one process, and we walk it end to end. The free tools now stay open for you on this browser.</p>
+      </div>
+    </div>
+
+    <ul class="proofline" aria-label="About Sayed Rashid">
+      <li><b>38</b>systems taken live</li>
+      <li><b>91%</b>of clients still with me</li>
+      <li><b>8</b>industries</li>
+      <li><b>Ex-auditor</b>now fixing how businesses run</li>
+    </ul>
+    <p class="tiny">What you get on the call is general guidance from experience. It is free, there is no pitch unless you ask, and there is nothing to buy.</p>
+    <button type="button" class="again" id="again">← Start again</button>
   </div>
 
-  <div class="q" data-k="size">
-    <h2>How many people work in the business?</h2>
-    <button class="opt" data-v="1-4">1–4</button>
-    <button class="opt" data-v="5-19">5–19</button>
-    <button class="opt" data-v="20-49">20–49</button>
-    <button class="opt" data-v="50-200">50–200</button>
-    <button class="opt" data-v="200+">More than 200</button>
-  </div>
-
-  <div class="q" data-k="where">
-    <h2>Where is the business based?</h2>
-    <button class="opt" data-v="Singapore">Singapore</button>
-    <button class="opt" data-v="Malaysia or rest of Southeast Asia">Malaysia or elsewhere in Southeast Asia</button>
-    <button class="opt" data-v="Elsewhere">Elsewhere</button>
-  </div>
-
-  <div class="q" data-k="when">
-    <h2>How soon do you want this working?</h2>
-    <button class="opt" data-v="This month">This month</button>
-    <button class="opt" data-v="This quarter">This quarter</button>
-    <button class="opt" data-v="Just exploring">Just exploring</button>
-  </div>
-
-  <div class="q" data-k="contact">
-    <h2>Last one: who are you?</h2>
-    <p class="hint">Optional. Only used to pre-fill the booking form if you choose to book. Nothing is stored on this page.</p>
-    <input type="text" id="name" placeholder="Your name">
-    <input type="email" id="email" placeholder="Work email">
-  </div>
-
-  <div class="q res" data-k="result" id="result"></div>
-
-  <div class="nav" id="nav">
-    <button class="back" id="back">← Back</button>
-    <button class="next" id="next" disabled>Next</button>
-  </div>
-
-  <p class="small">Some links on The Gantry are affiliate links; if you sign up through them, The Gantry may earn a commission at no extra cost to you.</p>
-  <div class="footer"><a href="../index.html">Free tools</a> · <a href="../blueprints/">Free blueprints</a> · <a href="https://www.gantry.work/p/n8n-templates-small-business">Blueprint library</a></div>
+  <p class="disclose">Some links on The Gantry are affiliate links. If you sign up through them, The Gantry may earn a commission at no extra cost to you. Each one is marked where it appears.</p>
+  <div class="footer"><a href="/">Free tools</a> · <a href="/blueprints/">Free blueprints</a> · <a href="https://www.gantry.work/p/n8n-templates-small-business">Blueprint library</a></div>
 </div>
 
 <script>
-const MAKE = 'https://www.make.com/en/register?pc=gntrywk';
-const CAL = 'https://cal.com/sayed.r/20min';
-const GUIDES = {
-  'Chasing unpaid invoices': ['Chase overdue Xero invoices', 'https://www.gantry.work/p/xero-invoice-reminders-automation'],
-  'Supplier bills and data entry': ['Supplier invoices from email to a sheet', 'https://www.gantry.work/p/supplier-invoice-email-to-sheet'],
-  'Daily or monthly reports': ['Daily 8am owner report', 'https://www.gantry.work/p/daily-owner-report-xero'],
-  'Enquiries and leads': ['Enquiry form to sheet to salesperson', 'https://www.gantry.work/p/google-sheets-lead-automation'],
-  'WhatsApp orders': ['WhatsApp order intake', 'https://www.gantry.work/p/n8n-whatsapp-order-automation'],
-  'Stock and purchasing': ['Safety stock and reorder points', 'https://www.gantry.work/p/safety-stock-reorder-point'],
-  'Something else': ['The blueprint library', 'https://www.gantry.work/p/n8n-templates-small-business']
-};
-const FIXES = {
-  "Haven't started yet": ['Start here', [
-    'Open the <a href="GUIDE">setup guide</a> and read the flow once before building anything.',
-    'Create a <a href="' + MAKE + '" rel="sponsored nofollow">free Make account</a> (1,000 credits a month is plenty to build and test).',
-    'Build it with one test record first. Only switch the schedule on once the output looks right.']],
-  'Connecting an app': ['Connection fixes that solve most cases', [
-    '<b>Xero:</b> connect with a user who has Adviser or Standard access, and pick the right organisation when asked. The demo company is fine for testing.',
-    '<b>Gmail on Google Workspace:</b> your Workspace admin may need to allow Make or n8n in the Google Admin console. A personal Gmail account connects straight away.',
-    '<b>Google Sheets:</b> the sheet must be owned by, or shared with, the Google account you connected.',
-    '<b>WhatsApp:</b> the number needs a Meta Business account and cannot be in use on the WhatsApp app at the same time, unless you go through a partner that supports coexistence, such as <a href="https://tools.gantry.work/go/?u=https%3A%2F%2Faffiliates.wati.io%2Fgantry-trial%3Fsid1%3Dtools-automation-help" rel="sponsored nofollow">WATI</a>.']],
-  'The logic or formulas': ['How to find the broken step', [
-    'Click <b>Run once</b>, then open the output bubble on each module in turn. The first bubble with the wrong data is where the problem is.',
-    'Filters sit on the line <i>between</i> modules. If nothing arrives after a filter, open the filter and check the condition against the actual data.',
-    "Dates are the usual culprit. Set your organisation's timezone to Asia/Singapore and compare dates as dates, not text."]],
-  'It runs but the results are wrong': ['Usual causes', [
-    '<b>Duplicates:</b> anything that sends messages needs a memory of what it sent (a data store or a sheet), or it will send again on the next run.',
-    '<b>Wrong timezone:</b> check the scenario and organisation timezone; "yesterday" in UTC is not yesterday in Singapore.',
-    '<b>Partial data:</b> searches often return only the first page of results. Check the limit setting on search modules.']],
-  "Not sure it's worth it": ['Put a number on it first', [
-    'Use the free <a href="../cost-of-manual-work.html">Cost of Manual Work calculator</a>: hours a week × loaded hourly cost.',
-    'Automation usually pays when the task happens daily, follows rules, and costs more than 2–3 hours a week.',
-    'If the process changes every time, fix the process before automating it.']]
-};
-const answers = {}; const qs = [...document.querySelectorAll('.q')]; let i = 0; let started = false;
-function show() {
-  qs.forEach((q, j) => q.classList.toggle('on', j === i));
-  document.getElementById('bar').style.width = Math.round(i / (qs.length - 1) * 100) + '%';
-  document.getElementById('back').style.visibility = i === 0 || qs[i].dataset.k === 'result' ? 'hidden' : 'visible';
-  const k = qs[i].dataset.k;
-  document.getElementById('nav').style.display = k === 'result' ? 'none' : 'flex';
-  document.getElementById('next').disabled = !(k === 'contact' || answers[k]);
-  document.getElementById('next').textContent = k === 'contact' ? 'See my result' : 'Next';
-}
-document.querySelectorAll('.opt').forEach(b => b.addEventListener('click', () => {
-  const q = b.closest('.q'); q.querySelectorAll('.opt').forEach(x => x.classList.remove('sel')); b.classList.add('sel');
-  answers[q.dataset.k] = b.dataset.v; document.getElementById('next').disabled = false;
-  if (!started) { started = true; try { gtag('event', 'automation_help_start', { from: FROM }); } catch (e) {} }
-}));
-document.getElementById('next').addEventListener('click', () => { if (qs[i].dataset.k === 'contact') return result(); i++; show(); });
-document.getElementById('back').addEventListener('click', () => { if (i > 0) { i--; show(); } });
-const FROM = new URLSearchParams(location.search).get('from') || 'direct';
+/* Automation help (rebuilt 2026-11-12). One tap answers a question and moves on; Back steps one question back.
+   Five questions (what, where stuck, role, size, timing), then a result with the fix, the main video and the calendar on the same page.
+   Lead gate (owner's rule, 12 Nov 2026): after the fifth answer the "See your result" form is shown (GantryGate in /vsl-main.js, Tally form
+   RWMRB9 with hidden fields source, answers, score, page). The result opens only when Tally reports that the form was sent. No skip link.
+   Nothing is sent while the quiz runs. The answers leave the browser (a) with that form and (b) in the booking notes when a time is booked.
+   GA4: tool_view / tool_engaged come from /track.js (view and use). This page adds automation_help_start, automation_help_step {step},
+   automation_help_back {step}, quiz_complete {source} and automation_help_complete {tier, automate, stuck} (both before the gate),
+   automation_help_book_click {tier, via}; lead_gate_shown, lead_captured, the video and the calendar events come from /vsl-main.js. */
+(function () {
+  var GO = 'https://tools.gantry.work/go/?u=';
+  var MAKE = GO + encodeURIComponent('https://www.make.com/en/register?pc=gntrywk');
+  var WATI = GO + encodeURIComponent('https://affiliates.wati.io/gantry-trial?sid1=tools-automation-help');
+  var CAL = 'https://cal.com/sayed.r/20min';
+  var AFF = '<span class="aff">Affiliate link: The Gantry may earn a commission if you sign up, at no extra cost to you.</span>';
+  var GUIDES = {
+    'Chasing unpaid invoices': ['Chase overdue Xero invoices', 'https://www.gantry.work/p/xero-invoice-reminders-automation'],
+    'Supplier bills and data entry': ['Supplier invoices from email to a sheet', 'https://www.gantry.work/p/supplier-invoice-email-to-sheet'],
+    'Daily or monthly reports': ['Daily 8am owner report', 'https://www.gantry.work/p/daily-owner-report-xero'],
+    'Enquiries and leads': ['Enquiry form to sheet to salesperson', 'https://www.gantry.work/p/google-sheets-lead-automation'],
+    'WhatsApp orders': ['WhatsApp order intake', 'https://www.gantry.work/p/n8n-whatsapp-order-automation'],
+    'Stock and purchasing': ['Safety stock and reorder points', 'https://www.gantry.work/p/safety-stock-reorder-point'],
+    'Something else': ['The blueprint library', 'https://www.gantry.work/p/n8n-templates-small-business']
+  };
+  var FIXES = {
+    "Haven't started yet": ['Start here', [
+      'Open the <a href="GUIDE">setup guide</a> and read the flow once before building anything.',
+      'Create a <a href="' + MAKE + '" rel="sponsored nofollow">free Make account</a> (1,000 credits a month is plenty to build and test).' + AFF,
+      'Build it with one test record first. Only switch the schedule on once the output looks right.']],
+    'Connecting an app': ['Connection fixes that solve most cases', [
+      '<b>Xero:</b> connect with a user who has Adviser or Standard access, and pick the right organisation when asked. The demo company is fine for testing.',
+      '<b>Gmail on Google Workspace:</b> your Workspace admin may need to allow Make or n8n in the Google Admin console. A personal Gmail account connects straight away.',
+      '<b>Google Sheets:</b> the sheet must be owned by, or shared with, the Google account you connected.',
+      '<b>WhatsApp:</b> the number needs a Meta Business account and cannot be in use on the WhatsApp app at the same time, unless you go through a partner that supports coexistence, such as <a href="' + WATI + '" rel="sponsored nofollow">WATI</a>.' + AFF]],
+    'The logic or formulas': ['How to find the broken step', [
+      'Click <b>Run once</b>, then open the output bubble on each module in turn. The first bubble with the wrong data is where the problem is.',
+      'Filters sit on the line <i>between</i> modules. If nothing arrives after a filter, open the filter and check the condition against the actual data.',
+      "Dates are the usual culprit. Set your organisation's timezone to Asia/Singapore and compare dates as dates, not text."]],
+    'It runs but the results are wrong': ['Usual causes', [
+      '<b>Duplicates:</b> anything that sends messages needs a memory of what it sent (a data store or a sheet), or it will send again on the next run.',
+      '<b>Wrong timezone:</b> check the scenario and organisation timezone; "yesterday" in UTC is not yesterday in Singapore.',
+      '<b>Partial data:</b> searches often return only the first page of results. Check the limit setting on search modules.']],
+    "Not sure it's worth it": ['Put a number on it first', [
+      'Use the free <a href="/cost-of-manual-work.html">Cost of Manual Work calculator</a>: hours a week × loaded hourly cost.',
+      'Automation usually pays when the task happens daily, follows rules, and costs more than 2 to 3 hours a week.',
+      'If the process changes every time, fix the process before automating it.']]
+  };
+  var $ = function (id) { return document.getElementById(id); };
+  var ev = function (n, p) { try { p = p || {}; p.from = FROM; gtag('event', n, p); } catch (e) {} };
+  var qp; try { qp = new URLSearchParams(location.search); } catch (e) { qp = { get: function () { return null; } }; }
+  var FROM = String(qp.get('from') || qp.get('utm_source') || 'direct').slice(0, 60);
+  window.gCamp = String(qp.get('utm_campaign') || '').slice(0, 40);
+  var quiz = $('quiz'), res = $('res'), gateEl = $('gate'), qs = Array.prototype.slice.call(document.querySelectorAll('.q')), N = qs.length;
+  var answers = {}, i = 0, started = false, busy = false, tier = '';
 
-function result() {
-  const name = document.getElementById('name').value.trim(), email = document.getElementById('email').value.trim(), detail = document.getElementById('detail').value.trim();
-  const decider = ['Owner or director', 'Operations or finance manager'].includes(answers.role);
-  const bigEnough = answers.size !== '1-4';
-  const region = answers.where !== 'Elsewhere';
-  const soon = answers.when !== 'Just exploring';
-  const tier = decider && bigEnough && region && soon ? 'call' : (decider ? 'maybe' : 'self');
-  const guide = GUIDES[answers.automate] || GUIDES['Something else'];
-  const fix = FIXES[answers.stuck];
-  const notes = ['From: ' + FROM, 'Automating: ' + answers.automate + (detail ? ' (' + detail + ')' : ''), 'Stuck: ' + answers.stuck, 'Role: ' + answers.role, 'Staff: ' + answers.size, 'Based: ' + answers.where, 'Timing: ' + answers.when].join(' | ');
-  const book = CAL + '?' + new URLSearchParams(Object.assign({ notes }, name ? { name } : {}, email ? { email } : {})).toString().replace(/\+/g, '%20');
-  const fixHtml = '<div class="fix"><h3>' + fix[0] + '</h3><ul>' + fix[1].map(x => '<li>' + x.replace('GUIDE', guide[1]) + '</li>').join('') + '</ul></div>';
-  let html;
-  if (tier === 'call') {
-    html = '<h2>This is worth 20 minutes</h2><p class="sub">You run a real process at a size where getting it right pays back quickly. Book a free 20-minute review: we\'ll look at <b>' + answers.automate.toLowerCase() + '</b> end to end and work out the first fix. Your answers go with the booking, so we start straight away.</p>'
-      + '<a class="cta" id="bookBtn" href="' + book + '" target="_blank" rel="noopener">Book my free 20-minute review →</a>'
-      + fixHtml + '<p class="sub" style="margin-top:4px">Want to keep going on your own meanwhile? The <a class="inl" href="' + guide[1] + '">' + guide[0] + '</a> guide has every step.</p>';
-  } else if (tier === 'maybe') {
-    html = '<h2>Here\'s how to get unstuck</h2><p class="sub">Start with the fix below and the <a class="inl" href="' + guide[1] + '">' + guide[0] + '</a> guide. Most people at your stage get it working in an afternoon.</p>' + fixHtml
-      + '<a class="cta-ghost" id="bookBtn" href="' + book + '" target="_blank" rel="noopener">Still stuck? Book a free 20-minute review</a>';
-  } else {
-    html = '<h2>Here\'s how to get unstuck</h2><p class="sub">The fix below solves most cases like yours, and the <a class="inl" href="' + guide[1] + '">' + guide[0] + '</a> guide has every step.</p>' + fixHtml
-      + '<div class="fix"><h3>Keep learning</h3><ul><li>Make\'s free <a href="https://academy.make.com/">Make Academy</a> courses cover filters, routers and data stores.</li><li>Get a new tested blueprint each week: <a href="https://www.gantry.work/subscribe?utm_source=automation-help">subscribe to The Gantry</a> (free).</li></ul></div>';
+  function show(focus) {
+    qs.forEach(function (q, j) { q.classList.toggle('on', j === i); });
+    $('bar').style.width = Math.round(i / N * 100) + '%';
+    $('prog').setAttribute('aria-valuenow', String(i));
+    $('stepTxt').textContent = 'Question ' + (i + 1) + ' of ' + N;
+    $('back').hidden = i === 0;
+    quiz.classList.toggle('going', i > 0);
+    if (focus) { var h = qs[i].querySelector('h2'); try { h.focus({ preventScroll: true }); } catch (e) {}
+      var top = quiz.getBoundingClientRect().top; if (top < 0) { try { quiz.scrollIntoView({ block: 'start' }); } catch (e) {} } }
   }
-  const r = document.getElementById('result'); r.innerHTML = html; i = qs.length - 1; show();
-  document.getElementById('bar').style.width = '100%';
-  try { gtag('event', 'automation_help_complete', { tier, from: FROM, automate: answers.automate, stuck: answers.stuck }); } catch (e) {}
-  const b = document.getElementById('bookBtn'); if (b) b.addEventListener('click', () => { try { gtag('event', 'automation_help_book_click', { tier, from: FROM }); } catch (e) {} });
-}
-show();
+  function pick(b) {
+    if (busy) return;
+    var q = b.closest('.q'), k = q.getAttribute('data-k');
+    q.querySelectorAll('.opt').forEach(function (x) { x.classList.remove('sel'); x.removeAttribute('aria-pressed'); });
+    b.classList.add('sel'); b.setAttribute('aria-pressed', 'true');
+    answers[k] = b.getAttribute('data-v');
+    if (!started) { started = true; ev('automation_help_start'); }
+    ev('automation_help_step', { step: i + 1 });
+    busy = true;
+    setTimeout(function () { busy = false; if (i < N - 1) { i++; show(true); } else result(); }, 140);
+  }
+  document.querySelectorAll('.opt').forEach(function (b) { b.addEventListener('click', function () { pick(b); }); });
+  $('back').addEventListener('click', function () { if (busy || i === 0) return; ev('automation_help_back', { step: i + 1 }); i--; show(true); });
+
+  function notes() {
+    return ['Automation help', 'From: ' + FROM, 'Automating: ' + answers.automate, 'Stuck: ' + answers.stuck, 'Role: ' + answers.role, 'Staff: ' + answers.size, 'Timing: ' + answers.when].join(' | ');
+  }
+  function result() {
+    var decider = answers.role === 'Owner or director' || answers.role === 'Operations or finance manager';
+    var bigEnough = answers.size !== '1-4', soon = answers.when !== 'Just exploring';
+    tier = decider && bigEnough && soon ? 'call' : (decider ? 'maybe' : 'self');
+    var guide = GUIDES[answers.automate] || GUIDES['Something else'], fix = FIXES[answers.stuck], what = answers.automate === 'Something else' ? 'your process' : answers.automate.charAt(0).toLowerCase() + answers.automate.slice(1);
+    $('resH').textContent = tier === 'call' ? 'This is worth 20 minutes.' : 'Here is how to get unstuck.';
+    $('resSub').textContent = tier === 'call'
+      ? 'You run a real process at a size where it is worth getting right. The fix for where you are stuck is first. Under it: a short video and the calendar.'
+      : 'Start with the fix below. If it is still stuck after that, the next step is under it.';
+    $('resChips').innerHTML = [answers.automate, answers.stuck, answers.role, answers.size + ' people', answers.when].map(function (t) { var s = document.createElement('span'); s.textContent = t; return s.outerHTML; }).join('');
+    $('fixBox').innerHTML = '<h2>' + fix[0] + '</h2><ol>' + fix[1].map(function (x) { return '<li>' + x.replace('GUIDE', guide[1]) + '</li>'; }).join('') + '</ol>';
+    $('guideLine').innerHTML = 'Every step is in the guide: <a class="res-a" href="' + guide[1] + '">' + guide[0] + '</a>.';
+    $('moreBox').hidden = tier !== 'self';
+    $('sellH').textContent = tier === 'self' ? 'Do you run or manage the business?' : (tier === 'call' ? 'Want ' + what + ' looked at properly? 20 minutes, free.' : 'Still stuck after the fix? 20 minutes, free.');
+    $('sellSub').textContent = (tier === 'self' ? 'If you do, there is a free 20-minute systems review. ' : '') + 'You pick one real process and we walk it end to end on a video call. You leave with:';
+    var n = notes();
+    $('calLink').href = CAL + '?notes=' + encodeURIComponent(n);
+    var gate = tier === 'self';
+    $('toCal').style.display = gate ? 'none' : ''; $('calGate').hidden = !gate; $('bookWrap').hidden = gate;
+    /* the result is ready but stays closed: first the form, then reveal() */
+    quiz.hidden = true; quiz.style.display = 'none'; res.hidden = true; gateEl.hidden = false;
+    $('bar').style.width = '100%';
+    try { window.scrollTo(0, 0); } catch (e) {}
+    ev('quiz_complete', { source: 'automation-help' });
+    ev('automation_help_complete', { tier: tier, automate: answers.automate, stuck: answers.stuck });
+    var o = { source: 'automation-help', answers: n.replace(/^Automation help \| /, ''), score: 'Fix: ' + fix[0] + ' (' + tier + ')', calNotes: n,
+      title: 'Your fix is ready.', sub: 'One short form: your name and work email. Send it and the fix for "' + answers.stuck.toLowerCase() + '" opens on this page straight away.',
+      onCaptured: function () { reveal(gate); } };
+    if (window.GantryGate) window.GantryGate.open('#gateBox', o);
+    else $('gateBox').innerHTML = '<h2>Your fix is ready.</h2><p class="sub">The form could not load on this page. Open it in a new tab to send your answers.</p><a class="cta" target="_blank" rel="noopener" href="https://tally.so/r/RWMRB9?source=automation-help&answers=' + encodeURIComponent(o.answers) + '&score=' + encodeURIComponent(o.score) + '&page=' + encodeURIComponent(location.origin + location.pathname) + '">Open the form in a new tab</a><p class="tiny">Your answers and email go to Sayed through Tally and are used only to reply to you.</p>';
+  }
+  function reveal(gate) {
+    gateEl.hidden = true; res.hidden = false;
+    try { window.scrollTo(0, 0); $('resH').focus({ preventScroll: true }); } catch (e) {}
+    if (window.gantryResult) window.gantryResult('Automation help: ' + answers.stuck + ' (' + answers.automate + ')');
+    if (!gate) calendar();
+  }
+  function calendar() {
+    if (!window.GantryBook) return;
+    window.GantryBook.mountWhenNear('#cal-inline', { page: 'automation-help', notes: notes(), onBooked: function () {
+      $('bookedPanel').hidden = false; $('bookZone').style.display = 'none';
+      try { $('bookedPanel').scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
+    } });
+  }
+  $('toCal').addEventListener('click', function () { ev('automation_help_book_click', { tier: tier, via: 'button' }); });
+  $('calLink').addEventListener('click', function () { ev('automation_help_book_click', { tier: tier, via: 'new-tab' }); });
+  $('openCal').addEventListener('click', function () {
+    ev('automation_help_book_click', { tier: tier, via: 'gate' });
+    $('calGate').hidden = true; $('bookWrap').hidden = false; calendar();
+    try { $('bookHead').scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) {}
+  });
+  $('again').addEventListener('click', function () {
+    answers = {}; i = 0; document.querySelectorAll('.opt.sel').forEach(function (x) { x.classList.remove('sel'); x.removeAttribute('aria-pressed'); });
+    res.hidden = true; gateEl.hidden = true; quiz.hidden = false; quiz.style.display = ''; show(true); try { window.scrollTo(0, 0); } catch (e) {}
+  });
+  show(false);
+})();
 </script>
 </body>
 </html>
