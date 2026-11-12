@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SME Systems Health Check — Free 60-Second Diagnostic</title>
-<meta name="description" content="Ten questions, sixty seconds: find out how much of your week your business loses to manual work, and which process is leaking the most. Free, no signup.">
-<meta property="og:title" content="SME Systems Health Check — Free 60-Second Diagnostic">
-<meta property="og:description" content="Ten questions, sixty seconds: find out how much of your week your business loses to manual work, and which process is leaking the most. Free, no signup.">
+<title>SME Systems Health Check: Free 60-Second Diagnostic | The Gantry</title>
+<meta name="description" content="Ten questions, sixty seconds: find out how much of your week your business loses to manual work, and which process is leaking the most. Free.">
+<meta property="og:title" content="SME Systems Health Check: Free 60-Second Diagnostic">
+<meta property="og:description" content="Ten questions, sixty seconds: find out how much of your week your business loses to manual work, and which process is leaking the most. Free.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <style>
@@ -119,6 +119,56 @@
 .ladder-form{margin-top:12px}.ladder-thanks{margin-top:10px;font-size:14.5px;color:#fff}
 .ladder-note{font-size:12px;color:rgba(255,255,255,.62);margin:10px 0 0;line-height:1.5}
 @media (max-width:480px){.trust{font-size:13px}.trust .chk{white-space:normal}}
+  .vslm { margin: 0 0 10px; }
+  .vslm-box { position: relative; aspect-ratio: 16 / 9; width: 100%; margin: 0 auto; border-radius: 16px; overflow: hidden; border: 1px solid rgba(242,207,110,0.45); background: #0a0d33; }
+  .vslm-box.is-tall { aspect-ratio: 9 / 16; width: min(100%, 320px); }
+  .vslm-box img, .vslm-box video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; border: 0; }
+  .vslm-box video { background: #0a0d33; }
+  .vslm-play { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; padding: 0; border: 0; background: rgba(10,13,51,0.06); cursor: pointer; display: flex; align-items: center; justify-content: center; color: #fff; font: inherit; }
+  .vslm-play i { width: clamp(46px, 14%, 84px); aspect-ratio: 1 / 1; border-radius: 50%; background: linear-gradient(180deg, #f2cf6e, #c9a227); box-shadow: 0 8px 30px rgba(0,0,0,0.5); position: relative; transition: transform .15s; }
+  .vslm-play i::before { content: ''; position: absolute; inset: -5px; border-radius: 50%; border: 2px solid rgba(242,207,110,0.7); animation: vslmring 2.2s ease-out infinite; }
+  .vslm-play i::after { content: ''; position: absolute; inset: 29% 24% 29% 37%; background: #14142a; clip-path: polygon(0 0, 100% 50%, 0 100%); }
+  .vslm-play span { position: absolute; left: 50%; bottom: 4.5%; transform: translateX(-50%); display: inline-flex; align-items: center; white-space: nowrap; font-size: 12.5px; font-weight: 800; color: #14142a; background: linear-gradient(180deg, #f2cf6e, #c9a227); padding: 6px 12px; border-radius: 30px; box-shadow: 0 6px 22px rgba(0,0,0,0.5); }
+  .vslm-play.again { background: rgba(10,13,51,0.55); }
+  .vslm-play:hover i, .vslm-play:focus-visible i { transform: scale(1.07); }
+  .vslm-play:focus-visible { outline: 3px solid #f2cf6e; outline-offset: -3px; }
+  .vslm-play[hidden] { display: none !important; }
+  @keyframes vslmring { 0% { transform: scale(0.92); opacity: .9; } 100% { transform: scale(1.3); opacity: 0; } }
+  .vslm-note { font-size: 13px; line-height: 1.45; color: rgba(255,255,255,0.72); text-align: center; margin: 8px 0 4px; }
+  .vslm-text { margin: 0 0 4px; font-size: 13.5px; color: rgba(255,255,255,0.82); }
+  .vslm-text summary { cursor: pointer; color: #f2cf6e; text-align: center; }
+  .vslm-text p { line-height: 1.6; margin: 10px 0 0; text-align: left; }
+  .nudge { animation: vslmnudge 1.1s ease 2; }
+  @keyframes vslmnudge { 50% { box-shadow: 0 0 0 4px rgba(242,207,110,0.55); } }
+  @media (min-width: 700px) { .vslm-play span { font-size: 14.5px; padding: 9px 16px; } }
+  @media (prefers-reduced-motion: reduce) { .vslm-play i::before, .nudge { animation: none; } }
+
+  .lg { margin: 0 0 8px; text-align: left; }
+  .lg[hidden] { display: none; }
+  .lg-h { font-size: 23px; font-weight: 800; line-height: 1.2; margin: 0 0 8px; color: #fff; }
+  .lg-h:focus { outline: none; }
+  .lg-sub { font-size: 15px; line-height: 1.5; color: rgba(255,255,255,0.85); margin: 0 0 14px; }
+  .lg-frame { display: block; box-sizing: content-box; width: calc(100% - 28px); padding: 14px; border: 0; min-height: 380px; border-radius: 12px; background: #fff; }
+  .lg-priv { font-size: 12.5px; line-height: 1.5; color: rgba(255,255,255,0.7); margin: 10px 0 0; }
+  .lg-fall { margin: 16px 0 0; border: 1px solid rgba(242,207,110,0.5); background: rgba(242,207,110,0.1); border-radius: 14px; padding: 16px; }
+  .lg-fall[hidden] { display: none; }
+  .lg-fall p { font-size: 14.5px; line-height: 1.5; margin: 0 0 12px; color: rgba(255,255,255,0.92); }
+  .lg-fall h3 { font-size: 16px; font-weight: 800; margin: 16px 0 8px; color: #fff; }
+  .lg-btn { display: block; text-align: center; padding: 15px; font-size: 16px; font-weight: 700; color: #14142a; background: linear-gradient(180deg, #f2cf6e, #c9a227); border-radius: 12px; text-decoration: none; }
+  .lg-cal { border: 1px dashed rgba(242,207,110,0.5); border-radius: 14px; padding: 14px 10px; min-height: 120px; }
+
+/* 2026-11-12: lead gate, then the main video and the inline calendar on the result screen (/vsl-main.js). This page has its own stylesheet. */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+#hcVsl { margin: 4px 0 18px; }
+#hcVsl .hc-lead { font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.88); margin: 0 0 12px; }
+#hcBook { margin: 6px 0 22px; scroll-margin-top: 14px; }
+.hc-scarce { font-size: 14.5px; line-height: 1.5; color: #fff; background: rgba(242,207,110,0.1); border-left: 3px solid #c9a227; padding: 10px 14px; border-radius: 0 10px 10px 0; margin: 0 0 10px; }
+.hc-zone { border: 1px dashed rgba(242,207,110,0.5); border-radius: 14px; padding: 14px 10px; margin: 10px 0 6px; min-height: 120px; }
+.hc-tiny { font-size: 12.5px; line-height: 1.5; color: rgba(255,255,255,0.62); margin: 8px 0 0; }
+.hc-tiny a { color: #f2cf6e; }
+.hc-booked { border-radius: 14px; background: rgba(242,207,110,0.12); border: 1px solid rgba(242,207,110,0.5); padding: 16px; font-size: 15px; line-height: 1.55; margin: 10px 0 0; }
+.hc-booked[hidden] { display: none; }
 </style>
 
 <!-- seo:start -->
@@ -137,11 +187,11 @@
 <meta name="author" content="Sayed Rashid">
 <!-- seo:end -->
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@graph": [{"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the Systems Health Check free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It takes about 60 seconds, needs no email to see your score, and nothing you answer is sent anywhere."}}, {"@type": "Question", "name": "What does a high score mean?", "acceptedAnswer": {"@type": "Answer", "text": "A higher score means more of your operation depends on manual work and memory. 0 to 4 is systems-ready; 16 to 20 means errors and stockouts are likely routine."}}, {"@type": "Question", "name": "Do I need an ERP if my score is high?", "acceptedAnswer": {"@type": "Answer", "text": "Not necessarily. Many leaks can be fixed with better spreadsheets and simple automation first. An ERP makes sense when the same data has to flow through sales, stock and accounts every day."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Free tools", "item": "https://tools.gantry.work/"}, {"@type": "ListItem", "position": 2, "name": "SME Systems Health Check", "item": "https://tools.gantry.work/health-check/"}]}]}
+{"@context": "https://schema.org", "@graph": [{"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the Systems Health Check free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It takes about 60 seconds. Your score opens after one short form with your name and work email, and your answers go to Sayed with it so he can reply."}}, {"@type": "Question", "name": "What does a high score mean?", "acceptedAnswer": {"@type": "Answer", "text": "A higher score means more of your operation depends on manual work and memory. 0 to 4 is systems-ready; 16 to 20 means errors and stockouts are likely routine."}}, {"@type": "Question", "name": "Do I need an ERP if my score is high?", "acceptedAnswer": {"@type": "Answer", "text": "Not necessarily. Many leaks can be fixed with better spreadsheets and simple automation first. An ERP makes sense when the same data has to flow through sales, stock and accounts every day."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Free tools", "item": "https://tools.gantry.work/"}, {"@type": "ListItem", "position": 2, "name": "SME Systems Health Check", "item": "https://tools.gantry.work/health-check/"}]}]}
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
-<script src="/config.js"></script><script src="/track.js" defer></script><script src="/gantry-ui.js" defer></script>
+<script src="/config.js"></script><script src="/track.js" defer></script><script src="/gantry-ui.js" defer></script><script src="/vsl-main.js" defer></script>
 <meta name="gantry-checked" content="2026-10-28">
 </head>
 <body>
@@ -151,12 +201,12 @@
   <div id="intro">
     <div class="brand">THE GANTRY</div>
     <h1>SME Systems Health Check</h1>
-    <p class="sub">How much of your week is your business losing to manual work? Answer honestly — this is a mirror, not a sales pitch.</p>
+    <p class="sub">How much of your week is your business losing to manual work? Answer honestly: this is a mirror, not a sales pitch.</p>
   <!-- guidelink --><p style="margin:0 0 18px;font-size:14px;color:rgba(255,255,255,.8)">Full guide: <a style="color:#f2cf6e" href="https://www.gantry.work/p/your-excel-isnt-a-system-its-a-memory?utm_source=tools&amp;utm_medium=health-check&amp;utm_campaign=guidelink">Your Excel isn’t a system, it’s a memory →</a></p>
 
     <div class="meta-line"><span>10 questions</span><span>~60 seconds</span><span>Instant score</span></div>
     <button class="primary" onclick="start()">Start the check</button>
-    <div class="footer">Free · No email required to see your score</div>
+    <div class="footer">Free · Your score opens after one short form</div>
   </div>
 
   <!-- QUIZ -->
@@ -165,6 +215,12 @@
     <div class="qnum" id="qnum"></div>
     <div class="qtext" id="qtext"></div>
     <div class="answers" id="answers"></div>
+  </div>
+
+  <!-- GATE (2026-11-12): the "See your result" form; the score opens only when it is sent -->
+  <div id="gate" class="hidden">
+    <div class="brand">ONE STEP LEFT</div>
+    <div id="gateBox"></div>
   </div>
 
   <!-- RESULTS -->
@@ -182,8 +238,27 @@
       <div class="leaks-title">WHAT TO DO WITH THIS</div>
       <p class="verdict" id="nextText"></p>
     </div>
-    <a class="cta" id="bookBtn" href="https://tools.gantry.work/review.html?utm_source=health-check" target="_blank" rel="noopener">Talk it through — 20-min systems review</a>
-    <div class="cta-sub" id="ctaSub">Bring the one process that annoys you most. We walk it end to end and you leave with the first fix worth making, or an honest "not yet". No slides, no licence quote.</div>
+    <div id="hcVsl">
+      <div class="leaks-title">THE FREE 20-MINUTE SYSTEMS REVIEW</div>
+      <p class="hc-lead">One real process, walked end to end with me on a video call. You leave with where it is typed twice, where it waits, and three fixes ranked by payoff. At least one needs no purchase.</p>
+      <div class="vslm" data-page="health-check" data-action="#hcBook">
+    <div class="vslm-box">
+      <img src="/review-main.jpg" width="1280" height="720" alt="First frame of the video. One order. Typed 3 times: the quote, the invoice, the delivery order." loading="lazy" decoding="async">
+      <button type="button" class="vslm-play" aria-label="Play the 86-second video with sound"><i></i><span>Tap for sound</span></button>
+    </div>
+    <p class="vslm-note">86 seconds, with sound and captions. An AI voice, speaking for me.</p>
+    <details class="vslm-text"><summary>Read it instead</summary><p>One order. Typed 3 times. The quote, the invoice, the delivery order. At 40 orders a week, that is 80 entries nobody needed to type. (An example, not a statistic.) I'm an AI voice, and I speak for Sayed Rashid. He offers a free 20-minute systems review. Here is exactly what it is. You pick one real process: an order, an invoice, or a stock item. Then you walk it end to end with Sayed, on a video call. You leave with three things. Where it is typed twice. Where it sits and waits. And three fixes, ranked by payoff. At least one of them needs no purchase. It is for owners and managers whose work still runs on spreadsheets, chat groups and retyping. It is not for you if you only want a price list. Why him? Sayed is an ex-auditor. He has taken 38 systems live, across 8 industries, and 91% of those clients are still with him. It is free. There is nothing to prepare, and nothing to buy. There is no pitch unless you ask. And Sayed takes every call himself. No time? It is 20 minutes, and you bring nothing. Too small? If one process hurts, that is enough. Already have software? Good. The review starts with what you already own. After you book, the invite lands in your inbox. On the day, you join the call and talk through that one process. The calendar opens 3 working days ahead, with 4 slots a day. If you can see a time, take it.</p></details>
+  </div>
+    </div>
+    <a class="cta" id="bookBtn" href="#hcBook" data-vslm-cta="health-check">See the open times for the free 20 minutes ↓</a>
+    <div class="cta-sub" id="ctaSub">Bring the one process that annoys you most. Free, nothing to prepare, no pitch unless you ask. What you get is general guidance from experience, or an honest "not yet".</div>
+    <div id="hcBook">
+      <div class="leaks-title">BOOK THE FREE 20 MINUTES</div>
+      <p class="hc-scarce"><b>I take every call myself.</b> The calendar opens 3 working days ahead, with 4 slots a day (11:00, 11:20, 15:00 and 15:20, Singapore time). If you can see a time, it is still open.</p>
+      <div class="hc-zone" id="hcZone"><div id="hc-cal"></div></div>
+      <p class="hc-tiny">Your score and your biggest leaks go into the booking notes, so we start straight away. Calendar not showing? <a id="hcCalLink" href="https://cal.com/sayed.r/20min" target="_blank" rel="noopener">Open it in a new tab</a>.</p>
+      <div class="hc-booked" id="hcBooked" hidden><b>You're in.</b> The invite is on its way to your inbox. There is nothing to prepare: bring the one process, and we walk it end to end. The free tools now stay open for you on this browser.</div>
+    </div>
     <a class="cta-ghost" href="https://www.gantry.work/subscribe?utm_source=health-check" target="_blank" rel="noopener">Not ready to talk? Get the weekly fix instead</a>
     <button class="ghost" onclick="restart()">Retake the check</button>
     <div class="footer">Built by <a href="https://www.gantry.work" target="_blank" rel="noopener">Sayed Rashid</a> · The Gantry</div>
@@ -204,7 +279,7 @@
 <h2>What to do with your result</h2>
 <p>Pick the single leak that hurts most and fix that first; trying to fix everything at once is how system projects stall. If it is retyping, start with <a href="https://www.gantry.work/p/excel-automation-small-business?utm_source=tools&amp;utm_medium=health-check">Excel automation for small businesses</a>. If it is cash, use the free <a href="../invoice-chaser.html">overdue invoice reminder writer</a> and read <a href="https://www.gantry.work/p/order-to-cash-process?utm_source=tools&amp;utm_medium=health-check">order to cash</a>. If it is knowledge stuck in one person's head, read <a href="https://www.gantry.work/p/your-excel-isnt-a-system-its-a-memory?utm_source=tools&amp;utm_medium=health-check">Your Excel isn’t a system, it’s a memory</a>.</p>
 <h2>Questions</h2>
-<p><b>Is the Systems Health Check free?</b> Yes. It takes about 60 seconds, needs no email to see your score, and nothing you answer is sent anywhere.</p>
+<p><b>Is the Systems Health Check free?</b> Yes. It takes about 60 seconds. Your score opens after one short form with your name and work email, and your answers go to Sayed with it so he can reply.</p>
 <p><b>What does a high score mean?</b> A higher score means more of your operation depends on manual work and memory. 0 to 4 is systems-ready; 16 to 20 means errors and stockouts are likely routine.</p>
 <p><b>Do I need an ERP if my score is high?</b> Not necessarily. Many leaks can be fixed with better spreadsheets and simple automation first. An ERP makes sense when the same data has to flow through sales, stock and accounts every day.</p>
 </div>
@@ -224,65 +299,67 @@
 <script>
 const QUESTIONS = [
   { q: "When a customer order comes in, how many times does the same information get typed into different places?",
-    a: ["Once — it flows through automatically", "Twice — usually re-keyed once", "Three times or more"],
-    leak: "Every order is re-typed — you're paying salaries for copy-paste." },
+    a: ["Once: it flows through automatically", "Twice: usually re-keyed once", "Three times or more"],
+    leak: "Every order is re-typed: you're paying salaries for copy-paste." },
   { q: "How do you know today's exact stock level?",
     a: ["It's live in our system", "Someone maintains a spreadsheet", "We check physically or call someone"],
-    leak: "Stock truth lives outside your system — every decision starts with a doubt." },
+    leak: "Stock truth lives outside your system, so every decision starts with a doubt." },
   { q: "How does reordering from suppliers happen?",
     a: ["Automatic reorder points fire on their own", "Someone notices we're running low", "We often find out at stockout"],
-    leak: "Reordering depends on someone noticing — stockouts are a matter of time." },
+    leak: "Reordering depends on someone noticing. Stockouts are a matter of time." },
   { q: "For one completed job or order, where do its documents live?",
-    a: ["One system — everything attached to the job", "Two or three places", "Email, WhatsApp, shared drives, printouts…"],
-    leak: "One job's paper trail is scattered — finding anything costs minutes, disputes cost days." },
+    a: ["One system: everything attached to the job", "Two or three places", "Email, WhatsApp, shared drives, printouts…"],
+    leak: "One job's paper trail is scattered: finding anything costs minutes, disputes cost days." },
   { q: "If your most experienced ops person took two weeks of unannounced leave…",
     a: ["The business runs normally", "Things slow down noticeably", "We'd be in serious trouble"],
-    leak: "Your process lives in one person's head — that's a dependency, not a system." },
+    leak: "Your process lives in one person's head. That's a dependency, not a system." },
   { q: "After month-end, when do you see an accurate profit figure?",
-    a: ["Within a week", "Two to three weeks", "Longer — or honestly, we estimate"],
+    a: ["Within a week", "Two to three weeks", "Longer, or honestly, we estimate"],
     leak: "You're steering the business by looking weeks into the past." },
   { q: "Quotation follow-ups happen…",
-    a: ["Automatically — tracked with reminders", "When someone remembers", "Mostly they don't"],
-    leak: "Quotes die quietly — revenue is leaking at the follow-up stage." },
+    a: ["Automatically: tracked with reminders", "When someone remembers", "Mostly they don't"],
+    leak: "Quotes die quietly: revenue is leaking at the follow-up stage." },
   { q: "If you run more than one location or entity, how do you see the other site's stock and status?",
-    a: ["Live — one system covers both", "Phone calls and messages", "We can't, really", "Single location — not applicable"],
-    leak: "Your sites talk by phone call — information crosses the border slower than your goods.",
+    a: ["Live: one system covers both", "Phone calls and messages", "We can't, really", "Single location: not applicable"],
+    leak: "Your sites talk by phone call: information crosses the border slower than your goods.",
     scores: [0, 1, 2, 0] },
   { q: "When you need numbers for a decision…",
-    a: ["A dashboard — seconds", "Someone builds an Excel over hours or days", "We go with gut feel"],
-    leak: "Decisions wait for spreadsheets — or skip the numbers entirely." },
-  { q: "How often do data errors — wrong price, duplicate entry, missed order — cost you money?",
+    a: ["A dashboard: seconds", "Someone builds an Excel over hours or days", "We go with gut feel"],
+    leak: "Decisions wait for spreadsheets, or skip the numbers entirely." },
+  { q: "How often do data errors (wrong price, duplicate entry, missed order) cost you money?",
     a: ["Rarely", "Every month or so", "Every week, if we're honest"],
     leak: "Manual-entry errors are a recurring invoice you never see itemised." }
 ];
 
 const BANDS = [
   { min: 0, max: 4, name: "Systems-Ready",
-    verdict: "You're ahead of the pack. Your operation runs on systems, not memory — which means you're one of the few SMEs actually ready to put AI and automation on top. Your next wins are refinement, not rescue.",
+    verdict: "You're ahead of the pack. Your operation runs on systems, not memory, which means you're one of the few SMEs actually ready to put AI and automation on top. Your next wins are refinement, not rescue.",
     hours: "Teams at this level typically lose <strong>under 3 hours a week</strong> to manual work. Guard it.",
     next: "Nothing here needs a call. The moment to revisit is a second site, a second entity, or a doubling of headcount. Until then, one idea a week is plenty.",
     book: false },
   { min: 5, max: 10, name: "Held Together by Heroes",
-    verdict: "Your business works — because a few good people carry it. The processes run on memory, effort, and WhatsApp. That's fine until a hero resigns, falls sick, or takes leave. The goal now: move what's in heads into systems, one process at a time.",
-    hours: "Teams at this level typically lose <strong>6–10 hours per person, per week</strong> to re-keying, checking, and chasing.",
+    verdict: "Your business works, because a few good people carry it. The processes run on memory, effort, and WhatsApp. That's fine until a hero resigns, falls sick, or takes leave. The goal now: move what's in heads into systems, one process at a time.",
+    hours: "Teams at this level typically lose <strong>6 to 10 hours per person, per week</strong> to re-keying, checking, and chasing.",
     next: "Pick the one leak above that bit you most recently. That is the process to walk through first. Twenty minutes is enough to see whether it is a quick fix or a real project.",
     book: true },
   { min: 11, max: 15, name: "The Spreadsheet Is the Business",
-    verdict: "Right now, your real operating system is a collection of spreadsheets and chat groups — and one or two people who understand them. Growth will multiply the chaos, not the profit. The fix isn't more software; it's one source of truth, starting with your most painful process.",
-    hours: "Teams at this level typically lose <strong>10–16 hours per person, per week</strong> — more than a full working day.",
+    verdict: "Right now, your real operating system is a collection of spreadsheets and chat groups, and one or two people who understand them. Growth will multiply the chaos, not the profit. The fix isn't more software; it's one source of truth, starting with your most painful process.",
+    hours: "Teams at this level typically lose <strong>10 to 16 hours per person, per week</strong>: more than a full working day.",
     next: "Do not buy anything yet. At this score the mistake is a big system bought in a hurry. Walk one process end to end with someone who has seen this before, and decide from that.",
     book: true },
   { min: 16, max: 20, name: "Running on Luck",
-    verdict: "Honest score — and honestly risky. Almost everything depends on people remembering, noticing, and firefighting. You don't need a transformation project; you need one bounded fix that proves what calm feels like. Start with the process that broke most recently.",
-    hours: "Teams at this level typically lose <strong>17+ hours per person, per week</strong> — and the errors cost more than the hours.",
+    verdict: "Honest score, and honestly risky. Almost everything depends on people remembering, noticing, and firefighting. You don't need a transformation project; you need one bounded fix that proves what calm feels like. Start with the process that broke most recently.",
+    hours: "Teams at this level typically lose <strong>17+ hours per person, per week</strong>, and the errors cost more than the hours.",
     next: "Start with the process that broke most recently, not the biggest one. Twenty minutes on that single process is the fastest way to find out what calm would cost.",
     book: true }
 ];
 
-let idx = 0, score = 0, leaks = [];
+let idx = 0, score = 0, leaks = [], picks = [];
+// 2026-11-12, lead gate: short names for the ten questions, used in the summary that goes with the form
+const HC_KEYS = ["Order typing", "Stock level", "Reordering", "Job documents", "Key person away", "Month-end profit", "Quote follow-up", "Other sites", "Numbers for decisions", "Data errors"];
 
 function start() {
-  idx = 0; score = 0; leaks = [];
+  idx = 0; score = 0; leaks = []; picks = [];
   show("quiz"); render();
 }
 function render() {
@@ -305,9 +382,25 @@ function pick(i) {
   const pts = q.scores ? q.scores[i] : i;
   score += pts;
   if (pts === 2) leaks.push(q.leak);
+  picks.push(q.a[i]);
   idx++;
   if (idx < QUESTIONS.length) render();
-  else finish();
+  else gate();
+}
+// 2026-11-12, lead gate (owner's rule: nobody sees a result before the form is sent). After question 10 the "See your result" form is shown
+// (GantryGate in /vsl-main.js, Tally form RWMRB9, hidden fields source, answers, score, page). finish() runs only when Tally reports the submission.
+function gate() {
+  document.getElementById("bar").style.width = "100%";
+  const band = BANDS.find(b => score >= b.min && score <= b.max);
+  const o = { source: "health-check", answers: picks.map((a, i) => (i + 1) + " " + HC_KEYS[i] + ": " + a).join(" | "), score: score + "/20 (" + band.name + ")",
+    title: "Your score is ready.", sub: "One short form: your name and work email. Send it and your score, your biggest leaks and the next step open on this page straight away.",
+    onCaptured: finish };
+  o.calNotes = "Health Check: " + o.score;
+  try { gtag("event", "quiz_complete", { source: "health-check" }); } catch (e) {}
+  show("gate");
+  try { window.scrollTo(0, 0); } catch (e) {}
+  if (window.GantryGate) window.GantryGate.open("#gateBox", o);
+  else document.getElementById("gateBox").innerHTML = '<p class="verdict">The form could not load on this page. Open it in a new tab to send your answers.</p><a class="cta" target="_blank" rel="noopener" href="https://tally.so/r/RWMRB9?source=health-check&answers=' + encodeURIComponent(o.answers.slice(0, 900)) + '&score=' + encodeURIComponent(o.score) + '&page=' + encodeURIComponent(location.origin + location.pathname) + '">Open the form in a new tab</a><p class="hc-tiny">Your answers and email go to Sayed through Tally and are used only to reply to you.</p>';
 }
 function finish() {
   document.getElementById("bar").style.width = "100%";
@@ -321,6 +414,10 @@ function finish() {
   if (window.gantryResult) window.gantryResult("Health Check: " + score + "/20 (" + band.name + ")");
   document.getElementById("bookBtn").style.display = band.book ? "" : "none";
   document.getElementById("ctaSub").style.display = band.book ? "" : "none";
+  // 2026-11-12: the video and the calendar sit on this screen (not for the Systems-Ready band, which needs no call)
+  document.getElementById("hcVsl").style.display = band.book ? "" : "none";
+  document.getElementById("hcBook").style.display = band.book ? "" : "none";
+  if (band.book) hcCalendar("Health Check: " + score + "/20 (" + band.name + ")" + (leaks.length ? " | Biggest leaks: " + leaks.slice(0, 3).join(" / ") : ""));
   const ul = document.getElementById("leaks");
   ul.innerHTML = "";
   if (leaks.length) {
@@ -344,8 +441,18 @@ function animateScore() {
   step();
 }
 function restart() { show("intro"); }
+// 2026-11-12: inline calendar (/vsl-main.js). The score and the biggest leaks go into the booking notes.
+// The calendar is mounted once per page view, so after "Retake the check" the notes are those of the first result.
+function hcCalendar(notes) {
+  try { document.getElementById("hcCalLink").href = "https://cal.com/sayed.r/20min?notes=" + encodeURIComponent(notes); } catch (e) {}
+  if (!window.GantryBook) return;
+  window.GantryBook.mountWhenNear("#hc-cal", { page: "health-check", notes: notes, onBooked: function () {
+    document.getElementById("hcBooked").hidden = false; document.getElementById("hcZone").style.display = "none";
+    try { document.getElementById("hcBooked").scrollIntoView({ behavior: "smooth", block: "center" }); } catch (e) {}
+  } });
+}
 function show(id) {
-  ["intro", "quiz", "results"].forEach(s => document.getElementById(s).classList.add("hidden"));
+  ["intro", "quiz", "gate", "results"].forEach(s => document.getElementById(s).classList.add("hidden"));
   document.getElementById(id).classList.remove("hidden");
 }
 </script>
