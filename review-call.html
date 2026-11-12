@@ -192,6 +192,48 @@
     .tools .tool-list a { height: 100%; }
     .others { max-width: 760px; margin-left: auto; margin-right: auto; }
   }
+
+  .vslm { margin: 0 0 10px; }
+  .vslm-box { position: relative; aspect-ratio: 16 / 9; width: 100%; margin: 0 auto; border-radius: 16px; overflow: hidden; border: 1px solid rgba(242,207,110,0.45); background: #0a0d33; }
+  .vslm-box.is-tall { aspect-ratio: 9 / 16; width: min(100%, 320px); }
+  .vslm-box img, .vslm-box video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; border: 0; }
+  .vslm-box video { background: #0a0d33; }
+  .vslm-play { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; padding: 0; border: 0; background: rgba(10,13,51,0.06); cursor: pointer; display: flex; align-items: center; justify-content: center; color: #fff; font: inherit; }
+  .vslm-play i { width: clamp(46px, 14%, 84px); aspect-ratio: 1 / 1; border-radius: 50%; background: linear-gradient(180deg, #f2cf6e, #c9a227); box-shadow: 0 8px 30px rgba(0,0,0,0.5); position: relative; transition: transform .15s; }
+  .vslm-play i::before { content: ''; position: absolute; inset: -5px; border-radius: 50%; border: 2px solid rgba(242,207,110,0.7); animation: vslmring 2.2s ease-out infinite; }
+  .vslm-play i::after { content: ''; position: absolute; inset: 29% 24% 29% 37%; background: #14142a; clip-path: polygon(0 0, 100% 50%, 0 100%); }
+  .vslm-play span { position: absolute; left: 50%; bottom: 4.5%; transform: translateX(-50%); display: inline-flex; align-items: center; white-space: nowrap; font-size: 12.5px; font-weight: 800; color: #14142a; background: linear-gradient(180deg, #f2cf6e, #c9a227); padding: 6px 12px; border-radius: 30px; box-shadow: 0 6px 22px rgba(0,0,0,0.5); }
+  .vslm-play.again { background: rgba(10,13,51,0.55); }
+  .vslm-play:hover i, .vslm-play:focus-visible i { transform: scale(1.07); }
+  .vslm-play:focus-visible { outline: 3px solid #f2cf6e; outline-offset: -3px; }
+  .vslm-play[hidden] { display: none !important; }
+  @keyframes vslmring { 0% { transform: scale(0.92); opacity: .9; } 100% { transform: scale(1.3); opacity: 0; } }
+  .vslm-note { font-size: 13px; line-height: 1.45; color: rgba(255,255,255,0.72); text-align: center; margin: 8px 0 4px; }
+  .vslm-text { margin: 0 0 4px; font-size: 13.5px; color: rgba(255,255,255,0.82); }
+  .vslm-text summary { cursor: pointer; color: #f2cf6e; text-align: center; }
+  .vslm-text p { line-height: 1.6; margin: 10px 0 0; text-align: left; }
+  .nudge { animation: vslmnudge 1.1s ease 2; }
+  @keyframes vslmnudge { 50% { box-shadow: 0 0 0 4px rgba(242,207,110,0.55); } }
+  @media (min-width: 700px) { .vslm-play span { font-size: 14.5px; padding: 9px 16px; } }
+  @media (prefers-reduced-motion: reduce) { .vslm-play i::before, .nudge { animation: none; } }
+
+  .vsl-short { margin: 8px 0 0; font-size: 13px; color: rgba(255,255,255,0.8); }
+  .vsl-short > summary { cursor: pointer; color: var(--gold-light); text-align: center; padding: 6px 0; }
+  .vsl-short .vsl { margin-top: 8px; }
+  .hub .vslm { margin-bottom: 0; }
+  .hub .vslm-note { font-size: 12px; margin: 6px 0 0; }
+  .hub .vsl-short .vsl { width: min(100%, 280px); }
+  .hub-video a.cta.hub-book { margin: 10px 0 0; padding: 13px 16px; font-size: 16px; }
+  .hero .fine { font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.72); margin: 10px 0 0; }
+  .shortv { border-top: 1px solid rgba(255,255,255,0.12); padding-top: 22px; margin: 6px 0 24px; }
+  .shortv h2 { margin-bottom: 12px; }
+  .shortv .vsl { max-width: 340px; }
+  @media (max-height: 780px) and (max-width: 699px) { .hub .vslm-note { display: none; } .hub-video a.cta.hub-book { padding: 11px 14px; font-size: 15px; } }
+  @media (min-width: 1000px) {
+    .hub { grid-template-columns: minmax(0, 1fr) minmax(0, 500px); }
+    .hero.hero-main { grid-template-columns: minmax(0, 1fr) minmax(0, 540px); }
+    .shortv { max-width: 760px; margin-left: auto; margin-right: auto; }
+  }
 </style>
 <!-- seo:start -->
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -211,13 +253,13 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){if(!/gantry\.work$/.test(location.hostname))return;dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');
 window.gSrc=(function(){try{var q=new URLSearchParams(location.search),s=q.get('utm_medium')||q.get('from')||'',r=document.referrer||'';if(!s){if(/^https?:\/\/tools\.gantry\.work\/review/.test(r)){try{s=sessionStorage.getItem('gantry_rsrc')||'';}catch(e){}s=s||'review-hub';}else s=r||'direct';}try{sessionStorage.setItem('gantry_rsrc',s);}catch(e){}return s.slice(0,90);}catch(e){return 'unknown';}})();
 if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'call'});gtag('event','vsl_page_view',{source:window.gSrc,page:'call',screen:(window.matchMedia&&matchMedia('(min-width:1000px)').matches)?'desktop':'mobile'});}catch(e){}}</script>
-<script src="/config.js"></script><script src="/track.js" defer></script><script src="/gantry-ui.js" defer></script>
+<script src="/config.js"></script><script src="/track.js" defer></script><script src="/gantry-ui.js" defer></script><script src="/vsl-main.js" defer></script>
 <meta name="gantry-checked" content="2026-11-10">
 </head>
 <body>
 <div class="card">
   <div class="back"><a href="review.html" data-carry="hub" data-cta="back">← THE GANTRY · ALL THREE OPTIONS</a></div>
-  <div class="hero">
+  <div class="hero hero-main">
   <div class="h-copy">
     <div class="pill">OPTION 2 · PREFER TO TALK</div>
     <h1>Twenty minutes on Zoom. One process, end to end.</h1>
@@ -225,32 +267,23 @@ if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'cal
     <div class="yournum" id="yourNum" hidden></div>
   </div>
   <div class="h-video">
-  <div class="vsl" id="vsl">
-    <video id="vslVideo" playsinline preload="metadata" aria-label="Video, under a minute. An AI voice speaking for Sayed explains how the 20-minute call works."></video>
-    <button type="button" class="vsl-sound" id="vslSound" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 10v4h4l5 4V6L7 10H3z"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M16 9.5l5 5M21 9.5l-5 5"/></svg><span>Tap for sound</span></button>
-    <button type="button" class="vsl-play" id="vslPlay" hidden aria-label="Play the video with sound"><i></i></button>
+  <div class="vslm" data-page="call" data-action="#bookHead">
+    <div class="vslm-box">
+      <img src="/review-main.jpg" width="1280" height="720" alt="First frame of the video. One order. Typed 3 times: the quote, the invoice, the delivery order." loading="eager" fetchpriority="high" decoding="async">
+      <button type="button" class="vslm-play" aria-label="Play the 86-second video with sound"><i></i><span>Tap for sound</span></button>
+    </div>
+    <p class="vslm-note">86 seconds, with sound and captions. An AI voice, speaking for me.</p>
+    <details class="vslm-text"><summary>Read it instead</summary><p>One order. Typed 3 times. The quote, the invoice, the delivery order. At 40 orders a week, that is 80 entries nobody needed to type. (An example, not a statistic.) I'm an AI voice, and I speak for Sayed Rashid. He offers a free 20-minute systems review. Here is exactly what it is. You pick one real process: an order, an invoice, or a stock item. Then you walk it end to end with Sayed, on a video call. You leave with three things. Where it is typed twice. Where it sits and waits. And three fixes, ranked by payoff. At least one of them needs no purchase. It is for owners and managers whose work still runs on spreadsheets, chat groups and retyping. It is not for you if you only want a price list. Why him? Sayed is an ex-auditor. He has taken 38 systems live, across 8 industries, and 91% of those clients are still with him. It is free. There is nothing to prepare, and nothing to buy. There is no pitch unless you ask. And Sayed takes every call himself. No time? It is 20 minutes, and you bring nothing. Too small? If one process hurts, that is enough. Already have software? Good. The review starts with what you already own. After you book, the invite lands in your inbox. On the day, you join the call and talk through that one process. The calendar opens 3 working days ahead, with 4 slots a day. If you can see a time, take it.</p></details>
   </div>
-  <p class="vsl-note"><span id="vslLen">58</span> seconds. An AI voice, speaking for me.</p>
-  <details class="vsl-text"><summary>Read it instead</summary><p>Hi. I'm an AI voice, and I speak for Sayed Rashid. This is option two: twenty minutes with him on Zoom. Here is what to do. Pick a time in the calendar below. Bring one process that keeps breaking. That's all. There is nothing to prepare. On the call, you walk that one process end to end with Sayed. You leave with the first fix worth making, or an honest &quot;not yet&quot;. It's free, with no slides and no licence quote. Why listen to him? Sayed is an ex-auditor. He has taken 38 systems live, and 91% of those clients are still with him. And he has done it across eight industries. Manufacturing, agriculture, retail, food and beverage, technology, printing, logistics, and finance. <span id="txA">One thing about the calls. Sayed takes every call himself, so there are only so many. If you can still see a time below, it's still open.</span><span id="txB">One thing about the calendar. Sayed takes every call himself, so it opens only three working days at a time, with a few slots a day. When those are gone, you wait for the next day to open. If you can see a time below, take it.</span></p></details>
-  <script>
-/* Which call video plays. true = the "three working days at a time" version (review-call-b.mp4): ONLY while the calendar really is limited that way
-   (Cal.com > Event types > 20min > Limits > Limit future bookings). false = the neutral version (review-call.mp4). Verified live 2026-11-10 11:24 SGT. */
-var CALL_VIDEO_WINDOW = true;
-(function () {
-  var v = document.getElementById('vslVideo'), k = CALL_VIDEO_WINDOW ? 'review-call-b' : 'review-call';
-  v.poster = k + '.jpg'; v.src = k + '.mp4';
-  document.getElementById(CALL_VIDEO_WINDOW ? 'txA' : 'txB').hidden = true;
-  document.getElementById('vslLen').textContent = CALL_VIDEO_WINDOW ? '58' : '53';
-})();
-</script>
   </div>
   <div class="h-more">
     <ol class="steps">
       <li><b>Pick a time below.</b> It goes straight into your calendar.</li>
       <li><b>Bring one process that keeps breaking.</b> Nothing to prepare.</li>
-      <li><b>Leave with the first fix</b> worth making, or an honest "not yet".</li>
+      <li><b>Leave with three things:</b> where it is typed twice, where it waits, and three fixes ranked by payoff. Or an honest "not yet".</li>
     </ol>
     <a class="cta" href="#bookHead" data-cta="hero">See the open times ↓</a>
+    <p class="fine">Free. No pitch unless you ask. What you get is general guidance from experience, and at least one fix that needs no purchase.</p>
   </div>
   </div>
 
@@ -271,7 +304,7 @@ var CALL_VIDEO_WINDOW = true;
   <div class="booked" id="bookedPanel" hidden>
     <div class="bk-tick" aria-hidden="true">&#10003;</div>
     <h2 style="margin-bottom:8px;">You're in. Two quick things.</h2>
-    <p class="sub" style="margin-bottom:8px;">The invite is on its way to your inbox. To make the 20 minutes count, have these three numbers rough-ready:</p>
+    <p class="sub" style="margin-bottom:8px;">The invite is on its way to your inbox. There is nothing you must prepare. If you have them to hand, three rough numbers make the 20 minutes go further:</p>
     <ul class="prep">
       <li>How many people touch an order from quote to invoice</li>
       <li>Orders (or jobs) per month</li>
@@ -285,6 +318,28 @@ var CALL_VIDEO_WINDOW = true;
     <div class="footer" style="margin-top:14px;">The free tools now stay open for you on this browser. <a href="index.html">Run one</a> before we talk.</div>
   </div>
 
+  </div>
+
+  <div class="shortv">
+  <h2>Short on time? The one-minute version</h2>
+  <div class="vsl" id="vsl">
+    <video id="vslVideo" playsinline preload="none" aria-label="Video, under a minute. An AI voice speaking for Sayed explains how the 20-minute call works."></video>
+    <button type="button" class="vsl-sound" id="vslSound" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 10v4h4l5 4V6L7 10H3z"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M16 9.5l5 5M21 9.5l-5 5"/></svg><span>Tap for sound</span></button>
+    <button type="button" class="vsl-play" id="vslPlay" hidden aria-label="Play the video with sound"><i></i></button>
+  </div>
+  <p class="vsl-note"><span id="vslLen">58</span> seconds. An AI voice, speaking for me.</p>
+  <details class="vsl-text"><summary>Read it instead</summary><p>Hi. I'm an AI voice, and I speak for Sayed Rashid. This is option two: twenty minutes with him on Zoom. Here is what to do. Pick a time in the calendar below. Bring one process that keeps breaking. That's all. There is nothing to prepare. On the call, you walk that one process end to end with Sayed. You leave with the first fix worth making, or an honest &quot;not yet&quot;. It's free, with no slides and no licence quote. Why listen to him? Sayed is an ex-auditor. He has taken 38 systems live, and 91% of those clients are still with him. And he has done it across eight industries. Manufacturing, agriculture, retail, food and beverage, technology, printing, logistics, and finance. <span id="txA">One thing about the calls. Sayed takes every call himself, so there are only so many. If you can still see a time below, it's still open.</span><span id="txB">One thing about the calendar. Sayed takes every call himself, so it opens only three working days at a time, with a few slots a day. When those are gone, you wait for the next day to open. If you can see a time below, take it.</span></p></details>
+  <script>
+/* Which call video plays. true = the "three working days at a time" version (review-call-b.mp4): ONLY while the calendar really is limited that way
+   (Cal.com > Event types > 20min > Limits > Limit future bookings). false = the neutral version (review-call.mp4). Verified live 2026-11-10 11:24 SGT. */
+var CALL_VIDEO_WINDOW = true;
+(function () {
+  var v = document.getElementById('vslVideo'), k = CALL_VIDEO_WINDOW ? 'review-call-b' : 'review-call';
+  v.poster = k + '.jpg'; v.src = k + '.mp4';
+  document.getElementById(CALL_VIDEO_WINDOW ? 'txA' : 'txB').hidden = true;
+  document.getElementById('vslLen').textContent = CALL_VIDEO_WINDOW ? '58' : '53';
+})();
+</script>
   </div>
 
   <div class="running" id="runBox"><strong>Want to see it with your own data?</strong> Four times a month I set up a real system with your own products, customers and prices, then walk you through one of your orders end to end on Zoom: order in, stock reserved, delivery, invoice, month-end report. You also get a one-page business case for whoever signs off. Free. For 10 to 200 staff, and the person who decides joins the call.
@@ -316,7 +371,7 @@ var CALL_VIDEO_WINDOW = true;
 
   <h2>Probably not worth it if…</h2>
   <ul class="plain no">
-    <li>You want a free audit to hand to a software vendor</li>
+    <li>You want a free written report to hand to a software vendor</li>
     <li>You're shopping for licence pricing: I'm not selling licences on this call</li>
     <li>Nothing is broken yet and you're just curious about AI</li>
   </ul>
@@ -370,7 +425,8 @@ var CALL_VIDEO_WINDOW = true;
     <a href="index.html">Free tools</a> · <a href="https://www.gantry.work">Newsletter</a> · <a href="https://www.gantry.work/subscribe?utm_source=review-page">Subscribe free</a>
   </div>
 </div>
-<script>
+<script>window.VSL_MANUAL = true;
+
 /* Source-aware opening line: calculator visitors already have a number in front of them. (Moved from review.html.) */
 (function () {
   var s = (window.gSrc || '').toLowerCase();
@@ -583,6 +639,9 @@ var BOOK_WINDOW_DAYS = 3;
   }
   function start() {
     var c = navigator.connection || {}, lite = c.saveData || (window.matchMedia && matchMedia('(prefers-reduced-data: reduce)').matches);
+    /* 2026-11-12: on pages where the main video leads (review.html, review-call.html) this short video is secondary: window.VSL_MANUAL
+       is set, so it never starts by itself and nothing of it is fetched until its play button is used. GA mode = manual. */
+    if (window.VSL_MANUAL) { v.preload = 'none'; setMode('manual'); btn.hidden = false; return; }
     if (lite) { v.preload = 'none'; setMode('blocked'); btn.hidden = false; return; }
     v.muted = false;
     var p; try { p = v.play(); } catch (e) {}
