@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://tools.gantry.work/13-week-cash-flow-calendar.html</loc><lastmod>2026-11-12</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://tools.gantry.work/ar-aging-report.html</loc><lastmod>2026-11-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://tools.gantry.work/automation-help/</loc><lastmod>2026-11-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://tools.gantry.work/blueprints/</loc><lastmod>2026-11-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://tools.gantry.work/break-even-calculator.html</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://tools.gantry.work/cost-of-manual-work.html</loc><lastmod>2026-11-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://tools.gantry.work/december-close-checklist.html</loc><lastmod>2026-11-12</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://tools.gantry.work/delivery-order-generator.html</loc><lastmod>2026-11-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://tools.gantry.work/dso-calculator.html</loc><lastmod>2026-11-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://tools.gantry.work/edge-grant-calculator.html</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://tools.gantry.work/erp-readiness.html</loc><lastmod>2026-11-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://tools.gantry.work/erp-roi.html</loc><lastmod>2026-11-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://tools.gantry.work/get-paid-kit.html</loc><lastmod>2026-11-12</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://tools.gantry.work/gross-profit-calculator.html</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://tools.gantry.work/gst-calculator.html</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://tools.gantry.work/health-check/</loc><lastmod>2026-11-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://tools.gantry.work/</loc><lastmod>2026-11-11</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://tools.gantry.work/</loc><lastmod>2026-11-12</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
   <url><loc>https://tools.gantry.work/inventory-software-cost-calculator.html</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://tools.gantry.work/invoice-chaser.html</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://tools.gantry.work/invoice-due-date-calculator.html</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
@@ -21,7 +24,7 @@
   <url><loc>https://tools.gantry.work/invoicenow-deadline.html</loc><lastmod>2026-11-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://tools.gantry.work/invoicenow-explained.html</loc><lastmod>2026-11-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://tools.gantry.work/invoicenow-free.html</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://tools.gantry.work/invoicenow-grants.html</loc><lastmod>2026-11-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://tools.gantry.work/invoicenow-grants.html</loc><lastmod>2026-11-12</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://tools.gantry.work/invoicenow-providers.html</loc><lastmod>2026-11-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://tools.gantry.work/invoicenow-software.html</loc><lastmod>2026-11-11</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://tools.gantry.work/job-costing-calculator.html</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
@@ -50,4 +53,5 @@
   <url><loc>https://tools.gantry.work/wati-guide.html</loc><lastmod>2026-11-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://tools.gantry.work/wati-pricing-singapore.html</loc><lastmod>2026-11-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://tools.gantry.work/whatsapp-api-cost-calculator.html</loc><lastmod>2026-11-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://tools.gantry.work/year-end-stock-take-checklist.html</loc><lastmod>2026-11-12</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
 </urlset>

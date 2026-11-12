@@ -1,0 +1,124 @@
+/* Kit guides on tools.gantry.work (added 2026-11-12). Sits on top of shared.css and flagship.css.
+   Used by get-paid-kit.html, year-end-stock-take-checklist.html, 13-week-cash-flow-calendar.html and
+   december-close-checklist.html, all written by build_kits.py. Every class starts with "kt-".
+   The whole kit is plain text in the page; the small sums work without any of this, they just look plainer. */
+
+/* ---- download row ---- */
+.kt-get { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin: 0 0 20px; }
+.flag a.kt-dl, .flag a.kt-dl:visited { display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 11px 18px; border-radius: 11px;
+  font-size: 15.5px; font-weight: 700; text-decoration: none; color: var(--ink); background: linear-gradient(180deg, var(--gold-light), var(--gold)); }
+.flag a.kt-dl:hover { transform: translateY(-1px); }
+.flag a.kt-dl:focus-visible, .kt-copy:focus-visible, .flag a.kt-li:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.kt-dl svg { width: 17px; height: 17px; flex: 0 0 auto; }
+.kt-get span { font-size: 13.5px; color: rgba(255,255,255,.7); line-height: 1.45; flex: 1 1 200px; }
+
+/* ---- message templates with a Copy button ---- */
+.kt-msg { border: 1px solid rgba(255,255,255,.2); border-radius: 14px; background: #0b0f3a; margin: 10px 0 18px; overflow: hidden; }
+.kt-msg-h { display: flex; align-items: center; gap: 8px 10px; padding: 9px 10px 9px 14px; background: rgba(255,255,255,.06); border-bottom: 1px solid rgba(255,255,255,.12); }
+.kt-tag { flex: 0 0 auto; font-size: 11.5px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--ink); background: var(--gold-light); border-radius: 6px; padding: 3px 8px; }
+.flag .kt-msg-h h3 { flex: 1 1 0; min-width: 0; margin: 0; font-size: 15px; line-height: 1.35; color: #fff; }
+.kt-copy { flex: 0 0 auto; margin-left: auto; font: inherit; font-size: 13.5px; font-weight: 700; color: #fff; background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.32); border-radius: 9px; padding: 8px 13px; min-height: 40px; cursor: pointer; }
+.kt-copy:hover { border-color: var(--gold-light); color: var(--gold-light); }
+.kt-copy.done { border-color: #5fe39a; color: #5fe39a; }
+.kt-body { padding: 12px 14px 4px; font-size: 15px; line-height: 1.62; color: rgba(255,255,255,.92); overflow-wrap: anywhere; }
+.flag .kt-body p { margin: 0 0 9px; }
+.flag .kt-body ol { margin: 0 0 9px 20px; }
+.kt-subj { color: var(--gold-light); font-weight: 600; }
+
+/* ---- a plan as stacked stages: when and who on the left, tasks on the right ---- */
+.kt-steps { margin: 12px 0 18px; border: 1px solid rgba(255,255,255,.14); border-radius: 12px; overflow: hidden; }
+.kt-step { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 4px 16px; padding: 13px 14px; border-bottom: 1px solid rgba(255,255,255,.1); }
+.kt-step:last-child { border-bottom: 0; }
+.kt-step-h b { display: block; font-size: 15px; }
+.kt-step-h span { display: block; font-size: 13px; color: rgba(255,255,255,.7); }
+.flag .kt-step ul { margin: 0 0 0 18px; }
+.flag .kt-step li { margin-bottom: 4px; font-size: 15px; line-height: 1.55; }
+.flag .kt-step .kt-done { margin: 6px 0 0; font-size: 13.5px; color: var(--gold-light); }
+.flag .kt-done b { color: var(--gold-light); }
+
+/* ---- two boxes side by side ---- */
+.kt-two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin: 12px 0 18px; }
+.kt-three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 12px 0 18px; }
+.kt-two .fl-box, .kt-three .fl-box { margin: 0; }
+.kt-k { display: block; font-size: 11.5px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 4px; }
+.flag .fl-box h3 { margin-top: 0; }
+
+/* ---- dated rules, each with its official source ---- */
+.kt-dates { margin: 12px 0 18px; border: 1px solid rgba(255,255,255,.14); border-radius: 12px; overflow: hidden; }
+.kt-date { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 4px 16px; padding: 13px 14px; border-bottom: 1px solid rgba(255,255,255,.1); }
+.kt-date:last-child { border-bottom: 0; }
+.kt-when { font-weight: 800; color: #fff; font-size: 14.5px; line-height: 1.5; font-variant-numeric: tabular-nums; }
+.flag .kt-what p { margin: 0 0 6px; font-size: 15px; }
+.flag .kt-what p.kt-src { margin: 0; font-size: 13px; color: rgba(255,255,255,.7); }
+.kt-src b { color: var(--gold-light); font-weight: 700; }
+
+/* ---- the worked 13-week example ---- */
+.fl-tw.kt-ex table { min-width: 780px; font-size: 13px; font-variant-numeric: tabular-nums; }
+.fl-tw.kt-ex th, .fl-tw.kt-ex td { padding: 7px 4px; text-align: right; white-space: nowrap; }
+.fl-tw.kt-ex th { font-size: 12px; letter-spacing: 0; }
+.fl-tw.kt-ex td:last-child, .fl-tw.kt-ex th:last-child { padding-right: 10px; }
+.fl-tw.kt-ex th:first-child, .fl-tw.kt-ex td:first-child { text-align: left; position: sticky; left: 0; background: #12164f; min-width: 140px; padding-left: 10px; }
+.fl-tw.kt-ex tr.mo th { text-align: center; border-left: 1px solid rgba(255,255,255,.12); }
+.fl-tw.kt-ex tr.b td, .fl-tw.kt-ex tr.cl td, .fl-tw.kt-ex tr.mv td { font-weight: 700; color: #fff; }
+.fl-tw.kt-ex tr.sub td { border-top: 1px solid rgba(255,255,255,.3); }
+.fl-tw.kt-ex tr.cl td { border-top: 2px solid rgba(255,255,255,.5); }
+.fl-tw.kt-ex td.z { color: rgba(255,255,255,.4); }
+.fl-tw.kt-ex td.neg { color: #ff9b8a; }
+.fl-tw.kt-ex tr.cl td.hi { background: rgba(255,155,138,.18); }
+.fl-tw.kt-ex tr.mv td.hi { background: rgba(242,207,110,.22); color: var(--gold-light); }
+.fl-tool .fl-out .big { word-break: normal; overflow-wrap: anywhere; }
+.kt-scroll { display: none; font-size: 12.5px; color: rgba(255,255,255,.62); margin: -10px 0 14px; }
+
+/* ---- small sums ---- */
+.fl-tool .kt-lab { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; color: rgba(255,255,255,.66); margin: 0 0 3px; }
+.kt-rows { display: grid; gap: 10px; }
+.kt-row { display: grid; grid-template-columns: 74px repeat(3, minmax(0, 1fr)) 96px; gap: 8px; align-items: end; }
+.kt-row .kt-nm { font-weight: 700; color: #fff; padding-bottom: 11px; font-size: 14.5px; }
+.kt-row .kt-v { text-align: right; font-weight: 800; padding-bottom: 11px; font-variant-numeric: tabular-nums; white-space: nowrap; font-size: 14.5px; }
+.kt-v.neg, .kt-c.neg { color: #ff9b8a; }
+.kt-v.pos { color: #5fe39a; }
+.fl-tool .kt-row input[type=number], .fl-tool .kt-wk input[type=number] { padding: 10px 9px; }
+.kt-wks { display: grid; gap: 6px; }
+.kt-wk { display: grid; grid-template-columns: 108px minmax(0, 1fr) minmax(0, 1fr) 84px; gap: 8px; align-items: center; }
+.kt-wk.kt-hd { font-size: 11.5px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; color: rgba(255,255,255,.66); }
+.kt-wk.kt-hd span:last-child { text-align: right; }
+.kt-wn { font-weight: 700; color: #fff; font-size: 14.5px; line-height: 1.25; }
+.kt-wn small { display: block; font-weight: 500; font-size: 11.5px; color: var(--gold-light); letter-spacing: .3px; }
+.kt-c { text-align: right; font-weight: 800; font-variant-numeric: tabular-nums; font-size: 15px; }
+.kt-wk.low { background: rgba(255,155,138,.12); border-radius: 10px; box-shadow: 0 0 0 4px rgba(255,155,138,.12); }
+.kt-top2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 14px; }
+.kt-add { margin-top: 12px; }
+
+/* ---- the free second step ---- */
+.kt-second { margin: 30px 0 6px; padding: 18px; border-radius: 16px; background: rgba(201,162,39,.12); border: 1px solid rgba(242,207,110,.4); }
+.flag .kt-second h2 { margin-top: 0; }
+.flag a.kt-li, .flag a.kt-li:visited { display: flex; align-items: center; justify-content: center; gap: 9px; margin: 14px 0 0; padding: 15px 16px; border-radius: 12px;
+  font-size: 16.5px; font-weight: 700; text-decoration: none; color: var(--ink); background: linear-gradient(180deg, var(--gold-light), var(--gold)); text-align: center; }
+.kt-li svg { width: 18px; height: 18px; fill: currentColor; flex: 0 0 auto; }
+.flag .kt-alt { font-size: 13.5px; color: rgba(255,255,255,.7); margin: 12px 0 0; text-align: center; }
+
+@media (max-width: 880px) { .kt-scroll { display: block; } }
+@media (max-width: 720px) {
+  .kt-two, .kt-three { grid-template-columns: minmax(0, 1fr); }
+  .kt-date { grid-template-columns: minmax(0, 1fr); }
+  .kt-step { grid-template-columns: minmax(0, 1fr); }
+  .kt-step-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; margin-bottom: 4px; }
+  .kt-when br { display: none; }
+  .kt-when span::after { content: " \00B7  "; color: rgba(255,255,255,.5); }
+  .kt-when span:last-child::after { content: ""; }
+}
+@media (max-width: 560px) {
+  .kt-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .kt-row .kt-nm { grid-column: 1 / 3; padding-bottom: 0; }
+  .kt-row .kt-v { grid-column: 3; grid-row: 1; padding-bottom: 0; }
+  .kt-wk { grid-template-columns: 78px minmax(0, 1fr) minmax(0, 1fr) 58px; gap: 6px; }
+  .kt-wn { font-size: 13.5px; }
+  .kt-msg-h { padding-left: 12px; }
+  .fl-tw.kt-ex th:first-child, .fl-tw.kt-ex td:first-child { min-width: 112px; white-space: normal; padding-left: 8px; }
+  .kt-body { padding: 12px 12px 4px; }
+}
+@media (prefers-reduced-motion: reduce) { .flag a.kt-dl:hover { transform: none; } }
+@media print {
+  .kt-copy, .kt-get, .kt-second, .fl-toc, .fl-tool { display: none !important; }
+}
