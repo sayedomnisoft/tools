@@ -254,6 +254,7 @@
 window.gSrc=(function(){try{var q=new URLSearchParams(location.search),s=q.get('utm_medium')||q.get('from')||'',r=document.referrer||'';if(!s){if(/^https?:\/\/tools\.gantry\.work\/review/.test(r)){try{s=sessionStorage.getItem('gantry_rsrc')||'';}catch(e){}s=s||'review-hub';}else s=r||'direct';}try{sessionStorage.setItem('gantry_rsrc',s);}catch(e){}return s.slice(0,90);}catch(e){return 'unknown';}})();
 if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'call'});gtag('event','vsl_page_view',{source:window.gSrc,page:'call',screen:(window.matchMedia&&matchMedia('(min-width:1000px)').matches)?'desktop':'mobile'});}catch(e){}}</script>
 <script src="/config.js"></script><script src="/track.js" defer></script><script src="/gantry-ui.js" defer></script><script src="/vsl-main.js" defer></script>
+<script src="/sticky-book.js" defer data-page="call" data-after=".h-more a.cta" data-hide="#bookHead, #bookZone, #bookedPanel" data-scroll="#bookHead"></script>
 <meta name="gantry-checked" content="2026-11-10">
 </head>
 <body>
