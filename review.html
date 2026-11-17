@@ -376,6 +376,25 @@ document.documentElement.className += ' js';
 
   .faq details p { padding: 0 0 22px; max-width: 52ch; }
   .faq summary { padding: 22px 0; }
+
+  /* 17 Nov pass 3: calmer first screen */
+  .hero h1 { font-size: clamp(2rem, 1.3rem + 2.9vw, 3.5rem); line-height: 1.05; letter-spacing: -0.03em; max-width: 14ch; }
+  .lede { margin-top: 24px; font-size: clamp(1.1rem, 1.02rem + .35vw, 1.3rem); color: var(--ink-3); max-width: 30ch; }
+  .act { margin-top: 36px; }
+  .fine { margin-top: 14px; }
+  .who { border-top: 0; padding-top: 0; margin-top: 40px; }
+  .who img { width: 40px; height: 40px; }
+  .who p { font-size: 14.5px; color: var(--ink-3); }
+  .doc table { margin-top: 12px; }
+  .doc { box-shadow: 0 1px 2px rgba(20,27,61,.05), 0 18px 36px -20px rgba(20,27,61,.28); }
+  .d-do { margin-top: 40px; } .d-inv { margin-top: 80px; }
+  .copies-cap { margin-top: 26px; gap: 4px; font-size: 16px; color: var(--ink-2); }
+  .copies-cap small { font-size: 14px; color: var(--ink-3); }
+  @media (min-width: 1000px) {
+    .copies { max-width: 560px; }
+    .d-do { margin-top: 48px; } .d-inv { margin-top: 96px; }
+    .hero { gap: 80px; }
+  }
 </style>
 <!-- seo:start -->
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -419,37 +438,33 @@ if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'hub
   <section class="wrap hero" aria-labelledby="heroH">
     <div>
       <h1 id="heroH">Your team types the same order three times. <span>Let's find where.</span></h1>
-      <p class="lede">A free 20-minute call for Singapore businesses with 5 to 200 staff. Bring one process that keeps breaking. Leave with three fixes, ranked by payoff.</p>
+      <p class="lede">Bring one process to a free 20-minute call. Leave with three fixes, ranked by payoff.</p>
       <div class="act">
         <a class="btn" id="heroBook" href="review-call.html" data-carry data-cta="hero">Book the free 20 minutes <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <p class="fine">Free. Nothing to prepare. Real examples, not slides.</p>
       </div>
       <div class="who">
         <img src="sayed-320.jpg" width="46" height="46" alt="Sayed Rashid" loading="eager" decoding="async">
-        <p><b>Sayed Rashid</b>, ex-auditor. <span class="num">38</span> systems taken live, <span class="num">91%</span> of clients still with us.</p>
+        <p><b>Sayed Rashid</b> · Ex-auditor · 38 systems live</p>
       </div>
     </div>
 
     <figure class="copies" id="copies" aria-label="Sample documents: the same order on a quotation, a delivery order and a tax invoice. The quotation and delivery order say 300 elbow joints; the invoice says 30, so S$250.15 is never billed.">
       <div class="stack" aria-hidden="true">
         <div class="doc d-quo"><div class="doc-h"><div class="co"><i aria-hidden="true"></i><div><b>Your Company Pte Ltd</b><small>Singapore</small></div></div><div class="ttl"><b>QUOTATION</b><small>SAMPLE</small></div></div>
-          <dl class="meta"><div><dt>Quote no.</dt><dd>Q-0412</dd></div><div><dt>Date</dt><dd>3 Nov 2026</dd></div><div><dt>To</dt><dd>ABC Builders Pte Ltd</dd></div><div><dt>Valid</dt><dd>30 days</dd></div></dl>
           <table><tr><th>Description</th><th class="r">Qty</th><th class="r">Unit</th><th class="r">Amount</th></tr><tr><td>PVC pipe 20 mm</td><td class="r">120</td><td class="r">3.40</td><td class="r">408.00</td></tr><tr><td>Elbow joint 20 mm</td><td class="r">300</td><td class="r">0.85</td><td class="r">255.00</td></tr><tr><td>Ball valve 20 mm</td><td class="r">40</td><td class="r">12.50</td><td class="r">500.00</td></tr></table>
           <div class="tot"><span>Subtotal</span><span>1,163.00</span><span>GST 9%</span><span>104.67</span><span class="g">Total S$</span><span class="g">1,267.67</span></div>
         </div>
         <div class="doc d-do"><div class="doc-h"><div class="co"><i aria-hidden="true"></i><div><b>Your Company Pte Ltd</b><small>Singapore</small></div></div><div class="ttl"><b>DELIVERY ORDER</b><small>SAMPLE</small></div></div>
-          <dl class="meta"><div><dt>DO no.</dt><dd>DO-0412</dd></div><div><dt>Date</dt><dd>8 Nov 2026</dd></div><div><dt>Deliver to</dt><dd>ABC Builders Pte Ltd</dd></div><div><dt>Your PO</dt><dd>PO-0388</dd></div></dl>
           <table><tr><th>Description</th><th class="r">Qty</th><th class="r">Unit</th></tr><tr><td>PVC pipe 20 mm</td><td class="r">120</td><td class="r">pcs</td></tr><tr><td>Elbow joint 20 mm</td><td class="r">300</td><td class="r">pcs</td></tr><tr><td>Ball valve 20 mm</td><td class="r">40</td><td class="r">pcs</td></tr></table>
           <div class="sign"><div><svg viewBox="0 0 70 22"><path d="M2 16c6-10 9-12 10-6s-2 9 3 4s6-10 9-4s3 6 8 0s7-6 10-1s5 3 9-2s8-3 15 1"/></svg>Received in good order</div><div>Name / date / company stamp</div></div>
         </div>
         <div class="doc d-inv"><div class="doc-h"><div class="co"><i aria-hidden="true"></i><div><b>Your Company Pte Ltd</b><small>Singapore</small></div></div><div class="ttl"><b>TAX INVOICE</b><small>SAMPLE</small></div></div>
-          <dl class="meta"><div><dt>Invoice no.</dt><dd>INV-0412</dd></div><div><dt>Date</dt><dd>9 Nov 2026</dd></div><div><dt>Bill to</dt><dd>ABC Builders Pte Ltd</dd></div><div><dt>Terms</dt><dd>30 days</dd></div></dl>
           <table><tr><th>Description</th><th class="r">Qty</th><th class="r">Unit</th><th class="r">Amount</th></tr><tr><td>PVC pipe 20 mm</td><td class="r">120</td><td class="r">3.40</td><td class="r">408.00</td></tr><tr><td>Elbow joint 20 mm</td><td class="r"><span class="hl">30</span></td><td class="r">0.85</td><td class="r"><span class="hl">25.50</span></td></tr><tr><td>Ball valve 20 mm</td><td class="r">40</td><td class="r">12.50</td><td class="r">500.00</td></tr></table>
           <div class="tot"><span>Subtotal</span><span>933.50</span><span>GST 9%</span><span>84.02</span><span class="g">Total S$</span><span class="g">1,017.52</span></div>
-          <p class="doc-f">Payment by bank transfer within 30 days. Thank you for your business.</p>
         </div>
       </div>
-      <figcaption class="copies-cap"><span><b>Same order, keyed in three times.</b> The quote and the delivery order say 300 elbow joints. The invoice says <span class="mk">30</span>, so S$250.15 is never billed.</span><small>Sample documents with made-up figures. This is the kind of thing we look for on the call.</small></figcaption>
+      <figcaption class="copies-cap"><span>Quote and delivery order: <b>300</b>. Invoice: <span class="mk">30</span>.</span><small>Sample documents. One retype, S$250.15 never billed.</small></figcaption>
     </figure>
   </section>
 
@@ -484,7 +499,7 @@ if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'hub
       <h2 id="watchH">Rather watch? One minute.</h2>
       <div class="vslm" data-page="hub" data-action="#heroBook" data-scroll="no">
         <div class="vslm-box">
-          <img src="/review-main.jpg?v=3" width="1280" height="720" alt="First frame of the video: a sample quotation, delivery order and tax invoice for the same order." loading="lazy" decoding="async">
+          <img src="/review-main.jpg?v=4" width="1280" height="720" alt="First frame of the video: a sample quotation, delivery order and tax invoice for the same order." loading="lazy" decoding="async">
           <button type="button" class="vslm-play" aria-label="Play the one-minute video with sound"><i></i><span>Play with sound</span></button>
         </div>
         <p class="vslm-note">The problem, what you leave with, and why me. An AI voice, speaking for me.</p>
