@@ -77,3 +77,8 @@ a.nextstep b { font-size: 16px; } a.nextstep span.ar { font-size: 20px; color: v
 .ics-row input, .ics-row select { min-width: 0; padding: 10px 11px; font-size: 16px; border: 1px solid var(--line); border-radius: 9px; background: #fff; color: var(--ink); font-family: inherit; }
 .ics-row .cta { margin: 0; flex: 1 1 200px; }
 .ics .src { margin: 8px 0 0; }
+/* 17 Nov 2026: the calendar download is a <button>, so give it the same look as a.cta */
+.ics button.cta { display: block; width: 100%; text-align: center; padding: 14px 18px; font: 700 16px/1.25 var(--font); letter-spacing: -0.01em; color: #fff; background: var(--blue); border: 0; border-radius: 12px; box-shadow: var(--shadow-btn); cursor: pointer; transition: background .2s, transform .2s var(--ease); }
+.ics button.cta:hover { background: var(--blue-d); transform: translateY(-1px); }
+.ics button.cta:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .ics button.cta { transition: none; } .ics button.cta:hover { transform: none; } }
