@@ -244,8 +244,8 @@ function drawAging() {
   h += `<tr class="tot"><td class="cn">Total</td>${t.map(v => `<td>${money(v)}</td>`).join('')}<td>${money(tot)}</td></tr>`;
   h += `<tr class="pc"><td class="cn">% of total</td>${t.map(v => `<td>${pctS(tot ? v / tot : NaN)}</td>`).join('')}<td>100%</td></tr></tbody></table>`;
   $('agingTable').innerHTML = h;
-  const G = 'style="color:#f2cf6e"';
-  $('agingCta').innerHTML = (o60 > 0 ? `<b style="color:#fff">${money(o60)} is more than 60 days old.</b> Statements and staged reminders bring most of it in. ` : `<b style="color:#fff">Nothing over 60 days. Well done.</b> Keep it that way with reminders that go out on their own. `) +
+  const G = 'style="color:var(--blue)"';
+  $('agingCta').innerHTML = (o60 > 0 ? `<b style="color:var(--ink)">${money(o60)} is more than 60 days old.</b> Statements and staged reminders bring most of it in. ` : `<b style="color:var(--ink)">Nothing over 60 days. Well done.</b> Keep it that way with reminders that go out on their own. `) +
     `<a ${G} href="invoice-chaser.html">Write this month's reminders now</a>, or <a ${G} href="https://www.gantry.work/p/xero-invoice-reminders-automation?utm_source=tools&utm_medium=ar-aging-result" target="_blank" rel="noopener">set them to send automatically</a> with a free Make setup. Receivables spread across spreadsheets and inboxes? <a ${G} href="https://tools.gantry.work/review.html?utm_source=tools&utm_medium=ar-aging-result" target="_blank" rel="noopener">Book a free 20-minute review</a>.`;
 }
 function agingRows() {

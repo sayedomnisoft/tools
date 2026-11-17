@@ -30,13 +30,13 @@
 <style>
   .card.pccard { max-width: 900px; }
   .split { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:14px; align-items:start; }
-  .lines .ln { display:flex; justify-content:space-between; gap:10px; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.1); font-size:14px; }
+  .lines .ln { display:flex; justify-content:space-between; gap:10px; padding:8px 0; border-bottom:1px solid var(--rule); font-size:14px; }
   .lines .ln span:last-child { font-weight:700; white-space:nowrap; }
-  .lines .ln.big { font-size:17px; border-top:2px solid rgba(242,207,110,0.6); border-bottom:none; margin-top:4px; }
-  .lines .ln.big span:last-child { color:var(--gold-light); }
-  .lines .ln small { display:block; color:var(--muted); font-size:11.5px; font-weight:400; }
+  .lines .ln.big { font-size:17px; border-top:2px solid var(--blue); border-bottom:none; margin-top:4px; }
+  .lines .ln.big span:last-child { color:var(--blue); }
+  .lines .ln small { display:block; color:var(--ink-2); font-size:11.5px; font-weight:400; }
   .rates summary { cursor:pointer; font-weight:700; font-size:14px; margin-top:12px; }
-  .note { font-size:12.5px; color:var(--muted); line-height:1.5; margin-top:10px; }
+  .note { font-size:12.5px; color:var(--ink-2); line-height:1.5; margin-top:10px; }
   @media (max-width:760px) { .split { grid-template-columns:1fr; } }
 </style>
 <script src="/config.js"></script><script src="/track.js" defer></script><script src="/gantry-ui.js" defer></script>
@@ -47,7 +47,7 @@
   <div class="brand"><a href="index.html">← THE GANTRY · TOOLS</a></div>
   <h1>WhatsApp Business API Cost Calculator</h1>
   <p class="sub">Put in how your team uses WhatsApp and see the monthly bill: Meta's per-message charges at Singapore rates, the October 2026 change to replies, and the provider plan on top. Change the rates for other countries. Free, no signup, nothing leaves your browser.</p>
-  <!-- guidelink --><p style="margin:-10px 0 18px;font-size:14px;color:rgba(255,255,255,.8)">Full guide: <a style="color:#f2cf6e" href="https://www.gantry.work/p/whatsapp-business-api-pricing?utm_source=tools&amp;utm_medium=whatsapp-api-cost-calculator&amp;utm_campaign=guidelink">WhatsApp Business API pricing explained →</a></p>
+  <!-- guidelink --><p style="margin:-10px 0 18px;font-size:14px;color:var(--ink-2)">Full guide: <a style="color:var(--blue)" href="https://www.gantry.work/p/whatsapp-business-api-pricing?utm_source=tools&amp;utm_medium=whatsapp-api-cost-calculator&amp;utm_campaign=guidelink">WhatsApp Business API pricing explained →</a></p>
 
 
   <div class="pc">
@@ -91,7 +91,7 @@
       <div class="tile"><b id="tChat">—</b><span>Per customer chat</span></div>
      </div>
      <p class="note" id="biggest"></p>
-     <p class="note" id="waCta" style="color:rgba(255,255,255,.85)"></p>
+     <p class="note" id="waCta" style="color:var(--ink)"></p>
      <div class="row-acts"><button id="copyBtn">Copy breakdown</button><button id="resetBtn">Reset example</button></div>
     </div>
    </div>
@@ -126,11 +126,11 @@
   </div>
 
   <div class="byline noprint">
-    <img src="sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
+    <img src="/sayed-320.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
     <div class="who"><div class="nm">Sayed Rashid</div><div class="rl">I build these free tools from the jobs I see business owners do by hand every week. Tell me which one to build next.</div></div>
     <a class="li" href="https://www.linkedin.com/in/sayedomni" target="_blank" rel="noopener" onclick="try{gtag('event','linkedin_click',{page:location.pathname})}catch(e){}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg> Connect on LinkedIn</a>
   </div>
-  <p class="noprint" style="font-size:12px;color:rgba(255,255,255,0.6);text-align:center;margin-top:14px;line-height:1.5">Privacy: your files and entries stay in your browser and are never uploaded. I count anonymous visits and button clicks (Google Analytics) to see which tools help.</p>
+  <p class="noprint" style="font-size:12px;color:var(--ink-3);text-align:center;margin-top:14px;line-height:1.5">Privacy: your files and entries stay in your browser and are never uploaded. I count anonymous visits and button clicks (Google Analytics) to see which tools help.</p>
   <div class="footer" id="baseFooter"><a href="index.html">All free tools</a> · <a href="https://www.gantry.work">The Gantry</a></div>
 </div>
 
@@ -177,7 +177,7 @@ function calc() {
   $('tChat').textContent = chats ? money(total / chats) : '—';
   const parts = [['promotions', mkt], ['replies', service], ['order updates', util], ['the provider plan', plan]].sort((a, b) => b[1] - a[1]);
   $('biggest').textContent = total ? `The biggest part of the bill is ${parts[0][0]} (${Math.round(parts[0][1] / total * 100)}%). ` + (parts[0][0] === 'promotions' ? 'Sending offers to recent buyers instead of everyone is the quickest saving.' : parts[0][0] === 'replies' ? 'Fewer, fuller replies and ad-started chats keep this down.' : '') : '';
-  $('waCta').innerHTML = total ? `At about <b>${money(total)} a month</b>, it is worth checking you are on the right setup. <a style="color:#f2cf6e" href="https://cal.com/sayed.r/20min" target="_blank" rel="noopener">Book a free 20-minute WhatsApp setup check</a>: sometimes the answer is that the free app is enough.` : '';
+  $('waCta').innerHTML = total ? `At about <b>${money(total)} a month</b>, it is worth checking you are on the right setup. <a style="color:var(--blue)" href="https://cal.com/sayed.r/20min" target="_blank" rel="noopener">Book a free 20-minute WhatsApp setup check</a>: sometimes the answer is that the free app is enough.` : '';
   lastText = L.map(x => `${x[0]}: ${money(x[1])} (${x[2]})`).concat([`Meta's charges: ${money(meta)}`, plan ? `Provider plan: ${money(plan)}` : '', `Total per month: ${money(total)} (${money(total * 12)} a year)`]).filter(Boolean).join('\n');
   const s = { chargeReplies: $('chargeReplies').checked }; IDS.forEach(k => s[k] = $(k).value); store.set('wacalc', JSON.stringify(s));
 }

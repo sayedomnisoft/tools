@@ -12,70 +12,78 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="shared.css">
 <style>
-  .card.hub { max-width: 760px; padding: 26px 24px; }
-  .hub h1 { font-size: 23px; margin-bottom: 6px; }
-  .hub .lead { font-size: 14.5px; color: var(--muted); line-height: 1.5; margin-bottom: 12px; }
-  .hub .trust { margin: 0 0 16px; padding: 8px 12px; font-size: 12.5px; align-items: center; border-radius: 12px; }
-  .hub .trust img { width: 30px; height: 30px; flex: 0 0 30px; }
-  details.fold { margin-top: 12px; border: 1px solid rgba(255,255,255,0.13); border-radius: 12px; padding: 0 14px; background: rgba(255,255,255,0.03); }
-  details.fold summary { cursor: pointer; padding: 12px 0; font-size: 14.5px; font-weight: 700; list-style-position: inside; }
-  details.fold .sub { font-size: 14px; }
-  .hub .footer { margin-top: 18px; }
-  @media (max-width: 620px) {
-    .card.hub { padding: 20px 15px; }
-    .hub h1 { font-size: 20px; }
-  }
+  /* tools home, light look (17 Nov 2026). Header, booking card and footer are in the HTML here; /gantry-ui.js skips this page. */
+  .card.hub { max-width: 820px; padding-top: 28px; }
+  .hub h1 { font-size: clamp(2rem, 1.4rem + 2.6vw, 3.1rem); line-height: 1.04; letter-spacing: -0.035em; margin-bottom: 16px; max-width: 18ch; }
+  .hub .lead { font-size: clamp(1.1rem, 1.02rem + .35vw, 1.3rem); color: var(--ink-2); margin-bottom: 18px; max-width: 40ch; }
+  .hub .trust { margin: 0 0 34px; }
+  .hub .ht { margin-top: 8px; }
+  .hub-after { max-width: 820px; }
+  .hub-after .gt-book { margin-top: 48px; }
+  details.fold { margin-top: 0; border: 0; border-bottom: 1px solid var(--rule); border-radius: 0; padding: 0; background: none; }
+  details.fold:first-of-type { margin-top: 36px; border-top: 1px solid var(--rule); }
+  details.fold > summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; font: 700 17px/1.35 var(--font); color: var(--ink); }
+  details.fold > summary::-webkit-details-marker { display: none; }
+  details.fold > summary::after { content: "+"; flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--blue-wash); color: var(--blue); font-size: 20px; font-weight: 700; line-height: 1; transition: transform .25s var(--ease); }
+  details.fold[open] > summary::after { transform: rotate(45deg); }
+  details.fold > summary:hover { color: var(--blue); }
+  details.fold .sub { font-size: 16.5px; margin-bottom: 14px; }
+  details.fold ul { margin: 0 0 14px 20px; font-family: var(--serif); color: var(--ink-2); }
+  details.fold li { margin-bottom: 6px; }
+  .hub-note { font: 400 16px/1.6 var(--serif); color: var(--ink-2); margin: 30px 0 0; max-width: 60ch; }
+  .hub-note a { color: var(--blue); }
+  @media (max-width: 620px) { .card.hub { padding-top: 14px; } .hub .trust { margin-bottom: 26px; } }
   /* ---- pick-what-to-fix tabs (hubtabs.py) ---- */
   .ht-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 10px; }
   .ht-ask { font-size: 18px; font-weight: 800; line-height: 1.25; margin: 0; }
   .ht-sel, .ht-rail, .ht-hint, .ht-all { display: none; }
   .js .ht-sel { display: flex; align-items: center; gap: 8px; flex: 0 0 auto; }
   .js .ht-rail { display: block; position: relative; margin-bottom: 8px; }
-  .ht-sel span { font-size: 12.5px; color: rgba(255,255,255,0.7); white-space: nowrap; }
+  .ht-sel span { font-size: 12.5px; color: var(--ink-2); white-space: nowrap; }
   .ht-sel select { -webkit-appearance: none; appearance: none; width: auto; max-width: 100%; margin: 0; padding: 9px 36px 9px 12px; border-radius: 10px;
-    border: 1.5px solid rgba(242,207,110,0.65); color: #fff; font: 600 14px/1.2 inherit; font-family: inherit; cursor: pointer;
-    background: rgba(255,255,255,0.08) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23f2cf6e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 13px center / 12px 8px; }
-  .ht-sel select:hover { border-color: var(--gold-light); }
+    border: 1.5px solid var(--blue); color: var(--ink); font: 600 14px/1.2 inherit; font-family: inherit; cursor: pointer;
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%231f3fbf' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 13px center / 12px 8px; }
+  .ht-sel select:hover { border-color: var(--blue); }
   .ht-chips { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
   .ht-chip { display: flex; align-items: center; justify-content: center; gap: 7px; min-height: 48px; padding: 8px 10px; border-radius: 12px;
-    border: 1.5px solid rgba(255,255,255,0.36); background: rgba(255,255,255,0.09); color: #fff; text-align: center;
+    border: 1.5px solid var(--line); background: #fff; color: var(--ink); text-align: center;
     font: 700 13.5px/1.25 inherit; font-family: inherit; cursor: pointer; transition: opacity .15s, border-color .15s, background .15s; }
   .ht-chip i { flex: 0 0 auto; font-style: normal; font-size: 11px; font-weight: 700; line-height: 1; padding: 4px 6px; border-radius: 999px;
-    background: rgba(255,255,255,0.16); color: rgba(255,255,255,0.9); }
-  .ht-chip:hover { border-color: var(--gold-light); background: rgba(242,207,110,0.14); opacity: 1; }
-  .ht-chip:focus-visible, .ht-arr:focus-visible, .ht-sel select:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
-  .ht-chip.on { background: linear-gradient(180deg, var(--gold-light), var(--gold)); color: var(--ink); border-color: transparent; opacity: 1;
-    box-shadow: 0 5px 16px rgba(201,162,39,0.38); }
-  .ht-chip.on i { background: rgba(20,20,42,0.18); color: var(--ink); }
+    background: var(--blue-wash); color: var(--blue); }
+  .ht-chip:hover { border-color: var(--blue); background: var(--blue-wash); opacity: 1; }
+  .ht-chip:focus-visible, .ht-arr:focus-visible, .ht-sel select:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+  .ht-chip.on { background: var(--blue); color: #fff; border-color: transparent; opacity: 1;
+    box-shadow: 0 1px 0 rgba(255,255,255,.18) inset, 0 6px 16px -8px rgba(20,27,61,.45); }
+  .ht-chip.on i { background: rgba(255,255,255,.2); color: #fff; }
   .ht-chip.dim { opacity: .64; }
   .ht-arr { display: none; }
-  .ht-why { font-size: 12.5px; color: rgba(255,255,255,0.72); line-height: 1.45; margin: 0 0 4px; }
+  .ht-why { font-size: 12.5px; color: var(--ink-2); line-height: 1.45; margin: 0 0 4px; }
   .ht-why:empty { display: none; }
-  .ht .ht-panel { margin-top: 14px; padding: 16px 16px 18px; border: 1px solid rgba(242,207,110,0.34); border-radius: 16px; background: rgba(255,255,255,0.03); }
+  .ht .ht-panel { margin-top: 14px; padding: 16px 16px 18px; border: 1px solid var(--line); border-radius: 16px; background: #fff; }
   .ht .ht-panel .ht-h { font-size: 19px; font-weight: 800; line-height: 1.25; margin: 0 0 2px; }
-  .ht-pain { font-size: 14px; color: var(--muted); line-height: 1.5; margin: 0 0 10px; }
-  a.ht-pick { display: block; text-decoration: none; color: #fff; padding: 16px 18px; border-radius: 14px; border: 1px solid rgba(242,207,110,0.8);
-    background: linear-gradient(135deg, rgba(201,162,39,0.20), rgba(42,47,176,0.14)); transition: transform .12s ease; }
+  .ht-pain { font-size: 14px; color: var(--ink-2); line-height: 1.5; margin: 0 0 10px; }
+  a.ht-pick { display: block; text-decoration: none; color: var(--ink); padding: 16px 18px; border-radius: 14px; border: 1px solid var(--blue);
+    background: #fff; transition: transform .12s ease; }
   a.ht-pick:hover { transform: translateY(-2px); }
   .ht-pick span { display: block; }
-  .ht-pk-k { font-size: 11px; letter-spacing: 1.4px; font-weight: 700; color: var(--gold-light); margin-bottom: 5px; }
+  .ht-pk-k { font-size: 11px; letter-spacing: 1.4px; font-weight: 700; color: var(--blue); margin-bottom: 5px; }
   .ht-pk-n { font-size: 19px; font-weight: 800; line-height: 1.2; margin-bottom: 4px; }
-  .ht-pk-d { font-size: 14px; color: rgba(255,255,255,0.86); line-height: 1.45; margin-bottom: 12px; }
-  .ht-pick .ht-pk-b { display: inline-block; padding: 11px 18px; border-radius: 10px; font-size: 15px; font-weight: 700; color: var(--ink);
-    background: linear-gradient(180deg, var(--gold-light), var(--gold)); }
-  .ht-also { font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,0.6); font-weight: 700; margin: 14px 0 7px; }
+  .ht-pk-d { font-size: 14px; color: var(--ink); line-height: 1.45; margin-bottom: 12px; }
+  .ht-pick .ht-pk-b { display: inline-block; padding: 11px 18px; border-radius: 10px; font-size: 15px; font-weight: 700; color: #fff;
+    background: var(--blue); }
+  .ht-also { font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--ink-3); font-weight: 700; margin: 14px 0 7px; }
   ul.ht-more { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 7px; }
   ul.ht-more li { margin: 0; }
-  ul.ht-more a, ul.ht-more a:visited { display: block; height: 100%; padding: 9px 12px; border-radius: 10px; text-decoration: none; color: #fff;
-    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.13); }
-  ul.ht-more a:hover { border-color: var(--gold-light); background: rgba(242,207,110,0.10); }
+  ul.ht-more a, ul.ht-more a:visited { display: block; height: 100%; padding: 9px 12px; border-radius: 10px; text-decoration: none; color: var(--ink);
+    background: #fff; border: 1px solid var(--rule); }
+  ul.ht-more a:hover { border-color: var(--blue); background: var(--blue-wash); }
   ul.ht-more b { display: block; font-size: 14px; font-weight: 700; line-height: 1.3; }
-  ul.ht-more span { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 12.5px; color: rgba(255,255,255,0.7); line-height: 1.4; margin-top: 2px; }
+  ul.ht-more span { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 12.5px; color: var(--ink-2); line-height: 1.4; margin-top: 2px; }
   .js .ht-panel { display: none; }
   .js .ht-panel.on, .js .ht.showall .ht-panel { display: block; }
-  .js .ht-all { display: block; margin: 16px auto 0; padding: 10px 16px; background: transparent; color: rgba(255,255,255,0.78); border: 1px solid rgba(255,255,255,0.24);
+  .js .ht-all { display: block; margin: 16px auto 0; padding: 10px 16px; background: transparent; color: var(--ink-2); border: 1px solid var(--line);
     border-radius: 999px; font: 600 13px/1 inherit; font-family: inherit; cursor: pointer; }
-  .ht-all:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+  .ht-all:hover { color: var(--blue); border-color: var(--blue); }
   @media (max-width: 620px) {
     .ht-top { flex-direction: column; align-items: stretch; gap: 8px; }
     .js .ht-sel { display: block; }
@@ -92,15 +100,36 @@
     .ht-rail.more-l .ht-chips { -webkit-mask-image: linear-gradient(to left, #000 calc(100% - 52px), transparent); mask-image: linear-gradient(to left, #000 calc(100% - 52px), transparent); }
     .ht-rail.more-l.more-r .ht-chips { -webkit-mask-image: linear-gradient(to right, transparent, #000 52px, #000 calc(100% - 52px), transparent); mask-image: linear-gradient(to right, transparent, #000 52px, #000 calc(100% - 52px), transparent); }
     .ht-arr { position: absolute; top: 50%; margin-top: -20px; width: 34px; height: 34px; padding: 0; border: none; border-radius: 50%; z-index: 2; cursor: pointer;
-      background: linear-gradient(180deg, var(--gold-light), var(--gold)); color: var(--ink); font: 800 21px/34px inherit; font-family: inherit; text-align: center;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.5); }
+      background: var(--blue); color: #fff; font: 800 21px/34px inherit; font-family: inherit; text-align: center;
+      box-shadow: 0 1px 2px rgba(20,27,61,.05), 0 14px 32px -20px rgba(20,27,61,.30); }
     .ht-rail.more-r .ht-next { display: block; right: -5px; }
     .ht-rail.more-l .ht-prev { display: block; left: -5px; }
-    .js .ht-hint { display: block; font-size: 12.5px; font-weight: 600; color: var(--gold-light); text-align: right; margin: -2px 0 8px; }
+    .js .ht-hint { display: block; font-size: 12.5px; font-weight: 600; color: var(--blue); text-align: right; margin: -2px 0 8px; }
     .js .ht.swiped .ht-hint, .js .ht.fits .ht-hint { display: none; }
     .ht .ht-panel { padding: 14px 12px 16px; }
     ul.ht-more { grid-template-columns: 1fr; }
   }
+
+  /* light look (17 Nov 2026): calmer type, white cards, blue for the one thing to press */
+  .ht-ask { font-size: 20px; letter-spacing: -0.02em; }
+  .ht-chip { border-width: 1px; box-shadow: 0 1px 2px rgba(20,27,61,.04); font-size: 14px; }
+  .ht-why { font-size: 14px; color: var(--ink-3); }
+  .ht .ht-panel { margin-top: 18px; padding: 22px 20px 22px; border: 1px solid var(--rule); box-shadow: var(--shadow); }
+  .ht .ht-panel .ht-h { font-size: 22px; letter-spacing: -0.02em; }
+  .ht-pain { font: 400 16.5px/1.55 var(--serif); color: var(--ink-2); margin: 4px 0 16px; }
+  a.ht-pick { border: 1px solid var(--rule); background: var(--paper); padding: 18px 18px 16px; }
+  a.ht-pick:hover { border-color: var(--blue); }
+  .ht-pk-k { font-size: 12px; letter-spacing: .12em; font-weight: 800; }
+  .ht-pk-n { font-size: 20px; letter-spacing: -0.02em; }
+  .ht-pk-d { font: 400 16px/1.5 var(--serif); color: var(--ink-2); }
+  .ht-pick .ht-pk-b { min-height: 46px; padding: 13px 20px; border-radius: 12px; font-size: 16px; box-shadow: var(--shadow-btn); }
+  a.ht-pick:hover .ht-pk-b { background: var(--blue-d); }
+  .ht-also { font-size: 12.5px; letter-spacing: .12em; font-weight: 800; margin: 20px 0 10px; }
+  ul.ht-more { gap: 8px; }
+  ul.ht-more a, ul.ht-more a:visited { padding: 12px 14px; border-radius: 12px; }
+  ul.ht-more b { font-size: 15px; }
+  ul.ht-more span { font: 400 14px/1.45 var(--serif); }
+  @media (max-width: 620px) { .ht-arr { box-shadow: 0 4px 12px -4px rgba(20,27,61,.45); } .ht .ht-panel { padding: 18px 14px; } }
 </style>
 
 <!-- seo:start -->
@@ -124,12 +153,14 @@
 <meta name="gantry-checked" content="2026-11-12">
 </head>
 <body>
+<header class="gt-top" id="gt-top">
+  <a class="gt-mark" href="/index.html" aria-label="The Gantry, all free tools"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" d="M3 21V4h18v17M3 9h18M8 9v5M16 9v5"/></svg>The Gantry</a>
+  <a class="gt-hbtn" href="/review-call.html?utm_source=tools&amp;utm_medium=tools-home&amp;utm_campaign=tool_header" data-gtcta="tool_header">Book 20 min</a>
+</header>
 <div class="card hub" id="hub">
-  <div class="brand"><a href="https://www.gantry.work/?utm_source=tools&amp;utm_medium=hub">THE GANTRY</a></div>
   <h1>Free business tools and calculators for Singapore SMEs</h1>
   <p class="lead">Pick what you want to fix. You get one tool to start with, and most take about a minute.</p>
-  <div class="trust" id="gantry-trust"><img src="/sayed.jpg" alt="Sayed Rashid" width="30" height="30" loading="lazy"><div class="trust-t"><b>Built by Sayed Rashid</b>, ex-auditor. 38 systems taken live. Each tool comes from a job owners were doing by hand.</div></div>
-
+  <div class="trust" id="gantry-trust"><img src="/sayed-320.jpg" alt="" width="28" height="28" loading="lazy"><div class="trust-t"><b>Built by Sayed Rashid</b>, ex-auditor, 38 systems live. Each tool comes from a job owners were doing by hand.</div></div>
 
 <div class="ht" id="ht">
   <script>document.documentElement.className += ' js';</script>
@@ -244,32 +275,33 @@
 
   <button type="button" class="ht-all" id="htAll">Show all 48 tools</button>
 </div>
+</div>
+
+<div class="gt-after hub-after">
+  <section class="gt-book" id="gt-book" aria-labelledby="gtBookH">
+    <h2 id="gtBookH">Want a second pair of eyes on this?</h2>
+    <p class="gt-b-l">Bring this number to a free 20-minute call. You leave with three fixes, ranked by payoff.</p>
+    <a class="gt-b-btn" href="/review-call.html?utm_source=tools&amp;utm_medium=tools-home&amp;utm_campaign=tool_card" data-gtcta="tool_card">Book the free 20 minutes <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <p class="gt-b-fine">Real examples, not slides.</p>
+    <div class="gt-b-who"><img src="/sayed-320.jpg" alt="Sayed Rashid" width="40" height="40" loading="lazy"><span><b>Sayed Rashid</b> · Ex-auditor · 38 systems live</span></div>
+  </section>
 
   <details class="fold"><summary>Guides that go with the tools</summary>
   <p class="sub" style="margin-bottom:8px"><b>Start here:</b> <a href="https://www.gantry.work/p/business-systems-start-here?utm_source=tools&amp;utm_medium=hub">Choosing and implementing a business system</a> · <a href="https://www.gantry.work/p/automation-start-here?utm_source=tools&amp;utm_medium=hub">Automation for small business</a> · <a href="https://www.gantry.work/p/singapore-sme-grants-compliance-start-here?utm_source=tools&amp;utm_medium=hub">Singapore grants and InvoiceNow</a></p>
   <p class="sub" style="margin-bottom:12px">Step-by-step guides on The Gantry, with worked examples and the automation that runs each job for you: <a href="https://www.gantry.work/p/payment-reminder-email-templates?utm_source=tools&amp;utm_medium=hub">Payment reminder email templates</a> · <a href="https://www.gantry.work/p/job-costing-software-small-business-contractors?utm_source=tools&amp;utm_medium=hub">Job costing for small businesses and contractors</a> · <a href="https://www.gantry.work/p/whatsapp-business-api-pricing?utm_source=tools&amp;utm_medium=hub">WhatsApp Business API pricing</a> · <a href="https://www.gantry.work/p/make-pricing-review?utm_source=tools&amp;utm_medium=hub">Make pricing and review</a> · <a href="https://www.gantry.work/p/order-to-cash-process?utm_source=tools&amp;utm_medium=hub">Order to cash, explained</a> · <a href="https://www.gantry.work/p/invoicenow-when-your-business-must?utm_source=tools&amp;utm_medium=hub">When your business must use InvoiceNow</a> · <a href="https://www.gantry.work/p/i-built-you-four-free-tools?utm_source=tools&amp;utm_medium=hub">All free tools, with demos</a>.</p>
   </details>
   <details class="fold"><summary>Questions</summary>
-  <p class="sub" style="margin-bottom:10px"><b style="color:#fff">Are these business tools really free?</b> Yes. Every tool is free to use, as often as you like, with no sign-up. If you want a second pair of eyes on your numbers, you can book a free 20-minute review.</p>
-  <p class="sub" style="margin-bottom:10px"><b style="color:#fff">Is my data safe?</b> Everything runs in your browser. Your files and entries are never uploaded or stored on a server; your business details are remembered only on your own computer.</p>
-  <p class="sub" style="margin-bottom:10px"><b style="color:#fff">Do the tools work outside Singapore?</b> Yes. Currency and tax rate are editable. Singapore specifics such as 9% GST, tax invoices, PayNow and InvoiceNow are built in as defaults.</p>
-  <p class="sub" style="margin-bottom:10px"><b style="color:#fff">Who builds these tools?</b> Sayed Rashid, who works with business owners on automation and business systems. Each tool comes from a job owners were doing by hand every week.</p>
-  <p class="sub" style="margin-bottom:10px"><b style="color:#fff">Can I suggest a tool?</b> Yes. Message Sayed on LinkedIn with the job you do by hand every week; the most common requests become the next free tools.</p>
+  <p class="sub" style="margin-bottom:10px"><b style="color:var(--ink)">Are these business tools really free?</b> Yes. Every tool is free to use, as often as you like, with no sign-up. If you want a second pair of eyes on your numbers, you can book a free 20-minute review.</p>
+  <p class="sub" style="margin-bottom:10px"><b style="color:var(--ink)">Is my data safe?</b> Everything runs in your browser. Your files and entries are never uploaded or stored on a server; your business details are remembered only on your own computer.</p>
+  <p class="sub" style="margin-bottom:10px"><b style="color:var(--ink)">Do the tools work outside Singapore?</b> Yes. Currency and tax rate are editable. Singapore specifics such as 9% GST, tax invoices, PayNow and InvoiceNow are built in as defaults.</p>
+  <p class="sub" style="margin-bottom:10px"><b style="color:var(--ink)">Who builds these tools?</b> Sayed Rashid, who works with business owners on automation and business systems. Each tool comes from a job owners were doing by hand every week.</p>
+  <p class="sub" style="margin-bottom:10px"><b style="color:var(--ink)">Can I suggest a tool?</b> Yes. Message Sayed on LinkedIn with the job you do by hand every week; the most common requests become the next free tools.</p>
   </details>
 
-  <div class="footer">
-    <strong>The Gantry</strong>: put the weight on the system, not your people.<br>
-    Weekly playbooks for running an SME without heroics, by <a href="https://www.gantry.work">Sayed Rashid</a>. Subscribers keep every tool open.<br>
-    <a href="https://www.gantry.work/subscribe?utm_source=tools-hub">Subscribe free &rarr;</a>
-  </div>
-
-  <div class="bookstrip">
-    <div class="bt"><b>Ran a tool and the number looked bad?</b><span>Twenty minutes, no pitch. Bring one process that keeps breaking and we map where it leaks.</span></div>
-    <a class="bk" href="review.html">Book a 20-min review &rarr;</a>
-  </div>
+  <p class="hub-note"><b>The Gantry</b>: put the weight on the system, not your people. Weekly playbooks for running an SME without heroics, by <a href="https://www.gantry.work">Sayed Rashid</a>. <a href="https://www.gantry.work/subscribe?utm_source=tools-hub">Subscribe free &rarr;</a></p>
 
   <div class="byline">
-    <img src="sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
+    <img src="/sayed-320.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
     <div class="who">
       <div class="nm">Sayed Rashid</div>
       <div class="rl">I build the systems behind this. I post what actually breaks in Singapore SME operations, weekly.</div>
@@ -280,6 +312,8 @@
     </a>
   </div>
 </div>
+<footer class="gt-foot"><span>The Gantry · Singapore</span><nav aria-label="More from The Gantry"><a href="/index.html">All free tools</a><a href="https://www.gantry.work">Newsletter</a><a href="/privacy.html">Privacy</a></nav></footer>
+<script>document.querySelectorAll('[data-gtcta]').forEach(function (a) { a.addEventListener('click', function () { try { gtag('event', 'review_cta_click', { cta: a.getAttribute('data-gtcta'), tool_name: 'tools-home', page: 'tool' }); } catch (e) {} }); });</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://tools.gantry.work/#website", "url": "https://tools.gantry.work/", "name": "The Gantry Tools", "description": "Free business tools and calculators for small businesses, with Singapore defaults.", "publisher": {"@id": "https://tools.gantry.work/#sayed"}, "inLanguage": "en-SG"}, {"@type": "Person", "@id": "https://tools.gantry.work/#sayed", "name": "Sayed Rashid", "url": "https://gantry.work", "jobTitle": "ERP & Business Systems Consultant", "sameAs": ["https://www.linkedin.com/in/sayedomni", "https://gantry.work", "https://github.com/sayedomnisoft"]}, {"@type": "CollectionPage", "@id": "https://tools.gantry.work/#hub", "url": "https://tools.gantry.work/", "name": "Free business tools and calculators for Singapore SMEs", "isPartOf": {"@id": "https://tools.gantry.work/#website"}, "author": {"@id": "https://tools.gantry.work/#sayed"}, "dateModified": "2026-11-12", "mainEntity": {"@type": "ItemList", "numberOfItems": 48, "itemListElement": [{"@type": "ListItem", "position": 1, "name": "SME Systems Health Check", "url": "https://tools.gantry.work/health-check/"}, {"@type": "ListItem", "position": 2, "name": "Overdue Invoice Reminder Writer", "url": "https://tools.gantry.work/invoice-chaser.html"}, {"@type": "ListItem", "position": 3, "name": "Stock Take Variance Calculator", "url": "https://tools.gantry.work/stock-take-variance-calculator.html"}, {"@type": "ListItem", "position": 4, "name": "Job Costing Calculator", "url": "https://tools.gantry.work/job-costing-calculator.html"}, {"@type": "ListItem", "position": 5, "name": "Profit Margin Calculator", "url": "https://tools.gantry.work/profit-margin-calculator.html"}, {"@type": "ListItem", "position": 6, "name": "Invoice Generator", "url": "https://tools.gantry.work/invoice-generator.html"}, {"@type": "ListItem", "position": 7, "name": "EDGE Grant Calculator", "url": "https://tools.gantry.work/edge-grant-calculator.html"}, {"@type": "ListItem", "position": 8, "name": "Shared WhatsApp Inbox Check", "url": "https://tools.gantry.work/wati-fit-check.html"}, {"@type": "ListItem", "position": 9, "name": "The 12-Point Singapore SME Systems Checklist", "url": "https://tools.gantry.work/singapore-sme-systems-checklist.html"}, {"@type": "ListItem", "position": 10, "name": "Cost of Manual Work Calculator", "url": "https://tools.gantry.work/cost-of-manual-work.html"}, {"@type": "ListItem", "position": 11, "name": "ERP Readiness Scorecard", "url": "https://tools.gantry.work/erp-readiness.html"}, {"@type": "ListItem", "position": 12, "name": "ERP & Automation ROI Calculator", "url": "https://tools.gantry.work/erp-roi.html"}, {"@type": "ListItem", "position": 13, "name": "Payment Reminder Templates and a Stop-Supply Rule", "url": "https://tools.gantry.work/get-paid-kit.html"}, {"@type": "ListItem", "position": 14, "name": "AR Aging Report Generator", "url": "https://tools.gantry.work/ar-aging-report.html"}, {"@type": "ListItem", "position": 15, "name": "DSO Calculator", "url": "https://tools.gantry.work/dso-calculator.html"}, {"@type": "ListItem", "position": 16, "name": "Invoice Due Date Calculator", "url": "https://tools.gantry.work/invoice-due-date-calculator.html"}, {"@type": "ListItem", "position": 17, "name": "Statement of Account Generator", "url": "https://tools.gantry.work/statement-of-account-generator.html"}, {"@type": "ListItem", "position": 18, "name": "13-Week Cash Flow Forecast With Singapore Dates", "url": "https://tools.gantry.work/13-week-cash-flow-calendar.html"}, {"@type": "ListItem", "position": 19, "name": "Month-End Close Cost Calculator", "url": "https://tools.gantry.work/month-end-close.html"}, {"@type": "ListItem", "position": 20, "name": "Month-End and Year-End Close Checklist", "url": "https://tools.gantry.work/december-close-checklist.html"}, {"@type": "ListItem", "position": 21, "name": "Year-End Stock Take Checklist and Count Sheet", "url": "https://tools.gantry.work/year-end-stock-take-checklist.html"}, {"@type": "ListItem", "position": 22, "name": "Slow-Moving and Dead Stock Calculator", "url": "https://tools.gantry.work/slow-moving-stock-calculator.html"}, {"@type": "ListItem", "position": 23, "name": "Landed Cost Calculator (Singapore Imports)", "url": "https://tools.gantry.work/landed-cost-calculator.html"}, {"@type": "ListItem", "position": 24, "name": "Inventory Software Cost Calculator", "url": "https://tools.gantry.work/inventory-software-cost-calculator.html"}, {"@type": "ListItem", "position": 25, "name": "Progress Claim Calculator (Singapore)", "url": "https://tools.gantry.work/progress-claim-calculator.html"}, {"@type": "ListItem", "position": 26, "name": "Timesheet Calculator", "url": "https://tools.gantry.work/timesheet-calculator.html"}, {"@type": "ListItem", "position": 27, "name": "Quotation Generator", "url": "https://tools.gantry.work/quotation-generator.html"}, {"@type": "ListItem", "position": 28, "name": "Markup Calculator", "url": "https://tools.gantry.work/markup-calculator.html"}, {"@type": "ListItem", "position": 29, "name": "Gross Profit Calculator", "url": "https://tools.gantry.work/gross-profit-calculator.html"}, {"@type": "ListItem", "position": 30, "name": "Break-Even Calculator", "url": "https://tools.gantry.work/break-even-calculator.html"}, {"@type": "ListItem", "position": 31, "name": "Price Increase Calculator", "url": "https://tools.gantry.work/price-increase-calculator.html"}, {"@type": "ListItem", "position": 32, "name": "GST Calculator", "url": "https://tools.gantry.work/gst-calculator.html"}, {"@type": "ListItem", "position": 33, "name": "Receipt Generator", "url": "https://tools.gantry.work/receipt-generator.html"}, {"@type": "ListItem", "position": 34, "name": "Delivery Order Generator", "url": "https://tools.gantry.work/delivery-order-generator.html"}, {"@type": "ListItem", "position": 35, "name": "Purchase Order Generator", "url": "https://tools.gantry.work/purchase-order-generator.html"}, {"@type": "ListItem", "position": 36, "name": "Three Way Match: Worked Example and Live Checker", "url": "https://tools.gantry.work/three-way-match-guide.html"}, {"@type": "ListItem", "position": 37, "name": "InvoiceNow Deadline Finder", "url": "https://tools.gantry.work/invoicenow-deadline.html"}, {"@type": "ListItem", "position": 38, "name": "How InvoiceNow Works: One Invoice, Five Stops", "url": "https://tools.gantry.work/invoicenow-explained.html"}, {"@type": "ListItem", "position": 39, "name": "Is My Software InvoiceNow-Ready?", "url": "https://tools.gantry.work/invoicenow-software.html"}, {"@type": "ListItem", "position": 40, "name": "Free InvoiceNow Solutions", "url": "https://tools.gantry.work/invoicenow-free.html"}, {"@type": "ListItem", "position": 41, "name": "InvoiceNow Grants", "url": "https://tools.gantry.work/invoicenow-grants.html"}, {"@type": "ListItem", "position": 42, "name": "Providers vs Access Points", "url": "https://tools.gantry.work/invoicenow-providers.html"}, {"@type": "ListItem", "position": 43, "name": "WhatsApp Business API Cost Calculator", "url": "https://tools.gantry.work/whatsapp-api-cost-calculator.html"}, {"@type": "ListItem", "position": 44, "name": "WATI Pricing Calculator (Singapore)", "url": "https://tools.gantry.work/wati-pricing-singapore.html"}, {"@type": "ListItem", "position": 45, "name": "WATI Free Trial: 7-Day Test Plan", "url": "https://tools.gantry.work/wati-free-trial-plan.html"}, {"@type": "ListItem", "position": 46, "name": "WhatsApp Number Go-Live Checklist", "url": "https://tools.gantry.work/wati-go-live-checklist.html"}, {"@type": "ListItem", "position": 47, "name": "WATI for a Small Team: the Plain Guide", "url": "https://tools.gantry.work/wati-guide.html"}, {"@type": "ListItem", "position": 48, "name": "Make Credit Calculator", "url": "https://tools.gantry.work/make-credit-calculator.html"}]}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are these business tools really free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every tool is free to use, as often as you like, with no sign-up. If you want a second pair of eyes on your numbers, you can book a free 20-minute review."}}, {"@type": "Question", "name": "Is my data safe?", "acceptedAnswer": {"@type": "Answer", "text": "Everything runs in your browser. Your files and entries are never uploaded or stored on a server; your business details are remembered only on your own computer."}}, {"@type": "Question", "name": "Do the tools work outside Singapore?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Currency and tax rate are editable. Singapore specifics such as 9% GST, tax invoices, PayNow and InvoiceNow are built in as defaults."}}, {"@type": "Question", "name": "Who builds these tools?", "acceptedAnswer": {"@type": "Answer", "text": "Sayed Rashid, who works with business owners on automation and business systems. Each tool comes from a job owners were doing by hand every week."}}, {"@type": "Question", "name": "Can I suggest a tool?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Message Sayed on LinkedIn with the job you do by hand every week; the most common requests become the next free tools."}}]}]}</script>
 <script>
 (function () {

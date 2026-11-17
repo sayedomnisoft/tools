@@ -13,29 +13,29 @@
 <link rel="stylesheet" href="shared.css">
 <style>
   .picker { display:grid; grid-template-columns:repeat(auto-fill,minmax(132px,1fr)); gap:9px; margin:6px 0 4px; }
-  .pick { background:rgba(255,255,255,0.055); border:1px solid rgba(255,255,255,0.15); border-radius:11px;
-          padding:13px 11px; font:inherit; font-size:14.5px; font-weight:600; color:#fff; cursor:pointer;
+  .pick { background:#fff; border:1px solid var(--rule); border-radius:11px;
+          padding:13px 11px; font:inherit; font-size:14.5px; font-weight:600; color:var(--ink); cursor:pointer;
           text-align:left; line-height:1.3; transition:border-color .12s, background .12s; }
-  .pick:hover { border-color:var(--gold-light); background:rgba(242,207,110,0.09); }
-  .pick.on { border-color:var(--gold-light); background:rgba(242,207,110,0.15); }
+  .pick:hover { border-color:var(--blue); background:var(--blue-wash); }
+  .pick.on { border-color:var(--blue); background:var(--blue-wash); }
   .pick .st { display:block; font-size:11px; font-weight:700; letter-spacing:1.1px; margin-top:6px; opacity:.75; }
-  .pick .st.y { color:#7df0bd; } .pick .st.p { color:var(--gold-light); } .pick .st.n { color:#ff9d9d; }
+  .pick .st.y { color:var(--green); } .pick .st.p { color:var(--blue); } .pick .st.n { color:var(--red); }
   .verdict { font-size:22px; font-weight:800; margin:4px 0 14px; line-height:1.3; }
-  .verdict.y { color:#7df0bd; } .verdict.p { color:var(--gold-light); } .verdict.n { color:#ff9d9d; }
-  .fact { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.13); border-radius:12px;
+  .verdict.y { color:var(--green); } .verdict.p { color:var(--blue); } .verdict.n { color:var(--red); }
+  .fact { background:#fff; border:1px solid var(--rule); border-radius:12px;
           padding:14px 17px; margin-bottom:18px; font-size:14px; line-height:1.6; }
-  .fact dt { font-size:11px; letter-spacing:1.6px; font-weight:700; color:rgba(255,255,255,0.66); margin-top:11px; }
+  .fact dt { font-size:11px; letter-spacing:1.6px; font-weight:700; color:var(--ink-2); margin-top:11px; }
   .fact dt:first-child { margin-top:0; }
-  .fact dd { margin:3px 0 0; color:#fff; }
-  .foc { background:rgba(78,230,168,0.11); border:1px solid rgba(78,230,168,0.45); border-radius:12px;
+  .fact dd { margin:3px 0 0; color:var(--ink); }
+  .foc { background:var(--green-wash); border:1px solid #9fcfb3; border-radius:12px;
          padding:13px 16px; font-size:14px; line-height:1.55; margin-bottom:18px; }
-  .foc .t { font-size:11.5px; letter-spacing:1.7px; font-weight:700; color:#7df0bd; margin-bottom:7px; }
+  .foc .t { font-size:11.5px; letter-spacing:1.7px; font-weight:700; color:var(--green); margin-bottom:7px; }
   ol.next { margin:0; padding-left:19px; } ol.next li { margin-bottom:9px; font-size:14.5px; line-height:1.55; }
   .searchwrap { margin-bottom:14px; }
-  .searchwrap input { width:100%; padding:12px 14px; border-radius:10px; font-size:15.5px;
-    border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.06); color:#fff; font-family:inherit; }
-  .searchwrap input::placeholder { color:rgba(255,255,255,0.55); }
-  .nores { font-size:14px; color:rgba(255,255,255,0.72); padding:10px 2px; }
+  .searchwrap input { width:100%; padding:12px 14px; border-radius:10px; font-size:16px;
+    border:1px solid var(--line); background:#fff; color:var(--ink); font-family:inherit; }
+  .searchwrap input::placeholder { color:var(--ink-3); }
+  .nores { font-size:14px; color:var(--ink-2); padding:10px 2px; }
 </style>
 
 <!-- seo:start -->
@@ -125,7 +125,7 @@
 <p><b>When do I have to use InvoiceNow?</b> IRAS is phasing it in for GST-registered businesses, starting with new voluntary registrants in 2025 and 2026, with existing registrants in later phases. Use the deadline finder for your date.</p>
 </div>
 <div class="byline">
-    <img src="sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
+    <img src="/sayed-320.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
     <div class="who">
       <div class="nm">Sayed Rashid</div>
       <div class="rl">I build the systems behind this. I post what actually breaks in Singapore SME operations, weekly.</div>

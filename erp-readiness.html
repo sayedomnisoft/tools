@@ -12,20 +12,20 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="shared.css">
 <style>
-  .progress-wrap { height: 6px; background: rgba(255,255,255,0.12); border-radius: 3px; margin-bottom: 24px; overflow: hidden; }
-  .progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius: 3px; transition: width .35s ease; }
-  .qnum { font-size: 12.5px; color: var(--gold-light); font-weight: 700; letter-spacing: 1.5px; margin-bottom: 10px; }
+  .progress-wrap { height: 6px; background: var(--rule); border-radius: 3px; margin-bottom: 24px; overflow: hidden; }
+  .progress-bar { height: 100%; width: 0%; background: var(--blue); border-radius: 3px; transition: width .35s ease; }
+  .qnum { font-size: 12.5px; color: var(--blue); font-weight: 700; letter-spacing: 1.5px; margin-bottom: 10px; }
   .qtext { font-size: 20px; font-weight: 700; line-height: 1.32; margin-bottom: 22px; }
   .answers { display: flex; flex-direction: column; gap: 11px; }
   button.answer {
-    text-align: left; padding: 15px 18px; font-size: 15px; font-weight: 500; color: #fff; font-family: inherit;
-    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); border-radius: 12px;
+    text-align: left; padding: 15px 18px; font-size: 15px; font-weight: 500; color: var(--ink); font-family: inherit;
+    background: #fff; border: 1px solid var(--line); border-radius: 12px;
     cursor: pointer; line-height: 1.4; transition: background .12s ease, border-color .12s ease, transform .1s ease;
   }
-  button.answer:hover { background: rgba(242,207,110,0.16); border-color: var(--gold-light); transform: translateX(3px); }
+  button.answer:hover { background: var(--blue-wash); border-color: var(--blue); transform: translateX(3px); }
   ul.gaps { list-style: none; margin-bottom: 22px; }
-  ul.gaps li { font-size: 14.5px; color: rgba(255,255,255,0.9); padding: 7px 0 7px 24px; position: relative; line-height: 1.45; }
-  ul.gaps li::before { content: "▸"; color: var(--gold); position: absolute; left: 4px; }
+  ul.gaps li { font-size: 14.5px; color: var(--ink); padding: 7px 0 7px 24px; position: relative; line-height: 1.45; }
+  ul.gaps li::before { content: "▸"; color: var(--blue); position: absolute; left: 4px; }
 </style>
 
 <!-- seo:start -->
@@ -57,7 +57,7 @@
   <div id="intro">
     <h1>ERP Readiness Scorecard</h1>
     <p class="sub">Most failed system projects were already in trouble before the software was chosen. Eight questions on the things that actually decide it — data, process, ownership, time.</p>
-  <!-- guidelink --><p style="margin:-10px 0 18px;font-size:14px;color:rgba(255,255,255,.8)">Full guide: <a style="color:#f2cf6e" href="https://www.gantry.work/p/from-spreadsheets-to-erp-how-to-retire?utm_source=tools&amp;utm_medium=erp-readiness&amp;utm_campaign=guidelink">From spreadsheets to ERP, without the drama →</a></p>
+  <!-- guidelink --><p style="margin:-10px 0 18px;font-size:14px;color:var(--ink-2)">Full guide: <a style="color:var(--blue)" href="https://www.gantry.work/p/from-spreadsheets-to-erp-how-to-retire?utm_source=tools&amp;utm_medium=erp-readiness&amp;utm_campaign=guidelink">From spreadsheets to ERP, without the drama →</a></p>
 
     <div class="note">This is not a software recommendation. No vendor is named, and the honest answer might be <strong>"not yet"</strong>.</div>
     <button class="primary" id="startBtn" onclick="start()">Start the scorecard</button>
@@ -74,7 +74,7 @@
   <div id="result" class="hidden">
     <div class="result-label">YOUR READINESS</div>
     <div class="big-num"><span id="score">0</span><small> / 16</small></div>
-    <h2 id="band" style="color: var(--gold-light); margin-top: 10px;"></h2>
+    <h2 id="band" style="color: var(--blue); margin-top: 10px;"></h2>
     <p class="sub" id="verdict"></p>
     <div id="gapsBlock">
       <div class="result-label">FIX THESE FIRST</div>
@@ -123,7 +123,7 @@
 <p><b>Does the scorecard recommend a specific ERP?</b> No. It names no vendor. It tells you what to fix first, whichever system you choose.</p>
 </div>
 <div class="byline">
-    <img src="sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
+    <img src="/sayed-320.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
     <div class="who">
       <div class="nm">Sayed Rashid</div>
       <div class="rl">I build the systems behind this. I post what actually breaks in Singapore SME operations, weekly.</div>

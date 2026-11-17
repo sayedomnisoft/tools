@@ -26,37 +26,37 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
 <style>
   .card { max-width: 820px; }
-  .drop { border: 2px dashed rgba(242,207,110,0.55); border-radius: 14px; padding: 26px 18px; text-align: center; cursor: pointer; background: rgba(255,255,255,0.04); }
-  .drop:hover, .drop.over { background: rgba(242,207,110,0.1); }
+  .drop { border: 2px dashed var(--line); border-radius: 14px; padding: 26px 18px; text-align: center; cursor: pointer; background: #fff; }
+  .drop:hover, .drop.over { background: var(--blue-wash); }
   .drop b { display:block; font-size:16px; margin-bottom:4px; }
-  .drop span { font-size:13px; color: var(--muted); }
-  .or { text-align:center; font-size:13px; color:var(--muted); margin:12px 0; }
+  .drop span { font-size:13px; color: var(--ink-2); }
+  .or { text-align:center; font-size:13px; color:var(--ink-2); margin:12px 0; }
   .two { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-  input[type=text] { width:100%; padding:12px 14px; font-size:15px; color:#fff; font-family:inherit; background:rgba(255,255,255,0.09); border:1px solid rgba(255,255,255,0.2); border-radius:10px; }
-  input[type=text]:focus { outline:none; border-color:var(--gold-light); }
-  .privacy { font-size:12.5px; color:rgba(255,255,255,0.65); margin-top:10px; text-align:center; }
+  input[type=text] { width:100%; padding:12px 14px; font-size:16px; color:var(--ink); font-family:inherit; background:#fff; border:1px solid var(--line); border-radius:10px; }
+  input[type=text]:focus { outline:none; border-color:var(--blue); }
+  .privacy { font-size:12.5px; color:var(--ink-3); margin-top:10px; text-align:center; }
   .sum { display:flex; flex-wrap:wrap; gap:10px; margin:18px 0; }
-  .pill { padding:8px 12px; border-radius:999px; font-size:13px; font-weight:700; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18); }
-  .mail { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.16); border-radius:14px; padding:16px; margin-bottom:14px; }
+  .pill { padding:8px 12px; border-radius:999px; font-size:13px; font-weight:700; background:#fff; border:1px solid var(--line); }
+  .mail { background:#fff; border:1px solid var(--rule); border-radius:14px; padding:16px; margin-bottom:14px; }
   .mhead { display:flex; justify-content:space-between; gap:10px; align-items:flex-start; flex-wrap:wrap; margin-bottom:10px; }
-  .mhead b { font-size:16px; } .mhead small { display:block; color:var(--muted); font-size:12.5px; margin-top:2px; }
-  .tone { font-size:11px; font-weight:800; letter-spacing:1px; padding:4px 8px; border-radius:6px; color:#14142a; }
-  .t1 { background:#9fe3b6; } .t2 { background:#f2cf6e; } .t3 { background:#ff9d8f; }
+  .mhead b { font-size:16px; } .mhead small { display:block; color:var(--ink-2); font-size:12.5px; margin-top:2px; }
+  .tone { font-size:11px; font-weight:800; letter-spacing:1px; padding:4px 8px; border-radius:6px; color:var(--ink); }
+  .t1 { background:var(--green-wash); } .t2 { background:var(--blue); } .t3 { background:var(--red-wash); }
   .mail input.to { margin-bottom:8px; }
   .mail input.subj { margin-bottom:8px; font-weight:600; }
-  .mail textarea { width:100%; min-height:190px; padding:12px 14px; font-size:14px; line-height:1.5; color:#fff; font-family:inherit; background:rgba(0,0,0,0.18); border:1px solid rgba(255,255,255,0.18); border-radius:10px; resize:vertical; }
+  .mail textarea { width:100%; min-height:190px; padding:12px 14px; font-size:14px; line-height:1.5; color:var(--ink); font-family:inherit; background:#f3f4f8; border:1px solid var(--line); border-radius:10px; resize:vertical; }
   .acts { display:flex; gap:8px; margin-top:8px; flex-wrap:wrap; }
   .acts button, .acts a { flex:1; min-width:130px; text-align:center; padding:10px; font-size:13.5px; font-weight:700; border-radius:9px; cursor:pointer; font-family:inherit; text-decoration:none; }
-  .b1 { background:linear-gradient(180deg,var(--gold-light),var(--gold)); color:#14142a; border:none; }
-  .b2 { background:transparent; color:#fff; border:1px solid rgba(255,255,255,0.3); }
-  .auto { margin:26px 0 8px; padding:20px; border-radius:16px; background:linear-gradient(135deg, rgba(201,162,39,0.18), rgba(42,47,176,0.18)); border:1px solid rgba(242,207,110,0.5); }
-  .auto h2 { margin-bottom:8px; } .auto p { font-size:14.5px; line-height:1.55; color:rgba(255,255,255,0.88); margin-bottom:12px; }
-  .disc { font-size:12px; color:rgba(255,255,255,0.6); margin-top:8px; line-height:1.5; }
-  .gate { position:fixed; inset:0; background:rgba(5,7,30,0.82); display:flex; align-items:center; justify-content:center; padding:18px; z-index:50; }
+  .b1 { background:var(--blue); color:#fff; border:none; }
+  .b2 { background:transparent; color:var(--ink); border:1px solid var(--line); }
+  .auto { margin:26px 0 8px; padding:20px; border-radius:16px; background:#fff; border:1px solid var(--line); }
+  .auto h2 { margin-bottom:8px; } .auto p { font-size:14.5px; line-height:1.55; color:var(--ink); margin-bottom:12px; }
+  .disc { font-size:12px; color:var(--ink-3); margin-top:8px; line-height:1.5; }
+  .gate { position:fixed; inset:0; background:rgba(20,27,61,.45); display:flex; align-items:center; justify-content:center; padding:18px; z-index:50; }
   .gate.hidden { display:none; }
-  .gate .box { max-width:520px; width:100%; background:#14163f; border:1px solid rgba(242,207,110,0.5); border-radius:18px; padding:24px; }
+  .gate .box { max-width:520px; width:100%; background:#fff; border:1px solid var(--line); border-radius:18px; padding:24px; }
   .gate iframe { width:100%; height:150px; border:0; border-radius:10px; background:#fff; margin:12px 0; }
-  .err { color:#ffb4a8; font-size:14px; margin-top:10px; }
+  .err { color:var(--red); font-size:14px; margin-top:10px; }
   @media (max-width:560px){ .two { grid-template-columns:1fr; } }
 </style>
 <script type="application/ld+json">
@@ -70,7 +70,7 @@
   <div class="brand"><a href="index.html">← THE GANTRY · TOOLS</a></div>
   <h1>Overdue Invoice Reminder Writer</h1>
   <p class="sub">Upload your aged receivables from Xero or QuickBooks and get a ready-to-send reminder for every late customer: polite, firm or final, depending on how late they are. Free, no signup.</p>
-  <!-- guidelink --><p style="margin:-10px 0 18px;font-size:14px;color:rgba(255,255,255,.8)">Full guide: <a style="color:#f2cf6e" href="https://www.gantry.work/p/payment-reminder-email-templates?utm_source=tools&amp;utm_medium=invoice-chaser&amp;utm_campaign=guidelink">Payment reminder email templates, friendly to final →</a></p>
+  <!-- guidelink --><p style="margin:-10px 0 18px;font-size:14px;color:var(--ink-2)">Full guide: <a style="color:var(--blue)" href="https://www.gantry.work/p/payment-reminder-email-templates?utm_source=tools&amp;utm_medium=invoice-chaser&amp;utm_campaign=guidelink">Payment reminder email templates, friendly to final →</a></p>
 
 
   <div id="inputBox">
@@ -114,11 +114,11 @@
   </div>
 
   <div class="byline noprint">
-    <img src="sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
+    <img src="/sayed-320.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
     <div class="who"><div class="nm">Sayed Rashid</div><div class="rl">I build these free tools from the jobs I see business owners do by hand every week. Tell me which one to build next.</div></div>
     <a class="li" href="https://www.linkedin.com/in/sayedomni" target="_blank" rel="noopener" onclick="try{gtag('event','linkedin_click',{page:location.pathname})}catch(e){}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg> Connect on LinkedIn</a>
   </div>
-  <p class="noprint" style="font-size:12px;color:rgba(255,255,255,0.6);text-align:center;margin-top:14px;line-height:1.5">Privacy: your files and entries stay in your browser and are never uploaded. I count anonymous visits and button clicks (Google Analytics) to see which tools help.</p>
+  <p class="noprint" style="font-size:12px;color:var(--ink-3);text-align:center;margin-top:14px;line-height:1.5">Privacy: your files and entries stay in your browser and are never uploaded. I count anonymous visits and button clicks (Google Analytics) to see which tools help.</p>
   <div class="footer" id="baseFooter"><a href="index.html">All free tools</a> · <a href="https://www.gantry.work">The Gantry</a></div>
 </div>
 

@@ -26,24 +26,24 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
 <style>
   .presets { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px; }
-  .presets button { padding:8px 12px; font-size:13px; font-weight:600; color:#fff; background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.2); border-radius:999px; cursor:pointer; font-family:inherit; }
-  .presets button:hover, .presets button.on { border-color:var(--gold-light); color:var(--gold-light); }
+  .presets button { padding:8px 12px; font-size:13px; font-weight:600; color:var(--ink); background:#fff;
+    border:1px solid var(--line); border-radius:999px; cursor:pointer; font-family:inherit; }
+  .presets button:hover, .presets button.on { border-color:var(--blue); color:var(--blue); }
   .seg { display:flex; gap:8px; }
   .seg label { flex:1; margin:0; padding:12px; text-align:center; font-weight:600; font-size:14px; border-radius:10px; cursor:pointer;
-    background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.2); }
+    background:#fff; border:1px solid var(--line); }
   .seg input { display:none; }
-  .seg input:checked + span { color:var(--gold-light); }
-  .seg label:has(input:checked) { border-color:var(--gold-light); background:rgba(242,207,110,0.12); }
+  .seg input:checked + span { color:var(--blue); }
+  .seg label:has(input:checked) { border-color:var(--blue); background:var(--blue-wash); }
   .two { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
   .check { display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; margin:4px 0 0; cursor:pointer; }
-  .check input { width:18px; height:18px; accent-color:#c9a227; }
-  .res { margin-top:26px; padding-top:22px; border-top:1px solid rgba(255,255,255,0.14); }
+  .check input { width:18px; height:18px; accent-color:var(--blue); }
+  .res { margin-top:26px; padding-top:22px; border-top:1px solid var(--rule); }
   .plan { font-size:22px; font-weight:800; margin:6px 0 2px; }
-  .price { color:var(--muted); font-size:14.5px; }
-  .tip { margin-top:16px; padding:14px 16px; border-radius:12px; background:rgba(242,207,110,0.1); border:1px solid rgba(242,207,110,0.35); font-size:14px; line-height:1.55; }
-  .warn { margin-top:12px; font-size:13.5px; color:#ffb4a8; line-height:1.5; }
-  .disc { font-size:12px; color:rgba(255,255,255,0.6); margin-top:10px; line-height:1.5; }
+  .price { color:var(--ink-2); font-size:14.5px; }
+  .tip { margin-top:16px; padding:14px 16px; border-radius:12px; background:var(--blue-wash); border:1px solid var(--line); font-size:14px; line-height:1.55; }
+  .warn { margin-top:12px; font-size:13.5px; color:var(--red); line-height:1.5; }
+  .disc { font-size:12px; color:var(--ink-3); margin-top:10px; line-height:1.5; }
   @media (max-width:480px){ .two { grid-template-columns:1fr; } }
 </style>
 <script type="application/ld+json">
@@ -57,7 +57,7 @@
   <div class="brand"><a href="index.html">← THE GANTRY · TOOLS</a></div>
   <h1>Make.com Credit Calculator</h1>
   <p class="sub">How many credits will your automation use each month, and which Make plan do you need? Pick a preset from my guides or enter your own scenario. Prices checked September 2026, in US dollars.</p>
-  <!-- guidelink --><p style="margin:-10px 0 18px;font-size:14px;color:rgba(255,255,255,.8)">Full guide: <a style="color:#f2cf6e" href="https://www.gantry.work/p/make-pricing-review?utm_source=tools&amp;utm_medium=make-credit-calculator&amp;utm_campaign=guidelink">Make pricing and credits, explained →</a></p>
+  <!-- guidelink --><p style="margin:-10px 0 18px;font-size:14px;color:var(--ink-2)">Full guide: <a style="color:var(--blue)" href="https://www.gantry.work/p/make-pricing-review?utm_source=tools&amp;utm_medium=make-credit-calculator&amp;utm_campaign=guidelink">Make pricing and credits, explained →</a></p>
 
 
   <div class="presets" id="presets">
@@ -155,7 +155,7 @@
   </div>
 
   <div class="byline">
-    <img src="sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
+    <img src="/sayed-320.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
     <div class="who">
       <div class="nm">Sayed Rashid</div>
       <div class="rl">I build automations and ERP systems for small businesses, and write step-by-step guides at The Gantry.</div>

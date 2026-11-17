@@ -12,31 +12,31 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="shared.css">
 <style>
-  .lead { font-size:16.5px; line-height:1.65; color:rgba(255,255,255,0.9); margin-bottom:20px; }
-  h2 { font-size:19px; font-weight:700; margin:30px 0 10px; color:#fff; line-height:1.3; }
-  p.body { font-size:15px; line-height:1.68; color:rgba(255,255,255,0.88); margin-bottom:14px; }
-  ul.pts { margin:0 0 16px; padding-left:19px; } ul.pts li { font-size:15px; line-height:1.62; margin-bottom:9px; color:rgba(255,255,255,0.88); }
+  .lead { font-size:16.5px; line-height:1.65; color:var(--ink); margin-bottom:20px; }
+  h2 { font-size:19px; font-weight:700; margin:30px 0 10px; color:var(--ink); line-height:1.3; }
+  p.body { font-size:15px; line-height:1.68; color:var(--ink); margin-bottom:14px; }
+  ul.pts { margin:0 0 16px; padding-left:19px; } ul.pts li { font-size:15px; line-height:1.62; margin-bottom:9px; color:var(--ink); }
   table.g { width:100%; border-collapse:collapse; font-size:14.5px; margin:6px 0 18px; }
-  table.g th { text-align:left; font-size:11px; letter-spacing:1.4px; font-weight:700; color:rgba(255,255,255,0.62);
-    padding:0 10px 9px 0; border-bottom:1px solid rgba(255,255,255,0.16); }
-  table.g td { padding:12px 10px 12px 0; border-bottom:1px solid rgba(255,255,255,0.1); vertical-align:top; color:rgba(255,255,255,0.85); }
-  table.g td.amt { font-weight:800; color:var(--gold-light); white-space:nowrap; font-size:16px; }
-  table.g tr.hit td { background:rgba(242,207,110,0.10); }
-  .res { background:rgba(78,230,168,0.11); border:1px solid rgba(78,230,168,0.45); border-radius:12px;
+  table.g th { text-align:left; font-size:11px; letter-spacing:1.4px; font-weight:700; color:var(--ink-3);
+    padding:0 10px 9px 0; border-bottom:1px solid var(--rule); }
+  table.g td { padding:12px 10px 12px 0; border-bottom:1px solid var(--rule); vertical-align:top; color:var(--ink); }
+  table.g td.amt { font-weight:800; color:var(--blue); white-space:nowrap; font-size:16px; }
+  table.g tr.hit td { background:var(--blue-wash); }
+  .res { background:var(--green-wash); border:1px solid #9fcfb3; border-radius:12px;
     padding:15px 17px; margin:14px 0 6px; font-size:15px; line-height:1.6; }
-  .res .t { font-size:11.5px; letter-spacing:1.7px; font-weight:700; color:#7df0bd; margin-bottom:8px; }
-  .res .big { font-size:30px; font-weight:800; color:#fff; line-height:1.15; margin-bottom:6px; }
-  .note2 { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.14); border-radius:12px;
-    padding:14px 17px; font-size:14.5px; line-height:1.6; margin:16px 0; color:rgba(255,255,255,0.88); }
-  .updated { font-size:13px; color:rgba(255,255,255,0.62); margin:-4px 0 14px; }
-  .answer { font-size:16.5px; line-height:1.65; color:#fff; background:rgba(242,207,110,0.08); border-left:3px solid var(--gold-light);
-    padding:13px 16px; border-radius:0 10px 10px 0; margin-bottom:20px; }
+  .res .t { font-size:11.5px; letter-spacing:1.7px; font-weight:700; color:var(--green); margin-bottom:8px; }
+  .res .big { font-size:30px; font-weight:800; color:var(--ink); line-height:1.15; margin-bottom:6px; }
+  .note2 { background:#fff; border:1px solid var(--rule); border-radius:12px;
+    padding:14px 17px; font-size:14.5px; line-height:1.6; margin:16px 0; color:var(--ink); }
+  .updated { font-size:13px; color:var(--ink-3); margin:-4px 0 14px; }
+  .answer { font-size:16.5px; line-height:1.65; color:var(--ink); background:var(--blue-wash); border:0;
+    padding:15px 18px; border-radius:14px; margin-bottom:20px; }
   .tw { overflow-x:auto; -webkit-overflow-scrolling:touch; margin:6px 0 18px; }
   .tw table.g { margin:0; min-width:520px; }
-  table.g td small { display:block; font-size:12.5px; color:rgba(255,255,255,0.62); margin-top:4px; line-height:1.45; }
-  .faq h3 { font-size:16px; font-weight:700; color:#fff; margin:20px 0 6px; line-height:1.35; }
-  .faq p { font-size:15px; line-height:1.65; color:rgba(255,255,255,0.88); margin-bottom:10px; }
-  .src { font-size:13px; line-height:1.6; color:rgba(255,255,255,0.7); } .src a { color:#f2cf6e; }
+  table.g td small { display:block; font-size:12.5px; color:var(--ink-3); margin-top:4px; line-height:1.45; }
+  .faq h3 { font-size:16px; font-weight:700; color:var(--ink); margin:20px 0 6px; line-height:1.35; }
+  .faq p { font-size:15px; line-height:1.65; color:var(--ink); margin-bottom:10px; }
+  .src { font-size:13px; line-height:1.6; color:var(--ink-2); } .src a { color:var(--blue); }
 </style>
 
 <!-- seo:start -->
@@ -90,7 +90,7 @@
     </tbody>
   </table>
   </div>
-  <p class="body" style="font-size:13.5px;color:rgba(255,255,255,0.7)">Amounts as published by IRAS on the GST InvoiceNow Requirement page and by IMDA. Every grant is a fixed payout, paid by PayNow Corporate about two months after a complete claim, and taxable as revenue.</p>
+  <p class="body" style="font-size:13.5px;color:var(--ink-2)">Amounts as published by IRAS on the GST InvoiceNow Requirement page and by IMDA. Every grant is a fixed payout, paid by PayNow Corporate about two months after a complete claim, and taxable as revenue.</p>
 
   <h2>The S$1,000 grant: the conditions that catch people out</h2>
   <ul class="pts">
@@ -125,7 +125,7 @@
     <li>Not a past LEAD Connect or LEAF Chain Leader recipient.</li>
     <li>The process starts with an Expression of Interest to IMDA. Eligible businesses are then invited to apply through the Business Grants Portal, and IMDA recommends waiting until the Letter of Offer is signed before formally starting the project.</li>
   </ul>
-  <p class="body" style="font-size:13.5px;color:rgba(255,255,255,0.7)">Both sets of conditions are as set out in IMDA's InvoiceNow grant FAQs, updated as of 4 November 2026 and read on 12 November 2026.</p>
+  <p class="body" style="font-size:13.5px;color:var(--ink-2)">Both sets of conditions are as set out in IMDA's InvoiceNow grant FAQs, updated as of 4 November 2026 and read on 12 November 2026.</p>
 
   <h2 id="claim">How to claim each IMDA InvoiceNow grant</h2>
   <p class="body">All three grants are claimed from IMDA, not IRAS, and each is paid after a claim, not in advance.</p>
@@ -206,7 +206,7 @@
 
   <!-- relguides --><div class="guide noprint"><h2>Related guides on The Gantry</h2><ul><li><a href="https://www.gantry.work/p/invoicenow-when-your-business-must?utm_source=tools&amp;utm_medium=invoicenow-grants&amp;utm_campaign=related">InvoiceNow: When Your Business Must Comply, and What Actually Changes</a></li><li><a href="https://www.gantry.work/p/free-invoicenow-package-expires-march-2027?utm_source=tools&amp;utm_medium=invoicenow-grants&amp;utm_campaign=related">The Free Package That Quietly Expires in March</a></li><li><a href="https://www.gantry.work/p/seventy-firms-selling-same-invoicenow?utm_source=tools&amp;utm_medium=invoicenow-grants&amp;utm_campaign=related">Seventy Firms Are Selling You the Same Thing</a></li></ul><p>More plain-English guides on ERP, automation and InvoiceNow for small businesses: <a href="https://www.gantry.work/?utm_source=tools&amp;utm_medium=invoicenow-grants">The Gantry</a> (free, weekly).</p></div>
   <div class="byline">
-    <img src="sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
+    <img src="/sayed-320.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
     <div class="who">
       <div class="nm">Sayed Rashid</div>
       <div class="rl">I build the systems behind this. I post what actually breaks in Singapore SME operations, weekly.</div>

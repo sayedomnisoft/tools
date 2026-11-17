@@ -9,7 +9,7 @@ const cur = () => (($('cur') && $('cur').value) || 'S$').trim();
 const money = x => isFinite(x) ? (x < 0 ? '−' : '') + cur() + Math.abs(x).toLocaleString('en-SG', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '—';
 const pct = x => isFinite(x) ? (Math.round(x * 100) / 100).toLocaleString('en-SG', { maximumFractionDigits: 2 }) + '%' : '—';
 const int = x => isFinite(x) ? Math.round(x).toLocaleString('en-SG') : '—';
-const G = 'style="color:#f2cf6e"';
+const G = 'style="color:var(--blue)"';
 const link = (href, t, ext) => `<a ${G} href="${href}"${ext ? ' target="_blank" rel="noopener"' : ''}>${t}</a>`;
 const review = m => link(`https://tools.gantry.work/review.html?utm_source=tools&utm_medium=${m}`, 'Book a free 20-minute review', true) + ' or ' + link(`https://tools.gantry.work/review.html?offer=video&utm_source=tools&utm_medium=${m}`, 'get a 2-minute video on this number', true);
 const f = (id, label, val, ph, type) => `<div class="f"><label for="${id}">${label}</label><input type="${type || 'text'}" ${type === 'date' ? '' : 'inputmode="decimal"'} id="${id}" value="${val == null ? '' : val}" placeholder="${ph || ''}"></div>`;
@@ -29,7 +29,7 @@ const CALCS = {
       if (P <= V) return { msg: 'The selling price must be higher than the variable cost per unit; otherwise every sale loses money and there is no break-even point.' };
       const cm = P - V, cmr = cm / P, units = Math.ceil(F / cm - 1e-9), sales = units * P;
       $('t1').textContent = int(units); $('t2').textContent = money(sales); $('t3').textContent = money(cm); $('t4').textContent = pct(cmr * 100);
-      let out = `<b style="color:#fff">You need to sell ${int(units)} units (${money(sales)}) a month to cover ${money(F)} of fixed costs.</b> Every unit after that adds ${money(cm)} of profit.`;
+      let out = `<b style="color:var(--ink)">You need to sell ${int(units)} units (${money(sales)}) a month to cover ${money(F)} of fixed costs.</b> Every unit after that adds ${money(cm)} of profit.`;
       if (T > 0) { const tu = Math.ceil((F + T) / cm - 1e-9); out += ` To make ${money(T)} profit a month you need ${int(tu)} units (${money(tu * P)} in sales).`; }
       if (A > 0) { const mos = (A - units) / A * 100; out += A >= units ? ` At ${int(A)} units you are ${int(A - units)} units above break-even: a margin of safety of ${pct(mos)}, and a profit of about ${money(A * cm - F)} a month.` : ` At ${int(A)} units you are ${int(units - A)} units short of break-even, a loss of about ${money(F - A * cm)} a month.`; }
       out += ` Raising the price by 5% would lower break-even to ${int(Math.ceil(F / (P * 1.05 - V) - 1e-9))} units. ${link('profit-margin-calculator.html', 'Check margins product by product')} · ${review('breakeven-result')}`;
@@ -45,7 +45,7 @@ const CALCS = {
       if (!(AR >= 0) || !(S > 0)) return { msg: 'Enter what customers owe you and your credit sales for the period.' };
       const dso = AR / S * D, daily = S / D, late = isFinite(TR) ? dso - TR : NaN, tied = late > 0 ? late * daily : 0;
       $('t1').textContent = isFinite(dso) ? dso.toFixed(1) + ' days' : '—'; $('t2').textContent = isFinite(late) ? (late > 0 ? late.toFixed(1) + ' days' : 'none') : '—'; $('t3').textContent = money(daily); $('t4').textContent = money(tied);
-      let out = `<b style="color:#fff">Your DSO is ${dso.toFixed(1)} days.</b> On average, a sale is collected ${dso.toFixed(0)} days after it is made. `;
+      let out = `<b style="color:var(--ink)">Your DSO is ${dso.toFixed(1)} days.</b> On average, a sale is collected ${dso.toFixed(0)} days after it is made. `;
       out += late > 0 ? `That is ${late.toFixed(1)} days longer than your ${int(TR)}-day terms, so about ${money(tied)} of cash is sitting with customers that should already be in your bank. Bringing DSO back to your terms frees that cash once. ` : `That is within your ${int(TR)}-day terms. Keep it there with reminders that go out on their own. `;
       out += `See who is holding it up with the ${link('ar-aging-report.html', 'free AR aging report')}, then ${link('invoice-chaser.html', 'write the reminders')}. ${review('dso-result')}`;
       return { out, used: true };
@@ -65,7 +65,7 @@ const CALCS = {
       const lines = $('list').value.split('\n').map(num).filter(x => x >= 0);
       if (lines.length) { const rows = lines.map(split); const tot = rows.reduce((s, r) => [s[0] + r[0], s[1] + r[1], s[2] + r[2]], [0, 0, 0]);
         $('listOut').innerHTML = `<div class="tw" style="margin-top:10px"><table class="pt" style="min-width:0"><thead><tr><th>#</th><th>Before GST</th><th>GST</th><th>Incl. GST</th></tr></thead><tbody>${rows.map((r, i) => `<tr><td>${i + 1}</td><td>${money(r[0])}</td><td>${money(r[1])}</td><td>${money(r[2])}</td></tr>`).join('')}<tr style="font-weight:800"><td>Total</td><td>${money(tot[0])}</td><td>${money(tot[1])}</td><td>${money(tot[2])}</td></tr></tbody></table></div>`; } else $('listOut').innerHTML = '';
-      const out = `<b style="color:#fff">${mode === 'add' ? `${money(net)} plus ${R}% GST is ${money(gross)}` : `${money(gross)} including ${R}% GST is ${money(net)} before GST`}</b>, with GST of ${money(gst)}. Making an invoice? The free ${link('invoice-generator.html', 'invoice generator')} adds GST and switches to a tax invoice for you. Prices for a whole list: the ${link('profit-margin-calculator.html', 'price list tool')} shows prices incl. GST.`;
+      const out = `<b style="color:var(--ink)">${mode === 'add' ? `${money(net)} plus ${R}% GST is ${money(gross)}` : `${money(gross)} including ${R}% GST is ${money(net)} before GST`}</b>, with GST of ${money(gst)}. Making an invoice? The free ${link('invoice-generator.html', 'invoice generator')} adds GST and switches to a tax invoice for you. Prices for a whole list: the ${link('profit-margin-calculator.html', 'price list tool')} shows prices incl. GST.`;
       return { out, used: true };
     }
   },
@@ -83,7 +83,7 @@ const CALCS = {
       as.setHours(0, 0, 0, 0); const diff = Math.round((as - due) / 86400000), A = num($('amt').value), R = num($('rate').value);
       const interest = diff > 0 && A > 0 && R > 0 ? A * R / 100 * diff / 365 : 0;
       $('t1').textContent = fdate(due); $('t2').textContent = diff > 0 ? 'Overdue' : diff === 0 ? 'Due today' : `Due in ${-diff} days`; $('t3').textContent = diff > 0 ? int(diff) : '0'; $('t4').textContent = interest ? money(interest) : '—';
-      let out = `<b style="color:#fff">An invoice dated ${fdate(id)} on ${$('terms').selectedOptions[0].text} terms is due on ${fdate(due)}.</b> `;
+      let out = `<b style="color:var(--ink)">An invoice dated ${fdate(id)} on ${$('terms').selectedOptions[0].text} terms is due on ${fdate(due)}.</b> `;
       out += diff > 0 ? `On ${fdate(as)} it is ${diff} days overdue${interest ? `, and ${R}% a year adds about ${money(interest)} of late interest` : ''}. ${diff <= 14 ? 'Time for a friendly reminder.' : diff <= 44 ? 'Time for a firm reminder and a phone call.' : 'Time for a final notice.'} The ${link('invoice-chaser.html', 'free reminder writer')} drafts it for you. ` : `Send a short courtesy reminder about three days before. `;
       out += `Chasing more than a few invoices? ${link('https://www.gantry.work/p/xero-invoice-reminders-automation?utm_source=tools&utm_medium=duedate-result', 'Set reminders to send automatically', true)} (free Make setup).`;
       return { out, used: true };
@@ -98,14 +98,14 @@ const CALCS = {
       const O = num($('oldp').value), N = num($('newp').value);
       if (!(O > 0) || !(N >= 0)) return { msg: 'Enter the old and new price.' };
       const inc = (N - O) / O * 100; $('t1').textContent = (inc >= 0 ? '+' : '') + pct(inc); $('t2').textContent = (N - O >= 0 ? '+' : '') + money(N - O); $('t3').textContent = money(O * 1.05); $('t4').textContent = money(O * 1.10);
-      let out = `<b style="color:#fff">${money(O)} to ${money(N)} is a ${inc >= 0 ? 'rise' : 'fall'} of ${pct(Math.abs(inc))}.</b> `;
+      let out = `<b style="color:var(--ink)">${money(O)} to ${money(N)} is a ${inc >= 0 ? 'rise' : 'fall'} of ${pct(Math.abs(inc))}.</b> `;
       const C = num($('cost').value), NC = num($('ncost').value);
       if (C >= 0 && NC >= 0 && O > C) {
         const m = (O - C) / O, keep = $('keep').value; let np = keep === 'margin' ? (m < 1 ? NC / (1 - m) : NaN) : NC + (O - C);
         const rd = $('rnd').value; if (rd === '0.90') { let v = Math.floor(np) + 0.9; if (v < np - 1e-9) v += 1; np = v; } else if (rd === '1') np = Math.ceil(np - 1e-9);
         const need = (np - O) / O * 100, mOld = (O - NC) / O * 100, mNew = (np - NC) / np * 100;
         $('t5').textContent = money(np); $('t6').textContent = '+' + pct(need); $('t7').textContent = pct(mOld); $('t8').textContent = pct(mNew);
-        out += `When the cost goes from ${money(C)} to ${money(NC)}, keeping the same ${keep === 'margin' ? 'margin of ' + pct(m * 100) : 'profit of ' + money(O - C)} means charging <b style="color:#fff">${money(np)}</b>, a ${pct(need)} increase. Leave the price at ${money(O)} and your margin drops to ${pct(mOld)}. `;
+        out += `When the cost goes from ${money(C)} to ${money(NC)}, keeping the same ${keep === 'margin' ? 'margin of ' + pct(m * 100) : 'profit of ' + money(O - C)} means charging <b style="color:var(--ink)">${money(np)}</b>, a ${pct(need)} increase. Leave the price at ${money(O)} and your margin drops to ${pct(mOld)}. `;
       } else { ['t5', 't6', 't7', 't8'].forEach(i => $(i).textContent = '—'); }
       out += `Doing this for a whole price list? The ${link('profit-margin-calculator.html', 'free price list tool')} reprices every product to a target margin. ${review('price-increase-result')}`;
       return { out, used: true };
@@ -122,7 +122,7 @@ const CALCS = {
       if (!(R > 0) || !(C >= 0)) return { msg: 'Enter revenue and cost of goods sold (or opening stock, purchases and closing stock).' };
       const gp = R - C, gm = gp / R * 100, np = isFinite(X) ? gp - X : NaN, nm = np / R * 100;
       $('t1').textContent = money(gp); $('t2').textContent = pct(gm); $('t3').textContent = money(np); $('t4').textContent = isFinite(nm) ? pct(nm) : '—';
-      let out = `<b style="color:#fff">Gross profit is ${money(gp)}, a gross margin of ${pct(gm)}.</b> ${helper ? `Cost of goods sold was worked out as opening stock plus purchases minus closing stock. ` : ''}`;
+      let out = `<b style="color:var(--ink)">Gross profit is ${money(gp)}, a gross margin of ${pct(gm)}.</b> ${helper ? `Cost of goods sold was worked out as opening stock plus purchases minus closing stock. ` : ''}`;
       if (isFinite(np)) out += `After ${money(X)} of operating expenses, profit is ${money(np)}, a net margin of ${pct(nm)}. `;
       out += `Every 1% of gross margin is worth ${money(R / 100)} on these sales. Find which products drag it down with the ${link('profit-margin-calculator.html', 'price list tool')}. ${review('gross-profit-result')}`;
       return { out, used: true };
@@ -144,10 +144,10 @@ const CALCS = {
       if (cores < 3) { grant = 0; why.push('an integrated enterprise system such as an ERP must cover at least 3 core functions (for example sales, inventory and accounting)'); }
       $('t1').textContent = money(grant); $('t2').textContent = money(total - grant); $('t3').textContent = pct(grant / total * 100); $('t4').textContent = pre ? 'About 1 week' : 'About 10 weeks';
       let out;
-      if (grant === 0) out = `<b style="color:#fff">On these answers the project would not qualify:</b> ${why.join('; and ')}. `;
+      if (grant === 0) out = `<b style="color:var(--ink)">On these answers the project would not qualify:</b> ${why.join('; and ')}. `;
       else {
         const capped = grant < full - 0.005, byRoom = grant < raw - 0.005;
-        out = `<b style="color:#fff">Estimated EDGE grant: ${money(grant)}, so your net cost is ${money(total - grant)}.</b> That is ${sme ? 'the SME rate of up to 50%' : 'the non-SME rate of up to 30%'}${capped ? (byRoom ? `, limited by the ${roomD <= roomT ? 'S$30,000 sub-cap for digital solutions and enterprise systems' : 'S$100,000 annual cap'} (${money(raw)} before the cap)` : `, limited by the S$60,000 cap on qualifying cost for an integrated ERP (${money(full)} before the cap; the most is S$30,000 for an SME and S$18,000 for a non-SME)`) : ''}. Software counts for up to 12 months; GST and maintenance are not covered. `;
+        out = `<b style="color:var(--ink)">Estimated EDGE grant: ${money(grant)}, so your net cost is ${money(total - grant)}.</b> That is ${sme ? 'the SME rate of up to 50%' : 'the non-SME rate of up to 30%'}${capped ? (byRoom ? `, limited by the ${roomD <= roomT ? 'S$30,000 sub-cap for digital solutions and enterprise systems' : 'S$100,000 annual cap'} (${money(raw)} before the cap)` : `, limited by the S$60,000 cap on qualifying cost for an integrated ERP (${money(full)} before the cap; the most is S$30,000 for an SME and S$18,000 for a non-SME)`) : ''}. Software counts for up to 12 months; GST and maintenance are not covered. `;
         out += `You pay the vendor first and claim afterwards; it is a single final claim once the project is delivered and paid in full. Claims open from 1 January 2027 for an ERP or other integrated enterprise system, and from 1 December 2026 for single-function digital solutions and pre-scoped equipment. ${pre ? 'With a pre-approved vendor, Enterprise Singapore quotes about a week to process the application.' : 'With a vendor that is not pre-approved, expect about 10 weeks to process.'} Apply before you sign or pay anything. `;
       }
       out += `This is an estimate: Enterprise Singapore decides the activity, the support level and which costs qualify. Not sure how your quotation should be split? ${review('edge-calculator-result')}`;
@@ -184,8 +184,8 @@ const CALCS = {
       const ok = res.filter(r => isFinite(r.y)).sort((a, b) => a.y - b.y);
       const lo = ok[0], hi = ok[ok.length - 1];
       $('t1').textContent = money(lo.y + SU); $('t2').textContent = lo.n; $('t3').textContent = money(hi.y + SU); $('t4').textContent = money(lo.y / 12 / U);
-      let out = `<b style="color:#fff">For ${U} users, ${L} location${L > 1 ? 's' : ''} and ${int(O)} orders a month, 12 months of licences run from ${money(lo.y)} (${lo.n}) to ${money(hi.y)} (${hi.n}).</b>${SU ? ` Your setup budget of ${money(SU)} is added to the tiles.` : ''}<br>`;
-      out += res.map(r => `${r.n}${r.plan ? ' ' + r.plan : ''}: <b style="color:#fff">${isFinite(r.y) ? money(r.y) : 'n/a'}</b> (${r.note})`).join('<br>');
+      let out = `<b style="color:var(--ink)">For ${U} users, ${L} location${L > 1 ? 's' : ''} and ${int(O)} orders a month, 12 months of licences run from ${money(lo.y)} (${lo.n}) to ${money(hi.y)} (${hi.n}).</b>${SU ? ` Your setup budget of ${money(SU)} is added to the tiles.` : ''}<br>`;
+      out += res.map(r => `${r.n}${r.plan ? ' ' + r.plan : ''}: <b style="color:var(--ink)">${isFinite(r.y) ? money(r.y) : 'n/a'}</b> (${r.note})`).join('<br>');
       out += `<br>List prices checked 6 October 2026, before taxes and promotions; USD plans converted at your rate. Katana is usage-based and Sortly tracks items without costing stock, so they are not priced here. Full comparison: ${link('https://www.gantry.work/p/best-inventory-software-small-business?utm_source=tools&utm_medium=inventory-cost-calculator', 'the best inventory software for small business', true)}. Choosing between these, or between an inventory app and an ERP? ${review('inventory-cost-result')}`;
       return { out, used: true };
     }
@@ -202,8 +202,8 @@ const CALCS = {
       let ret = gross * R / 100; const capv = isFinite(CAP) && CAP > 0 ? CV * CAP / 100 : Infinity; const capped = ret > capv; if (capped) ret = capv;
       const net = gross - ret, claim = net - PREV, gst = claim > 0 ? claim * G / 100 : 0, total = claim + gst;
       $('t1').textContent = money(claim); $('t2').textContent = money(total); $('t3').textContent = money(ret); $('t4').textContent = money(PREV);
-      if (claim <= 0) return { out: `<b style="color:#fff">Nothing to claim this period.</b> Net value to date ${money(net)} is not above the ${money(PREV)} already certified. Check the percentage complete, or whether a previous claim was entered gross instead of net of retention.`, used: true };
-      let out = `<b style="color:#fff">Progress claim this period: ${money(claim)} before GST, ${money(total)} with ${G}% GST.</b> Work done to date ${money(work)}${VO ? ` plus variations ${money(VO)}` : ''}${MOS ? ` plus materials on site ${money(MOS)}` : ''} = gross ${money(gross)}; less ${R}% retention ${money(ret)}${capped ? ` (capped at ${CAP}% of the contract sum)` : ''} = net ${money(net)}; less ${money(PREV)} certified before. `;
+      if (claim <= 0) return { out: `<b style="color:var(--ink)">Nothing to claim this period.</b> Net value to date ${money(net)} is not above the ${money(PREV)} already certified. Check the percentage complete, or whether a previous claim was entered gross instead of net of retention.`, used: true };
+      let out = `<b style="color:var(--ink)">Progress claim this period: ${money(claim)} before GST, ${money(total)} with ${G}% GST.</b> Work done to date ${money(work)}${VO ? ` plus variations ${money(VO)}` : ''}${MOS ? ` plus materials on site ${money(MOS)}` : ''} = gross ${money(gross)}; less ${R}% retention ${money(ret)}${capped ? ` (capped at ${CAP}% of the contract sum)` : ''} = net ${money(net)}; less ${money(PREV)} certified before. `;
       out += `Retention of ${money(ret)} is now held against you; half is usually released at completion and the rest after the defects liability period, so diarise both. Claim cumulatively every period and serve it by the date your contract sets (if it is silent, the SOP Act default is the last day of the month). `;
       out += `Is finished work sitting unclaimed because the site team told finance late? ${review('progress-claim-result')}`;
       return { out, used: true, headline: `Progress claim ${money(claim)} before GST (${money(total)} with GST)` };
@@ -220,7 +220,7 @@ const CALCS = {
       const lab = H * RT, cost = MAT + lab + SUB, used = cost / B * 100, proj = PC > 0 ? cost / (PC / 100) : NaN, over = isFinite(proj) ? proj - B : NaN, earned = CV > 0 ? CV * PC / 100 : NaN, unbilled = isFinite(earned) ? earned - BL : NaN, margin = isFinite(proj) && CV > 0 ? (CV - proj) / CV * 100 : NaN;
       $('t1').textContent = money(cost); $('t2').textContent = isFinite(used) ? `${pct(used)} vs ${pct(PC)}` : '—'; $('t3').textContent = money(proj); $('t4').textContent = money(unbilled);
       const gap = used - PC;
-      let out = `<b style="color:#fff">Cost to date is ${money(cost)}: ${pct(used)} of the budget spent with ${pct(PC)} of the work done.</b> That is materials ${money(MAT)}, labour ${money(lab)} (${int(H)} h at ${money(RT)}) and other ${money(SUB)}. `;
+      let out = `<b style="color:var(--ink)">Cost to date is ${money(cost)}: ${pct(used)} of the budget spent with ${pct(PC)} of the work done.</b> That is materials ${money(MAT)}, labour ${money(lab)} (${int(H)} h at ${money(RT)}) and other ${money(SUB)}. `;
       if (isFinite(proj)) out += gap > 2 ? `At this rate the job finishes at about ${money(proj)}, roughly ${money(over)} over the ${money(B)} budget${isFinite(margin) ? `, leaving a ${pct(margin)} margin on the contract` : ''}. Check whether the gap is timing (materials bought ahead of use) or a real overrun (more hours than quoted) while there is still time to act. ` : gap < -2 ? `At this rate the job finishes at about ${money(proj)}, under budget by ${money(-over)}. Make sure all supplier bills and hours are actually booked to this job before you trust that. ` : `At this rate the job lands close to budget, at about ${money(proj)}. `;
       if (isFinite(unbilled)) out += unbilled > 0 ? `Billing lags the work: ${money(earned)} is earned but only ${money(BL)} invoiced, so ${money(unbilled)} of finished work is unbilled while wages and suppliers are paid. ` : `Billing is ahead of or level with the work done. `;
       out += `Want to see this per job without a spreadsheet? ${review('job-costing-result')}`;
@@ -247,7 +247,7 @@ const CALCS = {
         $('listOut').innerHTML = `<div class="tw" style="margin-top:10px"><table class="pt" style="min-width:0"><thead><tr><th>Item</th><th>Cover (mo)</th><th>Class</th><th>Value</th><th>Provision</th></tr></thead><tbody>${rows.sort((a, b) => (b.cover === Infinity ? 1e9 : b.cover) - (a.cover === Infinity ? 1e9 : a.cover)).map(r => `<tr><td>${r.n}</td><td>${r.cover === Infinity ? 'none' : r.cover.toFixed(1)}</td><td>${r.k}</td><td>${money(r.val)}</td><td>${money(r.prov)}</td></tr>`).join('')}<tr style="font-weight:800"><td>Total (${rows.length} items)</td><td></td><td>${slow.length} slow or dead</td><td>${money(tv)}</td><td>${money(tp)}</td></tr></tbody></table></div>`;
         listTxt = ` Across the ${rows.length} items pasted, ${slow.length} are slow or dead, holding ${money(sv)} of ${money(tv)} (${pct(tv ? sv / tv * 100 : 0)}), with a suggested provision of ${money(tp)}.`;
       } else $('listOut').innerHTML = '';
-      let out = `<b style="color:#fff">${cover === Infinity ? 'No movement: this item is dead stock' : `${cover.toFixed(1)} months of cover: ${k}`}, ${money(val)} of cash on the shelf${pp ? `, suggested provision ${money(prov)} (${pp}%)` : ''}.</b>${listTxt} `;
+      let out = `<b style="color:var(--ink)">${cover === Infinity ? 'No movement: this item is dead stock' : `${cover.toFixed(1)} months of cover: ${k}`}, ${money(val)} of cash on the shelf${pp ? `, suggested provision ${money(prov)} (${pp}%)` : ''}.</b>${listTxt} `;
       out += pp >= 50 ? `Decide this month: sell it off at cost, bundle it, return it to the supplier, or write it off and free the space. Every month it sits, the provision grows and the cash does not come back. ` : pp ? `Stop reordering it, drop the reorder point to zero and move it with a promotion or a bundle before it crosses 12 months. ` : `Keep buying it, but check that the reorder quantity matches ${U > 0 ? int(U) + ' units a month' : 'real usage'} rather than the supplier's pack size. `;
       out += `Seeing this for every SKU every month needs stock and sales in one place. ${review('slow-stock-result')}`;
       return { out, used: true, headline: `${cover === Infinity ? 'No movement' : cover.toFixed(1) + ' months of cover'}: ${k}, ${money(val)} on hand` };
@@ -266,7 +266,7 @@ const CALCS = {
       $('t1').textContent = pct(acc); $('t2').textContent = `${within} of ${rows.length} (${pct(accT)})`; $('t3').textContent = hasCost ? money(net) : 'add unit costs'; $('t4').textContent = hasCost ? money(abs) : 'add unit costs';
       const top = rows.slice().sort((a, b) => Math.abs(b.dv) - Math.abs(a.dv) || Math.abs(b.d) - Math.abs(a.d)).slice(0, 10);
       $('listOut').innerHTML = `<div class="tw" style="margin-top:10px"><table class="pt" style="min-width:0"><thead><tr><th>Item</th><th>System</th><th>Counted</th><th>Variance</th><th>%</th><th>Value</th></tr></thead><tbody>${top.map(r => `<tr><td>${r.n}</td><td>${int(r.sq)}</td><td>${int(r.cq)}</td><td>${r.d > 0 ? '+' : ''}${int(r.d)}</td><td>${pct(r.pctd)}</td><td>${r.c ? money(r.dv) : '—'}</td></tr>`).join('')}</tbody></table></div>`;
-      let out = `<b style="color:#fff">${pct(acc)} of lines matched exactly (${exact} of ${rows.length}); ${pct(accT)} are within your ${T}% tolerance.</b> `;
+      let out = `<b style="color:var(--ink)">${pct(acc)} of lines matched exactly (${exact} of ${rows.length}); ${pct(accT)} are within your ${T}% tolerance.</b> `;
       if (hasCost) out += `The net variance is ${money(net)}, but the absolute variance is ${money(abs)} (${pct(sysv ? abs / sysv * 100 : 0)} of the ${money(sysv)} system value): overs and shorts cancel in the total while both are real errors. `;
       out += accT >= 95 ? `That is a good result; most operations target 95% or better. Keep the cycle counts going on the A items. ` : accT >= 85 ? `Fair, but below the 95% most operations aim for. Look at the top variances above: they usually trace to a few receiving or picking habits rather than theft. ` : `Below 85% the stock figure cannot be trusted for purchasing or costing. Count the top-value items weekly until the causes are fixed, then widen the counts. `;
       out += `Keeping accuracy up without a wall-to-wall count every quarter means cycle counting from a live system. ${review('stock-take-result')}`;
@@ -283,7 +283,7 @@ const CALCS = {
       if (!(P > 0) || !(N > 0) || !(FX > 0)) return { msg: 'Enter the supplier price, the number of units and the exchange rate.' };
       const fob = P * N * FX, cif = fob + FR + IN, duty = cif * D / 100, gstv = (cif + duty) * G / 100, landed = cif + duty + LC + (reg ? 0 : gstv), unit = landed / N, supplierUnit = P * FX, uplift = (unit / supplierUnit - 1) * 100;
       $('t1').textContent = money(unit); $('t2').textContent = pct(uplift); $('t3').textContent = money(landed); $('t4').textContent = money(gstv);
-      let out = `<b style="color:#fff">Landed cost is ${money(unit)} per unit, ${pct(uplift)} above the ${money(supplierUnit)} supplier price.</b> Goods ${money(fob)} + freight ${money(FR)} + insurance ${money(IN)} = CIF ${money(cif)}${duty ? ` + duty ${money(duty)}` : ''} + local charges ${money(LC)}${reg ? '' : ` + import GST ${money(gstv)} (not claimable, so it is part of your cost)`} = ${money(landed)}. `;
+      let out = `<b style="color:var(--ink)">Landed cost is ${money(unit)} per unit, ${pct(uplift)} above the ${money(supplierUnit)} supplier price.</b> Goods ${money(fob)} + freight ${money(FR)} + insurance ${money(IN)} = CIF ${money(cif)}${duty ? ` + duty ${money(duty)}` : ''} + local charges ${money(LC)}${reg ? '' : ` + import GST ${money(gstv)} (not claimable, so it is part of your cost)`} = ${money(landed)}. `;
       out += reg ? `Import GST of ${money(gstv)} is paid at import on CIF plus duty and claimed back in your GST return, so it is cash flow, not cost. ` : `Because you are not GST registered, the ${money(gstv)} import GST stays in your cost. `;
       out += `Price from ${money(unit)}, not ${money(supplierUnit)}: at a 30% margin that means selling at ${money(unit / 0.7)} rather than ${money(supplierUnit / 0.7)}. ${link('profit-margin-calculator.html', 'Set the price')} · ${review('landed-cost-result')}`;
       return { out, used: true, headline: `Landed cost ${money(unit)} per unit, ${pct(uplift)} above supplier price` };
@@ -291,7 +291,7 @@ const CALCS = {
   }
 };
 const C = CALCS[K]; if (!C) return;
-$('app').innerHTML = `<div class="pc"><div class="box">${C.html}<p class="hint" id="out" style="margin-top:14px;font-size:14.5px;line-height:1.6"></p><div class="msg" id="msg"></div><div id="ladder"></div><div class="row-acts"><button id="copyBtn">Copy result</button><button id="resetBtn">Reset example</button></div></div></div>`;
+$('app').innerHTML = `<div class="pc"><div class="box">${C.html}<p class="hint" id="out" style="margin-top:18px;font-size:16.5px;line-height:1.6"></p><div class="msg" id="msg"></div><div id="ladder"></div><div class="row-acts"><button id="copyBtn">Copy result</button><button id="resetBtn">Reset example</button></div></div></div>`;
 if (C.init) C.init();
 const DEF = {}; document.querySelectorAll('#app input, #app select, #app textarea').forEach(el => { DEF[el.id] = el.value; });
 try { const s = JSON.parse(store.get('calc_' + K, '{}')); Object.keys(s).forEach(k => { if ($(k) && k !== 'idate' && k !== 'asat') $(k).value = s[k]; }); } catch (e) {}

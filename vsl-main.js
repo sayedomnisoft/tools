@@ -110,7 +110,9 @@
     })(window, 'https://app.cal.com/embed/embed.js', 'init');
     var Cal = window.Cal;
     Cal('init', ns, { origin: 'https://app.cal.com' });
-    var cfg = { layout: 'month_view', theme: 'dark' };
+    /* 17 Nov 2026: opt.theme 'light' for the light tool pages (health check, automation help, systems checklist); the default stays dark */
+    var TH = opt.theme === 'light' ? 'light' : 'dark';
+    var cfg = { layout: 'month_view', theme: TH };
     if (opt.notes) cfg.notes = String(opt.notes).slice(0, 700);
     Cal.ns[ns]('inline', { elementOrSelector: sel, config: cfg, calLink: CAL_LINK });
     Cal.ns[ns]('on', { action: 'bookingSuccessful', callback: function () {
@@ -118,7 +120,7 @@
       try { localStorage.setItem('gantry_unlocked', '1'); localStorage.setItem('gantry_booked', '1'); } catch (e) {}
       if (typeof opt.onBooked === 'function') { try { opt.onBooked(); } catch (e) {} }
     } });
-    Cal.ns[ns]('ui', { theme: 'dark', hideEventTypeDetails: false, layout: 'month_view', cssVarsPerTheme: { dark: { 'cal-brand': '#c9a227' }, light: { 'cal-brand': '#2A2FB0' } } });
+    Cal.ns[ns]('ui', { theme: TH, hideEventTypeDetails: false, layout: 'month_view', cssVarsPerTheme: { dark: { 'cal-brand': '#c9a227' }, light: { 'cal-brand': TH === 'light' ? '#1f3fbf' : '#2A2FB0' } } });
     ev('vsl_calendar_view', base(page));
     return true;
   }
