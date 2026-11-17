@@ -29,6 +29,36 @@
   }
 
   var path = location.pathname.replace(/^\/+|\/+$/g, '').replace(/\.html$/, '').replace(/(^|\/)index$/, '') || 'tools-home';
+
+  /* 17 Nov 2026: partner sub-IDs. The last outside source (utm tags, else the referring site; kept 30 days) and the
+     page are added to WATI links (sid2, PartnerStack) and Make links (affiliateSource) at click time, so each partner
+     dashboard shows which channel and page a sign-up came from. /go/ (same site) reads the same stored source. */
+  var SRC_KEY = 'gantry_src';
+  function clean(v) { return String(v || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40); }
+  function srcFromRef(r) {
+    var h = ''; try { h = new URL(r).hostname.replace(/^www\./, ''); } catch (e) { return ''; }
+    if (!h || h === 'tools.gantry.work') return '';
+    var M = [[/youtube\.com$|youtu\.be$/, 'yt'], [/substack\.com$|^gantry\.work$/, 'ss'], [/(^|\.)google\./, 'google'], [/bing\.com$/, 'bing'],
+      [/linkedin\.com$|^lnkd\.in$/, 'li'], [/^t\.co$|(^|\.)x\.com$|twitter\.com$/, 'x'], [/tiktok\.com$/, 'tt'],
+      [/chatgpt\.com$|openai\.com$|perplexity\.ai$|claude\.ai$|gemini\.google/, 'ai'], [/duckduckgo|yahoo\.|ecosia|brave\.com$/, 'search']];
+    for (var i = 0; i < M.length; i++) if (M[i][0].test(h)) return M[i][1];
+    return 'ref-' + clean(h.split('.').slice(-2, -1)[0]);
+  }
+  (function () {
+    var q = new URLSearchParams(location.search), us = q.get('utm_source'), uc = q.get('utm_campaign');
+    var s = us ? clean(us).replace(/^youtube$/, 'yt') + (uc ? '-' + clean(uc) : '') : srcFromRef(document.referrer);
+    if (s) store.set(SRC_KEY, JSON.stringify({ s: s.slice(0, 48), t: Date.now() }));
+  })();
+  function curSrc() { try { var o = JSON.parse(store.get(SRC_KEY) || 'null'); if (o && o.s && Date.now() - o.t < 30 * 864e5) return o.s; } catch (e) {} return 'direct'; }
+  function tagPartner(u) {
+    try {
+      var x = new URL(u, location.href), src = curSrc(), pg = clean(path) || 'tools-home';
+      if (x.hostname === 'affiliates.wati.io') { if (!x.searchParams.get('sid1')) x.searchParams.set('sid1', 'tools-' + pg); if (!x.searchParams.get('sid2')) x.searchParams.set('sid2', src); }
+      else if (/(^|\.)make\.com$/.test(x.hostname) && x.searchParams.get('pc')) { if (!x.searchParams.get('affiliateSource')) x.searchParams.set('affiliateSource', (src + '_' + pg).slice(0, 64)); }
+      else return u;
+      return x.toString();
+    } catch (e) { return u; }
+  }
   var CAT = [
     [/^wati-/, 'guide'],
     [/health-check|erp-roi|erp-readiness|edge-grant|inventory-software-cost|month-end-close|cost-of-manual-work|progress-claim|job-costing|landed-cost|slow-moving|stock-take|systems-checklist/, 'erp'],
@@ -171,7 +201,7 @@
     pushUse(a);
   }
   // Returns true when the run may go ahead. The first run of a page load rides on the use that the first input already counted;
-  // every later run is a use of its own. With three uses spent, the next run goes to review-limit.html instead.
+  // every later run is a use of its own. From the third use the booking bar shows (nothing is locked since 17 Nov 2026).
   window.gantryRun = function () {
     if (NO_LOCK) { if (gated && !loadUse) countUse(); return true; }
     if (!gated || unlocked) return true;
@@ -214,8 +244,12 @@
     var h = a.getAttribute('href') || '';
     // 2026-11-10: on the review pages a link to review.html is the "back to the three options" link, not a new lead.
     if (/^review/.test(path) && /review\.html/.test(h) && !/cal\.com/.test(h)) return;
+    // 17 Nov 2026: a partner link through /go/ is counted once, on the /go/ page (with the real partner address);
+    // here it only gets its sub-IDs. Before this, both pages counted it and this page logged it as ".../go/".
+    var gm = h.match(/\/go\/\?u=([^&#]+)/);
+    if (gm) { var inner = decodeURIComponent(gm[1]), tagged = tagPartner(inner); if (tagged !== inner) a.setAttribute('href', h.replace(gm[1], encodeURIComponent(tagged))); return; }
     if (/cal\.com\/sayed\.r|review\.html|automation-help/.test(h)) ev('lead_click', { link_target: h.split('?')[0].slice(0, 90) });
-    else if (/affiliates\.wati|pc=gntrywk|make\.com/.test(h)) ev('affiliate_click', { link_target: h.split('?')[0].slice(0, 90) });
+    else if (/affiliates\.wati|pc=gntrywk|make\.com|jotform\.com/.test(h)) { a.setAttribute('href', tagPartner(h)); ev('affiliate_click', { link_target: h.split('?')[0].slice(0, 90) }); }
     else if (/gantry\.work\/p\//.test(h)) ev('guide_click', { link_target: h.split('?')[0].slice(0, 90) });
   }, true);
 
