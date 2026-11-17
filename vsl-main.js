@@ -115,7 +115,7 @@
     Cal.ns[ns]('inline', { elementOrSelector: sel, config: cfg, calLink: CAL_LINK });
     Cal.ns[ns]('on', { action: 'bookingSuccessful', callback: function () {
       ev('review_booked', base(page));
-      try { localStorage.setItem('gantry_unlocked', '1'); } catch (e) {}
+      try { localStorage.setItem('gantry_unlocked', '1'); localStorage.setItem('gantry_booked', '1'); } catch (e) {}
       if (typeof opt.onBooked === 'function') { try { opt.onBooked(); } catch (e) {} }
     } });
     Cal.ns[ns]('ui', { theme: 'dark', hideEventTypeDetails: false, layout: 'month_view', cssVarsPerTheme: { dark: { 'cal-brand': '#c9a227' }, light: { 'cal-brand': '#2A2FB0' } } });

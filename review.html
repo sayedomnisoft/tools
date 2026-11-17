@@ -25,6 +25,7 @@ var TOOL_HANDOFF_TO_CALL = true;
    Unlocked browsers and ?access=owner stay here. The query string is carried, minus all and offer. */
 (function () { try {
   if (window.__redir) return;
+  return; /* 2026-11-17 (owner): the tools are never locked, so nobody is sent to review-limit.html */
   var q = new URLSearchParams(location.search);
   if (q.get('access') === 'owner' || localStorage.getItem('gantry_unlocked') === '1') return;
   var a = JSON.parse(localStorage.getItem('gantry_uses') || '[]');
@@ -464,7 +465,7 @@ if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'hub
       <p class="lockline" id="hubLock" hidden><b>You have used your 3 free tools.</b> They open again for good when you ask for the video or book the call.</p>
       <div class="alt">
         <a href="review-video.html" data-carry data-cta="video"><b>Not ready to talk? Get a two-minute video instead.</b><small>Five short questions. I record where it leaks and email it within two working days.</small><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        <a href="review-tools.html" id="optTools" data-carry data-cta="tools"><b>Or work it out yourself with the free tools.</b><small>37 calculators and templates. Your first 3 uses are open.</small><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a href="review-tools.html" id="optTools" data-carry data-cta="tools"><b>Or work it out yourself with the free tools.</b><small>37 calculators and templates. Free, as often as you like.</small><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
   </section>
@@ -489,9 +490,9 @@ if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'hub
   var owner = false, via = 'return', n = 0;
   try { var q = new URLSearchParams(location.search); owner = q.get('access') === 'owner'; if (q.get('locked') === '1') via = 'redirect'; } catch (e) {}
   try { var a = JSON.parse(g('gantry_uses') || '[]'); n = Array.isArray(a) ? a.length : 0; } catch (e) {}
-  window.gLocked = !owner && g('gantry_unlocked') !== '1' && n >= 3;
+  window.gLocked = false; /* 2026-11-17 (owner): never locked */
   window.gLockVia = via;
-  window.gUnlock = function () { try { localStorage.setItem('gantry_unlocked', '1'); } catch (e) {} window.gLocked = false; };
+  window.gUnlock = function () { try { localStorage.setItem('gantry_unlocked', '1'); localStorage.setItem('gantry_booked', '1'); } catch (e) {} window.gLocked = false; };
 })();
 
 /* Carry the query string to the option pages (utm_*, tool, result, in_camp, access). */

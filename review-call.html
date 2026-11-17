@@ -291,9 +291,9 @@ if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'cal
   var owner = false, via = 'return', n = 0;
   try { var q = new URLSearchParams(location.search); owner = q.get('access') === 'owner'; if (q.get('locked') === '1') via = 'redirect'; } catch (e) {}
   try { var a = JSON.parse(g('gantry_uses') || '[]'); n = Array.isArray(a) ? a.length : 0; } catch (e) {}
-  window.gLocked = !owner && g('gantry_unlocked') !== '1' && n >= 3;
+  window.gLocked = false; /* 2026-11-17 (owner): never locked */
   window.gLockVia = via;
-  window.gUnlock = function () { try { localStorage.setItem('gantry_unlocked', '1'); } catch (e) {} window.gLocked = false; };
+  window.gUnlock = function () { try { localStorage.setItem('gantry_unlocked', '1'); localStorage.setItem('gantry_booked', '1'); } catch (e) {} window.gLocked = false; };
 })();
 
 /* ══ ONE PLACE TO SWITCH BOOKING ON ═════════════════════════════════════ */

@@ -19,6 +19,8 @@
   try { if (window.GANTRY_EMBED === true || window.top !== window.self) return; } catch (e) { return; }
   var D = function (k) { return me.getAttribute('data-' + k) || ''; };
   var PAGE = D('page') || 'page', AFTER = D('after'), HIDE = D('hide'), HREF = D('href'), SCROLL = D('scroll');
+  /* 2026-11-17: data-title replaces the bar's heading; data-attn="1" adds the attention motion (tool pages after the third use) */
+  var TITLE = D('title') || 'Free 20-min systems review', ATTN = D('attn') === '1';
   var CAL = 'sayed.r/20min', TZ = 'Asia/Singapore', FALLBACK = 'Only a few slots open each week';
   var slots = -1;
   var ev = function (n, p) { try { if (typeof window.gtag === 'function') { p = p || {}; p.page = PAGE; p.source = window.gSrc || 'unknown'; p.campaign = window.gCamp || 'none'; window.gtag('event', n, p); } } catch (e) {} };
@@ -46,18 +48,28 @@
     '@media (min-width:900px){#sticky{padding-bottom:calc(18px + env(safe-area-inset-bottom))}#sticky .sb-in{max-width:520px;padding:10px 10px 10px 18px}}',
     '@media (prefers-reduced-motion:reduce){#sticky,#sticky.on{transition:none}#sticky .sb-b{transition:none}}',
     'body.sb-pad{padding-bottom:calc(96px + env(safe-area-inset-bottom)) !important}',
-    '@media print{#sticky{display:none}}'
+    '@media print{#sticky{display:none}}',
+    '#sticky.attn.on .sb-in{animation:sbIn .7s cubic-bezier(.34,1.56,.64,1) both}',
+    '#sticky.attn .sb-b{position:relative;overflow:hidden;animation:sbNudge 4.8s ease-in-out 1.2s infinite}',
+    '#sticky.attn .sb-b::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:45%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.65),transparent);transform:skewX(-18deg);animation:sbShine 4.8s ease-in-out 1.6s infinite}',
+    '#sticky.attn .sb-s i{animation:sbDot 1.6s ease-in-out infinite}',
+    '@keyframes sbIn{from{transform:translateY(40px) scale(.96);opacity:0}to{transform:none;opacity:1}}',
+    '@keyframes sbNudge{0%,78%,100%{transform:none}82%{transform:translateY(-4px) rotate(-1.5deg)}86%{transform:translateY(0) rotate(1.5deg)}90%{transform:translateY(-2px) rotate(-.8deg)}94%{transform:none}}',
+    '@keyframes sbShine{0%,70%{left:-60%}90%,100%{left:130%}}',
+    '@keyframes sbDot{50%{transform:scale(1.5)}}',
+    '@media (prefers-reduced-motion:reduce){#sticky.attn .sb-in,#sticky.attn .sb-b,#sticky.attn .sb-b::after,#sticky.attn .sb-s i{animation:none}}'
   ].join('');
   var st = document.createElement('style'); st.id = 'sticky-css'; st.textContent = css; document.head.appendChild(st);
 
   /* the link carries the query string, as every option link on these pages does */
   var href = HREF;
-  if (HREF) { try { var q = location.search; var h = HREF.split('#'); href = h[0] + (q || '') + (h[1] ? '#' + h[1] : ''); } catch (e) {} }
+  if (HREF) { try { var q = location.search; var h = HREF.split('#'); href = h[0] + (q ? (h[0].indexOf('?') >= 0 ? '&' + q.slice(1) : q) : '') + (h[1] ? '#' + h[1] : ''); } catch (e) {} }
   else href = SCROLL || '#';
 
   var bar = document.createElement('div');
   bar.id = 'sticky'; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', 'Book the free 20-minute systems review');
-  bar.innerHTML = '<div class="sb-in"><div class="sb-t"><b>Free 20-min systems review</b><span class="sb-s fb"><i aria-hidden="true"></i><span class="sb-l">' + FALLBACK + '</span></span></div>' +
+  if (ATTN) bar.className = 'attn';
+  bar.innerHTML = '<div class="sb-in"><div class="sb-t"><b>' + TITLE.replace(/</g, '&lt;') + '</b><span class="sb-s fb"><i aria-hidden="true"></i><span class="sb-l">' + FALLBACK + '</span></span></div>' +
     '<a class="sb-b" href="' + href.replace(/"/g, '&quot;') + '">Book <span aria-hidden="true">&rarr;</span></a></div>';
   document.body.appendChild(bar);
   document.body.classList.add('sb-pad');

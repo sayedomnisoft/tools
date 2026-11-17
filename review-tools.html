@@ -9,6 +9,7 @@
    the browser's own count is the truth. Unlocked browsers and ?access=owner stay here. The query string is carried, minus all and offer. */
 (function () { try {
   if (window.__redir) return;
+  return; /* 2026-11-17 (owner): the tools are never locked, so nobody is sent to review-limit.html */
   var q = new URLSearchParams(location.search);
   if (q.get('access') === 'owner' || localStorage.getItem('gantry_unlocked') === '1') return;
   var a = JSON.parse(localStorage.getItem('gantry_uses') || '[]');
@@ -19,9 +20,9 @@
 } catch (e) {} })();
 </script>
 <title>37 Free Business Tools: Start Here | The Gantry</title>
-<meta name="description" content="37 free calculators, checklists and templates for Singapore SMEs. Pick the job that hurts most, type in your own numbers and get the answer on the spot. No sign-up. Your first three uses are open.">
+<meta name="description" content="37 free calculators, checklists and templates for Singapore SMEs. Pick the job that hurts most, type in your own numbers and get the answer on the spot. No sign-up, no limit.">
 <meta property="og:title" content="37 Free Business Tools: Start Here | The Gantry">
-<meta property="og:description" content="37 free calculators, checklists and templates. Type in your own numbers and get a dollar figure, a score or a finished document. No sign-up. Your first three uses are open.">
+<meta property="og:description" content="37 free calculators, checklists and templates. Type in your own numbers and get a dollar figure, a score or a finished document. No sign-up, no limit.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://tools.gantry.work/og-review.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -325,7 +326,7 @@ if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'too
     <button type="button" class="vsl-play" id="vslPlay" hidden aria-label="Play the video with sound"><i></i></button>
   </div>
   <p class="vsl-note">52 seconds. An AI voice, speaking for me.</p>
-  <details class="vsl-text"><summary>Read it instead</summary><p>Hi. I'm an AI voice, and I speak for Sayed Rashid. This is option three: his free tools. Here is what to do. Pick the job that hurts most from the list below. Type in your own numbers. It takes about a minute. You get the answer on the spot: a dollar figure, a score, or a finished document. There are 37 tools, with no sign-up. Your first three uses are open. After that, ask for the video or book the call, and the full set stays open. Who built them? Sayed, an ex-auditor. He has taken 38 systems live, and 91% of those clients are still with him. And he has done it across eight industries. Manufacturing, agriculture, retail, food and beverage, technology, printing, logistics, and finance. If a number worries you, the video and the call are one click away. Start with any tool below.</p></details>
+  <details class="vsl-text"><summary>Read it instead</summary><p>Hi. I'm an AI voice, and I speak for Sayed Rashid. This is option three: his free tools. Here is what to do. Pick the job that hurts most from the list below. Type in your own numbers. It takes about a minute. You get the answer on the spot: a dollar figure, a score, or a finished document. There are 37 tools, with no sign-up. Use them as often as you like. Who built them? Sayed, an ex-auditor. He has taken 38 systems live, and 91% of those clients are still with him. And he has done it across eight industries. Manufacturing, agriculture, retail, food and beverage, technology, printing, logistics, and finance. If a number worries you, the video and the call are one click away. Start with any tool below.</p></details>
   </div>
   <div class="h-more">
     <ol class="steps">
@@ -360,7 +361,7 @@ if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'too
   </div>
 
   <h2 id="toolsHead">The 37 free tools</h2>
-  <p class="limit" id="limitLine">Your first three uses are open. After that, the full set stays open once you ask for the <a href="review-video.html" data-carry data-cta="limit-video">2-minute video</a> or <a href="review-call.html" data-carry data-cta="limit-call">book the 20-minute review</a>. Both are free.</p>
+  <p class="limit" id="limitLine">Every tool is open, as often as you like. Want a second pair of eyes on your numbers? <a href="review-call.html" data-carry data-cta="limit-call">Book the free 20-minute review</a>.</p>
   <div class="lockbox" id="lockBox" hidden>
     <p>The full set stays open for people who ask for the 2-minute video or book the 20-minute review. Both are free, and either one opens all 37 tools on this browser for good.</p>
     <div class="two">
@@ -520,9 +521,9 @@ if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'too
   var owner = false, via = 'return', n = 0;
   try { var q = new URLSearchParams(location.search); owner = q.get('access') === 'owner'; if (q.get('locked') === '1') via = 'redirect'; } catch (e) {}
   try { var a = JSON.parse(g('gantry_uses') || '[]'); n = Array.isArray(a) ? a.length : 0; } catch (e) {}
-  window.gLocked = !owner && g('gantry_unlocked') !== '1' && n >= 3;
+  window.gLocked = false; /* 2026-11-17 (owner): never locked */
   window.gLockVia = via;
-  window.gUnlock = function () { try { localStorage.setItem('gantry_unlocked', '1'); } catch (e) {} window.gLocked = false; };
+  window.gUnlock = function () { try { localStorage.setItem('gantry_unlocked', '1'); localStorage.setItem('gantry_booked', '1'); } catch (e) {} window.gLocked = false; };
 })();
 
 /* Carry the query string between the hub and the option pages. Links back to the hub drop ?offer and add all=1 so the hub does not bounce the visitor straight back. */

@@ -2,7 +2,8 @@
    - tool_view: which tool was opened (tool_name, tool_category)
    - tool_engaged: first real interaction with the tool (input, select, button)
    - lead_click / affiliate_click: review bookings and partner links
-   - tool_limit_reached / tool_gate_redirect: third free use recorded / a fourth use tried and sent to review-limit.html
+   - tool_limit_reached: third tool use recorded. Since 17 Nov 2026 nothing is locked: from the third use on, an animated
+     "book the free 20 minutes" bar sits at the bottom of every tool page (sticky-book.js, data-page=tool) until a call is booked.
    - user property tool_interest: last tool category used (for GA4 audiences)
    Consent: EEA/UK/CH visitors are denied by default (set inline before GA config); everyone else can opt out here.
    Nothing typed into a tool is ever sent: only the tool name and the type of action. */
@@ -117,12 +118,23 @@
     }
   } catch (e) {}
   var unlocked = store.get('gantry_unlocked') === '1';
+  // 2026-11-17 (owner): never lock the tools. Uses are still counted for everyone; after FREE_USES the booking bar shows instead.
+  var NO_LOCK = true;
+  function bookBar() {
+    try {
+      if (!gated || store.get('gantry_booked') === '1' || document.getElementById('sticky') || document.querySelector('script[data-page="tool"]')) return;
+      var sc = document.createElement('script'); sc.src = '/sticky-book.js'; sc.async = true;
+      sc.setAttribute('data-page', 'tool'); sc.setAttribute('data-href', '/review-call.html?utm_source=tools&utm_medium=' + encodeURIComponent(path) + '&utm_campaign=tool_sticky'); sc.setAttribute('data-attn', '1');
+      sc.setAttribute('data-title', 'Your free 20-min review');
+      (document.body || document.documentElement).appendChild(sc);
+    } catch (e) {}
+  }
   function toLimit(n) {
     ev('tool_gate_redirect', { uses_count: n });
     var to = '/review-limit.html?utm_source=tools&utm_medium=' + encodeURIComponent(path) + '&utm_campaign=tool_limit&locked=1';
     setTimeout(function () { location.replace(to); }, 200);
   }
-  if (gated && !unlocked) {
+  if (gated && !unlocked && !NO_LOCK) {
     var u0 = uses(), last = u0[u0.length - 1];
     if (u0.length >= FREE_USES && !(last && last.t === path && (Date.now() - last.at) < REUSE_MS)) {
       try { document.documentElement.style.visibility = 'hidden'; } catch (e) {}
@@ -135,6 +147,7 @@
       var o = document.getElementById('gantry-uses'); if (o && o.parentNode) o.parentNode.removeChild(o);
       var d = document.createElement('div'); d.id = 'gantry-uses'; d.setAttribute('role', 'status');
       d.style.cssText = 'position:fixed;top:10px;right:10px;z-index:9998;max-width:320px;background:#141c5c;color:#fff;border:1px solid rgba(242,207,110,.5);border-radius:10px;padding:8px 12px;font:13px/1.4 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;box-shadow:0 6px 22px rgba(0,0,0,.3)';
+      if (NO_LOCK) return;
       d.innerHTML = n < FREE_USES ? 'Free use ' + n + ' of ' + FREE_USES
         : '<b>Free use ' + n + ' of ' + FREE_USES + '.</b> After this one you get three free ways to go further: a 2-minute video, a 20-minute slot, or new tools by email. <a href="/review-limit.html?utm_source=tools&utm_medium=' + encodeURIComponent(path) + '&utm_campaign=tool_limit" style="color:#f2cf6e;white-space:nowrap">See them</a> <button type="button" aria-label="Close" style="background:transparent;border:0;color:#fff;cursor:pointer;font-size:15px;padding:0 0 0 6px">&times;</button>';
       d.addEventListener('click', function (e) { if (e.target && e.target.tagName === 'BUTTON') d.parentNode.removeChild(d); });
@@ -149,9 +162,10 @@
     a.push({ t: path, at: Date.now() }); store.set('gantry_uses', JSON.stringify(a.slice(-20))); loadUse = true;
     if (a.length === FREE_USES) ev('tool_limit_reached');
     if (a.length <= FREE_USES) useNote(a.length);
+    if (NO_LOCK && a.length >= FREE_USES) bookBar();
   }
   function countUse() {
-    if (!gated || unlocked || loadUse) return;
+    if (!gated || (unlocked && !NO_LOCK) || loadUse) return;
     var a = uses(), l = a[a.length - 1];
     if (l && l.t === path && (Date.now() - l.at) < REUSE_MS) return;
     pushUse(a);
@@ -159,6 +173,7 @@
   // Returns true when the run may go ahead. The first run of a page load rides on the use that the first input already counted;
   // every later run is a use of its own. With three uses spent, the next run goes to review-limit.html instead.
   window.gantryRun = function () {
+    if (NO_LOCK) { if (gated && !loadUse) countUse(); return true; }
     if (!gated || unlocked) return true;
     runs++;
     if (runs === 1 && loadUse) return true;
@@ -167,6 +182,8 @@
     pushUse(a);
     return true;
   };
+
+  if (NO_LOCK && gated && uses().length >= FREE_USES) { if (document.body) bookBar(); else document.addEventListener('DOMContentLoaded', bookBar); }
 
   ev('tool_view');
   if (cat !== 'hub' && cat !== 'other') { try { gtag('set', 'user_properties', { tool_interest: cat === 'guide' ? 'automation' : cat }); } catch (e) {} }
