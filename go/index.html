@@ -12,7 +12,7 @@
 <script>
 (function () {
   var u = new URLSearchParams(location.search).get('u') || '';
-  var ALLOW = /^https:\/\/(www\.make\.com|affiliates\.wati\.io|www\.wati\.io)\//;
+  var ALLOW = /^https:\/\/(www\.make\.com|affiliates\.wati\.io|www\.wati\.io|www\.jotform\.com|link\.jotform\.com)\//; // 17 Nov 2026: Jotform added (staged)
   if (!ALLOW.test(u)) { location.replace('https://tools.gantry.work/'); return; }
   // 5 Nov 2026: automated visitors never get the redirect (they inflated partner click counts); the visible link below still works for a person.
   var BOT = navigator.webdriver || /bot|crawl|spider|slurp|headless|lighthouse|preview|scan|monitor|fetch|gpt|claude|perplexity|bytespider|python|curl|wget|httpclient/i.test(navigator.userAgent || '');
