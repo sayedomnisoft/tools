@@ -84,6 +84,7 @@
   .li-big svg { width: 18px; height: 18px; fill: currentColor; }
   .booked .footer { font-size: 14px; color: var(--ink-3); }
 
+  .running[hidden] { display: none; }
   .running { margin-top: 18px; padding: 16px 18px; border-radius: 12px; background: var(--pink); color: #3d2a33; font-size: 15.5px; }
   .running strong { color: var(--ink); }
   .running ul { margin: 8px 0 0; padding-left: 20px; }
@@ -314,7 +315,7 @@ if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'cal
       <a class="li-big" href="https://www.linkedin.com/in/sayedomni" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>Connect with me on LinkedIn</a>
       <div class="footer" style="margin-top:14px;">The free tools now stay open for you on this browser. <a href="index.html">Run one</a> before we talk.</div>
     </div>
-    <div class="running" id="runBox"><strong>Want to see it with your own data?</strong> Four times a month I set up a real system with your own products, customers and prices, then walk you through one of your orders end to end on Zoom: order in, stock reserved, delivery, invoice, month-end report. You also get a one-page business case for whoever signs off. Free. For 10 to 200 staff, and the person who decides joins the call.
+    <div class="running" id="runBox" hidden><strong>Want to see it with your own data?</strong> Four times a month I set up a real system with your own products, customers and prices, then walk you through one of your orders end to end on Zoom: order in, stock reserved, delivery, invoice, month-end report. You also get a one-page business case for whoever signs off. Free. For 10 to 200 staff, and the person who decides joins the call.
       <ul><li>Pick a time <span id="runWhere">above</span> and write <b>"See it running"</b> in the notes.</li></ul></div>
   </section>
 
@@ -332,12 +333,11 @@ if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'cal
     <div>
       <h2 id="howH">How the 20 minutes work</h2>
       <ol class="steps">
-        <li><b>You bring one process that annoys you.</b>Reordering, quotes, invoicing, month-end, stock: whatever hurt most last week.</li>
-        <li><b>We walk it end to end.</b>Every handoff, every retyped field, every place someone waits for someone else.</li>
-        <li><b>You leave with three fixes, ranked by payoff.</b>At least one needs no purchase. Or an honest "not yet, here's why".</li>
+        <li><b>Bring one process.</b>Orders, quotes, stock, invoicing or month-end.</li>
+        <li><b>We walk it end to end.</b>Where it is typed twice, and where it waits.</li>
+        <li><b>You leave with three fixes.</b>Ranked by payoff. At least one needs no purchase.</li>
       </ol>
-      <p class="note">You see a working example of the fix, often in a live system with sample data, so you can judge it for yourself. If your operation doesn't need what I do, I'll say so on the call.</p>
-      <div class="edge"><strong>Ask me about EDGE.</strong> Eligible Singapore SMEs can get up to 50% of a qualifying systems project funded under EDGE. On the call I'll tell you whether yours is likely to fit. <a href="https://www.gantry.work/p/edge-grant-erp-singapore-what-changed?utm_source=review-page">What changed on 30 September</a></div>
+      <p class="note">You see the fix working on a real system, with sample data.</p>
     </div>
     <div>
       <h2>Rather watch first? One minute.</h2>
@@ -349,7 +349,6 @@ if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'cal
         <p class="vslm-note">With sound and captions. An AI voice, speaking for me.</p>
         <details class="vslm-text"><summary>Read it instead</summary><p>One order. Typed three times. On the invoice, 300 became 30. That is why month-end drags and the stock never matches. I'm an AI voice, speaking for Sayed Rashid. He helps Singapore businesses with 5 to 200 staff stop typing the same thing twice. Bring one process to a free 20-minute call. An order, an invoice, or a stock count. You leave with three fixes, ranked by payoff. At least one needs no purchase. Why him? He is an ex-auditor who has cleaned up this mess before. 1,200 open items, in books nobody had closed in twenty years, cleared at go-live. And 176,000 dollars of equipment that was in the warehouse, but not in the accounts. 38 systems taken live, and 91% of those clients are still with him. It's free. Nothing to prepare. You see real examples, not slides. He takes every call himself, so there are only a few each week. Book your free 20 minutes below. (The order, the invoice and the figures in the first scene are an example.)</p></details>
       </div>
-      <p class="fit">For Singapore businesses with roughly 5 to 200 people, running on spreadsheets, WhatsApp and a few apps that don't talk.</p>
     </div>
   </section>
 
@@ -368,10 +367,6 @@ if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'cal
   </section>
 
   <section class="wrap" aria-label="About and other options">
-    <div class="me">
-      <img src="sayed-320.jpg" width="52" height="52" alt="Sayed Rashid" loading="lazy" decoding="async">
-      <p><b>Sayed Rashid</b>, ex-auditor. 38 systems taken live, 91% of clients still with us. <a href="https://www.linkedin.com/in/sayedomni" target="_blank" rel="noopener">LinkedIn</a></p>
-    </div>
     <div class="alt" style="margin-top:22px;margin-bottom:32px;">
       <a href="review-video.html" data-carry data-cta="x-video">Not ready to talk? Get a two-minute video instead</a>
       <a href="review-tools.html" data-carry data-cta="x-tools">Or use the free tools</a>
@@ -410,7 +405,7 @@ if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'cal
   if (offer === 'running') {
     document.getElementById('heroSub').textContent = 'Want to see your own products, customers and prices running in a real system before you decide anything? Pick a time below and we will set up the walkthrough.';
     var rb = document.getElementById('runBox'), anchor = document.getElementById('bookHead'), wh = document.getElementById('runWhere');
-    if (rb && anchor) { anchor.parentNode.insertBefore(rb, anchor); if (wh) wh.textContent = 'below'; }
+    if (rb && anchor) { anchor.parentNode.insertBefore(rb, anchor); rb.hidden = false; if (wh) wh.textContent = 'below'; }
     notes.push('Interested in: See it running (with our own data)');
   }
   if (camp || insrc) notes.push('Found you via: ' + [insrc, camp].filter(Boolean).join(' / '));
