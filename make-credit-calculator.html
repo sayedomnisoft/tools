@@ -213,8 +213,10 @@ function calc(fromUser) {
   }
   $('plan').textContent = plan; $('price').textContent = price; $('warn').textContent = warn;
   const paid = plan !== 'Free plan'; const need = plan.indexOf('Core') === 0 ? 'Core' : 'a larger plan';
-  $('makeBtn').textContent = paid ? 'See Make plans (you need ' + need + ')' : 'Start free on Make';
-  $('makeBtn').href = paid ? 'https://www.make.com/en/pricing?pc=gntrywk' : 'https://www.make.com/en/register?pc=gntrywk';
+  // 17 Nov 2026: always the register page. Make's affiliate help only shows pc= on /en/register, so the pricing
+  // page risked losing the referral for the visitors most likely to pay. Plans can be picked after signing up.
+  $('makeBtn').textContent = paid ? 'Start on Make, then choose ' + need : 'Start free on Make';
+  $('makeBtn').href = 'https://www.make.com/en/register?pc=gntrywk';
 
   let tip = '';
   if (trig === 'poll' && interval !== 'day') {
