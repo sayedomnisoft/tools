@@ -11,9 +11,30 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
 <script>
 (function () {
-  var u = new URLSearchParams(location.search).get('u') || '';
-  var ALLOW = /^https:\/\/(www\.make\.com|affiliates\.wati\.io|www\.wati\.io|www\.jotform\.com|link\.jotform\.com)\//; // 17 Nov 2026: Jotform added (staged)
+  var Q = new URLSearchParams(location.search), u = Q.get('u') || '';
+  var ALLOW = /^https:\/\/(www\.make\.com|affiliates\.wati\.io|www\.wati\.io|www\.jotform\.com|link\.jotform\.com)\//; // 17 Nov 2026: Jotform added
   if (!ALLOW.test(u)) { location.replace('https://tools.gantry.work/'); return; }
+  /* 17 Nov 2026: partner sub-IDs (WATI sid1/sid2 on PartnerStack, Make affiliateSource), so each dashboard shows the channel.
+     Source order: ?s= on the link, then the referring site, then the source track.js stored on a tools page (30 days).
+     Tags already on the link (added on a tools page) are kept. */
+  try {
+    var clean = function (v) { return String(v || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40); };
+    var ref = document.referrer || '', rh = '', page = 'link', src = clean(Q.get('s'));
+    try { rh = new URL(ref).hostname.replace(/^www\./, ''); } catch (e) {}
+    if (rh === 'tools.gantry.work') { page = clean(new URL(ref).pathname.replace(/\.html$/, '')) || 'tools-home'; }
+    else if (rh && !src) {
+      var M = [[/youtube\.com$|youtu\.be$/, 'yt'], [/substack\.com$|^gantry\.work$/, 'ss'], [/(^|\.)google\./, 'google'], [/bing\.com$/, 'bing'],
+        [/linkedin\.com$|^lnkd\.in$/, 'li'], [/^t\.co$|(^|\.)x\.com$|twitter\.com$/, 'x'], [/tiktok\.com$/, 'tt'], [/chatgpt\.com$|openai\.com$|perplexity\.ai$|claude\.ai$/, 'ai']];
+      for (var i = 0; i < M.length && !src; i++) if (M[i][0].test(rh)) src = M[i][1];
+      if (!src) src = 'ref-' + clean(rh.split('.').slice(-2, -1)[0]);
+    }
+    if (!src) { try { var o = JSON.parse(localStorage.getItem('gantry_src') || 'null'); if (o && o.s && Date.now() - o.t < 30 * 864e5) src = o.s; } catch (e) {} }
+    src = src || 'direct';
+    var x = new URL(u);
+    if (x.hostname === 'affiliates.wati.io') { if (!x.searchParams.get('sid1')) x.searchParams.set('sid1', page); if (!x.searchParams.get('sid2')) x.searchParams.set('sid2', src); }
+    else if (/(^|\.)make\.com$/.test(x.hostname) && x.searchParams.get('pc') && !x.searchParams.get('affiliateSource')) x.searchParams.set('affiliateSource', (src + '_' + page).slice(0, 64));
+    u = x.toString();
+  } catch (e) {}
   // 5 Nov 2026: automated visitors never get the redirect (they inflated partner click counts); the visible link below still works for a person.
   var BOT = navigator.webdriver || /bot|crawl|spider|slurp|headless|lighthouse|preview|scan|monitor|fetch|gpt|claude|perplexity|bytespider|python|curl|wget|httpclient/i.test(navigator.userAgent || '');
   if (BOT) { document.addEventListener('DOMContentLoaded', function () { var a = document.getElementById('l'); if (a) a.href = u; }); return; }
