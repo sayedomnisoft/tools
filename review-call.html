@@ -11,6 +11,7 @@
 <meta property="og:image" content="https://tools.gantry.work/og-review.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
   @font-face { font-family: "Schibsted Grotesk"; src: url("/schibsted-grotesk-latin.woff2") format("woff2"); font-weight: 400 900; font-style: normal; font-display: swap; }
   :root { --paper: #fcfcfa; --ink: #141b3d; --ink-2: #474f6e; --ink-3: #6a7190; --rule: #e3e5ec; --blue: #1f3fbf; --blue-d: #172f93; --blue-wash: #e9edfb;
@@ -130,6 +131,82 @@
     .more { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: start; }
   }
   @media (prefers-reduced-motion: reduce) { .btn { transition: none; } .book-zone.nudge { animation: none; } }
+
+  /* 17 Nov 2026 pass 2: same air and type as the landing page, appointment slip for trust */
+  @font-face { font-family: "Source Serif 4"; src: url("/source-serif-4-latin.woff2") format("woff2"); font-weight: 400 600; font-style: normal; font-display: swap; }
+  :root { --serif: "Source Serif 4", Georgia, "Times New Roman", serif; --canary-line: #e3d36b; }
+  .hero .sub, .scarce, .steps li, .note, .edge, .vslm-note, .vslm-text, .fit, .rcpt p, .booked .sub, .prep, .running, #bookFallback .sub { font-family: var(--serif); text-wrap: pretty; }
+  .hero { padding-top: 28px; padding-bottom: 24px; display: grid; gap: 40px; align-items: center; }
+  .hero h1 { font-size: clamp(2.3rem, 1.4rem + 4vw, 4.4rem); line-height: 1; letter-spacing: -0.04em; max-width: 11ch; }
+  .hero .sub { margin-top: 22px; font-size: clamp(1.12rem, 1.04rem + .4vw, 1.35rem); line-height: 1.55; max-width: 36ch; }
+  .hero-go { margin-top: 30px; }
+  .yournum { margin-top: 22px; }
+
+  .slip { position: relative; background: #fff; border: 1px solid #d9dce4; border-radius: 3px; padding: 22px 22px 18px; transform: rotate(-1.2deg);
+    box-shadow: 0 1px 2px rgba(20,27,61,.06), 0 24px 44px -22px rgba(20,27,61,.42); max-width: 460px; }
+  .slip::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 7px; background: radial-gradient(circle at 6px -1px, var(--paper) 3.5px, transparent 4px) 0 0 / 14px 7px repeat-x; }
+  .slip-top { display: flex; justify-content: space-between; font-size: 11.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); padding-bottom: 12px; border-bottom: 2px solid var(--ink); }
+  .slip-who { display: flex; align-items: center; gap: 14px; padding: 16px 0; border-bottom: 1px dashed #c9cdd8; }
+  .slip-who img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; flex: none; }
+  .slip-who b { display: block; font-size: 19px; letter-spacing: -0.015em; }
+  .slip-who span { display: block; font-family: var(--serif); font-size: 15px; color: var(--ink-2); }
+  .slip-rows { margin: 0; padding: 6px 0 0; }
+  .slip-rows div { display: grid; grid-template-columns: 128px 1fr; gap: 12px; padding: 11px 0; border-bottom: 1px solid #eceef2; }
+  .slip-rows dt { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); padding-top: 3px; }
+  .slip-rows dd { margin: 0; font-family: var(--serif); font-size: 16.5px; color: var(--ink); }
+  .slip-rows .hlrow { border-bottom: 0; }
+  .slip-rows .mark { background: linear-gradient(transparent 12%, rgba(255,214,0,.55) 12%, rgba(255,214,0,.55) 92%, transparent 92%); padding: 0 3px; font-weight: 600; }
+  .slip-foot { margin-top: 12px; padding-top: 12px; border-top: 2px solid var(--ink); font-size: 13.5px; font-weight: 700; color: var(--ink-2); }
+
+  .book-wrap { padding-top: 64px; padding-bottom: 72px; }
+  .book-head { padding-bottom: 18px; gap: 10px 32px; }
+  .book-head h2 { font-size: clamp(1.9rem, 1.4rem + 2vw, 2.8rem); letter-spacing: -0.03em; }
+  .scarce { font-size: 17px; line-height: 1.55; }
+  .slots { margin-top: 26px; }
+  .slots-days { gap: 12px; margin-top: 14px; }
+  .slot-day { padding: 12px 16px; min-width: 140px; border-radius: 12px; }
+  .slot-day b { font-size: 16px; }
+  .book-zone { margin-top: 28px; border-radius: 16px; box-shadow: 0 1px 2px rgba(20,27,61,.05), 0 24px 48px -30px rgba(20,27,61,.35); }
+  .running { margin-top: 28px; padding: 20px 22px; font-size: 17px; line-height: 1.6; }
+
+  .proof-band { background: var(--canary); padding: 80px 0 88px; position: relative; }
+  .proof-band::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: repeating-linear-gradient(90deg, rgba(20,27,61,.28) 0 6px, transparent 6px 12px); }
+  .proof-band h2 { font-size: clamp(1.7rem, 1.3rem + 1.7vw, 2.5rem); line-height: 1.1; letter-spacing: -0.03em; max-width: 22ch; }
+  .proof { display: grid; gap: 26px; margin-top: 40px; }
+  .rcpt { position: relative; margin: 0; background: #fffdf2; padding: 28px 26px 26px; border-radius: 3px; box-shadow: 0 1px 1px rgba(90,74,0,.12), 0 14px 26px -16px rgba(90,74,0,.45); }
+  .rcpt::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 6px; background: radial-gradient(circle at 5px 6px, var(--canary) 3px, transparent 3.5px) 0 0 / 12px 6px repeat-x; }
+  .rcpt strong { display: block; font-size: clamp(2rem, 1.6rem + 1.6vw, 2.9rem); line-height: 1; font-weight: 800; letter-spacing: -0.03em; padding-right: 84px; }
+  .rcpt p { margin-top: 14px; font-size: 18px; line-height: 1.55; color: #3a3420; max-width: 34ch; }
+  .rcpt .stamp { position: absolute; right: 16px; top: 16px; padding: 3px 8px; border: 2px solid #c4303a; border-radius: 4px; color: #c4303a; font-size: 11.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; transform: rotate(6deg); }
+
+  .more { padding-top: 88px; padding-bottom: 88px; gap: 64px; border-top: 0; }
+  .more h2 { font-size: clamp(1.7rem, 1.3rem + 1.7vw, 2.5rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 32px; max-width: 16ch; }
+  .steps li { padding: 0 0 28px 56px; font-size: 17.5px; line-height: 1.6; }
+  .steps li::before { width: 40px; height: 40px; font-family: var(--font); }
+  .steps b { font-family: var(--font); font-size: 19.5px; padding-top: 6px; margin-bottom: 6px; }
+  .note { margin-top: 10px; font-size: 17px; line-height: 1.6; }
+  .edge { margin-top: 26px; padding: 20px 22px; font-size: 17px; line-height: 1.6; }
+  .vslm-note { margin-top: 14px; font-size: 15.5px; }
+  .fit { margin-top: 22px; font-size: 17px; line-height: 1.6; }
+  .alt { padding-top: 26px; gap: 14px 32px; font-size: 16.5px; }
+  .foot { margin-top: 24px; }
+
+  @media (max-width: 639px) {
+    .slip { padding: 18px 18px 14px; transform: rotate(-.8deg); }
+    .slip-rows div { grid-template-columns: 84px 1fr; padding: 8px 0; }
+    .slip-rows dd { font-size: 15.5px; }
+    .slip-who { padding: 12px 0; }
+    .slip-who img { width: 52px; height: 52px; }
+  }
+  @media (min-width: 640px) { .proof { grid-template-columns: 1fr 1fr; gap: 28px; } }
+  @media (min-width: 1000px) {
+    .hero { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 72px; padding-top: 56px; padding-bottom: 40px; }
+    .slip { justify-self: end; }
+    .book-wrap { padding-top: 96px; padding-bottom: 104px; }
+    .proof-band { padding: 112px 0 120px; }
+    .more { padding-top: 120px; padding-bottom: 120px; gap: 88px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .slip { transform: none; } }
 </style>
 <!-- seo:start -->
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -164,14 +241,27 @@ if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'cal
 
 <main>
   <section class="wrap hero" aria-labelledby="heroH">
-    <h1 id="heroH">Book your free 20 minutes.</h1>
-    <p class="sub" id="heroSub">Bring the one process that hurt most last week: orders, quotes, stock, invoicing or month-end. You leave with three fixes, ranked by payoff, or an honest "not yet".</p>
-    <ul class="facts">
-      <li><svg aria-hidden="true" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M4 12.5l5 5L20 6.5"/></svg>Free, on Zoom</li>
-      <li><svg aria-hidden="true" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M4 12.5l5 5L20 6.5"/></svg>Nothing to prepare</li>
-      <li><svg aria-hidden="true" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M4 12.5l5 5L20 6.5"/></svg>No pitch unless you ask</li>
-    </ul>
-    <div class="yournum" id="yourNum" hidden></div>
+    <div class="hero-copy">
+      <h1 id="heroH">Book your free 20&nbsp;minutes.</h1>
+      <p class="sub" id="heroSub">Bring the one process that hurt most last week: orders, quotes, stock, invoicing or month-end. You leave with three fixes, ranked by payoff, or an honest "not yet".</p>
+      <div class="yournum" id="yourNum" hidden></div>
+      <a class="btn hero-go" href="#bookHead" data-cta="hero">See the open times <svg aria-hidden="true" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 4v15M6 13l6 6 6-6"/></svg></a>
+    </div>
+    <aside class="slip" aria-label="What the call is">
+      <div class="slip-top"><span>Appointment</span><span>No. 20-MIN</span></div>
+      <div class="slip-who">
+        <img src="sayed-320.jpg" width="64" height="64" alt="Sayed Rashid" decoding="async">
+        <div><b>Sayed Rashid</b><span>Ex-auditor · takes every call himself</span></div>
+      </div>
+      <dl class="slip-rows">
+        <div><dt>Length</dt><dd>20 minutes</dd></div>
+        <div><dt>Where</dt><dd>Zoom, link in your calendar</dd></div>
+        <div><dt>Cost</dt><dd>Free. No pitch unless you ask</dd></div>
+        <div><dt>Bring</dt><dd>One process. Nothing to prepare</dd></div>
+        <div class="hlrow"><dt>You leave with</dt><dd><span class="mark">Three fixes, ranked by payoff</span></dd></div>
+      </dl>
+      <p class="slip-foot">38 systems taken live · 91% of clients still with us</p>
+    </aside>
   </section>
 
   <section class="wrap book-wrap" aria-labelledby="bookHead">
@@ -203,6 +293,16 @@ if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'cal
     </div>
     <div class="running" id="runBox"><strong>Want to see it with your own data?</strong> Four times a month I set up a real system with your own products, customers and prices, then walk you through one of your orders end to end on Zoom: order in, stock reserved, delivery, invoice, month-end report. You also get a one-page business case for whoever signs off. Free. For 10 to 200 staff, and the person who decides joins the call.
       <ul><li>Pick a time <span id="runWhere">above</span> and write <b>"See it running"</b> in the notes.</li></ul></div>
+  </section>
+
+  <section class="proof-band" aria-labelledby="proofH">
+    <div class="wrap">
+      <h2 id="proofH">Not sure yet? Here is the kind of thing I find.</h2>
+      <div class="proof">
+        <figure class="rcpt"><span class="stamp">Cleared</span><strong>1,200</strong><p>open items in books nobody had closed in twenty years, cleared at go-live.</p></figure>
+        <figure class="rcpt"><span class="stamp">Found</span><strong>S$176,000</strong><p>of equipment that was in the warehouse but not in the accounts.</p></figure>
+      </div>
+    </div>
   </section>
 
   <section class="wrap more" aria-labelledby="howH">
