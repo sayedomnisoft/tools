@@ -222,6 +222,14 @@
 
   .faq details p { padding: 0 0 22px; max-width: 52ch; }
   .faq summary { padding: 22px 0; }
+
+  /* quick answers: point form, nothing to click */
+  .qa { margin: 32px 0 0; padding: 0; border-top: 1px solid var(--rule); }
+  .qa div { display: grid; grid-template-columns: 1fr; gap: 4px; padding: 18px 0; border-bottom: 1px solid var(--rule); }
+  .qa dt { font-family: var(--font); font-weight: 700; font-size: 17px; color: var(--ink); }
+  .qa dd { margin: 0; font-family: var(--serif); font-size: 17px; line-height: 1.55; color: var(--ink-2); }
+  .qa a { color: var(--blue); }
+  @media (min-width: 720px) { .qa div { grid-template-columns: 240px 1fr; gap: 24px; align-items: baseline; } }
 </style>
 <!-- seo:start -->
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -347,15 +355,15 @@ if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'cal
 
   <section class="faq-sec" aria-labelledby="faqH">
     <div class="wrap faq-wrap">
-      <h2 id="faqH">Questions people ask before booking</h2>
-      <div class="faq">
-        <details name="faq"><summary>Is it really free?<svg aria-hidden="true" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg></summary><p>Yes. No card, nothing to buy. The three fixes are yours to keep.</p></details>
-        <details name="faq"><summary>Will you try to sell me something?<svg aria-hidden="true" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg></summary><p>I'll show you the fix working on a real system. If you want help setting it up, I'll tell you the cost. If not, no follow-up.</p></details>
-        <details name="faq"><summary>What will I see on the call?<svg aria-hidden="true" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg></summary><p>Where your process repeats or waits, and three fixes ranked by payoff.</p></details>
-        <details name="faq"><summary>We already have software. Still useful?<svg aria-hidden="true" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg></summary><p>Yes. Many fixes need no new software.</p></details>
-        <details name="faq"><summary>Do I need real numbers?<svg aria-hidden="true" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg></summary><p>No. Rough figures are fine.</p></details>
-        <details name="faq"><summary>What about the EDGE grant?<svg aria-hidden="true" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg></summary><p>Eligible SMEs can get up to 50% funded. I'll tell you if you're likely to fit. <a href="https://www.gantry.work/p/edge-grant-erp-singapore-what-changed?utm_source=review-page">Details</a></p></details>
-      </div>
+      <h2 id="faqH">Quick answers</h2>
+      <dl class="qa">
+        <div><dt>Free?</dt><dd>Yes. No card, nothing to buy.</dd></div>
+        <div><dt>Will you sell me something?</dt><dd>I show the fix on a real system. What happens next is your call.</dd></div>
+        <div><dt>What do I get?</dt><dd>Where your process repeats or waits, and three fixes ranked by payoff.</dd></div>
+        <div><dt>Already have software?</dt><dd>Fine. Many fixes need no new software.</dd></div>
+        <div><dt>Need real numbers?</dt><dd>No. Rough figures are fine.</dd></div>
+        <div><dt>EDGE grant?</dt><dd>Up to 50% funding for eligible SMEs. <a href="https://www.gantry.work/p/edge-grant-erp-singapore-what-changed?utm_source=review-page">Details</a></dd></div>
+      </dl>
     </div>
   </section>
 

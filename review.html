@@ -395,6 +395,14 @@ document.documentElement.className += ' js';
     .d-do { margin-top: 48px; } .d-inv { margin-top: 96px; }
     .hero { gap: 80px; }
   }
+
+  /* quick answers: point form, nothing to click */
+  .qa { margin: 32px 0 0; padding: 0; border-top: 1px solid var(--rule); }
+  .qa div { display: grid; grid-template-columns: 1fr; gap: 4px; padding: 18px 0; border-bottom: 1px solid var(--rule); }
+  .qa dt { font-family: var(--font); font-weight: 700; font-size: 17px; color: var(--ink); }
+  .qa dd { margin: 0; font-family: var(--serif); font-size: 17px; line-height: 1.55; color: var(--ink-2); }
+  .qa a { color: var(--blue); }
+  @media (min-width: 720px) { .qa div { grid-template-columns: 240px 1fr; gap: 24px; align-items: baseline; } }
 </style>
 <!-- seo:start -->
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -468,20 +476,6 @@ if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'hub
     </figure>
   </section>
 
-  <section class="sec perf" aria-labelledby="leakH">
-    <div class="wrap">
-      <h2 id="leakH">Where the hours go</h2>
-      <ul class="leaks">
-        <li><svg aria-hidden="true" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M7 4h13l5 5v19H7z M20 4v5h5 M11 15h10M11 20h10M11 25h6"/></svg>
-          <b>The same details, typed again.</b><span>Quote, invoice, delivery order. Every retype is a chance for 300 to become 30.</span></li>
-        <li><svg aria-hidden="true" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M5 10h16M5 16h22M5 22h12 M25 6l3 3l-3 3M24 19l3 3l-3 3"/></svg>
-          <b>Numbers that never quite match.</b><span>Someone spends the end of every month making orders, stock and invoices agree.</span></li>
-        <li><svg aria-hidden="true" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M5 7h22v14H14l-6 5v-5H5z M11 14h.01M16 14h.01M21 14h.01" stroke-linecap="round"/></svg>
-          <b>Approvals chased on WhatsApp.</b><span>"Is it done yet?" holds every order up for a day.</span></li>
-      </ul>
-    </div>
-  </section>
-
   <section class="sec band-pink perf" aria-labelledby="callH">
     <div class="wrap">
       <h2 id="callH">What happens in the 20 minutes</h2>
@@ -509,63 +503,32 @@ if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'hub
 
   <section class="sec band-canary perf" aria-labelledby="proofH">
     <div class="wrap">
-      <h2 id="proofH">I've cleaned up this kind of mess before</h2>
+      <h2 id="proofH">What I've found before</h2>
       <div class="proof">
         <figure class="rcpt"><span class="stamp">Cleared</span><strong>1,200</strong><p>open items in books nobody had closed in twenty years, cleared at go-live.</p></figure>
         <figure class="rcpt"><span class="stamp">Found</span><strong>S$176,000</strong><p>of equipment that was in the warehouse but not in the accounts.</p></figure>
-      </div>
-      <div class="me">
-        <img src="sayed-320.jpg" width="88" height="88" alt="Sayed Rashid" loading="lazy" decoding="async">
-        <div>
-          <p class="me-name">Sayed Rashid</p>
-          <p>Ex-auditor. I find where the numbers stop matching, then fix the process behind it. 38 systems taken live; 91% of those clients are still with us.</p>
-          <p class="me-li"><a href="https://www.linkedin.com/in/sayedomni" target="_blank" rel="noopener">See my LinkedIn</a></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec perf" aria-labelledby="fitH">
-    <div class="wrap">
-      <h2 id="fitH">Is it for you?</h2>
-      <div class="fit">
-        <div class="yes">
-          <h3>Worth your time if</h3>
-          <ul>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>You run a Singapore business with 5 to 200 people.</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>It runs on spreadsheets, WhatsApp and apps that don't talk.</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>One process goes wrong every week.</li>
-          </ul>
-        </div>
-        <div class="no">
-          <h3>Probably not if</h3>
-          <ul>
-            <li><svg aria-hidden="true"><use href="#i-x"/></svg>You want licence pricing.</li>
-            <li><svg aria-hidden="true"><use href="#i-x"/></svg>Nothing is broken yet.</li>
-          </ul>
-        </div>
       </div>
     </div>
   </section>
 
   <section class="sec perf" aria-labelledby="faqH">
     <div class="wrap faq-wrap">
-      <h2 id="faqH">Questions</h2>
-      <div class="faq">
-        <details name="faq"><summary>Is it really free?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Yes. No card, nothing to buy. The three fixes are yours to keep.</p></details>
-        <details name="faq"><summary>Will you try to sell me something?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary><p>I'll show you the fix working on a real system. If you want help setting it up, I'll tell you the cost. If not, no follow-up.</p></details>
-        <details name="faq"><summary>What will I see on the call?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Where your process repeats or waits, and three fixes ranked by payoff.</p></details>
-        <details name="faq"><summary>We already have software. Still useful?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Yes. Many fixes need no new software.</p></details>
-        <details name="faq"><summary>Do I need real numbers?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary><p>No. Rough figures are fine.</p></details>
-        <details name="faq"><summary>What about the EDGE grant?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary><p>Eligible SMEs can get up to 50% funded. I'll tell you if you're likely to fit. <a href="https://www.gantry.work/p/edge-grant-erp-singapore-what-changed?utm_source=review-page">Details</a></p></details>
-      </div>
+      <h2 id="faqH">Quick answers</h2>
+      <dl class="qa">
+        <div><dt>Free?</dt><dd>Yes. No card, nothing to buy.</dd></div>
+        <div><dt>Will you sell me something?</dt><dd>I show the fix on a real system. What happens next is your call.</dd></div>
+        <div><dt>What do I get?</dt><dd>Where your process repeats or waits, and three fixes ranked by payoff.</dd></div>
+        <div><dt>Already have software?</dt><dd>Fine. Many fixes need no new software.</dd></div>
+        <div><dt>Need real numbers?</dt><dd>No. Rough figures are fine.</dd></div>
+        <div><dt>EDGE grant?</dt><dd>Up to 50% funding for eligible SMEs. <a href="https://www.gantry.work/p/edge-grant-erp-singapore-what-changed?utm_source=review-page">Details</a></dd></div>
+      </dl>
     </div>
   </section>
 
   <section class="sec perf final" id="finalCta" aria-labelledby="finalH">
     <div class="wrap">
       <h2 id="finalH">One process. Twenty minutes. Three fixes.</h2>
-      <p class="intro">Bring the process that hurt most last week.</p>
+      <p class="intro">For Singapore businesses with 5 to 200 staff. Bring the process that hurt most last week.</p>
       <div class="act">
         <a class="btn" href="review-call.html" data-carry data-cta="final">Book the free 20 minutes <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <p class="fine">I take every call myself, so there are only so many each week.</p>
