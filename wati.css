@@ -70,3 +70,10 @@ a.nextstep b { font-size: 16px; } a.nextstep span.ar { font-size: 20px; color: v
   .yn { grid-template-columns: 1fr; }
   #watibar a { white-space: normal; text-align: center; max-width: 130px; }
 }
+/* 17 Nov 2026 (staged): calendar download on the 7-day plan */
+.ics { border: 1px solid var(--line); border-radius: 12px; padding: 13px 15px; margin: 6px 0 14px; background: var(--blue-wash); }
+.ics label { display: block; font-size: 14.5px; line-height: 1.5; margin: 0 0 8px; font-weight: 400; }
+.ics-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.ics-row input, .ics-row select { min-width: 0; padding: 10px 11px; font-size: 16px; border: 1px solid var(--line); border-radius: 9px; background: #fff; color: var(--ink); font-family: inherit; }
+.ics-row .cta { margin: 0; flex: 1 1 200px; }
+.ics .src { margin: 8px 0 0; }

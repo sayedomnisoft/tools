@@ -66,7 +66,7 @@
           'You do not have to decide today. The 7-day trial runs on your own number, so you can test whether your team would use it before any money moves.</p>' +
           '<p><b>What we would do next, in this order:</b></p><ol style="margin:0 0 12px 20px"><li><a href="wati-pricing-singapore.html">Check the full yearly cost for your team</a> (2 minutes).</li><li><a href="wati-free-trial-plan.html">Open the 7-day test plan</a> so the trial week answers your questions.</li><li>Start the trial when you have a free week.</li></ol>' +
           '<a class="cta" data-cta="result" href="' + AFF + '" target="_blank" rel="sponsored noopener" style="display:block;text-align:center">See the 7-day trial on WATI\'s site</a>' +
-          '<p class="disc"><b>What happens when you click:</b> WATI\'s own website opens in a new tab. "Try for Free" is at the top. WATI\'s trial article says no payment details are needed to start. Affiliate link: if you sign up to WATI through it, The Gantry may earn a commission at no extra cost to you.</p>';
+          '<p class="disc"><b>What happens when you click:</b> WATI\'s own website opens in a new tab. "Try for free" is at the top; on 17 Nov 2026 their home page said "No credit card". Best done with <a href="wati-free-trial-plan.html#icsBox">the 7-day plan</a> in your calendar first. Affiliate link: if you sign up to WATI through it, The Gantry may earn a commission at no extra cost to you.</p>';
       } else if (people === 1) {
         verdict = 'stay_free';
         h = '<h3>Stay on the free WhatsApp Business app for now</h3>' + math +
@@ -118,6 +118,48 @@
       : '<h3>Not yet: ' + done + ' of ' + of + '</h3><p>Still open: <b>' + missing.join('; ') + '</b>. The trial does not need any of these, so you can test the inbox on your own number while you sort them out.</p>';
   };
   (function () { var b = document.querySelector('[data-list="golive"]'); if (b) { var bx = b.querySelectorAll('input[data-k]'), d = 0; Array.prototype.forEach.call(bx, function (c) { if (c.checked) d++; }); window.watiListChanged('golive', d, bx.length, bx); } })();
+
+
+  // ---------- wati-free-trial-plan: the 7 days as a calendar file (17 Nov 2026) ----------
+  // Built in the browser from the plan on the page, so the reminders always match the page text. Nothing is uploaded.
+  if ($('icsBtn')) {
+    var d0 = new Date(); d0.setDate(d0.getDate() + ((8 - d0.getDay()) % 7 || 7));
+    var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+    var ymd = function (d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); };
+    if (!$('icsDate').value) $('icsDate').value = ymd(d0);
+    var esc = function (s) { return String(s).replace(/\\/g, '\\\\').replace(/;/g, '\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n'); };
+    var fold = function (line) { var out = '', s = line; while (s.length > 73) { out += s.slice(0, 73) + '\r\n '; s = s.slice(73); } return out + s; };
+    $('icsBtn').addEventListener('click', function () {
+      var v = ($('icsDate').value || ymd(d0)).split('-'), tm = $('icsTime').value || '0930';
+      var start = new Date(+v[0], +v[1] - 1, +v[2]);
+      var url = 'https://tools.gantry.work/wati-free-trial-plan.html?utm_source=calendar&utm_medium=ics';
+      var stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+Z$/, 'Z');
+      var L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//The Gantry//WATI 7-day plan//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
+        'BEGIN:VTIMEZONE', 'TZID:Asia/Singapore', 'BEGIN:STANDARD', 'DTSTART:19820101T000000', 'TZOFFSETFROM:+0800', 'TZOFFSETTO:+0800', 'TZNAME:SGT', 'END:STANDARD', 'END:VTIMEZONE'];
+      var days = document.querySelectorAll('[data-list="trial"] .day');
+      Array.prototype.forEach.call(days, function (day, i) {
+        var d = new Date(start); d.setDate(start.getDate() + i);
+        var h = day.querySelector('h3'), title = h ? h.textContent.replace(/^Day \d+/, '').trim() : '';
+        var jobs = Array.prototype.map.call(day.querySelectorAll('li span'), function (s) { return '- ' + s.textContent.trim(); });
+        var q = day.querySelector('.q'); if (q) jobs.push(q.textContent.trim());
+        var t0 = tm.slice(0, 2) + tm.slice(2) + '00', mins = +tm.slice(2) + 20, t1 = pad(+tm.slice(0, 2) + Math.floor(mins / 60)) + pad(mins % 60) + '00';
+        var dd = d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate());
+        L.push('BEGIN:VEVENT', 'UID:wati-plan-' + dd + '-' + (i + 1) + '@tools.gantry.work', 'DTSTAMP:' + stamp,
+          'DTSTART;TZID=Asia/Singapore:' + dd + 'T' + t0, 'DTEND;TZID=Asia/Singapore:' + dd + 'T' + t1,
+          fold('SUMMARY:' + esc('WATI trial day ' + (i + 1) + ' of 7: ' + title)),
+          fold('DESCRIPTION:' + esc(jobs.join('\n') + '\n\nFull plan and ticks: ' + url)),
+          'URL:' + url, 'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:WATI trial', 'TRIGGER:-PT10M', 'END:VALARM', 'END:VEVENT');
+      });
+      L.push('END:VCALENDAR');
+      try {
+        var blob = new Blob([L.join('\r\n') + '\r\n'], { type: 'text/calendar;charset=utf-8' });
+        var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'wati-7-day-trial-plan.ics';
+        document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.parentNode.removeChild(a); }, 500);
+        $('icsBtn').textContent = 'Downloaded. Open the file to add it';
+      } catch (e) {}
+      ev('wati_ics', { start: ymd(start), time: tm, days: days.length });
+    });
+  }
 
   // ---------- slim reminder bar, once the reader is 40% down the page ----------
   if (AFF && document.body.getAttribute('data-bar') !== 'off') {
