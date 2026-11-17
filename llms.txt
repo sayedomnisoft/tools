@@ -62,6 +62,7 @@
 - [Stock Take Variance Calculator](https://tools.gantry.work/stock-take-variance-calculator.html): Record accuracy = lines within tolerance / lines counted; net vs absolute variance value; top ten variances.
 - [Landed Cost Calculator (Singapore Imports)](https://tools.gantry.work/landed-cost-calculator.html): Landed cost per unit = (goods in S$ + freight + insurance + duty + local charges + import GST if not claimable) / units. Import GST is 9% of CIF plus duty.
 - [Singapore SME Systems Checklist](https://tools.gantry.work/singapore-sme-systems-checklist.html): 12 yes/no checks on data, process, ownership and money before buying an ERP or inventory system; 8+ means ready enough.
+- [Mobile Job Sheet in Jotform: Signature, PDF, Google Sheet](https://tools.gantry.work/jotform-job-sheet.html): replace a carbon-copy job sheet with a phone form the customer signs on site; each job becomes a Google Sheets row and a PDF goes to the office. Plan limits from jotform.com/pricing, checked 17 Nov 2026.
 
 ## About the author
 Sayed Rashid, ex-auditor, 30+ systems projects across Singapore, Indonesia, Malaysia and Cambodia. Every tool offers a free 2-minute video on the visitor's number and a free 20-minute systems review (https://tools.gantry.work/review.html). Figures are dated on each page ("last checked").

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en-SG">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobile Job Sheet in Jotform: Signature, PDF, Google Sheet</title>
+<meta name="description" content="Build a phone job sheet in Jotform: the customer signs on site, each visit lands in Google Sheets and a PDF reaches the office. Plan limits checked 17 Nov 2026.">
+<meta property="og:title" content="A mobile job sheet in Jotform: signed on site, filed in a Google Sheet, PDF to the office">
+<meta property="og:description" content="Build a phone job sheet in Jotform: the customer signs on site, each visit lands in Google Sheets and a PDF reaches the office. Plan limits checked 17 Nov 2026.">
+<meta property="og:image" content="https://tools.gantry.work/og-index.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="pricecalc.css">
+<link rel="stylesheet" href="wati.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://tools.gantry.work/jotform-job-sheet.html">
+<meta property="og:url" content="https://tools.gantry.work/jotform-job-sheet.html">
+<meta property="og:site_name" content="The Gantry">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="author" content="Sayed Rashid">
+<meta name="gantry-tool-category" content="guide">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "A mobile job sheet in Jotform: signed on site, filed in a Google Sheet, PDF to the office", "description": "Build a phone job sheet in Jotform: the customer signs on site, each visit lands in Google Sheets and a PDF reaches the office. Plan limits checked 17 Nov 2026.", "url": "https://tools.gantry.work/jotform-job-sheet.html", "mainEntityOfPage": "https://tools.gantry.work/jotform-job-sheet.html", "datePublished": "2026-11-17", "dateModified": "2026-11-17", "inLanguage": "en-SG", "author": {"@type": "Person", "name": "Sayed Rashid", "url": "https://www.gantry.work/about"}, "publisher": {"@type": "Organization", "name": "The Gantry", "url": "https://www.gantry.work"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is Jotform free for a job sheet?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, up to a point. The free Starter plan allows 5 forms and 100 submissions a month, keeps 500 submissions in total, gives 100 MB of upload space and shows Jotform branding on your forms. One technician doing about four visits a day fits. A team of three does not."}}, {"@type": "Question", "name": "Can the customer sign on the phone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Add the Signature element from the Basic tab in the Form Builder and the customer signs on the screen. If you also switch on Jotform Sign Automation for that field, Jotform's support team says every submission counts against the monthly signed documents limit, which is 10 on the free plan."}}, {"@type": "Question", "name": "Does it work without mobile data?", "acceptedAnswer": {"@type": "Answer", "text": "Jotform says its free Mobile Forms app collects submissions offline and syncs them to your account when the phone reconnects. Test it once in a basement or plant room before you rely on it."}}, {"@type": "Question", "name": "Will the Google Sheet update if I change a submission?", "acceptedAnswer": {"@type": "Answer", "text": "Jotform's help article says edits made in the entry editor reach the sheet, but inline edits in Jotform Tables do not, and renaming the sheet's column headers can pause the updates. Leave the headers alone."}}, {"@type": "Question", "name": "Does it create the invoice?", "acceptedAnswer": {"@type": "Answer", "text": "No. It gives the office a clean, signed record of each visit in one sheet. Raising the invoice is still a separate step, in your accounting software or in the free invoice generator on this site."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Free business tools", "item": "https://tools.gantry.work/"}, {"@type": "ListItem", "position": 2, "name": "A mobile job sheet in Jotform: signed on site, filed in a Google Sheet, PDF to the office", "item": "https://tools.gantry.work/jotform-job-sheet.html"}]}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<script src="/config.js"></script><script src="/track.js" defer></script><script src="/gantry-ui.js" defer></script>
+<meta name="gantry-checked" content="2026-11-17">
+<style>
+.jf-fig { margin: 14px 0 18px; padding: 14px; border: 1px solid var(--rule); border-radius: 14px; background: #fff; }
+.jf-fig figcaption { font-size: 13.5px; color: var(--ink-2); margin-top: 8px; }
+.wati .guide ol.steps { margin: 6px 0 10px 20px; } .wati .guide ol.steps li { margin-bottom: 9px; line-height: 1.55; }
+.jf-calc { border: 1px solid var(--line); border-radius: 14px; padding: 14px; background: #fff; margin: 8px 0 10px; }
+.jf-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 14px; }
+.jf-grid label { font-size: 14px; font-weight: 700; margin: 0; }
+.jf-grid input, .jf-grid select { margin-top: 5px; width: 100%; min-width: 0; }
+.jf-bars { margin-top: 12px; }
+.jf-cap { font-size: 12.5px; color: var(--ink-3); margin: 0 0 6px; text-transform: uppercase; letter-spacing: .06em; font-weight: 700; }
+.jf-bar { display: grid; grid-template-columns: 110px minmax(0, 1fr) 130px; gap: 10px; align-items: center; font-size: 13.5px; margin-bottom: 6px; }
+.jf-t { height: 12px; background: var(--rule); border-radius: 99px; overflow: hidden; }
+.jf-t i { display: block; height: 100%; background: var(--green); border-radius: 99px; transition: width .25s; }
+.jf-t i.over { background: var(--red); }
+.jf-v { color: var(--ink-2); text-align: right; white-space: nowrap; }
+@media (max-width: 620px) { .jf-grid { grid-template-columns: 1fr; } .jf-bar { grid-template-columns: 84px minmax(0, 1fr) 96px; font-size: 12.5px; } }
+</style>
+</head>
+<body>
+<div class="card pccard wati jf">
+  <div class="brand"><a href="/?fix=jobs">&larr; THE GANTRY · TOOLS</a></div>
+  <h1>A mobile job sheet in Jotform: signed on site, filed in a Google Sheet, PDF to the office</h1>
+  <p class="lede">For service and site teams still on carbon-copy job sheets. One form on the technician's phone replaces the paper, the retyping and the lost copies. Here is the build, step by step, and the plan you would actually need.</p>
+  <div class="trust" id="gantry-trust"><img src="/sayed.jpg" alt="Sayed Rashid" width="32" height="32" loading="lazy"><div class="trust-t"><b>By Sayed Rashid</b>, ex-auditor, 38 systems taken live. Steps, prices and limits checked against Jotform's own pages on 17 November 2026.</div></div>
+  <div class="tldr"><b>The one-minute version</b>
+    <ul>
+      <li>Build one Jotform form with the fields from your paper job sheet, plus a Signature field.</li>
+      <li>Connect it to Google Sheets (Settings, Integrations) and switch on Attach PDF in the notification email (Settings, Emails, Advanced).</li>
+      <li>Technicians open it on the phone. Jotform's free Mobile Forms app also works offline and syncs later.</li>
+      <li>The free Starter plan covers 100 submissions a month and keeps 500 in total. A team of three doing five visits a day needs Bronze, US$34 a month billed yearly.</li>
+    </ul>
+  </div>
+  <div class="guide">
+    <h2>The job this replaces</h2>
+    <p><b>Illustration, not a client:</b> an aircon servicing firm with three technicians. Each visit ends with a three-part carbon job sheet: the customer signs, keeps the pink copy, the white copy goes back in the van. On Friday someone at the office types the week's sheets into Excel so the invoices can go out. Some sheets arrive late, some never, and a few cannot be read.</p>
+    <p>Nothing about that is unusual. The work is done and signed for; it just takes days to reach the person who bills it. The form below does not change the job, only where the paper goes.</p>
+    <figure class="jf-fig" aria-labelledby="flowcap">
+  <svg viewBox="0 0 720 300" role="img" aria-label="One form on the phone sends each visit three ways: a row in a Google Sheet, a PDF to the office email and a copy to the customer" style="width:100%;height:auto;display:block">
+    <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--blue)"/></marker></defs>
+    <rect x="18" y="40" width="150" height="220" rx="22" style="fill:#fff;stroke:var(--ink);stroke-width:2"/>
+    <rect x="32" y="62" width="122" height="14" rx="4" style="fill:var(--blue-wash)"/>
+    <rect x="32" y="86" width="122" height="14" rx="4" style="fill:var(--blue-wash)"/>
+    <rect x="32" y="110" width="90" height="14" rx="4" style="fill:var(--blue-wash)"/>
+    <rect x="32" y="134" width="122" height="40" rx="6" style="fill:#fff;stroke:var(--line)"/>
+    <path d="M42,160 C58,140 66,170 82,150 S110,158 128,146" style="fill:none;stroke:var(--blue);stroke-width:2.2;stroke-linecap:round"/>
+    <rect x="32" y="190" width="122" height="30" rx="8" style="fill:var(--blue)"/>
+    <text x="93" y="210" text-anchor="middle" style="fill:#fff;font:700 13px var(--font)">Submit</text>
+    <text x="93" y="284" text-anchor="middle" style="fill:var(--ink);font:700 14px var(--font)">On site, on the phone</text>
+    <path d="M178,110 C260,110 270,62 352,62" style="fill:none;stroke:var(--blue);stroke-width:2.2" marker-end="url(#ah)"/>
+    <path d="M178,150 L352,150" style="fill:none;stroke:var(--blue);stroke-width:2.2" marker-end="url(#ah)"/>
+    <path d="M178,190 C260,190 270,238 352,238" style="fill:none;stroke:var(--blue);stroke-width:2.2" marker-end="url(#ah)"/>
+    <g><rect x="360" y="28" width="342" height="68" rx="12" style="fill:var(--green-wash);stroke:var(--green)"/>
+      <text x="376" y="56" style="fill:var(--ink);font:800 15px var(--font)">1. A new row in Google Sheets</text>
+      <text x="376" y="80" style="fill:var(--ink-2);font:400 13px var(--font)">job no., customer, hours, materials, photo links</text></g>
+    <g><rect x="360" y="116" width="342" height="68" rx="12" style="fill:var(--blue-wash);stroke:var(--blue)"/>
+      <text x="376" y="144" style="fill:var(--ink);font:800 15px var(--font)">2. PDF of the signed sheet to the office</text>
+      <text x="376" y="168" style="fill:var(--ink-2);font:400 13px var(--font)">notification email, Attach PDF switched on</text></g>
+    <g><rect x="360" y="204" width="342" height="68" rx="12" style="fill:var(--canary);stroke:var(--canary-line)"/>
+      <text x="376" y="232" style="fill:var(--ink);font:800 15px var(--font)">3. A copy to the customer</text>
+      <text x="376" y="256" style="fill:var(--ink-2);font:400 13px var(--font)">autoresponder email to the address on the form</text></g>
+  </svg>
+  <figcaption id="flowcap">One submission, three places. Nobody retypes the sheet at the office, and the signed copy cannot be lost in a van.</figcaption>
+</figure>
+
+    <h2>The fields to put on the form</h2>
+    <p>Copy your paper sheet, line for line. If a field is never filled in today, leave it out: every extra field is a reason for a technician to skip the form.</p>
+    <div class="tw"><table>
+      <tr><th>On the paper sheet</th><th>Jotform element</th><th>Why it matters later</th></tr>
+      <tr><td>Job or work order number</td><td>Short Text, required</td><td>It is how the sheet is filtered per job and matched to the invoice</td></tr>
+      <tr><td>Customer and site address</td><td>Short Text and Address</td><td>Goes onto the invoice as written</td></tr>
+      <tr><td>Technician</td><td>Dropdown</td><td>Hours per person without asking anyone</td></tr>
+      <tr><td>Date, time in, time out</td><td>Date Picker and Time</td><td>Labour hours for <a href="job-costing-calculator.html">job costing</a></td></tr>
+      <tr><td>Work done</td><td>Long Text</td><td>The line the customer reads on the invoice</td></tr>
+      <tr><td>Materials used</td><td>Long Text, one item and quantity per line</td><td>What to bill and what to restock</td></tr>
+      <tr><td>Photos before and after</td><td>File Upload</td><td>Settles most "you never fixed it" calls</td></tr>
+      <tr><td>Customer name and email</td><td>Full Name and Email</td><td>Who signed, and where their copy goes</td></tr>
+      <tr><td>Customer signature</td><td>Signature (Basic tab)</td><td>The proof that the work was accepted</td></tr>
+    </table></div>
+
+    <h2>Build it: seven steps</h2>
+    <ol class="steps">
+      <li><b>Create the form.</b> Start a blank form in Jotform and add the elements in the table, in the same order as the paper. The Signature element sits under the Basic tab of the element list. Mark the job number and the signature as required.</li>
+      <li><b>Connect Google Sheets.</b> In the Form Builder click Settings, then Integrations, then Google Sheets. Choose Create a New Spreadsheet, click Next, then Authenticate with the Google account the office uses. Keep all fields ticked and click Save. If you are moving a form that already has entries, tick "Send Existing Submissions to the Sheet".</li>
+      <li><b>Send the signed PDF to the office.</b> Settings, then Emails, then edit the notification email. On its Advanced tab switch on Attach PDF and click Save. Every submission now arrives in the office inbox with the filled, signed sheet attached.</li>
+      <li><b>Send the customer their copy.</b> Under Settings, Emails, add an autoresponder addressed to the Email field. Jotform's help article on attaching the PDF covers notification emails; check the same Advanced tab in your autoresponder before you promise customers a PDF.</li>
+      <li><b>Put it on the phones.</b> Share the form link with each technician and add it to the home screen, or install Jotform's free Mobile Forms app, which Jotform says saves entries offline and syncs them when the phone reconnects.</li>
+      <li><b>Test with three made-up jobs.</b> Fill it in from a phone, once with no signal. Check that three rows reached the sheet, three PDFs reached the office and the photos open.</li>
+      <li><b>Leave the sheet's headers alone.</b> Jotform's help article warns that renaming column headers or adding filters in Google Sheets can pause the updates. Build reports on a second tab that reads from the first.</li>
+    </ol>
+    <p class="src">Steps follow Jotform's help articles on Google Sheets (updated 3 January 2026) and PDF attachments in email notifications (updated 1 June 2024), read on 17 November 2026. Menu names can move; the help centre has the current screens.</p>
+
+    <h2>Which plan this needs, in your numbers</h2>
+    <p>The limit most service teams hit first is submissions a month, then the 500 submissions the free plan keeps in total, then upload space for photos. Put in your own numbers.</p>
+    <div class="pc jf-calc" id="jfForm">
+      <div class="jf-grid">
+        <label>Technicians filling it in<input type="number" id="jfTech" value="3" min="1" inputmode="numeric"></label>
+        <label>Visits per technician a day<input type="number" id="jfVisits" value="5" min="0" step="0.5" inputmode="decimal"></label>
+        <label>Working days a month<input type="number" id="jfDays" value="22" min="1" inputmode="numeric"></label>
+        <label>Photos per visit<input type="number" id="jfPhotos" value="2" min="0" inputmode="numeric"></label>
+        <label>MB per photo<small>Check the size of one photo from your own phone</small><input type="number" id="jfMb" value="2" min="0" step="0.5" inputmode="decimal"></label>
+        <label>Jotform Sign Automation on the signature?<select id="jfSign"><option value="0" selected>No, a plain signature field</option><option value="1">Yes, each one is a signed document</option></select></label>
+      </div>
+      <div id="out" class="on" aria-live="polite"></div>
+      <div class="jf-bars" id="jfBars" aria-hidden="true"></div>
+    </div>
+    <p class="src">Limits from jotform.com/pricing, read on 17 November 2026: Starter free (100 submissions a month, 500 kept, 100 MB, 10 signed documents a month), Bronze US$39 a month or US$34 billed yearly (1,000, 10,000 kept, 1 GB, 100 signed), Silver US$49 or US$39 (2,500, 25,000, 10 GB, 250), Gold US$129 or US$99 (10,000, 100,000, 100 GB, 1,000). Each listed plan is one user, the account that builds the form. A shared form link can be filled in by anyone who has it; if your technicians will use the Mobile Forms app instead, check on Jotform's site how they sign in before you count on one user.</p>
+
+    <h2>Before you start: three honest limits</h2>
+    <h3>1. The free plan keeps 500 submissions</h3>
+    <p>At 88 visits a month (one technician, four a day) the free plan's 500 stored submissions fill in under six months. The rows already sent to your Google Sheet stay in Google, but plan how you will archive old entries in Jotform before you reach the cap.</p>
+    <h3>2. Branding stays on the free plan</h3>
+    <p>Jotform's pricing page says forms and signed documents on Starter carry Jotform branding, removed on paid plans. Customers will see it on the form.</p>
+    <h3>3. Signed documents are a separate count</h3>
+    <p>A plain Signature field is a normal submission. With Jotform Sign Automation switched on for that field, Jotform's support team says every submission also counts against the monthly signed documents limit (10 on Starter, 100 on Bronze). Most job sheets do not need Sign Automation; switch it on only if you need its audit trail.</p>
+
+    <h2>The same build, three other jobs</h2>
+    <ul>
+      <li><b>Proof of delivery.</b> DO number, items and quantities received, shortages, receiver's name, signature and a photo of the goods. Pairs with the free <a href="delivery-order-generator.html">delivery order generator</a> for customers who still want paper.</li>
+      <li><b>Site progress sign-off.</b> Job, stage reached, percentage done, two photos, supervisor's signature, emailed to whoever raises the <a href="progress-claim-calculator.html">progress claim</a> that day.</li>
+      <li><b>Stock count on the shop floor.</b> Location, item, counted quantity, counter's name. The rows paste straight into the <a href="stock-take-variance-calculator.html">stock take variance calculator</a>.</li>
+    </ul>
+
+    <h2>When a form is not enough</h2>
+    <p>A form gets the record to the office the same day. It does not price the job, deduct the stock or raise the invoice. If the sheet starts to become the system, with formulas pulling hours into invoices and materials into reorders, that is the point where job costing and stock belong in proper software. The <a href="job-costing-calculator.html">job costing calculator</a> shows what a job is costing you today, and the free 20-minute review below is there if you want a second pair of eyes on the next step.</p>
+    <p>Prefer to stay on free tools? Google Forms costs nothing and also writes to Google Sheets, but it has no built-in signature field, which is the main reason this page uses Jotform.</p>
+
+    <h2>Questions</h2><details class="q"><summary>Is Jotform free for a job sheet?</summary><p>Yes, up to a point. The free Starter plan allows 5 forms and 100 submissions a month, keeps 500 submissions in total, gives 100 MB of upload space and shows Jotform branding on your forms. One technician doing about four visits a day fits. A team of three does not.</p></details><details class="q"><summary>Can the customer sign on the phone?</summary><p>Yes. Add the Signature element from the Basic tab in the Form Builder and the customer signs on the screen. If you also switch on Jotform Sign Automation for that field, Jotform's support team says every submission counts against the monthly signed documents limit, which is 10 on the free plan.</p></details><details class="q"><summary>Does it work without mobile data?</summary><p>Jotform says its free Mobile Forms app collects submissions offline and syncs them to your account when the phone reconnects. Test it once in a basement or plant room before you rely on it.</p></details><details class="q"><summary>Will the Google Sheet update if I change a submission?</summary><p>Jotform's help article says edits made in the entry editor reach the sheet, but inline edits in Jotform Tables do not, and renaming the sheet's column headers can pause the updates. Leave the headers alone.</p></details><details class="q"><summary>Does it create the invoice?</summary><p>No. It gives the office a clean, signed record of each visit in one sheet. Raising the invoice is still a separate step, in your accounting software or in the free invoice generator on this site.</p></details>
+  </div>
+  <div class="auto">
+    <h2>Build the first version today</h2>
+    <p>The free Starter plan is enough to build the form and run it for a week with one technician. You will know within a week whether the team uses it, before any money moves.</p>
+    <a class="cta" data-cta="bottom" href="https://tools.gantry.work/go/?u=https%3A%2F%2Fwww.jotform.com%2F%3Fpartner%3Dgantrywork" target="_blank" rel="sponsored noopener">Open Jotform and start free</a>
+    <p class="disc"><b>What happens when you click:</b> Jotform's own website opens in a new tab, where you can sign up for the free Starter plan. Paid plans carry a 30-day money-back guarantee, per Jotform's pricing page.</p>
+    <p class="disc">Affiliate link: if you sign up to Jotform through it, The Gantry may earn a commission at no extra cost to you. Prices and limits on this page were read on jotform.com on 17 November 2026 and are in US dollars. Check them there before you decide.</p>
+    <p class="two">Rather have it looked at first? <a href="https://cal.com/sayed.r/20min" target="_blank" rel="noopener">Book a free 20-minute review</a> of how jobs get from site to invoice today. No pitch.</p>
+  </div>
+  <div class="guide">
+    <h2>Related free tools</h2>
+    <ul>
+      <li><a href="job-costing-calculator.html">Job costing calculator</a>: budget against actual while the job runs</li>
+      <li><a href="progress-claim-calculator.html">Progress claim calculator</a>: retention, previous claims and GST</li>
+      <li><a href="delivery-order-generator.html">Delivery order generator</a> and <a href="invoice-generator.html">invoice generator</a></li>
+      <li><a href="timesheet-calculator.html">Timesheet calculator</a> for the hours side</li>
+    </ul>
+  </div>
+  <div class="footer">
+    <strong>The Gantry</strong>: put the weight on the system, not your people.<br>
+    <a href="/?fix=jobs">All job and project tools</a> · <a href="https://www.gantry.work/subscribe?utm_source=tools-jotform-job-sheet">Subscribe free</a> · <a href="/privacy.html">Privacy</a>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+  // Plans as read on jotform.com/pricing on 17 Nov 2026 (USD). Update with CHECKED in build_jotformpage.py.
+  var PLANS = [
+    { n: 'Starter (free)', m: 0, y: 0, sub: 100, kept: 500, mb: 100, sign: 10 },
+    { n: 'Bronze', m: 39, y: 34, sub: 1000, kept: 10000, mb: 1024, sign: 100 },
+    { n: 'Silver', m: 49, y: 39, sub: 2500, kept: 25000, mb: 10240, sign: 250 },
+    { n: 'Gold', m: 129, y: 99, sub: 10000, kept: 100000, mb: 102400, sign: 1000 }
+  ];
+  var $ = function (id) { return document.getElementById(id); };
+  var num = function (id) { var v = parseFloat(String(($(id) || {}).value || '').replace(/,/g, '')); return isFinite(v) && v > 0 ? v : 0; };
+  var fmt = function (n) { return Math.round(n).toLocaleString('en-SG'); };
+  var ev = function (n, p) { try { p = p || {}; p.tool_name = 'jotform-job-sheet'; p.tool_category = 'guide'; gtag('event', n, p); } catch (e) {} };
+  var months = function (cap, per) { if (!per) return 'never'; var m = cap / per; return m >= 24 ? 'more than 2 years' : m < 1 ? 'less than a month' : 'about ' + Math.floor(m) + (Math.floor(m) === 1 ? ' month' : ' months'); };
+  function calc(fromUser) {
+    var subs = Math.round(num('jfTech') * num('jfVisits') * num('jfDays')), mb = subs * num('jfPhotos') * num('jfMb'), sign = +$('jfSign').value === 1;
+    var fit = PLANS.filter(function (p) { return p.sub >= subs && (!sign || p.sign >= subs); })[0];
+    var h = '<h3>' + fmt(subs) + ' submissions a month</h3>';
+    if (!fit) { h += '<p>That is above the Gold plan\'s 10,000 a month, which is Enterprise territory. Talk to Jotform, or reconsider whether a form is still the right tool at that volume.</p>'; }
+    else {
+      h += '<p><b>Smallest plan that fits: ' + fit.n + '</b>' + (fit.m ? ', US$' + fit.y + ' a month billed yearly or US$' + fit.m + ' month to month.' : '.') + '</p>';
+      h += '<ul><li>Stored submissions fill (' + fmt(fit.kept) + ' kept): ' + months(fit.kept, subs) + '.</li>';
+      h += '<li>Upload space fills (' + (fit.mb >= 1024 ? fmt(fit.mb / 1024) + ' GB' : fit.mb + ' MB') + ' at about ' + fmt(mb) + ' MB of photos a month): ' + months(fit.mb, mb) + '.</li>';
+      if (sign) h += '<li>Sign Automation is on, so each submission is also a signed document (' + fmt(fit.sign) + ' a month on ' + fit.n + ').</li>';
+      h += '</ul>';
+      if (fit.m === 0 && subs > 80) h += '<p>Close to the free limit. A busy week pushes you over, so expect Bronze.</p>';
+      if (mb > 0 && fit.mb / mb < 12) {
+        var roomy = PLANS.filter(function (p) { return p.mb / mb >= 12 && p.sub >= subs; })[0];
+        h += '<p><b>Photos are your real limit.</b> Upload space is a total, not a monthly allowance, so at this rate you would be moving old photos out of Jotform every ' + (fit.mb / mb < 1 ? 'few weeks' : 'few months') + '. ' + (roomy ? roomy.n + ' (US$' + roomy.y + ' a month billed yearly) holds about a year of them. Fewer or smaller photos per visit also work.' : 'Fewer or smaller photos per visit is the cheaper fix.') + '</p>';
+      }
+    }
+    $('out').innerHTML = h;
+    var bars = '';
+    PLANS.forEach(function (p) {
+      var pct = Math.min(100, subs / p.sub * 100), over = subs > p.sub;
+      bars += '<div class="jf-bar"><span class="jf-l">' + p.n + '</span><span class="jf-t"><i style="width:' + pct.toFixed(1) + '%" class="' + (over ? 'over' : '') + '"></i></span><span class="jf-v">' + (over ? 'over by ' + fmt(subs - p.sub) : Math.round(pct) + '% of ' + fmt(p.sub)) + '</span></div>';
+    });
+    $('jfBars').innerHTML = '<p class="jf-cap">Your monthly submissions against each plan\'s limit</p>' + bars;
+    if (fromUser) ev('jf_plan_calc', { subs: subs, plan: fit ? fit.n : 'enterprise', sign: sign ? 1 : 0 });
+  }
+  var t;
+  Array.prototype.forEach.call(document.querySelectorAll('#jfForm input, #jfForm select'), function (el) {
+    el.addEventListener('input', function () { calc(false); clearTimeout(t); t = setTimeout(function () { calc(true); }, 1500); });
+    el.addEventListener('change', function () { calc(false); });
+  });
+  document.addEventListener('click', function (e) { var a = e.target && e.target.closest ? e.target.closest('a[data-cta]') : null; if (a) ev('jf_cta', { cta: a.getAttribute('data-cta') }); }, true);
+  calc(false);
+})();
+</script>
+</body>
+</html>

@@ -179,6 +179,8 @@
     kids(card, '.guide').forEach(function (g) {
       var long = tool && !g.contains(tool) && (g.textContent || '').replace(/\s+/g, ' ').length > 700;
       if (!long) return;
+      /* 17 Nov 2026: a partner box (Make, WATI, Jotform) stays visible under the booking card instead of folding away with the guide */
+      Array.prototype.forEach.call(g.querySelectorAll('.aff-box'), function (b) { after.appendChild(b); });
       var det = document.createElement('details'); det.className = 'gt-more';
       var h = g.querySelector('h2'), lead = h ? h.textContent.trim() : 'How it works';
       det.innerHTML = '<summary>' + esc(lead.length > 64 ? 'How it works, worked examples and questions' : lead + ', with examples and questions') + '</summary>';
