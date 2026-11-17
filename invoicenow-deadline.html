@@ -322,7 +322,7 @@ function calculate() {
       ' days of 2025, so IRAS scales it to a full year &mdash; ' + fmt(ann.raw) + ' &divide; ' + ann.days +
       ' &times; 365 = <strong>' + fmt(ann.figure) + '</strong>. That annualised figure is what sets your phase. ' + verdict;
   }
-  document.getElementById('rBand').textContent = band + (past ? '' : ' · about ' + months + ' months away');
+  document.getElementById('rBand').textContent = band + (past ? '' : months < 1 ? ' · less than a month away' : ' · about ' + months + (months === 1 ? ' month' : ' months') + ' away');
   document.getElementById('rVerdict').innerHTML = verdict;
 
   // grant

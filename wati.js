@@ -54,7 +54,7 @@
       var risk = missed * (buy / 10) * value * 52 / 12, hasMoney = missed > 0 && value > 0 && buy > 0;
       var pl = planFor(people, false, false), out = $('out'), h = '', verdict;
       var math = hasMoney
-        ? '<div class="math">Your numbers: ' + missed + ' missed or late ' + (missed === 1 ? 'chat' : 'chats') + ' a week × ' + buy + ' in 10 who would have bought × ' + money(value) + ' an order × 52 weeks ÷ 12 months = about <b>' + money(risk) + ' a month</b> at risk.<br>A shared inbox for ' + people + (people === 1 ? ' person' : ' people') + ': <b>' + money(pl.month) + ' a month</b> on WATI\'s ' + pl.name + ' plan, billed yearly' + (pl.extra ? ' (' + money(pl.base) + ' plus ' + pl.extra + ' extra users at ' + money(P.extraUser) + ')' : '') + ', before Meta\'s per-message charges.</div>'
+        ? '<div class="math">Your numbers: ' + missed.toLocaleString('en-SG', { maximumFractionDigits: 2 }) + ' missed or late ' + (missed === 1 ? 'chat' : 'chats') + ' a week × ' + buy.toLocaleString('en-SG', { maximumFractionDigits: 2 }) + ' in 10 who would have bought × ' + money(value) + ' an order × 52 weeks ÷ 12 months = about <b>' + money(risk) + ' a month</b> at risk.<br>A shared inbox for ' + people + (people === 1 ? ' person' : ' people') + ': <b>' + money(pl.month) + ' a month</b> on WATI\'s ' + pl.name + ' plan, billed yearly' + (pl.extra ? ' (' + money(pl.base) + ' plus ' + pl.extra + ' extra users at ' + money(P.extraUser) + ')' : '') + ', before Meta\'s per-message charges.</div>'
         : '<p class="src">Fill in the three money boxes (missed chats, order value, how many would have bought) to see whether it pays for itself in your own numbers.</p>';
       if (share === 'tool') {
         verdict = 'has_tool';

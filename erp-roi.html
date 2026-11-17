@@ -243,7 +243,7 @@ function short(n) {
 
 function paybackTxt(m) {
   if (!isFinite(m.months)) return 'never';
-  if (m.months <= 18) return Math.ceil(m.months) + ' months';
+  if (m.months <= 18) { const mo = Math.ceil(m.months); return mo + (mo === 1 ? ' month' : ' months'); }
   return (Math.round(m.payback * 10) / 10).toFixed(1) + ' years';
 }
 function standing(v) { return short(Math.abs(v)) + (v >= 0 ? ' ahead' : ' down'); }
