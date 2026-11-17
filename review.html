@@ -403,6 +403,23 @@ document.documentElement.className += ' js';
   .qa dd { margin: 0; font-family: var(--serif); font-size: 17px; line-height: 1.55; color: var(--ink-2); }
   .qa a { color: var(--blue); }
   @media (min-width: 720px) { .qa div { grid-template-columns: 240px 1fr; gap: 24px; align-items: baseline; } }
+
+  /* other options: two clear cards */
+  .opts-wrap { margin: 56px 0 64px; }
+  .opts-h { font-family: var(--font); font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 14px; }
+  .opts { display: grid; gap: 14px; }
+  a.opt { position: relative; display: block; padding: 20px 56px 20px 20px; border: 1.5px solid var(--rule); border-radius: 14px; background: #fff; color: var(--ink); text-decoration: none;
+    box-shadow: 0 1px 2px rgba(20,27,61,.05); transition: border-color .2s, box-shadow .2s, transform .2s var(--ease); }
+  a.opt:hover { border-color: var(--blue); box-shadow: 0 12px 26px -16px rgba(20,27,61,.45); transform: translateY(-2px); color: var(--ink); }
+  a.opt .opt-k { display: block; font-family: var(--font); font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); }
+  a.opt b { display: block; margin-top: 6px; font-family: var(--font); font-size: 19px; letter-spacing: -0.015em; }
+  a.opt .opt-d { display: block; margin-top: 4px; font-family: var(--serif); font-size: 15.5px; line-height: 1.5; color: var(--ink-2); }
+  a.opt i { position: absolute; right: 18px; top: 50%; margin-top: -18px; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--blue-wash); color: var(--blue); transition: background .2s, color .2s; }
+  a.opt i svg { width: 18px; height: 18px; }
+  a.opt:hover i { background: var(--blue); color: #fff; }
+  @media (min-width: 720px) { .opts { grid-template-columns: 1fr 1fr; gap: 18px; } }
+  @media (prefers-reduced-motion: reduce) { a.opt { transition: none; } a.opt:hover { transform: none; } }
+  .final .opts-wrap { text-align: left; max-width: 760px; margin-left: auto; margin-right: auto; margin-bottom: 0; }
 </style>
 <!-- seo:start -->
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -534,10 +551,13 @@ if(!window.__redir){try{gtag('event','review_view',{source:window.gSrc,page:'hub
         <p class="fine">I take every call myself, so there are only so many each week.</p>
       </div>
       <p class="lockline" id="hubLock" hidden><b>You have used your 3 free tools.</b> They open again for good when you ask for the video or book the call.</p>
-      <div class="alt">
-        <a href="review-video.html" data-carry data-cta="video"><b>Not ready to talk? Get a two-minute video instead.</b><small>Answer five short questions. I email you a video within two working days.</small><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        <a href="review-tools.html" id="optTools" data-carry data-cta="tools"><b>Or work it out yourself with the free tools.</b><small>37 calculators and templates. Free, as often as you like.</small><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <div class="opts-wrap">
+      <p class="opts-h">Not ready to talk? Two other options</p>
+      <div class="opts">
+      <a class="opt" href="review-video.html" data-carry data-cta="video"><span class="opt-k">No call needed</span><b>Get a two-minute video</b><span class="opt-d">Five questions. A video in your inbox within two working days.</span><i><svg aria-hidden="true" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 12h15M13 6l6 6-6 6"/></svg></i></a>
+      <a class="opt" href="review-tools.html" data-carry data-cta="tools" id="optTools"><span class="opt-k">Do it yourself</span><b>Use the free tools</b><span class="opt-d">37 calculators and templates. Most need no sign-up.</span><i><svg aria-hidden="true" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 12h15M13 6l6 6-6 6"/></svg></i></a>
       </div>
+    </div>
     </div>
   </section>
 </main>
