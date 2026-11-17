@@ -20,7 +20,7 @@
    The only data this file passes on is what the page hands it for the booking notes and the form's hidden fields (the visitor's answers). */
 (function () {
   'use strict';
-  var FILES = { wide: ['/review-main.mp4', '/review-main.jpg'], tall: ['/review-main-v.mp4', '/review-main-v.jpg'] }, VTT = '/review-main.vtt';
+  var FILES = { wide: ['/review-main.mp4?v=3', '/review-main.jpg?v=3'], tall: ['/review-main-v.mp4?v=3', '/review-main-v.jpg?v=3'] }, VTT = '/review-main.vtt?v=3';
   var ev = function (n, p) { try { window.gtag('event', n, p); } catch (e) {} };
   function src() {
     if (window.gSrc) return window.gSrc;
