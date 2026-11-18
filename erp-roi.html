@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ERP ROI Calculator — Automation Payback & 15-Year Value</title>
+<title>ERP ROI Calculator: Automation Payback & 15-Year Value</title>
 <meta name="description" content="Free ERP and automation ROI calculator. See payback in years, what it is worth at year 7, 10 and 15, and how your accountant treats the cost. No signup, no spreadsheet.">
-<meta property="og:title" content="ERP ROI Calculator — Automation Payback & 15-Year Value">
+<meta property="og:title" content="ERP ROI Calculator: Automation Payback & 15-Year Value">
 <meta property="og:description" content="Free ERP and automation ROI calculator. See payback in years, what it is worth at year 7, 10 and 15, and how your accountant treats the cost. No signup, no spreadsheet.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://tools.gantry.work/og-erp-roi.jpg">
@@ -41,7 +41,7 @@
 <meta property="og:locale" content="en_SG">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="ERP ROI Calculator — Automation Payback & 15-Year Value">
+<meta property="og:image:alt" content="ERP ROI Calculator: Automation Payback & 15-Year Value">
 <meta name="twitter:image" content="https://tools.gantry.work/og-erp-roi.jpg">
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
 <meta name="author" content="Sayed Rashid">
@@ -58,7 +58,7 @@
   <!-- FORM -->
   <div id="form">
     <h1>ERP &amp; Automation ROI Calculator</h1>
-    <p class="sub">A proper system is not a yearly expense — it is an asset you will still be running in ten or fifteen years, and your accountant will treat it as one. So this works out how long it takes to pay for itself, what it is worth at year 7, 10 and 15, and what happens if the project goes badly.</p>
+    <p class="sub">A proper system is not a yearly expense. It is an asset you will still be running in ten or fifteen years, and your accountant will treat it as one. So this works out how long it takes to pay for itself, what it is worth at year 7, 10 and 15, and what happens if the project goes badly.</p>
 
     <div class="field">
       <label for="staff">How many people would use the system?
@@ -86,11 +86,11 @@
         <small>Be honest. 100% never happens. Good projects land between 25% and 50%.</small>
       </label>
       <select id="recover">
-        <option value="15">15% — cautious</option>
-        <option value="25">25% — conservative</option>
-        <option value="35" selected>35% — typical good outcome</option>
-        <option value="50">50% — strong outcome</option>
-        <option value="65">65% — best case, rarely happens</option>
+        <option value="15">15%: cautious</option>
+        <option value="25">25%: conservative</option>
+        <option value="35" selected>35%: typical good outcome</option>
+        <option value="50">50%: strong outcome</option>
+        <option value="65">65%: best case, rarely happens</option>
       </select>
     </div>
 
@@ -113,7 +113,7 @@
         <small>Singapore SMEs can often get support under the EDGE grant, which replaced PSG and EDG in September 2026: up to 50% for an ERP, within a S$30,000 yearly sub-cap. Put 0 if unsure, and check current rates with Enterprise Singapore.</small>
       </label>
       <select id="grant">
-        <option value="0" selected>0% — assume none</option>
+        <option value="0" selected>0%: assume none</option>
         <option value="30">30%</option>
         <option value="40">40%</option>
         <option value="50">50%</option>
@@ -133,12 +133,12 @@
 
     <div class="field">
       <label for="growth">Average salary increase per year (%)
-        <small>Wages rise, so the same manual work costs more every year — and the hours you save are worth more too. 3% is a fair long-run assumption.</small>
+        <small>Wages rise, so the same manual work costs more every year, and the hours you save are worth more too. 3% is a fair long-run assumption.</small>
       </label>
       <select id="growth">
-        <option value="0">0% — no increase, most cautious</option>
+        <option value="0">0%: no increase, most cautious</option>
         <option value="2">2%</option>
-        <option value="3" selected>3% — typical</option>
+        <option value="3" selected>3%: typical</option>
         <option value="5">5%</option>
       </select>
     </div>
@@ -156,12 +156,12 @@
 
     <div class="sec-title">THE YEARLY NUMBERS</div>
     <div class="rows">
-      <div class="row"><span>Manual work costs you now (per year)</span><span id="rWaste">—</span></div>
-      <div class="row"><span>Hours won back (per year)</span><span id="rHours">—</span></div>
-      <div class="row"><span>Value of those hours (per year)</span><span id="rGain">—</span></div>
-      <div class="row"><span>Setup cost after grant</span><span id="rImpl">—</span></div>
-      <div class="row"><span>Software cost (per year)</span><span id="rAnnual">—</span></div>
-      <div class="row"><span>Net gain per year, year 1</span><span id="rNet">—</span></div>
+      <div class="row"><span>Manual work costs you now (per year)</span><span id="rWaste">0</span></div>
+      <div class="row"><span>Hours won back (per year)</span><span id="rHours">0</span></div>
+      <div class="row"><span>Value of those hours (per year)</span><span id="rGain">0</span></div>
+      <div class="row"><span>Setup cost after grant</span><span id="rImpl">0</span></div>
+      <div class="row"><span>Software cost (per year)</span><span id="rAnnual">0</span></div>
+      <div class="row"><span>Net gain per year, year 1</span><span id="rNet">0</span></div>
     </div>
 
     <div class="sec-title">WHAT IT IS WORTH IF YOU KEEP IT</div>
@@ -178,9 +178,9 @@
       <div id="stress"></div>
     </div>
 
-    <p class="disclaim">This is arithmetic, not a promise. It assumes the hours you win back turn into real work or real capacity — if the time just gets absorbed elsewhere, the money never shows up on your P&amp;L. The 10 and 15 year figures include one major refresh in year 10 costing 40% of the original setup, because no system runs untouched for fifteen years. The sensitivity figures assume the same salary growth throughout. Treat the result as a sanity check, not a business case, and check the accounting treatment with your own accountant.</p>
+    <p class="disclaim">This is arithmetic, not a promise. It assumes the hours you win back turn into real work or real capacity. If the time just gets absorbed elsewhere, the money never shows up on your P&amp;L. The 10 and 15 year figures include one major refresh in year 10 costing 40% of the original setup, because no system runs untouched for fifteen years. The sensitivity figures assume the same salary growth throughout. Treat the result as a sanity check, not a business case, and check the accounting treatment with your own accountant.</p>
 
-    <a class="cta" href="#" id="bookBtn">Talk it through — 20-min systems review</a>
+    <a class="cta" href="#" id="bookBtn">Talk it through: 20-min systems review</a>
     <a class="cta-ghost" href="index.html">See the other free tools</a>
     <button class="ghost" onclick="reset()">Run it again</button>
   </div>
@@ -190,7 +190,7 @@
     <div class="result-label">WANT A SECOND OPINION?</div>
     <h1>You've run the numbers three times.</h1>
     <p class="sub">Which usually means one of two things: the numbers look good and you want to be sure, or they don't and you're trying to make them. Both are worth twenty minutes of conversation.</p>
-    <div class="note">Bring your figures to a short video call. We'll pressure-test the assumptions — especially the recovery rate, which is where most business cases quietly fall apart — and you'll leave knowing whether it's worth doing and what to do first.</div>
+    <div class="note">Bring your figures to a short video call. We'll pressure-test the assumptions, especially the recovery rate, which is where most business cases quietly fall apart, and you'll leave knowing whether it's worth doing and what to do first.</div>
     <a class="cta" href="#" id="bookBtn2">Book the 20-min systems review</a>
     <button class="ghost" type="button" style="margin-top:12px;width:100%" onclick="keepGoing()">Not now, keep using the calculator</button>
     <a class="cta-ghost" href="index.html">Try the other free tools</a>
@@ -250,7 +250,7 @@ function standing(v) { return short(Math.abs(v)) + (v >= 0 ? ' ahead' : ' down')
 function line(m) {
   return isFinite(m.months)
     ? 'Pays back in ' + paybackTxt(m) + ', ' + standing(m.cumAt(10)) + ' at year 10.'
-    : 'Never pays back — ' + standing(m.cumAt(10)) + ' at year 10.';
+    : 'Never pays back: ' + standing(m.cumAt(10)) + ' at year 10.';
 }
 
 function more() { try { return sessionStorage.getItem('tae_more') === '1'; } catch (e) { return false; } }
@@ -323,8 +323,8 @@ function bandFor(m) {
     v: 'The yearly software cost eats the entire benefit, so the gap never closes no matter how long you keep it. Either the recovery rate is too low, the software is too expensive, or too few people are affected. <strong>Do not sign anything on these numbers.</strong>'
   };
   if (yrs <= 1) return {
-    band: 'Exceptional — check your inputs',
-    v: 'Under a year is unusually fast. That is either a genuinely painful manual process, or an optimistic recovery rate. Run it again at a lower recovery percentage. If it still pays back inside two years, the money is not your risk — <strong>delivery is</strong>. Projects like this fail on messy data and unclear ownership, not on arithmetic.'
+    band: 'Exceptional: check your inputs',
+    v: 'Under a year is unusually fast. That is either a genuinely painful manual process, or an optimistic recovery rate. Run it again at a lower recovery percentage. If it still pays back inside two years, the money is not your risk: <strong>delivery is</strong>. Projects like this fail on messy data and unclear ownership, not on arithmetic.'
   };
   if (yrs <= 2) return {
     band: 'Very strong case',
@@ -332,15 +332,15 @@ function bandFor(m) {
   };
   if (yrs <= 3) return {
     band: 'Strong long-term case',
-    v: 'Two to three years to pay back, on something you will still be using in year twelve, is a good outcome. Judge it the way you would judge a new machine or a van — not the way you judge this month\'s expenses.'
+    v: 'Two to three years to pay back, on something you will still be using in year twelve, is a good outcome. Judge it the way you would judge a new machine or a van, not the way you judge this month\'s expenses.'
   };
   if (yrs <= 5) return {
     band: 'Worth doing',
-    v: 'Three to five years is the normal, healthy range for a business system, and it is worth doing. <strong>A system like this is an asset, not a monthly bill</strong> — you will still be running it in ten or fifteen years, so once it has paid for itself, the remaining decade is almost entirely return. The figures below show what that looks like. The real question is not whether the numbers work, it is whether you will actually change the way people work.'
+    v: 'Three to five years is the normal, healthy range for a business system, and it is worth doing. <strong>A system like this is an asset, not a monthly bill</strong>. You will still be running it in ten or fifteen years, so once it has paid for itself, the remaining decade is almost entirely return. The figures below show what that looks like. The real question is not whether the numbers work, it is whether you will actually change the way people work.'
   };
   if (yrs <= 7) return {
     band: 'Defensible, but tighten it',
-    v: 'Five to seven years still lands inside the asset\'s useful life, so this is not a no — but it leaves little room for the usual overruns. <strong>Cut the scope to the two or three processes that hurt most</strong>, prove the savings, then extend. That usually pulls payback back under five years.'
+    v: 'Five to seven years still lands inside the asset\'s useful life, so this is not a no, but it leaves little room for the usual overruns. <strong>Cut the scope to the two or three processes that hurt most</strong>, prove the savings, then extend. That usually pulls payback back under five years.'
   };
   return {
     band: 'Not on these numbers',
@@ -392,11 +392,11 @@ function calculate() {
   // accounting view
   const life = p.life;
   document.getElementById('acct').innerHTML =
-    'The ' + money(m.netImpl) + ' setup cost is not an expense you lose in year one. It goes on your balance sheet as an asset and is written down over ' + life + ' years — about <strong>' + money(m.amortAnnual) + ' a year</strong>.<br><br>' +
+    'The ' + money(m.netImpl) + ' setup cost is not an expense you lose in year one. It goes on your balance sheet as an asset and is written down over ' + life + ' years, about <strong>' + money(m.amortAnnual) + ' a year</strong>.<br><br>' +
     'So the honest P&amp;L picture is: <strong>' + money(m.profitDuring) + ' a year</strong> for the first ' + life + ' years (value recovered, less software, less amortisation), then <strong>' + money(m.profitAfter) + ' a year</strong> once it is fully written down. ' +
     (m.profitDuring >= 0
       ? 'It adds to profit from year one even while you are still paying it off.'
-      : 'It costs you on paper in the early years and turns positive once the amortisation is behind you — which is exactly why judging a system on year one alone gives you the wrong answer.');
+      : 'It costs you on paper in the early years and turns positive once the amortisation is behind you, which is exactly why judging a system on year one alone gives you the wrong answer.');
 
   // sensitivity: the two things that actually go wrong, shown separately and together
   const mLow  = model(Object.assign({}, p, {recoverPct: p.recoverPct * (2 / 3)}));
@@ -411,7 +411,7 @@ function calculate() {
       ? 'pays back in <strong>' + paybackTxt(mBoth) + '</strong> and you are <strong>' + standing(b10) + '</strong> at year 10. '
       : '<strong>never pays back</strong>, and you are <strong>' + standing(b10) + '</strong> at year 10. ') +
     (b10 > 0
-      ? 'It still comes out ahead over the life of the asset even when both go wrong — that is what makes the decision safe rather than brave.'
+      ? 'It still comes out ahead over the life of the asset even when both go wrong. That is what makes the decision safe rather than brave.'
       : 'It does not survive both at once, so this only works if you hold the scope and actually get the savings. Fix the two worst processes first and prove them before committing to the rest.');
 
   bump();

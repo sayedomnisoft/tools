@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ERP Readiness Assessment — Free Checklist & Scorecard</title>
-<meta name="description" content="A free ERP readiness assessment scored against a practical checklist. Find out whether your business is genuinely ready to buy an ERP — or exactly what to fix first.">
-<meta property="og:title" content="ERP Readiness Assessment — Free Checklist & Scorecard">
-<meta property="og:description" content="A free ERP readiness assessment scored against a practical checklist. Find out whether your business is genuinely ready to buy an ERP — or exactly what to fix first.">
+<title>ERP Readiness Assessment: Free Checklist & Scorecard</title>
+<meta name="description" content="A free ERP readiness assessment scored against a practical checklist. Find out whether your business is genuinely ready to buy an ERP, or exactly what to fix first.">
+<meta property="og:title" content="ERP Readiness Assessment: Free Checklist & Scorecard">
+<meta property="og:description" content="A free ERP readiness assessment scored against a practical checklist. Find out whether your business is genuinely ready to buy an ERP, or exactly what to fix first.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://tools.gantry.work/og-erp-readiness.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -37,7 +37,7 @@
 <meta property="og:locale" content="en_SG">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="ERP Readiness Assessment — Free Checklist & Scorecard">
+<meta property="og:image:alt" content="ERP Readiness Assessment: Free Checklist & Scorecard">
 <meta name="twitter:image" content="https://tools.gantry.work/og-erp-readiness.jpg">
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
 <meta name="author" content="Sayed Rashid">
@@ -56,7 +56,7 @@
 
   <div id="intro">
     <h1>ERP Readiness Scorecard</h1>
-    <p class="sub">Most failed system projects were already in trouble before the software was chosen. Eight questions on the things that actually decide it — data, process, ownership, time.</p>
+    <p class="sub">Most failed system projects were already in trouble before the software was chosen. Eight questions on the things that actually decide it: data, process, ownership, time.</p>
   <!-- guidelink --><p style="margin:-10px 0 18px;font-size:14px;color:var(--ink-2)">Full guide: <a style="color:var(--blue)" href="https://www.gantry.work/p/from-spreadsheets-to-erp-how-to-retire?utm_source=tools&amp;utm_medium=erp-readiness&amp;utm_campaign=guidelink">From spreadsheets to ERP, without the drama →</a></p>
 
     <div class="note">This is not a software recommendation. No vendor is named, and the honest answer might be <strong>"not yet"</strong>.</div>
@@ -80,23 +80,23 @@
       <div class="result-label">FIX THESE FIRST</div>
       <ul class="gaps" id="gaps"></ul>
     </div>
-    <p class="disclaim">Lower score means more ready. This scorecard weighs preparation, not ambition — a low-readiness business can still succeed, it just needs to fix the foundations before signing anything.</p>
+    <p class="disclaim">Lower score means more ready. This scorecard weighs preparation, not ambition. A low-readiness business can still succeed, it just needs to fix the foundations before signing anything.</p>
     <a class="cta" href="#" id="bookBtn">Request your 20-min systems review</a>
     <a class="cta-ghost" id="videoBtn" href="https://tools.gantry.work/review.html?offer=video" target="_blank" rel="noopener">Prefer no call? Get a 2-minute video on this number &rarr;</a>
-    <a class="cta-ghost" href="https://www.gantry.work/subscribe?utm_source=tool-erp-readiness">Get the weekly playbooks — free</a>
+    <a class="cta-ghost" href="https://www.gantry.work/subscribe?utm_source=tool-erp-readiness">Get the weekly playbooks, free</a>
     <button class="ghost" onclick="reset()">Retake the scorecard</button>
   </div>
 
   <div id="gate" class="hidden">
     <div class="result-label">WANT A SECOND OPINION?</div>
     <h2>You've scored this three times.</h2>
-    <p class="sub">At this point the scorecard has told you what it can. What it can't tell you is the sequence — which gap to close first, and which ones will quietly close themselves once you fix another.</p>
+    <p class="sub">At this point the scorecard has told you what it can. What it can't tell you is the sequence: which gap to close first, and which ones will quietly close themselves once you fix another.</p>
     <div class="note">That ordering is the difference between a project that pays for itself in months and one that becomes a two-year story people tell at conferences. It depends entirely on <strong>your</strong> processes.</div>
     <p class="sub">Bring your score to a 20-minute Zoom review. We'll turn it into a sequence: what to fix now, what to fix during implementation, and what to ignore.</p>
     <a class="cta" href="#" id="bookBtn2">Request your 20-min systems review</a>
     <button class="ghost" type="button" style="margin-top:12px;width:100%" onclick="keepGoing()">Not now, keep using the calculator</button>
     <a class="cta-ghost" href="https://www.gantry.work/subscribe?utm_source=tool-gate">Not ready? Get the weekly playbooks instead</a>
-    <div class="footer">Free runs reset if you clear your browser storage — the limit is a nudge, not a wall.</div>
+    <div class="footer">No signup and no limit on how often you use it.</div>
   </div>
 
   <div class="footer" id="baseFooter">
@@ -144,39 +144,39 @@ const LIMIT = 3;
 
 const Q = [
   { q: "Are your core processes written down anywhere?",
-    a: ["Documented and current", "Partly — some steps, somewhere", "They live in people's heads"],
+    a: ["Documented and current", "Partly: some steps, somewhere", "They live in people's heads"],
     gap: "Undocumented processes: a system can only automate a process someone can describe." },
   { q: "Who owns this project and can make decisions?",
     a: ["One named person with authority", "A committee, decisions get debated", "Nobody yet"],
     gap: "No single decision-maker: projects without one owner stall at every trade-off." },
-  { q: "Your customer and product lists — how clean are they?",
+  { q: "Your customer and product lists: how clean are they?",
     a: ["One clean master list", "A few versions floating around", "Duplicates everywhere, nobody trusts them"],
     gap: "Dirty master data: it gets imported into the new system and poisons it on day one." },
-  { q: "Do you know what your current processes cost — in hours or dollars?",
+  { q: "Do you know what your current processes cost, in hours or dollars?",
     a: ["Yes, we've measured it", "Rough idea", "No baseline at all"],
     gap: "No baseline: without today's numbers you can never prove the system worked." },
   { q: "Has leadership agreed on the specific problem to solve?",
-    a: ["Yes — a specific, named problem", "Broadly, we want 'better visibility'", "We just know we need a system"],
+    a: ["Yes: a specific, named problem", "Broadly, we want 'better visibility'", "We just know we need a system"],
     gap: "No defined problem: 'we need ERP' is a budget, not a scope. Scope creep starts here." },
   { q: "Is there budget beyond the software licence?",
-    a: ["Yes — implementation, data work and training included", "Licence plus a bit", "Only the licence price"],
+    a: ["Yes: implementation, data work and training included", "Licence plus a bit", "Only the licence price"],
     gap: "Licence-only budget: implementation and training usually cost more than the software." },
   { q: "Will your key people have real time during implementation?",
     a: ["Yes, time is protected", "They'll squeeze it in", "They're already fully stretched"],
     gap: "No protected time: your best people are the project. Overloaded, they'll rubber-stamp bad design." },
   { q: "How many exceptions and workarounds does your standard process have?",
-    a: ["Few — the standard path is genuinely standard", "A handful of special cases", "Every customer is a special case"],
+    a: ["Few: the standard path is genuinely standard", "A handful of special cases", "Every customer is a special case"],
     gap: "Exception sprawl: each 'special case' becomes a customisation, a cost, and a thing that breaks on upgrade." }
 ];
 
 const BANDS = [
   { max: 3, name: "Ready to build",
-    v: "Your foundations are in place: documented process, clear ownership, clean data, real budget. You're in the minority — the risk now is choosing scope too broadly, not readiness." },
+    v: "Your foundations are in place: documented process, clear ownership, clean data, real budget. You're in the minority. The risk now is choosing scope too broadly, not readiness." },
   { max: 7, name: "Nearly ready",
     v: "Close. A couple of foundations need shoring up before you commit money, and they're all fixable in weeks rather than months. Fix them first and your implementation gets materially cheaper." },
   { max: 11, name: "Foundations needed first",
-    v: "Buying software at this point would mean paying a consultant to discover your processes for you — at their day rate. Two or three months of internal groundwork would change the economics of the whole project." },
-  { max: 16, name: "Not yet — and that's useful to know",
+    v: "Buying software at this point would mean paying a consultant to discover your processes for you, at their day rate. Two or three months of internal groundwork would change the economics of the whole project." },
+  { max: 16, name: "Not yet, and that's useful to know",
     v: "Right now a system would digitise the chaos rather than remove it. That's not a reason to give up; it's a reason to start with one bounded process, prove it, and build from there. Cheaper, faster, and it survives contact with reality." }
 ];
 
