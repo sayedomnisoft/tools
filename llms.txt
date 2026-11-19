@@ -1,68 +1,97 @@
-# The Gantry free business tools
+# The Gantry Tools
 
-> Free browser-based tools and calculators for small businesses, with Singapore defaults (9% GST, PayNow, InvoiceNow) that can be changed for any country. No signup; entries stay in the user's browser. Built by Sayed Rashid, who works with business owners on automation and business systems. Companion guides are published at https://www.gantry.work.
+> Free browser-based calculators, document generators and plain guides for small businesses in Singapore: GST at 9%, InvoiceNow, EDGE grants, progress claims, payment terms, stock and WhatsApp Business. No signup; entries stay in the user's browser. Written and maintained by Sayed Rashid, a former auditor who sets up business systems for small companies. Companion articles are published at https://www.gantry.work. Figures on each page carry the date they were checked and link to the official source (IRAS, IMDA, Enterprise Singapore, MOM, Meta, vendor pricing pages).
 
-## Start here: what is costing your business money?
-- [SME Systems Health Check](https://tools.gantry.work/health-check/): Ten honest questions, a score out of 20 and the one leak to fix first. About 60 seconds.
-- [Cost of Manual Work Calculator](https://tools.gantry.work/cost-of-manual-work.html): What retyping, chasing and checking really cost your team in a year.
-- [ERP Readiness Scorecard](https://tools.gantry.work/erp-readiness.html): Eight questions on data, process, ownership and time: are you ready for a system, and what to fix first?
-- [Inventory Software Cost Calculator](https://tools.gantry.work/inventory-software-cost-calculator.html): 12-month licence cost for Zoho Inventory, inFlow, Cin7 Core, Unleashed and Odoo from users, stock locations and monthly orders, with the plan each needs (prices checked 6 Oct 2026).
+Updated 19 November 2026. Every page below is free to use and to cite.
+
+## Start here
+- [All free tools](https://tools.gantry.work/): 48 tools and guides grouped by the problem they fix: late payments, stock, job costs, margins, paperwork, grants and InvoiceNow, WhatsApp.
+- [SME Systems Health Check](https://tools.gantry.work/health-check/): ten questions, about 60 seconds, a score and the process that leaks the most time.
+- [Cost of Manual Work Calculator](https://tools.gantry.work/cost-of-manual-work.html): what retyping, chasing and checking cost a team in a year.
+- [ERP Readiness Scorecard](https://tools.gantry.work/erp-readiness.html): eight questions on data, process, ownership and time before buying a system.
+- [Singapore SME Systems Checklist](https://tools.gantry.work/singapore-sme-systems-checklist.html): 12 printable, scored checks to pass before buying an ERP or inventory system.
+
+## GST, InvoiceNow and grants (Singapore)
+- [GST Calculator](https://tools.gantry.work/gst-calculator.html): add or remove 9% GST (multiply or divide by 1.09; GST inside a GST-inclusive price is 9/109), one amount or a list.
+- [InvoiceNow Implementation Date Calculator](https://tools.gantry.work/invoicenow-deadline.html): a web version of the IRAS calculator; GST status in, mandatory InvoiceNow date out, every phase from 2025 to 2031.
+- [How InvoiceNow Works](https://tools.gantry.work/invoicenow-explained.html): one invoice followed through five stops, from the seller's system to the customer and IRAS; Peppol ID, dates, costs and grants.
+- [Free InvoiceNow Solutions](https://tools.gantry.work/invoicenow-free.html): the free-of-charge packages on the official IRAS list, what each covers and their expiry dates.
+- [InvoiceNow Grants](https://tools.gantry.work/invoicenow-grants.html): IMDA's fixed payouts (S$1,000, S$5,000 for own-ERP integration, S$25,000 Queen Bee) and who qualifies.
+- [InvoiceNow Providers vs Access Points](https://tools.gantry.work/invoicenow-providers.html): what an InvoiceNow-Ready Solution Provider does versus an Access Point Provider, checked against IMDA's list.
+- [Is My Accounting Software InvoiceNow-Ready?](https://tools.gantry.work/invoicenow-software.html): Xero, QuickBooks, Odoo, SAP, NetSuite, Sage, Dynamics, ABSS, AutoCount and Zoho against IMDA's accredited list.
+- [EDGE Grant Calculator for ERP](https://tools.gantry.work/edge-grant-calculator.html): up to 50% for SMEs and 30% for non-SMEs; the Integrated ERP activity caps qualifying cost at S$60,000, so an SME gets at most S$30,000.
 
 ## Get paid faster
-- [Overdue Invoice Reminder Writer](https://tools.gantry.work/invoice-chaser.html): Drop in your Xero or QuickBooks aged receivables; get the right reminder for every late customer.
-- [AR Aging Report Generator](https://tools.gantry.work/ar-aging-report.html): Aging by customer, overdue %, DSO and a statement of account for every customer, from one export.
-- [Statement of Account Generator](https://tools.gantry.work/statement-of-account-generator.html): A statement for every customer with open invoices, aging and total due, as PDF.
-- [Invoice Generator](https://tools.gantry.work/invoice-generator.html): PDF invoices and GST tax invoices with your logo, numbering and payment details.
-- [Receipt Generator](https://tools.gantry.work/receipt-generator.html): Payment receipts with a PAID stamp for cash, PayNow, bank transfer or card.
+- [Overdue Invoice Reminder Writer](https://tools.gantry.work/invoice-chaser.html): upload a Xero or QuickBooks aged receivables export and get the right reminder for every late customer.
+- [AR Aging Report Generator](https://tools.gantry.work/ar-aging-report.html): aging buckets by customer, overdue totals, DSO and statements from one export.
+- [Statement of Account Generator](https://tools.gantry.work/statement-of-account-generator.html): a statement for every customer with open invoices, aging and total due, as PDF.
+- [DSO Calculator](https://tools.gantry.work/dso-calculator.html): DSO = receivables ÷ credit sales × days in the period; days beyond terms and cash tied up.
+- [Invoice Due Date Calculator](https://tools.gantry.work/invoice-due-date-calculator.html): due dates on net 7 to net 90 and net 30 EOM, days overdue and late interest.
+- [Get-Paid Kit](https://tools.gantry.work/get-paid-kit.html): payment reminder wording for day 1, 7 and 14, a statement cover note, a call script and a stop-supply rule. Free PDF.
 
-## Quote, sell and price
-- [Quotation Generator](https://tools.gantry.work/quotation-generator.html): Quotes with GST, validity and terms; one click turns an accepted quote into an invoice or delivery order.
-- [Delivery Order Generator](https://tools.gantry.work/delivery-order-generator.html): Delivery orders with a receiver signature block and no prices.
-- [Profit Margin Calculator](https://tools.gantry.work/profit-margin-calculator.html): Margin, markup, price and break-even; reprice a whole list to a target margin.
-- [Markup Calculator](https://tools.gantry.work/markup-calculator.html): Markup to margin and back, with the right selling price and GST.
+## Documents (free PDF generators)
+- [Invoice Generator](https://tools.gantry.work/invoice-generator.html): PDF invoices and Singapore GST tax invoices with logo, numbering and payment details.
+- [Quotation Generator](https://tools.gantry.work/quotation-generator.html): quotes with GST and a validity date that turn into an invoice in one click.
+- [Receipt Generator](https://tools.gantry.work/receipt-generator.html): payment receipts for cash, PayNow, bank transfer or card.
+- [Delivery Order Generator](https://tools.gantry.work/delivery-order-generator.html): delivery orders with a receiver signature block and no prices.
+- [Purchase Order Generator](https://tools.gantry.work/purchase-order-generator.html): numbered purchase orders with supplier, delivery date and terms.
 
-## Profit, cash and GST calculators
-- [Break-Even Calculator](https://tools.gantry.work/break-even-calculator.html): Units and sales you need to cover fixed costs, plus margin of safety.
-- [Gross Profit Calculator](https://tools.gantry.work/gross-profit-calculator.html): Gross profit, gross and net margin; works out cost of goods sold from stock.
-- [Price Increase Calculator](https://tools.gantry.work/price-increase-calculator.html): The % change between two prices, and what to charge when costs rise.
-- [GST Calculator](https://tools.gantry.work/gst-calculator.html): Add or remove 9% GST (or any rate), one amount or a whole list.
-- [DSO Calculator](https://tools.gantry.work/dso-calculator.html): Days sales outstanding, days beyond terms and the cash tied up.
-- [Invoice Due Date Calculator](https://tools.gantry.work/invoice-due-date-calculator.html): Due dates on net 7 to net 90 and net 30 EOM, days overdue and late interest.
+## Margins, pricing and profit
+- [Profit Margin Calculator](https://tools.gantry.work/profit-margin-calculator.html): any two of cost, price and margin give the third; reprice a whole list to a target margin.
+- [Markup Calculator](https://tools.gantry.work/markup-calculator.html): markup to margin and back, with GST and break-even.
+- [Break-Even Calculator](https://tools.gantry.work/break-even-calculator.html): break-even units = fixed costs ÷ (price − variable cost per unit), plus margin of safety.
+- [Gross Profit Calculator](https://tools.gantry.work/gross-profit-calculator.html): gross and net margin, with a cost of goods sold helper from stock counts.
+- [Price Increase Calculator](https://tools.gantry.work/price-increase-calculator.html): the % change between two prices and the price that keeps your margin when costs rise.
+- [Restaurant Margin Checklist](https://tools.gantry.work/restaurant-margin-checklist.html): a weekly 15-minute check of delivery app fees, food cost and wastage for Singapore F&B.
 
-## Buy, pay and staff
-- [Purchase Order Generator](https://tools.gantry.work/purchase-order-generator.html): Numbered purchase orders with supplier, delivery date and terms, as PDF.
-- [Timesheet Calculator](https://tools.gantry.work/timesheet-calculator.html): Hours, breaks, overnight shifts, overtime at 1.5× and pay for the week, with print and CSV.
-- [Month-End Close Cost Calculator](https://tools.gantry.work/month-end-close.html): What a slow close costs in salary every year, and what a five-day close is worth.
+## Stock, purchasing and imports
+- [Three-Way Match Guide and Checker](https://tools.gantry.work/three-way-match-guide.html): purchase order, goods received note and supplier invoice; worked example (100 ordered, 96 received, 100 invoiced) and a live checker.
+- [Landed Cost Calculator](https://tools.gantry.work/landed-cost-calculator.html): foreign price, exchange rate, freight, insurance, duty, 9% import GST and local charges per unit.
+- [Slow-Moving Stock Calculator](https://tools.gantry.work/slow-moving-stock-calculator.html): months of cover = quantity on hand ÷ average monthly usage, a stock class and a suggested provision.
+- [Stock Take Variance Calculator](https://tools.gantry.work/stock-take-variance-calculator.html): record accuracy, lines within tolerance and variance value.
+- [Year-End Stock Take Checklist](https://tools.gantry.work/year-end-stock-take-checklist.html): count plan, freeze and cut-off note and a count sheet. Free PDF.
+- [Inventory Software Cost Calculator](https://tools.gantry.work/inventory-software-cost-calculator.html): 12-month cost of Zoho Inventory, inFlow, Cin7 Core, Unleashed and Odoo from users, locations and orders.
 
-## WhatsApp and automation
-- [WhatsApp Business API Cost Calculator](https://tools.gantry.work/whatsapp-api-cost-calculator.html): Your monthly WhatsApp bill at Singapore rates, including the October 2026 change and provider plans.
-- [Make Credit Calculator](https://tools.gantry.work/make-credit-calculator.html): How many Make credits your workflows really use, and which plan you need.
-- [ERP & Automation ROI Calculator](https://tools.gantry.work/erp-roi.html): Payback period and 15-year value of a system, from your team size, hours and setup cost.
+## Construction and job costs
+- [Progress Claim Calculator (Singapore)](https://tools.gantry.work/progress-claim-calculator.html): work done to date + variations + materials on site, less retention and previous claims certified, plus GST; cumulative.
+- [Job Costing Calculator](https://tools.gantry.work/job-costing-calculator.html): cost to date against budget and percentage complete, projected final cost, overrun and unbilled work.
+- [Mobile Job Sheet in Jotform](https://tools.gantry.work/jotform-job-sheet.html): a phone job sheet the customer signs on site, saved to Google Sheets with a PDF to the office.
 
-## GST InvoiceNow (Singapore)
-- [InvoiceNow Deadline Finder](https://tools.gantry.work/invoicenow-deadline.html): Your GST status in, your InvoiceNow date out.
-- [Is My Software InvoiceNow-Ready?](https://tools.gantry.work/invoicenow-software.html): Check your accounting software against IMDA's accredited list.
-- [Free InvoiceNow Solutions](https://tools.gantry.work/invoicenow-free.html): The official free packages and their limits.
-- [InvoiceNow Grants](https://tools.gantry.work/invoicenow-grants.html): What you can actually claim.
-- [Providers vs Access Points](https://tools.gantry.work/invoicenow-providers.html): Which one you need, and when.
+## Month-end, cash flow and staff
+- [Month-End Close Cost Calculator](https://tools.gantry.work/month-end-close.html): what a slow close costs in salary every year.
+- [Month-End and Year-End Close Checklist](https://tools.gantry.work/december-close-checklist.html): day by day, with a test for each step and the Singapore dates a late close holds up.
+- [13-Week Cash Flow Forecast with Singapore Dates](https://tools.gantry.work/13-week-cash-flow-calendar.html): 7 Dec 2026 to 7 Mar 2027 with CPF, levy, GST, ECI and property tax dates from the official pages.
+- [Timesheet Calculator](https://tools.gantry.work/timesheet-calculator.html): hours, breaks, overnight shifts, overtime at 1.5x and weekly pay, with print and CSV.
+- [ERP and Automation ROI Calculator](https://tools.gantry.work/erp-roi.html): payback in years and value at year 7, 10 and 15.
 
-## Guides
-- [The Gantry](https://www.gantry.work): plain-English guides on ERP, automation, invoicing and InvoiceNow for small businesses
-- [How The Gantry works](https://www.gantry.work/p/how-the-gantry-works): who writes it, how tools and recommendations are chosen, affiliate disclosure
-- [All free tools, explained](https://www.gantry.work/p/i-built-you-four-free-tools)
+## WhatsApp Business and automation
+- [WhatsApp Business API Cost Calculator](https://tools.gantry.work/whatsapp-api-cost-calculator.html): the monthly bill at Meta's Singapore rates, the October 2026 change to replies and provider plans on top.
+- [WATI for a Small Team in Singapore](https://tools.gantry.work/wati-guide.html): what WATI is, who needs it and who does not, and what a team of 3, 5 or 10 pays.
+- [WATI Pricing Singapore](https://tools.gantry.work/wati-pricing-singapore.html): Growth and Pro plans in Singapore dollars, monthly or yearly, with a team-size calculator.
+- [WATI Free Trial Test Plan](https://tools.gantry.work/wati-free-trial-plan.html): what the 7-day trial includes, what it cannot do and a day-by-day test.
+- [WATI Go-Live Checklist](https://tools.gantry.work/wati-go-live-checklist.html): eight things to have ready before connecting a business number.
+- [Shared WhatsApp Inbox Fit Check](https://tools.gantry.work/wati-fit-check.html): stay on the free WhatsApp Business app, fix the free things first, or move to a shared inbox.
+- [Make.com Credit Calculator](https://tools.gantry.work/make-credit-calculator.html): credits a scenario uses each month and the plan it needs.
+- [Free n8n Blueprints](https://tools.gantry.work/blueprints/): five tested workflow files: overdue Xero invoices, supplier bills, a daily owner report, lead routing and WhatsApp orders.
+
+## Articles on www.gantry.work
+- [InvoiceNow: when your business must start](https://www.gantry.work/p/invoicenow-when-your-business-must)
+- [Accounting software not on the InvoiceNow list](https://www.gantry.work/p/accounting-software-not-on-invoicenow-list)
+- [The free InvoiceNow package that expires in March 2027](https://www.gantry.work/p/free-invoicenow-package-expires-march-2027)
+- [EDGE grant and ERP: what changed](https://www.gantry.work/p/edge-grant-erp-singapore-what-changed)
+- [Progress claim template for Singapore](https://www.gantry.work/p/progress-claim-template-singapore)
+- [Payment reminder email templates](https://www.gantry.work/p/payment-reminder-email-templates)
+- [Master data vs transactional data](https://www.gantry.work/p/master-data-vs-transactional-data)
+- [Safety stock and reorder point](https://www.gantry.work/p/safety-stock-reorder-point)
+- [Three-way matching](https://www.gantry.work/p/three-way-matching)
+- [WhatsApp Business API pricing](https://www.gantry.work/p/whatsapp-business-api-pricing)
+- [Make pricing review](https://www.gantry.work/p/make-pricing-review)
+
+## About
+- [How The Gantry works](https://www.gantry.work/p/how-the-gantry-works): who writes it, how tools and recommendations are chosen, and the affiliate disclosure.
+- [About Sayed Rashid](https://www.gantry.work/about)
 
 ## Optional
-- [Book a free 20-minute systems review](https://tools.gantry.work/review.html)
+- [Free 20-minute systems review](https://tools.gantry.work/review.html)
+- [Privacy and cookies](https://tools.gantry.work/privacy.html)
 - [Sitemap](https://tools.gantry.work/sitemap.xml)
-
-## Stock, jobs and imports (added 28 October 2026)
-- [Progress Claim Calculator (Singapore)](https://tools.gantry.work/progress-claim-calculator.html): Progress claim = work done to date + variations + materials on site, less retention, less previous claims certified, plus GST. Cumulative, with SOP Act default timelines.
-- [Job Costing Calculator](https://tools.gantry.work/job-costing-calculator.html): Cost to date (materials + labour hours x rate + subcontractors) against budget and percentage complete; projected final cost, overrun and unbilled work.
-- [Slow-Moving and Dead Stock Calculator](https://tools.gantry.work/slow-moving-stock-calculator.html): Months of cover = quantity on hand / monthly usage; classes healthy (<3), watch (3-6), slow (6-12), very slow (12-24), dead (>24 or no movement); provision bands 25/50/100%.
-- [Stock Take Variance Calculator](https://tools.gantry.work/stock-take-variance-calculator.html): Record accuracy = lines within tolerance / lines counted; net vs absolute variance value; top ten variances.
-- [Landed Cost Calculator (Singapore Imports)](https://tools.gantry.work/landed-cost-calculator.html): Landed cost per unit = (goods in S$ + freight + insurance + duty + local charges + import GST if not claimable) / units. Import GST is 9% of CIF plus duty.
-- [Singapore SME Systems Checklist](https://tools.gantry.work/singapore-sme-systems-checklist.html): 12 yes/no checks on data, process, ownership and money before buying an ERP or inventory system; 8+ means ready enough.
-- [Mobile Job Sheet in Jotform: Signature, PDF, Google Sheet](https://tools.gantry.work/jotform-job-sheet.html): replace a carbon-copy job sheet with a phone form the customer signs on site; each job becomes a Google Sheets row and a PDF goes to the office. Plan limits from jotform.com/pricing, checked 17 Nov 2026.
-
-## About the author
-Sayed Rashid, ex-auditor, 30+ systems projects across Singapore, Indonesia, Malaysia and Cambodia. Every tool offers a free 2-minute video on the visitor's number and a free 20-minute systems review (https://tools.gantry.work/review.html). Figures are dated on each page ("last checked").
