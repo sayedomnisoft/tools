@@ -19,6 +19,50 @@ const iso = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0
 const fdate = d => d.toLocaleDateString('en-SG', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
 
 const CALCS = {
+  notice: {
+    // 19 Nov 2026: Singapore notice period (MOM: includes the day notice is given, rest days and public holidays; month-end rule from MOM's 30 Jan example).
+    html: `<div class="g4">${f('gdate', 'Date notice is given', '', '', 'date')}${sel('basis', 'Notice period', [['contract', 'As stated in the contract'], ['act', 'Not in contract: by length of service']], 'contract')}${f('nlen', 'Length', '1')}${sel('unit', 'Unit', [['months', 'Months'], ['weeks', 'Weeks'], ['days', 'Days']], 'months')}</div>
+      <div class="g4" style="margin-top:10px">${f('start', 'Employment start date (for length of service)', '', '', 'date')}${f('sal', 'Monthly gross salary (optional)', '', 'basic + contractual allowances')}${sel('wdays', 'Working days a week', [['5', '5 days'], ['5.5', '5.5 days'], ['6', '6 days']], '5')}${f('cur', 'Currency', 'S$')}</div>
+      <div class="g4" style="margin-top:10px">${f('leave', 'Annual leave used to offset (optional)', '', 'working days, needs employer OK')}${f('early', 'Leaving earlier on (optional)', '', '', 'date')}</div>
+      <div class="tiles">${tile('t1', 'Last day of notice')}${tile('t2', 'Calendar days counted')}${tile('t3', 'Last working day after leave offset')}${tile('t4', 'Salary in lieu')}</div>`,
+    init() { const t = new Date(); $('gdate').value = iso(t); },
+    calc() {
+      const D = s => s ? new Date(s + 'T00:00:00') : null, g = D($('gdate').value);
+      if (!g || isNaN(g)) return { msg: 'Enter the date notice is given.' };
+      let n = num($('nlen').value), unit = $('unit').value, why = '';
+      if ($('basis').value === 'act') {
+        const st = D($('start').value);
+        if (!st || isNaN(st) || st > g) return { msg: 'Enter the employment start date (before the notice date) to use the length-of-service rule.' };
+        const wk = (g - st) / 864e5 / 7, yrs = (g.getFullYear() - st.getFullYear()) - ((g.getMonth() < st.getMonth() || (g.getMonth() === st.getMonth() && g.getDate() < st.getDate())) ? 1 : 0);
+        if (wk < 26) { n = 1; unit = 'days'; why = 'less than 26 weeks of service'; } else if (yrs < 2) { n = 1; unit = 'weeks'; why = '26 weeks to less than 2 years of service'; } else if (yrs < 5) { n = 2; unit = 'weeks'; why = '2 to less than 5 years of service'; } else { n = 4; unit = 'weeks'; why = '5 years or more of service'; }
+      }
+      if (!(n > 0) || Math.round(n) !== n) return { msg: 'Enter the notice length as a whole number.' };
+      let end;
+      if (unit === 'days') { end = new Date(g); end.setDate(end.getDate() + n - 1); }
+      else if (unit === 'weeks') { end = new Date(g); end.setDate(end.getDate() + 7 * n - 1); }
+      else { const y = g.getFullYear(), m = g.getMonth() + n, last = new Date(y, m + 1, 0).getDate(); end = g.getDate() > last ? new Date(y, m, last) : new Date(y, m, g.getDate() - 1); }
+      const cal = Math.round((end - g) / 864e5) + 1, W = num($('wdays').value) || 5;
+      const wval = d => { const k = d.getDay(); return k === 0 ? 0 : k === 6 ? (W >= 6 ? 1 : W === 5.5 ? 0.5 : 0) : 1; };
+      const span = (a, b) => { let t = 0; const d = new Date(a); while (d <= b) { t += wval(d); d.setDate(d.getDate() + 1); } return t; };
+      const L = num($('leave').value); let lastWork = end;
+      if (L > 0) { let left = L; const d = new Date(end); while (left > 0 && d >= g) { left -= wval(d); d.setDate(d.getDate() - 1); } while (d > g && wval(d) === 0) d.setDate(d.getDate() - 1); lastWork = d < g ? g : d; }
+      const S = num($('sal').value), day = S > 0 ? 12 * S / (52 * W) : NaN, ea = D($('early').value);
+      let lieu = NaN, lieuTxt = '';
+      if (S > 0) {
+        if (ea && !isNaN(ea) && ea < end) { const from = new Date(ea); from.setDate(from.getDate() + 1); const wd = span(from, end); lieu = wd * day; lieuTxt = `Leaving on ${fdate(ea)} leaves ${wd} working days of notice unserved: ${wd} × daily gross rate ${money(day)} = ${money(lieu)} in lieu.`; }
+        else { lieu = unit === 'months' ? n * S : unit === 'weeks' ? n * 12 * S / 52 : n * day; lieuTxt = `Paying the whole notice in lieu instead of working it would be about ${money(lieu)}.`; }
+      }
+      $('t1').textContent = fdate(end); $('t2').textContent = int(cal); $('t3').textContent = L > 0 ? fdate(lastWork) : '—'; $('t4').textContent = S > 0 ? money(lieu) : '—';
+      const label = `${n} ${unit === 'months' ? (n === 1 ? 'month' : 'months') : unit === 'weeks' ? (n === 1 ? 'week' : 'weeks') : (n === 1 ? 'day' : 'days')}`;
+      let out = `<b style="color:var(--ink)">Notice given on ${fdate(g)} with ${label} of notice ends on ${fdate(end)}.</b> `;
+      if (why) out += `With no notice period in the contract, the Employment Act minimum for ${why} is ${label}. `;
+      out += `The count includes the day notice is given, rest days and public holidays (${cal} calendar days). `;
+      if (L > 0) out += `Using ${L} days of annual leave to offset it, with the employer's agreement, brings the last working day forward to about ${fdate(lastWork)}; leave used this way is not paid out, and public holidays in between push it later. `;
+      if (S > 0) out += lieuTxt + ` Daily gross rate = 12 × ${money(S)} ÷ (52 × ${W}) = ${money(day)}. CPF contributions are not required on salary in lieu of notice. `;
+      out += `Notice must be given in writing. Rules here follow MOM's guidance for the Employment Act; your contract or company policy may set longer notice. ${link('timesheet-calculator.html', 'Timesheet and overtime calculator')} · ${review('notice-result')}`;
+      return { out, used: true, headline: `Last day of notice ${fdate(end)}` };
+    }
+  },
   breakeven: {
     html: `<div class="g4">${f('fixed', 'Fixed costs per month', '12000', 'rent, salaries, software')}${f('price', 'Selling price per unit', '50')}${f('vc', 'Variable cost per unit', '30', 'cost of goods, packaging, fees')}${f('cur', 'Currency', 'S$')}</div>
       <div class="g4" style="margin-top:10px">${f('target', 'Target profit per month (optional)', '', 'e.g. 5000')}${f('actual', 'Units you sell now (optional)', '', 'e.g. 800')}</div>
@@ -186,7 +230,7 @@ const CALCS = {
       $('t1').textContent = money(lo.y + SU); $('t2').textContent = lo.n; $('t3').textContent = money(hi.y + SU); $('t4').textContent = money(lo.y / 12 / U);
       let out = `<b style="color:var(--ink)">For ${U} users, ${L} location${L > 1 ? 's' : ''} and ${int(O)} orders a month, 12 months of licences run from ${money(lo.y)} (${lo.n}) to ${money(hi.y)} (${hi.n}).</b>${SU ? ` Your setup budget of ${money(SU)} is added to the tiles.` : ''}<br>`;
       out += res.map(r => `${r.n}${r.plan ? ' ' + r.plan : ''}: <b style="color:var(--ink)">${isFinite(r.y) ? money(r.y) : 'n/a'}</b> (${r.note})`).join('<br>');
-      out += `<br>List prices checked 6 October 2026, before taxes and promotions; USD plans converted at your rate. Katana is usage-based and Sortly tracks items without costing stock, so they are not priced here. Full comparison: ${link('https://www.gantry.work/p/best-inventory-software-small-business?utm_source=tools&utm_medium=inventory-cost-calculator', 'the best inventory software for small business', true)}. Choosing between these, or between an inventory app and an ERP? ${review('inventory-cost-result')}`;
+      out += `<br>List prices checked 6 October 2026, before taxes and promotions; USD plans converted at your rate. Katana is usage-based and Sortly tracks items without costing stock, so they are not priced here. Full comparison: ${link('https://www.gantry.work/p/inventory-management-software-singapore-sme-guide?utm_source=tools&utm_medium=inventory-cost-calculator', 'the inventory software guide for Singapore SMEs', true)}. Choosing between these, or between an inventory app and an ERP? ${review('inventory-cost-result')}`;
       return { out, used: true };
     }
   },
@@ -294,7 +338,7 @@ const C = CALCS[K]; if (!C) return;
 $('app').innerHTML = `<div class="pc"><div class="box">${C.html}<p class="hint" id="out" style="margin-top:18px;font-size:16.5px;line-height:1.6"></p><div class="msg" id="msg"></div><div id="ladder"></div><div class="row-acts"><button id="copyBtn">Copy result</button><button id="resetBtn">Reset example</button></div></div></div>`;
 if (C.init) C.init();
 const DEF = {}; document.querySelectorAll('#app input, #app select, #app textarea').forEach(el => { DEF[el.id] = el.value; });
-try { const s = JSON.parse(store.get('calc_' + K, '{}')); Object.keys(s).forEach(k => { if ($(k) && k !== 'idate' && k !== 'asat') $(k).value = s[k]; }); } catch (e) {}
+try { const s = JSON.parse(store.get('calc_' + K, '{}')); Object.keys(s).forEach(k => { if ($(k) && k !== 'idate' && k !== 'asat' && k !== 'gdate') $(k).value = s[k]; }); } catch (e) {}
 let counted = false, edits = 0;
 function run(user) {
   $('msg').textContent = '';
