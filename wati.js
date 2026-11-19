@@ -10,6 +10,8 @@
   var money = function (n) { return 'S$' + Math.round(n).toLocaleString('en-SG'); };
   var num = function (id) { var el = $(id); if (!el) return 0; var v = parseFloat(String(el.value).replace(/,/g, '')); return isFinite(v) && v > 0 ? v : 0; };
   var AFF = (document.body.getAttribute('data-aff') || '');
+  var DEMO = 'https://tools.gantry.work/go/?u=' + encodeURIComponent('https://affiliates.wati.io/gantry-demo?sid1=tools-fitcheck-demo');
+  var KIT_NEXT = 'https://tools.gantry.work/go/?u=' + encodeURIComponent('https://affiliates.wati.io/gantry-trial?sid1=kit-wati-fit-check');
 
   // Which button was clicked (top, result, bottom, bar). track.js already counts the click itself as affiliate_click.
   document.addEventListener('click', function (e) {
@@ -66,7 +68,10 @@
           'You do not have to decide today. The 7-day trial runs on your own number, so you can test whether your team would use it before any money moves.</p>' +
           '<p><b>What we would do next, in this order:</b></p><ol style="margin:0 0 12px 20px"><li><a href="wati-pricing-singapore.html">Check the full yearly cost for your team</a> (2 minutes).</li><li><a href="wati-free-trial-plan.html">Open the 7-day test plan</a> so the trial week answers your questions.</li><li>Start the trial when you have a free week.</li></ol>' +
           '<a class="cta" data-cta="result" href="' + AFF + '" target="_blank" rel="sponsored noopener" style="display:block;text-align:center">See the 7-day trial on WATI\'s site</a>' +
-          '<p class="disc"><b>What happens when you click:</b> WATI\'s own website opens in a new tab. "Try for free" is at the top; on 17 Nov 2026 their home page said "No credit card". Best done with <a href="wati-free-trial-plan.html#icsBox">the 7-day plan</a> in your calendar first. Affiliate link: if you sign up to WATI through it, The Gantry may earn a commission at no extra cost to you.</p>';
+          '<p class="disc"><b>What happens when you click:</b> WATI\'s own website opens in a new tab. "Try for free" is at the top; on 17 Nov 2026 their home page said "No credit card". Best done with <a href="wati-free-trial-plan.html#icsBox">the 7-day plan</a> in your calendar first. Affiliate link: if you sign up to WATI through it, The Gantry may earn a commission at no extra cost to you.</p>' +
+          /* 19 Nov 2026: the trial is one seat, so for a team it cannot show the thing being bought. WATI's demo page is an approved PartnerStack destination. */
+          (people >= 3 ? '<p class="two" style="margin:14px 0 0"><b>' + people + ' people replying?</b> The trial is one seat on your own number, so it cannot show how a team shares the inbox. A demo with WATI\'s own team can: <a href="' + DEMO + '" target="_blank" rel="sponsored noopener" data-cta="demo">book a WATI demo</a> and ask to see chats assigned between agents. Affiliate link, same terms as above.</p>' : '') +
+          '<div class="kc" data-kit="wati" data-next="' + KIT_NEXT + '" data-next-label="See the 7-day trial on WATI\'s site"></div>';
       } else if (people === 1) {
         verdict = 'stay_free';
         h = '<h3>Stay on the free WhatsApp Business app for now</h3>' + math +
@@ -77,6 +82,7 @@
           '<p>You are close to the point where a shared inbox makes sense, but not clearly past it. Try these for two weeks, then count the missed chats again:</p><ul><li><b>One owner per shift.</b> Name who answers customer WhatsApp in each half of the day.</li><li><b>Labels</b> in the WhatsApp Business app for New, Waiting for customer and Done.</li><li><b>Quick replies</b> for prices, opening hours and delivery questions.</li><li><b>A tally.</b> Each time a customer chases you for a reply, mark it. That number is what a shared inbox has to beat.</li></ul><p>If the tally is still above a few a week, run this check again with the real number. <a href="wati-pricing-singapore.html">See what it would cost for ' + people + ' people</a> so you know the figure to beat.</p>';
       }
       out.innerHTML = h; out.className = 'on';
+      try { if (window.GantryKits) window.GantryKits.scan(); } catch (e) {}
       try { out.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (e) {}
       ev('wati_fit_result', { verdict: verdict, score: score, people: people, at_risk: Math.round(risk) });
     });
