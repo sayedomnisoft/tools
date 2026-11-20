@@ -725,3 +725,5 @@ Q: What are the most common causes of a short stock count?
 A: In my experience, three. Paperwork and stock out of step, such as a delivery that was not recorded. A wrong unit or a missed place, such as boxes counted as pieces or stock held at a forwarder. And stock used without an entry: samples, replacements and damaged goods thrown away. Check these three before you assume theft.
 Q: When should I fix the date for a December 2026 stock count?
 A: Now. Christmas Day (25 December 2026) and New Year's Day (1 January 2027) both fall on a Friday, according to the Ministry of Manpower public holidays page read on 11 November 2026. Tell sales, purchasing and the warehouse two weeks before the count, and send the freeze note two working days before.
+Q: Is there a free stock take template in Excel?
+A: The count sheet on this page prints as a template: item, location, a blank count box and no system quantity. If you keep the count in Excel, use the same columns plus the system quantity on a separate hidden sheet, and paste both into the stock take variance calculator to get accuracy and the variance in dollars.
