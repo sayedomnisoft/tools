@@ -18,6 +18,26 @@ const tile = (id, label) => `<div class="tile"><b id="${id}">—</b><span>${labe
 const iso = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
 const fdate = d => d.toLocaleDateString('en-SG', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
 
+// 20 Nov 2026: shared 2027 data for ph2027 and dl2027. Holidays from MOM's public holidays page (updated 19 Jun 2026).
+const PH27 = [['2027-01-01', "New Year's Day"], ['2027-02-06', 'Chinese New Year'], ['2027-02-07', 'Chinese New Year (day 2)'], ['2027-03-10', 'Hari Raya Puasa'], ['2027-03-26', 'Good Friday'], ['2027-05-01', 'Labour Day'], ['2027-05-17', 'Hari Raya Haji'], ['2027-05-20', 'Vesak Day'], ['2027-08-09', 'National Day'], ['2027-10-28', 'Deepavali'], ['2027-12-25', 'Christmas Day']];
+const PH27_OFF = new Set(PH27.map(h => h[0]).concat(['2027-02-08']));
+const dOf = s => new Date(s + 'T00:00:00');
+const MON = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const longd = d => `${DAYS[d.getDay()].slice(0, 3)} ${d.getDate()} ${MON[d.getMonth()]} ${d.getFullYear()}`;
+const nextWorking = d => { const x = new Date(d); while (x.getDay() === 0 || x.getDay() === 6 || PH27_OFF.has(iso(x))) x.setDate(x.getDate() + 1); return x; };
+const eom = (y, m1) => new Date(y, m1, 0);
+const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const icsEsc = s => String(s).replace(/\\/g, '\\\\').replace(/;/g, '\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
+const fileOut = (name, mime, text) => { try { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], { type: mime })); a.download = name; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 800); } catch (e) { prompt('Copy:', text); } };
+const makeIcs = (cal, items) => { const st = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+/, ''); const L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//The Gantry//tools.gantry.work//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'X-WR-CALNAME:' + icsEsc(cal)];
+  items.forEach((it, i) => { const d = dOf(it.date), n = new Date(d); n.setDate(n.getDate() + 1); L.push('BEGIN:VEVENT', 'UID:' + it.date.replace(/-/g, '') + '-' + i + '-' + cal.replace(/[^a-z0-9]/gi, '').toLowerCase() + '@tools.gantry.work', 'DTSTAMP:' + st, 'DTSTART;VALUE=DATE:' + it.date.replace(/-/g, ''), 'DTEND;VALUE=DATE:' + iso(n).replace(/-/g, ''), 'SUMMARY:' + icsEsc(it.title), 'DESCRIPTION:' + icsEsc(it.note || ''), 'TRANSP:TRANSPARENT', 'END:VEVENT'); });
+  L.push('END:VCALENDAR'); return L.join('\r\n') + '\r\n'; };
+const makeCsv = (head, rows) => '\ufeff' + [head].concat(rows).map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\r\n') + '\r\n';
+const listTable = (head, rows) => `<div class="tw" style="margin-top:14px"><table style="margin:0"><thead><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+const btnRow = `<div class="row-acts" style="margin-top:12px"><button type="button" id="icsBtn">Add to my calendar (.ics)</button><button type="button" id="csvBtn">Download for Excel (CSV)</button><button type="button" id="prtBtn">Print</button></div>`;
+const phNote = (d, w, plain, db, dg) => { const day = d.getDay(); if (day === 0) return 'Rest day (Sunday): the next working day, Monday 8 February, is the paid holiday'; if (day === 6 && w === '5') return "Non-working day: another day off, or one extra day's pay at the gross rate" + (dg ? ' (' + money(dg) + ')' : ''); if (day === 6) return 'Working day for you: a paid day off'; return "Paid day off. If worked: an extra day's pay at the basic rate" + (db ? ' (' + money(db) + ')' : ''); };
+
 const CALCS = {
   notice: {
     // 19 Nov 2026: Singapore notice period (MOM: includes the day notice is given, rest days and public holidays; month-end rule from MOM's 30 Jan example).
@@ -376,6 +396,83 @@ const CALCS = {
       out += accT >= 95 ? `That is a good result; most operations target 95% or better. Keep the cycle counts going on the A items. ` : accT >= 85 ? `Fair, but below the 95% most operations aim for. Look at the top variances above: they usually trace to a few receiving or picking habits rather than theft. ` : `Below 85% the stock figure cannot be trusted for purchasing or costing. Count the top-value items weekly until the causes are fixed, then widen the counts. `;
       out += `Keeping accuracy up without a wall-to-wall count every quarter means cycle counting from a live system. ${review('stock-take-result')}`;
       return { out, used: true, headline: `Stock accuracy ${pct(accT)} within ${T}% (${exact} of ${rows.length} exact)${hasCost ? ', absolute variance ' + money(abs) : ''}` };
+    }
+  },
+  ph2027: {
+    // 20 Nov 2026: MOM public holidays 2027 (updated 19 Jun 2026); entitlement and pay (updated 30 Jul 2025); day rate = 12 x monthly (basic or gross) / (52 x days a week) (MOM monthly and daily salary, updated 8 Dec 2025).
+    html: `<div class="g4">${sel('wk', 'Working days a week', [['5', '5 days (Saturday off, Sunday rest day)'], ['5.5', '5.5 days'], ['6', '6 days']], '5')}${f('basic', 'Monthly basic salary', '3000', 'basic only')}${f('gross', 'Monthly gross salary', '3300', 'basic + contractual allowances')}${f('nw', 'Public holidays worked in 2027', '1')}</div>
+      <div class="g4" style="margin-top:10px">${f('staff', 'Number of staff like this (optional)', '1')}${f('cur', 'Currency', 'S$')}</div>
+      <div class="tiles">${tile('t1', "Day's basic rate (working a holiday)")}${tile('t2', "Day's gross rate (holiday paid out)")}${tile('t3', 'Extra pay for holidays worked')}${tile('t4', 'Saturday holidays to give back')}</div>
+      ${btnRow}<div id="phList"></div>`,
+    init() {
+      const items = () => PH27.map(h => ({ date: h[0], title: h[1] + ' (Singapore public holiday)', note: 'Source: MOM public holidays 2027, tools.gantry.work/singapore-public-holidays-2027.html' })).concat([{ date: '2027-02-08', title: 'Public holiday in lieu of Chinese New Year (rest day Sunday)', note: 'MOM: Monday 8 February 2027 is a public holiday if your rest day falls on 7 February 2027.' }]).sort((a, b) => a.date < b.date ? -1 : 1);
+      $('icsBtn').onclick = () => { fileOut('singapore-public-holidays-2027.ics', 'text/calendar', makeIcs('Singapore public holidays 2027', items())); ev('calc_download', { kind: 'ics' }); };
+      $('csvBtn').onclick = () => { const w = $('wk').value; fileOut('singapore-public-holidays-2027.csv', 'text/csv', makeCsv(['Date', 'Day', 'Holiday', 'For your staff'], items().map(it => { const d = dOf(it.date); return [it.date, DAYS[d.getDay()], it.title.replace(' (Singapore public holiday)', ''), phNote(d, w, true)]; }))); ev('calc_download', { kind: 'csv' }); };
+      $('prtBtn').onclick = () => { ev('calc_download', { kind: 'print' }); window.print(); };
+    },
+    calc() {
+      const W = num($('wk').value), B = num($('basic').value), G0 = num($('gross').value), N = num($('nw').value), S = num($('staff').value);
+      if (!(B > 0)) return { msg: 'Enter the monthly basic salary.' };
+      const G = G0 > 0 ? G0 : B; if (G < B) return { msg: 'Gross salary includes the basic salary, so it cannot be lower than the basic.' };
+      const n = N >= 0 ? N : 0, st = S > 0 ? S : 1;
+      const db = 12 * B / (52 * W), dg = 12 * G / (52 * W);
+      const sats = PH27.filter(h => dOf(h[0]).getDay() === 6), satN = W === 5 ? sats.length : 0;
+      const extra = db * n * st, satCost = dg * satN * st;
+      $('t1').textContent = money(db); $('t2').textContent = money(dg); $('t3').textContent = money(extra); $('t4').textContent = satN ? `${satN} days (or ${money(satCost)})` : 'none';
+      window.__phW = String(W);
+      let out = `<b style="color:var(--ink)">Each public holiday worked costs ${money(db)} extra${st > 1 ? ` per person (${money(extra)} for ${int(st)} staff working ${int(n)})` : `, so ${int(n)} worked is ${money(extra)}`}.</b> Day's basic rate = 12 × ${money(B)} ÷ (52 × ${W}) = ${money(db)}. `;
+      out += satN ? `On a 5-day week, ${sats.map(h => longd(dOf(h[0]))).join(', ')} fall on your non-working Saturday: give another day off for each, or pay one extra day at the gross rate, 12 × ${money(G)} ÷ (52 × 5) = ${money(dg)}, which is ${money(satCost)} for the year${st > 1 ? ` across ${int(st)} staff` : ''}. ` : `On a ${W}-day week Saturday is a working day, so the three Saturday holidays are simply paid days off. `;
+      out += `Chinese New Year's second day is Sunday 7 February, so Monday 8 February is the paid holiday for anyone whose rest day is Sunday. Put the extra pay on the ${link('payslip-generator-singapore.html', 'itemised payslip')}. Doing this by hand every month? ${review('ph2027-result')}`;
+      const rows = PH27.map(h => { const d = dOf(h[0]); return [longd(d), esc(h[1]), esc(phNote(d, String(W), false, db, dg))]; });
+      rows.splice(3, 0, [longd(dOf('2027-02-08')), 'Holiday in lieu of Chinese New Year', 'Paid day off for staff whose rest day is Sunday']);
+      $('phList').innerHTML = listTable(['Date', 'Holiday', `For staff on a ${W}-day week`], rows);
+      return { out, used: true, headline: `Working a 2027 public holiday costs ${money(db)} extra a day` };
+    }
+  },
+  dl2027: {
+    // 20 Nov 2026: IRAS GST due dates (9 Oct 2026), CPF due date (21 Jan 2025), IRAS AIS (20 Aug 2026), IRAS CIT basics (ECI 3 months, 20 Oct 2026), Form C-S 30 Nov (10 Aug 2026), ACRA AR 7 months non-listed (14 May 2026), AGM 6 months (11 Feb 2026).
+    html: `<div class="g4">${sel('fye', 'Financial year end', MON.map((m, i) => [String(i + 1), m]), '12')}${sel('gst', 'GST accounting periods', [['q1', 'Quarters from Jan (Jan to Mar)'], ['q2', 'Quarters from Feb (Feb to Apr)'], ['q3', 'Quarters from Mar (Mar to May)'], ['m', 'Monthly'], ['no', 'Not GST registered']], 'q1')}${sel('giro', 'GST paid by GIRO?', [['no', 'No'], ['yes', 'Yes']], 'no')}${sel('emp', 'Do you have employees?', [['yes', 'Yes'], ['no', 'No']], 'yes')}</div>
+      <div class="g4" style="margin-top:10px">${sel('agm', 'Do you hold an AGM?', [['hold', 'Yes, we hold one'], ['skip', 'Exempt or dispensed']], 'hold')}${sel('obr', 'Share capital and an overseas branch register?', [['no', 'No (most companies)'], ['yes', 'Yes (8 months to file)']], 'no')}</div>
+      <div class="tiles">${tile('t1', 'Deadlines in 2027')}${tile('t2', 'Next deadline')}${tile('t3', 'Annual return to ACRA')}${tile('t4', 'ECI')}</div>
+      ${btnRow}<div id="dlList"></div>`,
+    init() {
+      $('icsBtn').onclick = () => { fileOut('singapore-business-deadlines-2027.ics', 'text/calendar', makeIcs('Business deadlines 2027', window.__dl || [])); ev('calc_download', { kind: 'ics' }); };
+      $('csvBtn').onclick = () => { fileOut('singapore-business-deadlines-2027.csv', 'text/csv', makeCsv(['Date', 'Day', 'What is due', 'Source'], (window.__dl || []).map(it => [it.date, DAYS[dOf(it.date).getDay()], it.title, it.src]))); ev('calc_download', { kind: 'csv' }); };
+      $('prtBtn').onclick = () => { ev('calc_download', { kind: 'print' }); window.print(); };
+    },
+    calc() {
+      const F = parseInt($('fye').value, 10), g = $('gst').value, giro = $('giro').value === 'yes', emp = $('emp').value === 'yes', agm = $('agm').value === 'hold', ar8 = $('obr').value === 'yes';
+      const L = [], add = (d, title, src, note) => { if (d.getFullYear() === 2027) L.push({ date: iso(d), title, src, note: (note ? note + ' ' : '') + 'Source: ' + src }); };
+      const S = { gst: 'IRAS GST filing due dates', cpf: 'CPF Board due date for CPF contributions', ais: 'IRAS Auto-Inclusion Scheme', cit: 'IRAS basic guide to corporate income tax', cs: 'IRAS Form C-S/C-S (Lite)/C guidance', ar: 'ACRA annual return deadlines', agm: 'ACRA AGM due dates' };
+      const fyl = y => `${eom(y, F).getDate()} ${MON[F - 1]} ${y}`;
+      [2025, 2026, 2027].forEach(y => {
+        add(eom(y, F + 3), `ECI for the year ended ${fyl(y)}`, S.cit, 'Within 3 months of the year end, unless the company qualifies for the ECI filing waiver.');
+        if (agm) add(eom(y, F + 6), `AGM for the year ended ${fyl(y)}`, S.agm, 'Non-listed companies: within 6 months of the year end.');
+        add(eom(y, F + (ar8 ? 8 : 7)), `Annual return to ACRA for the year ended ${fyl(y)}`, S.ar, ar8 ? '8 months: share capital and an overseas branch register.' : 'Non-listed companies: within 7 months of the year end.');
+      });
+      add(new Date(2027, 10, 30), 'Form C-S, C-S (Lite) or C for YA 2027 (financial year ended in 2026)', S.cs, 'Due by 30 November every year.');
+      if (g !== 'no') {
+        const ends = g === 'm' ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] : g === 'q1' ? [3, 6, 9, 12] : g === 'q2' ? [1, 4, 7, 10] : [2, 5, 8, 11];
+        [2026, 2027].forEach(y => ends.forEach(e => {
+          const pe = eom(y, e), ps = new Date(y, e - (g === 'm' ? 1 : 3), 1), due = eom(y, e + 1);
+          const per = g === 'm' ? `${MON[e - 1]} ${pe.getFullYear()}` : `${MON[ps.getMonth()].slice(0, 3)} ${ps.getFullYear()} to ${MON[pe.getMonth()].slice(0, 3)} ${pe.getFullYear()}`;
+          const wk = due.getDay() === 0 || due.getDay() === 6 ? ' Falls on a weekend: file before it.' : '';
+          add(due, `GST return${giro ? '' : ' and payment'} for ${per}`, S.gst, 'One month after the end of the accounting period.' + wk);
+          if (giro) add(nextWorking(new Date(due.getFullYear(), due.getMonth() + 1, 15)), `GST GIRO deduction for ${per}`, S.gst, 'IRAS deducts on the 15th of the month after the due date, or the next working day.');
+        }));
+      }
+      if (emp) {
+        for (let m = 0; m < 12; m++) { const forM = new Date(2026, 11 + m, 1), raw = new Date(2027, m, 14), d = nextWorking(raw);
+          add(d, `CPF contributions for ${MON[forM.getMonth()]} ${forM.getFullYear()}`, S.cpf, iso(d) === iso(raw) ? 'Pay by the 14th of the following month.' : `The 14th is a ${DAYS[raw.getDay()] === 'Saturday' || DAYS[raw.getDay()] === 'Sunday' ? DAYS[raw.getDay()] : 'public holiday'}, so the deadline moves to the next working day.`); }
+        add(new Date(2027, 2, 1), 'Employment income for 2026 (IR8A): submit under AIS, or give to employees', S.ais, 'By 1 March. AIS is compulsory with 5 or more employees.');
+      }
+      L.sort((a, b) => a.date < b.date ? -1 : a.date > b.date ? 1 : 0); window.__dl = L;
+      const today = iso(new Date()), nx = L.find(x => x.date >= today), ar = L.find(x => /Annual return/.test(x.title)), eci = L.find(x => /^ECI/.test(x.title));
+      $('t1').textContent = int(L.length); $('t2').textContent = nx ? longd(dOf(nx.date)) : 'none left in 2027'; $('t3').textContent = ar ? longd(dOf(ar.date)) : 'not in 2027'; $('t4').textContent = eci ? longd(dOf(eci.date)) : 'not in 2027';
+      let out = `<b style="color:var(--ink)">${int(L.length)} deadlines in 2027 for a company with a ${MON[F - 1]} year end${g === 'no' ? '' : ', ' + (g === 'm' ? 'monthly' : 'quarterly') + ' GST'}${emp ? ' and staff' : ''}.</b> ${nx ? `The next one is ${longd(dOf(nx.date))}: ${esc(nx.title)}. ` : ''}`;
+      out += `Every date comes from the IRAS, CPF Board or ACRA page named in the list. Download the list into your calendar so nobody has to remember it. Chasing these dates from three systems? ${review('dl2027-result')}`;
+      $('dlList').innerHTML = listTable(['Date', 'What is due', 'Source'], L.map(x => [longd(dOf(x.date)), esc(x.title) + (/weekend|moves/.test(x.note) ? `<br><span style="font-size:13px;color:var(--ink-3)">${esc(x.note.split(' Source:')[0])}</span>` : ''), esc(x.src)]));
+      return { out, used: true, headline: `${L.length} business deadlines in 2027 for a ${MON[F - 1]} year end` };
     }
   },
   landedcost: {

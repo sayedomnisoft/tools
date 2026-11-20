@@ -557,6 +557,48 @@ A: Safety stock is the buffer kept for demand or delivery surprises. The reorder
 Q: Should the reorder point include stock on order?
 A: Compare the reorder point with stock on hand plus stock already on order. Comparing it with stock on hand alone leads to duplicate orders.
 
+## Singapore Business Deadlines 2027: GST, CPF, ACRA
+URL: https://tools.gantry.work/singapore-business-deadlines-2027.html
+Summary: Every 2027 filing date for a Singapore company from IRAS, CPF Board and ACRA: GST, CPF, IR8A, ECI, Form C-S, AGM and annual return, with a calendar file.
+Answer: For a Singapore private company with a 31 December year end, standard GST quarters and staff, the 2027 dates are: GST returns and payment by 31 January, 30 April, 31 July and 31 October; CPF contributions by the 14th of each month (15 February, 15 March, 16 August and 15 November when the 14th is a weekend); IR8A employment income by 1 March; ECI by 31 March; the AGM by 30 June; the annual return to ACRA by 31 July; Form C-S or Form C by 30 November. Sources: IRAS , CPF Board and ACRA . Pick another year end below for your own dates. Checked 20 November 2026. Figures in S$; change the currency box for any other.
+Q: When is the GST return due in Singapore?
+A: One month after the end of each GST accounting period. For standard quarters: 30 April (January to March), 31 July (April to June), 31 October (July to September) and 31 January (October to December). The payment is due on the same date; with GIRO it is deducted on the 15th of the following month.
+Q: When must CPF contributions be paid?
+A: They are due on the last day of the month, and must be paid by the 14th of the following month to avoid enforcement action. When the 14th is a Saturday, Sunday or public holiday, the deadline moves to the next working day: in 2027 that is 15 February, 15 March, 16 August and 15 November.
+Q: What is the IR8A deadline for 2027?
+A: 1 March 2027, for the income employees earned in 2026. Employers in the Auto-Inclusion Scheme submit it to IRAS; others give the IR8A to their employees by that date.
+Q: When is Form C-S due?
+A: By 30 November every year. In 2027 that is Form C-S, Form C-S (Lite) or Form C for YA 2027, covering the financial year that ended in 2026.
+Q: When is the ECI due?
+A: Within 3 months of the financial year end, unless the company qualifies for the ECI filing waiver. A 31 December 2026 year end means 31 March 2027.
+Q: When is the ACRA annual return due?
+A: Within 7 months of the financial year end for a non-listed company, or 8 months if it has a share capital and an overseas branch register. A 31 December 2026 year end means 31 July 2027. Late filing costs S$300, or S$600 if more than three months late.
+Q: Does every private company have to hold an AGM?
+A: No. A private company does not need an AGM if it sends its financial statements to all members within 5 months of the year end, or if it has chosen to dispense with AGMs. Otherwise a non-listed company holds it within 6 months of the year end.
+Q: Can I put these deadlines in my calendar?
+A: Yes. The calculator downloads your dates as a calendar file (.ics) for Google Calendar, Outlook or Apple Calendar, or as a CSV for Excel, with the source of each date.
+
+## Singapore Public Holidays 2027 and Holiday Pay
+URL: https://tools.gantry.work/singapore-public-holidays-2027.html
+Summary: All 11 Singapore public holidays in 2027 from MOM, the long weekends, what employers owe when one falls on a weekend, holiday pay and a calendar file.
+Answer: Singapore has 11 public holidays in 2027 ( MOM , page updated 19 June 2026). Chinese New Year falls on Saturday 6 and Sunday 7 February, so Monday 8 February is a public holiday for employees whose rest day is Sunday. Three holidays fall on a Saturday (6 February, 1 May and 25 December): staff on a 5-day week get another day off or one extra day's pay for each. Anyone who works on a public holiday is owed an extra day's pay at the basic rate: 12 × monthly basic ÷ (52 × working days a week). On a S$3,000 basic salary over 5 days that is S$138.46 . Checked 20 November 2026. Figures in S$; change the currency box for any other.
+Q: How many public holidays does Singapore have in 2027?
+A: 11: New Year's Day (1 January), Chinese New Year (6 and 7 February), Hari Raya Puasa (10 March), Good Friday (26 March), Labour Day (1 May), Hari Raya Haji (17 May), Vesak Day (20 May), National Day (9 August), Deepavali (28 October) and Christmas Day (25 December).
+Q: When is Chinese New Year 2027 in Singapore?
+A: Saturday 6 and Sunday 7 February 2027. Because the second day falls on a Sunday, Monday 8 February 2027 is a public holiday for employees whose rest day falls on 7 February.
+Q: What happens when a public holiday falls on a Saturday?
+A: For staff on a 5-day week, Saturday is a non-working day, so they get another day off or one extra day's salary at the gross rate. In 2027 that applies to 6 February, 1 May and 25 December. For staff who work Saturdays, it is simply a paid day off.
+Q: What happens when a public holiday falls on a Sunday?
+A: If Sunday is the rest day, the next working day becomes the paid public holiday. In 2027 that is Monday 8 February, after Chinese New Year on Sunday 7 February.
+Q: How much must I pay an employee who works on a public holiday?
+A: An extra day's salary at the basic rate of pay, on top of the normal monthly salary, plus overtime for hours beyond normal hours. By mutual agreement you can give another working day off instead. For a monthly-rated employee the day's basic rate is 12 x monthly basic / (52 x days worked a week).
+Q: Is public holiday pay based on basic or gross salary?
+A: Working on a public holiday is paid at the basic rate. A holiday on a non-working day that is paid out instead of given as a day off is paid at the gross rate, which includes contractual allowances.
+Q: What are the long weekends in Singapore in 2027?
+A: For a Monday to Friday week: 1 to 3 January, 6 to 8 February, 26 to 28 March, 15 to 17 May and 7 to 9 August. Vesak Day (20 May) and Deepavali (28 October) fall on Thursdays, so one day of leave gives a four-day weekend.
+Q: Can I add the 2027 public holidays to my calendar?
+A: Yes. The calculator on this page downloads the list as a calendar file (.ics) for Google Calendar, Outlook or Apple Calendar, or as a CSV for Excel. MOM also publishes its own calendar file on its public holidays page.
+
 ## Singapore SME Systems Checklist: 12 Points Before You Buy
 URL: https://tools.gantry.work/singapore-sme-systems-checklist.html
 Summary: A free 12-point systems checklist for Singapore SMEs with 10 to 200 staff: the data, process and ownership checks to pass before buying an ERP or inventory system. Printable, scored.

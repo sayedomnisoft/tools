@@ -5,7 +5,7 @@
 Updated 19 November 2026. Every page below is free to use and to cite.
 
 ## Start here
-- [All free tools](https://tools.gantry.work/): 53 tools and guides grouped by the problem they fix: late payments, stock, job costs, margins, paperwork, grants and InvoiceNow, WhatsApp.
+- [All free tools](https://tools.gantry.work/): 55 tools and guides grouped by the problem they fix: late payments, stock, job costs, margins, paperwork, grants and InvoiceNow, WhatsApp.
 - [SME Systems Health Check](https://tools.gantry.work/health-check/): ten questions, about 60 seconds, a score and the process that leaks the most time.
 - [Cost of Manual Work Calculator](https://tools.gantry.work/cost-of-manual-work.html): what retyping, chasing and checking cost a team in a year.
 - [ERP Readiness Scorecard](https://tools.gantry.work/erp-readiness.html): eight questions on data, process, ownership and time before buying a system.
@@ -64,6 +64,8 @@ Updated 19 November 2026. Every page below is free to use and to cite.
 - [13-Week Cash Flow Forecast with Singapore Dates](https://tools.gantry.work/13-week-cash-flow-calendar.html): 7 Dec 2026 to 7 Mar 2027 with CPF, levy, GST, ECI and property tax dates from the official pages.
 - [Payslip Generator (Singapore)](https://tools.gantry.work/payslip-generator-singapore.html): an itemised payslip with the 12 items MOM requires (employer, employee, payment date, basic salary, salary period, allowances, additional payments, deductions, overtime hours, overtime pay, overtime period, net salary); print, PDF or CSV for Excel.
 - [Overtime Calculator (Singapore)](https://tools.gantry.work/overtime-calculator-singapore.html): MOM's formula, hourly basic rate = 12 x monthly basic / (52 x 44), overtime at 1.5x; covers non-workmen up to S$2,600 and workmen up to S$4,500 basic; 72 hours a month cap; pay within 14 days.
+- [Singapore Public Holidays 2027 and Holiday Pay](https://tools.gantry.work/singapore-public-holidays-2027.html): the 11 public holidays for 2027 from MOM (Chinese New Year Sat 6 and Sun 7 Feb, so Mon 8 Feb is a holiday for Sunday rest-day staff; 6 Feb, 1 May and 25 Dec fall on a Saturday, owed as another day off or a day's gross pay on a 5-day week); working a holiday = an extra day at the basic rate, 12 x monthly basic / (52 x days a week); long weekends; .ics and CSV downloads.
+- [Singapore Business Deadlines 2027](https://tools.gantry.work/singapore-business-deadlines-2027.html): every 2027 compliance date for a Singapore company by year end and GST period: GST one month after each period (31 Jan, 30 Apr, 31 Jul, 31 Oct for standard quarters), CPF by the 14th (15 Feb, 15 Mar, 16 Aug, 15 Nov when the 14th is a weekend), IR8A by 1 Mar, ECI within 3 months, AGM within 6 months, ACRA annual return within 7 months, Form C-S by 30 Nov; each with its IRAS, CPF Board or ACRA source; .ics and CSV downloads.
 - [Notice Period Calculator (Singapore)](https://tools.gantry.work/notice-period-calculator-singapore.html): the last day of notice counted the way MOM counts it (includes the day notice is given, rest days and public holidays), Employment Act minimums, leave offset and salary in lieu.
 - [Timesheet Calculator](https://tools.gantry.work/timesheet-calculator.html): hours, breaks, overnight shifts, overtime at 1.5x and weekly pay, with print and CSV.
 - [ERP and Automation ROI Calculator](https://tools.gantry.work/erp-roi.html): payback in years and value at year 7, 10 and 15.
