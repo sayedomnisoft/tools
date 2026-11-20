@@ -18,6 +18,25 @@ A: Dates move more easily than amounts, and far more easily when you ask early. 
 Q: How often should I update the forecast?
 A: Once a week, on Monday, for about 20 minutes. Write in last Friday's real bank balance, tick what came in and went out, move anything late, add what you learnt, and find the lowest closing balance. One person owns the sheet.
 
+## Annual Leave Calculator Singapore: Leave Pay
+URL: https://tools.gantry.work/annual-leave-calculator-singapore.html
+Summary: Free Singapore annual leave calculator: days by year of service, first-year pro-rating, carry forward and pay for unused leave, the way MOM works it out.
+Answer: Under the Employment Act, annual leave is 7 days in the first year of service, rising by one day a year to 14 days from the 8th year. It starts after 3 months of service. In the first 12 months it is pro-rated: completed months ÷ 12 × 7, with under half a day rounded down and half or more rounded up, so 8 completed months gives 5 days ( MOM ). When employment ends for any reason other than misconduct, unused leave must be paid at the gross rate of pay: 12 × monthly gross salary ÷ (52 × days worked a week), which is S$152.31 a day on S$3,300 gross for a 5-day week. Checked 20 November 2026. Figures in S$; change the currency box for any other.
+Q: How many days of annual leave do employees get in Singapore?
+A: Under the Employment Act: 7 days in the first year of service, one more day each year after that, up to 14 days from the 8th year. It applies after 3 months of service.
+Q: How is annual leave pro-rated in the first year?
+A: Completed months of service divided by 12, times the entitlement. Under half a day is rounded down and half or more is rounded up, so 8 completed months gives 5 days.
+Q: Can I take annual leave during probation?
+A: Yes, once you have worked 3 months. The pro-rating applies during probation too.
+Q: Is unused annual leave paid when I resign?
+A: Yes. When employment ends for any reason other than misconduct, the employer must pay for unused annual leave at the gross rate of pay. On dismissal for misconduct it is forfeited.
+Q: How is unused annual leave pay calculated?
+A: Unused days times the gross rate of pay per day. For a monthly-rated employee the gross rate is 12 x monthly gross salary divided by (52 x days worked a week): S$152.31 a day on S$3,300 for a 5-day week.
+Q: Can unused annual leave be carried forward?
+A: For staff under Part 4 of the Employment Act, yes: the employer must allow it to be carried forward to the next 12 months, after which it can be forfeited. For others, the contract decides.
+Q: Does the year of service follow the calendar year?
+A: No. It runs from the employment start date. Many employers run leave on the calendar year for convenience, but the statutory minimum is counted from the start date.
+
 ## Free AR Aging Report Generator
 URL: https://tools.gantry.work/ar-aging-report.html
 Summary: Free accounts receivable aging report. Upload or paste your open invoices and get aging buckets by customer, overdue totals, DSO and customer statements.
@@ -50,6 +69,18 @@ Q: Does it include the cost of errors?
 A: No. It counts salary only. Errors, stockouts and slow decisions usually cost more than the labour figure.
 Q: Is it free?
 A: Yes, with no signup. It gives three calculations, then offers a free 20-minute review if you want to go further.
+
+## ERP Data Migration Readiness Test: 12 Questions
+URL: https://tools.gantry.work/data-migration-readiness-test.html
+Summary: Twelve questions before you move products, recipes, customers and balances to a new system. Master data first, software second. Free, printable.
+Q: What is the first step in ERP data migration?
+A: Count and clean the master data: products, customers, suppliers and recipes, one code each, units agreed, each list owned and signed off. Master data first, software second.
+Q: How much history should we migrate to a new ERP?
+A: Usually open items and balances only: open orders, unpaid invoices, stock on hand and the opening trial balance. Keep older history readable in the old system or an export. Moving every year multiplies the cleaning.
+Q: What is a test load in data migration?
+A: Loading the cleaned lists into a copy of the new system first, checking them there, fixing the source file and loading again, before anything goes into the live system.
+Q: How do opening balances work in a migration?
+A: At the cut-over date, stock, receivables, payables and bank are loaded as opening balances and must agree to the trial balance of the old books. Finance should sign that they agree.
 
 ## Month-End and Year-End Close Checklist, Day by Day
 URL: https://tools.gantry.work/december-close-checklist.html
@@ -167,7 +198,7 @@ A: Not necessarily. Many leaks can be fixed with better spreadsheets and simple 
 
 ## Free Business Tools and Calculators for Singapore SMEs
 URL: https://tools.gantry.work/
-Summary: 49 free tools and guides for Singapore SMEs. Pick what you want to fix: late payments, stock, job costs, margins, paperwork, grants and InvoiceNow, or WhatsApp. One tool to start with, about a minute each.
+Summary: 59 free tools and guides for Singapore SMEs. Pick what you want to fix: late payments, stock, job costs, margins, paperwork, grants and InvoiceNow, or WhatsApp. One tool to start with, about a minute each.
 Q: Are these business tools really free?
 A: Yes. Every tool is free to use, as often as you like, with no sign-up. If you want a second pair of eyes on your numbers, you can book a free 20-minute review.
 Q: Is my data safe?
@@ -397,6 +428,18 @@ A: A 100% markup: you sell at double the cost, so half of the price is profit.
 Q: Should markup be calculated with or without GST?
 A: Without. Calculate markup on costs and prices excluding GST, then add GST to the selling price. The calculator shows the GST-inclusive price for you.
 
+## Month-End Close Scorecard for Finance Heads: 10 Questions
+URL: https://tools.gantry.work/month-end-close-scorecard.html
+Summary: Ten questions for a finance head: how long the close takes, where it waits, and what to fix first. Stock, consolidation, intercompany, margin.
+Q: How long should a month-end close take?
+A: There is no official standard. A useful target is to take one day off your current close each month until the slowest step is a decision, not a wait.
+Q: Why does our month-end close take so long?
+A: Usually because it waits: for supplier invoices for goods already received, for stock to be reconciled to the ledger, for bank lines nobody owns, and for a consolidation done by hand in Excel after everything else.
+Q: How do you consolidate several companies faster?
+A: Use one chart of accounts in every entity, match intercompany balances before you consolidate rather than after, and stop rebuilding the consolidation in Excel each month.
+Q: What order should the month-end close follow?
+A: Cut-off numbers first, then bank, then suppliers and accruals, then stock and payroll, then intercompany and consolidation, and margin review and reports last, with one owner per step.
+
 ## Month-End Close Cost Calculator
 URL: https://tools.gantry.work/month-end-close.html
 Summary: Put a number on what a slow month-end close burns every month. Free calculator, no signup.
@@ -423,6 +466,8 @@ Q: What if my contract says nothing about notice?
 A: The Employment Act minimum applies: 1 day for less than 26 weeks of service, 1 week for 26 weeks to less than 2 years, 2 weeks for 2 to less than 5 years, and 4 weeks for 5 years or more.
 Q: Does notice have to be in writing?
 A: Yes. MOM says termination notice must be in writing, such as a letter or an email, and a waiver of notice by mutual agreement should also be in writing.
+Q: Is unused annual leave paid out when I resign?
+A: Yes, unless the employee is dismissed for misconduct. MOM says the employer must pay for unused annual leave at the gross rate of pay, based on the last drawn salary. Leave used to offset the notice period is not paid again.
 
 ## Overtime Calculator Singapore: MOM Formula, 1.5x
 URL: https://tools.gantry.work/overtime-calculator-singapore.html
@@ -461,6 +506,8 @@ Q: How long must payslip records be kept?
 A: For current employees, the latest two years. For former employees, the last two years of employment, kept for one year after they leave.
 Q: Is there a payslip template for Excel?
 A: Download for Excel saves a CSV that opens in Excel or Google Sheets with every MOM item on its own row, so you can keep one file per employee per month.
+Q: How is salary calculated for an incomplete month?
+A: MOM formula: monthly gross rate of pay divided by the number of working days in that month, times the days actually worked. On S$3,000 gross with 22 working days in the month and 10 days worked, the salary is S$1,363.64.
 
 ## Free Price Increase Calculator for Businesses
 URL: https://tools.gantry.work/price-increase-calculator.html
@@ -527,6 +574,8 @@ Q: Can I convert a quotation into an invoice?
 A: Yes. "Turn into invoice" opens the invoice generator with the customer, items, GST and discount filled in and a reference to the quotation number.
 Q: Can I send the quote on WhatsApp?
 A: Download the PDF and attach it, or use "Copy as text" to paste a short summary with the total into WhatsApp or email.
+Q: Is a quote the same as a quotation?
+A: Yes. "Quote" and "quotation" mean the same document: a fixed price for a stated scope, valid until a date. An estimate is different: it is a best guess that can change.
 
 ## Free Receipt Generator: Receipt Template Singapore, PDF
 URL: https://tools.gantry.work/receipt-generator.html
@@ -556,6 +605,23 @@ Q: What is the difference between safety stock and reorder point?
 A: Safety stock is the buffer kept for demand or delivery surprises. The reorder point is the stock level that triggers a new order: the demand expected during the lead time plus that buffer.
 Q: Should the reorder point include stock on order?
 A: Compare the reorder point with stock on hand plus stock already on order. Comparing it with stock on hand alone leads to duplicate orders.
+
+## Sick Leave Calculator Singapore: MC Days
+URL: https://tools.gantry.work/sick-leave-calculator-singapore.html
+Summary: Free Singapore sick leave calculator: paid outpatient and hospitalisation days by months of service, days left this year and the pay per sick day.
+Answer: After 6 months of service, employees covered by the Employment Act get 14 days of paid outpatient sick leave and 60 days of paid hospitalisation leave a year, and the 60 days include the 14. Paid sick leave starts after 3 months: 5 outpatient and 15 hospitalisation days at 3 months, 8 and 30 at 4 months, 11 and 45 at 5 months ( MOM , updated 12 January 2026). A paid sick day is paid at the gross rate: 12 × monthly gross salary ÷ (52 × days worked a week), S$138.46 a day on S$3,000 for a 5-day week. Checked 20 November 2026. Figures in S$; change the currency box for any other.
+Q: How many days of sick leave do employees get in Singapore?
+A: After 6 months of service: 14 days of paid outpatient sick leave and 60 days of paid hospitalisation leave a year, and the 60 include the 14. Paid sick leave starts after 3 months of service.
+Q: How much sick leave do I get after 3 months?
+A: 5 days of outpatient sick leave and 15 days of hospitalisation leave. It rises to 8 and 30 at 4 months, 11 and 45 at 5 months, and 14 and 60 from 6 months.
+Q: Is outpatient sick leave part of hospitalisation leave?
+A: Yes. MOM says the 60 days of paid hospitalisation leave include the 14 days of outpatient sick leave, so outpatient days used also reduce the hospitalisation balance.
+Q: Who can issue the medical certificate?
+A: For outpatient sick leave, a doctor registered under the Medical Registration Act or a dentist registered under the Dental Registration Act. For hospitalisation leave, a doctor who can admit patients to hospital.
+Q: How is a paid sick day calculated?
+A: At the gross rate of pay: 12 x monthly gross salary divided by (52 x days worked a week). On S$3,000 for a 5-day week that is S$138.46 a day.
+Q: Do I get paid sick leave in my first 3 months?
+A: Not under the Employment Act. Paid sick leave starts after 3 months of service; the contract may give more.
 
 ## Singapore Business Deadlines 2027: GST, CPF, ACRA
 URL: https://tools.gantry.work/singapore-business-deadlines-2027.html
@@ -630,6 +696,8 @@ Q: Is my customer data safe?
 A: The file is read inside your browser and never uploaded or stored. Only your own business details are remembered for next time.
 Q: Is there a statement of account template in Excel?
 A: You do not need one here: export your open invoices from Xero, QuickBooks or Excel and the generator builds the statement. If you keep a template in Excel, list the invoice date, number, amount, payments and balance for each open invoice, and total the balance at the statement date.
+Q: How do you prepare a statement of account?
+A: Pick the statement date, list every open invoice for the customer with the unpaid amount, take off unmatched payments and credit notes, age the balance by days past due, then show the total due and how to pay.
 
 ## Stock Take Variance Calculator: Accuracy and Value
 URL: https://tools.gantry.work/stock-take-variance-calculator.html
@@ -643,6 +711,30 @@ Q: Should I count the whole warehouse or cycle count?
 A: Do a full count if accuracy is unknown or below 85%, then move to cycle counting so errors are caught near their cause. Many businesses keep one annual count for the audit plus weekly cycle counts.
 Q: Why is my net variance small but my absolute variance large?
 A: Because overs and shorts cancel. Two bins with +20 and −20 of the same item net to zero but mean the system cannot say where the stock is. Report both figures.
+
+## What a System Project Really Consists Of: 9-Part Checklist
+URL: https://tools.gantry.work/system-project-parts-checklist.html
+Summary: The nine parts every ERP or system project has, whether or not they are in the proposal, and a check that shows which ones yours leaves out.
+Q: What does an ERP project consist of?
+A: Nine parts: software, implementation, changes for how your industry works, data migration and cleaning, links to other systems, training, your own people's time, support after go-live and a reserve for the unexpected. Software is only one of them.
+Q: What is usually missing from an ERP proposal?
+A: Data migration and cleaning, links to other systems, your own people's time, support after go-live and a reserve. These are the parts that stall projects later, so ask for each one to be included or excluded in writing, with who does it.
+Q: Is the software the biggest part of an ERP project?
+A: Usually not in effort. Implementation, data work, links and your own people's time decide the outcome far more than the software choice does.
+Q: How much of our own staff time does an ERP project take?
+A: More than most owners expect, and it is the part least often planned. Key users from finance, sales and operations spend time on workshops, cleaning data and testing for months; agree whose time, how many hours a week, and what they stop doing.
+
+## Stalled ERP Project Rescue Checklist: 12 Checks
+URL: https://tools.gantry.work/system-project-rescue-checklist.html
+Summary: Your system project has been almost done for a year? Twelve checks that show where it is stuck, and the order to restart it. Free, printable.
+Q: Why do ERP projects stall?
+A: Usually not because of the software. They stall on the boring parts nobody inside the business owns: cleaning the master data, agreeing the opening balances, and testing the links to other systems. Scope creep keeps the team busy while those parts wait.
+Q: How do I know if my system project has stalled?
+A: Two or more of these: the go-live date has moved more than twice, opening balances still do not agree, staff run the old system or a spreadsheet alongside the new one, and meetings are about new features rather than the last open item.
+Q: Should we change vendor to rescue a stalled project?
+A: Not as the first step. First find which boring part has no owner. A new vendor inherits the same data, balances and links, so changing vendor without fixing ownership moves the problem rather than solving it.
+Q: What is the first step to restart a stalled ERP project?
+A: Name one owner inside the business who can decide, then give the data, the balances and the links an owner each, and freeze new features until the open items are closed.
 
 ## Three Way Match Example: PO, GRN, Invoice and a Live Checker
 URL: https://tools.gantry.work/three-way-match-guide.html
@@ -671,6 +763,8 @@ Q: How is overtime calculated?
 A: Hours above the overtime threshold are paid at a higher rate, usually 1.5 times the hourly rate. In Singapore, employees covered by Part IV of the Employment Act are paid at least 1.5 times for work beyond 44 hours a week; in the US the federal rule is over 40 hours a week.
 Q: Does the calculator handle overnight shifts?
 A: Yes. If the end time is earlier than the start time, the shift is treated as ending the next day, so 10pm to 6am counts as 8 hours.
+Q: How many overtime hours are allowed in Singapore?
+A: Up to 72 hours a month for employees under Part 4 of the Employment Act, unless the employer has an exemption from MOM. Overtime is paid at no less than 1.5 times the hourly basic rate.
 
 ## Does Your Team Need a Shared WhatsApp Inbox? 2-Minute Check
 URL: https://tools.gantry.work/wati-fit-check.html

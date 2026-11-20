@@ -1,0 +1,36 @@
+/* tools.gantry.work: the four ICP checks (20 Nov 2026). Uses the variables from shared.css. */
+.icp-tool { margin: 14px 0 18px; padding: 18px 16px; border: 1px solid var(--rule); border-radius: 14px; background: #fff; }
+.icp-tool h2 { margin-top: 0; }
+.icp-group { margin: 0 0 14px; }
+.icp-gh { margin: 0 0 6px; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); font-weight: 700; }
+.icp-row, .icp-opt { display: flex; gap: 10px; align-items: flex-start; padding: 9px 10px; border: 1px solid var(--rule); border-radius: 10px; margin-bottom: 6px; cursor: pointer; font-size: 15px; line-height: 1.45; }
+.icp-row input, .icp-opt input { margin-top: 3px; flex: 0 0 auto; width: 18px; height: 18px; accent-color: var(--blue); }
+.icp-row:has(input:checked), .icp-opt:has(input:checked) { border-color: var(--blue); background: var(--blue-wash, rgba(37, 99, 235, .06)); }
+.icp-q { border: 0; padding: 0; margin: 0 0 14px; min-width: 0; }
+.icp-q legend { font-weight: 700; font-size: 15.5px; margin-bottom: 7px; padding: 0; }
+.icp-q legend span { color: var(--blue); }
+.icp-go { display: block; width: 100%; margin-top: 8px; padding: 16px 20px; border: 0; border-radius: 12px; cursor: pointer; text-align: center;
+  font: 700 17px/1.25 var(--font); color: #fff; background: var(--blue); box-shadow: var(--shadow-btn); transition: background .2s; }
+.icp-go:hover { background: var(--blue-d); }
+.icp-go:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+.icp-miss { color: #b42318; font-size: 14px; margin: 6px 0; }
+.icp-result { margin: 14px 0 20px; padding: 18px 16px; border-radius: 14px; background: #0f1b33; color: #fff; }
+.icp-result p, .icp-result li { color: #e7ecf6; }
+.icp-eye { margin: 0 0 4px; font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; color: #9fb3d9 !important; font-weight: 700; }
+.icp-big { margin: 0 0 6px; font-size: 40px; font-weight: 800; line-height: 1.1; color: #fff !important; }
+.icp-big small { font-size: 18px; font-weight: 600; color: #b9c6e2; }
+.icp-band { margin: 4px 0 6px; color: #fff; font-size: 20px; }
+.icp-gaps { margin: 6px 0 14px 20px; padding: 0; }
+.icp-gaps li { margin-bottom: 6px; line-height: 1.5; font-size: 15px; }
+.icp-result a.icp-book, .icp-result a.icp-book:visited { display: block; text-align: center; background: #fff; color: #0f1b33; margin-top: 10px; }
+.icp-result a.icp-book:hover { background: #e7ecf6; color: #0f1b33; }
+.icp-small { font-size: 13.5px; margin: 8px 0 0; }
+.icp-story { margin: 16px 0; padding: 14px 16px; border-left: 4px solid var(--blue); background: rgba(37, 99, 235, .05); border-radius: 0 12px 12px 0; }
+.icp-story p { margin: 0 0 6px; }
+.icp-story .k { font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); font-weight: 700; }
+.icp-fig { margin: 14px 0; }
+.icp-fig svg { width: 100%; height: auto; display: block; }
+.icp-fig figcaption { font-size: 13px; color: var(--ink-2); margin-top: 6px; }
+@media (max-width: 560px) {
+  .icp-big { font-size: 34px; }
+}

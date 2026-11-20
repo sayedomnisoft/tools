@@ -475,6 +475,92 @@ const CALCS = {
       return { out, used: true, headline: `${L.length} business deadlines in 2027 for a ${MON[F - 1]} year end` };
     }
   },
+  annualleave: {
+    // 20 Nov 2026: Singapore annual leave under the Employment Act. MOM eligibility and entitlement (updated 17 Apr 2023): 3 months' service, 7 days in year 1 rising by 1 to 14 from year 8; first-year pro-rating = completed months / 12 x entitlement, under half a day down, half or more up. Carry forward 12 months (Part 4, MOM special situations, updated 24 Jul 2025). Unused leave paid at the gross rate on termination except misconduct (MOM termination with notice, updated 22 Apr 2026). Gross rate per day = 12 x monthly gross / (52 x days a week) (MOM monthly and daily salary, updated 8 Dec 2025).
+    html: `<div class="g4">${f('start', 'Employment start date', '', '', 'date')}${f('asat', 'Work it out as at', '', '', 'date')}${sel('wk', 'Working days a week', [['5', '5 days'], ['5.5', '5.5 days'], ['6', '6 days']], '5')}${f('own', 'Days in the contract (optional)', '', 'if it gives more than the law')}</div>
+      <div class="g4" style="margin-top:10px">${f('cf', 'Days carried forward (optional)', '', 'unused from last year')}${f('taken', 'Days taken this leave year (optional)', '')}${f('gross', 'Monthly gross salary (optional)', '', 'basic + contractual allowances')}${sel('leaving', 'Is the employee leaving?', [['no', 'No'], ['yes', 'Yes: resignation or termination'], ['misconduct', 'Yes: dismissed for misconduct']], 'no')}</div>
+      <div class="g4" style="margin-top:10px">${f('cur', 'Currency', 'S$')}</div>
+      <div class="tiles">${tile('t1', 'Year of service')}${tile('t2', 'Entitlement this year (days)')}${tile('t3', 'Balance (days)')}${tile('t4', 'Pay for unused leave')}</div>
+      <div class="row-acts" style="margin-top:12px"><button type="button" id="csvBtn">Download the leave table (CSV)</button><button type="button" id="prtBtn">Print</button></div><div id="alList"></div>`,
+    init() {
+      const t = new Date(), s = new Date(t); s.setFullYear(t.getFullYear() - 3); s.setMonth(s.getMonth() - 4);
+      $('asat').value = iso(t); if (!$('start').value) $('start').value = iso(s);
+      $('csvBtn').onclick = () => { fileOut('annual-leave-entitlement-singapore.csv', 'text/csv', makeCsv(['Year of service', 'Starts on', 'Statutory days'], window.__al || [])); ev('calc_download', { kind: 'csv' }); };
+      $('prtBtn').onclick = () => { ev('calc_download', { kind: 'print' }); window.print(); };
+    },
+    calc() {
+      const D = v => v ? new Date(v + 'T00:00:00') : null, st = D($('start').value), at = D($('asat').value) || new Date();
+      if (!st || isNaN(st)) return { msg: 'Enter the employment start date.' };
+      if (at < st) return { msg: 'The "as at" date must be after the start date.' };
+      const addM = (s, n) => { const y = s.getFullYear(), m = s.getMonth() + n, last = new Date(y, m + 1, 0).getDate(); return new Date(y, m, Math.min(s.getDate(), last)); };
+      let m = 0; while (addM(st, m + 1) <= at) m++;
+      const half = x => Math.floor(x + 0.5), stat = y => Math.min(7 + y - 1, 14);
+      const yr = Math.floor(m / 12) + 1, own = num($('own').value), E = Math.max(stat(yr), own > 0 ? own : 0);
+      const W = num($('wk').value) || 5, G = num($('gross').value), CF = num($('cf').value) || 0, T = num($('taken').value) || 0, lv = $('leaving').value;
+      const rate = G > 0 ? 12 * G / (52 * W) : NaN;
+      const rows = []; for (let y = 1; y <= 8; y++) rows.push([y === 8 ? '8 and after' : String(y), iso(addM(st, 12 * (y - 1))), String(stat(y))]);
+      window.__al = rows;
+      $('alList').innerHTML = listTable(['Year of service', 'Starts on', 'Days (law)'], rows.map(r => [r[0] === String(yr) || (yr >= 8 && r[0] === '8 and after') ? `<b>${r[0]}</b>` : r[0], fdate(D(r[1])), r[2]]));
+      let ent, how;
+      if (m < 3) { ent = 0; how = `With ${m} completed ${m === 1 ? 'month' : 'months'} of service there is no paid annual leave yet: it starts after 3 months.`; }
+      else if (m < 12) { const raw = m / 12 * E; ent = half(raw); how = `First year, so the leave is pro-rated: ${m} completed months ÷ 12 × ${E} days = ${raw.toFixed(2)}, which MOM rounds to ${ent} (under half a day goes down, half or more goes up).`; }
+      else { ent = E; how = `Year ${yr} of service carries ${stat(yr)} days under the Employment Act${own > stat(yr) ? `; the contract gives ${own}, so ${own} applies` : ''}.`; }
+      const bal = ent + CF - T;
+      let payDays = Math.max(bal, 0), pro = null;
+      if (lv !== 'no' && m >= 12) { const mc = m - 12 * (yr - 1); pro = half(mc / 12 * E); }
+      const pay = lv === 'yes' && rate > 0 ? payDays * rate : lv === 'misconduct' ? 0 : NaN;
+      $('t1').textContent = m < 3 ? 'under 3 months' : String(yr); $('t2').textContent = String(ent); $('t3').textContent = (bal < 0 ? '−' : '') + Math.abs(bal).toLocaleString('en-SG'); $('t4').textContent = lv === 'misconduct' ? 'forfeited' : lv === 'yes' ? (rate > 0 ? money(pay) : 'add gross salary') : '—';
+      let out = `<b style="color:var(--ink)">${m < 3 ? 'No paid annual leave yet.' : `${ent} days of annual leave for year ${yr} of service; ${bal} ${Math.abs(bal) === 1 ? 'day' : 'days'} left after carry-forward and leave taken.`}</b> ${how} `;
+      if (CF > 0) out += `The ${CF} days carried forward must be used within the next 12 months for staff under Part 4 of the Employment Act, or they can be forfeited. `;
+      if (bal < 0) out += `<br><br><b>Over the entitlement:</b> more leave has been taken than earned; the extra days are unpaid unless the contract says otherwise. `;
+      if (rate > 0) out += `<br><br>Gross rate of pay per day = 12 × ${money(G)} ÷ (52 × ${W}) = ${money(rate)}. `;
+      if (lv === 'yes') out += rate > 0 ? `When employment ends for any reason other than misconduct, MOM says unused annual leave must be paid at the gross rate: ${payDays} days × ${money(rate)} = <b>${money(pay)}</b>. ` : `Unused leave is paid at the gross rate of pay when employment ends; add the monthly gross salary to see the amount. `;
+      if (lv === 'misconduct') out += `When someone is dismissed for misconduct, MOM says unused annual leave is forfeited. `;
+      if (pro != null) out += `<br><br>Many contracts pro-rate the final year for a leaver: ${m - 12 * (yr - 1)} completed months of this year ÷ 12 × ${E} = ${pro} days. MOM's page sets that rounding rule for the first year only, so check the contract before using the lower figure. `;
+      if (lv === 'yes') out += `Leave used to offset the notice period, with the employer's agreement, is not paid out again. ${link('notice-period-calculator-singapore.html', 'Notice period calculator')} · `;
+      out += `Put leave taken and any leave pay on the payslip: ${link('payslip-generator-singapore.html', 'payslip generator')} · ${review('annual-leave-result')}`;
+      return { out, used: true, headline: m < 3 ? 'No paid annual leave in the first 3 months' : `${ent} days annual leave (year ${yr}), ${bal} left` };
+    }
+  },
+  sickleave: {
+    // 20 Nov 2026: MOM sick leave eligibility and entitlement (updated 12 Jan 2026): after 3 months' service; 3 months 5 outpatient / 15 hospitalisation, 4 months 8 / 30, 5 months 11 / 45, 6 months and after 14 / 60; the 60 days include the 14 outpatient days. Paid at the gross rate of pay (MOM monthly and daily salary, updated 8 Dec 2025).
+    html: `<div class="g4">${f('start', 'Employment start date', '', '', 'date')}${f('asat', 'Work it out as at', '', '', 'date')}${f('op', 'Outpatient sick days used this year', '0')}${f('hp', 'Hospitalisation days used this year', '0')}</div>
+      <div class="g4" style="margin-top:10px">${f('gross', 'Monthly gross salary (optional)', '', 'basic + contractual allowances')}${sel('wk', 'Working days a week', [['5', '5 days'], ['5.5', '5.5 days'], ['6', '6 days']], '5')}${f('cur', 'Currency', 'S$')}</div>
+      <div class="tiles">${tile('t1', 'Completed months of service')}${tile('t2', 'Outpatient days left')}${tile('t3', 'Hospitalisation days left')}${tile('t4', 'Pay for sick days used')}</div>
+      <div class="row-acts" style="margin-top:12px"><button type="button" id="csvBtn">Download the dates (CSV)</button><button type="button" id="prtBtn">Print</button></div><div id="slList"></div>`,
+    init() {
+      const t = new Date(), s = new Date(t); s.setMonth(s.getMonth() - 4);
+      $('asat').value = iso(t); if (!$('start').value) $('start').value = iso(s);
+      $('csvBtn').onclick = () => { fileOut('sick-leave-entitlement-singapore.csv', 'text/csv', makeCsv(['Months of service', 'From', 'Outpatient days', 'Hospitalisation days (incl. outpatient)'], window.__sl || [])); ev('calc_download', { kind: 'csv' }); };
+      $('prtBtn').onclick = () => { ev('calc_download', { kind: 'print' }); window.print(); };
+    },
+    calc() {
+      const D = v => v ? new Date(v + 'T00:00:00') : null, st = D($('start').value), at = D($('asat').value) || new Date();
+      if (!st || isNaN(st)) return { msg: 'Enter the employment start date.' };
+      if (at < st) return { msg: 'The "as at" date must be after the start date.' };
+      const addM = (s, n) => { const y = s.getFullYear(), m = s.getMonth() + n, last = new Date(y, m + 1, 0).getDate(); return new Date(y, m, Math.min(s.getDate(), last)); };
+      let m = 0; while (addM(st, m + 1) <= at) m++;
+      const TIER = [[3, 5, 15], [4, 8, 30], [5, 11, 45], [6, 14, 60]];
+      let OP = 0, HP = 0; TIER.forEach(t => { if (m >= t[0]) { OP = t[1]; HP = t[2]; } });
+      const uo = num($('op').value) || 0, uh = num($('hp').value) || 0, G = num($('gross').value), W = num($('wk').value) || 5;
+      const opLeft = OP - uo, hpLeft = HP - Math.min(uo, OP) - uh, rate = G > 0 ? 12 * G / (52 * W) : NaN, used = Math.min(uo, OP) + Math.min(uh, Math.max(HP - Math.min(uo, OP), 0));
+      const rows = TIER.map(t => [t[0] === 6 ? '6 and after' : String(t[0]), iso(addM(st, t[0])), String(t[1]), String(t[2])]);
+      window.__sl = rows;
+      $('slList').innerHTML = listTable(['Completed months', 'From', 'Outpatient days', 'Hospitalisation days'], rows.map(r => [r[0], fdate(D(r[1])), r[2], r[3]]));
+      $('t1').textContent = String(m); $('t2').textContent = m < 3 ? '0' : String(Math.max(opLeft, 0)); $('t3').textContent = m < 3 ? '0' : String(Math.max(hpLeft, 0)); $('t4').textContent = rate > 0 && used > 0 ? money(used * rate) : '—';
+      let out;
+      if (m < 3) out = `<b style="color:var(--ink)">No paid sick leave yet: ${m} completed ${m === 1 ? 'month' : 'months'} of service.</b> Paid sick leave starts after 3 months, on ${fdate(addM(st, 3))} for this start date. Sick days before then are unpaid unless the contract gives more. `;
+      else {
+        out = `<b style="color:var(--ink)">${OP} days of paid outpatient sick leave and ${HP} days of hospitalisation leave this year, after ${m} completed months of service.</b> The ${HP} hospitalisation days include the ${OP} outpatient days, so paid outpatient days used also come off the hospitalisation total: ${HP} − ${Math.min(uo, OP)} outpatient − ${uh} hospitalisation = ${hpLeft} left. `;
+        if (m < 6) out += `The entitlement rises with each completed month until 6 months: see the dates below. `;
+        if (opLeft < 0) out += `<br><br><b>Outpatient days are used up:</b> ${-opLeft} more than the ${OP} paid days. Further outpatient sick days are unpaid unless the contract gives more. `;
+        if (hpLeft < 0) out += `<br><br><b>Hospitalisation days are used up.</b> `;
+      }
+      if (rate > 0) out += `<br><br>Paid sick days are paid at the gross rate of pay: 12 × ${money(G)} ÷ (52 × ${W}) = ${money(rate)} a day${used > 0 ? `, so the ${used} paid ${used === 1 ? 'day' : 'days'} used so far cost ${money(used * rate)}` : ''}. `;
+      out += `Sick leave needs a medical certificate from a registered doctor (or dentist); hospitalisation leave needs one from a doctor who can admit patients to hospital. Track leave on the ${link('payslip-generator-singapore.html', 'payslip')} and the ${link('annual-leave-calculator-singapore.html', 'annual leave calculator')}. ${review('sick-leave-result')}`;
+      return { out, used: true, headline: m < 3 ? 'No paid sick leave in the first 3 months' : `${OP} outpatient and ${HP} hospitalisation days (${m} months' service)` };
+    }
+  },
   landedcost: {
     html: `<div class="g4">${f('price', 'Supplier price per unit (foreign currency)', '8.50')}${f('units', 'Units in the shipment', '1200')}${f('fx', 'Exchange rate (S$ per 1 unit of that currency)', '1.35', 'e.g. 1.35 for USD')}${f('cur', 'Your currency', 'S$')}</div>
       <div class="g4" style="margin-top:10px">${f('freight', 'Freight to Singapore (S$)', '1800')}${f('ins', 'Insurance (S$)', '60')}${f('duty', 'Customs duty %', '0', 'most goods 0; liquor, tobacco, vehicles, petroleum differ')}${f('gst', 'Import GST %', '9')}</div>
