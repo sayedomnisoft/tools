@@ -1,0 +1,727 @@
+# The Gantry Tools: full text for assistants
+
+> Free calculators, document generators and plain guides for small businesses in Singapore, by Sayed Rashid (former auditor). Each entry gives the page, its short answer and its questions. Figures carry the date they were checked and name the official source. Index: https://tools.gantry.work/llms.txt
+
+## 13-Week Cash Flow Forecast Template With Singapore Dates
+URL: https://tools.gantry.work/13-week-cash-flow-calendar.html
+Summary: A 13-week cash flow forecast for 7 Dec 2026 to 7 Mar 2027, with CPF, levy, GST, ECI and property tax dates from the official pages. Free PDF.
+Q: What is a 13-week cash flow forecast?
+A: A planning sheet with one column a week for 13 weeks, about one quarter. Each week starts with the opening balance, adds money in, takes off money out and ends with a closing balance. It works in cash, not profit: money goes in the week it reaches or leaves the bank.
+Q: Should customer receipts go in on the invoice date or the due date?
+A: Neither. Put each receipt in the week you expect the money. If a customer usually pays 20 days late, write it 20 days late. A forecast built on due dates shows cash you will not have.
+Q: Which Singapore payment dates fall between 7 December 2026 and 7 March 2027?
+A: From the official pages read on 11 November 2026: CPF enforcement dates of 14 December, 14 January and 15 February; foreign worker levy by 17 December, 18 January and 17 February; the GST return and payment for October to December by 31 January, with the GIRO deduction on 15 February; ECI filing by 26 January or 26 February to keep 10 or 8 instalments for December year-ends on GIRO; and property tax by 31 January 2027. The days of the week on this page are my own calendar arithmetic.
+Q: When is the GST return for October to December 2026 due?
+A: On 31 January 2027, one month after the accounting period ends, according to the IRAS page on GST filing due dates read on 11 November 2026. With GIRO, the deduction is on 15 February. The page gives no weekend roll-over for filing, and 31 January 2027 is a Sunday by my own calendar arithmetic, so I would plan for Friday 29 January.
+Q: What can I move when a week looks tight?
+A: Dates move more easily than amounts, and far more easily when you ask early. Bring money in sooner: invoice on the day of delivery, ask a large customer for a payment date before the holiday, take deposits. Push money out later: ask a supplier for a later date before it is due, or split one large payment across two weeks. Payroll, CPF, levy and tax dates do not move.
+Q: How often should I update the forecast?
+A: Once a week, on Monday, for about 20 minutes. Write in last Friday's real bank balance, tick what came in and went out, move anything late, add what you learnt, and find the lowest closing balance. One person owns the sheet.
+
+## Free AR Aging Report Generator
+URL: https://tools.gantry.work/ar-aging-report.html
+Summary: Free accounts receivable aging report. Upload or paste your open invoices and get aging buckets by customer, overdue totals, DSO and customer statements.
+Q: What is an AR aging report?
+A: A report of what each customer owes, split into columns by how long the invoices have been unpaid, usually current, 1 to 30, 31 to 60, 61 to 90 and over 90 days past due.
+Q: Should I age invoices by due date or invoice date?
+A: By due date if you want to see what is actually late; that is the default here. Ageing by invoice date is common in some industries and for credit insurance reports; switch the setting and the columns change.
+Q: Is my data uploaded anywhere?
+A: No. The file is read inside your browser and is not stored or sent anywhere. Only your own business details are remembered, so your statements are ready next month.
+Q: Can I make customer statements from the same data?
+A: Yes. The same upload produces a statement of account for every customer, which you can print one at a time or all together, each on its own page.
+
+## Free Break-Even Calculator: Units and Sales
+URL: https://tools.gantry.work/break-even-calculator.html
+Summary: Free break-even calculator: fixed costs, price and variable cost in; break-even units, sales, contribution margin and margin of safety out. No signup.
+Answer: Break-even units = fixed costs ÷ (selling price − variable cost per unit). With fixed costs of S$12,000 a month, a S$50 selling price and a S$30 variable cost, each unit contributes S$20, so you break even at 600 units, or S$30,000 of sales a month. Enter your own figures below to see your margin of safety. Checked 28 October 2026. Figures in S$; change the currency box for any other.
+Q: How do you calculate the break-even point?
+A: Divide fixed costs by the contribution margin per unit (selling price minus variable cost per unit). The answer is the number of units you must sell to cover fixed costs.
+Q: What is the margin of safety?
+A: How far current sales are above break-even, as a percentage of current sales. A 25% margin of safety means sales could fall by a quarter before you make a loss.
+Q: What if my price is below my variable cost?
+A: Then every sale loses money and there is no break-even point. Raise the price or cut the variable cost first.
+
+## Cost of Manual Work Calculator
+URL: https://tools.gantry.work/cost-of-manual-work.html
+Summary: Work out what the hours your team repeats every week actually cost you over a year. Free calculator, no signup.
+Q: How do you calculate the cost of manual work?
+A: Multiply the people involved by their manual hours per week and by 52, then by their hourly cost (monthly salary divided by about 190 paid hours).
+Q: Does it include the cost of errors?
+A: No. It counts salary only. Errors, stockouts and slow decisions usually cost more than the labour figure.
+Q: Is it free?
+A: Yes, with no signup. It gives three calculations, then offers a free 20-minute review if you want to go further.
+
+## Month-End and Year-End Close Checklist, Day by Day
+URL: https://tools.gantry.work/december-close-checklist.html
+Summary: A month-end and year-end close checklist, day by day: a test for each step, six December extras and the Singapore dates a late close holds up.
+Q: What is on a month-end close checklist?
+A: Before month end: delivery notes, staff claims and supplier invoices chased. Day 1: cut-off numbers and bank statements. Day 2: bank reconciliations and deliveries not yet invoiced. Day 3: supplier statements and accruals. Day 4: stock differences, payroll and recurring entries. Day 5: margin review and reports. Each step has one owner, one cover and a test that says when it is done.
+Q: How long should a month-end close take?
+A: Five days is a target, not a rule. If your close takes twelve days today, aim for ten next month. Write down the step that waited longest, then start that step one day earlier or remove what it was waiting for. One step a month is enough.
+Q: What does a year-end close add to a normal month-end close?
+A: Six things: cut-off numbers on one signed sheet, the stock count tied to the books, accruals for costs not yet invoiced, supplier statements matched at 31 December, an updated fixed assets list, and one folder with what your auditor or tax agent asks for first.
+Q: How much does a slow close cost?
+A: People, times hours a day, times days per close, times 12, times hourly cost. With example figures, 3 people at 4 hours a day for 9 days is 1,296 hours a year, or S$45,360 at S$35 an hour. At 5 days it is 720 hours, or S$25,200. The gap is S$20,160 a year.
+Q: What does a late December close hold up in Singapore?
+A: Four dated things, each taken from its official page on 11 November 2026: CPF for December wages (due 31 December, with enforcement after the 14th of the following month), the corporate tax estimate or ECI (file by 26 January to keep 10 instalments, for a December year-end on GIRO), the GST return and payment for October to December (31 January), and employment income records for employers in the Auto-Inclusion Scheme (1 March).
+Q: What will my auditor or tax agent ask for first?
+A: From experience: the trial balance, bank statements and reconciliations at 31 December, aged customer and supplier lists that agree to the books, count sheets and the final stock list, the fixed assets list, a payroll summary that agrees to CPF, loan statements and the accruals list. Put them in one folder before anyone asks.
+
+## Free Delivery Order Generator (PDF)
+URL: https://tools.gantry.work/delivery-order-generator.html
+Summary: Free delivery order (DO) generator. Items, quantities, delivery address, PO reference and a receiver signature block. Download a PDF, no signup.
+Q: Is the delivery order generator free?
+A: Yes. There is no signup and no limit on how often you use it. Everything is saved only in your own browser.
+Q: Does a delivery order show prices?
+A: Usually not. The DO is for the driver and the receiving store, who only need to check items and quantities. Prices go on the invoice.
+Q: Can I create a delivery order from a quotation or invoice?
+A: Yes. In the quotation or invoice generator, click "Turn into delivery order" and the customer and items carry over, with the reference filled in.
+Q: What is the difference between a delivery order and a goods received note?
+A: The seller issues the delivery order with the goods. The goods received note is the buyer's own record of what actually arrived.
+Q: Is there a delivery order template in Excel?
+A: An Excel template works for a few deliveries a week, but numbers, quantities and signatures are easy to lose. This generator numbers the DO, lists items and quantities, adds a receiver signature block and saves a PDF, and it can turn a quotation or invoice into a DO without retyping.
+
+## Free DSO Calculator: Days Sales Outstanding
+URL: https://tools.gantry.work/dso-calculator.html
+Summary: Free DSO calculator: receivables and credit sales in; days sales outstanding, days beyond your terms and the cash tied up out. With formula and examples.
+Answer: DSO = accounts receivable ÷ credit sales for the period × days in the period. If customers owe S$120,000 at the end of a quarter with S$240,000 of credit sales, DSO is 120,000 ÷ 240,000 × 90 = 45 days. On 30-day terms, customers are paying 15 days late on average, which ties up about S$40,000. Checked 28 October 2026. Figures in S$; change the currency box for any other.
+Q: How do you calculate days sales outstanding?
+A: Divide accounts receivable by credit sales for the period and multiply by the number of days in the period. S$120,000 owed on S$240,000 of quarterly sales is 45 days.
+Q: Should I include cash sales?
+A: No. Use credit sales only, because cash sales never become receivables. Including them makes DSO look better than it is.
+Q: Should receivables include GST?
+A: Receivables usually include GST while sales figures often exclude it, which overstates DSO by about the GST rate. Use both figures with GST or both without.
+
+## EDGE Grant Calculator for ERP Projects (Singapore)
+URL: https://tools.gantry.work/edge-grant-calculator.html
+Summary: Free EDGE grant calculator for ERP and digital projects in Singapore: 50% SME support, the S$30,000 sub-cap, eligibility checks and your net cost.
+Answer: For an ERP, Singapore's EDGE Grant pays SMEs up to 50% of qualifying costs and non-SMEs up to 30%. The Integrated ERP activity caps the qualifying cost at S$60,000, so the most it pays is S$30,000 for an SME and S$18,000 for a non-SME. GST and maintenance are not covered. Source: Enterprise Singapore . Checked 28 October 2026. Figures in S$; change the currency box for any other.
+Q: How much is the EDGE grant for ERP?
+A: For SMEs, up to 50% of qualifying costs for an integrated enterprise system such as an ERP, and up to 30% for non-SMEs, within a S$30,000 sub-cap for digital solutions and enterprise systems. The ERP activity caps the qualifying cost at S$60,000, so the maximum is S$30,000 for an SME and S$18,000 for a non-SME.
+Q: Is the EDGE grant 70%?
+A: Only for internationalisation and sustainability activities. ERP and digital projects are supported at up to 50% for SMEs.
+Q: Does EDGE replace PSG?
+A: Yes. PSG, EDG and MRA stopped taking new applications after 30 September 2026; projects already applied for continue under their original terms. For PSG, EDG or MRA projects supported by the SkillsFuture Enterprise Credit, the final claim is due by 30 November 2026.
+Q: When can I claim the EDGE grant?
+A: You make one final claim, after the project is delivered and paid for in full. Claims open from 1 December 2026 for single-function digital solutions and pre-scoped equipment, and from 1 January 2027 for all other activities, including integrated enterprise systems such as an ERP.
+
+## ERP Readiness Assessment: Free Checklist & Scorecard
+URL: https://tools.gantry.work/erp-readiness.html
+Summary: A free ERP readiness assessment scored against a practical checklist. Find out whether your business is genuinely ready to buy an ERP, or exactly what to fix first.
+Q: What is an ERP readiness assessment?
+A: A short check of the foundations that decide whether an ERP project succeeds: documented processes, ownership, clean data, a known cost of today's process, agreed goals, budget, people's time and the number of exceptions.
+Q: Is a low score good?
+A: Yes. Lower means more ready. 0 to 3 is ready to build; 12 to 16 means fix the foundations before buying software.
+Q: Does the scorecard recommend a specific ERP?
+A: No. It names no vendor. It tells you what to fix first, whichever system you choose.
+
+## Payment Reminder Email Templates and a Stop-Supply Rule (Get-Paid Kit)
+URL: https://tools.gantry.work/get-paid-kit.html
+Summary: Payment reminder wording for day 1, 7 and 14, a statement cover note, a call script, a stop-supply rule and the days-to-get-paid sum. Free PDF.
+Q: When should I send the first payment reminder?
+A: On day 1 after the due date. The first reminder is friendly and assumes an oversight: it names the invoice number, the amount and the due date, attaches a copy, and asks for the payment reference if the invoice has already been paid.
+Q: How many payment reminders should I send before I stop supplying?
+A: Three, on day 1, day 7 and day 14 after the due date, followed by a phone call on day 15. The third reminder mentions the hold rule, so the customer is told before the account goes on hold at day 21, never after a delivery has been refused.
+Q: What is a stop-supply rule?
+A: A written credit term which says that an account with any invoice more than a set number of days overdue (21 in this kit), or over its credit limit, goes on hold: no new orders are delivered until it is cleared or a payment plan is agreed in writing. Only a named person, such as the director or finance lead, can release a hold.
+Q: How do I work out days to get paid?
+A: Divide the amounts customers owe you by your credit sales in the period, then multiply by the days in the period. With example figures: S$310,000 owed and S$600,000 of credit sales in the last 90 days gives 46.5 days. On 30-day terms that is 16.5 days late.
+Q: What should a statement of account cover note say?
+A: The statement date, the total outstanding, how much of it is overdue and the two oldest invoice numbers. Then ask the customer to check it against their records, and end with one question: when is your next payment run?
+Q: Are these payment reminders legal notices?
+A: No. They are reminders sent in your own company's name. They make no threats and state no legal position. If a customer disputes an invoice, settle the dispute first and ask them to pay the undisputed part meanwhile. For formal recovery, speak to a lawyer.
+
+## Free Gross Profit Calculator and Margin
+URL: https://tools.gantry.work/gross-profit-calculator.html
+Summary: Free gross profit calculator: revenue and cost of goods sold in; gross profit, gross margin, net profit and net margin out. COGS helper included.
+Answer: Gross profit = revenue − cost of goods sold, and gross margin = gross profit ÷ revenue × 100, using revenue before GST. S$180,000 of sales with S$126,000 cost of goods sold gives S$54,000 of gross profit, a 30% gross margin. No cost per sale? Use opening stock + purchases − closing stock as cost of goods sold. Checked 28 October 2026. Figures in S$; change the currency box for any other.
+Q: How do you calculate gross profit?
+A: Subtract cost of goods sold from revenue. S$180,000 of sales with S$126,000 of cost of goods sold is S$54,000 gross profit.
+Q: What is the difference between gross profit and net profit?
+A: Gross profit is after the direct cost of what you sold; net profit is after all expenses, including rent, salaries and other overheads.
+Q: What is a good gross profit margin?
+A: It depends on the trade. Compare your own margin month by month and against your overheads: gross profit has to cover them with room to spare.
+
+## Free GST Calculator Singapore: Add or Remove 9% GST, Service Charge
+URL: https://tools.gantry.work/gst-calculator.html
+Summary: Free GST calculator: add GST to a price or remove it from a GST-inclusive amount, at Singapore's 9% or any rate. Several amounts at once. No signup.
+Answer: To add Singapore GST, multiply the price before GST by 1.09: S$1,000 becomes S$1,090, including S$90 of GST. To remove GST from a GST-inclusive amount, divide it by 1.09, or take 9/109 of it: S$1,000 including GST contains S$82.57 of GST. The standard rate has been 9% since 1 January 2024 ( IRAS ). Checked 28 October 2026. Figures in S$; change the currency box for any other.
+Q: Is GST charged on the service charge?
+A: Yes. In Singapore the service charge is part of the price, so GST is worked out on the bill including it: S$100 plus S$10 service charge plus S$9.90 GST is S$119.90.
+Q: How do I calculate 9% GST?
+A: Multiply the price before GST by 0.09 for the GST, or by 1.09 for the price including GST. S$500 becomes S$545 including S$45 of GST.
+Q: How do I remove GST from a total?
+A: Multiply the GST-inclusive total by 9/109 to get the GST included, or divide it by 1.09 to get the price before GST.
+Q: Can I use another rate?
+A: Yes. Change the GST rate box to any rate, for example for another country's VAT or GST.
+
+## SME Systems Health Check: Free 60-Second Diagnostic
+URL: https://tools.gantry.work/health-check/
+Summary: Ten questions, sixty seconds: find out how much of your week your business loses to manual work, and which process is leaking the most. Free.
+Q: Is the Systems Health Check free?
+A: Yes. It takes about 60 seconds. Your score opens after one short form with your name and work email, and your answers go to Sayed with it so he can reply.
+Q: What does a high score mean?
+A: A higher score means more of your operation depends on manual work and memory. 0 to 4 is systems-ready; 16 to 20 means errors and stockouts are likely routine.
+Q: Do I need an ERP if my score is high?
+A: Not necessarily. Many leaks can be fixed with better spreadsheets and simple automation first. An ERP makes sense when the same data has to flow through sales, stock and accounts every day.
+
+## Free Business Tools and Calculators for Singapore SMEs
+URL: https://tools.gantry.work/
+Summary: 49 free tools and guides for Singapore SMEs. Pick what you want to fix: late payments, stock, job costs, margins, paperwork, grants and InvoiceNow, or WhatsApp. One tool to start with, about a minute each.
+Q: Are these business tools really free?
+A: Yes. Every tool is free to use, as often as you like, with no sign-up. If you want a second pair of eyes on your numbers, you can book a free 20-minute review.
+Q: Is my data safe?
+A: Everything runs in your browser. Your files and entries are never uploaded or stored on a server; your business details are remembered only on your own computer.
+Q: Do the tools work outside Singapore?
+A: Yes. Currency and tax rate are editable. Singapore specifics such as 9% GST, tax invoices, PayNow and InvoiceNow are built in as defaults.
+Q: Who builds these tools?
+A: Sayed Rashid, who works with business owners on automation and business systems. Each tool comes from a job owners were doing by hand every week.
+Q: Can I suggest a tool?
+A: Yes. Message Sayed on LinkedIn with the job you do by hand every week; the most common requests become the next free tools.
+
+## Inventory Management Software Cost Calculator
+URL: https://tools.gantry.work/inventory-software-cost-calculator.html
+Summary: Free inventory management software cost calculator: compare 12-month costs of Zoho Inventory, inFlow, Cin7 Core, Unleashed and Odoo for your team.
+Answer: For a small business, inventory software runs from free, with tight order or user limits, to about US$350 to US$730 a month for multi-location tools such as Cin7 Core or Unleashed, before setup. Three numbers decide the plan: how many people log in, how many stock locations you run and how many sales orders you process. Checked 28 October 2026. Figures in S$; change the currency box for any other.
+Q: How much does inventory management software cost for a small business?
+A: From free for very small volumes to about US$350 to US$730 a month for multi-location tools, before setup. Users, stock locations and monthly orders decide the plan.
+Q: What is the cheapest inventory software?
+A: For one user, two locations and up to 50 orders a month, Zoho Inventory Free costs nothing. Beyond that, Zoho Inventory Standard at S$39 a month billed yearly is one of the lowest paid plans.
+Q: Is inventory software cheaper than an ERP?
+A: The licences usually are, but an inventory app sits beside your accounting software. An ERP such as Odoo charges per user for every app and needs a larger implementation.
+Q: Does the calculator include setup costs?
+A: It includes published onboarding fees where a vendor lists them as required, and you can add your own setup budget. Implementation by a partner is extra.
+
+## Invoice Due Date Calculator (Net 30, EOM)
+URL: https://tools.gantry.work/invoice-due-date-calculator.html
+Summary: Free invoice due date calculator: invoice date and terms (net 7 to net 90, net 30 EOM) in; due date, days overdue and late interest out. No signup.
+Answer: Net 30 means payment is due 30 calendar days after the invoice date, so an invoice dated 3 October is due on 2 November. Net 30 EOM means 30 days after the end of the month the invoice is dated in: an invoice dated 3 March is due on 30 April. Charge late interest only if your agreed terms allow it. Checked 28 October 2026. Figures in S$; change the currency box for any other.
+Q: What does net 30 mean?
+A: Payment is due within 30 calendar days of the invoice date. An invoice dated 1 June on net 30 terms is due on 1 July.
+Q: What does net 30 EOM mean?
+A: Payment is due 30 days after the end of the month in which the invoice is dated, which gives the customer longer than plain net 30.
+Q: Can I charge interest on late payments?
+A: Only if your terms say so and the customer accepted them. State the rate and how it is calculated on your invoices and terms.
+Q: What does 2/10 net 30 mean?
+A: The customer can take a 2% discount by paying within 10 days of the invoice date; otherwise the full amount is due within 30 days. Skipping the discount costs the customer about 37% a year.
+Q: Net 30 or due on receipt: what is the difference?
+A: Due on receipt means payment is expected as soon as the customer gets the invoice. Net 30 gives them 30 calendar days. Due on receipt suits one-off customers; net 30 is common for trade accounts.
+Q: How do you calculate late payment interest?
+A: Invoice amount x annual rate x days late / 365. S$4,800 at 8% a year paid 30 days late is S$31.56, and only if your agreed terms allow interest.
+
+## Free Invoice Generator (PDF, GST Tax Invoice)
+URL: https://tools.gantry.work/invoice-generator.html
+Summary: Free invoice generator. Add your logo, items and GST, and download a professional PDF invoice or tax invoice in seconds. Numbering, payment details, no signup.
+Q: Is this invoice generator really free?
+A: Yes. There is no signup and no limit on how often you use it. The small "made with" line can be switched off. Your details are saved only in your own browser.
+Q: How do I save the invoice as a PDF?
+A: Click "Download PDF or print" and choose "Save as PDF" as the printer. On a phone, use Print and then save or share the PDF.
+Q: Can I add my logo?
+A: Yes, under "Your business". The logo is resized and stored only in your browser, and it appears on every document type.
+Q: What is the difference between an invoice and a tax invoice?
+A: A tax invoice is the invoice a GST-registered business issues when it charges GST. It must show the words "Tax Invoice", the GST registration number, and the GST rate and amount.
+Q: Can I make a receipt once the customer pays?
+A: Yes. "Turn into receipt" opens the receipt generator with the same customer and items, referencing the invoice number.
+Q: Is there an invoice template for Singapore in Excel?
+A: Excel templates work, but totals, GST and invoice numbers have to be kept right by hand. This generator adds GST, numbers the invoice and saves a PDF. If you keep Excel as well, keep one row per invoice with the number, date, customer, amount and due date so you can see what is owed.
+Q: Can a freelancer who is not GST-registered use this invoice template?
+A: Yes. Leave GST off. A business that is not GST-registered must not charge GST, call its invoice a tax invoice or show a GST registration number.
+
+## GST InvoiceNow Implementation Date Calculator (IRAS, 2026)
+URL: https://tools.gantry.work/invoicenow-deadline.html
+Summary: Find your mandatory GST InvoiceNow implementation date in under a minute. A free web version of the IRAS calculator, with no Excel and no download. Covers every phase from 2025 to 2031.
+Q: Is InvoiceNow mandatory in Singapore?
+A: For GST-registered businesses yes, but on a phased timetable rather than all at once. Every GST-registered business must eventually transmit invoice data to IRAS through the InvoiceNow network, starting with voluntary registrants on 1 Nov 2025 and finishing with the largest existing businesses on 1 Apr 2031. If you are not GST-registered it is optional.
+Q: How is my GST InvoiceNow implementation date decided?
+A: If you registered for GST from 2026 onward it depends on whether registration was voluntary or compulsory, and when. If you were already GST-registered before 2026 it depends on your total supplies in Box 4 across accounting periods ending in calendar year 2025: S$200,000 or less means 1 Apr 2028, S$1,000,000 or less means 1 Apr 2029, S$4,000,000 or less means 1 Apr 2030, and more than S$4,000,000 means 1 Apr 2031.
+Q: What if I registered for GST part-way through 2025?
+A: Your returns then cover less than a full year, so IRAS annualises the figure before deciding your phase: total supplies divided by the days covered, multiplied by 365. Because annualising makes the figure larger, it usually moves a business into a later phase.
+Q: Why do the smallest businesses have to comply first?
+A: Smaller businesses tend to have simpler invoicing and fewer systems to change, so they can move quickly. Larger businesses often have deeply integrated ERP systems and many trading partners, so they are given until 2031 to prepare.
+Q: Which businesses are excluded from the GST InvoiceNow Requirement?
+A: Overseas entities registered under the Overseas Vendor Registration regime, both Pay-only and full, and businesses liable to register for GST wholly because of the Reverse Charge regime.
+
+## How Does InvoiceNow Work? One Invoice, Five Stops
+URL: https://tools.gantry.work/invoicenow-explained.html
+Summary: How InvoiceNow works in Singapore: one invoice followed through five stops, from your system to your customer and IRAS. Dates, Peppol ID, costs and grants.
+Q: How does InvoiceNow work, in one line?
+A: Your accounting software passes the invoice as data to an access point, which looks up your customer's Peppol ID and hands the invoice to the customer's access point, which places it in their accounting system. For GST-registered businesses a copy of the invoice data also goes to IRAS once the requirement applies to them.
+Q: Is InvoiceNow the same as Peppol?
+A: InvoiceNow is the name of Singapore's nationwide e-invoicing network. It runs on the international Peppol standard, and IMDA is the Peppol Authority for Singapore. Because the standard is shared, a business here can exchange e-invoices with an overseas business that is also on Peppol.
+Q: Do I have to change my accounting software?
+A: Only if it is not InvoiceNow-Ready. IRAS requires the data to be sent through an InvoiceNow-Ready Solution. If your current software is on IMDA's accredited list, you get a Peppol ID and activate the submission feature through that provider. A system built in-house connects through an accredited access point provider.
+Q: Can IRAS see my invoices?
+A: Once the GST InvoiceNow Requirement applies to you and you activate the feature, IRAS receives a copy of your invoice data through the access point. An older IMDA FAQ from March 2023 says the government cannot see e-invoices; that was written before the GST requirement existed. Invoices still travel directly between the two access points.
+Q: When does my business have to start?
+A: New voluntary GST registrants are already covered (from 1 November 2025 and 1 April 2026). New compulsory registrants and existing GST-registered businesses with total annual supplies of S$200,000 or less start on 1 April 2028, then S$1,000,000 or less on 1 April 2029, S$4,000,000 or less on 1 April 2030, and everyone above that on 1 April 2031.
+Q: Does InvoiceNow replace my GST return?
+A: No. IRAS states that businesses must still file accurate GST returns. The invoice data is sent in addition to the return, by the earlier of the day you file and the day the return is due.
+Q: How do I get a Peppol ID in Singapore?
+A: You do not create it yourself. Choose an InvoiceNow-ready accounting or invoicing solution; the solution provider registers your business in the SG Peppol Directory using your UEN. Your Peppol ID is then 0195:SG plus UEN plus your UEN, for example 0195:SGUEN201912345K.
+Q: What do Peppol IDs like 0208, 9925 and 0195 mean?
+A: The four digits are the scheme that identifies the business. 0195 is the Singapore UEN scheme used for InvoiceNow. 0208 and 9925 are Belgian schemes (the Belgian enterprise number and the Belgian VAT number), so a Singapore business does not use them.
+Q: Is there an e-invoice template for Singapore?
+A: Not in the sense of a document layout. An e-invoice under InvoiceNow is structured data sent between accounting systems over the Peppol network. A PDF made from a template and emailed is still an ordinary invoice, not an e-invoice.
+
+## Free InvoiceNow Solutions in Singapore: The Official List
+URL: https://tools.gantry.work/invoicenow-free.html
+Summary: Is InvoiceNow free? Yes, for most businesses. The 13 free-of-charge packages on IRAS's official list, what each one covers, and the expiry dates three of them carry that nobody mentions.
+Q: Is InvoiceNow free in Singapore?
+A: For most GST-registered businesses, yes. Thirteen accredited providers offer a complete free-of-charge InvoiceNow package with no conditions attached, and the network carries no per-invoice fee. What is not free is the work around it: cleaning customer records, mapping invoice data and testing transmission.
+Q: How long are the free InvoiceNow packages available?
+A: Free-of-charge packages are available up to 31 March 2031, but the current published list only applies until 31 March 2027. IRAS has said the list for 1 April 2027 to 31 March 2031 will be published later. Three providers on the current list state an end date of 31 March 2027.
+Q: Can non-GST-registered businesses use InvoiceNow for free?
+A: The GST InvoiceNow Requirement does not apply to businesses that are not GST-registered, so it is not compulsory. They can still join the network voluntarily, and larger customers increasingly ask suppliers to be able to receive Peppol invoices.
+
+## InvoiceNow Grant Singapore: Queen Bee, S$5,000 and S$1,000
+URL: https://tools.gantry.work/invoicenow-grants.html
+Summary: IMDA's InvoiceNow grants are fixed payouts: S$1,000 (supplies up to S$4m), S$5,000 (own-ERP integration) and the S$25,000 Queen Bee Grant. Who qualifies.
+Q: How much is the InvoiceNow grant?
+A: There are three amounts. The GST InvoiceNow Transition Grant pays S$1,000 to businesses with total annual supplies of S$4 million or less, and S$5,000 to larger businesses that integrate their own ERP. The InvoiceNow Queen Bee Grant pays S$25,000. All three are fixed payouts, not a percentage of your costs.
+Q: What is the InvoiceNow Queen Bee Grant?
+A: A S$25,000 cash grant from IMDA for large businesses (annual turnover above S$4 million, incorporated more than a year, at least 200 suppliers or business customers) that connect their own custom ERP to InvoiceNow through an accredited Access Point, then receive e-invoices from at least 20 suppliers or send them to at least 40 customers.
+Q: If I spend S$12,000 on the integration, can I still get the S$25,000 Queen Bee Grant?
+A: Yes, if you meet the deliverables. IMDA's FAQ says the Queen Bee Grant is a fixed S$25,000, not a reimbursement, and it is not pegged to what you spent. You are paid after the integration is done (by 31 March 2030) and the 20-supplier or 40-customer transactions are complete (by 31 March 2031).
+Q: Can I claim the S$1,000 grant if I use a free InvoiceNow package?
+A: No. A free-of-charge package has no qualifying cost to defray. You can switch from a free package to a paid InvoiceNow-Ready solution and then claim, but only after a 3-month wait-out counted from the date you are de-registered from the network and your free account is deleted.
+Q: Can I claim the InvoiceNow grant and PSG or EDGE for the same solution?
+A: Not for the S$1,000 grant. IMDA's FAQ excludes businesses that have received, or are claiming, other government funding for the same solution or subscription. PSG ceased on 29 September 2026 and EDGE replaced it from 30 September; EDGE pays on a reimbursement basis, so pick the route that funds more of your actual project.
+Q: Is the InvoiceNow grant from IMDA or IRAS?
+A: IMDA. All three InvoiceNow grants are run and paid by IMDA, and you claim from IMDA. IRAS sets the GST InvoiceNow Requirement, meaning the mandate and its dates, and lists the grant amounts on its GST InvoiceNow Requirement page, which is why many people look for an IRAS InvoiceNow grant.
+Q: Is the IMDA InvoiceNow grant a capital grant?
+A: It is a fixed cash payout, not a percentage of what you spent, and all three grants are taxable as revenue. The money arrives by PayNow Corporate about two months after a complete claim.
+Q: Who qualifies for the S$5,000 InvoiceNow grant?
+A: GST-registered businesses with total annual supplies above S$4 million that connect their own ERP to GST InvoiceNow through an IMDA-accredited Access Point. The project must start after 26 February 2026 and be completed within 12 months and by 31 March 2028. Buying an off-the-shelf InvoiceNow-Ready solution does not qualify, although IMDA accepts appeals.
+Q: Can each company in a group claim the InvoiceNow grant?
+A: It depends on whether the companies share a system. For the S$1,000 grant, one shared solution across the group means one claim, while GST-registered entities with their own subscriptions may each be considered. For the S$5,000 grant and the Queen Bee Grant, IMDA assesses both the entity and its ERP integration, so companies that share one ERP and one Access Point integration cannot each claim. IMDA asks groups to contact it about their own structure.
+Q: Where is the official list of InvoiceNow-Ready solution providers?
+A: IMDA publishes it as a PDF, the List of accredited InvoiceNow-Ready Solution Providers, and IRAS links to it from its GST InvoiceNow Requirement page. A second PDF lists the accredited Access Point Providers, which is the one that matters if you connect your own ERP. Both change, so check the date at the top.
+Q: How do I apply, and is the grant taxable?
+A: For the S$1,000 and S$5,000 grants there is no application: you submit IMDA's claim form with proof of cost, proof of payment and, for S$5,000, proof the integration is complete. The Queen Bee Grant starts with an Expression of Interest. Payouts arrive by PayNow Corporate about two months after a complete claim, and all three grants are taxable as revenue.
+
+## InvoiceNow IRSP List: Solution Providers vs Access Points
+URL: https://tools.gantry.work/invoicenow-providers.html
+Summary: The IMDA InvoiceNow IRSP list has 209 accredited InvoiceNow-Ready Solution Providers and 47 Access Point Providers. They do different jobs. Check whether your software (Xero, QuickBooks, AutoCount, Zoho, NetSuite, Odoo) is listed before you pay for either.
+Q: What is an InvoiceNow-Ready Solution Provider?
+A: Accounting or ERP software accredited by IMDA to generate and send compliant e-invoices. There are 209 on the list as of 17 September 2026. If your books already live in one of these, it is usually your route to compliance.
+Q: What is an InvoiceNow Access Point Provider?
+A: A provider that carries documents across the Peppol network: the delivery layer. There are 47 accredited Access Point Providers. Businesses running custom or in-house systems connect through one of these.
+Q: Do I need both a solution provider and an access point?
+A: Usually not. Most accredited accounting packages bundle both, so the access point is invisible to you. You only need to choose an Access Point Provider separately if your invoicing system is custom or is not on the accredited solution provider list.
+
+## Is My Accounting Software InvoiceNow-Ready? (Singapore)
+URL: https://tools.gantry.work/invoicenow-software.html
+Summary: Check whether Xero, QuickBooks, Odoo, SAP, NetSuite, Sage, Dynamics, ABSS, AutoCount or Zoho is on IMDA's accredited InvoiceNow list, and what to do if it isn't. Checked against the official list.
+Q: How do I know if my accounting software is InvoiceNow-ready?
+A: Check it against IMDA's list of accredited InvoiceNow-Ready Solution Providers. This tool does the match for you; if there is no match, check the official list before deciding.
+Q: What if my software is not on the list?
+A: Move to listed software, connect through an access point provider, or use one of the free packages IRAS lists, then check grants before paying.
+Q: When do I have to use InvoiceNow?
+A: IRAS is phasing it in for GST-registered businesses, starting with new voluntary registrants in 2025 and 2026, with existing registrants in later phases. Use the deadline finder for your date.
+Q: Is Xero InvoiceNow-ready in Singapore?
+A: Yes. Xero (Singapore) Pte Ltd appears on IMDA's accredited InvoiceNow-Ready Solution Provider list in its own right, and e-invoicing is built into the product. Around seventy accounting firms are separately listed as Xero partners.
+Q: Is QuickBooks InvoiceNow-ready in Singapore?
+A: Not yet, but it is close. QuickBooks does not appear on IMDA's accredited InvoiceNow-Ready Solution Provider list as of 17 September 2026. However Intuit has built a native InvoiceNow experience for Singapore with Fonoa, which it describes as pending full accreditation with IMDA, and says direct IRAS reporting is not yet available. Treat it as coming rather than absent.
+Q: Is Zoho Books InvoiceNow-ready in Singapore?
+A: No. Zoho does not appear on IMDA's accredited list. Zoho Books supports Peppol in some markets, but sending invoice data to IRAS in Singapore needs an accredited route, so you need an accredited Access Point Provider in front of it, or one of the free packages alongside it. Ask Zoho support whether a Singapore accredited route exists yet, because the list is updated regularly.
+Q: Is AutoCount InvoiceNow-ready in Singapore?
+A: Yes. AutoCount (S) Pte Ltd is accredited in its own right, with AutoCount Accounting as the listed solution. It is also on the IRAS free package list for GST-registered businesses, available from 1 April 2025 to 31 March 2031.
+Q: Is NetSuite InvoiceNow-ready in Singapore?
+A: No. Neither Oracle nor NetSuite appears on IMDA's accredited list. NetSuite users need an accredited Access Point Provider in front of it, or middleware that holds the accreditation.
+Q: Is SAP InvoiceNow-ready in Singapore?
+A: Yes. SAP Asia Pte Ltd is listed for SAP Document and Reporting Compliance, and SAP Business One is covered through accredited partners.
+Q: Is Sage InvoiceNow-ready in Singapore?
+A: Yes. Sage Singapore Pte Ltd is listed for both Sage 300 and Sage Intacct, and many Sage 300 resellers are listed as well.
+Q: Is Microsoft Dynamics InvoiceNow-ready in Singapore?
+A: Through partners. Microsoft is not listed itself. Dynamics appears on the list through accredited implementation partners, so the answer depends on which partner you use and what they have built. Get it in writing.
+Q: Is MYOB InvoiceNow-ready in Singapore?
+A: MYOB's Asian business was rebranded Asian Business Software Solutions, so in Singapore the accredited products are ABSS Accounting Connect and ABSS Premier Connect. If you think you run MYOB, search the accredited list for ABSS.
+Q: Is Odoo InvoiceNow-ready in Singapore?
+A: Odoo S.A. is not listed directly. Odoo reaches the InvoiceNow network through accredited implementation partners, such as Alitec Pte Ltd, which is listed with Alitec Odoo. Odoo does ship Peppol e-invoicing support, so the capability exists; the accreditation sits with the partner.
+Q: Is Million Accounting InvoiceNow-ready in Singapore?
+A: Yes. Million Accounting is listed through Rockbell International Software Pte Ltd, which also offers a free package for GST-registered businesses through to 31 March 2031.
+Q: Is Financio InvoiceNow-ready in Singapore?
+A: Yes. Financio Accounting is listed through Asian Business Software Solutions Pte Ltd, the same provider behind ABSS.
+Q: Is Info-Tech InvoiceNow-ready in Singapore?
+A: Yes. Info-Tech Systems Ltd is on the accredited list in its own right.
+
+## Job Costing Calculator: Budget vs Actual, Overrun
+URL: https://tools.gantry.work/job-costing-calculator.html
+Summary: Free job costing calculator: materials, labour hours and subcontractors against the budget, projected final cost and overrun, and finished work not yet billed.
+Answer: Job costing compares cost to date with work done to date, while the job is still running. Cost to date = materials + labour hours × hourly cost + subcontractors. Projected final cost = cost to date ÷ percentage complete. Unbilled work = contract × percentage complete − amount invoiced. Example: S$62,906 spent (45% of a S$140,000 budget) with 40% of the work done projects to about S$157,000 at completion, roughly S$17,000 over. Checked 28 October 2026. Figures in S$; change the currency box for any other.
+Q: How do you calculate job cost?
+A: Add materials and supplier bills, labour hours multiplied by the hourly cost (wages plus levies and benefits), and subcontractor or other direct costs booked to the job. Compare the total with the job's cost budget and with the percentage of work done.
+Q: What is a projected overrun?
+A: The projected final cost (cost to date divided by the percentage complete) minus the cost budget. It assumes the rest of the job runs at the same rate, so treat it as a warning, not a forecast.
+Q: What hourly labour cost should I use?
+A: The fully loaded cost: basic wage plus CPF or levies, allowances and the share of paid leave, divided by the hours actually worked on jobs. For many trades that is 20% to 40% above the basic hourly wage.
+Q: What is the difference between job costing and project accounting?
+A: Job costing answers what a job cost and whether it made money. Project accounting adds revenue recognition, billing schedules, work in progress and retention, which long jobs with progress claims also need.
+
+## Mobile Job Sheet in Jotform: Signature, PDF, Google Sheet
+URL: https://tools.gantry.work/jotform-job-sheet.html
+Summary: Build a phone job sheet in Jotform: the customer signs on site, each visit lands in Google Sheets and a PDF reaches the office. Plan limits checked 17 Nov 2026.
+Q: Is Jotform free for a job sheet?
+A: Yes, up to a point. The free Starter plan allows 5 forms and 100 submissions a month, keeps 500 submissions in total, gives 100 MB of upload space and shows Jotform branding on your forms. One technician doing about four visits a day fits. A team of three does not.
+Q: Can the customer sign on the phone?
+A: Yes. Add the Signature element from the Basic tab in the Form Builder and the customer signs on the screen. If you also switch on Jotform Sign Automation for that field, Jotform's support team says every submission counts against the monthly signed documents limit, which is 10 on the free plan.
+Q: Does it work without mobile data?
+A: Jotform says its free Mobile Forms app collects submissions offline and syncs them to your account when the phone reconnects. Test it once in a basement or plant room before you rely on it.
+Q: Will the Google Sheet update if I change a submission?
+A: Jotform's help article says edits made in the entry editor reach the sheet, but inline edits in Jotform Tables do not, and renaming the sheet's column headers can pause the updates. Leave the headers alone.
+Q: Does it create the invoice?
+A: No. It gives the office a clean, signed record of each visit in one sheet. Raising the invoice is still a separate step, in your accounting software or in the free invoice generator on this site.
+
+## Landed Cost Calculator Singapore: FX, Freight, GST
+URL: https://tools.gantry.work/landed-cost-calculator.html
+Summary: Free landed cost calculator for Singapore importers: foreign price, exchange rate, freight, insurance, duty, 9% import GST and local charges per unit.
+Answer: Landed cost per unit = (goods in S$ + freight + insurance + customs duty + local charges + import GST if you cannot claim it) ÷ units. Import GST in Singapore is 9% of the CIF value plus duty; GST-registered importers claim it back, so for them it is cash flow, not cost. Example: 1,200 units at US$8.50 (S$1.35), S$1,800 freight, S$60 insurance and S$450 local charges land at S$13.40 a unit, 16.8% above the S$11.48 supplier price. Checked 28 October 2026. Figures in S$; change the currency box for any other.
+Q: How do you calculate landed cost per unit?
+A: Add the goods in your currency, freight, insurance, any customs duty, local handling and delivery, and import GST if you cannot claim it back, then divide by the number of units.
+Q: Is import GST part of landed cost in Singapore?
+A: Only if you are not GST registered. Registered importers pay 9% on CIF plus duty at import and claim it back in their GST return, so it affects cash flow but not the cost of goods.
+Q: What is CIF value?
+A: Cost, insurance and freight: the value of the goods plus the insurance and freight to bring them to Singapore. Customs duty and import GST are calculated on CIF (plus duty for GST).
+Q: Do I pay customs duty on imports into Singapore?
+A: For most goods, no. Duty applies to intoxicating liquor, tobacco, motor vehicles and petroleum products. Check your tariff code with Singapore Customs before assuming zero.
+
+## Free Markup Calculator: Markup to Margin
+URL: https://tools.gantry.work/markup-calculator.html
+Summary: Free markup calculator: any two of cost, price and markup give the third, plus margin, GST and break-even. Reprice a whole list to a target markup.
+Q: What is the formula for markup?
+A: Markup = (selling price − cost) ÷ cost × 100. Selling price = cost × (1 + markup).
+Q: How do I convert markup to margin?
+A: Margin = markup ÷ (1 + markup). For example, a 25% markup is a 20% margin.
+Q: What markup gives a 50% margin?
+A: A 100% markup: you sell at double the cost, so half of the price is profit.
+Q: Should markup be calculated with or without GST?
+A: Without. Calculate markup on costs and prices excluding GST, then add GST to the selling price. The calculator shows the GST-inclusive price for you.
+
+## Month-End Close Cost Calculator
+URL: https://tools.gantry.work/month-end-close.html
+Summary: Put a number on what a slow month-end close burns every month. Free calculator, no signup.
+Q: How much does a slow month-end close cost?
+A: Working days × 8 hours × share of the day × people × hourly cost, twelve times a year. A 12-day close with three people at half their day on S$4,500 costs about S$40,926 a year in salary.
+Q: How long should a month-end close take?
+A: Many small businesses can reach five working days once transactions are posted daily and the bank is reconciled weekly.
+Q: Is the calculator free?
+A: Yes, with no signup. It gives three calculations, then offers a free 20-minute review if you want to go further.
+
+## Notice Period Calculator Singapore: Last Day, MOM Rules, Salary in Lieu
+URL: https://tools.gantry.work/notice-period-calculator-singapore.html
+Summary: Free notice period calculator for Singapore: enter the date notice is given and get the last day, counted the way MOM counts it. Employment Act minimums, leave offset and salary in lieu. No signup.
+Answer: In Singapore a notice period starts on the day notice is given and includes rest days and public holidays. One month's notice given on 15 July 2025 ends on 14 August 2025; given on 30 January 2025 it ends on 28 February 2025, because February is shorter ( MOM ). If the contract says nothing, the Employment Act minimum is 1 day for less than 26 weeks of service, 1 week up to 2 years, 2 weeks up to 5 years and 4 weeks after that. Checked 19 November 2026 against MOM's guidance (page updated 22 April 2026). This is arithmetic, not legal advice.
+Q: Does the notice period include weekends and public holidays?
+A: Yes. MOM counts the notice period in calendar days, including rest days, non-working days and public holidays.
+Q: Is the day I resign counted?
+A: Yes. The day notice is given is the first day of the notice period, so one month of notice given on 15 July ends on 14 August.
+Q: Can I take leave during my notice period?
+A: With your employer's agreement you can use annual leave to offset the notice period and leave earlier. You are paid up to your last day of work, and the leave used this way is not paid out.
+Q: How is salary in lieu of notice calculated?
+A: It is the salary you would have earned in the notice period you did not serve. For part of a period, MOM's daily gross rate of pay is 12 x monthly gross rate of pay divided by (52 x working days a week). CPF contributions are not required on salary in lieu of notice.
+Q: What if my contract says nothing about notice?
+A: The Employment Act minimum applies: 1 day for less than 26 weeks of service, 1 week for 26 weeks to less than 2 years, 2 weeks for 2 to less than 5 years, and 4 weeks for 5 years or more.
+Q: Does notice have to be in writing?
+A: Yes. MOM says termination notice must be in writing, such as a letter or an email, and a waiver of notice by mutual agreement should also be in writing.
+
+## Overtime Calculator Singapore: MOM Formula, 1.5x
+URL: https://tools.gantry.work/overtime-calculator-singapore.html
+Summary: Free Singapore overtime calculator using MOM's formula: hourly basic rate, 1.5x overtime pay, who is covered, the 72-hour limit and the 14-day pay date.
+Answer: Overtime pay = hourly basic rate × 1.5 × overtime hours. For a monthly-rated employee in Singapore the hourly basic rate is 12 × monthly basic salary ÷ (52 × 44) . On a S$2,400 basic salary that is S$12.59 an hour, so 20 hours of overtime pays S$377.62 ( MOM ). The legal overtime rules cover non-workmen earning a basic salary of S$2,600 or less a month and workmen earning S$4,500 or less. Overtime is capped at 72 hours a month and must be paid within 14 days after the end of the salary period. Checked 20 November 2026. Figures in S$; change the currency box for any other.
+Q: How is overtime calculated in Singapore?
+A: Overtime pay is the hourly basic rate times 1.5 times the overtime hours. For monthly-rated staff the hourly basic rate is 12 x monthly basic salary divided by (52 x 44).
+Q: What is the overtime formula for a monthly salary?
+A: Hourly basic rate = (12 x monthly basic rate of pay) / (52 x 44). On S$2,400 that is S$12.59, so each overtime hour pays at least S$18.88.
+Q: Who is entitled to overtime pay in Singapore?
+A: Under Part 4 of the Employment Act: non-workmen with a monthly basic salary of S$2,600 or less and workmen with S$4,500 or less. Managers and executives are not covered by these rules.
+Q: Is there a cap on the overtime rate?
+A: Yes, for non-workmen. MOM caps their overtime rate at the S$2,600 salary level, an hourly basic rate of S$13.60.
+Q: How many overtime hours are allowed a month?
+A: Up to 72 hours a month. Employers who need more must apply to MOM for an exemption.
+Q: When must overtime be paid?
+A: Within 14 days after the last day of the salary period in which the overtime was worked.
+Q: Are allowances included in the overtime rate?
+A: No. Overtime is worked out from the basic rate of pay, which leaves out allowances, overtime, bonuses and the AWS.
+
+## Payslip Generator Singapore: MOM Format, Free
+URL: https://tools.gantry.work/payslip-generator-singapore.html
+Summary: Free Singapore payslip generator with the 12 items MOM requires: basic pay, allowances, overtime, CPF and net pay. Print, save as PDF or download for Excel.
+Answer: A Singapore payslip must show 12 items ( MOM ): the full names of the employer and the employee, the date of payment, the basic salary, the start and end of the salary period, allowances, other additional payments, deductions, overtime hours, overtime pay, the overtime period if it differs, and the net salary paid. Give it with the pay, or within three working days. A PDF, a printout or a handwritten slip are all accepted. Checked 20 November 2026 against MOM's itemised payslips page (updated 14 March 2024) and the CPF Board's contribution rates. This is a document maker, not payroll or legal advice.
+Q: What must a payslip include in Singapore?
+A: MOM lists 12 items: full name of employer, full name of employee, date of payment, basic salary, start and end date of the salary period, allowances, other additional payments, deductions, overtime hours worked, overtime pay, the overtime payment period if different, and net salary paid.
+Q: Who must get an itemised payslip?
+A: All employees covered by the Employment Act. Overtime items can be left out when overtime pay does not apply.
+Q: When must a payslip be issued?
+A: Together with the salary payment. If that is not possible, within three working days of payment. When employment ends, together with the outstanding salary.
+Q: Can a payslip be a PDF or handwritten?
+A: Yes. MOM accepts soft copies and hard copies, including handwritten payslips.
+Q: Is employer CPF shown on the payslip?
+A: It is not one of the 12 required items, because it is not deducted from the employee. Many employers show it for information. The employee CPF contribution is a deduction and must be shown.
+Q: How long must payslip records be kept?
+A: For current employees, the latest two years. For former employees, the last two years of employment, kept for one year after they leave.
+Q: Is there a payslip template for Excel?
+A: Download for Excel saves a CSV that opens in Excel or Google Sheets with every MOM item on its own row, so you can keep one file per employee per month.
+
+## Free Price Increase Calculator for Businesses
+URL: https://tools.gantry.work/price-increase-calculator.html
+Summary: Free price increase calculator: the % change between two prices, and the new price you need when costs rise to keep your margin or profit. No signup.
+Answer: Price increase % = (new price − old price) ÷ old price × 100, so S$40 to S$44 is a 10% increase. When costs rise, divide the new cost by (1 − your margin) to keep the same margin: a S$31 cost at a 30% margin needs a S$44.29 price. Passing on only the S$3 cost rise cuts the margin to 27.9%. Checked 28 October 2026. Figures in S$; change the currency box for any other.
+Q: How do I calculate a price increase percentage?
+A: Subtract the old price from the new price, divide by the old price and multiply by 100.
+Q: How much should I raise prices when costs increase?
+A: To keep the same margin, divide the new cost by one minus your margin. A S$31 cost at a 30% margin needs a S$44.29 price.
+Q: Is a 10% increase on price the same as a 10% margin?
+A: No. Margin is profit divided by price; a price increase is the change in price. Use the margin vs markup guide to avoid mixing them.
+
+## Free Profit Margin Calculator + Price List
+URL: https://tools.gantry.work/profit-margin-calculator.html
+Summary: Free profit margin calculator: any two of cost, price and margin give the third, plus markup, GST and break-even. Reprice a whole list to a target margin.
+Q: What is a good profit margin?
+A: It depends on the trade and on how much overhead each sale has to carry. A distributor with low overheads can live on thinner gross margins than a shop paying high rent. Rather than a rule of thumb, check your margins against your own fixed costs with the break-even box.
+Q: What is the formula for selling price from cost and margin?
+A: Selling price = cost ÷ (1 − margin). For a 40% margin on a cost of 60, the price is 60 ÷ 0.6 = 100.
+Q: How do I convert markup to margin?
+A: Margin = markup ÷ (1 + markup). A 50% markup is a 33.3% margin, and a 100% markup is a 50% margin.
+Q: Can I calculate margins for my whole price list?
+A: Yes. Paste the list from Excel or Google Sheets, or upload a CSV, set your target margin and rounding, and download the repriced list. Everything runs in your browser.
+
+## Progress Claim Calculator Singapore: Retention, GST
+URL: https://tools.gantry.work/progress-claim-calculator.html
+Summary: Free progress claim calculator for Singapore contractors: work done to date, variations, retention, previous claims and 9% GST, cumulative, with an example.
+Answer: Progress claim = (work done to date + approved variations + materials on site) − retention − previous claims certified, then add GST. Claim cumulatively: show the total value of work done to date and deduct what has already been certified, net of its retention. Example: 40% of a S$186,000 contract is S$74,400; less 5% retention S$3,720 = S$70,680; less S$17,670 certified before = S$53,010 , or S$57,780.90 with 9% GST. Checked 28 October 2026. Figures in S$; change the currency box for any other.
+Q: How do you calculate a progress claim?
+A: Multiply the contract sum by the percentage of work done to date, add approved variations and any materials on site, deduct retention at the contract rate, deduct previous claims certified net of retention, then add GST if you are registered.
+Q: Is retention calculated on each claim or cumulatively?
+A: On the cumulative gross value to date. That keeps the retention balance correct at every claim and is why previous claims are deducted net of their retention.
+Q: What is the difference between a progress claim and a payment claim?
+A: A payment claim is the statutory term in the SOP Act; a progress claim is what the industry calls the same document. When it is served under the Act, the Act's timelines apply.
+Q: When is retention money released?
+A: Usually half at completion and half after the defects liability period, but the rate, cap and release terms are set by your contract, so read those clauses before pricing the job.
+Q: What is retention sum in construction?
+A: Retention is the part of each progress claim that the main contractor or employer holds back as security for defects, usually 5% or 10% of the value of work done and often capped at a percentage of the contract sum. On a S$186,000 contract at 5%, S$9,300 is held by completion; half is commonly released at completion and the rest after the defects liability period, as the contract sets out.
+
+## Free Purchase Order Generator (PDF)
+URL: https://tools.gantry.work/purchase-order-generator.html
+Summary: Free purchase order generator. Add your logo, supplier, items, delivery date and terms, and download a professional PO as PDF. PO numbering, GST, no signup.
+Q: Is the purchase order generator free?
+A: Yes. There is no signup and no limit on how often you use it. Your details and recent POs are saved only in your own browser.
+Q: What is a PO number?
+A: A unique reference for each purchase order. Suppliers quote it on their delivery order and invoice so the documents can be matched. The generator suggests the next number after each download.
+Q: Should a purchase order include GST?
+A: If the supplier is GST-registered, their prices will be subject to GST. Choose "Add GST to prices" to show the total you expect to pay.
+Q: What is the difference between a purchase order and an invoice?
+A: The buyer issues the purchase order to place the order. The seller issues the invoice to ask for payment, ideally quoting the PO number.
+
+## Free Quotation Generator: Singapore Quotation Format, Quote PDF
+URL: https://tools.gantry.work/quotation-generator.html
+Summary: Free quotation generator. Add your logo, items, GST and a validity date, download a professional quotation PDF, then turn it into an invoice in one click.
+Q: What should a renovation quotation in Singapore include?
+A: The scope per area with quantities and units, materials and brands where it matters, the payment schedule (deposit, progress, handover), the validity date, warranty and a clear list of exclusions. Add GST only if you are GST-registered.
+Q: Is the quotation generator free?
+A: Yes. There is no signup and no limit on how often you use it. Your business details and recent quotations are saved only in your own browser.
+Q: How long should a quotation be valid?
+A: Commonly 14 to 30 days, and shorter if your costs move quickly. The generator defaults to 30 days from the quotation date and you can change it.
+Q: Can I add GST to a quotation?
+A: Yes. Choose "Add GST to prices" or "Prices include GST". Only GST-registered businesses may charge GST.
+Q: Can I convert a quotation into an invoice?
+A: Yes. "Turn into invoice" opens the invoice generator with the customer, items, GST and discount filled in and a reference to the quotation number.
+Q: Can I send the quote on WhatsApp?
+A: Download the PDF and attach it, or use "Copy as text" to paste a short summary with the total into WhatsApp or email.
+
+## Free Receipt Generator: Receipt Template Singapore, PDF
+URL: https://tools.gantry.work/receipt-generator.html
+Summary: Free receipt generator for businesses. Record who paid, how and how much, add your logo and GST, and download a PDF payment receipt in seconds. No signup.
+Q: Is this receipt generator free?
+A: Yes. There is no signup and no limit on how often you use it. Everything is saved only in your own browser.
+Q: Can I make a receipt for a cash payment?
+A: Yes. Choose Cash under "Paid by". For PayNow, bank transfer or cheque, add the reference so the payment can be traced.
+Q: Can I show GST on a receipt?
+A: Yes, if you are GST-registered: choose "Prices include GST" to show the GST included in the amount received. A GST-registered customer will still need a tax invoice to claim it.
+Q: How do I send the receipt to the customer?
+A: Download the PDF and attach it to an email, or use "Copy as text" to paste a short summary into WhatsApp.
+
+## Reorder Point Calculator with Safety Stock (Excel)
+URL: https://tools.gantry.work/reorder-point-calculator.html
+Summary: Free reorder point calculator with safety stock: z-score, max-minus-average or days of cover, the Excel formulas, worked examples and an order-now check.
+Answer: Reorder point = average daily demand × lead time in days + safety stock. Selling 40 units a day with a 7-day lead time uses 280 units while you wait for the delivery. Safety stock at a 95% service level is 1.65 × the standard deviation of daily demand × √lead time: with a standard deviation of 12 that is 1.65 × 12 × √7 = 53 units, so you reorder at 333 units. In Excel: =AvgDemand*LeadTime + NORM.S.INV(0.95)*STDEV.S(DailySales)*SQRT(LeadTime) . Checked 20 November 2026. Figures in S$; change the currency box for any other.
+Q: How do you calculate a reorder point?
+A: Multiply average daily demand by the lead time in days, then add safety stock. 40 units a day with a 7-day lead time and 53 units of safety stock gives a reorder point of 333.
+Q: What is the safety stock formula with a z-score?
+A: Safety stock = z x standard deviation of daily demand x square root of lead time in days. For a 95% service level z is about 1.65.
+Q: What z-score should I use for safety stock?
+A: 1.28 for 90%, 1.65 for 95%, 1.88 for 97%, 2.05 for 98% and 2.33 for 99%. Higher service levels need much more stock for each extra point.
+Q: How do I calculate a reorder point in Excel?
+A: Use =AvgDemand * LeadTime + NORM.S.INV(0.95) * STDEV.S(DailySales) * SQRT(LeadTime), with your own cell references, then ROUNDUP to whole units.
+Q: What is the difference between safety stock and reorder point?
+A: Safety stock is the buffer kept for demand or delivery surprises. The reorder point is the stock level that triggers a new order: the demand expected during the lead time plus that buffer.
+Q: Should the reorder point include stock on order?
+A: Compare the reorder point with stock on hand plus stock already on order. Comparing it with stock on hand alone leads to duplicate orders.
+
+## Singapore SME Systems Checklist: 12 Points Before You Buy
+URL: https://tools.gantry.work/singapore-sme-systems-checklist.html
+Summary: A free 12-point systems checklist for Singapore SMEs with 10 to 200 staff: the data, process and ownership checks to pass before buying an ERP or inventory system. Printable, scored.
+Answer: Most ERP and inventory projects in 10 to 200 person firms fail on data and ownership, not on the software. Before buying anything, you need one product list, one customer list, a stock figure you would act on, cost per job or product, and a named owner per process. The rest can be fixed during the project. Checked 28 October 2026. Written from 30+ systems projects across Singapore, Indonesia, Malaysia and Cambodia.
+
+## Slow-Moving Stock Calculator: Months of Cover
+URL: https://tools.gantry.work/slow-moving-stock-calculator.html
+Summary: Free slow-moving inventory calculator: months of cover, a class from healthy to dead stock, cash tied up and a suggested provision. Paste a whole list at once.
+Answer: Months of cover = quantity on hand ÷ average monthly usage. Up to 3 months is healthy, 3 to 6 is worth watching, 6 to 12 is slow-moving, over 12 (or no movement in a year) is dead stock. A common provision policy is 25% at 6 to 12 months, 50% at 12 to 24 months and 100% beyond that. Example: 480 units at S$12.50 selling 35 a month is 13.7 months of cover, S$6,000 on the shelf and a suggested S$3,000 provision. Checked 28 October 2026. Figures in S$; change the currency box for any other.
+Q: What counts as slow-moving inventory?
+A: A common rule is anything with more than 6 months of cover (quantity on hand divided by monthly usage), with over 12 months or no movement in a year treated as dead stock. Adjust the thresholds for your trade.
+Q: How do you calculate months of inventory on hand?
+A: Divide the quantity on hand by the average quantity used or sold per month over the last 6 to 12 months. 480 units selling 35 a month is 13.7 months of cover.
+Q: How much provision should I make for slow-moving stock?
+A: There is no fixed rule; a common policy is 25% for 6 to 12 months of cover, 50% for 12 to 24 months and 100% beyond, reviewed against actual net realisable value at year-end.
+Q: Is dead stock a cash problem or a profit problem?
+A: Both. The cash was spent when the stock was bought; the profit hit comes when you provide for it or write it off. Clearing it recovers some cash and stops the provision growing.
+
+## Free Statement of Account Generator
+URL: https://tools.gantry.work/statement-of-account-generator.html
+Summary: Free statement of account generator. Upload or paste your open invoices and print a statement for every customer, with aging, total due and payment details.
+Q: What is the difference between an invoice and a statement of account?
+A: An invoice requests payment for a particular sale. A statement of account summarises all the open invoices and credits on a customer's account at a date, with the total owed.
+Q: Can I make statements for all my customers at once?
+A: Yes. "Print all statements" puts every customer's statement on its own page, so you can save one PDF or print the lot.
+Q: Does it work with Xero and QuickBooks?
+A: Yes. Export the aged receivables or open invoices report to CSV or Excel and drop it in, or paste the rows. Any spreadsheet with a customer, amount due and date column works too.
+Q: Is my customer data safe?
+A: The file is read inside your browser and never uploaded or stored. Only your own business details are remembered for next time.
+Q: Is there a statement of account template in Excel?
+A: You do not need one here: export your open invoices from Xero, QuickBooks or Excel and the generator builds the statement. If you keep a template in Excel, list the invoice date, number, amount, payments and balance for each open invoice, and total the balance at the statement date.
+
+## Stock Take Variance Calculator: Accuracy and Value
+URL: https://tools.gantry.work/stock-take-variance-calculator.html
+Summary: Free stock take variance calculator: paste system vs counted quantities for record accuracy, lines within tolerance, variance value and the top variances.
+Answer: Inventory record accuracy = lines that match (within tolerance) ÷ lines counted × 100. Variance per line = counted − system quantity; variance value = variance × unit cost. Report the absolute variance as well as the net, because overs and shorts cancel in the net figure while both are real errors. Most operations aim for 95% or better within a 2% tolerance; below 85% the stock figure cannot be trusted for purchasing or costing. Checked 28 October 2026. Figures in S$; change the currency box for any other.
+Q: How do you calculate stock take variance?
+A: Variance per line is the counted quantity minus the system quantity; multiply by unit cost for the value. Sum the values for the net variance, and sum their absolute values for the absolute variance.
+Q: What is a good inventory accuracy percentage?
+A: Most operations target 95% or better within a small tolerance, and 98% or more for high-value or serialised items. Below 85% the records cannot support purchasing or costing decisions.
+Q: Should I count the whole warehouse or cycle count?
+A: Do a full count if accuracy is unknown or below 85%, then move to cycle counting so errors are caught near their cause. Many businesses keep one annual count for the audit plus weekly cycle counts.
+Q: Why is my net variance small but my absolute variance large?
+A: Because overs and shorts cancel. Two bins with +20 and −20 of the same item net to zero but mean the system cannot say where the stock is. Report both figures.
+
+## Three Way Match Example: PO, GRN, Invoice and a Live Checker
+URL: https://tools.gantry.work/three-way-match-guide.html
+Summary: Three-way matching with a worked example (100 ordered, 96 received, 100 invoiced), a live checker, a mismatch table and five steps for a small company.
+Q: What is a three-way match, with an example?
+A: It is a check that a supplier invoice agrees with the purchase order and the goods received note before it is paid. Example: 100 rolls ordered at S$12.00, 96 received, 100 invoiced. The invoice says S$1,200.00, the match says pay S$1,152.00 for the 96 that arrived and ask for a S$48.00 credit note.
+Q: What is the difference between two-way and three-way matching?
+A: Two-way matching compares the invoice with the purchase order only, so it checks price and ordered quantity. Three-way matching adds the goods received note, so it also checks that what was billed actually arrived. Use two-way for services and three-way for physical goods.
+Q: Is a delivery order the same as a goods received note?
+A: No. The delivery order is written by the supplier and says what they sent. The goods received note is your own record of what was counted and accepted. A small firm can use the supplier's delivery order as its receipt record, as long as its own receiver writes the counted quantity on it and signs.
+Q: What tolerance should I set?
+A: There is no official figure. It is a business decision about how small a difference is not worth a phone call. Start at zero for price so you see every difference for a month, then set a small percentage or dollar limit, write down who can approve above it, and review it once a year.
+Q: What should I do when the invoice arrives before the goods?
+A: Hold it unposted, or post it on hold, until the goods are counted in. Paying on the invoice alone is two-way matching by accident. If the supplier wants payment in advance, treat that as a deposit agreed on the purchase order, not as an early invoice.
+Q: Does a small company really need three-way matching?
+A: For anything bought for stock or for a job, yes, because that is where short deliveries and price creep hide. It does not need software to begin: a numbered purchase order, a counted and signed delivery order, and a rule that accounts sees both before paying will do.
+
+## Free Timesheet Calculator with Overtime
+URL: https://tools.gantry.work/timesheet-calculator.html
+Summary: Free weekly timesheet calculator. Enter start and end times and breaks, get total hours in hours:minutes and decimal, overtime and pay. Overnight shifts, print and CSV export. No signup.
+Q: How do I calculate hours worked?
+A: Subtract the start time from the end time, then subtract unpaid breaks. 8:30am to 5:45pm with a 45-minute lunch is 9 hours 15 minutes minus 45 minutes, which is 8 hours 30 minutes, or 8.5 hours.
+Q: How do I convert minutes to decimal hours?
+A: Divide the minutes by 60. 15 minutes is 0.25 hours, 30 minutes is 0.5, 45 minutes is 0.75, and 20 minutes is 0.33.
+Q: How is overtime calculated?
+A: Hours above the overtime threshold are paid at a higher rate, usually 1.5 times the hourly rate. In Singapore, employees covered by Part IV of the Employment Act are paid at least 1.5 times for work beyond 44 hours a week; in the US the federal rule is over 40 hours a week.
+Q: Does the calculator handle overnight shifts?
+A: Yes. If the end time is earlier than the start time, the shift is treated as ending the next day, so 10pm to 6am counts as 8 hours.
+
+## Does Your Team Need a Shared WhatsApp Inbox? 2-Minute Check
+URL: https://tools.gantry.work/wati-fit-check.html
+Summary: Eight questions and your own numbers. Find out whether to stay on the free WhatsApp Business app, fix the free things first, or move to a shared inbox like WATI.
+Q: Is the WhatsApp Business app enough for a small business?
+A: For one person replying, usually yes. Quick replies, labels and an away message cover most needs. It starts to strain when two or more people share the same customer chats and nobody can see who answered what.
+Q: When does a shared WhatsApp inbox pay for itself?
+A: When the orders you lose to late or missed replies are worth more each month than the plan. Multiply missed chats a week by the share that would have bought and by your order value, then compare that monthly figure with the plan price for your team size.
+Q: Can two people use one WhatsApp number?
+A: Yes, in two ways. The free WhatsApp Business app lets you link extra devices to one number, which works for a couple of people but shows no owner for each chat. A shared inbox on the WhatsApp Business API gives each person a login, with chats assigned and tracked.
+Q: Does this check always recommend WATI?
+A: No. If your numbers say stay on the free app, the result says so and lists free fixes. WATI is the tool this page points to when a shared inbox makes sense, and that link is an affiliate link.
+
+## WATI Free Trial: a 7-Day Test Plan and What the Trial Cannot Do
+URL: https://tools.gantry.work/wati-free-trial-plan.html
+Summary: What the WATI 7-day free trial includes, what is switched off, and a day-by-day test plan with a checklist so the week ends with a clear decision.
+Q: Does the WATI free trial need a credit card?
+A: WATI's help-centre article on the trial says no payment details are needed to start the 7-day trial.
+Q: Can I message my customers during the WATI trial?
+A: No. Trial messaging is limited to your own WhatsApp number. You can send messages, templates and campaigns, but only to yourself.
+Q: Can I add my team during the WATI trial?
+A: No. User management is not included in the trial. Treat it as a one-seat test and show the team your screen.
+Q: What happens when the WATI trial ends?
+A: According to WATI's trial article, the account remains after the 7 days but needs a paid plan to keep working.
+Q: Can the WATI trial be extended?
+A: WATI says extension requests are reviewed case by case by its team, so plan to finish your testing inside the 7 days.
+
+## Before You Pay for WATI: WhatsApp Number Go-Live Checklist
+URL: https://tools.gantry.work/wati-go-live-checklist.html
+Summary: Eight things to have ready before you connect a business WhatsApp number to WATI: the number, Meta Business Manager access, website, display name and more. With a readiness score.
+Q: Do I need a new number for WATI?
+A: No. You can use a new number, move your current number after deleting the WhatsApp account on it, or use Coexistence to keep the WhatsApp Business app on the same number if you meet WATI's conditions.
+Q: Can I keep the WhatsApp Business app and use WATI on the same number?
+A: Yes, through Coexistence. WATI lists the conditions: the number is active in the WhatsApp Business app, the app is version 2.24.17 or later, you have a Facebook Business Page with admin access, and your country is supported.
+Q: Do I need a website to connect a WhatsApp Business API number?
+A: WATI asks for an active, public website showing your business name, products or services, contact details and address. You can begin with a Facebook Page or Instagram Business profile, but a website is needed for Facebook Business verification.
+Q: Do I have to pay WATI before connecting my number?
+A: Yes. WATI lists an active paid subscription as a requirement for connecting a business number. The free trial works without connecting it, by sending to your own WhatsApp number.
+Q: Can I set up the WhatsApp number from my phone?
+A: WATI's setup article asks for a laptop or desktop with Google Chrome, signed in to both Facebook and WATI.
+
+## WATI for a Small Team in Singapore: the Plain Guide (2026)
+URL: https://tools.gantry.work/wati-guide.html
+Summary: What WATI is, who needs it and who does not, what a team of 3, 5 or 10 pays in Singapore, what the 7-day trial allows and what to have ready to go live.
+Q: What is WATI used for?
+A: WATI is a shared team inbox built on the official WhatsApp Business API. Several people can reply to customers from one business number, with chats assigned and tracked, and the same account can send broadcasts and run chatbots.
+Q: How much does WATI cost in Singapore?
+A: On WATI's pricing page on 10 November 2026, Growth was S$119 a month billed yearly (S$159 billed monthly) for 3 users, and Pro was S$329 a month billed yearly (S$429 billed monthly) for 5 users, with extra Pro users at S$35 each a month. Template message charges are added on top.
+Q: Is WATI free to try?
+A: Yes. WATI offers a 7-day free trial, and its trial article says no payment details are needed. During the trial, messages go to your own WhatsApp number only.
+Q: Is WATI worth it for one person?
+A: Usually not. One person replying can stay on the free WhatsApp Business app with quick replies, labels and an away message. A shared inbox starts to pay when two or more people share the same customer chats.
+Q: Can I keep using the WhatsApp Business app with WATI?
+A: Only through the Coexistence route, which keeps the WhatsApp Business app on the same number. WATI lists conditions for it, including a recent app version and a supported country. Otherwise the number has to come off the app first.
+
+## WATI Pricing Singapore 2026: Cost for a Team of 3, 5 or 10
+URL: https://tools.gantry.work/wati-pricing-singapore.html
+Summary: WATI pricing in Singapore dollars: Growth S$119 and Pro S$329 a month billed yearly. Calculator for your team size, monthly or yearly billing, extra users and message charges.
+Q: How much is WATI per month in Singapore?
+A: On 10 November 2026 WATI's pricing page showed Growth at S$119 a month billed yearly or S$159 billed monthly, for 3 users, and Pro at S$329 a month billed yearly or S$429 billed monthly, for 5 users. Template message charges are added on top.
+Q: Does WATI charge a setup fee?
+A: WATI's pricing page lists zero setup fees and a 7-day free trial.
+Q: Does WATI charge per message?
+A: Template messages carry additional charges on every plan, and the rate depends on whether the message is marketing, utility or authentication. Check WATI's rate card for the current rates in your country.
+Q: Can I add a fourth user on the WATI Growth plan?
+A: No. Growth includes 3 users and has no option to add more. A fourth user needs the Pro plan, which includes 5 users and allows extra users at S$35 each a month.
+Q: Is yearly billing cheaper than monthly?
+A: Yes. On Growth the difference is S$40 a month, or S$480 over 12 months. On Pro it is S$100 a month, or S$1,200 over 12 months.
+
+## WhatsApp Business API Cost Calculator 2026
+URL: https://tools.gantry.work/whatsapp-api-cost-calculator.html
+Summary: Free WhatsApp Business API cost calculator. Enter your chats, order updates and broadcasts to see Meta's monthly charges in Singapore, the October 2026 change and provider plans.
+Q: How much does a WhatsApp Business API message cost in Singapore?
+A: About S$0.0937 (US$0.0732) for a marketing message and S$0.0205 (US$0.016) for a utility or authentication message, per delivered message, for customers with Singapore numbers in 2026.
+Q: Are replies to customers charged on the WhatsApp Business API?
+A: Meta's developer documentation says that from 1 October 2026 replies inside the 24-hour customer service window are charged at the utility rate, while Meta's main pricing page still described them as free on 2 October 2026. The calculator lets you include or exclude that charge; check your first October invoice.
+Q: Do I pay both Meta and a provider like WATI?
+A: Yes. The provider charges a monthly plan for the shared inbox, broadcasts and automation, and Meta's message charges are passed on per message, sometimes with the provider's own markup.
+Q: Which WhatsApp messages are free?
+A: Conversations started from a click-to-WhatsApp ad or a Facebook Page button are free for 72 hours, and the free WhatsApp Business app has no message charges at all.
+
+## Year-End Stock Take Checklist and Count Sheet
+URL: https://tools.gantry.work/year-end-stock-take-checklist.html
+Summary: A year-end stock take checklist: the count plan from two weeks out, a freeze and cut-off note, a count sheet and the variance in dollars. Free PDF.
+Q: What should a year-end stock take checklist include?
+A: Four stages. Two weeks before: fix the date, clear the returns shelf, post paperwork and list stock held outside. One week before: label every location, print count sheets with no system quantities and pair the counters. On the day: freeze movement, write down the cut-off numbers and count every location. After: work out the variance in dollars and adjust the records once, with one approver.
+Q: Why should the count sheet not show the system quantity?
+A: Because a counter who sees 120 on the sheet tends to find 120. A sheet with no system quantity makes the counter write what is on the shelf. The system quantity is added later, by someone who did not count, on a separate comparison list.
+Q: What is a stock take cut-off?
+A: It is the line between this period and the next. Before the first count, write down the last goods receipt, delivery order, sales invoice and transfer or adjustment numbers. Anything with a higher number belongs to the next period.
+Q: How do I calculate stock take variance in dollars?
+A: For each line, take the counted quantity minus the system quantity and multiply by the unit cost. Total the shorts and the overs separately, as well as the net. In the example on this page the shorts are S$1,897, the overs S$440 and the net S$1,457, which is 4.5% of the S$32,550 in the records.
+Q: What are the most common causes of a short stock count?
+A: In my experience, three. Paperwork and stock out of step, such as a delivery that was not recorded. A wrong unit or a missed place, such as boxes counted as pieces or stock held at a forwarder. And stock used without an entry: samples, replacements and damaged goods thrown away. Check these three before you assume theft.
+Q: When should I fix the date for a December 2026 stock count?
+A: Now. Christmas Day (25 December 2026) and New Year's Day (1 January 2027) both fall on a Friday, according to the Ministry of Manpower public holidays page read on 11 November 2026. Tell sales, purchasing and the warehouse two weeks before the count, and send the freeze note two working days before.

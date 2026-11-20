@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en-SG">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reorder Point Calculator with Safety Stock (Excel) | Gantry</title>
+<meta name="description" content="Free reorder point calculator with safety stock: z-score, max-minus-average or days of cover, the Excel formulas, worked examples and an order-now check.">
+<meta property="og:title" content="Reorder Point Calculator with Safety Stock (Excel)">
+<meta property="og:description" content="Free reorder point calculator with safety stock: z-score, max-minus-average or days of cover, the Excel formulas, worked examples and an order-now check.">
+<meta property="og:image" content="https://tools.gantry.work/og/reorder-point-calculator.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tools.gantry.work/og/reorder-point-calculator.jpg">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="pricecalc.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://tools.gantry.work/reorder-point-calculator.html">
+<meta property="og:url" content="https://tools.gantry.work/reorder-point-calculator.html">
+<meta property="og:site_name" content="The Gantry">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<meta name="author" content="Sayed Rashid">
+<meta name="gantry-tool-category" content="erp">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://tools.gantry.work/#website", "url": "https://tools.gantry.work/", "name": "The Gantry Tools", "inLanguage": "en-SG", "publisher": {"@id": "https://tools.gantry.work/#sayed"}}, {"@type": "Person", "@id": "https://tools.gantry.work/#sayed", "name": "Sayed Rashid", "url": "https://www.gantry.work", "jobTitle": "ERP & Business Systems Consultant", "image": "https://tools.gantry.work/sayed.jpg", "sameAs": ["https://www.linkedin.com/in/sayedomni", "https://www.gantry.work", "https://github.com/sayedomnisoft"]}, {"@type": "WebApplication", "name": "Reorder Point and Safety Stock Calculator", "url": "https://tools.gantry.work/reorder-point-calculator.html", "applicationCategory": "BusinessApplication", "operatingSystem": "Any", "isAccessibleForFree": true, "inLanguage": "en-SG", "dateModified": "2026-11-20", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "SGD"}, "author": {"@id": "https://tools.gantry.work/#sayed"}, "publisher": {"@type": "Organization", "name": "The Gantry", "url": "https://www.gantry.work"}, "isPartOf": {"@id": "https://tools.gantry.work/#website"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Free tools", "item": "https://tools.gantry.work/"}, {"@type": "ListItem", "position": 2, "name": "Reorder Point and Safety Stock Calculator", "item": "https://tools.gantry.work/reorder-point-calculator.html"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do you calculate a reorder point?", "acceptedAnswer": {"@type": "Answer", "text": "Multiply average daily demand by the lead time in days, then add safety stock. 40 units a day with a 7-day lead time and 53 units of safety stock gives a reorder point of 333."}}, {"@type": "Question", "name": "What is the safety stock formula with a z-score?", "acceptedAnswer": {"@type": "Answer", "text": "Safety stock = z x standard deviation of daily demand x square root of lead time in days. For a 95% service level z is about 1.65."}}, {"@type": "Question", "name": "What z-score should I use for safety stock?", "acceptedAnswer": {"@type": "Answer", "text": "1.28 for 90%, 1.65 for 95%, 1.88 for 97%, 2.05 for 98% and 2.33 for 99%. Higher service levels need much more stock for each extra point."}}, {"@type": "Question", "name": "How do I calculate a reorder point in Excel?", "acceptedAnswer": {"@type": "Answer", "text": "Use =AvgDemand * LeadTime + NORM.S.INV(0.95) * STDEV.S(DailySales) * SQRT(LeadTime), with your own cell references, then ROUNDUP to whole units."}}, {"@type": "Question", "name": "What is the difference between safety stock and reorder point?", "acceptedAnswer": {"@type": "Answer", "text": "Safety stock is the buffer kept for demand or delivery surprises. The reorder point is the stock level that triggers a new order: the demand expected during the lead time plus that buffer."}}, {"@type": "Question", "name": "Should the reorder point include stock on order?", "acceptedAnswer": {"@type": "Answer", "text": "Compare the reorder point with stock on hand plus stock already on order. Comparing it with stock on hand alone leads to duplicate orders."}}]}]}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<script src="/config.js"></script><script src="/track.js" defer></script><script src="/gantry-ui.js" defer></script>
+<meta name="gantry-checked" content="2026-11-20">
+<style>.card.pccard{max-width:900px} .pc input[type=date]{width:100%;min-width:0;padding:11px 12px;font-size:16px;color:var(--ink);font-family:var(--font);background:#fff;border:1px solid var(--line);border-radius:10px;color-scheme:light}</style>
+</head>
+<body>
+<div class="card pccard">
+  <div class="brand"><a href="index.html">← THE GANTRY · TOOLS</a></div>
+  <h1>Reorder Point and Safety Stock Calculator</h1>
+  <p class="sub">Find the stock level at which to place the next order: demand during the supplier lead time plus safety stock, worked out three ways (service level z-score, max minus average, or days of cover), with the Excel formulas to copy. Free, no signup, nothing leaves your browser.</p>
+  <div id="app"><noscript>This calculator needs JavaScript switched on.</noscript></div>
+
+  <section class="answer"><h2>Short answer</h2><p><b>Reorder point = average daily demand × lead time in days + safety stock.</b> Selling 40 units a day with a 7-day lead time uses 280 units while you wait for the delivery. Safety stock at a 95% service level is 1.65 × the standard deviation of daily demand × √lead time: with a standard deviation of 12 that is 1.65 × 12 × √7 = 53 units, so you reorder at 333 units.</p><p>In Excel: <code style="overflow-wrap:anywhere">=AvgDemand*LeadTime + NORM.S.INV(0.95)*STDEV.S(DailySales)*SQRT(LeadTime)</code>.</p><p class="when">Checked 20 November 2026. Figures in S$; change the currency box for any other.</p></section>
+
+  <div class="auto">
+    <h2>Checking reorder levels for hundreds of items?</h2>
+    <p>When sales, stock and purchasing sit in one system, every item has its own reorder point and the purchase order is suggested the day stock reaches it, instead of a spreadsheet checked once a week.</p>
+    <a class="cta" id="guideBtn" href="https://tools.gantry.work/review.html?utm_source=tools&amp;utm_medium=reorder-point-calculator" target="_blank" rel="noopener">Book a free 20-minute review</a>
+    <a class="cta-ghost" id="videoBtn" href="https://tools.gantry.work/review.html?offer=video&amp;utm_source=tools&amp;utm_medium=reorder-point-calculator" target="_blank" rel="noopener">Prefer no call? Get a 2-minute video on your number &rarr;</a>
+    <p class="disc">Bigger than one calculation? <a id="reviewLink" href="https://tools.gantry.work/review.html?utm_source=tools&amp;utm_medium=reorder-point-calculator" target="_blank" rel="noopener">Book a free 20-minute systems review</a>.</p>
+  </div>
+
+  <div class="guide">
+<h2>The reorder point formula</h2><p><b>Reorder point (ROP) = lead-time demand + safety stock</b>, where lead-time demand = average daily demand × average lead time in days. Use the same unit throughout: if lead time is in weeks, use weekly demand.</p>
+<h2>Three ways to set safety stock</h2>
+<div class="tw"><table style="margin:0"><thead><tr><th>Method</th><th>Formula</th><th>Use it when</th></tr></thead><tbody>
+<tr><td>Service level (z-score)</td><td>z × σ<sub>d</sub> × √LT</td><td>You have daily or weekly sales history and want a stated in-stock rate</td></tr>
+<tr><td>z-score with lead-time variability</td><td>z × √(LT × σ<sub>d</sub>² + d² × σ<sub>LT</sub>²)</td><td>The supplier is as unpredictable as your demand</td></tr>
+<tr><td>Max minus average</td><td>(max daily demand × max lead time) − (average daily demand × average lead time)</td><td>You have little history but know the worst week you have had</td></tr>
+<tr><td>Days of cover</td><td>average daily demand × days</td><td>A quick rule for low-value items</td></tr></tbody></table></div>
+<p>z values: 90% = 1.28, 95% = 1.65, 97% = 1.88, 98% = 2.05, 99% = 2.33. A 95% service level means you expect to run out before the delivery arrives in about 1 order cycle in 20.</p>
+<h2>Worked examples (40 units a day, 7-day lead time)</h2>
+<ul><li><b>z-score, 95%:</b> standard deviation of daily demand 12. Safety stock = 1.645 × 12 × √7 = 52.2, rounded up to 53. ROP = 280 + 53 = <b>333 units</b>.</li>
+<li><b>With lead-time variability:</b> the lead time also varies by 2 days (σ<sub>LT</sub> = 2). Safety stock = 1.645 × √(7 × 144 + 1,600 × 4) = 142. ROP = <b>422 units</b>. An unreliable supplier costs more stock than unpredictable customers.</li>
+<li><b>Max minus average:</b> the worst day was 60 units and the slowest delivery 10 days. Safety stock = 60 × 10 − 40 × 7 = 320. ROP = <b>600 units</b>: safe, but it ties up the most cash.</li></ul>
+<h2>Reorder point template in Excel</h2><p>Put each item on a row with these columns, then fill down:</p>
+<div class="tw"><table style="margin:0"><thead><tr><th>Column</th><th>Content</th><th>Formula</th></tr></thead><tbody>
+<tr><td>B</td><td>Average daily demand</td><td><code style="overflow-wrap:anywhere">=AVERAGE(daily sales range)</code></td></tr>
+<tr><td>C</td><td>Std deviation of daily demand</td><td><code style="overflow-wrap:anywhere">=STDEV.S(daily sales range)</code></td></tr>
+<tr><td>D</td><td>Lead time (days)</td><td>typed in</td></tr>
+<tr><td>E</td><td>Service level</td><td>typed in, e.g. 0.95</td></tr>
+<tr><td>F</td><td>Safety stock</td><td><code style="overflow-wrap:anywhere">=ROUNDUP(NORM.S.INV(E2)*C2*SQRT(D2),0)</code></td></tr>
+<tr><td>G</td><td>Reorder point</td><td><code style="overflow-wrap:anywhere">=ROUNDUP(B2*D2+F2,0)</code></td></tr>
+<tr><td>H</td><td>On hand + on order</td><td>from your stock list</td></tr>
+<tr><td>I</td><td>Order now?</td><td><code style="overflow-wrap:anywhere">=IF(H2&lt;=G2,"ORDER","ok")</code></td></tr></tbody></table></div>
+<p>Use at least 8 to 12 weeks of daily sales, leave out days the item was out of stock (they show zero demand that was really lost sales), and recalculate monthly or whenever the supplier changes.</p>
+<h2>Common mistakes</h2><ol><li><b>Counting only stock on hand.</b> Compare the reorder point with stock on hand plus stock already on order, or you will order twice.</li><li><b>Using calendar days for demand and working days for lead time.</b> Pick one.</li><li><b>One service level for everything.</b> Keep 98 to 99% for the items that stop a sale or a job, and 90% for slow, cheap lines.</li><li><b>Setting it once.</b> A reorder point from last year's sales is wrong after a price change or a new customer.</li></ol>
+<p>Slow sellers need the opposite check: the free <a href="slow-moving-stock-calculator.html">slow-moving stock calculator</a> shows the cash tied up in items that are not selling.</p>
+<h2>Questions</h2>
+<p><b>How do you calculate a reorder point?</b> Multiply average daily demand by the lead time in days, then add safety stock. 40 units a day with a 7-day lead time and 53 units of safety stock gives a reorder point of 333.</p>
+<p><b>What is the safety stock formula with a z-score?</b> Safety stock = z x standard deviation of daily demand x square root of lead time in days. For a 95% service level z is about 1.65.</p>
+<p><b>What z-score should I use for safety stock?</b> 1.28 for 90%, 1.65 for 95%, 1.88 for 97%, 2.05 for 98% and 2.33 for 99%. Higher service levels need much more stock for each extra point.</p>
+<p><b>How do I calculate a reorder point in Excel?</b> Use =AvgDemand * LeadTime + NORM.S.INV(0.95) * STDEV.S(DailySales) * SQRT(LeadTime), with your own cell references, then ROUNDUP to whole units.</p>
+<p><b>What is the difference between safety stock and reorder point?</b> Safety stock is the buffer kept for demand or delivery surprises. The reorder point is the stock level that triggers a new order: the demand expected during the lead time plus that buffer.</p>
+<p><b>Should the reorder point include stock on order?</b> Compare the reorder point with stock on hand plus stock already on order. Comparing it with stock on hand alone leads to duplicate orders.</p>
+  </div>
+  <div class="related"><h2>Related free tools</h2><ul><li><a href="slow-moving-stock-calculator.html"><b>Slow-moving stock calculator</b> cash tied up in items that do not sell</a></li><li><a href="stock-take-variance-calculator.html"><b>Stock take variance calculator</b> how far the system count is from the shelf</a></li><li><a href="landed-cost-calculator.html"><b>Landed cost calculator</b> the real unit cost of imported stock</a></li><li><a href="inventory-software-cost-calculator.html"><b>Inventory software cost</b> what a stock system costs a year</a></li></ul><p style="margin-top:8px;font-size:13.5px"><a href="index.html">All free tools</a> · <a href="singapore-sme-systems-checklist.html">The 12-point Singapore SME systems checklist</a></p></div>
+
+  <div class="byline noprint">
+    <img src="sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
+    <div class="who"><div class="nm">Sayed Rashid</div><div class="rl">I build these free tools from the jobs I see business owners do by hand every week. Tell me which one to build next.</div></div>
+    <a class="li" href="https://www.linkedin.com/in/sayedomni" target="_blank" rel="noopener" onclick="try{gtag('event','linkedin_click',{page:location.pathname})}catch(e){}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg> Connect on LinkedIn</a>
+  </div>
+  <p class="noprint" style="font-size:12px;color:var(--ink-3);text-align:center;margin-top:14px;line-height:1.5">Privacy: your entries stay in your browser and are never uploaded. I count anonymous visits and button clicks (Google Analytics) to see which tools help.</p>
+  <div class="footer" id="baseFooter"><a href="index.html">All free tools</a> · <a href="https://www.gantry.work">The Gantry</a></div>
+</div>
+
+<div class="gate hidden" id="gate"><div class="box2">
+  <div class="result-label">YOU'VE USED THIS A FEW TIMES</div>
+  <h2>Numbers like these, every week?</h2>
+  <p class="sub" style="margin-bottom:6px">Get one automation you can set up yourself each week, free, from The Gantry newsletter. Then keep using the calculator as much as you like.</p>
+  <iframe src="https://www.gantry.work/embed" title="Subscribe to The Gantry" scrolling="no"></iframe>
+  <button class="primary" id="gateDone">Continue</button>
+  <button class="ghost" id="gateSkip" style="margin-top:10px">Not now</button>
+</div></div>
+
+<script>window.CALC = 'reorder';</script>
+<script src="calc.js"></script>
+</body>
+</html>

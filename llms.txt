@@ -5,7 +5,7 @@
 Updated 19 November 2026. Every page below is free to use and to cite.
 
 ## Start here
-- [All free tools](https://tools.gantry.work/): 48 tools and guides grouped by the problem they fix: late payments, stock, job costs, margins, paperwork, grants and InvoiceNow, WhatsApp.
+- [All free tools](https://tools.gantry.work/): 53 tools and guides grouped by the problem they fix: late payments, stock, job costs, margins, paperwork, grants and InvoiceNow, WhatsApp.
 - [SME Systems Health Check](https://tools.gantry.work/health-check/): ten questions, about 60 seconds, a score and the process that leaks the most time.
 - [Cost of Manual Work Calculator](https://tools.gantry.work/cost-of-manual-work.html): what retyping, chasing and checking cost a team in a year.
 - [ERP Readiness Scorecard](https://tools.gantry.work/erp-readiness.html): eight questions on data, process, ownership and time before buying a system.
@@ -26,7 +26,7 @@ Updated 19 November 2026. Every page below is free to use and to cite.
 - [AR Aging Report Generator](https://tools.gantry.work/ar-aging-report.html): aging buckets by customer, overdue totals, DSO and statements from one export.
 - [Statement of Account Generator](https://tools.gantry.work/statement-of-account-generator.html): a statement for every customer with open invoices, aging and total due, as PDF.
 - [DSO Calculator](https://tools.gantry.work/dso-calculator.html): DSO = receivables ÷ credit sales × days in the period; days beyond terms and cash tied up.
-- [Invoice Due Date Calculator](https://tools.gantry.work/invoice-due-date-calculator.html): due dates on net 7 to net 90 and net 30 EOM, days overdue and late interest.
+- [Invoice Due Date Calculator](https://tools.gantry.work/invoice-due-date-calculator.html): due dates on net 7 to net 90 and net 30 EOM, days overdue, late interest and early payment discounts such as 2/10 net 30 (the annualised cost of skipping the discount).
 - [Get-Paid Kit](https://tools.gantry.work/get-paid-kit.html): payment reminder wording for day 1, 7 and 14, a statement cover note, a call script and a stop-supply rule. Free PDF.
 
 ## Documents (free PDF generators)
@@ -46,6 +46,7 @@ Updated 19 November 2026. Every page below is free to use and to cite.
 
 ## Stock, purchasing and imports
 - [Three-Way Match Guide and Checker](https://tools.gantry.work/three-way-match-guide.html): purchase order, goods received note and supplier invoice; worked example (100 ordered, 96 received, 100 invoiced) and a live checker.
+- [Reorder Point and Safety Stock Calculator](https://tools.gantry.work/reorder-point-calculator.html): reorder point = average daily demand x lead time + safety stock; safety stock by z-score (z x std dev of daily demand x square root of lead time), max-minus-average or days of cover, with the Excel formulas.
 - [Landed Cost Calculator](https://tools.gantry.work/landed-cost-calculator.html): foreign price, exchange rate, freight, insurance, duty, 9% import GST and local charges per unit.
 - [Slow-Moving Stock Calculator](https://tools.gantry.work/slow-moving-stock-calculator.html): months of cover = quantity on hand ÷ average monthly usage, a stock class and a suggested provision.
 - [Stock Take Variance Calculator](https://tools.gantry.work/stock-take-variance-calculator.html): record accuracy, lines within tolerance and variance value.
@@ -61,6 +62,9 @@ Updated 19 November 2026. Every page below is free to use and to cite.
 - [Month-End Close Cost Calculator](https://tools.gantry.work/month-end-close.html): what a slow close costs in salary every year.
 - [Month-End and Year-End Close Checklist](https://tools.gantry.work/december-close-checklist.html): day by day, with a test for each step and the Singapore dates a late close holds up.
 - [13-Week Cash Flow Forecast with Singapore Dates](https://tools.gantry.work/13-week-cash-flow-calendar.html): 7 Dec 2026 to 7 Mar 2027 with CPF, levy, GST, ECI and property tax dates from the official pages.
+- [Payslip Generator (Singapore)](https://tools.gantry.work/payslip-generator-singapore.html): an itemised payslip with the 12 items MOM requires (employer, employee, payment date, basic salary, salary period, allowances, additional payments, deductions, overtime hours, overtime pay, overtime period, net salary); print, PDF or CSV for Excel.
+- [Overtime Calculator (Singapore)](https://tools.gantry.work/overtime-calculator-singapore.html): MOM's formula, hourly basic rate = 12 x monthly basic / (52 x 44), overtime at 1.5x; covers non-workmen up to S$2,600 and workmen up to S$4,500 basic; 72 hours a month cap; pay within 14 days.
+- [Notice Period Calculator (Singapore)](https://tools.gantry.work/notice-period-calculator-singapore.html): the last day of notice counted the way MOM counts it (includes the day notice is given, rest days and public holidays), Employment Act minimums, leave offset and salary in lieu.
 - [Timesheet Calculator](https://tools.gantry.work/timesheet-calculator.html): hours, breaks, overnight shifts, overtime at 1.5x and weekly pay, with print and CSV.
 - [ERP and Automation ROI Calculator](https://tools.gantry.work/erp-roi.html): payback in years and value at year 7, 10 and 15.
 
@@ -94,4 +98,5 @@ Updated 19 November 2026. Every page below is free to use and to cite.
 ## Optional
 - [Free 20-minute systems review](https://tools.gantry.work/review.html)
 - [Privacy and cookies](https://tools.gantry.work/privacy.html)
+- [Full text of every tool's short answer and questions](https://tools.gantry.work/llms-full.txt)
 - [Sitemap](https://tools.gantry.work/sitemap.xml)

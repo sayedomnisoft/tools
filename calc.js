@@ -63,6 +63,64 @@ const CALCS = {
       return { out, used: true, headline: `Last day of notice ${fdate(end)}` };
     }
   },
+  overtime: {
+    // 20 Nov 2026: Singapore overtime under Part 4 of the Employment Act (MOM hours-of-work page, updated 24 Jul 2025): hourly basic = 12 x monthly basic / (52 x 44); OT >= 1.5x; non-workmen covered up to S$2,600 (rate capped at S$13.60), workmen up to S$4,500; 72 h a month; pay within 14 days of the salary period end.
+    html: `<div class="g4">${sel('basis', 'Paid by', [['month', 'Month (monthly-rated)'], ['day', 'Day (daily-rated)'], ['hour', 'Hour (hourly-rated)']], 'month')}${f('basic', 'Basic pay (month, day or hour)', '2400', 'basic only, no allowances')}${f('hpd', 'Working hours a day (daily-rated only)', '8')}${sel('who', 'Employee type', [['nonwork', 'Non-workman (office, retail, service)'], ['workman', 'Workman (manual work)']], 'nonwork')}</div>
+      <div class="g4" style="margin-top:10px">${f('oth', 'Overtime hours this month', '20')}${sel('mult', 'Overtime rate', [['1.5', '1.5x (the legal minimum)'], ['2', '2x (if your contract pays more)']], '1.5')}${f('pend', 'Last day of salary period (optional)', '', '', 'date')}${f('cur', 'Currency', 'S$')}</div>
+      <div class="tiles">${tile('t1', 'Hourly basic rate')}${tile('t2', 'Overtime rate per hour')}${tile('t3', 'Overtime pay')}${tile('t4', 'Pay by (14 days)')}</div>`,
+    calc() {
+      const b = $('basis').value, B = num($('basic').value), H = num($('hpd').value), O = num($('oth').value), M = num($('mult').value) || 1.5, wk = $('who').value === 'workman';
+      if (!(B > 0)) return { msg: 'Enter the basic pay: monthly, daily or hourly, without allowances.' };
+      if (!(O >= 0)) return { msg: 'Enter the overtime hours (0 or more).' };
+      let hr, how;
+      if (b === 'month') { hr = 12 * B / (52 * 44); how = `12 × ${money(B)} ÷ (52 × 44) = ${money(hr)} an hour`; }
+      else if (b === 'day') { if (!(H > 0)) return { msg: 'Enter the working hours a day.' }; hr = B / H; how = `${money(B)} a day ÷ ${H} hours = ${money(hr)} an hour`; }
+      else { hr = B; how = `${money(B)} an hour`; }
+      const thr = wk ? 4500 : 2600, monthly = b === 'month' ? B : null;
+      const covered = monthly == null || monthly <= thr;
+      let rateBase = hr, capped = false;
+      if (!wk && covered && hr > 13.60) { rateBase = 13.60; capped = true; }
+      const otr = rateBase * M, pay = otr * O;
+      let due = null; if ($('pend').value) { due = new Date($('pend').value + 'T00:00:00'); if (!isNaN(due)) due.setDate(due.getDate() + 14); else due = null; }
+      $('t1').textContent = money(hr); $('t2').textContent = money(otr); $('t3').textContent = money(pay); $('t4').textContent = due ? fdate(due) : 'add period end';
+      let out = `<b style="color:var(--ink)">${int(O)} hours of overtime at ${money(otr)} an hour is ${money(pay)}.</b> Hourly basic rate: ${how}. Overtime pay = hourly basic rate × ${M} × ${int(O)} hours${capped ? `, with the hourly rate capped at S$13.60 because MOM caps it for non-workmen` : ''}. `;
+      if (!covered) out += `<br><br><b>Note:</b> with a monthly basic salary of ${money(monthly)}, this ${wk ? 'workman' : 'non-workman'} is above the S$${thr.toLocaleString('en-SG')} limit for Part 4 of the Employment Act, so the legal overtime rules do not apply. Overtime, if any, follows the employment contract; the figure above is what 1.5x would cost. `;
+      if (O > 72) out += `<br><br><b>Over the limit:</b> MOM allows up to 72 overtime hours a month unless the employer has an exemption. `;
+      out += due ? `Overtime for a salary period ending ${fdate(new Date($('pend').value + 'T00:00:00'))} must be paid by ${fdate(due)} (within 14 days). ` : `Overtime must be paid within 14 days after the last day of the salary period. `;
+      out += `Allowances, bonuses and AWS are not part of the basic rate. Put the hours and the pay on the itemised payslip: the free ${link('payslip-generator-singapore.html', 'payslip generator')} has the fields MOM asks for. Doing this by hand for a whole team every month? ${review('overtime-result')}`;
+      return { out, used: true, headline: `Overtime pay ${money(pay)} for ${int(O)} hours at ${money(otr)} an hour` };
+    }
+  },
+  reorder: {
+    // 20 Nov 2026: reorder point = lead-time demand + safety stock; safety stock by z-score (demand and optional lead-time variability) or the max-minus-average method.
+    html: `<div class="g4">${f('d', 'Average daily demand (units)', '40')}${f('lt', 'Average lead time (days)', '7')}${sel('m', 'Safety stock method', [['z', 'Service level (z-score)'], ['mx', 'Max minus average'], ['days', 'Fixed days of cover'], ['none', 'No safety stock']], 'z')}${sel('sl', 'Service level', [['1.282', '90% (z 1.28)'], ['1.645', '95% (z 1.65)'], ['1.881', '97% (z 1.88)'], ['2.054', '98% (z 2.05)'], ['2.326', '99% (z 2.33)']], '1.645')}</div>
+      <div class="g4" style="margin-top:10px">${f('sd', 'Std deviation of daily demand', '12', 'z-score method')}${f('slt', 'Std deviation of lead time (days, optional)', '', 'z-score method')}${f('md', 'Max daily demand', '60', 'max-minus-average')}${f('mlt', 'Max lead time (days)', '10', 'max-minus-average')}</div>
+      <div class="g4" style="margin-top:10px">${f('cov', 'Days of cover (fixed-days method)', '3')}${f('oh', 'Stock on hand + on order (optional)', '', 'to check if you should order')}${f('uc', 'Unit cost (optional)', '', 'to value the safety stock')}${f('cur', 'Currency', 'S$')}</div>
+      <div class="tiles">${tile('t1', 'Reorder point')}${tile('t2', 'Safety stock')}${tile('t3', 'Demand during lead time')}${tile('t4', 'Order now?')}</div>`,
+    calc() {
+      const d = num($('d').value), L = num($('lt').value), m = $('m').value, z = num($('sl').value), sd = num($('sd').value), sl = num($('slt').value), md = num($('md').value), ml = num($('mlt').value), cov = num($('cov').value), oh = num($('oh').value), uc = num($('uc').value);
+      if (!(d > 0) || !(L > 0)) return { msg: 'Enter the average daily demand and the average lead time in days.' };
+      const ltd = d * L; let ss = 0, how = '';
+      if (m === 'z') {
+        if (!(sd >= 0)) return { msg: 'Enter the standard deviation of daily demand (Excel: =STDEV.S of your daily sales).' };
+        if (sl > 0) { ss = z * Math.sqrt(L * sd * sd + d * d * sl * sl); how = `z ${z.toFixed(2)} × √(${L} × ${sd}² + ${d}² × ${sl}²) = ${int(Math.ceil(ss))}, rounded up`; }
+        else { ss = z * sd * Math.sqrt(L); how = `z ${z.toFixed(2)} × ${sd} × √${L} = ${int(Math.ceil(ss))}, rounded up`; }
+      } else if (m === 'mx') {
+        if (!(md >= d) || !(ml >= L)) return { msg: 'Max daily demand and max lead time must be at least the averages.' };
+        ss = md * ml - d * L; how = `(${md} × ${ml}) − (${d} × ${L}) = ${int(ss)}`;
+      } else if (m === 'days') { if (!(cov >= 0)) return { msg: 'Enter the days of cover.' }; ss = d * cov; how = `${d} a day × ${cov} days = ${int(ss)}`; }
+      ss = Math.ceil(ss); const rop = Math.ceil(ltd + ss);
+      $('t1').textContent = int(rop) + ' units'; $('t2').textContent = int(ss) + ' units'; $('t3').textContent = int(ltd) + ' units';
+      const hasOh = oh >= 0 && $('oh').value.trim() !== '';
+      $('t4').textContent = hasOh ? (oh <= rop ? 'Yes, order now' : `Not yet (${int(Math.floor((oh - rop) / d))} days)`) : 'add stock';
+      let out = `<b style="color:var(--ink)">Reorder when stock falls to ${int(rop)} units.</b> Demand during the lead time is ${d} × ${L} = ${int(ltd)} units${m !== 'none' ? `, plus ${int(ss)} units of safety stock (${how})` : ''}. `;
+      if (m === 'z') out += `At this service level you should run out in about ${pct((1 - ({ '1.282': .90, '1.645': .95, '1.881': .97, '2.054': .98, '2.326': .99 })[$('sl').value]) * 100)} of order cycles. `;
+      if (uc > 0) out += `The safety stock ties up about ${money(ss * uc)} of cash. `;
+      if (hasOh) out += oh <= rop ? `With ${int(oh)} units on hand and on order you are at or below the reorder point: place the order today. ` : `With ${int(oh)} units on hand and on order you reach the reorder point in about ${int(Math.floor((oh - rop) / d))} days. `;
+      const pv = ({ '1.282': .90, '1.645': .95, '1.881': .97, '2.054': .98, '2.326': .99 })[$('sl').value] || .95; out += `Excel: =${d} * ${L} + NORM.S.INV(${pv}) * STDEV.S(range) * SQRT(${L}) gives the z-score result for a ${Math.round(pv * 100)}% service level. Recalculate when demand or the supplier changes. Checking this for hundreds of items by hand? A system can raise the purchase order at the reorder point. ${review('reorder-result')}`;
+      return { out, used: true, headline: `Reorder point ${int(rop)} units (safety stock ${int(ss)})` };
+    }
+  },
   breakeven: {
     html: `<div class="g4">${f('fixed', 'Fixed costs per month', '12000', 'rent, salaries, software')}${f('price', 'Selling price per unit', '50')}${f('vc', 'Variable cost per unit', '30', 'cost of goods, packaging, fees')}${f('cur', 'Currency', 'S$')}</div>
       <div class="g4" style="margin-top:10px">${f('target', 'Target profit per month (optional)', '', 'e.g. 5000')}${f('actual', 'Units you sell now (optional)', '', 'e.g. 800')}</div>
@@ -116,6 +174,7 @@ const CALCS = {
   duedate: {
     html: `<div class="g4">${f('idate', 'Invoice date', '', '', 'date')}${sel('terms', 'Payment terms', [['0', 'Due on receipt'], ['7', 'Net 7'], ['14', 'Net 14'], ['15', 'Net 15'], ['30', 'Net 30'], ['45', 'Net 45'], ['60', 'Net 60'], ['90', 'Net 90'], ['eom30', 'Net 30 EOM (end of month)'], ['custom', 'Custom number of days']], '30')}${f('cdays', 'Custom days', '', 'only for custom')}${f('asat', 'Check against date', '', '', 'date')}</div>
       <div class="g4" style="margin-top:10px">${f('amt', 'Invoice amount (optional)', '', 'e.g. 4800')}${f('rate', 'Late interest % a year (optional)', '', 'only if your terms allow it')}${f('cur', 'Currency', 'S$')}</div>
+      <div class="g4" style="margin-top:10px">${f('dpct', 'Early payment discount % (optional)', '', 'e.g. 2 for 2/10 net 30')}${f('ddays', 'Discount if paid within (days)', '', 'e.g. 10')}</div>
       <div class="tiles">${tile('t1', 'Due date')}${tile('t2', 'Status')}${tile('t3', 'Days overdue')}${tile('t4', 'Late interest so far')}</div>`,
     init() { const t = new Date(); $('idate').value = iso(t); $('asat').value = iso(t); },
     calc() {
@@ -129,6 +188,8 @@ const CALCS = {
       $('t1').textContent = fdate(due); $('t2').textContent = diff > 0 ? 'Overdue' : diff === 0 ? 'Due today' : `Due in ${-diff} days`; $('t3').textContent = diff > 0 ? int(diff) : '0'; $('t4').textContent = interest ? money(interest) : '—';
       let out = `<b style="color:var(--ink)">An invoice dated ${fdate(id)} on ${$('terms').selectedOptions[0].text} terms is due on ${fdate(due)}.</b> `;
       out += diff > 0 ? `On ${fdate(as)} it is ${diff} days overdue${interest ? `, and ${R}% a year adds about ${money(interest)} of late interest` : ''}. ${diff <= 14 ? 'Time for a friendly reminder.' : diff <= 44 ? 'Time for a firm reminder and a phone call.' : 'Time for a final notice.'} The ${link('invoice-chaser.html', 'free reminder writer')} drafts it for you. ` : `Send a short courtesy reminder about three days before. `;
+      const DP = num($('dpct').value), DD = num($('ddays').value), NT = Math.round((due - id) / 86400000);
+      if (DP > 0 && DP < 100 && DD >= 0 && NT > DD) { const dl = new Date(id); dl.setDate(dl.getDate() + DD); const apr = DP / (100 - DP) * 365 / (NT - DD) * 100; out += `<br><br><b>Early payment discount ${DP}/${DD} net ${NT}:</b> paying by ${fdate(dl)} takes ${DP}% off${A > 0 ? `, so ${money(A * (1 - DP / 100))} instead of ${money(A)} (a saving of ${money(A * DP / 100)})` : ''}. Skipping the discount is like borrowing for ${NT - DD} days at about ${pct(apr)} a year (${DP} ÷ ${100 - DP} × 365 ÷ ${NT - DD}), so take it unless your cash costs more than that. `; }
       out += `Chasing more than a few invoices? ${link('https://www.gantry.work/p/xero-invoice-reminders-automation?utm_source=tools&utm_medium=duedate-result', 'Set reminders to send automatically', true)} (free Make setup).`;
       return { out, used: true };
     }
