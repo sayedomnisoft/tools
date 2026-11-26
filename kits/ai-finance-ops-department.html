@@ -10,6 +10,7 @@
 <meta property="og:description" content="Four AI teams you can run this week: Month-End, Cash, Stock and Compliance. Copy-paste prompts, what to paste in, what good looks like.">
 <meta property="og:image" content="https://tools.gantry.work/og/about-sayed.jpg">
 <meta name="author" content="Sayed Rashid">
+<meta name="theme-color" content="#fcfcfa">
 <link rel="stylesheet" href="/shared.css">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -18,231 +19,334 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
 <script src="/config.js"></script><script src="/track.js" defer></script>
 <meta name="gantry-checked" content="2026-11-26">
+<!-- Built by kits/build_kit.py from kits/content/ai-finance-ops-department.json. Edit the JSON, then run: python3 kits/build_kit.py ai-finance-ops-department -->
 <style>
-.card.kit{max-width:820px}
-.kit p,.kit li{line-height:1.65}
-.kit .lede{font-size:17px;color:var(--ink-2)}
-.kit .eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
-.toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin:16px 0 8px}
-.toc a{display:block;padding:12px 14px;border:1px solid var(--line);border-radius:12px;text-decoration:none;color:var(--ink);background:#fff}
-.toc a b{display:block;font-size:15px}
-.toc a span{font-size:13px;color:var(--ink-2)}
-.team{margin-top:34px;padding-top:6px;border-top:1px solid var(--line)}
-.team h2{margin-bottom:4px}
-.team .goal{color:var(--ink-2);margin-top:0}
-.prompt{border:1px solid var(--line);border-radius:12px;margin:16px 0;background:#fff;overflow:hidden}
-.prompt .ph{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;background:#f6f3ee;border-bottom:1px solid var(--line)}
-.prompt .ph b{font-size:15px}
-.prompt .copy{font:inherit;font-size:13px;padding:6px 12px;border-radius:8px;border:1px solid var(--ink-3);background:#fff;cursor:pointer}
-.prompt pre{margin:0;padding:14px;white-space:pre-wrap;word-wrap:break-word;font-size:13.5px;line-height:1.55;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
-.prompt .meta{padding:10px 14px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink-2)}
-.prompt .meta p{margin:4px 0}
-.guard{border-left:4px solid #b86a1e;background:#fbf6ef;padding:12px 14px;border-radius:0 10px 10px 0;margin:16px 0;font-size:14.5px}
-.note{font-size:13.5px;color:var(--ink-3)}
-.cta{border:1px solid var(--line);border-radius:14px;padding:18px;background:#fff;margin-top:14px}
-.cta a.btn{display:inline-block;margin-top:8px;padding:10px 16px;border-radius:10px;background:#1d2433;color:#fff;text-decoration:none;font-weight:700}
-@media print{.noprint,.copy{display:none!important}.prompt{break-inside:avoid}.card.kit{max-width:none;box-shadow:none;border:0}a{color:inherit;text-decoration:none}}
+/* Kit page. Read mode: the visitor arrives from a LinkedIn DM on a phone and wants their team's prompts fast. */
+:root { --kit-max: 760px; --bar-h: 52px; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--bar-h) + 16px); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { padding-bottom: 0; }
+.kit { max-width: var(--kit-max); margin: 0 auto; padding: 0 20px 56px; }
+.kit a { color: var(--blue); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.kit a:hover { color: var(--blue-d); }
+.kit :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 6px; }
+.kit p { line-height: 1.65; max-width: 68ch; }
+.kit p + p { margin-top: 12px; }
+
+/* top line */
+.kit-top { display: flex; justify-content: space-between; align-items: center; padding: 18px 0 0; font-size: 13px; font-weight: 700; letter-spacing: .02em; }
+.kit-top a { color: var(--ink-3); text-decoration: none; }
+.kit-top a:hover { color: var(--blue); }
+
+/* hero */
+.hero { padding: 40px 0 8px; }
+.hero h1 { font-size: clamp(2rem, 1.35rem + 3.2vw, 3.1rem); line-height: 1.04; letter-spacing: -0.035em; margin-bottom: 16px; max-width: 18ch; }
+.hero .promise { font: 400 clamp(17px, 16px + .4vw, 19.5px)/1.55 var(--serif); color: var(--ink-2); max-width: 56ch; }
+.who-line { display: flex; align-items: center; gap: 12px; margin-top: 22px; }
+.who-line img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex: none; }
+.who-line .nm { font-weight: 700; font-size: 15px; line-height: 1.3; }
+.who-line .nm a { color: var(--ink); text-decoration: none; }
+.who-line .nm a:hover { color: var(--blue); }
+.who-line .rl { font: 400 14px/1.4 var(--serif); color: var(--ink-3); }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; padding: 14px 0 0; list-style: none; border-top: 1px solid var(--rule); }
+.facts li { display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 600; color: var(--ink-2); line-height: 1.3; }
+.facts svg { width: 15px; height: 15px; color: var(--blue); flex: none; }
+
+/* team picker */
+.picker { margin-top: 34px; }
+.picker h2 { font-size: 15px; letter-spacing: -0.01em; color: var(--ink-3); font-weight: 700; margin-bottom: 10px; }
+.picker ol { list-style: none; padding: 0; margin: 0; background: #fff; border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); overflow: hidden; }
+.picker li + li { border-top: 1px solid var(--rule); }
+.picker a { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4px 14px; padding: 16px 18px; text-decoration: none; color: var(--ink); transition: background .2s var(--ease); }
+.picker a:hover { background: var(--blue-wash); }
+.picker a:focus-visible { outline-offset: -3px; border-radius: 0; }
+.picker b { font-size: 17px; letter-spacing: -0.015em; }
+.picker .tag { grid-column: 1; font: 400 15px/1.4 var(--serif); color: var(--ink-2); }
+.picker .n { grid-row: 1 / span 2; grid-column: 2; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--blue); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.picker .n svg { width: 18px; height: 18px; transition: transform .25s var(--ease); }
+.picker a:hover .n svg { transform: translateY(2px); }
+.picker .last b { font-weight: 700; color: var(--ink-2); }
+
+/* intro */
+.intro { margin-top: 48px; }
+.intro h2, .team-head h2, .scale h2 { font-size: clamp(1.45rem, 1.2rem + 1vw, 1.8rem); line-height: 1.15; letter-spacing: -0.028em; margin-bottom: 14px; }
+.rule-line { margin: 22px 0 0; padding: 18px 20px; background: var(--blue-wash); border-radius: 14px; font-size: 17px; line-height: 1.5; color: var(--ink); }
+.rule-line b { font-weight: 700; }
+.why { margin-top: 18px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.why summary, .meta summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; }
+.why summary::-webkit-details-marker, .meta summary::-webkit-details-marker { display: none; }
+.why summary { padding: 16px 2px; font-weight: 700; font-size: 16px; }
+.why summary svg, .meta summary svg { width: 16px; height: 16px; flex: none; color: var(--ink-3); transition: transform .25s var(--ease); }
+details[open] > summary svg { transform: rotate(90deg); }
+.why .why-body { padding: 0 2px 18px; color: var(--ink-2); }
+
+.ground { margin-top: 26px; display: grid; grid-template-columns: auto 1fr; gap: 12px; padding: 16px 18px; background: var(--canary); border: 1px solid var(--canary-line); border-radius: 14px; font-size: 15px; line-height: 1.55; }
+.ground svg { width: 20px; height: 20px; margin-top: 2px; color: var(--ink); }
+.ground b { display: block; margin-bottom: 2px; }
+.copy-note { margin-top: 14px; font-size: 14px; color: var(--ink-3); }
+
+/* sticky team bar */
+.teambar { position: sticky; top: 0; z-index: 20; margin: 40px -20px 0; padding: 0 20px; background: rgba(252,252,250,.94); backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--rule); }
+.teambar .in { display: flex; align-items: center; gap: 6px; height: var(--bar-h); overflow-x: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent); mask-image: linear-gradient(90deg, #000 88%, transparent); }
+.teambar .in::-webkit-scrollbar { display: none; }
+.teambar a { flex: none; display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 999px; font-size: 14px; font-weight: 700; color: var(--ink-2); text-decoration: none; white-space: nowrap; transition: background .2s var(--ease), color .2s var(--ease); }
+.teambar a:hover { color: var(--ink); background: #fff; }
+.teambar a[aria-current="true"] { background: var(--ink); color: var(--paper); }
+.teambar .up { color: var(--ink-3); padding-left: 4px; }
+.teambar .up svg { width: 16px; height: 16px; }
+
+/* team sections */
+.team { padding-top: 44px; }
+.team-head .sub-meta { font-size: 14px; font-weight: 700; color: var(--ink-3); margin: -6px 0 12px; font-variant-numeric: tabular-nums; }
+.team-head .goal { color: var(--ink-2); }
+
+.prompt { margin-top: 22px; background: #fff; border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); overflow: hidden; }
+.prompt-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; padding: 16px 18px 12px; }
+.prompt-head h3 { font-size: 17.5px; line-height: 1.3; letter-spacing: -0.015em; }
+.copy { flex: none; display: inline-flex; align-items: center; gap: 7px; min-height: 38px; padding: 0 14px; font: 700 14px/1 var(--font); color: #fff; background: var(--blue); border: 0; border-radius: 10px; cursor: pointer; box-shadow: var(--shadow-btn); transition: background .2s var(--ease), transform .2s var(--ease); }
+.copy:hover { background: var(--blue-d); transform: translateY(-1px); }
+.copy svg { width: 16px; height: 16px; }
+.copy .ok { display: none; }
+.copy.done { background: var(--green); }
+.copy.done .ok { display: block; }
+.copy.done .ic { display: none; }
+.ptext { margin: 0 18px; padding: 14px 16px; background: #f7f8fb; border: 1px solid var(--rule); border-radius: 12px; font: 400 15px/1.6 var(--font); color: var(--ink); white-space: pre-wrap; overflow-wrap: anywhere; max-height: 13em; overflow: hidden; }
+.ptext.clip { -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent); mask-image: linear-gradient(180deg, #000 70%, transparent); }
+.ptext.open { max-height: none; -webkit-mask-image: none; mask-image: none; }
+.ptext mark { background: var(--canary); color: var(--ink); border-radius: 4px; padding: 0 3px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.more { display: none; margin: 8px 18px 0; padding: 0; border: 0; background: none; font: 700 13.5px/1.4 var(--font); color: var(--blue); cursor: pointer; }
+.more.on { display: inline-block; }
+.meta { margin-top: 12px; border-top: 1px solid var(--rule); }
+.meta summary { padding: 13px 18px; font-size: 14.5px; font-weight: 700; color: var(--ink-2); }
+.meta summary:hover { color: var(--ink); }
+.meta dl { margin: 0; padding: 0 18px 16px; display: grid; gap: 12px; }
+.meta dt { font-size: 12.5px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); }
+.meta dd { margin: 2px 0 0; font: 400 15px/1.55 var(--serif); color: var(--ink-2); }
+
+/* the honest next step */
+.scale { margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--line); }
+.scale ul { margin: 12px 0 0; padding-left: 20px; }
+.scale li { margin-top: 8px; line-height: 1.6; max-width: 66ch; }
+.band { margin-top: 28px; padding: 26px 24px; border-radius: 18px; background: var(--ink); color: var(--paper); display: grid; gap: 16px; }
+.band b { font-size: 21px; letter-spacing: -0.02em; line-height: 1.2; }
+.band p { color: #c9cde0; margin-top: 6px; }
+.band .acts { display: flex; flex-wrap: wrap; gap: 10px; }
+.band .go, .band .go:visited { display: inline-flex; align-items: center; gap: 8px; padding: 13px 18px; border-radius: 12px; background: var(--paper); color: var(--ink); font-weight: 700; text-decoration: none; transition: transform .2s var(--ease), background .2s var(--ease); }
+.band .go:hover { transform: translateY(-1px); background: #fff; color: var(--ink); }
+.band .alt, .band .alt:visited { display: inline-flex; align-items: center; padding: 13px 4px; color: #dfe3f3; font-weight: 700; text-decoration: underline; text-decoration-color: rgba(223,227,243,.4); }
+.band .alt:hover { color: #fff; }
+.band :focus-visible { outline-color: var(--paper); }
+.band svg { width: 16px; height: 16px; }
+
+.tail { margin-top: 40px; }
+.printbtn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; background: #fff; font: 700 14px/1 var(--font); color: var(--ink-2); cursor: pointer; }
+.printbtn:hover { border-color: var(--ink-3); color: var(--ink); }
+.printbtn svg { width: 16px; height: 16px; }
+.disclaimer { margin-top: 14px; font-size: 13.5px; color: var(--ink-3); }
+.kit .footer { margin-top: 26px; }
+
+@media (min-width: 720px) {
+  .kit { padding: 0 32px 72px; }
+  .teambar { margin: 44px -32px 0; padding: 0 32px; }
+  .hero { padding-top: 64px; }
+  .band { grid-template-columns: 1fr auto; align-items: center; padding: 30px 32px; }
+}
+@media (max-width: 420px) {
+  .prompt-head { flex-direction: column; gap: 10px; }
+  .copy { align-self: flex-start; }
+}
+@media print {
+  .teambar, .copy, .more, .printbtn, .kit-top, .picker, .band .acts, .copy-note, .footer, .byline .li { display: none !important; }
+  .kit { max-width: none; padding: 0; }
+  .ptext { max-height: none; overflow: visible; background: none; }
+  .prompt { box-shadow: none; break-inside: avoid; }
+  .band { background: none; color: var(--ink); border: 1px solid var(--line); }
+  .band p { color: var(--ink-2); }
+  .kit a { color: inherit; text-decoration: none; }
+  details > :not(summary) { display: block !important; }
+}
 </style>
 </head>
 <body>
-<div class="card kit">
-  <div class="brand noprint"><a href="/index.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">← THE GANTRY · TOOLS</a></div>
-  <div class="eyebrow">Free kit · by Sayed Rashid</div>
-  <h1>The AI Finance and Ops Department for Singapore SMEs</h1>
-  <p class="lede">Four teams you can run this week with Claude or ChatGPT: a Month-End Team, a Cash Team, a Stock Team and a Compliance Team. Copy-paste prompts, what to paste in, and what good output looks like.</p>
+<main class="kit">
+  <div class="kit-top"><a href="/index.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">The Gantry · Free tools</a><a href="/about-sayed.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">About Sayed</a></div>
 
-  <h2>Most teams will use AI wrong here</h2>
-  <p>I was an auditor before I spent my days inside Singapore SMEs, and the pattern is the same everywhere. People ask AI to "do the accounts". It cannot. It does not know your ledger, your suppliers or your stock, and it will guess with confidence.</p>
-  <p>What it does very well is the work around the numbers: putting a messy list in order, spotting what does not tie, drafting the chaser email, laying out a calendar, explaining a variance in plain words. That is where most of a finance team's week actually goes.</p>
-  <p>So every prompt below follows one rule: <b>you bring the real figures, AI does the sorting, checking and drafting, and a person signs off.</b></p>
+  <header class="hero">
+    <h1>The AI Finance and Ops Department for Singapore SMEs</h1>
+    <p class="promise">Four teams you can run this week with Claude or ChatGPT: a Month-End Team, a Cash Team, a Stock Team and a Compliance Team. Copy-paste prompts, what to paste in, and what good output looks like.</p>
+    <div class="who-line">
+      <img src="/sayed.jpg" alt="" width="40" height="40">
+      <div><div class="nm">By <a href="/about-sayed.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">Sayed Rashid</a></div><div class="rl">Free kit, no sign-up</div></div>
+    </div>
+    <ul class="facts"><li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5.5 4h8M5.5 8h8M5.5 12h8"/><circle cx="2.5" cy="4" r=".9" fill="currentColor"/><circle cx="2.5" cy="8" r=".9" fill="currentColor"/><circle cx="2.5" cy="12" r=".9" fill="currentColor"/></svg>11 prompts in 4 teams</li><li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 4.8V8l2.2 1.6"/></svg>About 20 minutes per team</li><li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v3M8 11v3M2 8h3M11 8h3M4 4l1.8 1.8M10.2 10.2L12 12M12 4l-1.8 1.8M5.8 10.2L4 12"/></svg>Works with Claude or ChatGPT</li></ul>
+  </header>
 
-  <h2>Why this matters for a Singapore SME</h2>
-  <p>A slow close is paid for in salary twelve times a year, and decisions get made on last month's numbers. Most of a long close is waiting, not working: supplier invoices for goods already received, stock that does not agree with the books, bank lines nobody owns. (<a href="/month-end-close-scorecard.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">Month-end close scorecard</a>)</p>
-  <p>On top of that sits a full compliance calendar: GST, CPF, IR8A, ECI, the AGM, the ACRA annual return and Form C-S, plus InvoiceNow phasing in for every GST-registered business by size, finishing April 2031. (<a href="/singapore-business-deadlines-2027.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">2027 deadlines</a>, <a href="/invoicenow-deadline.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">InvoiceNow date calculator</a>)</p>
+  <nav class="picker" id="teams" aria-label="Pick your team">
+    <h2>Jump to your team</h2>
+    <ol><li><a href="#month-end"><b>Month-End Team</b><span class="tag">Close in 5 days</span><span class="n">3 prompts<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v10M3.5 8.5L8 13l4.5-4.5"/></svg></span></a></li><li><a href="#cash"><b>Cash Team</b><span class="tag">Get paid, see the tight week</span><span class="n">3 prompts<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v10M3.5 8.5L8 13l4.5-4.5"/></svg></span></a></li><li><a href="#stock"><b>Stock Team</b><span class="tag">Trust the stock figure</span><span class="n">3 prompts<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v10M3.5 8.5L8 13l4.5-4.5"/></svg></span></a></li><li><a href="#compliance"><b>Compliance Team</b><span class="tag">Every date, on one page</span><span class="n">2 prompts<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v10M3.5 8.5L8 13l4.5-4.5"/></svg></span></a></li><li class="last"><a href="#scale"><b>When the spreadsheets stop scaling</b><span class="tag">The honest next step</span><span class="n"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v10M3.5 8.5L8 13l4.5-4.5"/></svg></span></a></li></ol>
+  </nav>
 
-  <div class="guard"><b>Ground rules for every prompt.</b> Use a business account with data training switched off, or remove names first. Never paste NRIC numbers, salaries by name, bank account numbers or passwords. AI can miscount: tick every total against your ledger before anyone acts on it. This is general guidance from experience, not legal, tax or financial advice.</div>
+  <section class="intro" aria-labelledby="intro-h">
+    <h2 id="intro-h">Most teams will use AI wrong here</h2>
+    <p>I was an auditor before I spent my days inside Singapore SMEs, and the pattern is the same everywhere. People ask AI to "do the accounts". It cannot. It does not know your ledger, your suppliers or your stock, and it will guess with confidence.</p><p>What it does very well is the work around the numbers: putting a messy list in order, spotting what does not tie, drafting the chaser email, laying out a calendar, explaining a variance in plain words. That is where most of a finance team's week actually goes.</p><p class="rule-line">So every prompt below follows one rule: <b>you bring the real figures, AI does the sorting, checking and drafting, and a person signs off.</b></p>
+    <details class="why">
+      <summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>Why this matters for a Singapore SME</summary>
+      <div class="why-body"><p>A slow close is paid for in salary twelve times a year, and decisions get made on last month's numbers. Most of a long close is waiting, not working: supplier invoices for goods already received, stock that does not agree with the books, bank lines nobody owns. (<a href="/month-end-close-scorecard.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">Month-end close scorecard</a>)</p><p>On top of that sits a full compliance calendar: GST, CPF, IR8A, ECI, the AGM, the ACRA annual return and Form C-S, plus InvoiceNow phasing in for every GST-registered business by size, finishing April 2031. (<a href="/singapore-business-deadlines-2027.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">2027 deadlines</a>, <a href="/invoicenow-deadline.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">InvoiceNow date calculator</a>)</p></div>
+    </details>
+    <div class="ground" role="note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+      <div><b>Ground rules for every prompt</b>Use a business account with data training switched off, or remove names first. Never paste NRIC numbers, salaries by name, bank account numbers or passwords. AI can miscount: tick every total against your ledger before anyone acts on it. This is general guidance from experience, not legal, tax or financial advice.</div>
+    </div>
+    <p class="copy-note">Copy this kit into your own Notion or Google Docs: use Print below (save as PDF) or copy each prompt with its button. Share it with your team as it is.</p>
+  </section>
 
-  <p class="note noprint">Copy this kit into your own Notion or Google Docs: use Print below (save as PDF) or copy each prompt with its button. Share it with your team as it is.</p>
+  <nav class="teambar" aria-label="Teams">
+    <div class="in">
+      <a class="up" href="#teams" aria-label="Back to all teams"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V3M3.5 7.5L8 3l4.5 4.5"/></svg>Teams</a>
+      <a href="#month-end" data-t="month-end">Month-End</a><a href="#cash" data-t="cash">Cash</a><a href="#stock" data-t="stock">Stock</a><a href="#compliance" data-t="compliance">Compliance</a><a href="#scale" data-t="scale">Next step</a>
+    </div>
+  </nav>
 
-  <div class="toc noprint">
-    <a href="#month-end"><b>Month-End Team</b><span>Close in 5 days</span></a>
-    <a href="#cash"><b>Cash Team</b><span>Get paid, see the tight week</span></a>
-    <a href="#stock"><b>Stock Team</b><span>Trust the stock figure</span></a>
-    <a href="#compliance"><b>Compliance Team</b><span>Every date, on one page</span></a>
-    <a href="#scale"><b>When spreadsheets stop</b><span>The honest next step</span></a>
-  </div>
-
-  <section class="team" id="month-end">
-    <h2>Team 1: the Month-End Team</h2>
-    <p class="goal">Goal: a close in the order that works, with one owner per step. Cut-off, bank, suppliers and accruals, stock and payroll, intercompany, then margin and reports. Then take one day off your current close each month. (<a href="/month-end-close-scorecard.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">source</a>)</p>
-
-    <div class="prompt"><div class="ph"><b>1. Build our close checklist</b><button class="copy" type="button">Copy</button></div>
-<pre>You are a month-end close coordinator for a Singapore SME.
+  <section class="team" id="month-end" aria-labelledby="month-end-h"><div class="team-head"><h2 id="month-end-h">Month-End Team</h2><p class="sub-meta">Team 1 of 4 · 3 prompts</p><p class="goal">Goal: a close in the order that works, with one owner per step. Cut-off, bank, suppliers and accruals, stock and payroll, intercompany, then margin and reports. Then take one day off your current close each month. (<a href="/month-end-close-scorecard.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">source</a>)</p></div><article class="prompt" id="month-end-p1"><div class="prompt-head"><h3>Build our close checklist</h3><button class="copy" type="button" aria-label="Copy the prompt: Build our close checklist"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">You are a month-end close coordinator for a Singapore SME.
 Here is how our close runs today (who does what, and on which working day):
-[paste your current steps, people and days]
+<mark>[paste your current steps, people and days]</mark>
 
 1. Re-order the steps into this sequence: cut-off, bank, suppliers and accruals, stock and payroll, intercompany and consolidation, margin and reports.
 2. Give each step one owner, a working day, and a "done when" line.
 3. Mark every step that is waiting on someone else, and say who.
 4. Show which single step, if fixed, would take one day off the close.
-Output a table: Day | Step | Owner | Done when | Waiting on.</pre>
-<div class="meta"><p><b>Paste in:</b> your close steps as you would explain them to a new hire. Roles, not names, is fine.</p><p><b>Good output:</b> a one-page table you could pin up, with the waits made visible.</p></div></div>
-
-    <div class="prompt"><div class="ph"><b>2. Bank and supplier reconciliation helper</b><button class="copy" type="button">Copy</button></div>
-<pre>Act as an accounts assistant. I will paste two lists.
-List A: bank statement lines for [month] (date, description, amount).
+Output a table: Day | Step | Owner | Done when | Waiting on.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>your close steps as you would explain them to a new hire. Roles, not names, is fine.</dd></div><div><dt>Good output</dt><dd>a one-page table you could pin up, with the waits made visible.</dd></div></dl></details></article><article class="prompt" id="month-end-p2"><div class="prompt-head"><h3>Bank and supplier reconciliation helper</h3><button class="copy" type="button" aria-label="Copy the prompt: Bank and supplier reconciliation helper"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">Act as an accounts assistant. I will paste two lists.
+List A: bank statement lines for <mark>[month]</mark> (date, description, amount).
 List B: the cash book or ledger lines for the same account (date, reference, amount).
-[paste List A]
-[paste List B]
+<mark>[paste List A]</mark>
+<mark>[paste List B]</mark>
 
 1. Match lines that agree on amount and are within 5 days of each other.
 2. List everything unmatched on each side, largest first.
 3. For each unmatched line, suggest the most likely reason (timing, fee, duplicate, missing entry) and who would know.
 4. Give the difference that remains and check it equals the sum of the unmatched lines.
-Do not invent entries. If something is unclear, say so.</pre>
-<div class="meta"><p><b>Paste in:</b> exports from your bank and your accounting system. The same works for a supplier statement against your purchase ledger.</p><p><b>Good output:</b> a short unmatched list with an owner for each line, and a difference that ties.</p></div></div>
-
-    <div class="prompt"><div class="ph"><b>3. Variance explainer for the management pack</b><button class="copy" type="button">Copy</button></div>
-<pre>You are writing the commentary for a monthly management report of a Singapore trading company.
-This month vs last month, by line: [paste revenue, cost of sales, gross margin, main expenses, with both months]
-Known events this month: [paste, e.g. price increase, a big order, a holiday]
+Do not invent entries. If something is unclear, say so.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>exports from your bank and your accounting system. The same works for a supplier statement against your purchase ledger.</dd></div><div><dt>Good output</dt><dd>a short unmatched list with an owner for each line, and a difference that ties.</dd></div></dl></details></article><article class="prompt" id="month-end-p3"><div class="prompt-head"><h3>Variance explainer for the management pack</h3><button class="copy" type="button" aria-label="Copy the prompt: Variance explainer for the management pack"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">You are writing the commentary for a monthly management report of a Singapore trading company.
+This month vs last month, by line: <mark>[paste revenue, cost of sales, gross margin, main expenses, with both months]</mark>
+Known events this month: <mark>[paste, e.g. price increase, a big order, a holiday]</mark>
 
 Write 5 to 8 short bullet points:
 1. The three biggest movements in dollars, with the likely cause from the events given.
 2. Any margin change of more than 2 points, and which product or customer group to check.
 3. One question for each manager to answer before the report goes out.
-Plain English, no jargon, no guessing beyond the facts given.</pre>
-<div class="meta"><p><b>Paste in:</b> the summary lines, not the whole ledger.</p><p><b>Good output:</b> commentary a director can read in one minute, plus the questions that stop wrong numbers going out.</p></div></div>
-  </section>
-
-  <section class="team" id="cash">
-    <h2>Team 2: the Cash Team</h2>
-    <p class="goal">Goal: get paid on time and see the tight week before it arrives.</p>
-
-    <div class="prompt"><div class="ph"><b>4. Receivables ageing review</b><button class="copy" type="button">Copy</button></div>
-<pre>You are a credit controller for a Singapore SME.
+Plain English, no jargon, no guessing beyond the facts given.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>the summary lines, not the whole ledger.</dd></div><div><dt>Good output</dt><dd>commentary a director can read in one minute, plus the questions that stop wrong numbers going out.</dd></div></dl></details></article></section>
+<section class="team" id="cash" aria-labelledby="cash-h"><div class="team-head"><h2 id="cash-h">Cash Team</h2><p class="sub-meta">Team 2 of 4 · 3 prompts</p><p class="goal">Goal: get paid on time and see the tight week before it arrives.</p></div><article class="prompt" id="cash-p4"><div class="prompt-head"><h3>Receivables ageing review</h3><button class="copy" type="button" aria-label="Copy the prompt: Receivables ageing review"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">You are a credit controller for a Singapore SME.
 Here are our open invoices: customer, invoice number, invoice date, due date, amount.
-[paste open invoices]
-Today is [date].
+<mark>[paste open invoices]</mark>
+Today is <mark>[date]</mark>.
 
 1. Group them by customer into current, 1 to 30, 31 to 60, 61 to 90 and over 90 days past due.
 2. List the 10 customers to call first, ranked by amount over 30 days.
 3. Flag any customer whose oldest invoice is over 60 days but who still ordered this month.
-4. Give total receivables and the share over 60 days.</pre>
-<div class="meta"><p><b>Paste in:</b> your open invoice list. Want it done without AI? The <a href="/ar-aging-report.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">free AR ageing report</a> builds the same buckets in your browser.</p><p><b>Good output:</b> a call list for this week, not a report nobody reads.</p></div></div>
-
-    <div class="prompt"><div class="ph"><b>5. Reminder drafter, firm but polite</b><button class="copy" type="button">Copy</button></div>
-<pre>Write a payment reminder email for a Singapore B2B customer.
-Customer: [company], contact: [first name]
-Invoices overdue: [numbers, dates, amounts]
-Stage: [courtesy before due / on due date / 7 days overdue / 30 days overdue / final before stopping supply]
-Our relationship: [good customer, usually pays / slow payer / new]
+4. Give total receivables and the share over 60 days.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>your open invoice list. Want it done without AI? The <a href="/ar-aging-report.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">free AR ageing report</a> builds the same buckets in your browser.</dd></div><div><dt>Good output</dt><dd>a call list for this week, not a report nobody reads.</dd></div></dl></details></article><article class="prompt" id="cash-p5"><div class="prompt-head"><h3>Reminder drafter, firm but polite</h3><button class="copy" type="button" aria-label="Copy the prompt: Reminder drafter, firm but polite"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">Write a payment reminder email for a Singapore B2B customer.
+Customer: <mark>[company]</mark>, contact: <mark>[first name]</mark>
+Invoices overdue: <mark>[numbers, dates, amounts]</mark>
+Stage: <mark>[courtesy before due / on due date / 7 days overdue / 30 days overdue / final before stopping supply]</mark>
+Our relationship: <mark>[good customer, usually pays / slow payer / new]</mark>
 
 Tone: firm but polite, warm, no threats unless the stage is final. Under 120 words.
 Include: the invoice numbers and amounts, the one action we need, a specific date, and how to pay or who to contact.
-Give me a subject line too.</pre>
-<div class="meta"><p><b>Paste in:</b> only the invoice facts. Keep it to one email per customer.</p><p><b>Good output:</b> an email you would send after one read, with a clear date and amount.</p></div></div>
-
-    <div class="prompt"><div class="ph"><b>6. 13-week cash forecast builder</b><button class="copy" type="button">Copy</button></div>
-<pre>Build a 13-week cash flow forecast for a Singapore SME, one column per week starting Monday [date].
+Give me a subject line too.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>only the invoice facts. Keep it to one email per customer.</dd></div><div><dt>Good output</dt><dd>an email you would send after one read, with a clear date and amount.</dd></div></dl></details></article><article class="prompt" id="cash-p6"><div class="prompt-head"><h3>13-week cash forecast builder</h3><button class="copy" type="button" aria-label="Copy the prompt: 13-week cash forecast builder"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">Build a 13-week cash flow forecast for a Singapore SME, one column per week starting Monday <mark>[date]</mark>.
 Rows: opening balance, money in (customer receipts by expected week), money out (suppliers, payroll, CPF, rent, GST, other), closing balance.
-Opening bank balance: [amount]
-Expected receipts: [customer, amount, expected week]
-Regular payments: [item, amount, day of month or week]
+Opening bank balance: <mark>[amount]</mark>
+Expected receipts: <mark>[customer, amount, expected week]</mark>
+Regular payments: <mark>[item, amount, day of month or week]</mark>
 Put every amount in the week it reaches or leaves the bank, not the invoice week.
-Then: show the lowest closing balance and its week, and list the 3 payments or receipts I could move to protect that week.</pre>
-<div class="meta"><p><b>Paste in:</b> your bank balance and the big known items. The <a href="/13-week-cash-flow-calendar.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">13-week cash calendar</a> already carries the Singapore CPF, levy, GST and holiday dates for its weeks.</p><p><b>Good output:</b> one grid, the tight week named, three moves to make now.</p></div></div>
-  </section>
-
-  <section class="team" id="stock">
-    <h2>Team 3: the Stock Team</h2>
-    <p class="goal">Goal: a stock figure you can trust. Most operations aim for 95% inventory record accuracy or better within a 2% tolerance; below 85% the stock figure cannot be trusted for buying. (<a href="/stock-take-variance-calculator.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">source</a>)</p>
-
-    <div class="prompt"><div class="ph"><b>7. Stock variance finder</b><button class="copy" type="button">Copy</button></div>
-<pre>You are a stock controller. Here are count results: item code, description, system quantity, counted quantity, unit cost.
-[paste count lines]
+Then: show the lowest closing balance and its week, and list the 3 payments or receipts I could move to protect that week.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>your bank balance and the big known items. The <a href="/13-week-cash-flow-calendar.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">13-week cash calendar</a> already carries the Singapore CPF, levy, GST and holiday dates for its weeks.</dd></div><div><dt>Good output</dt><dd>one grid, the tight week named, three moves to make now.</dd></div></dl></details></article></section>
+<section class="team" id="stock" aria-labelledby="stock-h"><div class="team-head"><h2 id="stock-h">Stock Team</h2><p class="sub-meta">Team 3 of 4 · 3 prompts</p><p class="goal">Goal: a stock figure you can trust. Most operations aim for 95% inventory record accuracy or better within a 2% tolerance; below 85% the stock figure cannot be trusted for buying. (<a href="/stock-take-variance-calculator.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">source</a>)</p></div><article class="prompt" id="stock-p7"><div class="prompt-head"><h3>Stock variance finder</h3><button class="copy" type="button" aria-label="Copy the prompt: Stock variance finder"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">You are a stock controller. Here are count results: item code, description, system quantity, counted quantity, unit cost.
+<mark>[paste count lines]</mark>
 
 1. Work out the variance per line (counted minus system) and its value.
 2. Give inventory record accuracy: lines within a 2% tolerance divided by lines counted.
 3. Give both the net variance value and the absolute variance value (overs and shorts do not cancel).
-4. List the 10 biggest variances by absolute value to recount first, and for each one the likely cause to check (unrecorded delivery, wrong unit of measure, picking error, theft, damaged goods).</pre>
-<div class="meta"><p><b>Paste in:</b> your count sheet next to the system quantities. The <a href="/stock-take-variance-calculator.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">stock take variance calculator</a> does the arithmetic in your browser.</p><p><b>Good output:</b> an accuracy figure and a recount list, ranked by dollars.</p></div></div>
-
-    <div class="prompt"><div class="ph"><b>8. Reorder point and safety stock</b><button class="copy" type="button">Copy</button></div>
-<pre>For each item below, calculate the reorder point.
+4. List the 10 biggest variances by absolute value to recount first, and for each one the likely cause to check (unrecorded delivery, wrong unit of measure, picking error, theft, damaged goods).</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>your count sheet next to the system quantities. The <a href="/stock-take-variance-calculator.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">stock take variance calculator</a> does the arithmetic in your browser.</dd></div><div><dt>Good output</dt><dd>an accuracy figure and a recount list, ranked by dollars.</dd></div></dl></details></article><article class="prompt" id="stock-p8"><div class="prompt-head"><h3>Reorder point and safety stock</h3><button class="copy" type="button" aria-label="Copy the prompt: Reorder point and safety stock"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">For each item below, calculate the reorder point.
 Formula: reorder point = average daily demand x lead time in days + safety stock.
 Safety stock at a 95% service level = 1.65 x standard deviation of daily demand x square root of lead time.
-Items: [code, average daily sales, standard deviation of daily sales, supplier lead time in days, stock on hand]
-Show the working for each, the reorder point, and which items are already below it today.</pre>
-<div class="meta"><p><b>Worked example (from the calculator page):</b> 40 units a day, 7-day lead time, standard deviation 12: 280 units of lead time demand plus 53 units of safety stock, so reorder at 333. (<a href="/reorder-point-calculator.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">source</a>)</p><p><b>Good output:</b> a reorder list for today, with the working shown so a buyer can check it.</p></div></div>
-
-    <div class="prompt"><div class="ph"><b>9. Three-way match checker</b><button class="copy" type="button">Copy</button></div>
-<pre>Check these supplier invoices before payment, using three-way matching.
+Items: <mark>[code, average daily sales, standard deviation of daily sales, supplier lead time in days, stock on hand]</mark>
+Show the working for each, the reorder point, and which items are already below it today.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Worked example (from the calculator page)</dt><dd>40 units a day, 7-day lead time, standard deviation 12: 280 units of lead time demand plus 53 units of safety stock, so reorder at 333. (<a href="/reorder-point-calculator.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">source</a>)</dd></div><div><dt>Good output</dt><dd>a reorder list for today, with the working shown so a buyer can check it.</dd></div></dl></details></article><article class="prompt" id="stock-p9"><div class="prompt-head"><h3>Three-way match checker</h3><button class="copy" type="button" aria-label="Copy the prompt: Three-way match checker"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">Check these supplier invoices before payment, using three-way matching.
 For each invoice I give you the purchase order line (quantity, unit price), the goods received note quantity, and the invoice line (quantity, unit price).
-[paste lines]
+<mark>[paste lines]</mark>
 
 Two tests decide it:
 1. Quantity billed is not more than quantity received.
 2. Price billed is not more than price ordered.
-Output: Pass or Hold for each line, the dollar amount at stake on each Hold, and a one-line note to the supplier for each Hold.</pre>
-<div class="meta"><p><b>The classic case:</b> ordered 100, received 96, invoiced for 100. (<a href="/three-way-match-guide.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">three-way match guide</a>)</p><p><b>Good output:</b> a hold list with the money at stake, before the payment run.</p></div></div>
-  </section>
-
-  <section class="team" id="compliance">
-    <h2>Team 4: the Compliance Team</h2>
-    <p class="goal">Goal: every date on one page, a month ahead. For a private company with a 31 December year end, standard GST quarters and staff, the 2027 dates are: GST returns and payment by 31 January, 30 April, 31 July and 31 October; CPF by the 14th of each month (the next working day when the 14th is a weekend); IR8A by 1 March; ECI by 31 March; the AGM by 30 June; the ACRA annual return by 31 July; Form C-S or Form C by 30 November. Sources: IRAS, CPF Board and ACRA, via our <a href="/singapore-business-deadlines-2027.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">2027 deadlines page</a> (checked 20 November 2026).</p>
-
-    <div class="prompt"><div class="ph"><b>10. Our compliance calendar for the year</b><button class="copy" type="button">Copy</button></div>
-<pre>Using only the dates I paste below (from official sources), build our compliance calendar for [year].
-Our facts: financial year end [date], GST periods [quarterly or monthly, and which months], staff [yes or no], companies [list].
-Official dates: [paste the dates from the deadlines page for your year end]
+Output: Pass or Hold for each line, the dollar amount at stake on each Hold, and a one-line note to the supplier for each Hold.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>The classic case</dt><dd>ordered 100, received 96, invoiced for 100. (<a href="/three-way-match-guide.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">three-way match guide</a>)</dd></div><div><dt>Good output</dt><dd>a hold list with the money at stake, before the payment run.</dd></div></dl></details></article></section>
+<section class="team" id="compliance" aria-labelledby="compliance-h"><div class="team-head"><h2 id="compliance-h">Compliance Team</h2><p class="sub-meta">Team 4 of 4 · 2 prompts</p><p class="goal">Goal: every date on one page, a month ahead. For a private company with a 31 December year end, standard GST quarters and staff, the 2027 dates are: GST returns and payment by 31 January, 30 April, 31 July and 31 October; CPF by the 14th of each month (the next working day when the 14th is a weekend); IR8A by 1 March; ECI by 31 March; the AGM by 30 June; the ACRA annual return by 31 July; Form C-S or Form C by 30 November. Sources: IRAS, CPF Board and ACRA, via our <a href="/singapore-business-deadlines-2027.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">2027 deadlines page</a> (checked 20 November 2026).</p></div><article class="prompt" id="compliance-p10"><div class="prompt-head"><h3>Our compliance calendar for the year</h3><button class="copy" type="button" aria-label="Copy the prompt: Our compliance calendar for the year"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">Using only the dates I paste below (from official sources), build our compliance calendar for <mark>[year]</mark>.
+Our facts: financial year end <mark>[date]</mark>, GST periods <mark>[quarterly or monthly, and which months]</mark>, staff <mark>[yes or no]</mark>, companies <mark>[list]</mark>.
+Official dates: <mark>[paste the dates from the deadlines page for your year end]</mark>
 
 Output:
 1. A month-by-month list: date, what is due, which company, owner, and the working day we should start preparing (10 working days before).
 2. A note under each item of what document or report feeds it.
-Do not add any date that I did not paste.</pre>
-<div class="meta"><p><b>Paste in:</b> your own dates from the <a href="/singapore-business-deadlines-2027.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">deadlines page</a> (pick your year end there). The last line of the prompt stops AI inventing dates.</p><p><b>Good output:</b> one calendar with owners and start dates, not just due dates.</p></div></div>
-
-    <div class="prompt"><div class="ph"><b>11. InvoiceNow readiness plan</b><button class="copy" type="button">Copy</button></div>
-<pre>Our InvoiceNow implementation date is [date] (from the IRAS-based calculator).
-Our invoicing today: [how invoices are made, which software, who sends them, how many a month]
+Do not add any date that I did not paste.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>your own dates from the <a href="/singapore-business-deadlines-2027.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">deadlines page</a> (pick your year end there). The last line of the prompt stops AI inventing dates.</dd></div><div><dt>Good output</dt><dd>one calendar with owners and start dates, not just due dates.</dd></div></dl></details></article><article class="prompt" id="compliance-p11"><div class="prompt-head"><h3>InvoiceNow readiness plan</h3><button class="copy" type="button" aria-label="Copy the prompt: InvoiceNow readiness plan"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">Our InvoiceNow implementation date is <mark>[date]</mark> (from the IRAS-based calculator).
+Our invoicing today: <mark>[how invoices are made, which software, who sends them, how many a month]</mark>
 
 Write a plan working back from that date:
 1. What must be true by then (invoice data sent to IRAS through InvoiceNow from our system or a provider).
 2. The questions to ask our current software provider or an InvoiceNow solution provider.
 3. A month-by-month list of steps with an owner, starting today.
-Flag anything you are unsure of as "check with IRAS".</pre>
-<div class="meta"><p><b>Get your date first:</b> the <a href="/invoicenow-deadline.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">InvoiceNow date calculator</a> works it out from Box 4 of your GST returns.</p><p><b>Good output:</b> a back-planned timeline you can hand to whoever owns invoicing.</p></div></div>
-  </section>
+Flag anything you are unsure of as "check with IRAS".</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Get your date first</dt><dd>the <a href="/invoicenow-deadline.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">InvoiceNow date calculator</a> works it out from Box 4 of your GST returns.</dd></div><div><dt>Good output</dt><dd>a back-planned timeline you can hand to whoever owns invoicing.</dd></div></dl></details></article></section>
 
-  <section class="team" id="scale">
-    <h2>When the spreadsheets stop scaling</h2>
-    <p>These prompts take hours off a week. They do not fix the root cause I see most often: the month's data was never captured properly while the month was happening, so finance spends the close reconstructing it. If your close, your stock figure and your cash view all come from different spreadsheets, AI is polishing the symptoms.</p>
-    <p>Two honest next steps:</p>
-    <ul>
-      <li>Take the <a href="/erp-readiness.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">ERP readiness scorecard</a>: eight questions on data, process, ownership and time. No vendor is named, and the honest answer might be "not yet".</li>
-      <li>Or bring one process to a free 20-minute call with me. You leave with three fixes, ranked by payoff.</li>
-    </ul>
-    <div class="cta noprint">
-      <b>Free 20-minute systems review</b>
-      <p style="margin:4px 0 0">Bring your close timeline or one messy process. No slides, nothing to prepare.</p>
-      <a class="btn" href="/review.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops" onclick="try{gtag('event','kit_review_click',{kit:'ai-finance-ops'})}catch(e){}">Book the free 20 minutes</a>
+
+  <section class="scale" id="scale" aria-labelledby="scale-h">
+    <h2 id="scale-h">When the spreadsheets stop scaling</h2>
+    <p>These prompts take hours off a week. They do not fix the root cause I see most often: the month's data was never captured properly while the month was happening, so finance spends the close reconstructing it. If your close, your stock figure and your cash view all come from different spreadsheets, AI is polishing the symptoms.</p><p>Two honest next steps:</p>
+    <ul><li>Take the <a href="/erp-readiness.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">ERP readiness scorecard</a>: eight questions on data, process, ownership and time. No vendor is named, and the honest answer might be "not yet".</li><li>Or bring one process to a free 20-minute call with me. You leave with three fixes, ranked by payoff.</li></ul>
+    <div class="band">
+      <div><b>Free 20-minute systems review</b><p>Bring your close timeline or one messy process. No slides, nothing to prepare.</p></div>
+      <div class="acts">
+        <a class="go" href="/review.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops" onclick="try{gtag('event','kit_review_click',{kit:'ai-finance-ops'})}catch(e){}">Book the free 20 minutes<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        <a class="alt" href="/erp-readiness.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">Take the ERP readiness scorecard</a>
+      </div>
     </div>
   </section>
 
-  <p class="noprint" style="margin-top:22px"><button class="copy" type="button" onclick="window.print()">Print or save as PDF</button></p>
-
-  <div class="byline">
-    <img src="/sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
-    <div class="who"><div class="nm">Sayed Rashid</div><div class="rl">Ex-auditor. I help Singapore SMEs take the re-typing, checking and chasing off their people. <a href="/about-sayed.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">About me</a>.</div></div>
-    <a class="li noprint" href="https://www.linkedin.com/in/sayedomni" target="_blank" rel="noopener" onclick="try{gtag('event','linkedin_click',{page:location.pathname})}catch(e){}">Connect on LinkedIn</a>
+  <div class="tail">
+    <button class="printbtn" type="button" onclick="window.print()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9V3h10v6M7 17H5a2 2 0 01-2-2v-4a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2h-2"/><path d="M7 14h10v7H7z"/></svg>Print or save as PDF</button>
+    <div class="byline">
+      <img src="/sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
+      <div class="who"><div class="nm">Sayed Rashid</div><div class="rl">Ex-auditor. I help Singapore SMEs take the re-typing, checking and chasing off their people. <a href="/about-sayed.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">About me</a>.</div></div>
+      <a class="li" href="https://www.linkedin.com/in/sayedomni" target="_blank" rel="noopener" onclick="try{gtag('event','linkedin_click',{page:location.pathname})}catch(e){}">Connect on LinkedIn</a>
+    </div>
+    <p class="disclaimer">General guidance from experience, not legal, tax or financial advice. Check every AI output against your own records. Dates and rules were checked on the linked pages on the dates shown there.</p>
+    <div class="footer"><a href="/index.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">All free tools</a> · <a href="https://www.gantry.work/?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">The Gantry</a> · <a href="/about-sayed.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">About Sayed</a></div>
   </div>
-  <p class="note">General guidance from experience, not legal, tax or financial advice. Check every AI output against your own records. Dates and rules were checked on the linked pages on the dates shown there.</p>
-  <div class="footer noprint"><a href="/index.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">All free tools</a> · <a href="https://www.gantry.work/?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">The Gantry</a> · <a href="/about-sayed.html">About Sayed</a></div>
-</div>
+</main>
+<div aria-live="polite" class="sr" id="live" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)"></div>
 <script>
-document.querySelectorAll('.prompt .copy').forEach(function(b){b.addEventListener('click',function(){var pre=b.closest('.prompt').querySelector('pre');var t=pre.innerText;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1500)}).catch(function(){var r=document.createRange();r.selectNodeContents(pre);var s=getSelection();s.removeAllRanges();s.addRange(r);});try{gtag('event','kit_prompt_copy',{kit:'ai-finance-ops',prompt:b.closest('.prompt').querySelector('b').innerText})}catch(e){}});});
-try{gtag('event','kit_view',{kit:'ai-finance-ops',src:new URLSearchParams(location.search).get('utm_medium')||''})}catch(e){}
+(function(){
+  var KIT = 'ai-finance-ops', live = document.getElementById('live');
+  document.querySelectorAll('.prompt').forEach(function(card){
+    var pre = card.querySelector('.ptext'), btn = card.querySelector('.copy'), more = card.querySelector('.more');
+    if (pre.scrollHeight > pre.clientHeight + 4) { more.classList.add('on'); pre.classList.add('clip'); }
+    more.addEventListener('click', function(){ pre.classList.add('open'); more.classList.remove('on'); });
+    btn.addEventListener('click', function(){
+      var t = pre.textContent;
+      var done = function(){ btn.classList.add('done'); btn.querySelector('.lb').textContent = 'Copied'; live.textContent = 'Prompt copied';
+        setTimeout(function(){ btn.classList.remove('done'); btn.querySelector('.lb').textContent = 'Copy'; }, 1800); };
+      (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(done).catch(function(){
+        var r = document.createRange(); r.selectNodeContents(pre); var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+        try { document.execCommand('copy'); done(); } catch(e) {} });
+      try { gtag('event','kit_prompt_copy',{kit:KIT,prompt:card.querySelector('h3').textContent}); } catch(e) {}
+    });
+  });
+  var links = [].slice.call(document.querySelectorAll('.teambar a[data-t]'));
+  var map = {}; links.forEach(function(a){ map[a.getAttribute('data-t')] = a; });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) {
+      links.forEach(function(a){ a.removeAttribute('aria-current'); });
+      var a = map[e.target.id]; if (a) { a.setAttribute('aria-current','true'); a.scrollIntoView({block:'nearest',inline:'nearest'}); } } }); },
+      { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('.team, .scale').forEach(function(s){ io.observe(s); });
+  }
+  document.querySelectorAll('.picker a, .teambar a').forEach(function(a){ a.addEventListener('click', function(){ try { gtag('event','kit_team_nav',{kit:KIT,to:a.getAttribute('href')}); } catch(e) {} }); });
+  window.addEventListener('beforeprint', function(){ document.querySelectorAll('details').forEach(function(d){ d.setAttribute('open',''); }); });
+  try { gtag('event','kit_view',{kit:KIT,src:new URLSearchParams(location.search).get('utm_medium')||''}); } catch(e) {}
+})();
 </script>
 </body>
 </html>
