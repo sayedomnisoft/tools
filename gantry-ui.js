@@ -195,7 +195,7 @@
   function footer(after) {
     if ($('gt-foot')) return;
     var f = document.createElement('footer'); f.id = 'gt-foot'; f.className = 'gt-foot noprint';
-    f.innerHTML = '<span>The Gantry · Singapore</span><nav aria-label="More from The Gantry"><a href="/index.html">All free tools</a><a href="https://www.gantry.work">Newsletter</a><a href="/privacy.html">Privacy</a></nav>';
+    f.innerHTML = '<span>The Gantry · Singapore</span><nav aria-label="More from The Gantry"><a href="/index.html">All free tools</a><a href="https://www.gantry.work">Newsletter</a><a href="/about-sayed.html">About Sayed</a><a href="/privacy.html">Privacy</a></nav>';
     after.parentNode.insertBefore(f, after.nextSibling);
     /* the small "Privacy and cookies" link from /track.js: one privacy link in the footer is enough */
     var move = function () { document.querySelectorAll('.gantry-privacy').forEach(function (l) { if (l.parentNode) l.parentNode.removeChild(l); }); };
