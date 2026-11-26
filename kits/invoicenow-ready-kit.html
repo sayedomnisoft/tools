@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en-SG">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The InvoiceNow Ready Kit for Singapore SMEs | The Gantry Kit</title>
+<meta name="description" content="Find your InvoiceNow date and get ready before it: copy-paste prompts for your date, your data, your invoicing habits and your software questions. By Sayed Rashid.">
+<meta name="robots" content="noindex,nofollow">
+<meta property="og:title" content="The InvoiceNow Ready Kit">
+<meta property="og:description" content="Four teams to get ready for InvoiceNow: Date, Data, Process and Software. Copy-paste prompts, what to paste in, what good looks like.">
+<meta property="og:image" content="https://tools.gantry.work/og/about-sayed.jpg">
+<meta name="author" content="Sayed Rashid">
+<meta name="theme-color" content="#fcfcfa">
+<link rel="stylesheet" href="/shared.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="gantry-tool-category" content="kit">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<script src="/config.js"></script><script src="/track.js" defer></script>
+<meta name="gantry-checked" content="2026-11-26">
+<!-- Built by kits/build_kit.py from kits/content/invoicenow-ready-kit.json. Edit the JSON, then run: python3 kits/build_kit.py invoicenow-ready-kit -->
+<style>
+/* Kit page. Read mode: the visitor arrives from a LinkedIn DM on a phone and wants their team's prompts fast. */
+:root { --kit-max: 760px; --bar-h: 52px; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--bar-h) + 16px); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { padding-bottom: 0; }
+.kit { max-width: var(--kit-max); margin: 0 auto; padding: 0 20px 56px; }
+.kit a { color: var(--blue); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.kit a:hover { color: var(--blue-d); }
+.kit :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 6px; }
+.kit p { line-height: 1.65; max-width: 68ch; }
+.kit p + p { margin-top: 12px; }
+
+/* top line */
+.kit-top { display: flex; justify-content: space-between; align-items: center; padding: 18px 0 0; font-size: 13px; font-weight: 700; letter-spacing: .02em; }
+.kit-top a { color: var(--ink-3); text-decoration: none; }
+.kit-top a:hover { color: var(--blue); }
+
+/* hero */
+.hero { padding: 40px 0 8px; }
+.hero h1 { font-size: clamp(2rem, 1.35rem + 3.2vw, 3.1rem); line-height: 1.04; letter-spacing: -0.035em; margin-bottom: 16px; max-width: 18ch; }
+.hero .promise { font: 400 clamp(17px, 16px + .4vw, 19.5px)/1.55 var(--serif); color: var(--ink-2); max-width: 56ch; }
+.who-line { display: flex; align-items: center; gap: 12px; margin-top: 22px; }
+.who-line img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex: none; }
+.who-line .nm { font-weight: 700; font-size: 15px; line-height: 1.3; }
+.who-line .nm a { color: var(--ink); text-decoration: none; }
+.who-line .nm a:hover { color: var(--blue); }
+.who-line .rl { font: 400 14px/1.4 var(--serif); color: var(--ink-3); }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; padding: 14px 0 0; list-style: none; border-top: 1px solid var(--rule); }
+.facts li { display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 600; color: var(--ink-2); line-height: 1.3; }
+.facts svg { width: 15px; height: 15px; color: var(--blue); flex: none; }
+
+/* team picker */
+.picker { margin-top: 34px; }
+.picker h2 { font-size: 15px; letter-spacing: -0.01em; color: var(--ink-3); font-weight: 700; margin-bottom: 10px; }
+.picker ol { list-style: none; padding: 0; margin: 0; background: #fff; border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); overflow: hidden; }
+.picker li + li { border-top: 1px solid var(--rule); }
+.picker a { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4px 14px; padding: 16px 18px; text-decoration: none; color: var(--ink); transition: background .2s var(--ease); }
+.picker a:hover { background: var(--blue-wash); }
+.picker a:focus-visible { outline-offset: -3px; border-radius: 0; }
+.picker b { font-size: 17px; letter-spacing: -0.015em; }
+.picker .tag { grid-column: 1; font: 400 15px/1.4 var(--serif); color: var(--ink-2); }
+.picker .n { grid-row: 1 / span 2; grid-column: 2; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--blue); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.picker .n svg { width: 18px; height: 18px; transition: transform .25s var(--ease); }
+.picker a:hover .n svg { transform: translateY(2px); }
+.picker .last b { font-weight: 700; color: var(--ink-2); }
+
+/* intro */
+.intro { margin-top: 48px; }
+.intro h2, .team-head h2, .scale h2 { font-size: clamp(1.45rem, 1.2rem + 1vw, 1.8rem); line-height: 1.15; letter-spacing: -0.028em; margin-bottom: 14px; }
+.rule-line { margin: 22px 0 0; padding: 18px 20px; background: var(--blue-wash); border-radius: 14px; font-size: 17px; line-height: 1.5; color: var(--ink); }
+.rule-line b { font-weight: 700; }
+.why { margin-top: 18px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.why summary, .meta summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; }
+.why summary::-webkit-details-marker, .meta summary::-webkit-details-marker { display: none; }
+.why summary { padding: 16px 2px; font-weight: 700; font-size: 16px; }
+.why summary svg, .meta summary svg { width: 16px; height: 16px; flex: none; color: var(--ink-3); transition: transform .25s var(--ease); }
+details[open] > summary svg { transform: rotate(90deg); }
+.why .why-body { padding: 0 2px 18px; color: var(--ink-2); }
+
+.ground { margin-top: 26px; display: grid; grid-template-columns: auto 1fr; gap: 12px; padding: 16px 18px; background: var(--canary); border: 1px solid var(--canary-line); border-radius: 14px; font-size: 15px; line-height: 1.55; }
+.ground svg { width: 20px; height: 20px; margin-top: 2px; color: var(--ink); }
+.ground b { display: block; margin-bottom: 2px; }
+.copy-note { margin-top: 14px; font-size: 14px; color: var(--ink-3); }
+
+/* sticky team bar */
+.teambar { position: sticky; top: 0; z-index: 20; margin: 40px -20px 0; padding: 0 20px; background: rgba(252,252,250,.94); backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--rule); }
+.teambar .in { display: flex; align-items: center; gap: 6px; height: var(--bar-h); overflow-x: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent); mask-image: linear-gradient(90deg, #000 88%, transparent); }
+.teambar .in::-webkit-scrollbar { display: none; }
+.teambar a { flex: none; display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 999px; font-size: 14px; font-weight: 700; color: var(--ink-2); text-decoration: none; white-space: nowrap; transition: background .2s var(--ease), color .2s var(--ease); }
+.teambar a:hover { color: var(--ink); background: #fff; }
+.teambar a[aria-current="true"] { background: var(--ink); color: var(--paper); }
+.teambar .up { color: var(--ink-3); padding-left: 4px; }
+.teambar .up svg { width: 16px; height: 16px; }
+
+/* team sections */
+.team { padding-top: 44px; }
+.team-head .sub-meta { font-size: 14px; font-weight: 700; color: var(--ink-3); margin: -6px 0 12px; font-variant-numeric: tabular-nums; }
+.team-head .goal { color: var(--ink-2); }
+
+.prompt { margin-top: 22px; background: #fff; border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); overflow: hidden; }
+.prompt-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; padding: 16px 18px 12px; }
+.prompt-head h3 { font-size: 17.5px; line-height: 1.3; letter-spacing: -0.015em; }
+.copy { flex: none; display: inline-flex; align-items: center; gap: 7px; min-height: 38px; padding: 0 14px; font: 700 14px/1 var(--font); color: #fff; background: var(--blue); border: 0; border-radius: 10px; cursor: pointer; box-shadow: var(--shadow-btn); transition: background .2s var(--ease), transform .2s var(--ease); }
+.copy:hover { background: var(--blue-d); transform: translateY(-1px); }
+.copy svg { width: 16px; height: 16px; }
+.copy .ok { display: none; }
+.copy.done { background: var(--green); }
+.copy.done .ok { display: block; }
+.copy.done .ic { display: none; }
+.ptext { margin: 0 18px; padding: 14px 16px; background: #f7f8fb; border: 1px solid var(--rule); border-radius: 12px; font: 400 15px/1.6 var(--font); color: var(--ink); white-space: pre-wrap; overflow-wrap: anywhere; max-height: 13em; overflow: hidden; }
+.ptext.clip { -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent); mask-image: linear-gradient(180deg, #000 70%, transparent); }
+.ptext.open { max-height: none; -webkit-mask-image: none; mask-image: none; }
+.ptext mark { background: var(--canary); color: var(--ink); border-radius: 4px; padding: 0 3px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.more { display: none; margin: 8px 18px 0; padding: 0; border: 0; background: none; font: 700 13.5px/1.4 var(--font); color: var(--blue); cursor: pointer; }
+.more.on { display: inline-block; }
+.meta { margin-top: 12px; border-top: 1px solid var(--rule); }
+.meta summary { padding: 13px 18px; font-size: 14.5px; font-weight: 700; color: var(--ink-2); }
+.meta summary:hover { color: var(--ink); }
+.meta dl { margin: 0; padding: 0 18px 16px; display: grid; gap: 12px; }
+.meta dt { font-size: 12.5px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); }
+.meta dd { margin: 2px 0 0; font: 400 15px/1.55 var(--serif); color: var(--ink-2); }
+
+/* the honest next step */
+.scale { margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--line); }
+.scale ul { margin: 12px 0 0; padding-left: 20px; }
+.scale li { margin-top: 8px; line-height: 1.6; max-width: 66ch; }
+.band { margin-top: 28px; padding: 26px 24px; border-radius: 18px; background: var(--ink); color: var(--paper); display: grid; gap: 16px; }
+.band b { font-size: 21px; letter-spacing: -0.02em; line-height: 1.2; }
+.band p { color: #c9cde0; margin-top: 6px; }
+.band .acts { display: flex; flex-wrap: wrap; gap: 10px; }
+.band .go, .band .go:visited { display: inline-flex; align-items: center; gap: 8px; padding: 13px 18px; border-radius: 12px; background: var(--paper); color: var(--ink); font-weight: 700; text-decoration: none; transition: transform .2s var(--ease), background .2s var(--ease); }
+.band .go:hover { transform: translateY(-1px); background: #fff; color: var(--ink); }
+.band .alt, .band .alt:visited { display: inline-flex; align-items: center; padding: 13px 4px; color: #dfe3f3; font-weight: 700; text-decoration: underline; text-decoration-color: rgba(223,227,243,.4); }
+.band .alt:hover { color: #fff; }
+.band :focus-visible { outline-color: var(--paper); }
+.band svg { width: 16px; height: 16px; }
+
+.tail { margin-top: 40px; }
+.printbtn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; background: #fff; font: 700 14px/1 var(--font); color: var(--ink-2); cursor: pointer; }
+.printbtn:hover { border-color: var(--ink-3); color: var(--ink); }
+.printbtn svg { width: 16px; height: 16px; }
+.disclaimer { margin-top: 14px; font-size: 13.5px; color: var(--ink-3); }
+.kit .footer { margin-top: 26px; }
+
+@media (min-width: 720px) {
+  .kit { padding: 0 32px 72px; }
+  .teambar { margin: 44px -32px 0; padding: 0 32px; }
+  .hero { padding-top: 64px; }
+  .band { grid-template-columns: 1fr auto; align-items: center; padding: 30px 32px; }
+}
+@media (max-width: 420px) {
+  .prompt-head { flex-direction: column; gap: 10px; }
+  .copy { align-self: flex-start; }
+}
+@media print {
+  .teambar, .copy, .more, .printbtn, .kit-top, .picker, .band .acts, .copy-note, .footer, .byline .li { display: none !important; }
+  .kit { max-width: none; padding: 0; }
+  .ptext { max-height: none; overflow: visible; background: none; }
+  .prompt { box-shadow: none; break-inside: avoid; }
+  .band { background: none; color: var(--ink); border: 1px solid var(--line); }
+  .band p { color: var(--ink-2); }
+  .kit a { color: inherit; text-decoration: none; }
+  details > :not(summary) { display: block !important; }
+}
+</style>
+</head>
+<body>
+<main class="kit">
+  <div class="kit-top"><a href="/index.html?utm_source=kit&amp;utm_medium=kit4&amp;utm_campaign=invoicenow-ready">The Gantry · Free tools</a><a href="/about-sayed.html?utm_source=kit&amp;utm_medium=kit4&amp;utm_campaign=invoicenow-ready">About Sayed</a></div>
+
+  <header class="hero">
+    <h1>The InvoiceNow Ready Kit</h1>
+    <p class="promise">Four teams that get a GST-registered business ready before its date: a Date Team, a Data Team, a Process Team and a Software Team. Copy-paste prompts for Claude or ChatGPT, what to paste in, and what good output looks like.</p>
+    <div class="who-line">
+      <img src="/sayed.jpg" alt="" width="40" height="40">
+      <div><div class="nm">By <a href="/about-sayed.html?utm_source=kit&amp;utm_medium=kit4&amp;utm_campaign=invoicenow-ready">Sayed Rashid</a></div><div class="rl">Free kit, no sign-up</div></div>
+    </div>
+    <ul class="facts"><li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5.5 4h8M5.5 8h8M5.5 12h8"/><circle cx="2.5" cy="4" r=".9" fill="currentColor"/><circle cx="2.5" cy="8" r=".9" fill="currentColor"/><circle cx="2.5" cy="12" r=".9" fill="currentColor"/></svg>8 prompts in 4 teams</li><li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 4.8V8l2.2 1.6"/></svg>About 20 minutes per team</li><li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v3M8 11v3M2 8h3M11 8h3M4 4l1.8 1.8M10.2 10.2L12 12M12 4l-1.8 1.8M5.8 10.2L4 12"/></svg>Works with Claude or ChatGPT</li></ul>
+  </header>
+
+  <nav class="picker" id="teams" aria-label="Pick your team">
+    <h2>Jump to your team</h2>
+    <ol><li><a href="#date"><b>Date Team</b><span class="tag">Which April is yours</span><span class="n">2 prompts<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v10M3.5 8.5L8 13l4.5-4.5"/></svg></span></a></li><li><a href="#data"><b>Data Team</b><span class="tag">One record per customer</span><span class="n">2 prompts<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v10M3.5 8.5L8 13l4.5-4.5"/></svg></span></a></li><li><a href="#process"><b>Process Team</b><span class="tag">No invoice outside the system</span><span class="n">2 prompts<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v10M3.5 8.5L8 13l4.5-4.5"/></svg></span></a></li><li><a href="#software"><b>Software Team</b><span class="tag">A setting or a purchase</span><span class="n">2 prompts<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v10M3.5 8.5L8 13l4.5-4.5"/></svg></span></a></li><li class="last"><a href="#scale"><b>If your software cannot get there</b><span class="tag">The honest next step</span><span class="n"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v10M3.5 8.5L8 13l4.5-4.5"/></svg></span></a></li></ol>
+  </nav>
+
+  <section class="intro" aria-labelledby="intro-h">
+    <h2 id="intro-h">This is not a filing change. It is a visibility change</h2>
+    <p>Every GST-registered business in Singapore has to send invoice data to IRAS through InvoiceNow, phased in by size and finishing April 2031. Most owners I meet treat it as a software question. It is mostly a habits question.</p><p>After your date, IRAS also receives the invoice-level data behind each GST return. Tax codes applied by habit, invoices raised in a Word template for the odd job, credit notes handled loosely, the same customer saved as two records: each of these becomes visible. (<a href="https://www.gantry.work/p/invoicenow-when-your-business-must?utm_source=kit&amp;utm_medium=kit4&amp;utm_campaign=invoicenow-ready">When your business must join</a>)</p><p>So this kit works in the order that keeps it calm: <b>find your date, clean the data, close the gaps in how you invoice, then ask your software provider the right questions.</b></p>
+    <details class="why">
+      <summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>Your date depends on one number</summary>
+      <div class="why-body"><p>For businesses already GST-registered, the phase is fixed by total annual supplies for 2025: Box 4 of the GST returns, added across the periods ending in 2025, including zero-rated and exempt supplies. Existing registrants join on 1 April 2028 (S$200,000 or less), 1 April 2029 (S$1,000,000 or less), 1 April 2030 (S$4,000,000 or less) or 1 April 2031 (above). The smallest go first. (<a href="/invoicenow-deadline.html?utm_source=kit&amp;utm_medium=kit4&amp;utm_campaign=invoicenow-ready">InvoiceNow date calculator</a>, figures checked against IRAS on the page)</p><p>Newly registered businesses follow different rules, and IRAS has been notifying businesses registered before 2026 of their individual date. Use the calculator for your own case, and treat the IRAS notice as the final word. (<a href="https://www.gantry.work/p/invoicenow-when-your-business-must?utm_source=kit&amp;utm_medium=kit4&amp;utm_campaign=invoicenow-ready">source article</a>, <a href="/invoicenow-explained.html?utm_source=kit&amp;utm_medium=kit4&amp;utm_campaign=invoicenow-ready">InvoiceNow explained</a>)</p></div>
+    </details>
+    <div class="ground" role="note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+      <div><b>Ground rules for every prompt</b>Use a business account with data training switched off, or remove names first. Never paste NRIC numbers, salaries by name, bank account numbers or passwords. AI can miscount and can sound sure when it is wrong: check every figure against your own records before anyone acts on it. This is general guidance from experience, not legal, tax or financial advice.</div>
+    </div>
+    <p class="copy-note">Copy this kit into your own Notion or Google Docs: use Print below (save as PDF) or copy each prompt with its button. Share it with your team as it is.</p>
+  </section>
+
+  <nav class="teambar" aria-label="Teams">
+    <div class="in">
+      <a class="up" href="#teams" aria-label="Back to all teams"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V3M3.5 7.5L8 3l4.5 4.5"/></svg>Teams</a>
+      <a href="#date" data-t="date">Date</a><a href="#data" data-t="data">Data</a><a href="#process" data-t="process">Process</a><a href="#software" data-t="software">Software</a><a href="#scale" data-t="scale">Next step</a>
+    </div>
+  </nav>
+
+  <section class="team" id="date" aria-labelledby="date-h"><div class="team-head"><h2 id="date-h">Date Team</h2><p class="sub-meta">Team 1 of 4 · 2 prompts</p><p class="goal">Goal: your implementation date for every GST-registered entity, written down with the figure it rests on. (<a href="/invoicenow-deadline.html?utm_source=kit&amp;utm_medium=kit4&amp;utm_campaign=invoicenow-ready">date calculator</a>)</p></div><article class="prompt" id="date-p1"><div class="prompt-head"><h3>Add up our Box 4 for 2025</h3><button class="copy" type="button" aria-label="Copy the prompt: Add up our Box 4 for 2025"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">I will paste the Box 4 figure (total supplies) from each GST return whose accounting period ended in calendar year 2025.
+<mark>[paste each period and its Box 4 figure]</mark>
+
+1. Add them up and show the working.
+2. Remind me what Box 4 includes (standard-rated, zero-rated and exempt supplies) and ask me to confirm nothing was left out, for example exports.
+3. State the total clearly so I can enter it in the InvoiceNow date calculator.
+Do not tell me my date yourself. I will read it from the calculator and from the IRAS notice.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>Box 4 from each 2025 return.</dd></div><div><dt>Good output</dt><dd>one total with its working. Exporters are often caught out because zero-rated supplies count.</dd></div></dl></details></article><article class="prompt" id="date-p2"><div class="prompt-head"><h3>One table for all our entities</h3><button class="copy" type="button" aria-label="Copy the prompt: One table for all our entities"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">We have <mark>[number]</mark> entities. For each: <mark>[name or "Company A", GST-registered or not and since when, Box 4 total for 2025 if registered, accounting software used]</mark>
+Build a table: entity, GST status, 2025 total supplies, the date from the calculator (I will fill this in), software, and who owns getting it ready.
+Add a column for "date confirmed by IRAS notice: yes or no".
+Then list the entities in the order of their dates, earliest first, and say which one sets our timetable.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>one line per entity.</dd></div><div><dt>Good output</dt><dd>a single page that shows which entity goes first. Growing or shrinking later does not move the phase.</dd></div></dl></details></article></section>
+<section class="team" id="data" aria-labelledby="data-h"><div class="team-head"><h2 id="data-h">Data Team</h2><p class="sub-meta">Team 2 of 4 · 2 prompts</p><p class="goal">Goal: one record per customer with the right legal name and identifiers, and tax codes that mean what they say.</p></div><article class="prompt" id="data-p3"><div class="prompt-head"><h3>Find duplicate customers</h3><button class="copy" type="button" aria-label="Copy the prompt: Find duplicate customers"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">Here is our customer list: <mark>[paste name, registration number if held, address, last invoice date]</mark>
+
+1. Group records that are probably the same legal entity (for example "ABC Trading" and "ABC Trading Pte Ltd", different spellings, old addresses).
+2. For each group, propose the record to keep and why.
+3. List customers with no registration number on file, most recently invoiced first.
+4. Write the short email we can send those customers to confirm their legal name and number.
+Do not merge anything yourself. This is a list for a person to review.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>an export of your customer master. Company names only, no personal data.</dd></div><div><dt>Good output</dt><dd>a merge list for review and a list of customers to contact. Two records for one customer is no longer a cosmetic problem.</dd></div></dl></details></article><article class="prompt" id="data-p4"><div class="prompt-head"><h3>Audit our tax codes</h3><button class="copy" type="button" aria-label="Copy the prompt: Audit our tax codes"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">Here are our sales invoices for <mark>[period]</mark>: <mark>[paste customer, country, item or service, amount, tax code used]</mark>
+Our tax codes and what each is meant for: <mark>[paste]</mark>
+
+1. List invoices where the tax code looks inconsistent with the customer's country or the item, and say why it looks odd.
+2. Group the oddities by pattern (for example: one user always picks the same code).
+3. Write the questions a tax adviser should answer for each pattern.
+Do not decide the correct GST treatment. Flag only, and say so.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>an invoice listing with codes. Remove customer names if you prefer.</dd></div><div><dt>Good output</dt><dd>patterns to take to your tax adviser. Codes applied by habit are the first thing invoice-level data shows.</dd></div></dl></details></article></section>
+<section class="team" id="process" aria-labelledby="process-h"><div class="team-head"><h2 id="process-h">Process Team</h2><p class="sub-meta">Team 3 of 4 · 2 prompts</p><p class="goal">Goal: every invoice and credit note raised inside the system, by a written rule.</p></div><article class="prompt" id="process-p5"><div class="prompt-head"><h3>Find the invoices raised outside the system</h3><button class="copy" type="button" aria-label="Copy the prompt: Find the invoices raised outside the system"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">List every way an invoice or credit note leaves our company today:
+<mark>[describe: accounting system, a Word or Excel template for odd jobs, a point-of-sale system, a web store, marketplaces, handwritten books, a sister company's system]</mark>
+
+1. Build a table: channel, who uses it, roughly how many a month, whether it reaches the accounting system automatically, by re-typing, or not at all.
+2. Mark every channel that would not send data through InvoiceNow as it stands.
+3. For each marked channel, give two options: bring it into the system, or stop using it, with what each needs.
+4. Rank them by number of invoices.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>an honest list, including the template "someone uses sometimes".</dd></div><div><dt>Good output</dt><dd>the gaps, ranked. The Word template for the occasional odd job is the classic one.</dd></div></dl></details></article><article class="prompt" id="process-p6"><div class="prompt-head"><h3>Write our credit note rules</h3><button class="copy" type="button" aria-label="Copy the prompt: Write our credit note rules"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">Write a one-page rule for credit notes at a Singapore <mark>[type of business]</mark>.
+Today: <mark>[describe how credit notes, refunds, discounts after invoice and corrections are handled, and by whom]</mark>
+Cover: when a credit note is required instead of editing or deleting an invoice; what it must refer to; who approves it; how soon it is issued; how a wrong customer or wrong amount is corrected.
+Plain steps, no legal language. End with 3 examples from our business showing the right handling.
+Mark anything where the tax treatment should be confirmed with our adviser.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>how corrections really happen today.</dd></div><div><dt>Good output</dt><dd>a rule staff can follow. Loose credit notes are the second classic gap.</dd></div></dl></details></article></section>
+<section class="team" id="software" aria-labelledby="software-h"><div class="team-head"><h2 id="software-h">Software Team</h2><p class="sub-meta">Team 4 of 4 · 2 prompts</p><p class="goal">Goal: know whether InvoiceNow is a settings change or a purchase for you, before you talk to anyone selling. (<a href="/invoicenow-software.html?utm_source=kit&amp;utm_medium=kit4&amp;utm_campaign=invoicenow-ready">InvoiceNow software guide</a>)</p></div><article class="prompt" id="software-p7"><div class="prompt-head"><h3>Questions for our current software provider</h3><button class="copy" type="button" aria-label="Copy the prompt: Questions for our current software provider"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">We use <mark>[accounting or business software, or "an accounting package"]</mark> and our InvoiceNow date is <mark>[date from the calculator]</mark>.
+Write the email to our provider asking:
+1. Are you on the accredited list for InvoiceNow, and for which product and edition?
+2. Is sending invoice data to IRAS included in our current plan, or is it an add-on? What does switching it on involve?
+3. What must be true of our customer records and tax codes before it is switched on?
+4. Can we test with a few invoices before our date?
+5. What changes for invoices that start in our point-of-sale, web store or other systems?
+Polite, specific, under 200 words. Ask for answers in writing.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>your software name and your date.</dd></div><div><dt>Good output</dt><dd>a written answer from your provider. If your package is already accredited, this may be a setting, not a purchase.</dd></div></dl></details></article><article class="prompt" id="software-p8"><div class="prompt-head"><h3>Our readiness plan on one page</h3><button class="copy" type="button" aria-label="Copy the prompt: Our readiness plan on one page"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">Our InvoiceNow date: <mark>[date]</mark>. Today: <mark>[date]</mark>.
+Open items from the other teams: <mark>[paste duplicates to merge, tax code questions, channels outside the system, provider answers]</mark>
+
+Build a one-page plan working back from 3 months before our date:
+1. Tasks in order, each with an owner by role and a finish date.
+2. A test step with real invoices before the date.
+3. What we will check in the first month after going live.
+4. The 3 risks most likely to delay us, and what we do this month about each.
+No task without an owner.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>the outputs of the earlier prompts.</dd></div><div><dt>Good output</dt><dd>a plan that finishes three months early. Find out your date first, then choose.</dd></div></dl></details></article></section>
+
+
+  <section class="scale" id="scale" aria-labelledby="scale-h">
+    <h2 id="scale-h">If your software cannot get there</h2>
+    <p>Sometimes the answer from the provider is no, or the invoices live in three places and no setting will join them. That is the moment InvoiceNow becomes a system decision, and it is better made a year early than a month late.</p><p>Two honest next steps:</p>
+    <ul><li>Take the <a href="/erp-readiness.html?utm_source=kit&amp;utm_medium=kit4&amp;utm_campaign=invoicenow-ready">ERP readiness scorecard</a>: eight questions on data, process, ownership and time. No vendor is named, and the honest answer might be "not yet".</li><li>Or bring your date and your list of invoice channels to a free 20-minute call with me. You leave with the order to fix them in.</li></ul>
+    <div class="band">
+      <div><b>Free 20-minute systems review</b><p>Bring your date and your invoice channels. No slides, nothing to prepare.</p></div>
+      <div class="acts">
+        <a class="go" href="/review.html?utm_source=kit&amp;utm_medium=kit4&amp;utm_campaign=invoicenow-ready" onclick="try{gtag('event','kit_review_click',{kit:'invoicenow-ready'})}catch(e){}">Book the free 20 minutes<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        <a class="alt" href="/erp-readiness.html?utm_source=kit&amp;utm_medium=kit4&amp;utm_campaign=invoicenow-ready">Take the ERP readiness scorecard</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="tail">
+    <button class="printbtn" type="button" onclick="window.print()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9V3h10v6M7 17H5a2 2 0 01-2-2v-4a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2h-2"/><path d="M7 14h10v7H7z"/></svg>Print or save as PDF</button>
+    <div class="byline">
+      <img src="/sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
+      <div class="who"><div class="nm">Sayed Rashid</div><div class="rl">Ex-auditor. I help Singapore SMEs take the re-typing, checking and chasing off their people. <a href="/about-sayed.html?utm_source=kit&amp;utm_medium=kit4&amp;utm_campaign=invoicenow-ready">About me</a>.</div></div>
+      <a class="li" href="https://www.linkedin.com/in/sayedomni" target="_blank" rel="noopener" onclick="try{gtag('event','linkedin_click',{page:location.pathname})}catch(e){}">Connect on LinkedIn</a>
+    </div>
+    <p class="disclaimer">General guidance from experience, not legal, tax or financial advice. Dates and thresholds are as shown on the linked pages on their check dates; your IRAS notice is the final word on your date. Confirm GST treatment with a tax adviser.</p>
+    <div class="footer"><a href="/index.html?utm_source=kit&amp;utm_medium=kit4&amp;utm_campaign=invoicenow-ready">All free tools</a> · <a href="https://www.gantry.work/?utm_source=kit&amp;utm_medium=kit4&amp;utm_campaign=invoicenow-ready">The Gantry</a> · <a href="/about-sayed.html?utm_source=kit&amp;utm_medium=kit4&amp;utm_campaign=invoicenow-ready">About Sayed</a></div>
+  </div>
+</main>
+<div aria-live="polite" class="sr" id="live" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)"></div>
+<script>
+(function(){
+  var KIT = 'invoicenow-ready', live = document.getElementById('live');
+  document.querySelectorAll('.prompt').forEach(function(card){
+    var pre = card.querySelector('.ptext'), btn = card.querySelector('.copy'), more = card.querySelector('.more');
+    if (pre.scrollHeight > pre.clientHeight + 4) { more.classList.add('on'); pre.classList.add('clip'); }
+    more.addEventListener('click', function(){ pre.classList.add('open'); more.classList.remove('on'); });
+    btn.addEventListener('click', function(){
+      var t = pre.textContent;
+      var done = function(){ btn.classList.add('done'); btn.querySelector('.lb').textContent = 'Copied'; live.textContent = 'Prompt copied';
+        setTimeout(function(){ btn.classList.remove('done'); btn.querySelector('.lb').textContent = 'Copy'; }, 1800); };
+      (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(done).catch(function(){
+        var r = document.createRange(); r.selectNodeContents(pre); var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+        try { document.execCommand('copy'); done(); } catch(e) {} });
+      try { gtag('event','kit_prompt_copy',{kit:KIT,prompt:card.querySelector('h3').textContent}); } catch(e) {}
+    });
+  });
+  var links = [].slice.call(document.querySelectorAll('.teambar a[data-t]'));
+  var map = {}; links.forEach(function(a){ map[a.getAttribute('data-t')] = a; });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) {
+      links.forEach(function(a){ a.removeAttribute('aria-current'); });
+      var a = map[e.target.id]; if (a) { a.setAttribute('aria-current','true'); a.scrollIntoView({block:'nearest',inline:'nearest'}); } } }); },
+      { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('.team, .scale').forEach(function(s){ io.observe(s); });
+  }
+  document.querySelectorAll('.picker a, .teambar a').forEach(function(a){ a.addEventListener('click', function(){ try { gtag('event','kit_team_nav',{kit:KIT,to:a.getAttribute('href')}); } catch(e) {} }); });
+  window.addEventListener('beforeprint', function(){ document.querySelectorAll('details').forEach(function(d){ d.setAttribute('open',''); }); });
+  try { gtag('event','kit_view',{kit:KIT,src:new URLSearchParams(location.search).get('utm_medium')||''}); } catch(e) {}
+})();
+</script>
+</body>
+</html>
