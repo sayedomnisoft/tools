@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en-SG">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The AI Finance and Ops Department for Singapore SMEs | The Gantry Kit</title>
+<meta name="description" content="Copy-paste AI prompts for a Singapore SME finance and ops team: a 5-day month-end close, cash and receivables, stock accuracy, and every compliance date. By Sayed Rashid.">
+<meta name="robots" content="noindex,nofollow">
+<meta property="og:title" content="The AI Finance and Ops Department for Singapore SMEs">
+<meta property="og:description" content="Four AI teams you can run this week: Month-End, Cash, Stock and Compliance. Copy-paste prompts, what to paste in, what good looks like.">
+<meta property="og:image" content="https://tools.gantry.work/og/about-sayed.jpg">
+<meta name="author" content="Sayed Rashid">
+<link rel="stylesheet" href="/shared.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="gantry-tool-category" content="kit">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<script src="/config.js"></script><script src="/track.js" defer></script>
+<meta name="gantry-checked" content="2026-11-26">
+<style>
+.card.kit{max-width:820px}
+.kit p,.kit li{line-height:1.65}
+.kit .lede{font-size:17px;color:var(--ink-2)}
+.kit .eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+.toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin:16px 0 8px}
+.toc a{display:block;padding:12px 14px;border:1px solid var(--line);border-radius:12px;text-decoration:none;color:var(--ink);background:#fff}
+.toc a b{display:block;font-size:15px}
+.toc a span{font-size:13px;color:var(--ink-2)}
+.team{margin-top:34px;padding-top:6px;border-top:1px solid var(--line)}
+.team h2{margin-bottom:4px}
+.team .goal{color:var(--ink-2);margin-top:0}
+.prompt{border:1px solid var(--line);border-radius:12px;margin:16px 0;background:#fff;overflow:hidden}
+.prompt .ph{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;background:#f6f3ee;border-bottom:1px solid var(--line)}
+.prompt .ph b{font-size:15px}
+.prompt .copy{font:inherit;font-size:13px;padding:6px 12px;border-radius:8px;border:1px solid var(--ink-3);background:#fff;cursor:pointer}
+.prompt pre{margin:0;padding:14px;white-space:pre-wrap;word-wrap:break-word;font-size:13.5px;line-height:1.55;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.prompt .meta{padding:10px 14px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink-2)}
+.prompt .meta p{margin:4px 0}
+.guard{border-left:4px solid #b86a1e;background:#fbf6ef;padding:12px 14px;border-radius:0 10px 10px 0;margin:16px 0;font-size:14.5px}
+.note{font-size:13.5px;color:var(--ink-3)}
+.cta{border:1px solid var(--line);border-radius:14px;padding:18px;background:#fff;margin-top:14px}
+.cta a.btn{display:inline-block;margin-top:8px;padding:10px 16px;border-radius:10px;background:#1d2433;color:#fff;text-decoration:none;font-weight:700}
+@media print{.noprint,.copy{display:none!important}.prompt{break-inside:avoid}.card.kit{max-width:none;box-shadow:none;border:0}a{color:inherit;text-decoration:none}}
+</style>
+</head>
+<body>
+<div class="card kit">
+  <div class="brand noprint"><a href="/index.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">← THE GANTRY · TOOLS</a></div>
+  <div class="eyebrow">Free kit · by Sayed Rashid</div>
+  <h1>The AI Finance and Ops Department for Singapore SMEs</h1>
+  <p class="lede">Four teams you can run this week with Claude or ChatGPT: a Month-End Team, a Cash Team, a Stock Team and a Compliance Team. Copy-paste prompts, what to paste in, and what good output looks like.</p>
+
+  <h2>Most teams will use AI wrong here</h2>
+  <p>I was an auditor before I spent my days inside Singapore SMEs, and the pattern is the same everywhere. People ask AI to "do the accounts". It cannot. It does not know your ledger, your suppliers or your stock, and it will guess with confidence.</p>
+  <p>What it does very well is the work around the numbers: putting a messy list in order, spotting what does not tie, drafting the chaser email, laying out a calendar, explaining a variance in plain words. That is where most of a finance team's week actually goes.</p>
+  <p>So every prompt below follows one rule: <b>you bring the real figures, AI does the sorting, checking and drafting, and a person signs off.</b></p>
+
+  <h2>Why this matters for a Singapore SME</h2>
+  <p>A slow close is paid for in salary twelve times a year, and decisions get made on last month's numbers. Most of a long close is waiting, not working: supplier invoices for goods already received, stock that does not agree with the books, bank lines nobody owns. (<a href="/month-end-close-scorecard.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">Month-end close scorecard</a>)</p>
+  <p>On top of that sits a full compliance calendar: GST, CPF, IR8A, ECI, the AGM, the ACRA annual return and Form C-S, plus InvoiceNow phasing in for every GST-registered business by size, finishing April 2031. (<a href="/singapore-business-deadlines-2027.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">2027 deadlines</a>, <a href="/invoicenow-deadline.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">InvoiceNow date calculator</a>)</p>
+
+  <div class="guard"><b>Ground rules for every prompt.</b> Use a business account with data training switched off, or remove names first. Never paste NRIC numbers, salaries by name, bank account numbers or passwords. AI can miscount: tick every total against your ledger before anyone acts on it. This is general guidance from experience, not legal, tax or financial advice.</div>
+
+  <p class="note noprint">Copy this kit into your own Notion or Google Docs: use Print below (save as PDF) or copy each prompt with its button. Share it with your team as it is.</p>
+
+  <div class="toc noprint">
+    <a href="#month-end"><b>Month-End Team</b><span>Close in 5 days</span></a>
+    <a href="#cash"><b>Cash Team</b><span>Get paid, see the tight week</span></a>
+    <a href="#stock"><b>Stock Team</b><span>Trust the stock figure</span></a>
+    <a href="#compliance"><b>Compliance Team</b><span>Every date, on one page</span></a>
+    <a href="#scale"><b>When spreadsheets stop</b><span>The honest next step</span></a>
+  </div>
+
+  <section class="team" id="month-end">
+    <h2>Team 1: the Month-End Team</h2>
+    <p class="goal">Goal: a close in the order that works, with one owner per step. Cut-off, bank, suppliers and accruals, stock and payroll, intercompany, then margin and reports. Then take one day off your current close each month. (<a href="/month-end-close-scorecard.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">source</a>)</p>
+
+    <div class="prompt"><div class="ph"><b>1. Build our close checklist</b><button class="copy" type="button">Copy</button></div>
+<pre>You are a month-end close coordinator for a Singapore SME.
+Here is how our close runs today (who does what, and on which working day):
+[paste your current steps, people and days]
+
+1. Re-order the steps into this sequence: cut-off, bank, suppliers and accruals, stock and payroll, intercompany and consolidation, margin and reports.
+2. Give each step one owner, a working day, and a "done when" line.
+3. Mark every step that is waiting on someone else, and say who.
+4. Show which single step, if fixed, would take one day off the close.
+Output a table: Day | Step | Owner | Done when | Waiting on.</pre>
+<div class="meta"><p><b>Paste in:</b> your close steps as you would explain them to a new hire. Roles, not names, is fine.</p><p><b>Good output:</b> a one-page table you could pin up, with the waits made visible.</p></div></div>
+
+    <div class="prompt"><div class="ph"><b>2. Bank and supplier reconciliation helper</b><button class="copy" type="button">Copy</button></div>
+<pre>Act as an accounts assistant. I will paste two lists.
+List A: bank statement lines for [month] (date, description, amount).
+List B: the cash book or ledger lines for the same account (date, reference, amount).
+[paste List A]
+[paste List B]
+
+1. Match lines that agree on amount and are within 5 days of each other.
+2. List everything unmatched on each side, largest first.
+3. For each unmatched line, suggest the most likely reason (timing, fee, duplicate, missing entry) and who would know.
+4. Give the difference that remains and check it equals the sum of the unmatched lines.
+Do not invent entries. If something is unclear, say so.</pre>
+<div class="meta"><p><b>Paste in:</b> exports from your bank and your accounting system. The same works for a supplier statement against your purchase ledger.</p><p><b>Good output:</b> a short unmatched list with an owner for each line, and a difference that ties.</p></div></div>
+
+    <div class="prompt"><div class="ph"><b>3. Variance explainer for the management pack</b><button class="copy" type="button">Copy</button></div>
+<pre>You are writing the commentary for a monthly management report of a Singapore trading company.
+This month vs last month, by line: [paste revenue, cost of sales, gross margin, main expenses, with both months]
+Known events this month: [paste, e.g. price increase, a big order, a holiday]
+
+Write 5 to 8 short bullet points:
+1. The three biggest movements in dollars, with the likely cause from the events given.
+2. Any margin change of more than 2 points, and which product or customer group to check.
+3. One question for each manager to answer before the report goes out.
+Plain English, no jargon, no guessing beyond the facts given.</pre>
+<div class="meta"><p><b>Paste in:</b> the summary lines, not the whole ledger.</p><p><b>Good output:</b> commentary a director can read in one minute, plus the questions that stop wrong numbers going out.</p></div></div>
+  </section>
+
+  <section class="team" id="cash">
+    <h2>Team 2: the Cash Team</h2>
+    <p class="goal">Goal: get paid on time and see the tight week before it arrives.</p>
+
+    <div class="prompt"><div class="ph"><b>4. Receivables ageing review</b><button class="copy" type="button">Copy</button></div>
+<pre>You are a credit controller for a Singapore SME.
+Here are our open invoices: customer, invoice number, invoice date, due date, amount.
+[paste open invoices]
+Today is [date].
+
+1. Group them by customer into current, 1 to 30, 31 to 60, 61 to 90 and over 90 days past due.
+2. List the 10 customers to call first, ranked by amount over 30 days.
+3. Flag any customer whose oldest invoice is over 60 days but who still ordered this month.
+4. Give total receivables and the share over 60 days.</pre>
+<div class="meta"><p><b>Paste in:</b> your open invoice list. Want it done without AI? The <a href="/ar-aging-report.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">free AR ageing report</a> builds the same buckets in your browser.</p><p><b>Good output:</b> a call list for this week, not a report nobody reads.</p></div></div>
+
+    <div class="prompt"><div class="ph"><b>5. Reminder drafter, firm but polite</b><button class="copy" type="button">Copy</button></div>
+<pre>Write a payment reminder email for a Singapore B2B customer.
+Customer: [company], contact: [first name]
+Invoices overdue: [numbers, dates, amounts]
+Stage: [courtesy before due / on due date / 7 days overdue / 30 days overdue / final before stopping supply]
+Our relationship: [good customer, usually pays / slow payer / new]
+
+Tone: firm but polite, warm, no threats unless the stage is final. Under 120 words.
+Include: the invoice numbers and amounts, the one action we need, a specific date, and how to pay or who to contact.
+Give me a subject line too.</pre>
+<div class="meta"><p><b>Paste in:</b> only the invoice facts. Keep it to one email per customer.</p><p><b>Good output:</b> an email you would send after one read, with a clear date and amount.</p></div></div>
+
+    <div class="prompt"><div class="ph"><b>6. 13-week cash forecast builder</b><button class="copy" type="button">Copy</button></div>
+<pre>Build a 13-week cash flow forecast for a Singapore SME, one column per week starting Monday [date].
+Rows: opening balance, money in (customer receipts by expected week), money out (suppliers, payroll, CPF, rent, GST, other), closing balance.
+Opening bank balance: [amount]
+Expected receipts: [customer, amount, expected week]
+Regular payments: [item, amount, day of month or week]
+Put every amount in the week it reaches or leaves the bank, not the invoice week.
+Then: show the lowest closing balance and its week, and list the 3 payments or receipts I could move to protect that week.</pre>
+<div class="meta"><p><b>Paste in:</b> your bank balance and the big known items. The <a href="/13-week-cash-flow-calendar.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">13-week cash calendar</a> already carries the Singapore CPF, levy, GST and holiday dates for its weeks.</p><p><b>Good output:</b> one grid, the tight week named, three moves to make now.</p></div></div>
+  </section>
+
+  <section class="team" id="stock">
+    <h2>Team 3: the Stock Team</h2>
+    <p class="goal">Goal: a stock figure you can trust. Most operations aim for 95% inventory record accuracy or better within a 2% tolerance; below 85% the stock figure cannot be trusted for buying. (<a href="/stock-take-variance-calculator.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">source</a>)</p>
+
+    <div class="prompt"><div class="ph"><b>7. Stock variance finder</b><button class="copy" type="button">Copy</button></div>
+<pre>You are a stock controller. Here are count results: item code, description, system quantity, counted quantity, unit cost.
+[paste count lines]
+
+1. Work out the variance per line (counted minus system) and its value.
+2. Give inventory record accuracy: lines within a 2% tolerance divided by lines counted.
+3. Give both the net variance value and the absolute variance value (overs and shorts do not cancel).
+4. List the 10 biggest variances by absolute value to recount first, and for each one the likely cause to check (unrecorded delivery, wrong unit of measure, picking error, theft, damaged goods).</pre>
+<div class="meta"><p><b>Paste in:</b> your count sheet next to the system quantities. The <a href="/stock-take-variance-calculator.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">stock take variance calculator</a> does the arithmetic in your browser.</p><p><b>Good output:</b> an accuracy figure and a recount list, ranked by dollars.</p></div></div>
+
+    <div class="prompt"><div class="ph"><b>8. Reorder point and safety stock</b><button class="copy" type="button">Copy</button></div>
+<pre>For each item below, calculate the reorder point.
+Formula: reorder point = average daily demand x lead time in days + safety stock.
+Safety stock at a 95% service level = 1.65 x standard deviation of daily demand x square root of lead time.
+Items: [code, average daily sales, standard deviation of daily sales, supplier lead time in days, stock on hand]
+Show the working for each, the reorder point, and which items are already below it today.</pre>
+<div class="meta"><p><b>Worked example (from the calculator page):</b> 40 units a day, 7-day lead time, standard deviation 12: 280 units of lead time demand plus 53 units of safety stock, so reorder at 333. (<a href="/reorder-point-calculator.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">source</a>)</p><p><b>Good output:</b> a reorder list for today, with the working shown so a buyer can check it.</p></div></div>
+
+    <div class="prompt"><div class="ph"><b>9. Three-way match checker</b><button class="copy" type="button">Copy</button></div>
+<pre>Check these supplier invoices before payment, using three-way matching.
+For each invoice I give you the purchase order line (quantity, unit price), the goods received note quantity, and the invoice line (quantity, unit price).
+[paste lines]
+
+Two tests decide it:
+1. Quantity billed is not more than quantity received.
+2. Price billed is not more than price ordered.
+Output: Pass or Hold for each line, the dollar amount at stake on each Hold, and a one-line note to the supplier for each Hold.</pre>
+<div class="meta"><p><b>The classic case:</b> ordered 100, received 96, invoiced for 100. (<a href="/three-way-match-guide.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">three-way match guide</a>)</p><p><b>Good output:</b> a hold list with the money at stake, before the payment run.</p></div></div>
+  </section>
+
+  <section class="team" id="compliance">
+    <h2>Team 4: the Compliance Team</h2>
+    <p class="goal">Goal: every date on one page, a month ahead. For a private company with a 31 December year end, standard GST quarters and staff, the 2027 dates are: GST returns and payment by 31 January, 30 April, 31 July and 31 October; CPF by the 14th of each month (the next working day when the 14th is a weekend); IR8A by 1 March; ECI by 31 March; the AGM by 30 June; the ACRA annual return by 31 July; Form C-S or Form C by 30 November. Sources: IRAS, CPF Board and ACRA, via our <a href="/singapore-business-deadlines-2027.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">2027 deadlines page</a> (checked 20 November 2026).</p>
+
+    <div class="prompt"><div class="ph"><b>10. Our compliance calendar for the year</b><button class="copy" type="button">Copy</button></div>
+<pre>Using only the dates I paste below (from official sources), build our compliance calendar for [year].
+Our facts: financial year end [date], GST periods [quarterly or monthly, and which months], staff [yes or no], companies [list].
+Official dates: [paste the dates from the deadlines page for your year end]
+
+Output:
+1. A month-by-month list: date, what is due, which company, owner, and the working day we should start preparing (10 working days before).
+2. A note under each item of what document or report feeds it.
+Do not add any date that I did not paste.</pre>
+<div class="meta"><p><b>Paste in:</b> your own dates from the <a href="/singapore-business-deadlines-2027.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">deadlines page</a> (pick your year end there). The last line of the prompt stops AI inventing dates.</p><p><b>Good output:</b> one calendar with owners and start dates, not just due dates.</p></div></div>
+
+    <div class="prompt"><div class="ph"><b>11. InvoiceNow readiness plan</b><button class="copy" type="button">Copy</button></div>
+<pre>Our InvoiceNow implementation date is [date] (from the IRAS-based calculator).
+Our invoicing today: [how invoices are made, which software, who sends them, how many a month]
+
+Write a plan working back from that date:
+1. What must be true by then (invoice data sent to IRAS through InvoiceNow from our system or a provider).
+2. The questions to ask our current software provider or an InvoiceNow solution provider.
+3. A month-by-month list of steps with an owner, starting today.
+Flag anything you are unsure of as "check with IRAS".</pre>
+<div class="meta"><p><b>Get your date first:</b> the <a href="/invoicenow-deadline.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">InvoiceNow date calculator</a> works it out from Box 4 of your GST returns.</p><p><b>Good output:</b> a back-planned timeline you can hand to whoever owns invoicing.</p></div></div>
+  </section>
+
+  <section class="team" id="scale">
+    <h2>When the spreadsheets stop scaling</h2>
+    <p>These prompts take hours off a week. They do not fix the root cause I see most often: the month's data was never captured properly while the month was happening, so finance spends the close reconstructing it. If your close, your stock figure and your cash view all come from different spreadsheets, AI is polishing the symptoms.</p>
+    <p>Two honest next steps:</p>
+    <ul>
+      <li>Take the <a href="/erp-readiness.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">ERP readiness scorecard</a>: eight questions on data, process, ownership and time. No vendor is named, and the honest answer might be "not yet".</li>
+      <li>Or bring one process to a free 20-minute call with me. You leave with three fixes, ranked by payoff.</li>
+    </ul>
+    <div class="cta noprint">
+      <b>Free 20-minute systems review</b>
+      <p style="margin:4px 0 0">Bring your close timeline or one messy process. No slides, nothing to prepare.</p>
+      <a class="btn" href="/review.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops" onclick="try{gtag('event','kit_review_click',{kit:'ai-finance-ops'})}catch(e){}">Book the free 20 minutes</a>
+    </div>
+  </section>
+
+  <p class="noprint" style="margin-top:22px"><button class="copy" type="button" onclick="window.print()">Print or save as PDF</button></p>
+
+  <div class="byline">
+    <img src="/sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
+    <div class="who"><div class="nm">Sayed Rashid</div><div class="rl">Ex-auditor. I help Singapore SMEs take the re-typing, checking and chasing off their people. <a href="/about-sayed.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">About me</a>.</div></div>
+    <a class="li noprint" href="https://www.linkedin.com/in/sayedomni" target="_blank" rel="noopener" onclick="try{gtag('event','linkedin_click',{page:location.pathname})}catch(e){}">Connect on LinkedIn</a>
+  </div>
+  <p class="note">General guidance from experience, not legal, tax or financial advice. Check every AI output against your own records. Dates and rules were checked on the linked pages on the dates shown there.</p>
+  <div class="footer noprint"><a href="/index.html?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">All free tools</a> · <a href="https://www.gantry.work/?utm_source=kit&amp;utm_medium=kit1&amp;utm_campaign=ai-finance-ops">The Gantry</a> · <a href="/about-sayed.html">About Sayed</a></div>
+</div>
+<script>
+document.querySelectorAll('.prompt .copy').forEach(function(b){b.addEventListener('click',function(){var pre=b.closest('.prompt').querySelector('pre');var t=pre.innerText;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1500)}).catch(function(){var r=document.createRange();r.selectNodeContents(pre);var s=getSelection();s.removeAllRanges();s.addRange(r);});try{gtag('event','kit_prompt_copy',{kit:'ai-finance-ops',prompt:b.closest('.prompt').querySelector('b').innerText})}catch(e){}});});
+try{gtag('event','kit_view',{kit:'ai-finance-ops',src:new URLSearchParams(location.search).get('utm_medium')||''})}catch(e){}
+</script>
+</body>
+</html>
