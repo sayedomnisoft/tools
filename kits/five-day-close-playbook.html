@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en-SG">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 5-Day Close Playbook for Singapore SMEs | The Gantry Kit</title>
+<meta name="description" content="A day-by-day month-end close for a Singapore SME, with copy-paste prompts for cut-off, bank, suppliers, stock and reports. By Sayed Rashid, ex-auditor.">
+<meta name="robots" content="noindex,nofollow">
+<meta property="og:title" content="The 5-Day Close Playbook">
+<meta property="og:description" content="Close the month in five working days: the order, one owner per step, and copy-paste prompts for each day.">
+<meta property="og:image" content="https://tools.gantry.work/og/about-sayed.jpg">
+<meta name="author" content="Sayed Rashid">
+<meta name="theme-color" content="#fcfcfa">
+<link rel="stylesheet" href="/shared.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="gantry-tool-category" content="kit">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EW5Y0JHSF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH']});gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});try{if(localStorage.getItem('gantry_optout')==='1')gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}catch(e){}gtag('js',new Date());gtag('config','G-EW5Y0JHSF9');</script>
+<script src="/config.js"></script><script src="/track.js" defer></script>
+<meta name="gantry-checked" content="2026-11-26">
+<!-- Built by kits/build_kit.py from kits/content/five-day-close-playbook.json. Edit the JSON, then run: python3 kits/build_kit.py five-day-close-playbook -->
+<style>
+/* Kit page. Read mode: the visitor arrives from a LinkedIn DM on a phone and wants their team's prompts fast. */
+:root { --kit-max: 760px; --bar-h: 52px; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--bar-h) + 16px); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { padding-bottom: 0; }
+.kit { max-width: var(--kit-max); margin: 0 auto; padding: 0 20px 56px; }
+.kit a { color: var(--blue); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.kit a:hover { color: var(--blue-d); }
+.kit :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 6px; }
+.kit p { line-height: 1.65; max-width: 68ch; }
+.kit p + p { margin-top: 12px; }
+
+/* top line */
+.kit-top { display: flex; justify-content: space-between; align-items: center; padding: 18px 0 0; font-size: 13px; font-weight: 700; letter-spacing: .02em; }
+.kit-top a { color: var(--ink-3); text-decoration: none; }
+.kit-top a:hover { color: var(--blue); }
+
+/* hero */
+.hero { padding: 40px 0 8px; }
+.hero h1 { font-size: clamp(2rem, 1.35rem + 3.2vw, 3.1rem); line-height: 1.04; letter-spacing: -0.035em; margin-bottom: 16px; max-width: 18ch; }
+.hero .promise { font: 400 clamp(17px, 16px + .4vw, 19.5px)/1.55 var(--serif); color: var(--ink-2); max-width: 56ch; }
+.who-line { display: flex; align-items: center; gap: 12px; margin-top: 22px; }
+.who-line img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex: none; }
+.who-line .nm { font-weight: 700; font-size: 15px; line-height: 1.3; }
+.who-line .nm a { color: var(--ink); text-decoration: none; }
+.who-line .nm a:hover { color: var(--blue); }
+.who-line .rl { font: 400 14px/1.4 var(--serif); color: var(--ink-3); }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; padding: 14px 0 0; list-style: none; border-top: 1px solid var(--rule); }
+.facts li { display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 600; color: var(--ink-2); line-height: 1.3; }
+.facts svg { width: 15px; height: 15px; color: var(--blue); flex: none; }
+
+/* team picker */
+.picker { margin-top: 34px; }
+.picker h2 { font-size: 15px; letter-spacing: -0.01em; color: var(--ink-3); font-weight: 700; margin-bottom: 10px; }
+.picker ol { list-style: none; padding: 0; margin: 0; background: #fff; border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); overflow: hidden; }
+.picker li + li { border-top: 1px solid var(--rule); }
+.picker a { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4px 14px; padding: 16px 18px; text-decoration: none; color: var(--ink); transition: background .2s var(--ease); }
+.picker a:hover { background: var(--blue-wash); }
+.picker a:focus-visible { outline-offset: -3px; border-radius: 0; }
+.picker b { font-size: 17px; letter-spacing: -0.015em; }
+.picker .tag { grid-column: 1; font: 400 15px/1.4 var(--serif); color: var(--ink-2); }
+.picker .n { grid-row: 1 / span 2; grid-column: 2; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--blue); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.picker .n svg { width: 18px; height: 18px; transition: transform .25s var(--ease); }
+.picker a:hover .n svg { transform: translateY(2px); }
+.picker .last b { font-weight: 700; color: var(--ink-2); }
+
+/* intro */
+.intro { margin-top: 48px; }
+.intro h2, .team-head h2, .scale h2 { font-size: clamp(1.45rem, 1.2rem + 1vw, 1.8rem); line-height: 1.15; letter-spacing: -0.028em; margin-bottom: 14px; }
+.rule-line { margin: 22px 0 0; padding: 18px 20px; background: var(--blue-wash); border-radius: 14px; font-size: 17px; line-height: 1.5; color: var(--ink); }
+.rule-line b { font-weight: 700; }
+.why { margin-top: 18px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.why summary, .meta summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; }
+.why summary::-webkit-details-marker, .meta summary::-webkit-details-marker { display: none; }
+.why summary { padding: 16px 2px; font-weight: 700; font-size: 16px; }
+.why summary svg, .meta summary svg { width: 16px; height: 16px; flex: none; color: var(--ink-3); transition: transform .25s var(--ease); }
+details[open] > summary svg { transform: rotate(90deg); }
+.why .why-body { padding: 0 2px 18px; color: var(--ink-2); }
+
+.ground { margin-top: 26px; display: grid; grid-template-columns: auto 1fr; gap: 12px; padding: 16px 18px; background: var(--canary); border: 1px solid var(--canary-line); border-radius: 14px; font-size: 15px; line-height: 1.55; }
+.ground svg { width: 20px; height: 20px; margin-top: 2px; color: var(--ink); }
+.ground b { display: block; margin-bottom: 2px; }
+.copy-note { margin-top: 14px; font-size: 14px; color: var(--ink-3); }
+
+/* sticky team bar */
+.teambar { position: sticky; top: 0; z-index: 20; margin: 40px -20px 0; padding: 0 20px; background: rgba(252,252,250,.94); backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--rule); }
+.teambar .in { display: flex; align-items: center; gap: 6px; height: var(--bar-h); overflow-x: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent); mask-image: linear-gradient(90deg, #000 88%, transparent); }
+.teambar .in::-webkit-scrollbar { display: none; }
+.teambar a { flex: none; display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 999px; font-size: 14px; font-weight: 700; color: var(--ink-2); text-decoration: none; white-space: nowrap; transition: background .2s var(--ease), color .2s var(--ease); }
+.teambar a:hover { color: var(--ink); background: #fff; }
+.teambar a[aria-current="true"] { background: var(--ink); color: var(--paper); }
+.teambar .up { color: var(--ink-3); padding-left: 4px; }
+.teambar .up svg { width: 16px; height: 16px; }
+
+/* team sections */
+.team { padding-top: 44px; }
+.team-head .sub-meta { font-size: 14px; font-weight: 700; color: var(--ink-3); margin: -6px 0 12px; font-variant-numeric: tabular-nums; }
+.team-head .goal { color: var(--ink-2); }
+
+.prompt { margin-top: 22px; background: #fff; border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); overflow: hidden; }
+.prompt-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; padding: 16px 18px 12px; }
+.prompt-head h3 { font-size: 17.5px; line-height: 1.3; letter-spacing: -0.015em; }
+.copy { flex: none; display: inline-flex; align-items: center; gap: 7px; min-height: 38px; padding: 0 14px; font: 700 14px/1 var(--font); color: #fff; background: var(--blue); border: 0; border-radius: 10px; cursor: pointer; box-shadow: var(--shadow-btn); transition: background .2s var(--ease), transform .2s var(--ease); }
+.copy:hover { background: var(--blue-d); transform: translateY(-1px); }
+.copy svg { width: 16px; height: 16px; }
+.copy .ok { display: none; }
+.copy.done { background: var(--green); }
+.copy.done .ok { display: block; }
+.copy.done .ic { display: none; }
+.ptext { margin: 0 18px; padding: 14px 16px; background: #f7f8fb; border: 1px solid var(--rule); border-radius: 12px; font: 400 15px/1.6 var(--font); color: var(--ink); white-space: pre-wrap; overflow-wrap: anywhere; max-height: 13em; overflow: hidden; }
+.ptext.clip { -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent); mask-image: linear-gradient(180deg, #000 70%, transparent); }
+.ptext.open { max-height: none; -webkit-mask-image: none; mask-image: none; }
+.ptext mark { background: var(--canary); color: var(--ink); border-radius: 4px; padding: 0 3px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.more { display: none; margin: 8px 18px 0; padding: 0; border: 0; background: none; font: 700 13.5px/1.4 var(--font); color: var(--blue); cursor: pointer; }
+.more.on { display: inline-block; }
+.meta { margin-top: 12px; border-top: 1px solid var(--rule); }
+.meta summary { padding: 13px 18px; font-size: 14.5px; font-weight: 700; color: var(--ink-2); }
+.meta summary:hover { color: var(--ink); }
+.meta dl { margin: 0; padding: 0 18px 16px; display: grid; gap: 12px; }
+.meta dt { font-size: 12.5px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); }
+.meta dd { margin: 2px 0 0; font: 400 15px/1.55 var(--serif); color: var(--ink-2); }
+
+/* the honest next step */
+.scale { margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--line); }
+.scale ul { margin: 12px 0 0; padding-left: 20px; }
+.scale li { margin-top: 8px; line-height: 1.6; max-width: 66ch; }
+.band { margin-top: 28px; padding: 26px 24px; border-radius: 18px; background: var(--ink); color: var(--paper); display: grid; gap: 16px; }
+.band b { font-size: 21px; letter-spacing: -0.02em; line-height: 1.2; }
+.band p { color: #c9cde0; margin-top: 6px; }
+.band .acts { display: flex; flex-wrap: wrap; gap: 10px; }
+.band .go, .band .go:visited { display: inline-flex; align-items: center; gap: 8px; padding: 13px 18px; border-radius: 12px; background: var(--paper); color: var(--ink); font-weight: 700; text-decoration: none; transition: transform .2s var(--ease), background .2s var(--ease); }
+.band .go:hover { transform: translateY(-1px); background: #fff; color: var(--ink); }
+.band .alt, .band .alt:visited { display: inline-flex; align-items: center; padding: 13px 4px; color: #dfe3f3; font-weight: 700; text-decoration: underline; text-decoration-color: rgba(223,227,243,.4); }
+.band .alt:hover { color: #fff; }
+.band :focus-visible { outline-color: var(--paper); }
+.band svg { width: 16px; height: 16px; }
+
+.tail { margin-top: 40px; }
+.printbtn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; background: #fff; font: 700 14px/1 var(--font); color: var(--ink-2); cursor: pointer; }
+.printbtn:hover { border-color: var(--ink-3); color: var(--ink); }
+.printbtn svg { width: 16px; height: 16px; }
+.disclaimer { margin-top: 14px; font-size: 13.5px; color: var(--ink-3); }
+.kit .footer { margin-top: 26px; }
+
+@media (min-width: 720px) {
+  .kit { padding: 0 32px 72px; }
+  .teambar { margin: 44px -32px 0; padding: 0 32px; }
+  .hero { padding-top: 64px; }
+  .band { grid-template-columns: 1fr auto; align-items: center; padding: 30px 32px; }
+}
+@media (max-width: 420px) {
+  .prompt-head { flex-direction: column; gap: 10px; }
+  .copy { align-self: flex-start; }
+}
+@media print {
+  .teambar, .copy, .more, .printbtn, .kit-top, .picker, .band .acts, .copy-note, .footer, .byline .li { display: none !important; }
+  .kit { max-width: none; padding: 0; }
+  .ptext { max-height: none; overflow: visible; background: none; }
+  .prompt { box-shadow: none; break-inside: avoid; }
+  .band { background: none; color: var(--ink); border: 1px solid var(--line); }
+  .band p { color: var(--ink-2); }
+  .kit a { color: inherit; text-decoration: none; }
+  details > :not(summary) { display: block !important; }
+}
+</style>
+</head>
+<body>
+<main class="kit">
+  <div class="kit-top"><a href="/index.html?utm_source=kit&amp;utm_medium=kit3&amp;utm_campaign=five-day-close">The Gantry · Free tools</a><a href="/about-sayed.html?utm_source=kit&amp;utm_medium=kit3&amp;utm_campaign=five-day-close">About Sayed</a></div>
+
+  <header class="hero">
+    <h1>The 5-Day Close Playbook</h1>
+    <p class="promise">The close in the order that works, one team per stage: Cut-off and Bank, Suppliers, Stock and Payroll, Reports. Each has copy-paste prompts for Claude or ChatGPT, what to paste in, and what good output looks like.</p>
+    <div class="who-line">
+      <img src="/sayed.jpg" alt="" width="40" height="40">
+      <div><div class="nm">By <a href="/about-sayed.html?utm_source=kit&amp;utm_medium=kit3&amp;utm_campaign=five-day-close">Sayed Rashid</a></div><div class="rl">Free kit, no sign-up</div></div>
+    </div>
+    <ul class="facts"><li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5.5 4h8M5.5 8h8M5.5 12h8"/><circle cx="2.5" cy="4" r=".9" fill="currentColor"/><circle cx="2.5" cy="8" r=".9" fill="currentColor"/><circle cx="2.5" cy="12" r=".9" fill="currentColor"/></svg>10 prompts in 4 teams</li><li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 4.8V8l2.2 1.6"/></svg>About 20 minutes per team</li><li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v3M8 11v3M2 8h3M11 8h3M4 4l1.8 1.8M10.2 10.2L12 12M12 4l-1.8 1.8M5.8 10.2L4 12"/></svg>Works with Claude or ChatGPT</li></ul>
+  </header>
+
+  <nav class="picker" id="teams" aria-label="Pick your team">
+    <h2>Jump to your team</h2>
+    <ol><li><a href="#cutoff"><b>Cut-off and Bank Team</b><span class="tag">Day 1 to 2</span><span class="n">3 prompts<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v10M3.5 8.5L8 13l4.5-4.5"/></svg></span></a></li><li><a href="#suppliers"><b>Suppliers Team</b><span class="tag">Day 2 to 3</span><span class="n">3 prompts<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v10M3.5 8.5L8 13l4.5-4.5"/></svg></span></a></li><li><a href="#stock"><b>Stock and Payroll Team</b><span class="tag">Day 3 to 4</span><span class="n">2 prompts<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v10M3.5 8.5L8 13l4.5-4.5"/></svg></span></a></li><li><a href="#reports"><b>Reports Team</b><span class="tag">Day 5, then one day faster</span><span class="n">2 prompts<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v10M3.5 8.5L8 13l4.5-4.5"/></svg></span></a></li><li class="last"><a href="#scale"><b>When the spreadsheets stop scaling</b><span class="tag">The honest next step</span><span class="n"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v10M3.5 8.5L8 13l4.5-4.5"/></svg></span></a></li></ol>
+  </nav>
+
+  <section class="intro" aria-labelledby="intro-h">
+    <h2 id="intro-h">Most of a long close is waiting, not working</h2>
+    <p>As an auditor I saw the same close in every company that took three weeks: the work itself was a few days, and the rest was waiting. Waiting for supplier invoices for goods already received, for a stock figure that agrees with the books, for the one person who knows the accrual.</p><p>The order that works is the same almost everywhere: cut-off, bank, suppliers and accruals, stock and payroll, intercompany, then margin and reports, with one owner per step. The days below are an example of the order, not a promise for every business. (<a href="/month-end-close-scorecard.html?utm_source=kit&amp;utm_medium=kit3&amp;utm_campaign=five-day-close">Month-end close scorecard</a>)</p><p>One rule runs through every prompt: <b>you bring the real figures, AI sorts, checks and drafts, and a person signs off.</b></p>
+    <details class="why">
+      <summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What a slow close costs</summary>
+      <div class="why-body"><p>A worked example from our calculator: a close that takes 12 working days and pulls in 3 people for about half of each day costs about S$40,926 a year in salary at S$4,500 a month. The same close in 3 days costs about S$10,232. Put your own numbers in. (<a href="/month-end-close.html?utm_source=kit&amp;utm_medium=kit3&amp;utm_campaign=five-day-close">Month-end close cost calculator</a>)</p><p>Four habits get most small businesses to five working days: post transactions as they happen, reconcile the bank weekly, lock the period once it is closed, and build the reports once. (<a href="/month-end-close.html?utm_source=kit&amp;utm_medium=kit3&amp;utm_campaign=five-day-close">source</a>)</p></div>
+    </details>
+    <div class="ground" role="note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+      <div><b>Ground rules for every prompt</b>Use a business account with data training switched off, or remove names first. Never paste NRIC numbers, salaries by name, bank account numbers or passwords. AI can miscount and can sound sure when it is wrong: check every figure against your own records before anyone acts on it. This is general guidance from experience, not legal, tax or financial advice.</div>
+    </div>
+    <p class="copy-note">Copy this kit into your own Notion or Google Docs: use Print below (save as PDF) or copy each prompt with its button. Share it with your team as it is.</p>
+  </section>
+
+  <nav class="teambar" aria-label="Teams">
+    <div class="in">
+      <a class="up" href="#teams" aria-label="Back to all teams"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V3M3.5 7.5L8 3l4.5 4.5"/></svg>Teams</a>
+      <a href="#cutoff" data-t="cutoff">Cut-off and Bank</a><a href="#suppliers" data-t="suppliers">Suppliers</a><a href="#stock" data-t="stock">Stock and Payroll</a><a href="#reports" data-t="reports">Reports</a><a href="#scale" data-t="scale">Next step</a>
+    </div>
+  </nav>
+
+  <section class="team" id="cutoff" aria-labelledby="cutoff-h"><div class="team-head"><h2 id="cutoff-h">Cut-off and Bank Team</h2><p class="sub-meta">Team 1 of 4 · 3 prompts</p><p class="goal">Goal, day 1 to 2: the last invoice, receipt and delivery numbers of the month written down, and every bank account reconciled with an owner for each unmatched line. (<a href="/month-end-close-scorecard.html?utm_source=kit&amp;utm_medium=kit3&amp;utm_campaign=five-day-close">source</a>)</p></div><article class="prompt" id="cutoff-p1"><div class="prompt-head"><h3>The cut-off sheet</h3><button class="copy" type="button" aria-label="Copy the prompt: The cut-off sheet"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">Act as a month-end close coordinator.
+Month being closed: <mark>[month and year]</mark>. Our documents: <mark>[sales invoices, delivery orders, goods received notes, purchase invoices, credit notes, and how each is numbered]</mark>
+
+Build a one-page cut-off sheet:
+1. A row for each document type: last number issued in the month, date, who confirms it, and where the next number starts.
+2. Three checks for goods that moved around month-end: delivered but not invoiced, invoiced but not delivered, received but no supplier invoice yet.
+3. A sign-off line for the person who confirms cut-off on working day 1.
+Keep it to one page that can be reused every month.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>your document types and numbering. No figures needed.</dd></div><div><dt>Good output</dt><dd>a sheet filled in on the first morning. It settles "which month does this belong to" before anyone argues.</dd></div></dl></details></article><article class="prompt" id="cutoff-p2"><div class="prompt-head"><h3>Bank reconciliation triage</h3><button class="copy" type="button" aria-label="Copy the prompt: Bank reconciliation triage"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">I will paste two lists for one bank account.
+List A: bank statement lines for <mark>[month]</mark> (date, description, amount).
+List B: cash book or ledger lines for the same account (date, reference, amount).
+<mark>[paste List A]</mark>
+<mark>[paste List B]</mark>
+
+1. Match lines that agree on amount and are within 5 days of each other.
+2. List everything unmatched on each side, largest first.
+3. For each unmatched line, give the most likely reason (timing, bank fee, duplicate, missing entry) and the role who would know.
+4. Show the remaining difference and check it equals the sum of the unmatched lines.
+Do not invent entries. If something is unclear, say so.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>exports from the bank and from your accounting system.</dd></div><div><dt>Good output</dt><dd>a short list of unmatched lines, each with an owner, and a difference that ties.</dd></div></dl></details></article><article class="prompt" id="cutoff-p3"><div class="prompt-head"><h3>Move the bank to weekly</h3><button class="copy" type="button" aria-label="Copy the prompt: Move the bank to weekly"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">Our bank reconciliation is done once a month and takes <mark>[hours]</mark>. We have <mark>[number]</mark> accounts and about <mark>[number]</mark> lines a month.
+Design a weekly routine that takes 30 minutes or less:
+1. Which day and who, with a named backup role.
+2. The exact steps, in order.
+3. What gets escalated the same day and to whom.
+4. How the month-end reconciliation changes once the weekly one exists.
+Plain steps a new hire could follow.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>the number of accounts, lines and who does it today.</dd></div><div><dt>Good output</dt><dd>a routine short enough to survive a busy week. Weekly bank is the habit that shortens day 1 the most.</dd></div></dl></details></article></section>
+<section class="team" id="suppliers" aria-labelledby="suppliers-h"><div class="team-head"><h2 id="suppliers-h">Suppliers Team</h2><p class="sub-meta">Team 2 of 4 · 3 prompts</p><p class="goal">Goal, day 2 to 3: goods received but not invoiced are accrued from the goods received list, and the main supplier statements agree with your ledger. (<a href="/month-end-close-scorecard.html?utm_source=kit&amp;utm_medium=kit3&amp;utm_campaign=five-day-close">source</a>)</p></div><article class="prompt" id="suppliers-p4"><div class="prompt-head"><h3>Accrual list from goods received</h3><button class="copy" type="button" aria-label="Copy the prompt: Accrual list from goods received"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">I will paste two lists for <mark>[month]</mark>.
+List A: goods received in the month (date, supplier, order number, item, quantity, order price).
+List B: supplier invoices already entered (supplier, invoice number, date, order number, amount).
+<mark>[paste List A]</mark>
+<mark>[paste List B]</mark>
+
+1. Match receipts to invoices by order number, then by supplier and amount.
+2. List receipts with no invoice yet: supplier, order, value at order price.
+3. Total the list by supplier. This is the accrual to review.
+4. List invoices with no receipt, for someone to check before they are paid.
+Do not guess prices that are not in the lists.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>your goods received list and purchase invoice listing.</dd></div><div><dt>Good output</dt><dd>an accrual built from what arrived, not from memory. It removes the wait for late invoices.</dd></div></dl></details></article><article class="prompt" id="suppliers-p5"><div class="prompt-head"><h3>Supplier statement against our ledger</h3><button class="copy" type="button" aria-label="Copy the prompt: Supplier statement against our ledger"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">Supplier statement for <mark>[supplier, or "Supplier A"]</mark> as at <mark>[date]</mark>:
+<mark>[paste lines: date, their invoice number, amount, balance]</mark>
+Our ledger for the same supplier:
+<mark>[paste lines: date, invoice number, amount, paid or unpaid]</mark>
+
+1. Match by invoice number, then amount.
+2. List items on their statement that are not in our ledger, and items in our ledger that are not on theirs.
+3. List payments we made that they have not shown.
+4. Give both balances and a reconciliation that explains the difference line by line.
+Do not invent invoices.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>the statement and your ledger for that supplier.</dd></div><div><dt>Good output</dt><dd>a reconciliation you could send to the supplier the same day.</dd></div></dl></details></article><article class="prompt" id="suppliers-p6"><div class="prompt-head"><h3>Chase the missing invoices, politely</h3><button class="copy" type="button" aria-label="Copy the prompt: Chase the missing invoices, politely"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">Write a short email to a supplier asking for invoices for goods already received.
+Details: <mark>[order numbers, delivery dates, items]</mark>
+Tone: friendly and specific. Ask for the invoices by <mark>[date]</mark> and say where to send them.
+Give me two versions: a first request, and a reminder for one week later.
+No threats, no jargon, under 90 words each.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>the order and delivery details.</dd></div><div><dt>Good output</dt><dd>two emails ready to send. Asking on the day goods arrive is what ends the month-end wait.</dd></div></dl></details></article></section>
+<section class="team" id="stock" aria-labelledby="stock-h"><div class="team-head"><h2 id="stock-h">Stock and Payroll Team</h2><p class="sub-meta">Team 3 of 4 · 2 prompts</p><p class="goal">Goal, day 3 to 4: the stock value agrees with the ledger, payroll is posted, and intercompany balances agree on both sides. (<a href="/month-end-close-scorecard.html?utm_source=kit&amp;utm_medium=kit3&amp;utm_campaign=five-day-close">source</a>)</p></div><article class="prompt" id="stock-p7"><div class="prompt-head"><h3>Tie stock to the ledger</h3><button class="copy" type="button" aria-label="Copy the prompt: Tie stock to the ledger"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">Stock valuation report as at <mark>[month-end]</mark>: <mark>[paste by category or location: quantity, value]</mark>
+Ledger balance for inventory at the same date: <mark>[paste]</mark>
+Movements we know were late or adjusted: <mark>[paste]</mark>
+
+1. Show the difference between the stock report and the ledger.
+2. List the most likely causes in order (receipts not posted, deliveries not posted, cost changes, manual journals, negative quantities) and what evidence would confirm each.
+3. Write the 5 checks to run, with the report or screen for each, without naming a software product.
+4. Say what should be corrected in the stock records and what in the ledger.
+Use only the figures given.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>the valuation summary and the ledger balance.</dd></div><div><dt>Good output</dt><dd>a short list of checks in order. When stock and ledger agree every month, the audit gets short too.</dd></div></dl></details></article><article class="prompt" id="stock-p8"><div class="prompt-head"><h3>Intercompany mismatch finder</h3><button class="copy" type="button" aria-label="Copy the prompt: Intercompany mismatch finder"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">We have <mark>[number]</mark> companies. For <mark>[month]</mark>, here is what each says it owes or is owed by the others:
+<mark>[paste for each company: counterparty, receivable, payable, sales to, purchases from]</mark>
+
+1. Build a matrix and mark every pair that does not agree.
+2. For each mismatch, give the amount and the most likely reason (timing, exchange rate, an invoice entered on one side only).
+3. Write the one-line question to send to each finance contact.
+4. Suggest a monthly cut-off rule for intercompany invoices that would prevent most of these.
+Do not net off amounts without showing them.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>the intercompany balances from each company.</dd></div><div><dt>Good output</dt><dd>the pairs that disagree, found on day 4 instead of at consolidation.</dd></div></dl></details></article></section>
+<section class="team" id="reports" aria-labelledby="reports-h"><div class="team-head"><h2 id="reports-h">Reports Team</h2><p class="sub-meta">Team 4 of 4 · 2 prompts</p><p class="goal">Goal, day 5: margin checked, reports built once, and one step chosen to make next month a day faster. (<a href="/month-end-close.html?utm_source=kit&amp;utm_medium=kit3&amp;utm_campaign=five-day-close">source</a>)</p></div><article class="prompt" id="reports-p9"><div class="prompt-head"><h3>Margin sense check before the pack goes out</h3><button class="copy" type="button" aria-label="Copy the prompt: Margin sense check before the pack goes out"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">This month and the last three months, by product group or customer group: <mark>[paste revenue, cost of sales, gross margin]</mark>
+Known events: <mark>[price changes, a large order, stock adjustments, exchange rate moves]</mark>
+
+1. Flag any margin that moved more than 2 points and say which line drives it.
+2. For each flag, give the most likely cause from the events and the one document that would prove it.
+3. List anything that looks like an error, not a business change (cost of sales missing, a credit note in the wrong month).
+4. Write 5 bullet points of commentary for the directors in plain English.
+No guessing beyond the figures given.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>summary lines, not the whole ledger.</dd></div><div><dt>Good output</dt><dd>errors caught before the pack goes out, and commentary a director reads in a minute.</dd></div></dl></details></article><article class="prompt" id="reports-p10"><div class="prompt-head"><h3>Take one day off next month</h3><button class="copy" type="button" aria-label="Copy the prompt: Take one day off next month"><svg class="ic" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.6"/><path d="M10.5 5V3.6A1.6 1.6 0 008.9 2H3.6A1.6 1.6 0 002 3.6v5.3A1.6 1.6 0 003.6 10.5H5"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="lb">Copy</span></button></div><div class="ptext">Here is how our close ran this month: <mark>[paste each step, owner, working day started, working day finished, and what it waited for]</mark>
+
+1. Show the total working days and how many were waiting, not working.
+2. Rank the waits by days lost.
+3. For the biggest wait, propose one change we can make this month (who, what, by when) and how we will know it worked.
+4. Rewrite next month's timetable with that one change.
+One change only. Small and certain beats large and hopeful.</div><button class="more" type="button">Show the whole prompt</button><details class="meta"><summary><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>What to paste in, and what good looks like</summary><dl><div><dt>Paste in</dt><dd>an honest log of the close just finished.</dd></div><div><dt>Good output</dt><dd>next month's timetable, one day shorter. Repeat monthly until you are at five.</dd></div></dl></details></article></section>
+
+
+  <section class="scale" id="scale" aria-labelledby="scale-h">
+    <h2 id="scale-h">When the spreadsheets stop scaling</h2>
+    <p>These prompts take days off a close. They do not fix the root cause I see most often: the month's data was never captured properly while the month was happening, so finance spends the close rebuilding it. If sales, stock and purchases live in different files, the close will always be a reconstruction.</p><p>Two honest next steps:</p>
+    <ul><li>Take the <a href="/month-end-close-scorecard.html?utm_source=kit&amp;utm_medium=kit3&amp;utm_campaign=five-day-close">month-end close scorecard</a>: one page that shows which step makes your close slow.</li><li>Or bring your close timetable to a free 20-minute call with me. You leave with three fixes, ranked by payoff.</li></ul>
+    <div class="band">
+      <div><b>Free 20-minute systems review</b><p>Bring your close timetable. No slides, nothing to prepare.</p></div>
+      <div class="acts">
+        <a class="go" href="/review.html?utm_source=kit&amp;utm_medium=kit3&amp;utm_campaign=five-day-close" onclick="try{gtag('event','kit_review_click',{kit:'five-day-close'})}catch(e){}">Book the free 20 minutes<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        <a class="alt" href="/month-end-close-scorecard.html?utm_source=kit&amp;utm_medium=kit3&amp;utm_campaign=five-day-close">Take the month-end close scorecard</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="tail">
+    <button class="printbtn" type="button" onclick="window.print()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9V3h10v6M7 17H5a2 2 0 01-2-2v-4a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2h-2"/><path d="M7 14h10v7H7z"/></svg>Print or save as PDF</button>
+    <div class="byline">
+      <img src="/sayed.jpg" alt="Sayed Rashid" width="48" height="48" loading="lazy">
+      <div class="who"><div class="nm">Sayed Rashid</div><div class="rl">Ex-auditor. I help Singapore SMEs take the re-typing, checking and chasing off their people. <a href="/about-sayed.html?utm_source=kit&amp;utm_medium=kit3&amp;utm_campaign=five-day-close">About me</a>.</div></div>
+      <a class="li" href="https://www.linkedin.com/in/sayedomni" target="_blank" rel="noopener" onclick="try{gtag('event','linkedin_click',{page:location.pathname})}catch(e){}">Connect on LinkedIn</a>
+    </div>
+    <p class="disclaimer">General guidance from experience, not legal, tax or financial advice. The day numbers are an example of the order, not a promise. Check every AI output against your own records.</p>
+    <div class="footer"><a href="/index.html?utm_source=kit&amp;utm_medium=kit3&amp;utm_campaign=five-day-close">All free tools</a> · <a href="https://www.gantry.work/?utm_source=kit&amp;utm_medium=kit3&amp;utm_campaign=five-day-close">The Gantry</a> · <a href="/about-sayed.html?utm_source=kit&amp;utm_medium=kit3&amp;utm_campaign=five-day-close">About Sayed</a></div>
+  </div>
+</main>
+<div aria-live="polite" class="sr" id="live" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)"></div>
+<script>
+(function(){
+  var KIT = 'five-day-close', live = document.getElementById('live');
+  document.querySelectorAll('.prompt').forEach(function(card){
+    var pre = card.querySelector('.ptext'), btn = card.querySelector('.copy'), more = card.querySelector('.more');
+    if (pre.scrollHeight > pre.clientHeight + 4) { more.classList.add('on'); pre.classList.add('clip'); }
+    more.addEventListener('click', function(){ pre.classList.add('open'); more.classList.remove('on'); });
+    btn.addEventListener('click', function(){
+      var t = pre.textContent;
+      var done = function(){ btn.classList.add('done'); btn.querySelector('.lb').textContent = 'Copied'; live.textContent = 'Prompt copied';
+        setTimeout(function(){ btn.classList.remove('done'); btn.querySelector('.lb').textContent = 'Copy'; }, 1800); };
+      (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(done).catch(function(){
+        var r = document.createRange(); r.selectNodeContents(pre); var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+        try { document.execCommand('copy'); done(); } catch(e) {} });
+      try { gtag('event','kit_prompt_copy',{kit:KIT,prompt:card.querySelector('h3').textContent}); } catch(e) {}
+    });
+  });
+  var links = [].slice.call(document.querySelectorAll('.teambar a[data-t]'));
+  var map = {}; links.forEach(function(a){ map[a.getAttribute('data-t')] = a; });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) {
+      links.forEach(function(a){ a.removeAttribute('aria-current'); });
+      var a = map[e.target.id]; if (a) { a.setAttribute('aria-current','true'); a.scrollIntoView({block:'nearest',inline:'nearest'}); } } }); },
+      { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('.team, .scale').forEach(function(s){ io.observe(s); });
+  }
+  document.querySelectorAll('.picker a, .teambar a').forEach(function(a){ a.addEventListener('click', function(){ try { gtag('event','kit_team_nav',{kit:KIT,to:a.getAttribute('href')}); } catch(e) {} }); });
+  window.addEventListener('beforeprint', function(){ document.querySelectorAll('details').forEach(function(d){ d.setAttribute('open',''); }); });
+  try { gtag('event','kit_view',{kit:KIT,src:new URLSearchParams(location.search).get('utm_medium')||''}); } catch(e) {}
+})();
+</script>
+</body>
+</html>
