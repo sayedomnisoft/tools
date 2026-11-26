@@ -5,6 +5,7 @@
 Updated 19 November 2026. Every page below is free to use and to cite.
 
 ## Start here
+- [About Sayed Rashid and The Gantry](https://tools.gantry.work/about-sayed.html): who writes these tools, and every channel to follow: newsletter, YouTube, TikTok, Pinterest, X and LinkedIn.
 - [All free tools](https://tools.gantry.work/): 55 tools and guides grouped by the problem they fix: late payments, stock, job costs, margins, paperwork, grants and InvoiceNow, WhatsApp.
 - [SME Systems Health Check](https://tools.gantry.work/health-check/): ten questions, about 60 seconds, a score and the process that leaks the most time.
 - [Cost of Manual Work Calculator](https://tools.gantry.work/cost-of-manual-work.html): what retyping, chasing and checking cost a team in a year.
